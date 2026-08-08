@@ -1,8 +1,8 @@
 {
-  "at": "2026-08-07T23:37:27.444Z",
+  "at": "2026-08-08T23:33:34.041Z",
   "type": "daily",
-  "date": "2026-08-07",
-  "candidates": 73,
+  "date": "2026-08-08",
+  "candidates": 52,
   "search": {
     "ok": true,
     "queries": 6,
@@ -10,24 +10,28 @@
     "items": 16,
     "failures": []
   },
-  "editorial": 12,
+  "editorial": 10,
   "sections": {
-    "业界": 3,
-    "产品": 4,
-    "模型": 0,
-    "开源": 2,
-    "开发者工具": 2,
-    "前端": 1
+    "业界": 4,
+    "产品": 2,
+    "模型": 2,
+    "开源": 1,
+    "开发者工具": 1,
+    "前端": 0
   },
   "rss": {
-    "ok": 20,
-    "failed": 1,
+    "ok": 19,
+    "failed": 2,
     "failures": [
+      {
+        "name": "CSS-Tricks",
+        "error": "Status code 415"
+      },
       {
         "name": "36氪",
         "error": "Feed not recognized as RSS/Atom"
       }
     ]
   },
-  "output": "news/2026-08/ai-news-2026-08-07.md"
+  "output": "news/2026-08/ai-news-2026-08-08.md"
 }
