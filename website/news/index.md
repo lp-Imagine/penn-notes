@@ -25,8 +25,9 @@ next: false
 
   <div class="section-index news-digest-list">
     <div class="section-group">
-      <p class="section-group-label">2026-08 · 8 期日报</p>
+      <p class="section-group-label">2026-08 · 9 期日报</p>
       <div class="section-card-grid">
+        <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-09"><img class="section-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2259148891.jpg?resize=1200,686" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-09</span><span class="section-card-meta"><time datetime="2026-08-09">2026-08-09</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-08"><img class="section-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/08/Rippling-AI-Spend-Console.png?resize=1200,717" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-08</span><span class="section-card-meta"><time datetime="2026-08-08">2026-08-08</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-07"><img class="section-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/02/zuckerberg-LA-trial-2026-GettyImages-2261841364.jpg?w=1024" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-07</span><span class="section-card-meta"><time datetime="2026-08-07">2026-08-07</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-06"><img class="section-card-thumb" src="https://static001.infoq.cn/resource/image/13/c4/13a3a8ff695813f3785ca3f52f18d2c4.jpg" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-06</span><span class="section-card-meta"><time datetime="2026-08-06">2026-08-06</time><span>阅读全文</span></span></a>

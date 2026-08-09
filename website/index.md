@@ -52,6 +52,11 @@ layout: home
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-09">
+    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2259148891.jpg?resize=1200,686" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-09">2026-08-09</time>
+    <span class="news-card-title">AI 动态 · 2026-08-09</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-08">
     <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/08/Rippling-AI-Spend-Console.png?resize=1200,717" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-08">2026-08-08</time>
     <span class="news-card-title">AI 动态 · 2026-08-08</span>
@@ -85,11 +90,6 @@ layout: home
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-02">
     <img class="news-card-thumb" src="https://static001.infoq.cn/resource/image/e9/29/e92af57dcf3920b2006c9610f6dde429.png" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-02">2026-08-02</time>
     <span class="news-card-title">AI 动态 · 2026-08-02</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-01">
-    <img class="news-card-thumb" src="https://opengraph.githubassets.com/1/bytedance/deer-flow" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-01">2026-08-01</time>
-    <span class="news-card-title">AI 动态 · 2026-08-01</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
 </div>

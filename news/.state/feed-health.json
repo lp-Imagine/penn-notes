@@ -1,8 +1,8 @@
 {
-  "at": "2026-08-08T23:33:10.809Z",
-  "targetDate": "2026-08-08",
-  "ok": 19,
-  "failed": 2,
+  "at": "2026-08-09T23:35:10.342Z",
+  "targetDate": "2026-08-09",
+  "ok": 20,
+  "failed": 1,
   "successes": [
     {
       "id": "anthropic-news",
@@ -14,13 +14,19 @@
       "id": "techcrunch-ai",
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
-      "items": 12
+      "items": 4
     },
     {
       "id": "theverge-ai",
       "name": "The Verge AI",
       "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-      "items": 4
+      "items": 2
+    },
+    {
+      "id": "wired-ai",
+      "name": "Wired AI",
+      "url": "https://www.wired.com/feed/tag/ai/latest/rss",
+      "items": 2
     },
     {
       "id": "deepmind",
@@ -35,28 +41,10 @@
       "items": 0
     },
     {
-      "id": "wired-ai",
-      "name": "Wired AI",
-      "url": "https://www.wired.com/feed/tag/ai/latest/rss",
-      "items": 4
-    },
-    {
-      "id": "hn-ai",
-      "name": "Hacker News AI",
-      "url": "https://hn.algolia.com/api/v1",
+      "id": "github-blog",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/feed/",
       "items": 0
-    },
-    {
-      "id": "huggingface",
-      "name": "Hugging Face Blog",
-      "url": "https://huggingface.co/blog/feed.xml",
-      "items": 1
-    },
-    {
-      "id": "ars-technica-ai",
-      "name": "Ars Technica AI",
-      "url": "https://arstechnica.com/ai/feed/",
-      "items": 6
     },
     {
       "id": "devto-ai",
@@ -65,9 +53,21 @@
       "items": 0
     },
     {
-      "id": "javascript-weekly",
-      "name": "JavaScript Weekly",
-      "url": "https://javascriptweekly.com/rss",
+      "id": "ars-technica-ai",
+      "name": "Ars Technica AI",
+      "url": "https://arstechnica.com/ai/feed/",
+      "items": 0
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "items": 0
+    },
+    {
+      "id": "hn-ai",
+      "name": "Hacker News AI",
+      "url": "https://hn.algolia.com/api/v1",
       "items": 0
     },
     {
@@ -77,9 +77,15 @@
       "items": 0
     },
     {
-      "id": "github-blog",
-      "name": "GitHub Blog",
-      "url": "https://github.blog/feed/",
+      "id": "javascript-weekly",
+      "name": "JavaScript Weekly",
+      "url": "https://javascriptweekly.com/rss",
+      "items": 0
+    },
+    {
+      "id": "css-tricks",
+      "name": "CSS-Tricks",
+      "url": "https://css-tricks.com/feed/",
       "items": 0
     },
     {
@@ -89,15 +95,15 @@
       "items": 0
     },
     {
-      "id": "google-ai",
-      "name": "Google AI Blog",
-      "url": "https://blog.google/technology/ai/rss/",
-      "items": 0
-    },
-    {
       "id": "openai-blog",
       "name": "OpenAI Blog",
       "url": "https://openai.com/blog/rss.xml",
+      "items": 0
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
       "items": 0
     },
     {
@@ -110,21 +116,16 @@
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "url": "https://www.infoq.cn/feed",
-      "items": 14
+      "items": 8
     },
     {
       "id": "quantumbit",
       "name": "量子位",
       "url": "https://www.qbitai.com/feed",
-      "items": 6
+      "items": 5
     }
   ],
   "failures": [
-    {
-      "id": "css-tricks",
-      "name": "CSS-Tricks",
-      "error": "Status code 415"
-    },
     {
       "id": "jiqizhixin",
       "name": "36氪",

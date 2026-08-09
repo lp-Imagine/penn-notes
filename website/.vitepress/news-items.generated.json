@@ -1,5 +1,77 @@
 [
   {
+    "title": "OpenAI 收购演示文稿初创公司 NextSlide",
+    "section": "业界",
+    "sourceName": "TechCrunch AI",
+    "sourceUrl": "https://techcrunch.com/2026/08/08/openai-acquires-presentation-startup-nextslide/",
+    "image": "https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2259148891.jpg?resize=1200,686",
+    "summary": "OpenAI 宣布收购 AI 演示文稿初创公司 NextSlide，其团队成员现已加入 ChatGPT 团队。NextSlide 的产品可将提示、笔记或文档转化为精美的可编辑演示文稿。创始人 Ahmed Beshry 表示，收购发生在今年早些时候，财务条款未披露。此次收购旨在增强 ChatGPT 的演示文稿生成能力。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": "Opus 5 烧 6.9 亿 token 做游戏，GPT-5.6 用 5 美元复刻",
+    "section": "模型",
+    "sourceName": "量子位",
+    "sourceUrl": "https://www.qbitai.com/2026/08/468766.html",
+    "image": "",
+    "summary": "网友用 Opus 5 单提示词生成了一款精美的水上快艇竞速游戏《INK TIDE》，耗资 423 美元、6.9 亿 token。随后另一位网友在 Codex 中用 GPT-5.6 Sol 复刻了该游戏，仅花费 5 美元，展示了 GPT-5.6 在代码生成和成本效率上的优势。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": "Claude Code 将默认使用自动模式，尽管测试失败率达 11%",
+    "section": "模型",
+    "sourceName": "techi.com",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5qZlNsODNGODJPY2ptUzZObWVWdjh2cHRBNXN1QUd4anAyZWVYQm5sMkhMQzNkQjg5UHJFdGpwVUpMVVlWN2haUVg0SnZzQlBpVm43Wjl2LXZFN2xQdC1qWnJuOEZrUmlPNGg0eTN1RmlVMWdhdml1eUdxNHV4Zw?oc=5",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "summary": "Anthropic 的 Claude Code 工具将默认启用自动模式，尽管在内部测试中失败率高达 11%。这一决定引发了对 AI 编码工具可靠性的担忧，但 Anthropic 可能认为自动模式带来的效率提升值得承担风险。开发者需谨慎使用。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": "code-graph-rag：面向多语言代码库的终极 RAG 工具",
+    "section": "开源",
+    "sourceName": "vitali87/code-graph-rag",
+    "sourceUrl": "https://github.com/vitali87/code-graph-rag",
+    "image": "https://opengraph.githubassets.com/1/vitali87/code-graph-rag",
+    "summary": "开源项目 code-graph-rag 旨在为大型 monorepo 提供终极 RAG 解决方案，结合 AI 和知识图谱，支持查询、理解和编辑多语言代码库。该项目可帮助开发者高效地导航和操作复杂代码库，提升开发效率。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": "daily_stock_analysis：LLM 驱动的多市场股票分析系统",
+    "section": "开源",
+    "sourceName": "ZhuLinsen/daily_stock_analysis",
+    "sourceUrl": "https://github.com/ZhuLinsen/daily_stock_analysis",
+    "image": "https://opengraph.githubassets.com/1/ZhuLinsen/daily_stock_analysis",
+    "summary": "开源项目 daily_stock_analysis 是一个 LLM 驱动的多市场股票智能分析系统，支持多源行情、实时新闻、决策看板与自动推送，并支持零成本定时运行。该项目适合个人投资者或开发者快速搭建股票分析工具。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": "AI 编程工具 Cursor 估值达 34 亿美元",
+    "section": "开发者工具",
+    "sourceName": "tech-insider.org",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMibkFVX3lxTE0zWGtWOXlJd0h6UTA4SkNEeUxBRUd4RHYxWk8teEhVQmRiTVRQaEdfcFdqQk9vSDNDYkE4cFktTUdnNkxlVS1uMFJDR0VYanhqSFRSX3VxaTBreVpFVFNNOWZ0T0Rsd0QzU3RmWUdR?oc=5",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "summary": "AI 编程工具 Cursor 在 AI 编码初创公司洗牌中脱颖而出，估值达到 34 亿美元。Cursor 凭借其强大的代码生成和编辑能力，成为开发者喜爱的工具之一，此次估值反映了市场对 AI 编程工具的高度认可。",
+    "itemDate": "2026-08-09",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
     "title": "OpenAI 因安全顾虑放缓 Astra 模型开发",
     "section": "业界",
     "sourceName": "TechCrunch AI",
@@ -118,6 +190,30 @@
     "digestDate": "2026-08-08",
     "digestSlug": "ai-news-2026-08-08",
     "digestLink": "/news/2026-08/ai-news-2026-08-08"
+  },
+  {
+    "title": "企业 AI 初创公司 HappyRobot 融资 1.5 亿美元，跻身独角兽",
+    "section": "开发者工具",
+    "sourceName": "Wowtale",
+    "sourceUrl": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9wRlZzUlR5U2Q2bFBiTURiSTF0eGtHSHFDcFlrT1Zmd3BqNExXVy1SVEphVXZ5ZVV0amZIeUVqZ0hXWVc0SEZyUlh3eXQxeUQ3RjJv?oc=5",
+    "image": "https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw",
+    "summary": "企业 AI 初创公司 HappyRobot 宣布获得 1.5 亿美元融资，估值达到独角兽级别。该公司专注于开发能够真正执行工作的 AI 代理，帮助企业自动化业务流程。此次融资表明投资者对企业级 AI 代理市场的信心。",
+    "itemDate": "2026-08-08",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
+  },
+  {
+    "title": ".NET MAUI 正式迈向 Handler 架构时代",
+    "section": "前端",
+    "sourceName": "InfoQ 中文",
+    "sourceUrl": "https://www.infoq.cn/article/sbMEk7BQoWXRcl5ZFvkD?utm_source=rss&utm_medium=article",
+    "image": "https://static001.infoq.cn/resource/image/af/86/af8e1795e42fce7739ee5b40731a3686.jpg",
+    "summary": ".NET 11 Preview 6 对 .NET MAUI 进行重大架构更新，将 CollectionView 实现带至 Windows 平台，并推动 Android Shell 迁移到 handler 模型。同时移除 Xamarin.Forms 兼容包，提升 Native AOT 兼容性。开发者需注意自定义 Shell 行为的兼容性测试。",
+    "itemDate": "2026-08-08",
+    "digestDate": "2026-08-09",
+    "digestSlug": "ai-news-2026-08-09",
+    "digestLink": "/news/2026-08/ai-news-2026-08-09"
   },
   {
     "title": "新墨西哥州法院裁定 Meta 再付 5.67 亿美元儿童安全罚款",

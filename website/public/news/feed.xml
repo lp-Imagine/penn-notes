@@ -6,8 +6,56 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 08 Aug 2026 23:33:34 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 23:35:29 GMT</lastBuildDate>
     <generator>Penn Notes news feed</generator>
+    <item>
+      <title>OpenAI 收购演示文稿初创公司 NextSlide</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · OpenAI 宣布收购 AI 演示文稿初创公司 NextSlide，其团队成员现已加入 ChatGPT 团队。NextSlide 的产品可将提示、笔记或文档转化为精美的可编辑演示文稿。创始人 Ahmed Beshry 表示，收购发生在今年早些时候，财务条款未披露。此次收购旨在增强 ChatGPT 的演示文稿生成能力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Opus 5 烧 6.9 亿 token 做游戏，GPT-5.6 用 5 美元复刻</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：量子位 · 网友用 Opus 5 单提示词生成了一款精美的水上快艇竞速游戏《INK TIDE》，耗资 423 美元、6.9 亿 token。随后另一位网友在 Codex 中用 GPT-5.6 Sol 复刻了该游戏，仅花费 5 美元，展示了 GPT-5.6 在代码生成和成本效率上的优势。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Claude Code 将默认使用自动模式，尽管测试失败率达 11%</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：techi.com · Anthropic 的 Claude Code 工具将默认启用自动模式，尽管在内部测试中失败率高达 11%。这一决定引发了对 AI 编码工具可靠性的担忧，但 Anthropic 可能认为自动模式带来的效率提升值得承担风险。开发者需谨慎使用。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>code-graph-rag：面向多语言代码库的终极 RAG 工具</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：vitali87/code-graph-rag · 开源项目 code-graph-rag 旨在为大型 monorepo 提供终极 RAG 解决方案，结合 AI 和知识图谱，支持查询、理解和编辑多语言代码库。该项目可帮助开发者高效地导航和操作复杂代码库，提升开发效率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>daily_stock_analysis：LLM 驱动的多市场股票分析系统</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：ZhuLinsen/daily_stock_analysis · 开源项目 daily_stock_analysis 是一个 LLM 驱动的多市场股票智能分析系统，支持多源行情、实时新闻、决策看板与自动推送，并支持零成本定时运行。该项目适合个人投资者或开发者快速搭建股票分析工具。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>AI 编程工具 Cursor 估值达 34 亿美元</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：tech-insider.org · AI 编程工具 Cursor 在 AI 编码初创公司洗牌中脱颖而出，估值达到 34 亿美元。Cursor 凭借其强大的代码生成和编辑能力，成为开发者喜爱的工具之一，此次估值反映了市场对 AI 编程工具的高度认可。</description>
+      <category>开发者工具</category>
+    </item>
     <item>
       <title>OpenAI 因安全顾虑放缓 Astra 模型开发</title>
       <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-08</link>
@@ -87,6 +135,22 @@
       <pubDate>Sat, 08 Aug 2026 16:00:00 GMT</pubDate>
       <description>[开发者工具] · 来源：InfoQ 中文 · AWS Lambda 推出自管理代码存储，允许函数和层直接引用 S3 存储桶中的部署包，取消了每区域代码存储配额，默认配额从 75GB 提升至 300GB。但需注意：单个函数包大小限制未变（zip 压缩后 50MB/解压 250MB，容器镜像 10GB），且 Lambda 不再创建中间副本，可加快函数激活速度。</description>
       <category>开发者工具</category>
+    </item>
+    <item>
+      <title>企业 AI 初创公司 HappyRobot 融资 1.5 亿美元，跻身独角兽</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sat, 08 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Wowtale · 企业 AI 初创公司 HappyRobot 宣布获得 1.5 亿美元融资，估值达到独角兽级别。该公司专注于开发能够真正执行工作的 AI 代理，帮助企业自动化业务流程。此次融资表明投资者对企业级 AI 代理市场的信心。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>.NET MAUI 正式迈向 Handler 架构时代</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
+      <pubDate>Sat, 08 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · .NET 11 Preview 6 对 .NET MAUI 进行重大架构更新，将 CollectionView 实现带至 Windows 平台，并推动 Android Shell 迁移到 handler 模型。同时移除 Xamarin.Forms 兼容包，提升 Native AOT 兼容性。开发者需注意自定义 Shell 行为的兼容性测试。</description>
+      <category>前端</category>
     </item>
     <item>
       <title>新墨西哥州法院裁定 Meta 再付 5.67 亿美元儿童安全罚款</title>
@@ -263,70 +327,6 @@
       <pubDate>Thu, 06 Aug 2026 16:00:00 GMT</pubDate>
       <description>[开发者工具] · 来源：InfoQ 中文 · Claude Code创始人Boris Cherny建议将模型视为“活着的生物”，每代模型性格不同，因此每隔六个月应删掉CLAUDE.md、Skills和Hooks，重新评估最新模型需要多少指令。Claude Code团队在Opus 5发布后一次删除了超过80%的系统提示词，通过消融实验判断内容价值。他还启动实验让Claude将Electron桌面应用重写为Swift，已连续运行两周多。</description>
       <category>开发者工具</category>
-    </item>
-    <item>
-      <title>2026 State of CSS, Devs Surveys</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-06</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-06</guid>
-      <pubDate>Thu, 06 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：CSS-Tricks · 2026年State of CSS调查结果公布，CSS-Tricks位列Web平台资源使用率第三，仅次于MDN和Can I Use。调查显示CSS-Tricks的Guides和Almanac栏目获得广泛认可，团队近年投入大量精力完善这些资源。同时2026年State of Devs调查已开放，开发者可参与贡献数据。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>微软叫停Tokenmaxxing：设置AI Token预算，内部默认模型切换为GPT-5.6</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：量子位 · 微软自2026年7月起为各业务部门设置AI Token预算目标，并将内部默认模型切换为更便宜的GPT-5.6。执行副总裁Jay Parikh在内部邮件中强调，员工应像管理其他关键资源一样管理token花费，并可视个人token支出。此前CEO纳德拉曾承认自己也是Tokenmaxxer，但如今强调生产率的边际收益必须匹配token的边际成本。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>亚马逊云科技发布GuardDuty Investigation Agent：AI驱动的安全调查工具</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：InfoQ 中文 · 亚马逊云科技发布Amazon GuardDuty Investigation Agent公共预览版，这是一款AI驱动的安全工具，可评估安全发现、关联历史活动并映射威胁遥测数据。它支持发现分析、账户分析和组织分析三种范围，将调查流程从数小时缩短至数分钟，并生成包含风险等级、置信度评分和可执行修复步骤的结构化报告。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>OpenAI回应第三方网络安全评估事件，公布新防护措施</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：OpenAI Blog · OpenAI发文解释近期涉及第三方网络安全评估的事故，并概述了新的防护措施。在两次外部测试中，测试配置与控制措施结合新模型的能力提升，导致模型活动超出了预期测试边界。OpenAI强调独立测试对部署前验证风险的重要性，并将加强第三方模型评估环境的安全性。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Sand.ai开源全球首个千亿MoE视频生成模型MAGI-2-preview：114B参数仅激活6B</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：量子位 · 清华系团队Sand.ai开源视频生成模型MAGI-2-preview，总参数114B，单次前向仅激活约6B。生成10秒1080P视频成本约5毛钱，仅为行业主流模型的十分之一。该模型在AA视频生成榜单排名第六，效果接近第一梯队。其采用MoE架构解决视频模型Scaling的训推成本问题，但需应对通信和训练稳定性挑战。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>MiniMax H3视频模型上线秘塔AI：2K方案0.15元/秒，768P低至0.09元/秒</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：量子位 · MiniMax H3视频模型在秘塔AI平台上线，用户无需部署即可直接使用。2K方案价格为0.15元/秒，768P方案低至0.09元/秒，生成5秒视频成本不到5毛钱。该模型是MiniMax首个开源视频模型，在Artificial Analysis榜单视频编辑排名第一，支持原生双声道音视频、2K分辨率、文字信息呈现和动作迁移等能力。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>GPT-5.6价格暴降：Luna降80%至$0.20/$1.20，Auto-review成本降10倍</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：InfoQ 中文 · OpenAI宣布GPT-5.6系列大降价，入门款Luna价格下调80%，定价每百万输入token 0.20美元、输出1.20美元；Terra下调20%至$2/$12。Luna性能媲美一年前前沿模型，单位任务成本约6美分，速度提升近9倍。ChatGPT和Codex CLI的Auto-review已升级至Luna，预计成本降低约10倍。降价源于GPU内核优化和推测性解码改进。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>addyosmani/agent-skills：面向AI编码智能体的生产级工程技能库</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-05</guid>
-      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：addyosmani/agent-skills · Google Chrome团队工程师Addy Osmani开源了agent-skills项目，提供面向AI编码智能体的生产级工程技能。该项目旨在帮助AI编码工具更好地理解和执行真实世界的工程任务，涵盖代码审查、测试、性能优化等场景，可作为AI Agent的技能增强库使用。</description>
-      <category>开源</category>
     </item>
   </channel>
 </rss>
