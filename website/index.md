@@ -52,6 +52,11 @@ layout: home
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-10">
+    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/08/discoverd-materials.jpg?resize=1200,800" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-10">2026-08-10</time>
+    <span class="news-card-title">AI 动态 · 2026-08-10</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-09">
     <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2259148891.jpg?resize=1200,686" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-09">2026-08-09</time>
     <span class="news-card-title">AI 动态 · 2026-08-09</span>
@@ -85,11 +90,6 @@ layout: home
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-03">
     <img class="news-card-thumb" src="https://static001.infoq.cn/resource/image/46/cf/465ec3bed997yya8c61435211d96eacf.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-03">2026-08-03</time>
     <span class="news-card-title">AI 动态 · 2026-08-03</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-02">
-    <img class="news-card-thumb" src="https://static001.infoq.cn/resource/image/e9/29/e92af57dcf3920b2006c9610f6dde429.png" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-02">2026-08-02</time>
-    <span class="news-card-title">AI 动态 · 2026-08-02</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
 </div>
