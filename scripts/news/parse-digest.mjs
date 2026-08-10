@@ -43,6 +43,11 @@ export function parseDigestMarkdown(content, digestMeta = {}) {
       if (summaryMatch?.[1]) {
         summary = summaryMatch[1]
           .replace(/\*\*来源：\*\*.+$/m, "")
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&amp;/g, "&")
           .trim()
           .slice(0, 280);
       }

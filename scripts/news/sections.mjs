@@ -92,8 +92,8 @@ export function renderDailyMarkdown(reportDate, bySection) {
     }
     for (const item of items) {
       const date = item.date || reportDate;
-      const title = escapeMdHeading(item.title);
-      const source = escapeMd(item.sourceName);
+      const title = escapeMdHtml(escapeMdHeading(item.title));
+      const source = escapeMdHtml(escapeMd(item.sourceName));
       parts.push(`### ${title}`, "");
       parts.push(
         `<p class="news-entry-meta"><span class="news-source-tag">${source}</span><time datetime="${date}">${date}</time></p>`,
@@ -102,7 +102,7 @@ export function renderDailyMarkdown(reportDate, bySection) {
       if (item.image) {
         parts.push(`![配图](${item.image})`, "");
       }
-      parts.push(String(item.summary || "").trim(), "");
+      parts.push(escapeMdHtml(String(item.summary || "").trim()), "");
       parts.push(
         `<p class="news-entry-source"><a href="${item.url}" target="_blank" rel="noopener noreferrer">阅读原文</a></p>`,
         "",
@@ -126,6 +126,16 @@ function escapeMd(s) {
     .replace(/\r?\n/g, " ")
     .replace(/\|/g, "\\|")
     .trim();
+}
+
+/** LLM 产出的正文/标题可能包含字面量 HTML（如 <dialog>），必须转义避免被当作标签解析 */
+function escapeMdHtml(s) {
+  return String(s || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 export function shanghaiDate(d = new Date()) {
