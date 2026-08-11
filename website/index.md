@@ -52,6 +52,11 @@ layout: home
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-11">
+    <img class="news-card-thumb" src="/news/2026-08/7642a8fdce39.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-11">2026-08-11</time>
+    <span class="news-card-title">AI 动态 · 2026-08-11</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-10">
     <img class="news-card-thumb" src="/news/2026-08/6f2679177f9a.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-10">2026-08-10</time>
     <span class="news-card-title">AI 动态 · 2026-08-10</span>
@@ -85,11 +90,6 @@ layout: home
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-04">
     <img class="news-card-thumb" src="/news/2026-08/0b4d84eac143.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-04">2026-08-04</time>
     <span class="news-card-title">AI 动态 · 2026-08-04</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-03">
-    <img class="news-card-thumb" src="https://static001.infoq.cn/resource/image/46/cf/465ec3bed997yya8c61435211d96eacf.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-03">2026-08-03</time>
-    <span class="news-card-title">AI 动态 · 2026-08-03</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
 </div>
