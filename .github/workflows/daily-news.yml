@@ -53,6 +53,10 @@ jobs:
           fi
           node scripts/generate-daily-news.mjs "${ARGS[@]}"
 
+      # 统一把配图下载到本地（外链图会被替换），避免防盗链/地域网络加载失败
+      - name: Resolve news images (all)
+        run: node scripts/resolve-news-images.mjs
+
       - name: Sync to website
         run: npm run sync:news && npm run build:home
 

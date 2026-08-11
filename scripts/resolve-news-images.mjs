@@ -1,6 +1,8 @@
 /**
  * Resolve og:image for news markdown items.
- * Prefer HTTPS hotlinks; fall back to downloading into website/public/news/.
+ * 优先下载到 website/public/news/（本地化），避免外链被防盗链/网络限制
+ * 导致配图加载失败（如 googleusercontent 在大陆不可达）；下载失败才回退外链。
+ * 已存在的本地图会跳过；外链图会重新下载替换。
  *
  * Usage:
  *   node scripts/resolve-news-images.mjs
@@ -153,6 +155,8 @@ async function resolveImage(sourceUrl, title, month, cache) {
   const repo = githubRepoFromUrl(sourceUrl);
   if (repo) {
     const gh = `https://opengraph.githubassets.com/1/${repo}`;
+    const local = await downloadImage(gh, month, cache);
+    if (local) return local;
     if (await headOk(gh, cache)) return gh;
   }
 
@@ -178,15 +182,15 @@ async function resolveImage(sourceUrl, title, month, cache) {
   }
 
   if (image && !STRIP_IMAGE.test(image)) {
-    if (await headOk(image, cache)) {
-      cache.set(cacheKey, image);
-      return image;
-    }
-    // hotlink failed → try download
     const local = await downloadImage(image, month, cache);
     if (local) {
       cache.set(cacheKey, local);
       return local;
+    }
+    // 下载失败 → 回退外链
+    if (await headOk(image, cache)) {
+      cache.set(cacheKey, image);
+      return image;
     }
   }
 
@@ -230,15 +234,30 @@ export async function resolveFileImages(filePath, cache = new Map()) {
   async function worker() {
     while (idx < queue.length) {
       const i = queue[idx++];
-      const block = parts[i];
+      let block = parts[i];
       const titleLine = block.match(/^### ([^\n]+)/);
       const title = titleLine ? titleLine[1].trim() : "";
-      const hasImage =
-        /^### [^\n]+\n\n(?:<p class="news-entry-meta">[\s\S]*?<\/p>\n\n)?!\[[^\]]*\]\(/m.test(
-          block,
-        ) || /^### [^\n]+\n\n!\[[^\]]*\]\(/m.test(block);
-      if (hasImage) {
-        results.set(i, block);
+      // 已有配图：本地图跳过；外链图尝试直接下载本地化，失败保留原外链（不重抓源、不丢图）
+      const imgLineMatch = block.match(
+        /^((?:<p class="news-entry-meta">[\s\S]*?<\/p>\n\n)?)(!\[[^\]]*\]\(([^)]+)\)\n\n)/m,
+      );
+      if (imgLineMatch) {
+        const existing = imgLineMatch[3] || "";
+        if (existing.startsWith(BASE)) {
+          results.set(i, block);
+          continue;
+        }
+        const local = await downloadImage(existing, month, cache);
+        if (local) {
+          const replaced = block.replace(
+            imgLineMatch[2],
+            `![配图](${local})\n\n`,
+          );
+          updated++;
+          results.set(i, replaced);
+        } else {
+          results.set(i, block);
+        }
         continue;
       }
       const sourceLine =
