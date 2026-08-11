@@ -53,22 +53,22 @@ layout: home
     </div>
 <div class="news-grid">
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-10">
-    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/08/discoverd-materials.jpg?resize=1200,800" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-10">2026-08-10</time>
+    <img class="news-card-thumb" src="/penn-notes/news/2026-08/6f2679177f9a.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-10">2026-08-10</time>
     <span class="news-card-title">AI 动态 · 2026-08-10</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-09">
-    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/04/GettyImages-2259148891.jpg?resize=1200,686" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-09">2026-08-09</time>
+    <img class="news-card-thumb" src="/penn-notes/news/2026-08/187b262fbc99.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-09">2026-08-09</time>
     <span class="news-card-title">AI 动态 · 2026-08-09</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-08">
-    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/08/Rippling-AI-Spend-Console.png?resize=1200,717" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-08">2026-08-08</time>
+    <img class="news-card-thumb" src="/penn-notes/news/2026-08/b9f4f8a5a618.png" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-08">2026-08-08</time>
     <span class="news-card-title">AI 动态 · 2026-08-08</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-07">
-    <img class="news-card-thumb" src="https://techcrunch.com/wp-content/uploads/2026/02/zuckerberg-LA-trial-2026-GettyImages-2261841364.jpg?w=1024" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-07">2026-08-07</time>
+    <img class="news-card-thumb" src="/penn-notes/news/2026-08/7d08e07353ed.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-07">2026-08-07</time>
     <span class="news-card-title">AI 动态 · 2026-08-07</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
@@ -83,7 +83,7 @@ layout: home
     <span class="news-card-action">阅读全文</span></div>
   </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-04">
-    <img class="news-card-thumb" src="https://img.36krcdn.com/hsossms/20260804/v2_1c0344c251734fb08e4c00b9182c7ac8@6252890@ai_oswg920317oswg1053oswg495_img_png~tplv-1marlgjv7f-ai-v3:600:400:600:400:q70.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-04">2026-08-04</time>
+    <img class="news-card-thumb" src="/penn-notes/news/2026-08/0b4d84eac143.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-04">2026-08-04</time>
     <span class="news-card-title">AI 动态 · 2026-08-04</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
