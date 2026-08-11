@@ -29,6 +29,12 @@ export function parseDigestMarkdown(content, digestMeta = {}) {
         /<p class="news-entry-source">[\s\S]*?href="([^"]+)"/,
       );
       const imageMatch = entry.match(/!\[[^\]]*\]\(([^)]+)\)/);
+      let image = imageMatch?.[1] || "";
+      // 本地图在 markdown 中是站内路径（/news/...），数据层统一补 base 前缀，
+      // 供 NewsArchive 等客户端组件直接渲染（运行时 URL 为 /penn-notes/news/...）
+      if (image.startsWith("/news/")) {
+        image = `/penn-notes${image}`;
+      }
       const dateMatch = entry.match(/datetime="(\d{4}-\d{2}-\d{2})"/);
       const summaryMatch =
         entry.match(
@@ -57,7 +63,7 @@ export function parseDigestMarkdown(content, digestMeta = {}) {
         section,
         sourceName: sourceMatch?.[1]?.trim() || "",
         sourceUrl: sourceUrlMatch?.[1]?.trim() || sourceMatch?.[2]?.trim() || "",
-        image: imageMatch?.[1] || "",
+        image,
         summary,
         itemDate: dateMatch?.[1] || date,
         digestDate: date,

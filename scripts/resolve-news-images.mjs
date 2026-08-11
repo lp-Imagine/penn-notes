@@ -27,6 +27,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const newsRoot = path.join(root, "news");
 const publicNews = path.join(root, "website/public/news");
 const BASE = "/penn-notes/";
+// 本地图在 markdown 中写不带 base 的站内路径（/news/...），
+// VitePress 构建时自动加 base 前缀，运行时 URL 为 /penn-notes/news/...
+const NEWS_PUBLIC_BASE = "/news/";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
@@ -140,7 +143,7 @@ async function downloadImage(url, month, cache) {
     fs.mkdirSync(dir, { recursive: true });
     const file = `${hash}.${ext}`;
     fs.writeFileSync(path.join(dir, file), buf);
-    const local = `${BASE}news/${month}/${file}`;
+    const local = `${NEWS_PUBLIC_BASE}${month}/${file}`;
     cache.set(key, local);
     return local;
   } catch {
@@ -243,7 +246,7 @@ export async function resolveFileImages(filePath, cache = new Map()) {
       );
       if (imgLineMatch) {
         const existing = imgLineMatch[3] || "";
-        if (existing.startsWith(BASE)) {
+        if (existing.startsWith(NEWS_PUBLIC_BASE)) {
           results.set(i, block);
           continue;
         }

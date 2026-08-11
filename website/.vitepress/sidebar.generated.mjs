@@ -608,8 +608,30 @@ export default {
       ]
     }
   ],
-  "/agent/": [],
-  "/sync/agent/": [],
+  "/agent/": [
+    {
+      "text": "其它",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "个人知识库+AI，怎么搭才不吃灰",
+          "link": "/agent/misc/cmsfyztfz0003p101uzsala8q"
+        }
+      ]
+    }
+  ],
+  "/sync/agent/": [
+    {
+      "text": "其它",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "个人知识库+AI，怎么搭才不吃灰",
+          "link": "/agent/misc/cmsfyztfz0003p101uzsala8q"
+        }
+      ]
+    }
+  ],
   "/misc/": [
     {
       "text": "随笔",
