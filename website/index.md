@@ -6,9 +6,9 @@ layout: home
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
     <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
-    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 62 篇</p>
+    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 63 篇</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="/penn-notes/agent/misc/cmsfyztfz0003p101uzsala8q">阅读最新笔记</a>
+      <a class="home-btn home-btn--primary" href="/penn-notes/agent/practice/cmspws3nm0005zzez3yduit0a">阅读最新笔记</a>
       <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
     </div>
   </section>
@@ -37,7 +37,7 @@ layout: home
   <a class="home-pillar" href="/penn-notes/agent/">
     <p class="home-pillar-title">AI Agent</p>
     <p class="home-pillar-desc">Agent 实战、工作流、提示词与工具链</p>
-    <p class="home-pillar-meta">1 篇笔记</p>
+    <p class="home-pillar-meta">2 篇笔记</p>
   </a>
   <a class="home-pillar" href="/penn-notes/misc/">
     <p class="home-pillar-title">杂项</p>
@@ -52,6 +52,11 @@ layout: home
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-12">
+    <img class="news-card-thumb" src="/news/2026-08/79bc9b8e1c62.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-12">2026-08-12</time>
+    <span class="news-card-title">AI 动态 · 2026-08-12</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-11">
     <img class="news-card-thumb" src="/news/2026-08/7642a8fdce39.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-11">2026-08-11</time>
     <span class="news-card-title">AI 动态 · 2026-08-11</span>
@@ -87,11 +92,6 @@ layout: home
     <span class="news-card-title">AI 动态 · 2026-08-05</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-04">
-    <img class="news-card-thumb" src="/news/2026-08/0b4d84eac143.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-04">2026-08-04</time>
-    <span class="news-card-title">AI 动态 · 2026-08-04</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
 </div>
   </section>
 
@@ -101,6 +101,11 @@ layout: home
       <a class="home-more" href="/penn-notes/web/">查看更多</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/agent/practice/cmspws3nm0005zzez3yduit0a">
+    <img class="news-card-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-12">2026-08-12</time>
+    <span class="news-card-title">记忆翻车复盘：让Agent长任务不跑偏</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/agent/misc/cmsfyztfz0003p101uzsala8q">
     <img class="news-card-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-05">2026-08-05</time>
     <span class="news-card-title">个人知识库+AI，怎么搭才不吃灰</span>
@@ -134,11 +139,6 @@ layout: home
   <a class="news-card" href="/penn-notes/tech/docs/MySQL数据库常用操作">
     <div class="news-card-body"><time datetime="2022-09-06">2022-09-06</time>
     <span class="news-card-title">MySQL数据库常用操作</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card" href="/penn-notes/tech/docs/Git命令">
-    <div class="news-card-body"><time datetime="2022-09-06">2022-09-06</time>
-    <span class="news-card-title">Git命令</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
 </div>
@@ -178,10 +178,10 @@ layout: home
     </a>
   </div>
   <div class="course-mod">
-    <p class="course-mod-label">AI Agent · 1 篇</p>
+    <p class="course-mod-label">AI Agent · 2 篇</p>
     <a class="course-card" href="/penn-notes/agent/">
       <span class="course-card-title">AI Agent</span>
-      <span class="course-card-desc">1 篇 · 其它</span>
+      <span class="course-card-desc">2 篇 · 实战、其它</span>
     </a>
   </div>
   <div class="course-mod">
