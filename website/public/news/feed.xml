@@ -6,8 +6,96 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 12 Aug 2026 23:48:11 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 23:46:54 GMT</lastBuildDate>
     <generator>Penn Notes news feed</generator>
+    <item>
+      <title>微软合并 Copilot 应用并砍掉失败 AI 功能</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 微软正在简化 Copilot 产品线，将面向消费者和企业的应用合并为单一应用，同时砍掉 AI 生成播客、Group Chats、Deep Research 以及 Mico 角色等表现不佳的功能。此举旨在整合资源，聚焦核心 AI 助手体验。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>苹果洽谈向出版商付费，为 Siri 提供实时新闻</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 据《华尔街日报》报道，苹果正在与出版商洽谈，计划支付费用以让 Siri 能够提供最新新闻。据悉，苹果已考虑为此项服务提供九位数的预算，以增强 Siri 在信息获取方面的竞争力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>AI 编程创企 Cognition 洽谈 400 亿美元估值融资</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 据报道，AI 编程初创公司 Cognition 正在洽谈新一轮融资，估值可能达到 400 亿美元。就在几个月前，该公司刚以 260 亿美元估值完成 10 亿美元融资。此轮融资若完成，将再次刷新 AI 编程赛道的估值纪录。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic 上市估值或达 2 万亿美元</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · 得益于快速的营收增长，市场对 Anthropic 的 IPO 寄予厚望，认为其有望成为历史上规模最大的上市，估值可能达到 2 万亿美元。这一预期反映了投资者对 Claude 系列模型商业化潜力的高度看好。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 预览 Ultrafast 模式：GPT-5.6 Sol 速度提升 14 倍</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 预览新的 API 服务层级 Ultrafast，由 Cerebras 提供支持，可将 GPT-5.6 Sol 的推理速度提升至 14 倍，输出速率高达每秒 750 tokens。该模式旨在将速度转化为竞争优势，为对延迟敏感的应用提供新的选择。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>DeepSeek 发布官方 V4 Pro 模型，加速扩张</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Reuters · DeepSeek 正式发布 V4 Pro 模型，标志着其在 AI 领域的扩张步伐加快。尽管有评论认为该旗舰模型更新在部分领域表现平平，但在网络安全方面表现突出。此举将进一步加剧开源与闭源模型的竞争。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 发布 Muse Glimmer：面向本地 PC 的轻量级 AI 模型</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：WSMV · Meta 发布名为 Muse Glimmer 的全新 AI 模型，专为本地 PC 设计。该模型旨在提供强大的 AI 能力，同时降低对云端算力的依赖，为桌面端应用带来更高效、更私密的 AI 体验。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini Omni 多模态模型</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Tech Buzz · Google 正式推出 Gemini Omni 模型，专家对其细节进行解读。该模型是 Google 在 AI 领域的最新力作，旨在通过更强的多模态能力巩固其在搜索和云服务中的竞争优势。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Hugging Face 分享复现 2200 篇 ICML 论文的经验</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布博客，分享了其复现 2200 篇 ICML 论文的旅程与收获。该项目旨在通过大规模复现推动开放科学，揭示了当前 AI 研究可复现性的现状与挑战，为社区提供了宝贵的实践经验。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA 开源 Switchyard：跨模型流量路由工具</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：NVIDIA-NeMo/Switchyard · NVIDIA 开源 Switchyard，一个让 LLM 应用在模型和提供商之间路由流量的工具，同时保持原生 OpenAI 和 Anthropic API 兼容性。它支持灵活的模型选择、基准测试和成本/性能优化，为开发者提供了更大的控制权。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>TanStack Table V9 测试版发布：Tree-Shakable 特性与更低内存</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</guid>
+      <pubDate>Thu, 13 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · TanStack Table V9 发布 beta 版本，这是一款用于多种 JavaScript 框架的 headless UI 表格库。新版本采用按需注册的特性模型，实现 Tree-Shakable，并引入 TanStack Store 状态管理，显著降低内存使用。迁移过程是渐进式的，并提供兼容旧版本的工具。</description>
+      <category>前端</category>
+    </item>
     <item>
       <title>AI 代码测试初创公司 Blacksmith 估值一年内暴涨近 10 倍</title>
       <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-12</link>
@@ -239,94 +327,6 @@
       <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
       <description>[开发者工具] · 来源：量子位 · Anthropic宣布5天后Claude Code将默认启用自动模式，该模式下的分类器每次工具调用会额外消耗token，但成本由Anthropic承担。数据显示用户对权限请求的同意率高达97%，人工审批已流于形式。</description>
       <category>开发者工具</category>
-    </item>
-    <item>
-      <title>动画化CSS border-image：创造动态边框效果</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：CSS-Tricks · CSS-Tricks文章探讨了如何动画化CSS border-image属性，利用border-image切片跨越整个边框的特性，结合动画创建引人注目的视觉效果。文章提供了示例和技巧，帮助开发者实现动态边框。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>SmashingConf Freiburg 2026将于9月7-10日举行</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：CSS-Tricks · Smashing Magazine宣布其线下会议SmashingConf Freiburg 2026将于9月7-10日在德国弗莱堡举行。会议为单轨制，邀请Jake Archibald、Hidde de Vries等知名前端开发者分享经验。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>OpenAI 收购演示文稿初创公司 NextSlide</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · OpenAI 宣布收购 AI 演示文稿初创公司 NextSlide，其团队成员现已加入 ChatGPT 团队。NextSlide 的产品可将提示、笔记或文档转化为精美的可编辑演示文稿。创始人 Ahmed Beshry 表示，收购发生在今年早些时候，财务条款未披露。此次收购旨在增强 ChatGPT 的演示文稿生成能力。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>Opus 5 烧 6.9 亿 token 做游戏，GPT-5.6 用 5 美元复刻</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：量子位 · 网友用 Opus 5 单提示词生成了一款精美的水上快艇竞速游戏《INK TIDE》，耗资 423 美元、6.9 亿 token。随后另一位网友在 Codex 中用 GPT-5.6 Sol 复刻了该游戏，仅花费 5 美元，展示了 GPT-5.6 在代码生成和成本效率上的优势。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>Claude Code 将默认使用自动模式，尽管测试失败率达 11%</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：techi.com · Anthropic 的 Claude Code 工具将默认启用自动模式，尽管在内部测试中失败率高达 11%。这一决定引发了对 AI 编码工具可靠性的担忧，但 Anthropic 可能认为自动模式带来的效率提升值得承担风险。开发者需谨慎使用。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>code-graph-rag：面向多语言代码库的终极 RAG 工具</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：vitali87/code-graph-rag · 开源项目 code-graph-rag 旨在为大型 monorepo 提供终极 RAG 解决方案，结合 AI 和知识图谱，支持查询、理解和编辑多语言代码库。该项目可帮助开发者高效地导航和操作复杂代码库，提升开发效率。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>daily_stock_analysis：LLM 驱动的多市场股票分析系统</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：ZhuLinsen/daily_stock_analysis · 开源项目 daily_stock_analysis 是一个 LLM 驱动的多市场股票智能分析系统，支持多源行情、实时新闻、决策看板与自动推送，并支持零成本定时运行。该项目适合个人投资者或开发者快速搭建股票分析工具。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>AI 编程工具 Cursor 估值达 34 亿美元</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-09</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：tech-insider.org · AI 编程工具 Cursor 在 AI 编码初创公司洗牌中脱颖而出，估值达到 34 亿美元。Cursor 凭借其强大的代码生成和编辑能力，成为开发者喜爱的工具之一，此次估值反映了市场对 AI 编程工具的高度认可。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>Hadrian融资13.7亿美元，打造AI驱动的国防工厂</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Sun, 09 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：eciks.org · Hadrian宣布完成13.7亿美元融资，用于建设AI驱动的国防制造工厂。该公司利用AI和自动化技术优化精密零部件生产流程，以满足国防工业对高精度、高效率制造的需求。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>OpenAI 因安全顾虑放缓 Astra 模型开发</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-08</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-08</guid>
-      <pubDate>Sat, 08 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · OpenAI 宣布暂停其下一代模型 Astra 的部分开发工作，因其在内部评估中达到“关键网络安全阈值”，能够独立识别并攻击防护良好的真实世界系统。公司表示需要更多时间确保安全后才能向公众开放，这是继 Mythos 之后又一例因能力过强而被暂缓发布的模型。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>Rippling 推出 AI Spend Console 追踪员工 AI 支出</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-08</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-08</guid>
-      <pubDate>Sat, 08 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · HR 软件公司 Rippling 在自身 AI 支出数月内达数百万美元后，推出 AI Spend Console 产品，可追踪个人、团队和角色的 AI 花费，并评估其是否真正提升生产力或只是制造更多 AI 垃圾内容。该工具旨在帮助企业遏制“token 滥用”现象。</description>
-      <category>业界</category>
     </item>
   </channel>
 </rss>
