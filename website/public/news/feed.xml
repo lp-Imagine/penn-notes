@@ -6,8 +6,88 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 13 Aug 2026 23:46:54 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 23:26:24 GMT</lastBuildDate>
     <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Databricks 完成 50 亿美元融资，估值达 1900 亿美元</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Databricks 最新一轮融资以 1900 亿美元估值募集 50 亿美元。CEO Ali Ghodsi 透露，公司原本计划融资 10 亿美元，但投资者需求高达 150 亿美元，最终超额完成。AI 高昂的算力成本是此次大规模融资的主要驱动力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 一周内再失高管：首席营收官 Denise Dresser 离职</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · OpenAI 首席营收官 Denise Dresser 宣布将在未来几周内离职，这是该公司本周第二位离职的高管。此前，特别项目负责人 Brad Lightcap 也已宣布离开。Wiz 总裁兼 COO Dali Rajic 将接任 CRO 职位。连续高管出走引发外界对 OpenAI 内部稳定性的关注。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 与 Anthropic 陷入价格战，应对中国 AI 对手崛起</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · 面对中国 AI 竞争对手带来的新挑战，OpenAI 和 Anthropic 等美国公司纷纷发布更便宜的模型，开启价格战。此举旨在应对对其万亿美元市场目标的威胁，也反映出全球 AI 模型市场竞争格局的加剧与成本压力的传导。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic 详解 Claude 文本水印技术：为遵守欧盟 AI 法案</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Anthropic News · Anthropic 宣布未来 Claude 模型生成的文本将包含水印，用于判断文本由 Claude 撰写的可能性。此举是为了遵守欧盟 AI 法案，该公司与其他几家主要 AI 提供商共同实施这一变更。文章回答了关于水印方法原理、是否影响输出质量以及变更原因等问题。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google Sheets 推出 Canvas 功能：用提示词将数据变为交互式仪表盘</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Google AI Blog · Google 在 Sheets 中推出 Canvas 功能，用户只需简单提示即可将数据转化为交互式仪表盘、自定义学习追踪器、座位表等迷你应用。该功能由 Gemini 驱动，旨在降低数据分析与可视化门槛，让非技术用户也能快速构建数据应用。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 3.7 Flash：面向编码与 Agent 的最强工作模型</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google DeepMind 发布 Gemini 3.7 Flash，定位为面向编码和智能体任务的最强工作模型。该模型距上一版本仅三周，官方称有“实质性改进”。在 AI 领导层变动的背景下，此举被视为 Google 加速模型迭代、巩固市场地位的重要信号。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Writer 发布基于 GLM-5.2 的新模型与升级 Harness，降低 Token 成本</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：TechCrunch AI · Writer 推出新 AI 模型及升级版 Harness，该模型基于 Z.ai 的开源模型 GLM-5.2 进行后训练改造。官方表示新系统能以更低价格提供部署就绪的能力，旨在帮助企业控制 Token 成本，在保证性能的同时提升经济性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Hugging Face 发布 2026 夏季开源模型观察报告</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布《State of Open Models: Summer 2026 Observations》报告，对当前开源模型生态进行深入分析。报告指出“注意力不等于采用率”，并探讨了开放权重如何改变价值积累的位置，为理解开源 AI 的发展趋势提供了重要视角。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>深度求索开源 Agent 框架 DeepSeek Harness，主打“一切皆插件”</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：少数派 · 深度求索正式推出开源 Agent 框架 DeepSeek Harness 开发者预览版，采用 MIT 许可证。该框架基于 Cordis 插件系统构建，设计理念为“一切皆插件”，模型、工具、Skills、会话、沙箱、存储等均可替换。同时发布 DeepSeek-V4-Pro GA 版本。开发者可通过 npx 快速启动 Web UI。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>CSS-Tricks 周报：Custom Highlight API、CSS 导航匹配与 text-stroke 修复</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-14</guid>
+      <pubDate>Fri, 14 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：CSS-Tricks · 本期 CSS-Tricks 周报汇总了多项前沿 CSS 技术，包括如何使用 CSS Custom Highlight API、CSS 导航匹配、修复 text-stroke 的问题，以及如何为骨架屏（Skeleton UI）添加样式、实现斜向滚动和图片自溢出的技巧，为前端开发者提供了丰富的实用参考。</description>
+      <category>前端</category>
+    </item>
     <item>
       <title>微软合并 Copilot 应用并砍掉失败 AI 功能</title>
       <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-13</link>
@@ -247,86 +327,6 @@
       <pubDate>Tue, 11 Aug 2026 16:00:00 GMT</pubDate>
       <description>[产品] · 来源：The Verge AI · Zoom 已修复一个严重安全漏洞，该漏洞允许攻击者在会议期间劫持任何人的设备。研究人员称，他们使用公开可用的 AI 模型，通过“不到 20 个提示”就发现了该漏洞。此事件凸显了 AI 在安全研究中的强大能力。对读者：请立即更新 Zoom 客户端至最新版本，以防漏洞被利用。</description>
       <category>产品</category>
-    </item>
-    <item>
-      <title>GitHub 发布 Copilot SDK for Java</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-11</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-11</guid>
-      <pubDate>Tue, 11 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：GitHub Blog · GitHub 发布了 Copilot SDK for Java，允许企业 Java 开发者通过惯用的 Java 代码（包括注解和虚拟线程）驱动 GitHub Copilot。这为 Java 开发者提供了更原生、更强大的 AI 编程集成体验。对读者：Java 开发者可尝试该 SDK，将 Copilot 能力直接嵌入到现有 Java 工作流中。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>使用 Baseline 减少 JavaScript 代码量</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-11</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-11</guid>
-      <pubDate>Tue, 11 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：JavaScript Weekly · JavaScript Weekly 第 798 期聚焦“使用 Baseline 减少 JavaScript 代码量”的主题。Baseline 是 Web 平台兼容性标准，通过利用其特性，开发者可以编写更少的兼容性代码，从而减少 JavaScript 体积。对读者：前端开发者可关注 Baseline 标准，简化兼容性处理，优化页面性能。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>AI材料初创公司Discovered Materials获900万美元融资，用AI寻找更高效芯片材料</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · Discovered Materials宣布完成900万美元种子轮融资，资金将用于扩展AI驱动的材料发现平台，寻找可用于制造更高效芯片的新型材料。该公司利用AI模型预测和筛选具有优异热管理性能的材料，以应对芯片散热挑战。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>对冲基金Situational Awareness向芯片初创Source Foundry投资4亿美元</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · 尽管近期遭遇挫折，AI对冲基金Situational Awareness仍向芯片初创公司Source Foundry投资4亿美元，押注新一代芯片技术。这笔投资显示该基金在经历困境后仍积极布局AI基础设施领域。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>AI推理规模上升后，华为重新定义“存储”的位置</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：InfoQ 中文 · 华为在2026数据存储用户精英论坛上提出AI数据中心数据基础设施五层架构，强调当AI从训练进入大规模推理和Agent落地阶段，数据存储、管理和持续调用成为新瓶颈。华为认为AI发展重点正从算力、模型延伸到数据。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>Meta将开源其最强AI模型，对标OpenAI和Anthropic</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：CNBC · Meta宣布将开源其最强大的AI模型，此举被视为对OpenAI和Anthropic等闭源竞争对手的直接挑战。Meta希望通过开源策略吸引开发者社区，推动AI技术普及，并建立更广泛的生态系统。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>Meta发布Muse Glimmer：本地、智能体、多模态且开源</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：Hugging Face Blog · Meta发布Muse Glimmer，一个本地运行的智能体多模态模型，并完全开源。该模型支持图像、文本和视频输入，旨在推动AI民主化，让开发者和研究者在本地设备上运行先进的AI功能。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Paperclip：开源智能体管理应用，用于管理工作中的AI代理</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：paperclipai/paperclip · Paperclip是一个开源应用，旨在帮助团队管理工作中的AI代理。它提供统一的界面来管理、监控和协调多个智能体，提升团队协作效率，并支持自定义工作流。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>Anthropic将Claude Code自动模式设为默认，减少人工监督</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：TechCrunch AI · Anthropic宣布Claude Code的自动模式将默认启用，该模式允许AI自主执行更多编程任务，减少人工审批。此举旨在提升开发效率，但也引发了对代码质量和安全性的讨论。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>Claude Code倒计时5天默认自动模式，额外token成本由Anthropic承担</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-10</guid>
-      <pubDate>Mon, 10 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：量子位 · Anthropic宣布5天后Claude Code将默认启用自动模式，该模式下的分类器每次工具调用会额外消耗token，但成本由Anthropic承担。数据显示用户对权限请求的同意率高达97%，人工审批已流于形式。</description>
-      <category>开发者工具</category>
     </item>
   </channel>
 </rss>
