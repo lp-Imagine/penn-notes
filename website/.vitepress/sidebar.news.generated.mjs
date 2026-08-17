@@ -6,6 +6,10 @@ export default {
       "collapsed": false,
       "items": [
         {
+          "text": "2026-08-17",
+          "link": "/news/2026-08/ai-news-2026-08-17"
+        },
+        {
           "text": "2026-08-16",
           "link": "/news/2026-08/ai-news-2026-08-16"
         },
