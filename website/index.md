@@ -6,9 +6,9 @@ layout: home
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
     <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
-    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 64 篇</p>
+    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 65 篇</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="/penn-notes/agent/practice/cmswogeh60013qt01avmoagui">阅读最新笔记</a>
+      <a class="home-btn home-btn--primary" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">阅读最新笔记</a>
       <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
     </div>
   </section>
@@ -17,7 +17,7 @@ layout: home
   <a class="home-pillar" href="/penn-notes/web/">
     <p class="home-pillar-title">JS & 框架</p>
     <p class="home-pillar-desc">JavaScript 基础、Vue / React、UI 组件实践</p>
-    <p class="home-pillar-meta">26 篇笔记</p>
+    <p class="home-pillar-meta">27 篇笔记</p>
   </a>
   <a class="home-pillar" href="/penn-notes/ui/">
     <p class="home-pillar-title">样式</p>
@@ -52,6 +52,11 @@ layout: home
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-18">
+    <img class="news-card-thumb" src="/news/2026-08/763af1c8ae68.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
+    <span class="news-card-title">AI 动态 · 2026-08-18</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-17">
     <img class="news-card-thumb" src="/news/2026-08/61f2570a414a.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-17">2026-08-17</time>
     <span class="news-card-title">AI 动态 · 2026-08-17</span>
@@ -87,11 +92,6 @@ layout: home
     <span class="news-card-title">AI 动态 · 2026-08-11</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-10">
-    <img class="news-card-thumb" src="/news/2026-08/6f2679177f9a.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-10">2026-08-10</time>
-    <span class="news-card-title">AI 动态 · 2026-08-10</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
 </div>
   </section>
 
@@ -101,6 +101,11 @@ layout: home
       <a class="home-more" href="/penn-notes/web/">查看更多</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">
+    <img class="news-card-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
+    <span class="news-card-title">TypeScript6装饰器迁移实战</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/agent/practice/cmswogeh60013qt01avmoagui">
     <img class="news-card-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-17">2026-08-17</time>
     <span class="news-card-title">AI Agent幻觉缓解：验证与重试实践</span>
@@ -136,11 +141,6 @@ layout: home
     <span class="news-card-title">Chrome Extension（扩展程序）开发</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card" href="/penn-notes/tech/github/github精选资源">
-    <div class="news-card-body"><time datetime="2022-09-06">2022-09-06</time>
-    <span class="news-card-title">GitHub精选资源</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
 </div>
   </section>
 
@@ -150,10 +150,10 @@ layout: home
     </div>
     <p class="home-block-desc">按主题浏览笔记 · 从基础到实践</p>
   <div class="course-mod">
-    <p class="course-mod-label">JS & 框架 · 26 篇</p>
+    <p class="course-mod-label">JS & 框架 · 27 篇</p>
     <a class="course-card" href="/penn-notes/web/">
       <span class="course-card-title">JS & 框架</span>
-      <span class="course-card-desc">26 篇 · JavaScript、Vue、React、UI 组件</span>
+      <span class="course-card-desc">27 篇 · JavaScript、Vue、React、UI 组件</span>
     </a>
   </div>
   <div class="course-mod">
