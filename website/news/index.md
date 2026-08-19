@@ -25,8 +25,9 @@ next: false
 
   <div class="section-index news-digest-list">
     <div class="section-group">
-      <p class="section-group-label">2026-08 · 18 期日报</p>
+      <p class="section-group-label">2026-08 · 19 期日报</p>
       <div class="section-card-grid">
+        <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><img class="section-card-thumb" src="/news/2026-08/ca9c9121e168.jpg" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-19</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-18"><img class="section-card-thumb" src="/news/2026-08/763af1c8ae68.jpg" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-18</span><span class="section-card-meta"><time datetime="2026-08-18">2026-08-18</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-17"><img class="section-card-thumb" src="/news/2026-08/61f2570a414a.jpg" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-17</span><span class="section-card-meta"><time datetime="2026-08-17">2026-08-17</time><span>阅读全文</span></span></a>
         <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-16"><img class="section-card-thumb" src="/news/2026-08/a4626dba0fbd.jpg" alt="" loading="lazy" /><span class="section-card-title">AI 动态 · 2026-08-16</span><span class="section-card-meta"><time datetime="2026-08-16">2026-08-16</time><span>阅读全文</span></span></a>
