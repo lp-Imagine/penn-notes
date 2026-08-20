@@ -148,7 +148,7 @@ export default defineConfig({
     // 把生成的 data-repo-id / data-category-id 填到下面，即可生效
     giscus: {
       repo: "lp-Imagine/penn-notes",
-      repoId: "",
+      repoId: "R_kgDOH7Mqqg",
       category: "Announcements",
       categoryId: "",
     },
