@@ -117,14 +117,33 @@ export default {
         observer = new MutationObserver(() => scheduleRefresh());
         observer.observe(content, { childList: true, subtree: true });
       }
-      // 左侧菜单收起/展开：恢复记忆状态 + 创建按钮 + 跟随路由更新可见性
+      // 左侧菜单收起/展开：恢复记忆状态（仅桌面端生效，移动端不加类以免影响目录抽屉）+ 创建按钮 + 跟随路由更新可见性
       try {
-        if (localStorage.getItem(SIDEBAR_KEY) === "1") {
-          document.documentElement.classList.add("sidebar-collapsed");
-        }
+        const collapsed =
+          localStorage.getItem(SIDEBAR_KEY) === "1" &&
+          window.matchMedia("(min-width: 960px)").matches;
+        if (collapsed) document.documentElement.classList.add("sidebar-collapsed");
       } catch {
         // ignore storage errors
       }
+      const onViewportResize = () => {
+        const isDesktop = window.matchMedia("(min-width: 960px)").matches;
+        if (isDesktop) {
+          // 恢复桌面端记忆状态
+          try {
+            if (localStorage.getItem(SIDEBAR_KEY) === "1") {
+              document.documentElement.classList.add("sidebar-collapsed");
+            }
+          } catch {
+            // ignore
+          }
+        } else {
+          // 移动端移除收起类，保证「目录」抽屉可正常打开
+          document.documentElement.classList.remove("sidebar-collapsed");
+        }
+        updateSidebarToggleVisibility();
+      };
+      window.addEventListener("resize", onViewportResize);
       createSidebarToggle();
       updateSidebarToggleVisibility();
       const vpContent = document.querySelector(".VPContent");

@@ -1964,26 +1964,30 @@ html:not(.dark) .home-btn--primary:hover {
   }
 }
 
-/* 收起：隐藏固定侧边栏，内容区让出的左边距回收 */
-html.sidebar-collapsed .VPSidebar {
-  display: none;
-}
-html.sidebar-collapsed .VPContent.has-sidebar {
-  padding-left: 0;
-}
-@media (min-width: 1440px) {
-  html.sidebar-collapsed .VPContent.has-sidebar {
-    /* 保留大屏居中的右侧留白，只回收侧边栏占位 */
-    padding-left: calc((100vw - var(--vp-layout-max-width)) / 2);
+/* 收起：隐藏固定侧边栏，内容区让出的左边距回收
+   ⚠️ 全部限定桌面端（≥960px）：移动端的「目录」抽屉依赖 .VPSidebar，
+   若收起类在移动端也生效会把抽屉永久藏掉，点击目录无反应 */
+@media (min-width: 960px) {
+  html.sidebar-collapsed .VPSidebar {
+    display: none;
   }
-}
+  html.sidebar-collapsed .VPContent.has-sidebar {
+    padding-left: 0;
+  }
+  @media (min-width: 1440px) {
+    html.sidebar-collapsed .VPContent.has-sidebar {
+      /* 保留大屏居中的右侧留白，只回收侧边栏占位 */
+      padding-left: calc((100vw - var(--vp-layout-max-width)) / 2);
+    }
+  }
 
-/* 收起时同步放宽正文文字列：688px（有右侧目录）→ 752/784px（与无侧边栏页面一致） */
-html.sidebar-collapsed .VPDoc.has-aside .content-container {
-  max-width: 752px;
-}
-@media (min-width: 1440px) {
+  /* 收起时同步放宽正文文字列：688px（有右侧目录）→ 752/784px（与无侧边栏页面一致） */
   html.sidebar-collapsed .VPDoc.has-aside .content-container {
-    max-width: 784px;
+    max-width: 752px;
+  }
+  @media (min-width: 1440px) {
+    html.sidebar-collapsed .VPDoc.has-aside .content-container {
+      max-width: 784px;
+    }
   }
 }
