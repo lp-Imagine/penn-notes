@@ -6,9 +6,9 @@ layout: home
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
     <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
-    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 65 篇</p>
+    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 66 篇</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">阅读最新笔记</a>
+      <a class="home-btn home-btn--primary" href="/penn-notes/agent/prompts/cmt0vtjum001rzzd9z2ahemdr">阅读最新笔记</a>
       <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
     </div>
   </section>
@@ -37,7 +37,7 @@ layout: home
   <a class="home-pillar" href="/penn-notes/agent/">
     <p class="home-pillar-title">AI Agent</p>
     <p class="home-pillar-desc">Agent 实战、工作流、提示词与工具链</p>
-    <p class="home-pillar-meta">3 篇笔记</p>
+    <p class="home-pillar-meta">4 篇笔记</p>
   </a>
   <a class="home-pillar" href="/penn-notes/misc/">
     <p class="home-pillar-title">杂项</p>
@@ -101,6 +101,11 @@ layout: home
       <a class="home-more" href="/penn-notes/web/">查看更多</a>
     </div>
 <div class="news-grid">
+  <a class="news-card news-card--media" href="/penn-notes/agent/prompts/cmt0vtjum001rzzd9z2ahemdr">
+    <img class="news-card-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-20">2026-08-20</time>
+    <span class="news-card-title">Prompt Cache与上下文管理实践</span>
+    <span class="news-card-action">阅读全文</span></div>
+  </a>
   <a class="news-card news-card--media" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">
     <img class="news-card-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
     <span class="news-card-title">TypeScript6装饰器迁移实战</span>
@@ -134,11 +139,6 @@ layout: home
   <a class="news-card news-card--media" href="/penn-notes/tech/docs/cms49bxh60007zz9zfexa2vs0">
     <img class="news-card-thumb" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-28">2026-07-28</time>
     <span class="news-card-title">Claude Code 实战手册开源：编码秘籍</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card" href="/penn-notes/computer/browser/Chrome-Extension（扩展程序）开发">
-    <div class="news-card-body"><time datetime="2022-09-06">2022-09-06</time>
-    <span class="news-card-title">Chrome Extension（扩展程序）开发</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
 </div>
@@ -178,10 +178,10 @@ layout: home
     </a>
   </div>
   <div class="course-mod">
-    <p class="course-mod-label">AI Agent · 3 篇</p>
+    <p class="course-mod-label">AI Agent · 4 篇</p>
     <a class="course-card" href="/penn-notes/agent/">
       <span class="course-card-title">AI Agent</span>
-      <span class="course-card-desc">3 篇 · 实战、其它</span>
+      <span class="course-card-desc">4 篇 · 实战、提示词、其它</span>
     </a>
   </div>
   <div class="course-mod">

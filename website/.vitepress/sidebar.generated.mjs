@@ -6,6 +6,10 @@ export default {
       "collapsed": true,
       "items": [
         {
+          "text": "TypeScript6装饰器迁移实战",
+          "link": "/web/javascript/cmsy2er2q000hnm01hgt6t1rp"
+        },
+        {
           "text": "Axios 封装",
           "link": "/web/javascript/Axios封装"
         },
@@ -135,6 +139,10 @@ export default {
       "text": "JavaScript",
       "collapsed": true,
       "items": [
+        {
+          "text": "TypeScript6装饰器迁移实战",
+          "link": "/web/javascript/cmsy2er2q000hnm01hgt6t1rp"
+        },
         {
           "text": "Axios 封装",
           "link": "/web/javascript/Axios封装"
@@ -610,6 +618,30 @@ export default {
   ],
   "/agent/": [
     {
+      "text": "实战",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "AI Agent幻觉缓解：验证与重试实践",
+          "link": "/agent/practice/cmswogeh60013qt01avmoagui"
+        },
+        {
+          "text": "记忆翻车复盘：让Agent长任务不跑偏",
+          "link": "/agent/practice/cmspws3nm0005zzez3yduit0a"
+        }
+      ]
+    },
+    {
+      "text": "提示词",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Prompt Cache与上下文管理实践",
+          "link": "/agent/prompts/cmt0vtjum001rzzd9z2ahemdr"
+        }
+      ]
+    },
+    {
       "text": "其它",
       "collapsed": true,
       "items": [
@@ -621,6 +653,30 @@ export default {
     }
   ],
   "/sync/agent/": [
+    {
+      "text": "实战",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "AI Agent幻觉缓解：验证与重试实践",
+          "link": "/agent/practice/cmswogeh60013qt01avmoagui"
+        },
+        {
+          "text": "记忆翻车复盘：让Agent长任务不跑偏",
+          "link": "/agent/practice/cmspws3nm0005zzez3yduit0a"
+        }
+      ]
+    },
+    {
+      "text": "提示词",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Prompt Cache与上下文管理实践",
+          "link": "/agent/prompts/cmt0vtjum001rzzd9z2ahemdr"
+        }
+      ]
+    },
     {
       "text": "其它",
       "collapsed": true,
