@@ -3,6 +3,7 @@ import { nextTick, onMounted, watch, defineComponent, h } from "vue";
 import { useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
+import Comments from "./Comments.vue";
 import NewsArchive from "./NewsArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
@@ -87,17 +88,30 @@ const Layout = defineComponent({
   setup(_props, { slots }) {
     const route = useRoute();
     return () => {
-      const isHome =
-        route.path === "/" || route.path.endsWith("/index.html");
+      // route.path 在浏览器里带 base 前缀（如 /penn-notes/agent/...），先剥离再判断
+      const base = "/penn-notes";
+      const p = route.path.startsWith(base) ? route.path.slice(base.length) : route.path;
+      const path = p || "/";
+      const isHome = path === "/" || path.endsWith("/index.html");
       const layoutClass = ["site-layout", isHome ? "home-layout" : ""]
         .filter(Boolean)
         .join(" ");
+      // 评论只在文章页显示：排除 AI 动态（/news/）与关于页（/about/）
+      const showComments = !(
+        path.startsWith("/news") ||
+        path === "/about" ||
+        path === "/about/"
+      );
       return h(
         DefaultTheme.Layout,
         { class: layoutClass },
         {
           ...slots,
           "doc-top": () => [slots["doc-top"]?.(), h(NewsDigestEnhance)],
+          "doc-after": () => [
+            slots["doc-after"]?.(),
+            showComments ? h(Comments) : null,
+          ],
         },
       );
     };

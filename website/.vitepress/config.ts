@@ -142,5 +142,15 @@ export default defineConfig({
       message: "Penn Notes · 前端学习笔记",
       copyright: "© 2020-present Penn · 记录前端路上的思考",
     },
+    // 文章评论（giscus，基于 GitHub Discussions）
+    // 启用步骤：仓库 Settings → Features → 开启 Discussions →
+    // 访问 https://giscus.app 按提示安装 giscus App 并配置 →
+    // 把生成的 data-repo-id / data-category-id 填到下面，即可生效
+    giscus: {
+      repo: "lp-Imagine/penn-notes",
+      repoId: "",
+      category: "Announcements",
+      categoryId: "",
+    },
   },
 });
