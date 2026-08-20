@@ -1977,3 +1977,13 @@ html.sidebar-collapsed .VPContent.has-sidebar {
     padding-left: calc((100vw - var(--vp-layout-max-width)) / 2);
   }
 }
+
+/* 收起时同步放宽正文文字列：688px（有右侧目录）→ 752/784px（与无侧边栏页面一致） */
+html.sidebar-collapsed .VPDoc.has-aside .content-container {
+  max-width: 752px;
+}
+@media (min-width: 1440px) {
+  html.sidebar-collapsed .VPDoc.has-aside .content-container {
+    max-width: 784px;
+  }
+}
