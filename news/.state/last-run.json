@@ -1,8 +1,8 @@
 {
-  "at": "2026-08-19T23:26:49.696Z",
+  "at": "2026-08-20T23:30:39.018Z",
   "type": "daily",
-  "date": "2026-08-19",
-  "candidates": 57,
+  "date": "2026-08-20",
+  "candidates": 59,
   "search": {
     "ok": true,
     "queries": 6,
@@ -10,24 +10,28 @@
     "items": 16,
     "failures": []
   },
-  "editorial": 13,
+  "editorial": 20,
   "sections": {
-    "业界": 3,
+    "业界": 4,
     "产品": 4,
-    "模型": 0,
-    "开源": 2,
-    "开发者工具": 2,
-    "前端": 2
+    "模型": 4,
+    "开源": 4,
+    "开发者工具": 4,
+    "前端": 0
   },
   "rss": {
-    "ok": 20,
-    "failed": 1,
+    "ok": 19,
+    "failed": 2,
     "failures": [
       {
         "name": "36氪",
         "error": "Feed not recognized as RSS/Atom"
+      },
+      {
+        "name": "量子位",
+        "error": "fetch failed"
       }
     ]
   },
-  "output": "news/2026-08/ai-news-2026-08-19.md"
+  "output": "news/2026-08/ai-news-2026-08-20.md"
 }
