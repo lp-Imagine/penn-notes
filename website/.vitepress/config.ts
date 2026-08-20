@@ -150,7 +150,7 @@ export default defineConfig({
       repo: "lp-Imagine/penn-notes",
       repoId: "R_kgDOH7Mqqg",
       category: "Announcements",
-      categoryId: "",
+      categoryId: "DIC_kwDOH7Mqqs4DDyOt",
     },
   },
 });
