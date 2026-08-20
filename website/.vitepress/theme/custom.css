@@ -1754,13 +1754,17 @@ html:not(.dark) .home-btn--primary:hover {
 }
 
 /* 表格：边框 + 表头底色 + 紧凑 padding */
+/* 列多时保持自然列宽（white-space:nowrap，见 th/td 规则），
+   表格超出容器时横向滚动查看全部列（overflow-x:auto），不挤压不裁切；
+   列少的窄表格照常铺满（min-width:100%）。 */
 .vp-doc table {
-  width: 100%;
+  width: auto;
+  min-width: 100%;
   margin: 0 0 var(--space-5);
   border-collapse: collapse;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow-x: auto;
   font-size: 0.95rem;
 }
 
@@ -1775,6 +1779,8 @@ html:not(.dark) .home-btn--primary:hover {
   text-align: left;
   vertical-align: top;
   line-height: 1.6;
+  /* 保持自然列宽：列少正常显示，列多/内容长时表格变宽由外层横向滚动 */
+  white-space: nowrap;
 }
 
 .vp-doc th {
