@@ -1920,3 +1920,60 @@ html:not(.dark) .home-btn--primary:hover {
     line-height: 1.75;
   }
 }
+
+/* ===== 左侧菜单收起/展开（文章详情页） ===== */
+.sidebar-toggle {
+  position: fixed;
+  top: calc(var(--vp-nav-height) + 14px);
+  left: 10px;
+  z-index: 70;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+}
+.sidebar-toggle:hover {
+  opacity: 1;
+  border-color: var(--border-strong);
+}
+.sidebar-toggle-chevron {
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(135deg); /* 箭头朝左：点击后收起 */
+  transition: transform 0.2s;
+}
+.sidebar-toggle.is-collapsed .sidebar-toggle-chevron {
+  transform: rotate(-45deg); /* 箭头朝右：点击后展开 */
+}
+
+/* 桌面端且页面带左侧菜单时才显示；移动端走自己的抽屉菜单 */
+@media (min-width: 960px) {
+  body.has-vp-sidebar .sidebar-toggle {
+    display: flex;
+  }
+}
+
+/* 收起：隐藏固定侧边栏，内容区让出的左边距回收 */
+html.sidebar-collapsed .VPSidebar {
+  display: none;
+}
+html.sidebar-collapsed .VPContent.has-sidebar {
+  padding-left: 0;
+}
+@media (min-width: 1440px) {
+  html.sidebar-collapsed .VPContent.has-sidebar {
+    /* 保留大屏居中的右侧留白，只回收侧边栏占位 */
+    padding-left: calc((100vw - var(--vp-layout-max-width)) / 2);
+  }
+}
