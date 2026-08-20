@@ -139,8 +139,8 @@ export default defineConfig({
     docFooter: { prev: "上一篇", next: "下一篇" },
     returnToTopLabel: "返回顶部",
     footer: {
-      message: "由 Penn 制作 · 前端学习笔记",
-      copyright: "Copyright © 2020-present Penn",
+      message: "Penn Notes · 前端学习笔记",
+      copyright: "© 2020-present Penn · 记录前端路上的思考",
     },
   },
 });
