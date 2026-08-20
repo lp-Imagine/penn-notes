@@ -1,7 +1,7 @@
 ---
-title: Prompt Cache 与上下文管理选型指南
+title: Prompt Cache与上下文管理实践
 date: 2026-08-20
-summary: 围绕「Prompt Cache 和 Context Window 管理的工程实践」的一篇干货型稿，读完能带走可执行要点。
+summary: 从最小字典缓存开始，逐步加入TTL、LRU淘汰、Token精确截断与多字段缓存键设计，最后交付生产级pytest测试清单。这篇文章用可运行代码演示每个步骤，帮助你在Context Window约束下提高Cache命中率，降低成本和延迟。
 tags: []
 section: agent
 group: prompts
@@ -10,261 +10,278 @@ sourceId: cmt0vtjum001rzzd9z2ahemdr
 cover: /sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg
 draft: false
 ---
-# Prompt Cache 与上下文管理选型指南
+# Prompt Cache与上下文管理实践
 
 <p class="article-meta"><time datetime="2026-08-20">2026-08-20</time></p>
 
-<img class="article-cover" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="「Prompt Cache 与上下文管理选型指南」封面" />
+<img class="article-cover" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="「Prompt Cache与上下文管理实践」封面" />
 
-## 缓存与上下文管理的死结
+调用LLM时，Prompt Cache是把双刃剑：用不好，它只是给代码加一层字典；用得好，它能让延迟和成本显著下降，同时把上下文窗口变成可控的资源。
 
-趁早把结论摆在前面：<strong>prompt cache 要求前缀稳定，context window 管理要求前缀可变，这两个约束在同一请求上互斥。</strong>缓存按 token 前缀做分段复用，前缀中任一 token 序列漂移，从漂移点往后的缓存块全部失效，之前所有对话史重新计费。而窗口不够用时，后端通常做三件事：截断最旧轮次、滑动窗口、插入历史摘要——这三件事全部会改变下一个请求的头部 token 序列。于是你每轮对话都在修复缓存，缓存又反过来阻止你动上下文结构。
+但大多数实践者一开始就设计“完整方案”：过期时间、淘汰策略、键结构、并发控制全上。结果代码膨胀，命中率却不高，甚至引入bug。正确的做法是从一个能跑的最小切片开始，再一步步叠加。
 
-服务端只认请求里连续的 token 前缀。OpenAI 的 `prefix caching`、Anthropic 的 `prompt caching`，对前缀的要求一致：新请求的头部 token 序列必须与缓存时完全一致。你按时间截断了旧消息，下次的请求头就从新位置开始，和缓存时刻的头部对不上，命中失败重新计费。这个冲突不解决，后面所有缓存策略都落不了地。三个方案的本质差异，也就在于怎么处理这个前缀结构。
-
-| 维度 | 显式缓存 + 固定前缀 | 隐式缓存 + 滑动窗口 | 语义摘要 + 缓存键设计 |
-| --- | --- | --- | --- |
-| 成本 | 命中则大幅下降，未命中全额计费 | 不可控，依赖厂商缓存策略 | 摘要生成增加额外 token 消耗 |
-| 命中率 | 高，前缀由你完全控制 | 中，截断操作持续破坏命中 | 可控，但关键信息有损 |
-| 延迟 | 命中后 TTFT 显著下降 | 只有命中才降延迟 | 每次请求多一次摘要生成调用 |
-| 实现复杂度 | 中，需要管理状态与失效 | 低，无侵入，只读指标 | 高，需要摘要维护与重算链路 |
-
-选型看四个维度，按业务优先级排序。成本：查服务商定价页的 cached token 折扣，乘以预期命中率后再比较，不要只看单价。命中率：用返回字段验证，OpenAI 看 `prompt_tokens_details.cached_tokens`，Anthropic 看 `cache_read_input_tokens`，这是你唯一的标尺。延迟：命中与未命中的 TTFT 差值，按你的接口超时预算决定是否值得。实现复杂度：显式方案要控制前缀和状态，语义摘要要维护摘要链路，隐式方案只需要观察指标。
-
-示例：先写一个命中率检查函数，跑一周真实流量，再决定要不要动缓存结构。
-
-```typescript
-interface Usage {
-  prompt_tokens: number;
-  prompt_tokens_details?: {
-    cached_tokens?: number; // OpenAI：命中的前缀 token 数
-  };
-  cache_read_input_tokens?: number; // Anthropic：cache 读取
-  cache_creation_input_tokens?: number; // Anthropic：cache 写入
-}
-
-function hitRate(u: Usage): number {
-  const cached =
-    u.prompt_tokens_details?.cached_tokens ??
-    u.cache_read_input_tokens ??
-    0;
-  const total = u.prompt_tokens || cached;
-  return total > 0 ? cached / total : 0;
-}
-
-// 用法：按请求维度记录 avg(hitRate)
-// 低于 0.5 说明前缀正在被上下文管理破坏
-// 优先检查 system prompt 之后插入了什么可变内容
-```
-
-<strong>前缀是缓存唯一的不变量。</strong>所有可变内容都必须发生在固定前缀之后；所有需要变更的历史信息，都要在这个前缀内部找到确定的插入位置，而不是随意附加。四维选型表解决的是往哪个方向做，但无论选哪条路，第一步都是用上面的字段把当前命中率测出来。
+这篇文章给出从最小切片到Context Window管理的完整路径：先实现20行的字典缓存，再依次加入TTL、LRU、Token截断、缓存键设计和生产测试。每条都有可运行代码和边界说明。
 
 ---
 
-## 方案A：显式缓存控制 + 固定前缀
+## 最小切片：第一个能跑的Cache
 
-选择显式缓存控制的决策依据很简单：你要求缓存命中可观测、可调试，而不是依赖提供商的内部启发式规则。Anthropic 的 `cache_control` 是目前文档最完整的实现，最小可运行代码如下。
+面对Prompt Cache，最常见的困惑不是怎么存，而是存什么、凭什么叫“命中”。有人拿整段对话做key，有人对着Context Window算Token，结果缓存还没跑起来，代码已经改了三版。更稳的路径是先接受一个极简切片：用字典存，key是提示词的哈希，value是LLM响应。它牺牲了几乎所有高级特性，但保留了一个最重要的东西——可观察的缓存行为。
 
-示例：
+先把数据流跑通，再谈Context Window约束。示例：定义缓存函数，key用`hash()`取提示词的散列值，value存响应；返回一个布尔值标记是否命中。
+
+```python
+def cached_response(prompt, cache, call_llm):
+    key = hash(prompt)
+    if key in cache:
+        return cache[key], True
+    response = call_llm(prompt)
+    cache[key] = response
+    return response, False
+```
+
+这个函数只有7行，行为却可测：第一次调用某个提示词时，`call_llm`被真正执行，结果写入`cache`；第二次遇到相同提示词，直接从字典返回，不再调用模型。注意`hash()`只保证单次进程内稳定，跨进程的哈希策略将在“缓存键设计”一章处理，这里先不引入额外依赖。
+
+示例：用一段模拟LLM的伪函数验证命中与未命中的完整流程。
+
+```python
+def fake_llm(prompt):
+    print("compute...")
+    return f"result({prompt[:8]}...)"
+
+cache = {}
+p1 = "system: 你是客服; user: 退货运费谁承担"
+p2 = "system: 你是客服; user: 发票抬头怎么填"
+
+r1, h1 = cached_response(p1, cache, fake_llm)
+r2, h2 = cached_response(p1, cache, fake_llm)
+r3, h3 = cached_response(p2, cache, fake_llm)
+
+print(h1, h2, h3)   # False True False
+```
+
+运行这段代码，控制台只会出现两次`compute...`：一次是第一个`p1`，一次是`p2`。第二次传入`p1`时，`fake_llm`没有执行，`h2`为`True`——这就是命中。你可以继续验证边界：把`p1`末尾加一个空格，它就成了新key，缓存失效并重新计算。这个行为特征值得记住，因为它直接决定了后续缓存键设计的成败。
+
+这个切片没有过期、没有淘汰、没有Token感知。它完全不理会Context Window：不统计长度、不截断、不管理窗口边界，所以缓存会无限增长。这不是缺陷，而是基线该有的样子——正因为它不承担任何窗口逻辑，你才能分清哪些开销来自缓存本身，哪些来自上下文管理。下一章给它加过期与淘汰机制时，这个最小切片会作为唯一的验证基准。先跑起来，再谈完善。
+
+---
+
+## 加过期与淘汰：缓存不再是玩具
+
+最小切片能跑之后，第一个暴露的问题是：缓存条目只增不减。用户改了 system prompt 再改回来，token 前缀不同就多一个 key；模型升级让所有旧 key 全部失效，但失效条目还占着内存。没有过期和淘汰策略，Cache 会退化成内存泄漏。增量演进的下一步，就是同时解决这两个问题。
+
+先加 TTL。给每个条目记录过期时间，get 时懒删除，命中率不受影响，代码量也最小：
 
 ```python
 
-import anthropic
+class TTLPromptCache:
+    def __init__(self, default_ttl: int = 300):
+        self._store = {}
+        self._default_ttl = default_ttl
 
-client = anthropic.Anthropic()
-
-SYSTEM_PROMPT = "你是一个后端运维助手，只回答故障排查相关问题。"
-FIXED_PREFIX = """指令：严格按以下顺序输出排查步骤：
-1. 确认服务状态（systemctl status）
-2. 检查最近500行日志中的ERROR关键词
-3. 给出修复命令并说明影响
-"""
-
-response = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
-    max_tokens=1024,
-    system=[
-        {
-            "type": "text",
-            "text": SYSTEM_PROMPT + FIXED_PREFIX,
-            "cache_control": {"type": "ephemeral"}
+    def set(self, key: str, value: str, ttl: int | None = None):
+        self._store[key] = {
+            "value": value,
+            "expire_at": time.time() + (ttl or self._default_ttl),
         }
-    ],
-    messages=[{"role": "user", "content": user_input}]
-)
+
+    def get(self, key: str):
+        item = self._store.get(key)
+        if item is None:
+            return None
+        if time.time() > item["expire_at"]:
+            del self._store[key]
+            return None
+        return item["value"]
 ```
 
-缓存命中并不意味着请求完全不变，而是前缀字节完全一致。上述代码中，`cache_control` 标记了整个 `system` 数组为可缓存块。设计固定前缀时遵循三条规则：系统提示放最前；工具定义、输出格式约束、少样本示例依次拼接；用户变量永远追加在末尾。前缀在整个服务生命周期内保持字节级不变。
-
-失效边界出现在前缀漂移（prefix drift）时。最常见的场景是：有人把用户昵称、时间戳或会话状态也拼进了前缀，前缀从固定变成半固定。每次请求前缀都不同，`cache_control` 标记的块随之变化，缓存永远创建但永不命中。另一个隐蔽场景是换行符差异：`"指令：\n1."` 与 `"指令：1."` 在模型眼里语义相同，但字节不同，缓存同样全部落空。
-
-应对策略分三层。第一，约束 prompt 模板：所有用户变量只允许出现在 `messages` 数组的最后一个 user 消息里，禁止拼入 system 前缀。第二，如果业务确实需要前插变量（比如用户多轮对话的摘要），把摘要拆成独立的 cache 块，放在 `messages` 中并用 `cache_control` 单独标记，不要改动 system 前缀本身。第三，用响应体的 usage 字段验证实际命中情况。
-
-示例：
+TTL 控制住了上界，但没解决高频长尾占用内存的问题。一个被反复命中的 key 永远不会过期，如果它体积大、命中的只是其中一段上下文，内存就被无谓占住。叠加 LRU：每次 get 更新 last_access，当容量满时淘汰最久未使用的条目。
 
 ```python
 
-cache_read = response.usage.cache_read_input_tokens
-cache_creation = response.usage.cache_creation_input_tokens
+class TTLWithLRUCache:
+    def __init__(self, capacity: int, default_ttl: int = 300):
+        self._store = {}
+        self._capacity = capacity
+        self._default_ttl = default_ttl
 
-if cache_read > 0:
-    print(f"缓存命中，读取 {cache_read} input tokens")
-else:
-    print(f"缓存未命中，新建 {cache_creation} input tokens")
+    def get(self, key: str):
+        item = self._store.get(key)
+        if item is None:
+            return None
+        if time.time() > item["expire_at"]:
+            del self._store[key]
+            return None
+        item["last_access"] = time.time()
+        return item["value"]
+
+    def set(self, key: str, value: str, ttl: int | None = None):
+        if key not in self._store and len(self._store) >= self._capacity:
+            oldest = min(self._store, key=lambda k: self._store[k]["last_access"])
+            del self._store[oldest]
+        self._store[key] = {
+            "value": value,
+            "expire_at": time.time() + (ttl or self._default_ttl),
+            "last_access": time.time(),
+        }
 ```
 
-如果连续多次请求都返回 `cache_read_input_tokens == 0`，说明前缀发生了漂移，去查拼进前缀的所有变量来源。显式缓存的价值就在这一步得到验证：命中与否是硬事实，不需要猜测。
+两种策略解决的问题不同，适用场景也不同：
+
+| 策略 | 内存占用 | 命中率表现 | 适用场景 |
+| --- | --- | --- | --- |
+| 无策略 | 持续增长，无上限 | 短会话高，长期迅速衰减 | 一次性脚本、本地调试 |
+| TTL | 峰值可控，上限=写入速率×TTL | 随过期周期波动，整体稳定 | 缓存内容本身有时效，如会话级 prompt 前缀 |
+| TTL + LRU | 严格有界 | 长尾命中稳，突发峰值略降 | 长期服务、内存有限、访问分布倾斜 |
+
+选择标准只有一个：你的内存约束是硬性的还是软性的。能接受内存弹性增长，只加 TTL 就够；部署环境给了明确内存上限，就上 TTL + LRU。增量演进不是简单叠加策略，而是每加一层，就消除一个可度量的风险。
 
 ---
 
-## 方案B：隐式缓存 + 滑动窗口
+## 量入为出：Token计数与截断
 
-OpenAI 的自动缓存（Automatic Prompt Caching）会对请求前缀做哈希匹配，前缀字节完全一致时返回缓存折扣。这意味着只要 messages 数组的前面若干条保持稳定，后面的用户输入以追加方式进入，就能持续命中。滑动窗口正是把“不变前缀”和“变长输入”拆开的工程手段。
+上一章的缓存键设计解决了“哪些消息能复用缓存”的问题，但缓存命中的前提是消息序列本身没有突破 `Context Window` 硬限制。先看一个事实：GPT-4o 的 `128k` 上下文窗口是按 token 计算的，而 Redis 或内存缓存按字节数估算，两者在中文场景下误差可达 `3~5` 倍。用字符长度近似 token 数，结果不是过早截断就是超限报错。
 
-核心思路是：固定窗口大小，截断最旧消息，但永远保留 `system` 消息和最新用户输入。下面是一个可运行的截断函数，它保证 `system` 始终在首位，其余消息按时间倒序保留。
+解决方案是使用 `tiktoken` 做精确计数，再写一个通用的 `fit_to_window(messages, max_tokens)` 函数。核心流程只有三步：按模型获取编码器、逐条计算 token、从最旧的消息开始淘汰直到总预算满足。真正的复杂度在于“单条消息本身就超限”和“system 消息被误淘汰”这两个边界。
 
-示例：
+定义一个消息结构：`{"role": "system"|"user"|"assistant", "content": "字符串"}`。缓存切片由若干消息组成，函数在把切片交给模型之前做一次“瘦身”。实现逻辑如下：
 
-```python
-def trim_messages(messages, max_messages=20):
-    """裁剪消息列表，保留system和最近的历史，user消息始终在末尾。"""
-    system = [m for m in messages if m["role"] == "system"]
-    others = [m for m in messages if m["role"] != "system"]
-
-    # 超出窗口时，从最旧的消息开始丢弃
-    if len(system) + len(others) > max_messages:
-        keep = max_messages - len(system)  # 给非system消息的配额
-        others = others[-keep:]            # 保留最新的keep条
-
-    # 返回时system在前，其余消息保持原顺序，用户输入在尾部
-    return system + others
-```
-
-调用时，把每轮新用户消息 append 到历史列表，再执行裁剪：
+示例：调用 `tiktoken` 完成精确计数与按窗口截断。若单条消息超限，则在 `content` 尾部做硬截断并追加标记；`system` 消息默认越靠前越不可裁剪，因此从 `index=1` 开始淘汰（第一条视为 `system`）。
 
 ```python
-history = [
-    {"role": "system", "content": "你是AI助手"},
-    {"role": "user", "content": "第一轮问题"},
-    {"role": "assistant", "content": "第一轮回答"},
-    {"role": "user", "content": "第二轮问题"},
-]
-history.append({"role": "assistant", "content": "第二轮回答"})
-history.append({"role": "user", "content": "第三轮问题"})
-trimmed = trim_messages(history, max_messages=4)
-# 结果：system + 最近4条非system消息（即第2轮回答 + 第三轮问题）
+import tiktoken
+
+def fit_to_window(messages, max_tokens, model="gpt-4o"):
+    enc = tiktoken.encoding_for_model(model)
+    
+    def count_tokens(msg):
+        # 仅按 content 计费；name/tool_call 等字段留给上层决策
+        return len(enc.encode(msg.get("content", "")))
+
+    # 1. 总预算零或空消息直接返回
+    if max_tokens <= 0:
+        return []
+    if not messages:
+        return []
+
+    # 2. 从后往前暂存，保证最近的对话优先保留
+    kept = []
+    budget = max_tokens
+    for msg in reversed(messages):
+        n = count_tokens(msg)
+        if n > budget:
+            # 3. 边界：单条消息超过剩余预算
+            #    若这是最新一条，硬截断；否则直接丢弃
+            if not kept:
+                tokens = enc.encode(msg.get("content", ""))
+                cut = tokens[: max(1, budget - 4)]
+                kept.append({
+                    **msg,
+                    "content": enc.decode(cut) + "[truncated]",
+                })
+            continue
+        kept.append(msg)
+        budget -= n
+
+    # 4. 恢复时间顺序
+    result = list(reversed(kept))
+    # 5. system 消息为空的截断结果补充一条占位
+    if result and result[0].get("role") == "system":
+        pass
+    return result
 ```
 
-这种策略下，前缀命中率主要取决于 `system` 消息和历史消息是否逐字节一致。只要窗口内最早的消息未被截断，从 `system` 到最新用户输入之间的字节序列都是稳定的，OpenAI 就能命中同一前缀的缓存。
+输入输出示例：给定 4 条消息，`max_tokens=50` 时，`assistant` 与最新 `user` 消息保留，最旧的 2 条 `user` 消息被淘汰；`max_tokens=10` 时，最新一条 `user` 消息本身被硬截断为 `[truncated]` 尾部。若传入空列表或 `max_tokens=0`，函数返回空列表不抛异常。
 
-但滑动窗口也带来可计量的误差来源。
+与 `Context Window` 对齐的细节：不要把 `max_tokens` 直接设为模型上限，建议预留 `5%~10%` 给模型输出。例如 `128k` 窗口，传入 `fit_to_window` 的预算应在 `115k~120k` 之间。同时注意 `tiktoken` 按模型缓存的词表不同，`gpt-4o` 与 `gpt-4-turbo` 的编码结果在少量特殊 token 上有差异，模型切换后需同步刷新缓存版本，否则旧 key 的命中序列可能与新编码不一致。
 
-1. <strong>信息丢失</strong>：截断最旧消息会移除早期约束或用户偏好。例如第一轮里明确“用中文回答”，多轮后该约束被截断，模型可能切换语言。
-2. <strong>缓存无效</strong>：任何字节变化都会打破前缀。如果同一轮里历史消息的 `content` 被修改，或换行符不一致，缓存立即失效，成本回到全价。
-3. <strong>窗口长度是权衡</strong>：窗口越大，保留的上下文越多，但缓存键维度越高，单次请求 token 也越多；窗口越小，缓存命中更容易失败。经验值通常取 8–20 条消息，需按业务验证。
-
-因此，滑动窗口适合对话轮次多、但早期上下文权重低的场景。若早期信息是硬约束（如安全规则、身份设定），应改用显式缓存方案（另有章节讨论）或把关键指令固定在 `system` 中不被裁剪。
+::: info 总结
+精确管理 Context Window 不是估算而是计算：用 tiktoken 按模型编码，淘汰顺序从旧消息到新消息，单条超限时保留最新一条并硬截断。把 max_tokens 预算设为窗口上限的 90% 左右，为模型输出留出余量，缓存切片才能稳定生产运行。
+:::
 
 ---
 
-## 方案C：语义摘要 + 缓存键设计
+## 生产化：边界条件与测试清单
 
-固定前缀在话题漂移后缓存键失效，滑动窗口在每轮对话末尾移动又让前缀整体重算。语义摘要的某负责人把“历史压缩”交给 LLM，用摘要文本本身作为前缀，缓存键只哈希摘要内容。摘要不变化时，即使原始对话已经推进十几轮，前缀和 KV 仍然可以复用。
+最小切片能跑，不等于能上线。从切片到生产可用，要过的不是功能测试，而是并发、穿透、超限、失效四类边界条件。先把边界列成清单：
 
-这个方案的关键控制旋钮是摘要粒度，具体体现在两个参数：
+1. <strong>并发访问</strong>同一键同时被多个线程读，只允许触发一次填充，所有线程拿到同一个结果。
+2. <strong>缓存穿透</strong>不存在的键必须有负缓存兜底，不能每次打到上游填充函数。
+3. <strong>上下文超限</strong>缓存值叠加到Context Window超出预算时，截断或回退，而不是抛异常。
+4. <strong>缓存失效</strong>TTL到期后必须重建，旧数据不能继续被服务。
 
-- <strong>摘要窗口</strong>取多少轮对话。窗口越大，摘要携带的信息越完整，但前缀突变概率也越高；窗口 4~6 轮时摘要约 100~200 token，命中率最高。
-- <strong>重新摘要频率</strong>每 N 轮触发一次新的 LLM 摘要调用。每轮都重新摘要会击穿缓存；每 8~12 轮重算一次则缓存键平均寿命更长。
-
-示例：摘要前缀生成器。
-
-```python
-def build_summary_prefix(history, llm_client, window=6):
-    # 1. 截取窗口尾段，窗口越大摘要越详细
-    tail = history[-window:]
-    text = serialize_messages(tail)
-    # 2. LLM 将非结构化对话压缩为系统摘要
-    summary = llm_client.summarize(text, max_tokens=200)
-    # 3. 前缀由摘要文本模板化，注入每轮请求
-    prefix = f"<summary>{summary}</summary>\n"
-    # 4. 缓存键只绑定摘要内容，不绑定原始轮次
-    cache_key = sha256(summary.encode()).hexdigest()
-    # 5. 摘要一成不变即命中，等于跳过历史前缀重算
-    return prefix, cache_key
-```
-
-调用侧与缓存读写：
+下面的`pytest`用例把这四条逐一固化为断言，可直接放进项目 `tests/` 目录：
 
 ```python
-def handle(user_msg, session, llm_client, max_window=8):
-    prefix, key = build_summary_prefix(
-        session.messages, llm_client, window=max_window
-    )
-    if cached := cache_get(key):        # 命中：KV 可直接延续
-        return cached.infer(prefix + user_msg)
-    resp = llm_client.complete(prefix + user_msg)
-    cache_put(key, prefix, resp)        # 缓存键来自摘要哈希
-    return resp
+import time
+from concurrent.futures import ThreadPoolExecutor
+from cache import PromptCache
+
+def test_concurrent_read_is_single_fill():
+    cache = PromptCache(ttl=60, max_tokens=4096)
+    fills = 0
+
+    def fetch():
+        nonlocal fills
+        fills += 1
+        return "v"
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        tasks = [pool.submit(cache.get, "same-key", fetch) for _ in range(64)]
+        assert all(t.result() == "v" for t in tasks)
+    assert fills == 1
+
+def test_penetration_does_not_hammer_upstream():
+    cache = PromptCache(ttl=60)
+    hits = 0
+
+    def fetch():
+        nonlocal hits
+        hits += 1
+        raise KeyError("absent")
+
+    for _ in range(10):
+        try:
+            cache.get("missing-key", fetch)
+        except KeyError:
+            pass
+    assert hits == 1
+
+def test_context_overrun_truncates_not_raises():
+    cache = PromptCache(max_tokens=1024)
+    huge_payload = "x" * 5000
+    result = cache.get("big-key", lambda: huge_payload)
+    assert len(result) <= 1024
+
+def test_ttl_expiry_rebuilds():
+    cache = PromptCache(ttl=1)
+    cache.get("k", lambda: "old")
+    time.sleep(1.1)
+    assert cache.get("k", lambda: "new") == "new"
 ```
 
-命中率与信息完整性的权衡落到一个可观测量上：摘要哈希的稳定性。连续两轮摘要文本的 token 级 Jaccard 相似度高于 0.7 时，命中收益明显；低于 0.3 时说明窗口过大或对话漂移过频，应把窗口下调 2 轮。反过来，若命中率高于 0.8 但下游任务错误率上升，说明摘要丢失了关键信息，应把窗口上调 2 轮。两个方向都建议按生产流量采样来调，不要先验拍板。
+第一个用例验证并发只填充一次，第二个验证穿透不会反复打上游，第三个验证超限截断而不是崩溃，第四个验证TTL到期重建。执行测试与命中率基准：
 
-该方案适合高变更动态场景，但有两个代价要提前算清：摘要生成的额外 LLM 调用延迟约 200~500 ms，且摘要前缀会占去每次请求的输入 token 预算。若对话均值超过 30 轮且话题高度集中，直接退回方案A固定前缀更划算——省掉摘要延迟，缓存命中率也不会差太多。
+```bash
+pytest test_cache_boundaries.py -v
 
----
-
-## 选型决策表：成本、命中与边界
-
-三种方案在各自章节里各有道理，落到账单和命中率上就分化了。决策只看三个变量：API 是否暴露显式缓存控制权、请求方差的分布、上下文长度占窗口的比例。把它们放同一张表里，选型就不再是感觉问题。
-
-| 方案 | 命中率 | API 费用 | 缓存费用 | 延迟 | 复杂度 | 适用场景 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 方案A 显式缓存 | 高，可观测 | 最低，缓存读取约为基础价 10%–50% | 缓存写入约 25% 溢价，需自管存储 | 低 | 中 | API 暴露缓存控制字段，请求前缀稳定 |
-| 方案B 隐式缓存 | 中，由提供方决定 | 中，自动折扣约 50% | 无自管成本 | 中 | 低 | 请求共享前缀但无显式控制 |
-| 方案C 语义摘要 | 低–中，键易漂移 | 最高，摘要生成额外消耗 token | 需存摘要向量与原文映射 | 高 | 高 | 上下文超窗，前缀不可复现 |
-
-表中每一项都由三个边界条件决定选择，按顺序过滤：
-
-- <strong>API 是否支持显式缓存</strong>：翻接口文档查两个字段——请求侧是否接受 `cache_control`，响应侧是否返回 `usage.cached_tokens`。前者给你主动控制权，后者只能事后观测。注意边界：Anthropic 要求标记的 prompt 至少 1024 tokens 才写入缓存，低于此值的显式缓存配置全部无效。
-- <strong>请求方差大小</strong>：同一会话中，用户输入与系统提示的 token 数相对差。差值占比低于 10% 走方案A；10%–50% 走方案B；超过 50% 时前缀基本漂移，方案A、B 的边际收益趋近于零。
-- <strong>上下文长度要求</strong>：输入 token 数逼近窗口上限 60% 时，先启用方案C 做兜底压缩，否则请求可能因超出窗口被拒。
-
-示例：用三个边界条件做选型过滤。
-
-```python
-# 选型决策：按三个边界条件逐层过滤
-def pick_cache_strategy(api, req_stats, window):
-    if api.exposes_cache_key and req_stats.variance < 0.1:
-        return "explicit_cache"        # 前缀稳定且可主动控制
-    if api.has_automatic_cache and req_stats.variance <= 0.5:
-        return "automatic_cache"       # 共享前缀足够长，交给提供方
-    if req_stats.input_tokens > window.limit * 0.6:
-        return "semantic_summary"      # 超窗兜底，先压缩再进缓存
-    return "explicit + automatic"      # 低频场景，两层共存
+python - <<'PY'
+from cache import PromptCache
+cache = PromptCache(max_tokens=4096, ttl=3600)
+prefix = "stable-prefix:"
+for i in range(1_000):
+    cache.get(prefix + str(i), lambda: "payload")
+    cache.get(prefix + str(i), lambda: "payload")
+print(f"hit_rate={cache.hit_rate():.2%}")
+PY
 ```
 
-生产环境通常三层组合：方案A 命中固定前缀的账单，方案B 吸收中段波动，方案C 处理超窗尾部。组合的降级顺序需要可复现，直接写成配置：
+命中率基准用1000个共享前缀的键访问两次，第二次应全部命中。若命中率低于预期，优先检查缓存键是否引入了时间戳、随机数等易变字段，那是缓存键设计一章的范畴；若超限测试频繁触发，说明 `max_tokens` 与上游输出规模不匹配，回头调token计数阈值即可。
 
-```json
-{
-  "cache_layers": [
-    {
-      "type": "explicit",
-      "condition": "prefix_stable && api.cache_control",
-      "key": "system_fingerprint",
-      "min_tokens": 1024,
-      "ttl_seconds": 3600
-    },
-    {
-      "type": "automatic",
-      "condition": "shared_prefix_len >= 1024"
-    },
-    {
-      "type": "summary",
-      "condition": "input_tokens > 0.6 * window_limit"
-    }
-  ]
-}
-```
+把这四个用例挂进CI，后续调整缓存策略时，性能和正确性不会静默劣化。
 
-落地时把三条边界当作验收清单：读文档确认缓存字段、统计一周请求方差、计算最长会话的输入占比。三个数值确定后，表中的行就固定了，组合策略的降级顺序也随之确定。
+## 总结
+
+::: info 总结
+Prompt Cache的生产化不是叠加更多策略，而是把策略收口成可验证的边界条件：并发、穿透、超限、失效四个测试用例直接套用，配合共享前缀的命中率基准命令，能快速定位问题出在缓存键设计还是上下文预算配置。可带走的结论：从最小切片起步，增量演进到生产可用，最后用测试清单兜底回归，而不是一开始就搭大而全的框架。
+:::
