@@ -2027,3 +2027,27 @@ html:not(.dark) .home-btn--primary:hover {
   color: var(--text-3);
   letter-spacing: 0.05em;
 }
+
+/* ===== 阅读进度条 ===== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ===== 预计阅读时间 ===== */
+.vp-doc .article-meta .reading-time {
+  color: var(--text-3);
+}
+.vp-doc .reading-time-standalone {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: var(--text-3);
+}

@@ -14,8 +14,9 @@
     "build:redirects": "node scripts/build-redirects.mjs",
     "prebuild": "npm run ingest && npm run sync:news && npm run build:home",
     "dev": "npm run ingest && npm run sync:news && npm run build:home && vitepress dev website",
-    "build": "vitepress build website && npm run build:redirects",
-    "preview": "vitepress preview website"
+    "build": "vitepress build website && npm run build:redirects && npm run build:sitemap",
+    "preview": "vitepress preview website",
+    "build:sitemap": "node scripts/build-sitemap.mjs"
   },
   "devDependencies": {
     "rss-parser": "^3.13.0",

@@ -7,6 +7,7 @@ import Comments from "./Comments.vue";
 import NewsArchive from "./NewsArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
+import RelatedPosts from "./RelatedPosts.vue";
 import "./custom.css";
 
 let zoom: Zoom | undefined;
@@ -52,6 +53,63 @@ function updateSidebarToggleVisibility() {
   document.body.classList.toggle("has-vp-sidebar", hasSidebar);
 }
 
+// ---- 阅读进度条 ----
+let progressBar: HTMLDivElement | null = null;
+
+function setupReadingProgress() {
+  if (progressBar || typeof document === "undefined") return;
+  const bar = document.createElement("div");
+  bar.className = "reading-progress";
+  document.body.appendChild(bar);
+  progressBar = bar;
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const ratio = max > 0 ? Math.min(1, doc.scrollTop / max) : 0;
+    bar.style.transform = `scaleX(${ratio})`;
+  };
+  window.addEventListener(
+    "scroll",
+    () => requestAnimationFrame(update),
+    { passive: true },
+  );
+  window.addEventListener("resize", update);
+  update();
+}
+
+// ---- 预计阅读时间：按正文字数（中文约 400 字/分钟）计算，插入文章头部 meta ----
+function updateReadingTime() {
+  nextTick(() => {
+    const doc = document.querySelector(".vp-doc");
+    if (!doc) return;
+    const clone = doc.cloneNode(true) as HTMLElement;
+    clone
+      .querySelectorAll("pre, code, script, style, .article-meta, .article-cover")
+      .forEach((n) => n.remove());
+    const text = (clone.textContent ?? "").replace(/\s+/g, "");
+    const minutes = Math.max(1, Math.round(text.length / 400));
+    const label = `约 ${minutes} 分钟读完`;
+    const meta = doc.querySelector(".article-meta");
+    if (meta) {
+      let el = meta.querySelector<HTMLElement>(".reading-time");
+      if (!el) {
+        el = document.createElement("span");
+        el.className = "reading-time";
+        meta.appendChild(el);
+      }
+      el.textContent = ` · ${label}`;
+    } else {
+      let el = doc.querySelector<HTMLElement>(".reading-time-standalone");
+      if (!el) {
+        el = document.createElement("div");
+        el.className = "reading-time-standalone";
+        doc.prepend(el);
+      }
+      el.textContent = label;
+    }
+  });
+}
+
 function collectImages(): HTMLElement[] {
   return Array.from(
     document.querySelectorAll<HTMLImageElement>(".vp-doc img"),
@@ -79,7 +137,10 @@ function refreshZoom() {
 function scheduleRefresh() {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
-    nextTick(() => refreshZoom());
+    nextTick(() => {
+      refreshZoom();
+      updateReadingTime();
+    });
   }, 80);
 }
 
@@ -110,6 +171,7 @@ const Layout = defineComponent({
           "doc-top": () => [slots["doc-top"]?.(), h(NewsDigestEnhance)],
           "doc-after": () => [
             slots["doc-after"]?.(),
+            h(RelatedPosts),
             showComments ? h(Comments) : null,
           ],
         },
@@ -160,6 +222,8 @@ export default {
       window.addEventListener("resize", onViewportResize);
       createSidebarToggle();
       updateSidebarToggleVisibility();
+      setupReadingProgress();
+      updateReadingTime();
       const vpContent = document.querySelector(".VPContent");
       if (vpContent && !sidebarObserver) {
         sidebarObserver = new MutationObserver(() => updateSidebarToggleVisibility());
@@ -171,6 +235,7 @@ export default {
       () => {
         scheduleRefresh();
         updateSidebarToggleVisibility();
+        updateReadingTime();
       },
     );
   },

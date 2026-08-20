@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { defineConfig } from "vitepress";
+import { defineConfig, type HeadConfig } from "vitepress";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 
@@ -13,6 +13,9 @@ const ICON_PNG = "https://lp-imagine.github.io/penn-notes/pn-favicon-32.png";
 const ICON_ICO = "https://lp-imagine.github.io/penn-notes/favicon.ico";
 const ICON_APPLE =
   "https://lp-imagine.github.io/penn-notes/img/pn-apple-touch.png";
+
+// 站点绝对地址（GitHub Pages 部署域名），用于 OG / canonical / JSON-LD
+const SITE_URL = "https://lp-imagine.github.io/penn-notes";
 
 const faviconHeadSnippet = [
   `<link rel="icon" href="${ICON_ICO}" sizes="any">`,
@@ -75,6 +78,50 @@ export default defineConfig({
   // Post-process built HTML so icons sit at the very start of <head>
   async buildEnd(siteConfig) {
     injectFaviconEarly(siteConfig.outDir);
+  },
+  // 每页注入 OG / Twitter / JSON-LD（微信/Google 分享卡片）
+  transformHead({ pageData, siteData }) {
+    const fm = pageData.frontmatter ?? {};
+    const title = pageData.title || fm.title || siteData.title;
+    const description =
+      fm.description ||
+      fm.summary ||
+      pageData.description ||
+      siteData.description;
+    const rel = pageData.relativePath
+      .replace(/\.md$/, "")
+      .replace(/^index$/, "");
+    const pageUrl = SITE_URL + "/" + rel;
+    const image = (fm.cover ? SITE_URL + fm.cover : null) || ICON_PNG;
+    const head: HeadConfig[] = [
+      ["meta", { property: "og:type", content: "article" }],
+      ["meta", { property: "og:site_name", content: "Penn Notes" }],
+      ["meta", { property: "og:title", content: title }],
+      ["meta", { property: "og:description", content: description }],
+      ["meta", { property: "og:url", content: pageUrl }],
+      ["meta", { property: "og:image", content: image }],
+      ["meta", { name: "twitter:card", content: "summary_large_image" }],
+      ["meta", { name: "twitter:title", content: title }],
+      ["meta", { name: "twitter:description", content: description }],
+      ["meta", { name: "twitter:image", content: image }],
+      ["link", { rel: "canonical", href: pageUrl }],
+    ];
+    const ld: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      mainEntityOfPage: pageUrl,
+      author: { "@type": "Person", name: "Penn", url: GITHUB_PROFILE },
+      publisher: { "@type": "Organization", name: "Penn Notes" },
+      image,
+    };
+    if (fm.date) {
+      ld.datePublished = String(fm.date);
+      ld.dateModified = String(fm.date);
+    }
+    head.push(["script", { type: "application/ld+json" }, JSON.stringify(ld)]);
+    return head;
   },
   head: [
     ["link", { rel: "icon", href: ICON_ICO, sizes: "any" }],
