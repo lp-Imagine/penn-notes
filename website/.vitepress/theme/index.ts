@@ -77,17 +77,31 @@ function setupReadingProgress() {
   update();
 }
 
-// ---- 预计阅读时间：按正文字数（中文约 400 字/分钟）计算，插入文章头部 meta ----
+// ---- 预计阅读时间 ----
+// 中文 350 字/分（技术文精读）、英文/数字词 200 词/分，
+// 代码块单独计时（约 25 行/分，最多计 5 分钟，避免把快速扫代码的读者算太高）
 function updateReadingTime() {
   nextTick(() => {
     const doc = document.querySelector(".vp-doc");
     if (!doc) return;
     const clone = doc.cloneNode(true) as HTMLElement;
     clone
-      .querySelectorAll("pre, code, script, style, .article-meta, .article-cover")
+      .querySelectorAll("script, style, .article-meta, .article-cover")
       .forEach((n) => n.remove());
+    let codeLines = 0;
+    clone.querySelectorAll("pre").forEach((pre) => {
+      codeLines += (pre.textContent?.match(/\n/g)?.length ?? 0) + 1;
+      pre.remove();
+    });
     const text = (clone.textContent ?? "").replace(/\s+/g, "");
-    const minutes = Math.max(1, Math.round(text.length / 400));
+    const cn = (text.match(/[\u4e00-\u9fff]/g) ?? []).length;
+    const en =
+      (text.match(/[a-zA-Z]+/g) ?? []).length +
+      (text.match(/[0-9]+/g) ?? []).length;
+    const minutes = Math.max(
+      1,
+      Math.round(cn / 350 + en / 200 + Math.min(codeLines / 25, 5)),
+    );
     const label = `约 ${minutes} 分钟读完`;
     const meta = doc.querySelector(".article-meta");
     if (meta) {
