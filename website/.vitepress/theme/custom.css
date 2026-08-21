@@ -10,6 +10,16 @@
   --text-3: #8e8e93;
   --border: #e5e5ea;
   --border-strong: #d2d2d7;
+  /* 全站分区：两端淡出的细分割线 */
+  --divider-fade: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--border) 88%, transparent) 12%,
+    color-mix(in srgb, var(--border-strong) 70%, var(--border)) 50%,
+    color-mix(in srgb, var(--border) 88%, transparent) 88%,
+    transparent 100%
+  );
+  --divider-soft: 0 1px 0 color-mix(in srgb, var(--border) 48%, transparent);
   --link: #3451b2;
   --link-hover: #2a4499;
   --accent: #3b5bdb;
@@ -74,7 +84,7 @@ body {
   border-bottom: none !important;
   background-color: var(--vp-nav-bg-color) !important;
   /* 一条贯通细线，避免侧栏/内容区接缝隔断 */
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 42%, transparent);
+  box-shadow: var(--divider-soft);
 }
 
 /* 关掉 VitePress 默认分段分割线（侧栏下 + 内容区各画一段会断） */
@@ -142,11 +152,11 @@ body {
 .home-wrap {
   max-width: 100%;
   margin: 0;
-  padding: 56px 0 80px;
+  padding: 48px 0 72px;
 }
 
 .home-hero {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .VPHome .vp-doc .home-headline {
@@ -212,16 +222,62 @@ body {
   color: var(--link) !important;
 }
 
+/* Home sections：去套娃卡片，用分隔线分区 */
+.home-section {
+  margin-bottom: 44px;
+}
+
+.home-section--pillars {
+  margin-bottom: 48px;
+}
+
+.home-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
+.VPHome .vp-doc .home-section-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  border: none;
+}
+
+.home-more {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--link) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.home-more:hover {
+  color: var(--link-hover) !important;
+}
+
+.home-empty {
+  margin: 8px 0 0;
+  color: var(--text-3);
+  font-size: 0.95rem;
+}
+
 .home-pillars {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 48px;
+  gap: 10px;
 }
 
 @media (min-width: 960px) {
   .home-pillars {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -232,42 +288,169 @@ body {
 }
 
 .home-pillar {
-  display: block;
-  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--surface);
-  box-shadow: var(--shadow-sm);
   text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .home-pillar:hover {
-  background: var(--surface);
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  background: var(--surface-2);
 }
 
-.VPHome .vp-doc .home-pillar-title {
-  margin: 0 0 8px;
-  font-size: 1.05rem;
+.VPHome .vp-doc .home-pillar-title,
+.home-pillar-title {
+  margin: 0;
+  font-size: 0.98rem;
   font-weight: 650;
+  color: var(--text);
+  border: none;
+  line-height: 1.3;
+}
+
+.VPHome .vp-doc .home-pillar-desc,
+.home-pillar-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.VPHome .vp-doc .home-pillar-meta,
+.home-pillar-meta {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.home-note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-decoration: none !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.home-note:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: var(--surface-2);
+}
+
+.home-note-thumb {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: var(--surface-2);
+}
+
+.home-note-thumb--empty {
+  display: block;
+  border: 1px dashed var(--border);
+}
+
+.home-note-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.home-note-body time {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.VPHome .vp-doc .home-note-title,
+.home-note-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.4;
   color: var(--text);
   border: none;
 }
 
-.VPHome .vp-doc .home-pillar-desc {
-  margin: 0 0 12px;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--text-2);
+.home-feed {
+  display: flex;
+  flex-direction: column;
 }
 
-.VPHome .vp-doc .home-pillar-meta {
-  margin: 0;
+.home-feed-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 12px 14px;
+  padding: 14px 0;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+  text-decoration: none !important;
+}
+
+.home-feed-item:first-child {
+  padding-top: 4px;
+}
+
+.home-feed-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.home-feed-tag {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--link);
+  white-space: nowrap;
+}
+
+.VPHome .vp-doc .home-feed-title,
+.home-feed-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 550;
+  line-height: 1.45;
+  color: var(--text);
+  border: none;
+}
+
+.home-feed-item:hover .home-feed-title {
+  color: var(--link);
+}
+
+.home-feed-item time {
+  font-size: 12px;
   color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .home-feed-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .home-feed-item time {
+    grid-column: 2;
+  }
 }
 
 .home-block {
@@ -299,17 +482,6 @@ body {
   margin: 0 0 18px;
   font-size: 0.9rem;
   color: var(--text-2);
-}
-
-.home-more {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--link) !important;
-  text-decoration: none !important;
-}
-
-.home-more:hover {
-  color: var(--link-hover) !important;
 }
 
 .news-grid {
@@ -428,17 +600,154 @@ body {
   color: var(--text-2);
 }
 
-.section-card--media {
-  gap: 12px;
+/* ---- AI 动态页 ---- */
+.vp-doc .news-page .news-hero {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
 }
 
-.section-card-thumb {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
+.vp-doc .news-hero-meta {
+  margin-top: 12px;
+}
+
+.vp-doc .news-block {
+  margin: 0 0 40px;
+}
+
+.vp-doc .news-block-head {
+  margin: 0 0 16px;
+}
+
+.vp-doc .news-block-title {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+}
+
+.vp-doc .news-block-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.news-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin: 0 0 8px;
+}
+
+.news-toolbar .news-filter {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.news-toolbar-aside {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.news-toolbar-count {
+  font-size: 13px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.news-toolbar-aside .news-rss-subscribe--compact {
+  margin: 0;
+}
+
+.news-archive {
+  margin-bottom: 0;
+}
+
+.news-feed-more {
+  display: flex;
+  justify-content: center;
+  padding: 22px 0 4px;
+}
+
+.news-feed-more-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
   border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.news-feed-more-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  color: var(--text);
   background: var(--surface-2);
-  margin-bottom: 2px;
+}
+
+/* 日报归档：紧凑日期链 */
+.news-digest-archive .news-digest-month + .news-digest-month {
+  margin-top: 20px;
+}
+
+.vp-doc .news-digest-month-label,
+.news-digest-month-label {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.news-digest-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.news-digest-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.25rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none !important;
+  font-size: 13px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2) !important;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.news-digest-date:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  color: var(--link) !important;
+  background: var(--surface-2);
+}
+
+.news-digest-date time {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .news-toolbar-aside {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .vp-doc img[alt="配图"] {
@@ -472,54 +781,6 @@ body {
 
 .news-home-empty a:hover {
   color: var(--link-hover);
-}
-
-.course-mod {
-  margin-top: 14px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--bg);
-}
-
-.course-card {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 16px 18px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--surface);
-  text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-.course-card:hover {
-  background: var(--surface);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
-}
-
-.VPHome .vp-doc .course-mod-label {
-  margin: 0 0 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-3);
-  border: none;
-}
-
-.VPHome .vp-doc .course-card-title {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 650;
-  color: var(--text);
-  border: none;
-}
-
-.VPHome .vp-doc .course-card-desc {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--text-2);
 }
 
 .home-layout .VPSidebar,
@@ -578,8 +839,10 @@ body {
 }
 
 .vp-doc .section-hero {
-  margin: 0 0 32px;
-  padding: 0 0 8px;
+  margin: 0 0 28px;
+  padding: 0 0 20px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
 }
 
 .vp-doc .section-kicker {
@@ -609,7 +872,7 @@ body {
 }
 
 .vp-doc .section-count {
-  margin: 0;
+  margin: 12px 0 0;
   font-size: 13px;
   color: var(--text-3);
 }
@@ -617,100 +880,226 @@ body {
 .section-index {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 40px;
 }
 
 .section-group {
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
+.vp-doc .section-group-head {
+  margin: 0 0 16px;
+}
+
+.vp-doc .section-group-title {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+}
+
+.vp-doc .section-group-desc,
 .vp-doc .section-group-label {
-  margin: 0 0 12px;
-  font-size: 12px;
-  font-weight: 500;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
   color: var(--text-3);
   border: none;
+  line-height: 1.5;
 }
 
+/* 栏目卡片与 AI 动态卡片共用同一套尺寸/样式 */
+.news-item-grid,
 .section-card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
+  margin-top: 12px;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1100px) {
+  .news-item-grid,
   .section-card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1400px) {
+  .news-item-grid,
   .section-card-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
+  .news-item-grid,
   .section-card-grid {
     grid-template-columns: 1fr;
   }
 }
 
+.news-item-card,
 .section-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px 18px;
+  min-height: 100%;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--bg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
   text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s;
+  overflow: hidden;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s,
+    transform 0.15s;
 }
 
+.news-item-card:hover,
 .section-card:hover {
-  background: var(--surface-2);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  transform: translateY(-1px);
 }
 
-.vp-doc .section-card-title {
+.dark .news-item-card:hover,
+.dark .section-card:hover {
+  box-shadow: none;
+  background: var(--surface-2);
+}
+
+.news-item-media,
+.section-card-media {
+  display: block;
+  aspect-ratio: 2 / 1;
+  max-height: 96px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.news-item-thumb,
+.section-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.45;
+}
+
+.news-item-body,
+.section-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px 12px;
+}
+
+.news-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.vp-doc .news-item-title,
+.news-item-title,
+.vp-doc .section-card-title,
+.section-card-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.4;
   color: var(--text);
   border: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+.news-item-card:hover .news-item-title,
+.section-card:hover .section-card-title {
+  color: var(--link);
+}
+
+.vp-doc .news-item-summary,
+.news-item-summary {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-item-meta,
 .section-card-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  font-size: 12px;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 2px;
+  font-size: 11px;
   color: var(--text-3);
 }
 
+.news-item-meta time,
 .section-card-meta time {
   font-variant-numeric: tabular-nums;
 }
 
+.news-item-meta span:last-child,
 .section-card-meta span:last-child {
   color: var(--link);
-  font-weight: 500;
+  font-weight: 550;
 }
 
 /* ── Doc pages ── */
+/* 收紧正文左右边距：避免 VPDoc + container + content 多层 padding 叠太宽 */
+.VPDoc {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+@media (min-width: 768px) {
+  .VPDoc {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (min-width: 960px) {
+  .VPDoc {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .VPDoc .content {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
 .VPDoc .container {
-  padding: var(--space-6) var(--space-5) var(--space-8);
+  padding: var(--space-6) 0 var(--space-8);
 }
 
 .VPDoc .content-container {
-  max-width: 42rem;
+  max-width: 46rem;
 }
 
 .vp-doc {
@@ -757,14 +1146,25 @@ body {
 }
 
 .vp-doc h2 {
+  position: relative;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.35;
   margin: var(--space-7) 0 var(--space-4);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--border);
+  border-top: none;
   color: var(--text);
+}
+
+.vp-doc h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--divider-fade);
 }
 
 .vp-doc h2:first-of-type {
@@ -773,10 +1173,18 @@ body {
   border-top: none;
 }
 
+.vp-doc h2:first-of-type::before {
+  display: none;
+}
+
 .vp-doc .article-meta + h2 {
   margin-top: var(--space-5);
   padding-top: 0;
   border-top: none;
+}
+
+.vp-doc .article-meta + h2::before {
+  display: none;
 }
 
 /* ai-article 同步稿封面：紧跟 meta 之后，全宽圆角 */
@@ -810,18 +1218,23 @@ body {
 
 /*
  * Markdown `---` 会渲染成 <hr>，VitePress 默认又给 h2 加 border-top，
- * 两者叠在一起会出现双分割线。保留一条即可。
+ * 两者叠在一起会出现双分割线。保留一条柔和渐变线即可。
  */
 .vp-doc hr {
   margin: var(--space-7) 0 0;
   border: none;
-  border-top: 1px solid var(--border);
+  height: 1px;
+  background: var(--divider-fade);
 }
 
 .vp-doc hr + h2 {
   margin-top: var(--space-4) !important;
   padding-top: 0 !important;
   border-top: none !important;
+}
+
+.vp-doc hr + h2::before {
+  display: none;
 }
 
 .vp-doc h3 {
@@ -832,16 +1245,27 @@ body {
   border: none;
 }
 
-/* 资讯日报：单条标题区 */
+/* 资讯日报：条目之间用两端淡出的细线，避免满宽硬分割 */
 .vp-doc h3:has(+ .news-entry-meta) {
+  position: relative;
   margin: var(--space-7) 0 10px;
-  padding: 14px 0 0;
+  padding: 22px 0 0;
   font-size: clamp(1.05rem, 2.2vw, 1.2rem);
   font-weight: 650;
   letter-spacing: -0.02em;
   line-height: 1.4;
   color: var(--text);
-  border-top: 1px solid var(--border);
+  border-top: none;
+}
+
+.vp-doc h3:has(+ .news-entry-meta)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--divider-fade);
 }
 
 .vp-doc h2 + h3:has(+ .news-entry-meta),
@@ -849,6 +1273,11 @@ body {
   margin-top: var(--space-5);
   padding-top: 0;
   border-top: none;
+}
+
+.vp-doc h2 + h3:has(+ .news-entry-meta)::before,
+.vp-doc h2 + * + h3:has(+ .news-entry-meta)::before {
+  display: none;
 }
 
 .vp-doc .news-entry-meta {
@@ -922,7 +1351,10 @@ body {
 }
 
 .vp-doc .news-section + .news-section {
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: none;
+  background: var(--divider-fade) no-repeat top / 100% 1px;
 }
 
 .news-filter {
@@ -930,10 +1362,6 @@ body {
   flex-wrap: wrap;
   gap: 8px;
   margin: 0 0 20px;
-}
-
-.news-filter--digest {
-  margin: 0 0 var(--space-5);
 }
 
 .news-filter-btn {
@@ -962,92 +1390,7 @@ body {
 }
 
 .news-archive {
-  margin-bottom: 28px;
-}
-
-.news-item-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-@media (min-width: 960px) {
-  .news-item-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .news-item-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.news-item-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg);
-  text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s;
-}
-
-.news-item-card:hover {
-  background: var(--surface-2);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
-}
-
-.news-item-card--media {
-  flex-direction: row;
-  align-items: stretch;
-  gap: 12px;
-  padding: 12px;
-}
-
-.news-item-thumb {
-  width: 88px;
-  min-width: 88px;
-  height: 72px;
-  object-fit: cover;
-  border-radius: 8px;
-  background: var(--surface-2);
-}
-
-.news-item-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.news-item-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.news-item-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--text);
-}
-
-.news-item-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-.news-item-meta span:last-child {
-  color: var(--link);
-  font-weight: 500;
+  margin-bottom: 0;
 }
 
 .news-rss-subscribe {
@@ -1305,24 +1648,104 @@ body {
 /* Dark keeps flatter cards; light relies on border + soft shadow */
 .dark .home-pillar,
 .dark .home-block,
-.dark .section-group {
+.dark .home-note {
   box-shadow: none;
 }
 
-.dark .home-pillar:hover {
+.dark .home-pillar:hover,
+.dark .home-note:hover {
   background: var(--surface-2);
   box-shadow: none;
 }
 
-.dark .news-card:hover,
-.dark .course-card:hover,
-.dark .section-card:hover {
+.dark .news-card:hover {
   background: var(--surface-2);
 }
 
-.VPLocalNav,
+/* LocalNav：毛玻璃 + 柔和底部分隔（不用硬边框） */
+.VPLocalNav {
+  background-color: color-mix(in srgb, var(--bg) 72%, transparent) !important;
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
+  border-bottom: none !important;
+  box-shadow: var(--divider-soft);
+}
+
 .VPDocFooter {
   background-color: transparent !important;
+}
+
+/* 日报筛选：同款半透明毛玻璃，底部分隔更轻 */
+.news-filter--digest {
+  margin: 0 0 16px;
+  max-width: 100%;
+  padding: 10px 0 12px;
+  background-color: color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
+  box-shadow: var(--divider-soft);
+}
+
+/* 略窄时仍要能打开大纲：
+   - ≥1100：右侧 aside，藏顶栏 LocalNav
+   - 960–1099（侧栏展开）：保留 LocalNav，但把「章节索引」靠右，避开收起按钮
+   - 侧栏收起：有空间则提前显示右侧 aside */
+@media (min-width: 1100px) {
+  .VPDoc .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .VPDoc .aside {
+    display: block !important;
+  }
+
+  .VPDoc .content {
+    order: 1;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .VPLocalNav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1099.98px) {
+  .VPLocalNav .container {
+    justify-content: flex-end;
+    padding-left: 52px;
+  }
+
+  .VPLocalNavOutlineDropdown {
+    margin-left: auto;
+  }
+
+  /* 侧栏收起后腾出宽度，改回右侧大纲 */
+  html.sidebar-collapsed .VPDoc .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  html.sidebar-collapsed .VPDoc .aside {
+    display: block !important;
+  }
+
+  html.sidebar-collapsed .VPDoc .content {
+    order: 1;
+    margin: 0;
+    min-width: 0;
+  }
+
+  html.sidebar-collapsed .VPLocalNav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 960px) {
+  html.sidebar-collapsed .VPLocalNav.has-sidebar {
+    padding-left: 0 !important;
+  }
 }
 
 html:not(.dark) .VPSidebar {
@@ -1349,7 +1772,9 @@ html:not(.dark) .home-btn--primary:hover {
   grid-template-columns: 1fr;
   gap: 24px;
   margin-bottom: 40px;
-  padding-bottom: 8px;
+  padding-bottom: 0;
+  /* 与 .section-hero 的 border-bottom 叠在一起会变成双线；分区线只留给 .about-block */
+  border-bottom: none;
   align-items: end;
 }
 
@@ -1409,7 +1834,8 @@ html:not(.dark) .home-btn--primary:hover {
 .about-block {
   margin: 0 0 32px;
   padding: 24px 0 0;
-  border-top: 1px solid var(--border);
+  border-top: none;
+  background: var(--divider-fade) no-repeat top / 100% 1px;
 }
 
 .vp-doc .about-block-title {
@@ -1753,43 +2179,90 @@ html:not(.dark) .home-btn--primary:hover {
   margin-top: 0;
 }
 
-/* 表格：边框 + 表头底色 + 紧凑 padding */
-/* 列多时保持自然列宽（white-space:nowrap，见 th/td 规则），
-   表格超出容器时横向滚动查看全部列（overflow-x:auto），不挤压不裁切；
-   列少的窄表格照常铺满（min-width:100%）。 */
+/* 表格：外层滚动 + 内层铺满，两者兼容
+   - .vp-table-scroll：占满内容宽，overflow-x 负责横向滚动
+   - table 用 separate + 自身边框画外框（collapse + overflow:hidden 会吃掉外边框）
+   - th/td 只画右/下内部分割线；末列/末行去掉，避免与外框叠双线 */
+.vp-doc .vp-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 var(--space-5);
+  overflow-x: auto;
+  border-radius: var(--radius);
+  -webkit-overflow-scrolling: touch;
+}
+
 .vp-doc table {
-  width: auto;
+  display: table;
+  width: 100%;
   min-width: 100%;
   margin: 0 0 var(--space-5);
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow-x: auto;
+  overflow: visible;
   font-size: 0.95rem;
+  table-layout: fixed;
+  background: transparent;
+}
+
+.vp-doc .vp-table-scroll table {
+  margin: 0;
+}
+
+.vp-doc table tr {
+  border-top: none;
+  background: transparent;
 }
 
 .vp-doc thead {
   background: var(--surface-2);
 }
 
+.vp-doc thead tr:first-child th:first-child {
+  border-top-left-radius: calc(var(--radius) - 1px);
+}
+
+.vp-doc thead tr:first-child th:last-child {
+  border-top-right-radius: calc(var(--radius) - 1px);
+}
+
+.vp-doc tbody tr:last-child td:first-child {
+  border-bottom-left-radius: calc(var(--radius) - 1px);
+}
+
+.vp-doc tbody tr:last-child td:last-child {
+  border-bottom-right-radius: calc(var(--radius) - 1px);
+}
+
 .vp-doc th,
 .vp-doc td {
   padding: 10px 14px;
+  border: 0;
+  border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   text-align: left;
   vertical-align: top;
   line-height: 1.6;
-  /* 保持自然列宽：列少正常显示，列多/内容长时表格变宽由外层横向滚动 */
-  white-space: nowrap;
+  min-width: 10rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.vp-doc th:last-child,
+.vp-doc td:last-child {
+  border-right: 0;
+}
+
+.vp-doc tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .vp-doc th {
   font-weight: 650;
   color: var(--text);
-}
-
-.vp-doc tbody tr:last-child td {
-  border-bottom: none;
 }
 
 .vp-doc tbody tr:nth-child(even) {
@@ -1900,11 +2373,12 @@ html:not(.dark) .home-btn--primary:hover {
   margin: var(--space-6) 0;
 }
 
-/* 分隔线 hr：弱化但保留呼吸节拍 */
+/* 分隔线 hr：与全站 --divider-fade 统一（勿再覆盖为硬边框） */
 .vp-doc hr {
   margin: var(--space-7) 0 0;
   border: none;
-  border-top: 1px solid var(--border);
+  height: 1px;
+  background: var(--divider-fade);
 }
 
 /* 移动端：列表缩进收紧，避免窄屏过窄 */
@@ -1995,9 +2469,11 @@ html:not(.dark) .home-btn--primary:hover {
 /* ===== 页脚：精致分隔线版 ===== */
 /* 双类名抬升优先级：VitePress 组件 scoped 样式带 [data-v] 属性选择器 */
 .VPFooter.VPFooter {
-  border-top: 1px solid var(--border);
+  border-top: none;
   padding: 44px 24px 52px;
-  background: color-mix(in srgb, var(--surface-2) 28%, transparent);
+  background:
+    var(--divider-fade) no-repeat top / 100% 1px,
+    color-mix(in srgb, var(--surface-2) 28%, transparent);
 }
 .VPFooter .container {
   display: flex;
@@ -2042,12 +2518,76 @@ html:not(.dark) .home-btn--primary:hover {
   pointer-events: none;
 }
 
-/* ===== 预计阅读时间 ===== */
-.vp-doc .article-meta .reading-time {
-  color: var(--text-3);
+/* ===== 移动端回到顶部 ===== */
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: max(20px, env(safe-area-inset-bottom, 0px) + 16px);
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  color: var(--text-2);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: saturate(1.2) blur(12px);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s, color 0.15s, border-color 0.15s,
+    background 0.15s;
 }
-.vp-doc .reading-time-standalone {
-  margin: 0 0 18px;
-  font-size: 13px;
+
+.back-to-top-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.back-to-top:focus {
+  outline: none;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:active {
+  color: var(--link);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  background: color-mix(in srgb, var(--surface) 90%, var(--accent-soft));
+}
+
+@media (hover: hover) {
+  .back-to-top:hover {
+    color: var(--link);
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+    background: color-mix(in srgb, var(--surface) 90%, var(--accent-soft));
+  }
+}
+
+@media (max-width: 959.98px) {
+  .back-to-top {
+    display: flex;
+  }
+}
+
+/* ===== 预计阅读时间（仅文章 .article-meta） ===== */
+.vp-doc .article-meta .reading-time {
   color: var(--text-3);
 }

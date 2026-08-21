@@ -1,5 +1,6 @@
 ---
 title: 浏览器
+description: 浏览器渲染与 Chrome 扩展
 outline: false
 sidebar: false
 aside: false
@@ -14,18 +15,15 @@ aside: false
   </header>
 
   <div class="section-index">
-  <div class="section-group">
-    <p class="section-group-label">浏览器 · 2 篇</p>
-    <div class="section-card-grid">
-    <a class="section-card" href="/penn-notes/computer/browser/Chrome-Extension（扩展程序）开发">
-      <span class="section-card-title">Chrome Extension（扩展程序）开发</span>
-      <span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/computer/browser/浏览器渲染过程简介">
-      <span class="section-card-title">浏览器渲染过程简介</span>
-      <span class="section-card-meta"><time datetime="2022-09-02">2022-09-02</time><span>阅读全文</span></span>
-    </a>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">浏览器</h2>
+      <p class="section-group-desc">2 篇笔记</p>
     </div>
-  </div>
+    <div class="section-card-grid">
+    <a class="section-card" href="/penn-notes/computer/browser/Chrome-Extension（扩展程序）开发"><span class="section-card-body"><span class="section-card-title">Chrome Extension（扩展程序）开发</span><span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/computer/browser/浏览器渲染过程简介"><span class="section-card-body"><span class="section-card-title">浏览器渲染过程简介</span><span class="section-card-meta"><time datetime="2022-09-02">2022-09-02</time><span>阅读全文</span></span></span></a>
+    </div>
+  </section>
   </div>
 </div>

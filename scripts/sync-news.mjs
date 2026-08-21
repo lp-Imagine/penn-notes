@@ -5,7 +5,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { NEWS_PILLARS } from "./news/sections.mjs";
 import { parseDigestMarkdown } from "./news/parse-digest.mjs";
 import { writeNewsFeed } from "./build-news-feed.mjs";
 
@@ -95,62 +94,68 @@ function buildSidebar(months, monthFiles) {
   };
 }
 
-function buildNewsIndex(months, monthFiles) {
+function buildNewsIndex(months, monthFiles, itemCount = 0) {
+  let digestCount = 0;
+  for (const month of months) {
+    digestCount += monthFiles[month]?.length || 0;
+  }
+
+  const metaBits = [];
+  if (itemCount > 0) metaBits.push(`${itemCount} 条动态`);
+  if (digestCount > 0) metaBits.push(`${digestCount} 期日报`);
+  metaBits.push("约 7:00 自动更新");
+
   const lines = [
     "---",
     "title: AI 动态",
+    "description: 业界、产品、模型、开源与开发者工具 — 按日整理的 AI 要闻",
     "outline: false",
     "prev: false",
     "next: false",
     "---",
     "",
-    '<div class="section-page">',
-    '  <header class="section-hero">',
-    '    <p class="section-kicker">栏目</p>',
+    '<div class="section-page news-page">',
+    '  <header class="section-hero news-hero">',
+    '    <p class="section-kicker">每日精选</p>',
     '    <h1 class="section-title">AI 动态</h1>',
-    '    <p class="section-lead">业界 · 产品 · 模型 · 开源 · 开发者工具 · 前端</p>',
+    '    <p class="section-lead">业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文</p>',
+    `    <p class="section-count news-hero-meta">${escapeHtml(metaBits.join(" · "))}</p>`,
     "  </header>",
     "",
-    '  <div class="news-pillars">',
+    '  <section class="news-block">',
+    '    <div class="news-block-head">',
+    '      <h2 class="news-block-title">最新动态</h2>',
+    '      <p class="news-block-desc">按栏目筛选，浏览近期要闻</p>',
+    "    </div>",
+    "    <NewsArchive />",
+    "  </section>",
   ];
 
-  for (const p of NEWS_PILLARS) {
-    lines.push(
-      `    <div class="news-pillar"><p class="news-pillar-title">${escapeHtml(p.title)}</p><p class="news-pillar-desc">${escapeHtml(p.desc)}</p></div>`,
-    );
-  }
-  lines.push("  </div>");
-  lines.push("");
-  lines.push("  <NewsArchive />");
-
-  let total = 0;
-  for (const month of months) {
-    total += monthFiles[month].length;
-  }
-
-  if (total > 0) {
+  if (digestCount > 0) {
     lines.push("");
-    lines.push('  <div class="section-index news-digest-list">');
+    lines.push('  <section class="news-block news-digest-archive">');
+    lines.push('    <div class="news-block-head">');
+    lines.push('      <h2 class="news-block-title">日报归档</h2>');
+    lines.push('      <p class="news-block-desc">按日期打开完整日报</p>');
+    lines.push("    </div>");
     for (const month of months) {
       const files = monthFiles[month];
       if (!files.length) continue;
-      lines.push('    <div class="section-group">');
+      lines.push(`    <div class="news-digest-month">`);
       lines.push(
-        `      <p class="section-group-label">${month} · ${files.length} 期日报</p>`,
+        `      <p class="news-digest-month-label">${escapeHtml(month)} · ${files.length} 期</p>`,
       );
-      lines.push('      <div class="section-card-grid">');
+      lines.push('      <div class="news-digest-dates">');
       for (const item of files) {
-        const img = item.image
-          ? `<img class="section-card-thumb" src="${escapeHtml(item.image)}" alt="" loading="lazy" />`
-          : "";
+        const day = item.date.slice(5); // MM-DD
         lines.push(
-          `        <a class="section-card${item.image ? " section-card--media" : ""}" href="${link(`/news/${month}/${item.slug}`)}">${img}<span class="section-card-title">${escapeHtml(item.title)}</span><span class="section-card-meta"><time datetime="${item.date}">${item.date}</time><span>阅读全文</span></span></a>`,
+          `        <a class="news-digest-date" href="${link(`/news/${month}/${item.slug}`)}"><time datetime="${escapeHtml(item.date)}">${escapeHtml(day)}</time></a>`,
         );
       }
       lines.push("      </div>");
       lines.push("    </div>");
     }
-    lines.push("  </div>");
+    lines.push("  </section>");
   }
 
   lines.push("</div>");
@@ -232,12 +237,6 @@ function main() {
     "utf8",
   );
 
-  fs.writeFileSync(
-    path.join(newsRoot, "index.md"),
-    buildNewsIndex(months, monthFiles),
-    "utf8",
-  );
-
   // cache recent for build-home
   const recent = collectRecentNews(8);
   fs.writeFileSync(
@@ -250,6 +249,12 @@ function main() {
   fs.writeFileSync(
     path.join(vitepressDir, "news-items.generated.json"),
     JSON.stringify(allItems, null, 2) + "\n",
+    "utf8",
+  );
+
+  fs.writeFileSync(
+    path.join(newsRoot, "index.md"),
+    buildNewsIndex(months, monthFiles, allItems.length),
     "utf8",
   );
 

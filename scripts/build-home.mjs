@@ -150,6 +150,7 @@ function collectSection(sectionId) {
       rel,
       group: fm.group || "",
       cover: fm.cover || "",
+      section: sectionId,
     });
   }
   items.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
@@ -242,26 +243,28 @@ function writeSectionIndex(section, items) {
                 const meta = items.find((x) => x.link === item.link);
                 const date = meta?.date || "";
                 const cover = meta?.cover || "";
-                const thumb = cover
-                  ? `<img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(cover))}" alt="" loading="lazy" />`
+                // 注意：VitePress md 里 <a> 不能包 <div>，且标签间不能空行，否则会报 missing end tag
+                const media = cover
+                  ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(cover))}" alt="" loading="lazy" /></span>`
                   : "";
-                return `    <a class="section-card${cover ? " section-card--media" : ""}" href="${link(item.link)}">
-      ${thumb}<span class="section-card-title">${escapeHtml(item.text)}</span>
-      <span class="section-card-meta"><time datetime="${date}">${date}</time><span>阅读全文</span></span>
-    </a>`;
+                return `    <a class="section-card${cover ? " section-card--media" : ""}" href="${link(item.link)}">${media}<span class="section-card-body"><span class="section-card-title">${escapeHtml(item.text)}</span><span class="section-card-meta"><time datetime="${date}">${date}</time><span>阅读全文</span></span></span></a>`;
               })
               .join("\n");
-            return `  <div class="section-group">
-    <p class="section-group-label">${escapeHtml(g.text)} · ${g.items.length} 篇</p>
+            return `  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">${escapeHtml(g.text)}</h2>
+      <p class="section-group-desc">${g.items.length} 篇笔记</p>
+    </div>
     <div class="section-card-grid">
 ${cards}
     </div>
-  </div>`;
+  </section>`;
           })
           .join("\n");
 
   const content = `---
 title: ${section.title}
+description: ${section.desc}
 outline: false
 sidebar: false
 aside: false
@@ -297,73 +300,82 @@ function buildHome(allBySection) {
   const recent = Object.values(allBySection)
     .flat()
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .slice(0, 8);
+    .slice(0, 6);
 
   const total = Object.values(allBySection).reduce((n, a) => n + a.length, 0);
 
+  // 栏目入口：紧凑网格，放在 hero 后便于跳转
   const pillars = SECTIONS.map((s) => {
-    const n = allBySection[s.id]?.length || 0;
+    const items = allBySection[s.id] || [];
+    const n = items.length;
+    const groups = groupSidebar(items, s.id)
+      .slice(0, 3)
+      .map((g) => g.text)
+      .join("、");
+    const desc =
+      groups && groups !== s.title && groups !== s.nav ? groups : s.desc;
     return `  <a class="home-pillar" href="${link(s.link)}">
-    <p class="home-pillar-title">${s.title}</p>
-    <p class="home-pillar-desc">${s.desc}</p>
-    <p class="home-pillar-meta">${n} 篇笔记</p>
+    <span class="home-pillar-title">${escapeHtml(s.title)}</span>
+    <span class="home-pillar-desc">${escapeHtml(desc)}</span>
+    <span class="home-pillar-meta">${n} 篇</span>
   </a>`;
   }).join("\n");
 
   const noteItems =
     recent.length === 0
       ? `<p class="home-empty">暂无文章</p>`
-      : `<div class="news-grid">
+      : `<div class="home-note-list">
 ${recent
   .map((r) => {
     const thumb = r.cover
-      ? `<img class="news-card-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="" loading="lazy" />`
-      : "";
-    return `  <a class="news-card${r.cover ? " news-card--media" : ""}" href="${link(r.link)}">
-    ${thumb}<div class="news-card-body"><time datetime="${r.date}">${r.date}</time>
-    <span class="news-card-title">${escapeHtml(r.title)}</span>
-    <span class="news-card-action">阅读全文</span></div>
+      ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="" loading="lazy" />`
+      : `<span class="home-note-thumb home-note-thumb--empty" aria-hidden="true"></span>`;
+    return `  <a class="home-note" href="${link(r.link)}">
+    ${thumb}
+    <span class="home-note-body">
+      <time datetime="${r.date}">${r.date}</time>
+      <span class="home-note-title">${escapeHtml(r.title)}</span>
+    </span>
   </a>`;
   })
   .join("\n")}
 </div>`;
 
-  const aiNewsRecent = loadRecentAiNews();
+  const newsHeadlines = loadRecentNewsHeadlines(6);
   const aiNewsItems =
-    aiNewsRecent.length === 0
+    newsHeadlines.length === 0
       ? `<p class="home-empty news-home-empty">AI 动态每天 7:00 左右更新 · <a href="${link("/news/")}">前往栏目</a></p>`
-      : `<div class="news-grid">
-${aiNewsRecent
+      : `<div class="section-card-grid home-news-grid">
+${newsHeadlines
   .map((r) => {
-    const thumb = r.image
-      ? `<img class="news-card-thumb" src="${escapeHtml(r.image)}" alt="" loading="lazy" />`
+    const media = r.image
+      ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(r.image))}" alt="" loading="lazy" /></span>`
       : "";
-    return `  <a class="news-card${r.image ? " news-card--media" : ""}" href="${link(r.link)}">
-    ${thumb}<div class="news-card-body"><time datetime="${r.date}">${r.date}</time>
-    <span class="news-card-title">${escapeHtml(r.title)}</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>`;
+    const tags = [
+      r.section
+        ? `<span class="news-section-tag">${escapeHtml(r.section)}</span>`
+        : "",
+      r.sourceName
+        ? `<span class="news-source-tag">${escapeHtml(r.sourceName)}</span>`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("");
+    const tagsRow = tags
+      ? `<span class="news-item-tags">${tags}</span>`
+      : "";
+    const summary = r.summary
+      ? `<span class="news-item-summary">${escapeHtml(r.summary)}</span>`
+      : "";
+    return `  <a class="section-card${r.image ? " section-card--media" : ""}" href="${link(r.link)}">${media}<span class="section-card-body">${tagsRow}<span class="section-card-title">${escapeHtml(r.title)}</span>${summary}<span class="section-card-meta"><time datetime="${r.date}">${r.date}</time><span>阅读全文</span></span></span></a>`;
   })
   .join("\n")}
 </div>`;
-
-  const catalog = SECTIONS.map((s) => {
-    const items = allBySection[s.id] || [];
-    const n = items.length;
-    const groups = groupSidebar(items, s.id)
-      .slice(0, 4)
-      .map((g) => g.text)
-      .join("、");
-    return `  <div class="course-mod">
-    <p class="course-mod-label">${s.title} · ${n} 篇</p>
-    <a class="course-card" href="${link(s.link)}">
-      <span class="course-card-title">${s.title}</span>
-      <span class="course-card-desc">${n} 篇 · ${groups || s.desc}</span>
-    </a>
-  </div>`;
-  }).join("\n");
 
   const latestHref = recent[0] ? link(recent[0].link) : link("/web/");
+  const notesMoreHref = recent[0]?.section
+    ? link(`/${recent[0].section}/`)
+    : link("/web/");
 
   return `---
 layout: home
@@ -372,40 +384,34 @@ layout: home
 <div class="home-wrap">
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
-    <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
-    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 ${total} 篇</p>
+    <p class="home-tagline">前端学习笔记 · 工程备忘 · AI 动态</p>
+    <p class="home-sub">积跬步以至千里 · 共 ${total} 篇笔记</p>
     <div class="home-actions">
       <a class="home-btn home-btn--primary" href="${latestHref}">阅读最新笔记</a>
-      <a class="home-btn home-btn--text" href="${link("/news/")}">AI 动态</a>
+      <a class="home-btn home-btn--text" href="${link("/news/")}">今日 AI 动态</a>
     </div>
   </section>
 
-  <section class="home-pillars">
+  <section class="home-section home-section--pillars" aria-label="浏览栏目">
+    <div class="home-pillars">
 ${pillars}
-  </section>
-
-  <section class="home-block">
-    <div class="home-block-head">
-      <h2>最新动态</h2>
-      <a class="home-more" href="${link("/news/")}">全部动态</a>
     </div>
-${aiNewsItems}
   </section>
 
-  <section class="home-block">
-    <div class="home-block-head">
+  <section class="home-section">
+    <div class="home-section-head">
       <h2>最新笔记</h2>
-      <a class="home-more" href="${link("/web/")}">查看更多</a>
+      <a class="home-more" href="${notesMoreHref}">查看更多</a>
     </div>
 ${noteItems}
   </section>
 
-  <section class="home-block">
-    <div class="home-block-head">
-      <h2>分类目录</h2>
+  <section class="home-section">
+    <div class="home-section-head">
+      <h2>最新动态</h2>
+      <a class="home-more" href="${link("/news/")}">全部动态</a>
     </div>
-    <p class="home-block-desc">按主题浏览笔记 · 从基础到实践</p>
-${catalog}
+${aiNewsItems}
   </section>
 </div>
 `;
@@ -417,6 +423,26 @@ function loadRecentAiNews() {
     return JSON.parse(fs.readFileSync(p, "utf8"));
   } catch {
     return [];
+  }
+}
+
+/** 首页动态：用条目真实标题，比「AI 动态 · 日期」更可读 */
+function loadRecentNewsHeadlines(limit = 6) {
+  const p = path.join(siteRoot, ".vitepress", "news-items.generated.json");
+  try {
+    const items = JSON.parse(fs.readFileSync(p, "utf8"));
+    if (!Array.isArray(items) || !items.length) return loadRecentAiNews();
+    return items.slice(0, limit).map((it) => ({
+      title: it.title || "AI 动态",
+      date: it.itemDate || it.digestDate || "",
+      link: it.digestLink || "/news/",
+      section: it.section || "",
+      sourceName: it.sourceName || "",
+      image: it.image || "",
+      summary: it.summary || "",
+    }));
+  } catch {
+    return loadRecentAiNews();
   }
 }
 

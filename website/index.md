@@ -5,191 +5,112 @@ layout: home
 <div class="home-wrap">
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
-    <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
-    <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 66 篇</p>
+    <p class="home-tagline">前端学习笔记 · 工程备忘 · AI 动态</p>
+    <p class="home-sub">积跬步以至千里 · 共 66 篇笔记</p>
     <div class="home-actions">
       <a class="home-btn home-btn--primary" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">阅读最新笔记</a>
-      <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
+      <a class="home-btn home-btn--text" href="/penn-notes/news/">今日 AI 动态</a>
     </div>
   </section>
 
-  <section class="home-pillars">
+  <section class="home-section home-section--pillars" aria-label="浏览栏目">
+    <div class="home-pillars">
   <a class="home-pillar" href="/penn-notes/web/">
-    <p class="home-pillar-title">JS & 框架</p>
-    <p class="home-pillar-desc">JavaScript 基础、Vue / React、UI 组件实践</p>
-    <p class="home-pillar-meta">27 篇笔记</p>
+    <span class="home-pillar-title">JS &amp; 框架</span>
+    <span class="home-pillar-desc">JavaScript、Vue、React</span>
+    <span class="home-pillar-meta">27 篇</span>
   </a>
   <a class="home-pillar" href="/penn-notes/ui/">
-    <p class="home-pillar-title">样式</p>
-    <p class="home-pillar-desc">HTML、CSS、布局与动效</p>
-    <p class="home-pillar-meta">18 篇笔记</p>
+    <span class="home-pillar-title">样式</span>
+    <span class="home-pillar-desc">HTML、CSS</span>
+    <span class="home-pillar-meta">18 篇</span>
   </a>
   <a class="home-pillar" href="/penn-notes/tech/">
-    <p class="home-pillar-title">工具备忘</p>
-    <p class="home-pillar-desc">Git、npm、常用命令与资源收藏</p>
-    <p class="home-pillar-meta">13 篇笔记</p>
+    <span class="home-pillar-title">工具备忘</span>
+    <span class="home-pillar-desc">常用文档、GitHub、Node.js</span>
+    <span class="home-pillar-meta">13 篇</span>
   </a>
   <a class="home-pillar" href="/penn-notes/computer/">
-    <p class="home-pillar-title">浏览器</p>
-    <p class="home-pillar-desc">浏览器渲染与 Chrome 扩展</p>
-    <p class="home-pillar-meta">2 篇笔记</p>
+    <span class="home-pillar-title">浏览器</span>
+    <span class="home-pillar-desc">浏览器渲染与 Chrome 扩展</span>
+    <span class="home-pillar-meta">2 篇</span>
   </a>
   <a class="home-pillar" href="/penn-notes/agent/">
-    <p class="home-pillar-title">AI Agent</p>
-    <p class="home-pillar-desc">Agent 实战、工作流、提示词与工具链</p>
-    <p class="home-pillar-meta">4 篇笔记</p>
+    <span class="home-pillar-title">AI Agent</span>
+    <span class="home-pillar-desc">实战、提示词、其它</span>
+    <span class="home-pillar-meta">4 篇</span>
   </a>
   <a class="home-pillar" href="/penn-notes/misc/">
-    <p class="home-pillar-title">杂项</p>
-    <p class="home-pillar-desc">职场、生活、方法论与其它不成体系的笔记</p>
-    <p class="home-pillar-meta">2 篇笔记</p>
+    <span class="home-pillar-title">杂项</span>
+    <span class="home-pillar-desc">随笔、其它</span>
+    <span class="home-pillar-meta">2 篇</span>
   </a>
+    </div>
   </section>
 
-  <section class="home-block">
-    <div class="home-block-head">
+  <section class="home-section">
+    <div class="home-section-head">
+      <h2>最新笔记</h2>
+      <a class="home-more" href="/penn-notes/agent/">查看更多</a>
+    </div>
+<div class="home-note-list">
+  <a class="home-note" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">
+    <img class="home-note-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-08-20">2026-08-20</time>
+      <span class="home-note-title">Prompt Cache与上下文管理实践</span>
+    </span>
+  </a>
+  <a class="home-note" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战">
+    <img class="home-note-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-08-18">2026-08-18</time>
+      <span class="home-note-title">TypeScript6装饰器迁移实战</span>
+    </span>
+  </a>
+  <a class="home-note" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践">
+    <img class="home-note-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-08-17">2026-08-17</time>
+      <span class="home-note-title">AI Agent幻觉缓解：验证与重试实践</span>
+    </span>
+  </a>
+  <a class="home-note" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏">
+    <img class="home-note-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-08-12">2026-08-12</time>
+      <span class="home-note-title">记忆翻车复盘：让Agent长任务不跑偏</span>
+    </span>
+  </a>
+  <a class="home-note" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰">
+    <img class="home-note-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-08-05">2026-08-05</time>
+      <span class="home-note-title">个人知识库+AI，怎么搭才不吃灰</span>
+    </span>
+  </a>
+  <a class="home-note" href="/penn-notes/misc/essays/模型更快更贵该怎么选">
+    <img class="home-note-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" />
+    <span class="home-note-body">
+      <time datetime="2026-07-29">2026-07-29</time>
+      <span class="home-note-title">模型更快更贵，该怎么选</span>
+    </span>
+  </a>
+</div>
+  </section>
+
+  <section class="home-section">
+    <div class="home-section-head">
       <h2>最新动态</h2>
       <a class="home-more" href="/penn-notes/news/">全部动态</a>
     </div>
-<div class="news-grid">
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-20">
-    <img class="news-card-thumb" src="/news/2026-08/ee662d8995c9.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-20">2026-08-20</time>
-    <span class="news-card-title">AI 动态 · 2026-08-20</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19">
-    <img class="news-card-thumb" src="/news/2026-08/ca9c9121e168.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-19">2026-08-19</time>
-    <span class="news-card-title">AI 动态 · 2026-08-19</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-18">
-    <img class="news-card-thumb" src="/news/2026-08/763af1c8ae68.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
-    <span class="news-card-title">AI 动态 · 2026-08-18</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-17">
-    <img class="news-card-thumb" src="/news/2026-08/61f2570a414a.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-17">2026-08-17</time>
-    <span class="news-card-title">AI 动态 · 2026-08-17</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-16">
-    <img class="news-card-thumb" src="/news/2026-08/a4626dba0fbd.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-16">2026-08-16</time>
-    <span class="news-card-title">AI 动态 · 2026-08-16</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-15">
-    <img class="news-card-thumb" src="/news/2026-08/8fb9ae5a0e70.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-15">2026-08-15</time>
-    <span class="news-card-title">AI 动态 · 2026-08-15</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-14">
-    <img class="news-card-thumb" src="/news/2026-08/8c3736c72748.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-14">2026-08-14</time>
-    <span class="news-card-title">AI 动态 · 2026-08-14</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-13">
-    <img class="news-card-thumb" src="/news/2026-08/7bb11a1390f2.png" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-13">2026-08-13</time>
-    <span class="news-card-title">AI 动态 · 2026-08-13</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
+<div class="section-card-grid home-news-grid">
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/ca9c9121e168.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">业界</span><span class="news-source-tag">TechCrunch AI</span></span><span class="section-card-title">TerraPower 核反应堆在 AI 数据中心供电竞赛中占据优势</span><span class="news-item-summary">比尔·盖茨支持的核能公司 TerraPower 在争夺 AI 数据中心供电合同方面拥有战略优势。随着 AI 算力需求激增，科技巨头对稳定、清洁的电力来源需求迫切，核能成为重要选项。TerraPower 的先进反应堆设计可能在部署速度、成本或安全性上优于竞争对手，使其在数据中心交易中更具吸引力。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/6a92b1380351.png" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">业界</span><span class="news-source-tag">TechCrunch AI</span></span><span class="section-card-title">亚马逊 Alexa+ 在 Fire TV 上免费开放，无需 Prime 会员</span><span class="news-item-summary">亚马逊宣布将其 AI 助手 Alexa+ 在美国所有兼容的 Fire TV 设备上免费提供，无论用户是否订阅 Prime 会员，都将自动升级。此举旨在扩大 Alexa+ 的用户基础，并将其深度整合到家庭娱乐场景中，与竞争对手争夺 AI 助手入口。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/86bc213d6b88.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">业界</span><span class="news-source-tag">TechCrunch AI</span></span><span class="section-card-title">Relativity Networks 融资 2200 万美元，推广空心光纤技术</span><span class="news-item-summary">Relativity Networks 获得 2200 万美元融资，用于推广其空心光纤技术。该技术允许数据传输速度比传统光纤快 30%，有望显著提升数据中心和 AI 算力集群的互联效率。这笔投资将帮助公司扩大生产规模并推动这项新兴技术的商业化部署。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/33b914a1802e.png" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">产品</span><span class="news-source-tag">OpenAI Blog</span></span><span class="section-card-title">Replit 推出 Free Mode，由 GPT-5.6 Luna 驱动</span><span class="news-item-summary">Replit 宣布推出 Free Mode，由 OpenAI 的 GPT-5.6 Luna 模型驱动，用户无需担心 token 成本即可将创意转化为可运行的软件。此举旨在降低软件创作门槛，让更广泛的用户群体能够利用 AI 进行开发。OpenAI 表示，随着模型能力增强，其经济性也在快速变化，更好的性价比是扩大规模的关键。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/4261fc31af67.png" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">产品</span><span class="news-source-tag">OpenAI Blog</span></span><span class="section-card-title">ChatGPT Ads 扩展至 31 个欧洲市场</span><span class="news-item-summary">OpenAI 宣布将其广告平台 ChatGPT Ads 扩展至 31 个欧洲国家，包括德国、法国、西班牙、意大利等。该服务在美国测试六个月后进入欧洲，广告主初期可通过 OpenAI 广告解决方案团队、代理伙伴和技术伙伴接入，自助服务功能将后续推出。此举标志着 OpenAI 商业化进程的重要一步。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
+  <a class="section-card section-card--media" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><span class="section-card-media"><img class="section-card-thumb" src="/news/2026-08/b3daa4bef3dc.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="news-item-tags"><span class="news-section-tag">产品</span><span class="news-source-tag">TechCrunch AI</span></span><span class="section-card-title">Calendly 推出 AI 会议助手 Callie，加入会议记录赛道</span><span class="news-item-summary">日程管理公司 Calendly 发布了一款名为 Callie 的 AI 会议调度助手，正式进入竞争激烈的会议记录与助手市场。Callie 旨在将日程安排与会议纪要和后续行动项相结合，挑战 Otter.ai、Fireflies.ai 等现有玩家。此举反映了生产力工具正加速整合 AI 能力。</span><span class="section-card-meta"><time datetime="2026-08-19">2026-08-19</time><span>阅读全文</span></span></span></a>
 </div>
-  </section>
-
-  <section class="home-block">
-    <div class="home-block-head">
-      <h2>最新笔记</h2>
-      <a class="home-more" href="/penn-notes/web/">查看更多</a>
-    </div>
-<div class="news-grid">
-  <a class="news-card news-card--media" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">
-    <img class="news-card-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-20">2026-08-20</time>
-    <span class="news-card-title">Prompt Cache与上下文管理实践</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战">
-    <img class="news-card-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
-    <span class="news-card-title">TypeScript6装饰器迁移实战</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践">
-    <img class="news-card-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-17">2026-08-17</time>
-    <span class="news-card-title">AI Agent幻觉缓解：验证与重试实践</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏">
-    <img class="news-card-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-12">2026-08-12</time>
-    <span class="news-card-title">记忆翻车复盘：让Agent长任务不跑偏</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰">
-    <img class="news-card-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-05">2026-08-05</time>
-    <span class="news-card-title">个人知识库+AI，怎么搭才不吃灰</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/misc/essays/模型更快更贵该怎么选">
-    <img class="news-card-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-29">2026-07-29</time>
-    <span class="news-card-title">模型更快更贵，该怎么选</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/misc/misc/长文生成总超时两报错定位五步提效">
-    <img class="news-card-thumb" src="/sync/cms4d9t3s0001zzc66tg4t69r/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-28">2026-07-28</time>
-    <span class="news-card-title">长文生成总超时？两报错定位五步提效</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-  <a class="news-card news-card--media" href="/penn-notes/tech/docs/Claude-Code实战手册开源">
-    <img class="news-card-thumb" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-28">2026-07-28</time>
-    <span class="news-card-title">Claude Code 实战手册开源：编码秘籍</span>
-    <span class="news-card-action">阅读全文</span></div>
-  </a>
-</div>
-  </section>
-
-  <section class="home-block">
-    <div class="home-block-head">
-      <h2>分类目录</h2>
-    </div>
-    <p class="home-block-desc">按主题浏览笔记 · 从基础到实践</p>
-  <div class="course-mod">
-    <p class="course-mod-label">JS & 框架 · 27 篇</p>
-    <a class="course-card" href="/penn-notes/web/">
-      <span class="course-card-title">JS & 框架</span>
-      <span class="course-card-desc">27 篇 · JavaScript、Vue、React、UI 组件</span>
-    </a>
-  </div>
-  <div class="course-mod">
-    <p class="course-mod-label">样式 · 18 篇</p>
-    <a class="course-card" href="/penn-notes/ui/">
-      <span class="course-card-title">样式</span>
-      <span class="course-card-desc">18 篇 · HTML、CSS</span>
-    </a>
-  </div>
-  <div class="course-mod">
-    <p class="course-mod-label">工具备忘 · 13 篇</p>
-    <a class="course-card" href="/penn-notes/tech/">
-      <span class="course-card-title">工具备忘</span>
-      <span class="course-card-desc">13 篇 · 常用文档、GitHub、Node.js</span>
-    </a>
-  </div>
-  <div class="course-mod">
-    <p class="course-mod-label">浏览器 · 2 篇</p>
-    <a class="course-card" href="/penn-notes/computer/">
-      <span class="course-card-title">浏览器</span>
-      <span class="course-card-desc">2 篇 · 浏览器</span>
-    </a>
-  </div>
-  <div class="course-mod">
-    <p class="course-mod-label">AI Agent · 4 篇</p>
-    <a class="course-card" href="/penn-notes/agent/">
-      <span class="course-card-title">AI Agent</span>
-      <span class="course-card-desc">4 篇 · 实战、提示词、其它</span>
-    </a>
-  </div>
-  <div class="course-mod">
-    <p class="course-mod-label">杂项 · 2 篇</p>
-    <a class="course-card" href="/penn-notes/misc/">
-      <span class="course-card-title">杂项</span>
-      <span class="course-card-desc">2 篇 · 随笔、其它</span>
-    </a>
-  </div>
   </section>
 </div>

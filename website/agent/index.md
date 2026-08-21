@@ -1,5 +1,6 @@
 ---
 title: AI Agent
+description: Agent 实战、工作流、提示词与工具链
 outline: false
 sidebar: false
 aside: false
@@ -14,36 +15,33 @@ aside: false
   </header>
 
   <div class="section-index">
-  <div class="section-group">
-    <p class="section-group-label">实战 · 2 篇</p>
-    <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践">
-      <img class="section-card-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">AI Agent幻觉缓解：验证与重试实践</span>
-      <span class="section-card-meta"><time datetime="2026-08-17">2026-08-17</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card section-card--media" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏">
-      <img class="section-card-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">记忆翻车复盘：让Agent长任务不跑偏</span>
-      <span class="section-card-meta"><time datetime="2026-08-12">2026-08-12</time><span>阅读全文</span></span>
-    </a>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">实战</h2>
+      <p class="section-group-desc">2 篇笔记</p>
     </div>
-  </div>
-  <div class="section-group">
-    <p class="section-group-label">提示词 · 1 篇</p>
     <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">
-      <img class="section-card-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">Prompt Cache与上下文管理实践</span>
-      <span class="section-card-meta"><time datetime="2026-08-20">2026-08-20</time><span>阅读全文</span></span>
-    </a>
+    <a class="section-card section-card--media" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践"><span class="section-card-media"><img class="section-card-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="section-card-title">AI Agent幻觉缓解：验证与重试实践</span><span class="section-card-meta"><time datetime="2026-08-17">2026-08-17</time><span>阅读全文</span></span></span></a>
+    <a class="section-card section-card--media" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏"><span class="section-card-media"><img class="section-card-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="section-card-title">记忆翻车复盘：让Agent长任务不跑偏</span><span class="section-card-meta"><time datetime="2026-08-12">2026-08-12</time><span>阅读全文</span></span></span></a>
     </div>
-  </div>
-  <div class="section-group">
-    <p class="section-group-label">其它 · 1 篇</p>
+  </section>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">提示词</h2>
+      <p class="section-group-desc">1 篇笔记</p>
+    </div>
     <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰">
-      <img class="section-card-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">个人知识库+AI，怎么搭才不吃灰</span>
-      <span class="section-card-meta"><time datetime="2026-08-05">2026-08-05</time><span>阅读全文</span></span>
-    </a>
+    <a class="section-card section-card--media" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践"><span class="section-card-media"><img class="section-card-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="section-card-title">Prompt Cache与上下文管理实践</span><span class="section-card-meta"><time datetime="2026-08-20">2026-08-20</time><span>阅读全文</span></span></span></a>
     </div>
-  </div>
+  </section>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">其它</h2>
+      <p class="section-group-desc">1 篇笔记</p>
+    </div>
+    <div class="section-card-grid">
+    <a class="section-card section-card--media" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰"><span class="section-card-media"><img class="section-card-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="section-card-title">个人知识库+AI，怎么搭才不吃灰</span><span class="section-card-meta"><time datetime="2026-08-05">2026-08-05</time><span>阅读全文</span></span></span></a>
+    </div>
+  </section>
   </div>
 </div>

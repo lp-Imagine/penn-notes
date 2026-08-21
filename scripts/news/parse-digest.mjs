@@ -30,6 +30,14 @@ export function parseDigestMarkdown(content, digestMeta = {}) {
       );
       const imageMatch = entry.match(/!\[[^\]]*\]\(([^)]+)\)/);
       let image = imageMatch?.[1] || "";
+      // 站标 / Google News 默认 logo 等不当配图
+      if (
+        /1613febb1fb7|gstatic\.com\/.*gnews|google-og-image|favicon\.ico/i.test(
+          image,
+        )
+      ) {
+        image = "";
+      }
       // 本地图在 markdown 中是站内路径（/news/...），数据层统一补 base 前缀，
       // 供 NewsArchive 等客户端组件直接渲染（运行时 URL 为 /penn-notes/news/...）
       if (image.startsWith("/news/")) {

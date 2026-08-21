@@ -1,5 +1,6 @@
 ---
 title: 工具备忘
+description: Git、npm、常用命令与资源收藏
 outline: false
 sidebar: false
 aside: false
@@ -14,72 +15,42 @@ aside: false
   </header>
 
   <div class="section-index">
-  <div class="section-group">
-    <p class="section-group-label">常用文档 · 9 篇</p>
-    <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/tech/docs/Claude-Code实战手册开源">
-      <img class="section-card-thumb" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">Claude Code 实战手册开源：编码秘籍</span>
-      <span class="section-card-meta"><time datetime="2026-07-28">2026-07-28</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/Git命令">
-      <span class="section-card-title">Git命令</span>
-      <span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/MySQL数据库常用操作">
-      <span class="section-card-title">MySQL数据库常用操作</span>
-      <span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/Git修改分支名">
-      <span class="section-card-title">Git修改分支名</span>
-      <span class="section-card-meta"><time datetime="2022-08-11">2022-08-11</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/npm常用命令">
-      <span class="section-card-title">npm常用命令</span>
-      <span class="section-card-meta"><time datetime="2021-12-25">2021-12-25</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/yaml语言教程">
-      <span class="section-card-title">yaml语言教程</span>
-      <span class="section-card-meta"><time datetime="2021-12-25">2021-12-25</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/Git使用手册">
-      <span class="section-card-title">Git使用手册</span>
-      <span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/Markdown使用教程">
-      <span class="section-card-title">Markdown使用教程</span>
-      <span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/docs/npm-packageJson属性详解">
-      <span class="section-card-title">npm packageJson属性详解</span>
-      <span class="section-card-meta"><time datetime="2020-04-08">2020-04-08</time><span>阅读全文</span></span>
-    </a>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">常用文档</h2>
+      <p class="section-group-desc">9 篇笔记</p>
     </div>
-  </div>
-  <div class="section-group">
-    <p class="section-group-label">GitHub · 3 篇</p>
     <div class="section-card-grid">
-    <a class="section-card" href="/penn-notes/tech/github/github精选资源">
-      <span class="section-card-title">GitHub精选资源</span>
-      <span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/github/GitHub高级搜索技巧">
-      <span class="section-card-title">GitHub高级搜索技巧</span>
-      <span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span>
-    </a>
-    <a class="section-card" href="/penn-notes/tech/github/GitHub加速下载项目的方法">
-      <span class="section-card-title">GitHub加速下载项目的方法</span>
-      <span class="section-card-meta"><time datetime="2020-03-09">2020-03-09</time><span>阅读全文</span></span>
-    </a>
+    <a class="section-card section-card--media" href="/penn-notes/tech/docs/Claude-Code实战手册开源"><span class="section-card-media"><img class="section-card-thumb" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="" loading="lazy" /></span><span class="section-card-body"><span class="section-card-title">Claude Code 实战手册开源：编码秘籍</span><span class="section-card-meta"><time datetime="2026-07-28">2026-07-28</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/Git命令"><span class="section-card-body"><span class="section-card-title">Git命令</span><span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/MySQL数据库常用操作"><span class="section-card-body"><span class="section-card-title">MySQL数据库常用操作</span><span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/Git修改分支名"><span class="section-card-body"><span class="section-card-title">Git修改分支名</span><span class="section-card-meta"><time datetime="2022-08-11">2022-08-11</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/npm常用命令"><span class="section-card-body"><span class="section-card-title">npm常用命令</span><span class="section-card-meta"><time datetime="2021-12-25">2021-12-25</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/yaml语言教程"><span class="section-card-body"><span class="section-card-title">yaml语言教程</span><span class="section-card-meta"><time datetime="2021-12-25">2021-12-25</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/Git使用手册"><span class="section-card-body"><span class="section-card-title">Git使用手册</span><span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/Markdown使用教程"><span class="section-card-body"><span class="section-card-title">Markdown使用教程</span><span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/docs/npm-packageJson属性详解"><span class="section-card-body"><span class="section-card-title">npm packageJson属性详解</span><span class="section-card-meta"><time datetime="2020-04-08">2020-04-08</time><span>阅读全文</span></span></span></a>
     </div>
-  </div>
-  <div class="section-group">
-    <p class="section-group-label">Node.js · 1 篇</p>
+  </section>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">GitHub</h2>
+      <p class="section-group-desc">3 篇笔记</p>
+    </div>
     <div class="section-card-grid">
-    <a class="section-card" href="/penn-notes/tech/nodejs/nodejs递归读取所有文件">
-      <span class="section-card-title">nodejs递归读取所有文件</span>
-      <span class="section-card-meta"><time datetime="2019-12-26">2019-12-26</time><span>阅读全文</span></span>
-    </a>
+    <a class="section-card" href="/penn-notes/tech/github/github精选资源"><span class="section-card-body"><span class="section-card-title">GitHub精选资源</span><span class="section-card-meta"><time datetime="2022-09-06">2022-09-06</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/github/GitHub高级搜索技巧"><span class="section-card-body"><span class="section-card-title">GitHub高级搜索技巧</span><span class="section-card-meta"><time datetime="2020-12-25">2020-12-25</time><span>阅读全文</span></span></span></a>
+    <a class="section-card" href="/penn-notes/tech/github/GitHub加速下载项目的方法"><span class="section-card-body"><span class="section-card-title">GitHub加速下载项目的方法</span><span class="section-card-meta"><time datetime="2020-03-09">2020-03-09</time><span>阅读全文</span></span></span></a>
     </div>
-  </div>
+  </section>
+  <section class="section-group">
+    <div class="section-group-head">
+      <h2 class="section-group-title">Node.js</h2>
+      <p class="section-group-desc">1 篇笔记</p>
+    </div>
+    <div class="section-card-grid">
+    <a class="section-card" href="/penn-notes/tech/nodejs/nodejs递归读取所有文件"><span class="section-card-body"><span class="section-card-title">nodejs递归读取所有文件</span><span class="section-card-meta"><time datetime="2019-12-26">2019-12-26</time><span>阅读全文</span></span></span></a>
+    </div>
+  </section>
   </div>
 </div>

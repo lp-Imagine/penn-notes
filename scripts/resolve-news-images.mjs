@@ -1,8 +1,8 @@
 /**
  * Resolve og:image for news markdown items.
- * 优先下载到 website/public/news/（本地化），避免外链被防盗链/网络限制
- * 导致配图加载失败（如 googleusercontent 在大陆不可达）；下载失败才回退外链。
- * 已存在的本地图会跳过；外链图会重新下载替换。
+ * 优先下载到 website/public/news/（本地化），避免外链被防盗链/网络限制。
+ * 拉取失败、或判定为站标/Google News 默认 logo → 不插图（删掉已有坏图），
+ * 不再回退展示外链 logo。
  *
  * Usage:
  *   node scripts/resolve-news-images.mjs
@@ -34,8 +34,15 @@ const NEWS_PUBLIC_BASE = "/news/";
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
 
+/** URL 层：站点默认 share / favicon / Google News 占位 logo，不当配图 */
 const STRIP_IMAGE =
-  /the_verge_social_share|global-social-marketing|github-logo-|apple-touch-icon|google-og-image|arxiv-logo-fb|chatgpt\/share-og|favicon\.ico|hellogithub\.com\/images\/logo|cropped-favicon-gradient|reuters-logo\.png|default_article_june|verge-placeholder|wp-content\/uploads\/.*logo/i;
+  /the_verge_social_share|global-social-marketing|github-logo-|apple-touch-icon|google-og-image|arxiv-logo-fb|chatgpt\/share-og|favicon\.ico|hellogithub\.com\/images\/logo|cropped-favicon-gradient|reuters-logo\.png|default_article_june|verge-placeholder|wp-content\/uploads\/.*logo|gstatic\.com\/.*gnews|\/news\/publisher|google\.com\/.*\/logo|news\.google\.com\/.*/i;
+
+/**
+ * 已知占位图本地 hash（sha1(url).slice(0,12)）。
+ * 1613febb1fb7 = Google News 默认 300×300 logo，曾被大量写入日报。
+ */
+const BAD_LOCAL_HASHES = new Set(["1613febb1fb7"]);
 
 function listNewsFiles(onlyFile) {
   if (onlyFile) {
@@ -80,6 +87,105 @@ function githubRepoFromUrl(url) {
   return repo;
 }
 
+/** Best-effort width/height from PNG / JPEG / GIF / WebP buffer. */
+function imageSize(buf) {
+  if (!buf || buf.length < 24) return null;
+  // PNG
+  if (buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47) {
+    return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+  }
+  // GIF
+  if (buf.toString("ascii", 0, 3) === "GIF") {
+    return { w: buf.readUInt16LE(6), h: buf.readUInt16LE(8) };
+  }
+  // JPEG
+  if (buf[0] === 0xff && buf[1] === 0xd8) {
+    let i = 2;
+    while (i < buf.length - 8) {
+      if (buf[i] !== 0xff) break;
+      const marker = buf[i + 1];
+      if (marker === 0xc0 || marker === 0xc1 || marker === 0xc2) {
+        return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+      }
+      const len = buf.readUInt16BE(i + 2);
+      i += 2 + len;
+    }
+  }
+  // WebP
+  if (
+    buf.toString("ascii", 0, 4) === "RIFF" &&
+    buf.toString("ascii", 8, 12) === "WEBP"
+  ) {
+    const fourcc = buf.toString("ascii", 12, 16);
+    if (fourcc === "VP8 " && buf.length >= 30) {
+      return {
+        w: buf.readUInt16LE(26) & 0x3fff,
+        h: buf.readUInt16LE(28) & 0x3fff,
+      };
+    }
+    if (fourcc === "VP8L" && buf.length >= 25) {
+      const bits = buf.readUInt32LE(21);
+      return { w: (bits & 0x3fff) + 1, h: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (fourcc === "VP8X" && buf.length >= 30) {
+      return {
+        w: 1 + buf[24] + (buf[25] << 8) + (buf[26] << 16),
+        h: 1 + buf[27] + (buf[28] << 8) + (buf[29] << 16),
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * 站标 / 默认 share 图：URL 命中黑名单，或过小方图（Google News 默认 logo 为 300×300）。
+ * 拉取失败或判定为 logo → 不当配图（正文不插图）。
+ */
+function isLogoOrPlaceholder(url, buf) {
+  if (url && STRIP_IMAGE.test(url)) return true;
+  if (url) {
+    const base = path.basename(url.split("?")[0]);
+    const hash = base.replace(/\.[a-z]+$/i, "");
+    if (BAD_LOCAL_HASHES.has(hash)) return true;
+  }
+  if (!buf) return false;
+  const size = imageSize(buf);
+  if (!size) return false;
+  // favicon / 极小图标
+  if (Math.max(size.w, size.h) < 96) return true;
+  // Google News 等默认方标：边长 ≤400 且体积很小
+  if (size.w === size.h && size.w <= 400 && buf.length < 80_000) return true;
+  return false;
+}
+
+/** 本地 /news/... 或外链是否应丢弃（不展示）。 */
+function shouldDropImageRef(src) {
+  if (!src) return true;
+  if (STRIP_IMAGE.test(src)) return true;
+  if (src.startsWith(NEWS_PUBLIC_BASE)) {
+    const hash = path.basename(src).replace(/\.[a-z]+$/i, "");
+    if (BAD_LOCAL_HASHES.has(hash)) return true;
+    const full = path.join(publicNews, src.slice(NEWS_PUBLIC_BASE.length));
+    if (fs.existsSync(full)) {
+      try {
+        const buf = fs.readFileSync(full);
+        if (isLogoOrPlaceholder(src, buf)) return true;
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+  return false;
+}
+
+/** 从条目 block 中删掉配图 markdown 行。 */
+function stripImageFromBlock(block) {
+  return block.replace(
+    /^((?:<p class="news-entry-meta">[\s\S]*?<\/p>\n\n)?)!\[[^\]]*\]\([^)]+\)\n\n/m,
+    "$1",
+  );
+}
+
 async function headOk(url, cache) {
   if (!url?.startsWith("http")) return false;
   const key = `ok:${url}`;
@@ -114,6 +220,10 @@ async function headOk(url, cache) {
 async function downloadImage(url, month, cache) {
   const key = `dl:${url}`;
   if (cache.has(key)) return cache.get(key);
+  if (isLogoOrPlaceholder(url, null)) {
+    cache.set(key, null);
+    return null;
+  }
   try {
     const res = await fetch(url, {
       headers: { "User-Agent": UA },
@@ -131,6 +241,11 @@ async function downloadImage(url, month, cache) {
     }
     const buf = Buffer.from(await res.arrayBuffer());
     if (buf.length < 200 || buf.length > 2_500_000) {
+      cache.set(key, null);
+      return null;
+    }
+    // 下载成功但仍是站标 / 默认 logo → 丢弃，正文不插图
+    if (isLogoOrPlaceholder(url, buf)) {
       cache.set(key, null);
       return null;
     }
@@ -184,17 +299,13 @@ async function resolveImage(sourceUrl, title, month, cache) {
     /* network */
   }
 
-  if (image && !STRIP_IMAGE.test(image)) {
+  if (image && !STRIP_IMAGE.test(image) && !isLogoOrPlaceholder(image, null)) {
     const local = await downloadImage(image, month, cache);
     if (local) {
       cache.set(cacheKey, local);
       return local;
     }
-    // 下载失败 → 回退外链
-    if (await headOk(image, cache)) {
-      cache.set(cacheKey, image);
-      return image;
-    }
+    // 下载失败：不再回退外链占位图（避免正文出现 Google News / 站标 logo）
   }
 
   cache.set(cacheKey, null);
@@ -240,12 +351,17 @@ export async function resolveFileImages(filePath, cache = new Map()) {
       let block = parts[i];
       const titleLine = block.match(/^### ([^\n]+)/);
       const title = titleLine ? titleLine[1].trim() : "";
-      // 已有配图：本地图跳过；外链图尝试直接下载本地化，失败保留原外链（不重抓源、不丢图）
+      // 已有配图：logo/坏图直接删掉；本地真图跳过；外链尝试本地化，失败则删掉（不展示）
       const imgLineMatch = block.match(
         /^((?:<p class="news-entry-meta">[\s\S]*?<\/p>\n\n)?)(!\[[^\]]*\]\(([^)]+)\)\n\n)/m,
       );
       if (imgLineMatch) {
         const existing = imgLineMatch[3] || "";
+        if (shouldDropImageRef(existing)) {
+          updated++;
+          results.set(i, stripImageFromBlock(block));
+          continue;
+        }
         if (existing.startsWith(NEWS_PUBLIC_BASE)) {
           results.set(i, block);
           continue;
@@ -259,7 +375,9 @@ export async function resolveFileImages(filePath, cache = new Map()) {
           updated++;
           results.set(i, replaced);
         } else {
-          results.set(i, block);
+          // 外链拉不到或判定为 logo → 去掉配图，避免展示站标
+          updated++;
+          results.set(i, stripImageFromBlock(block));
         }
         continue;
       }

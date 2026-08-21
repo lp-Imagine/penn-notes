@@ -55,7 +55,7 @@ export default defineConfig({
   base: BASE,
   cleanUrls: true,
   lastUpdated: true,
-  appearance: "dark",
+  appearance: true, // 默认跟随系统，可手动切换
   // 站内死链直接失败，外链（http/mailto）不拦；同步稿偶发坏链也能在 CI 暴露
   ignoreDeadLinks: [
     /^https?:\/\//,
@@ -63,20 +63,23 @@ export default defineConfig({
   ],
   // ai-article 同步过来的表格偶尔会多出一个尾随空白列（由 convertTable 的 padding 逻辑触发），
   // 在这里把所有内容为空白/只有 &nbsp; 的最后列 cell 删掉，避免下游文章都各自修。
+  // 同时包一层 .vp-table-scroll，方便 CSS：铺满 + 列多时横向滚动兼容。
   async transformPageHtml(html) {
     // 末尾空白 cell：标签 + 可含 &nbsp; / 全角空格 / 空白 / 嵌套空标签（strong/em/span/br 等）
     const EMPTY_CELL =
       /<t[hd](?:\s[^>]*)?>(?:&nbsp;|&#160;|&#xa0;|\s|<(?:strong|em|b|i|code|span)\b[^>]*>(?:\s|&nbsp;|&#160;|&#xa0;)*<\/(?:strong|em|b|i|code|span)>|<br\s*\/?>)*<\/t[hd]>\s*$/i;
     return html.replace(
       /<table\b[^>]*>[\s\S]*?<\/table>/g,
-      (table) =>
-        table.replace(
+      (table) => {
+        const cleaned = table.replace(
           /(<tr\b[^>]*>)([\s\S]*?)(<\/tr>)/g,
           (_m, open, inner, close) =>
             EMPTY_CELL.test(inner)
               ? open + inner.replace(EMPTY_CELL, "") + close
               : open + inner + close,
-        ),
+        );
+        return `<div class="vp-table-scroll">${cleaned}</div>`;
+      },
     );
   },
   // Post-process built HTML so icons sit at the very start of <head>
@@ -141,7 +144,22 @@ export default defineConfig({
         href: ICON_APPLE,
       },
     ],
-    ["meta", { name: "theme-color", content: "#000000" }],
+    [
+      "meta",
+      {
+        name: "theme-color",
+        media: "(prefers-color-scheme: light)",
+        content: "#f5f5f7",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "theme-color",
+        media: "(prefers-color-scheme: dark)",
+        content: "#000000",
+      },
+    ],
     [
       "link",
       {
@@ -150,11 +168,6 @@ export default defineConfig({
         title: "Penn Notes · AI 动态",
         href: `${BASE}news/feed.xml`,
       },
-    ],
-    [
-      "script",
-      {},
-      `(function(){try{var k='vitepress-theme-appearance',v=localStorage.getItem(k);if(!v||v==='auto')localStorage.setItem(k,'dark')}catch(e){}})()`,
     ],
   ],
   themeConfig: {
