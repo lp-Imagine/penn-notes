@@ -11,7 +11,7 @@ next: false
     <p class="section-kicker">每日精选</p>
     <h1 class="section-title">AI 动态</h1>
     <p class="section-lead">业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文</p>
-    <p class="section-count news-hero-meta">262 条动态 · 25 期日报 · 约 7:00 自动更新</p>
+    <p class="section-count news-hero-meta">282 条动态 · 26 期日报 · 约 7:00 自动更新</p>
   </header>
 
   <section class="news-block">
@@ -28,8 +28,9 @@ next: false
       <p class="news-block-desc">按日期打开完整日报</p>
     </div>
     <div class="news-digest-month">
-      <p class="news-digest-month-label">2026-08 · 19 期</p>
+      <p class="news-digest-month-label">2026-08 · 20 期</p>
       <div class="news-digest-dates">
+        <a class="news-digest-date" href="/penn-notes/news/2026-08/ai-news-2026-08-20"><time datetime="2026-08-20">08-20</time></a>
         <a class="news-digest-date" href="/penn-notes/news/2026-08/ai-news-2026-08-19"><time datetime="2026-08-19">08-19</time></a>
         <a class="news-digest-date" href="/penn-notes/news/2026-08/ai-news-2026-08-18"><time datetime="2026-08-18">08-18</time></a>
         <a class="news-digest-date" href="/penn-notes/news/2026-08/ai-news-2026-08-17"><time datetime="2026-08-17">08-17</time></a>
