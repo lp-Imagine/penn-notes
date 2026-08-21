@@ -54,7 +54,7 @@ body .el-table th.gutter {
 
 ## 表格固定列最后一行显示不全
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/1628947994000.webp)
+![](/img/legacy/b2ea47f48d6e-1628947994000.webp)
 ::: tip
 这种情况有时在宽度刚好处于临界值状态时会出现。因为固定列是独立于表格`body`动态计算高度的，出现了固定列高度小于表格高度所以造成最后一行被遮挡。
 :::

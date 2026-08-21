@@ -8,7 +8,7 @@ layout: home
     <p class="home-tagline">AI 动态 · JS &amp; 框架 · 样式 · 工具 · 浏览器</p>
     <p class="home-sub">积跬步以至千里 · 前端学习与工程备忘 · 共 66 篇</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="/penn-notes/agent/prompts/cmt0vtjum001rzzd9z2ahemdr">阅读最新笔记</a>
+      <a class="home-btn home-btn--primary" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">阅读最新笔记</a>
       <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
     </div>
   </section>
@@ -101,42 +101,42 @@ layout: home
       <a class="home-more" href="/penn-notes/web/">查看更多</a>
     </div>
 <div class="news-grid">
-  <a class="news-card news-card--media" href="/penn-notes/agent/prompts/cmt0vtjum001rzzd9z2ahemdr">
+  <a class="news-card news-card--media" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">
     <img class="news-card-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-20">2026-08-20</time>
     <span class="news-card-title">Prompt Cache与上下文管理实践</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">
+  <a class="news-card news-card--media" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战">
     <img class="news-card-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-18">2026-08-18</time>
     <span class="news-card-title">TypeScript6装饰器迁移实战</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/practice/cmswogeh60013qt01avmoagui">
+  <a class="news-card news-card--media" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践">
     <img class="news-card-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-17">2026-08-17</time>
     <span class="news-card-title">AI Agent幻觉缓解：验证与重试实践</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/practice/cmspws3nm0005zzez3yduit0a">
+  <a class="news-card news-card--media" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏">
     <img class="news-card-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-12">2026-08-12</time>
     <span class="news-card-title">记忆翻车复盘：让Agent长任务不跑偏</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/agent/misc/cmsfyztfz0003p101uzsala8q">
+  <a class="news-card news-card--media" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰">
     <img class="news-card-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-08-05">2026-08-05</time>
     <span class="news-card-title">个人知识库+AI，怎么搭才不吃灰</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/misc/essays/cms5uvo220003zzin09y3tvcm">
+  <a class="news-card news-card--media" href="/penn-notes/misc/essays/模型更快更贵该怎么选">
     <img class="news-card-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-29">2026-07-29</time>
     <span class="news-card-title">模型更快更贵，该怎么选</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/misc/misc/cms4d9t3s0001zzc66tg4t69r">
+  <a class="news-card news-card--media" href="/penn-notes/misc/misc/长文生成总超时两报错定位五步提效">
     <img class="news-card-thumb" src="/sync/cms4d9t3s0001zzc66tg4t69r/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-28">2026-07-28</time>
     <span class="news-card-title">长文生成总超时？两报错定位五步提效</span>
     <span class="news-card-action">阅读全文</span></div>
   </a>
-  <a class="news-card news-card--media" href="/penn-notes/tech/docs/cms49bxh60007zz9zfexa2vs0">
+  <a class="news-card news-card--media" href="/penn-notes/tech/docs/Claude-Code实战手册开源">
     <img class="news-card-thumb" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="" loading="lazy" /><div class="news-card-body"><time datetime="2026-07-28">2026-07-28</time>
     <span class="news-card-title">Claude Code 实战手册开源：编码秘籍</span>
     <span class="news-card-action">阅读全文</span></div>

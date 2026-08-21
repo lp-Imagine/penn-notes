@@ -185,8 +185,8 @@ const Layout = defineComponent({
           "doc-top": () => [slots["doc-top"]?.(), h(NewsDigestEnhance)],
           "doc-after": () => [
             slots["doc-after"]?.(),
-            h(RelatedPosts),
-            showComments ? h(Comments) : null,
+            h(RelatedPosts, { key: `related-${path}` }),
+            showComments ? h(Comments, { key: `giscus-${path}` }) : null,
           ],
         },
       );

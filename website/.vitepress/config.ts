@@ -56,7 +56,11 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   appearance: "dark",
-  ignoreDeadLinks: true,
+  // 站内死链直接失败，外链（http/mailto）不拦；同步稿偶发坏链也能在 CI 暴露
+  ignoreDeadLinks: [
+    /^https?:\/\//,
+    /^mailto:/,
+  ],
   // ai-article 同步过来的表格偶尔会多出一个尾随空白列（由 convertTable 的 padding 逻辑触发），
   // 在这里把所有内容为空白/只有 &nbsp; 的最后列 cell 删掉，避免下游文章都各自修。
   async transformPageHtml(html) {

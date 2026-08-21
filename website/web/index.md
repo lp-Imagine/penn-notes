@@ -17,7 +17,7 @@ aside: false
   <div class="section-group">
     <p class="section-group-label">JavaScript · 21 篇</p>
     <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/web/javascript/cmsy2er2q000hnm01hgt6t1rp">
+    <a class="section-card section-card--media" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战">
       <img class="section-card-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">TypeScript6装饰器迁移实战</span>
       <span class="section-card-meta"><time datetime="2026-08-18">2026-08-18</time><span>阅读全文</span></span>
     </a>

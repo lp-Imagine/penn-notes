@@ -42,7 +42,7 @@ console.log(result);
 
 看到输出就恍然大悟了——输出的是一个 Promise 对象。
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/async_log.png)
+![](/img/legacy/cbb1ad3ae5af-async_log.png)
 
 所以，async 函数返回的是一个 Promise 对象。从[文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)中也可以得到这个信息。async 函数（包含函数语句、函数表达式、Lambda 表达式）会返回一个 Promise 对象，如果在函数中 return 一个直接量，async 会把这个直接量通过 Promise.resolve() 封装成 Promise 对象。
 

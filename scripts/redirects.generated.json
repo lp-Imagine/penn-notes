@@ -234,5 +234,37 @@
   {
     "from": "/pages/1c8b46",
     "to": "/web/vue/使用-NProgress为页面或接口添加加载进度条"
+  },
+  {
+    "from": "/web/javascript/cmsy2er2q000hnm01hgt6t1rp",
+    "to": "/web/javascript/TypeScript6装饰器迁移实战"
+  },
+  {
+    "from": "/tech/docs/cms49bxh60007zz9zfexa2vs0",
+    "to": "/tech/docs/Claude-Code实战手册开源"
+  },
+  {
+    "from": "/agent/practice/cmswogeh60013qt01avmoagui",
+    "to": "/agent/practice/AI-Agent幻觉缓解验证与重试实践"
+  },
+  {
+    "from": "/agent/practice/cmspws3nm0005zzez3yduit0a",
+    "to": "/agent/practice/记忆翻车复盘让Agent长任务不跑偏"
+  },
+  {
+    "from": "/agent/prompts/cmt0vtjum001rzzd9z2ahemdr",
+    "to": "/agent/prompts/Prompt-Cache与上下文管理实践"
+  },
+  {
+    "from": "/agent/misc/cmsfyztfz0003p101uzsala8q",
+    "to": "/agent/misc/个人知识库+AI怎么搭才不吃灰"
+  },
+  {
+    "from": "/misc/essays/cms5uvo220003zzin09y3tvcm",
+    "to": "/misc/essays/模型更快更贵该怎么选"
+  },
+  {
+    "from": "/misc/misc/cms4d9t3s0001zzc66tg4t69r",
+    "to": "/misc/misc/长文生成总超时两报错定位五步提效"
   }
 ]

@@ -6,7 +6,11 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
+<<<<<<< HEAD
     <lastBuildDate>Thu, 20 Aug 2026 23:33:52 GMT</lastBuildDate>
+=======
+    <lastBuildDate>Fri, 21 Aug 2026 01:36:34 GMT</lastBuildDate>
+>>>>>>> 66ca7b9 (checkpoint before checking out master)
     <generator>Penn Notes news feed</generator>
     <item>
       <title>Meta AI 推出 Mac 应用，支持跨应用听写和屏幕理解</title>

@@ -20,9 +20,10 @@
 - `agent`：`practice` / `workflow` / `prompts` / `tools` / `misc`（AI Agent 栏目）
 - `misc`：`essays` / `career` / `life` / `method` / `misc`（杂项栏目）
 
-建议 `slug` 使用 `sourceId`，保证同一篇文章 upsert 覆盖同一文件。
+建议 `slug` 用**可读标题**（中文或短英文均可，与同目录手写笔记风格一致），`sourceId` 留在 frontmatter 做幂等主键。  
+ai-article upsert 时应按 `sourceId` 查找已有文件再覆盖；不要再以 `sourceId` 当文件名，避免 URL 不可读。
 
-> 兼容：历史稿若仍在 `website/sync/<section>/...`，构建时也会并入对应栏目侧栏。
+> 兼容：历史稿若仍在 `website/sync/<section>/...`，构建时也会并入对应栏目侧栏。旧 `cms*` / `cmt*` 路径已写入 `scripts/redirects.generated.json`，构建后会生成跳转页。
 
 ## Frontmatter
 

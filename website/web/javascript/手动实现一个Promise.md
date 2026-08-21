@@ -106,7 +106,7 @@ pro.then((res) => {
 
 ## 好了，一个简易的 Promise 就完成了，我们来看一下结果：
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/sole.png)
+![](/img/legacy/33eeed33f851-sole.png)
 
 ## 优化
 
@@ -514,4 +514,4 @@ p1()
 
 打印结果如下：
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/res.png)
+![](/img/legacy/ff6f4decf83a-res.png)

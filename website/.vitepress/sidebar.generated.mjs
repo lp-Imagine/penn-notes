@@ -7,7 +7,7 @@ export default {
       "items": [
         {
           "text": "TypeScript6装饰器迁移实战",
-          "link": "/web/javascript/cmsy2er2q000hnm01hgt6t1rp"
+          "link": "/web/javascript/TypeScript6装饰器迁移实战"
         },
         {
           "text": "Axios 封装",
@@ -141,7 +141,7 @@ export default {
       "items": [
         {
           "text": "TypeScript6装饰器迁移实战",
-          "link": "/web/javascript/cmsy2er2q000hnm01hgt6t1rp"
+          "link": "/web/javascript/TypeScript6装饰器迁移实战"
         },
         {
           "text": "Axios 封装",
@@ -447,7 +447,7 @@ export default {
       "items": [
         {
           "text": "Claude Code 实战手册开源：编码秘籍",
-          "link": "/tech/docs/cms49bxh60007zz9zfexa2vs0"
+          "link": "/tech/docs/Claude-Code实战手册开源"
         },
         {
           "text": "Git命令",
@@ -519,7 +519,7 @@ export default {
       "items": [
         {
           "text": "Claude Code 实战手册开源：编码秘籍",
-          "link": "/tech/docs/cms49bxh60007zz9zfexa2vs0"
+          "link": "/tech/docs/Claude-Code实战手册开源"
         },
         {
           "text": "Git命令",
@@ -623,11 +623,11 @@ export default {
       "items": [
         {
           "text": "AI Agent幻觉缓解：验证与重试实践",
-          "link": "/agent/practice/cmswogeh60013qt01avmoagui"
+          "link": "/agent/practice/AI-Agent幻觉缓解验证与重试实践"
         },
         {
           "text": "记忆翻车复盘：让Agent长任务不跑偏",
-          "link": "/agent/practice/cmspws3nm0005zzez3yduit0a"
+          "link": "/agent/practice/记忆翻车复盘让Agent长任务不跑偏"
         }
       ]
     },
@@ -637,7 +637,7 @@ export default {
       "items": [
         {
           "text": "Prompt Cache与上下文管理实践",
-          "link": "/agent/prompts/cmt0vtjum001rzzd9z2ahemdr"
+          "link": "/agent/prompts/Prompt-Cache与上下文管理实践"
         }
       ]
     },
@@ -647,7 +647,7 @@ export default {
       "items": [
         {
           "text": "个人知识库+AI，怎么搭才不吃灰",
-          "link": "/agent/misc/cmsfyztfz0003p101uzsala8q"
+          "link": "/agent/misc/个人知识库+AI怎么搭才不吃灰"
         }
       ]
     }
@@ -659,11 +659,11 @@ export default {
       "items": [
         {
           "text": "AI Agent幻觉缓解：验证与重试实践",
-          "link": "/agent/practice/cmswogeh60013qt01avmoagui"
+          "link": "/agent/practice/AI-Agent幻觉缓解验证与重试实践"
         },
         {
           "text": "记忆翻车复盘：让Agent长任务不跑偏",
-          "link": "/agent/practice/cmspws3nm0005zzez3yduit0a"
+          "link": "/agent/practice/记忆翻车复盘让Agent长任务不跑偏"
         }
       ]
     },
@@ -673,7 +673,7 @@ export default {
       "items": [
         {
           "text": "Prompt Cache与上下文管理实践",
-          "link": "/agent/prompts/cmt0vtjum001rzzd9z2ahemdr"
+          "link": "/agent/prompts/Prompt-Cache与上下文管理实践"
         }
       ]
     },
@@ -683,7 +683,7 @@ export default {
       "items": [
         {
           "text": "个人知识库+AI，怎么搭才不吃灰",
-          "link": "/agent/misc/cmsfyztfz0003p101uzsala8q"
+          "link": "/agent/misc/个人知识库+AI怎么搭才不吃灰"
         }
       ]
     }
@@ -695,7 +695,7 @@ export default {
       "items": [
         {
           "text": "模型更快更贵，该怎么选",
-          "link": "/misc/essays/cms5uvo220003zzin09y3tvcm"
+          "link": "/misc/essays/模型更快更贵该怎么选"
         }
       ]
     },
@@ -705,7 +705,7 @@ export default {
       "items": [
         {
           "text": "长文生成总超时？两报错定位五步提效",
-          "link": "/misc/misc/cms4d9t3s0001zzc66tg4t69r"
+          "link": "/misc/misc/长文生成总超时两报错定位五步提效"
         }
       ]
     }
@@ -717,7 +717,7 @@ export default {
       "items": [
         {
           "text": "模型更快更贵，该怎么选",
-          "link": "/misc/essays/cms5uvo220003zzin09y3tvcm"
+          "link": "/misc/essays/模型更快更贵该怎么选"
         }
       ]
     },
@@ -727,7 +727,7 @@ export default {
       "items": [
         {
           "text": "长文生成总超时？两报错定位五步提效",
-          "link": "/misc/misc/cms4d9t3s0001zzc66tg4t69r"
+          "link": "/misc/misc/长文生成总超时两报错定位五步提效"
         }
       ]
     }

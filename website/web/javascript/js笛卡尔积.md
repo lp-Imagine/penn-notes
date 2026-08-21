@@ -61,7 +61,7 @@ cartesianProduct([
 ```
 
 得到的结果：
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/1629962811000.png)
+![](/img/legacy/794dc4412f36-1629962811000.png)
 
 ---
 

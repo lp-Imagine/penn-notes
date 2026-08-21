@@ -17,7 +17,7 @@ aside: false
   <div class="section-group">
     <p class="section-group-label">随笔 · 1 篇</p>
     <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/misc/essays/cms5uvo220003zzin09y3tvcm">
+    <a class="section-card section-card--media" href="/penn-notes/misc/essays/模型更快更贵该怎么选">
       <img class="section-card-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">模型更快更贵，该怎么选</span>
       <span class="section-card-meta"><time datetime="2026-07-29">2026-07-29</time><span>阅读全文</span></span>
     </a>
@@ -26,7 +26,7 @@ aside: false
   <div class="section-group">
     <p class="section-group-label">其它 · 1 篇</p>
     <div class="section-card-grid">
-    <a class="section-card section-card--media" href="/penn-notes/misc/misc/cms4d9t3s0001zzc66tg4t69r">
+    <a class="section-card section-card--media" href="/penn-notes/misc/misc/长文生成总超时两报错定位五步提效">
       <img class="section-card-thumb" src="/sync/cms4d9t3s0001zzc66tg4t69r/cover.jpg" alt="" loading="lazy" /><span class="section-card-title">长文生成总超时？两报错定位五步提效</span>
       <span class="section-card-meta"><time datetime="2026-07-28">2026-07-28</time><span>阅读全文</span></span>
     </a>

@@ -149,11 +149,11 @@ const proAll = myPromise
   });
 ```
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/cs.png)
+![](/img/legacy/6beed4c6df28-cs.png)
 
 其中一个失败时
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/cs2.png)
+![](/img/legacy/811cf83b12ae-cs2.png)
 
 > **总结:**
 > 1、Promise.all()接受一个 Array 类型的参数

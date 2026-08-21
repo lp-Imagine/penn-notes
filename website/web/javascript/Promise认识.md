@@ -13,7 +13,7 @@ section: web
 ## Promise 是什么？
 
 Promise 是 ES6 中的一个重要特性，那 Promise 究竟长什么样子呢？我们来 console.dir()打印一下就知道了。
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p.png)
+![](/img/legacy/fb94e242b867-p.png)
 从打印的结果可以看出，Promise 是一个构造函数，身上有许多方法: all,any,race,reject,resolve；原型上有 then,catch 等常用到的方法。
 
 那我们来 new 一个 Promise 来看看。
@@ -31,7 +31,7 @@ let pro = new Promise(function (resolve, reject) {
 });
 ```
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p2.png)
+![](/img/legacy/b4777d951232-p2.png)
 Promise 构造函数接收一个参数，是一个函数，里面传入两个参数 resolve,reject;它们分别表示异步操作执行成功后的回调和异步操作执行失败的回调。
 
 ### Promise 概念
@@ -141,7 +141,7 @@ promiseAsync1()
 ```
 
 运行结果：
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p3.png)
+![](/img/legacy/3bf86dc76c27-p3.png)
 
 > 总结：
 > 1、主要用于异步计算
@@ -255,7 +255,7 @@ getNum()
 
 ## 在 resolve 的回调中，我们 console.log(reslut);而 reslut 这个变量是没有被定义的。如果我们不用 Promise，代码运行到这里就直接在控制台报错了，不往下运行了。但是在这里，会得到这样的结果：
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p4.png)
+![](/img/legacy/2615665ed9e2-p4.png)
 也就是说进到 catch 方法里面去了，而且把错误原因传到了 e 参数中。即便是有错误的代码也不会报错了，这与我们的 try/catch 语句有相同的功能。
 
 ## Promise.all 批量执行操作
@@ -282,7 +282,7 @@ Promise.all([promiseAsync1(), promiseAsync2(), promiseAsync3()])
   });
 ```
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p5.png)
+![](/img/legacy/860b62bdc48d-p5.png)
 
 ##
 
@@ -305,7 +305,7 @@ Promise.race([promiseAsync1(), promiseAsync2(), promiseAsync3()])
 
 这三个异步操作同样是并行执行的。结果你应该可以猜到，1 秒后 promiseAsync1 已经执行完了，此时 then 里面的就执行了。结果是这样的：
 
-![](https://cdn.jsdelivr.net/gh/lp-Imagine/lp-Imagine@main/images/p6.png)
+![](/img/legacy/fe68d2f4192e-p6.png)
 
 - 常见用法：
   回调包装成 Promise，他有两个显而易见的好处：

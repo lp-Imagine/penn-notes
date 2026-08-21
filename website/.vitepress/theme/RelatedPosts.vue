@@ -5,7 +5,7 @@
  * （文章 tags 多为空，按同栏目邻近推荐是最稳的兜底。）
  */
 import { computed } from "vue";
-import { useData, useRoute } from "vitepress";
+import { useData, useRoute, withBase } from "vitepress";
 
 const { theme } = useData();
 const route = useRoute();
@@ -29,7 +29,6 @@ const related = computed<SidebarItem[]>(() => {
   // 定位当前文章所在的栏目与分组
   let sectionKey: string | null = null;
   let groupIdx = -1;
-  let itemIdx = -1;
   for (const [k, groups] of Object.entries(sidebar)) {
     for (let gi = 0; gi < groups.length; gi++) {
       const items = groups[gi].items ?? [];
@@ -37,7 +36,6 @@ const related = computed<SidebarItem[]>(() => {
       if (ii >= 0) {
         sectionKey = k;
         groupIdx = gi;
-        itemIdx = ii;
         break;
       }
     }
@@ -59,11 +57,18 @@ const related = computed<SidebarItem[]>(() => {
       const sameA = a.gi === groupIdx ? 0 : 1;
       const sameB = b.gi === groupIdx ? 0 : 1;
       if (sameA !== sameB) return sameA - sameB;
-      return Math.abs(all.indexOf(a) - currentPos) - Math.abs(all.indexOf(b) - currentPos);
+      return (
+        Math.abs(all.indexOf(a) - currentPos) -
+        Math.abs(all.indexOf(b) - currentPos)
+      );
     })
     .slice(0, 3)
     .map((x) => x.it);
 });
+
+function href(link?: string) {
+  return link ? withBase(link) : "#";
+}
 </script>
 
 <template>
@@ -71,7 +76,7 @@ const related = computed<SidebarItem[]>(() => {
     <h2 class="related-title">相关文章</h2>
     <ul class="related-list">
       <li v-for="item in related" :key="item.link">
-        <a :href="item.link">{{ item.text }}</a>
+        <a :href="href(item.link)">{{ item.text }}</a>
       </li>
     </ul>
   </div>

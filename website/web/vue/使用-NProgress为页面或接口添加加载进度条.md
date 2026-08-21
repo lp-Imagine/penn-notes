@@ -76,7 +76,7 @@ NProgress.configure({
 });
 ```
 
-![](https://cdn.jsdelivr.net/npm/@qinyuanqiu/statics@1.0.5/images/subscription/nprogress1.png#id=PGmpA&originHeight=544&originWidth=908&originalType=binary&ratio=1&status=done&style=none)
+![](/img/legacy/de169fdc58bf-nprogress1.png)
 
 AXIOS 拦截器允许我们拦截我们的请求和响应，添加额外的功能，我们可以在其中启动和停止进度条，一个简单的功能如下所示：
 
@@ -91,7 +91,7 @@ AXIOS 拦截器允许我们拦截我们的请求和响应，添加额外的功�
 8 })
 ```
 
-![](https://cdn.jsdelivr.net/npm/@qinyuanqiu/statics@1.0.5/images/subscription/nprogress2.png#id=B4TcG&originHeight=549&originWidth=986&originalType=binary&ratio=1&status=done&style=none)
+![](/img/legacy/f1a2f184a1c5-nprogress2.png)
 
 正如您所看到的，AXIOS 拦截器充当中间件，允许您在发出请求时或在接收到响应时运行某些代码
 

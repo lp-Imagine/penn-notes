@@ -174,7 +174,7 @@ url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一�
 &lt;meta name="theme-color" content="#11a8cd"&gt;
 ```
 
-![](https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200221134927.jpg)
+![](/img/legacy/58cfc7d249c6-20200221134927.jpg)
 
 - **隐藏状态栏/设置状态栏颜色**：只有在开启WebApp全屏模式时才生效。content的值为default | black | black-translucent 。
 
@@ -206,7 +206,7 @@ url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一�
 &lt;meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL"&gt;
 ```
 
-![](https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200221134638.png)
+![](/img/legacy/7705528d03dd-20200221134638.png)
 
 - **其他** [参考文档](http://fex.baidu.com/blog/2014/10/html-head-tags/?qq-pf-to=pcqq.c2c)
 

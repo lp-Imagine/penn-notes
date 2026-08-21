@@ -3,12 +3,14 @@
  * giscus 评论组件（基于 GitHub Discussions）
  * 配置在 website/.vitepress/config.ts 的 themeConfig.giscus：
  * { repo, repoId, category, categoryId } —— repoId/categoryId 为空时不渲染。
- * repoId / categoryId 获取：仓库开启 Discussions → 访问 https://giscus.app 按提示配置后复制。
+ * SPA 换文时按 pathname 重新挂载，避免评论仍挂在上一篇。
  */
-import { onMounted } from "vue";
-import { useData } from "vitepress";
+import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { useData, useRoute } from "vitepress";
 
 const { theme } = useData();
+const route = useRoute();
+const host = ref<HTMLElement | null>(null);
 
 const giscus = theme.value.giscus as
   | { repo?: string; repoId?: string; category?: string; categoryId?: string }
@@ -18,15 +20,24 @@ const enabled = Boolean(
   giscus && giscus.repo && giscus.repoId && giscus.category && giscus.categoryId,
 );
 
-let initialized = false;
+let themeObserver: MutationObserver | undefined;
 
 function currentTheme(): string {
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
+function clearHost() {
+  const el = host.value;
+  if (!el) return;
+  el.innerHTML = "";
+  const mount = document.createElement("div");
+  mount.className = "giscus";
+  el.appendChild(mount);
+}
+
 function loadGiscus() {
-  if (initialized || !enabled) return;
-  initialized = true;
+  if (!enabled || !host.value) return;
+  clearHost();
   const script = document.createElement("script");
   script.src = "https://giscus.app/client.js";
   script.setAttribute("data-repo", giscus!.repo!);
@@ -42,11 +53,11 @@ function loadGiscus() {
   script.setAttribute("data-lang", "zh-CN");
   script.setAttribute("crossorigin", "anonymous");
   script.async = true;
-  document.querySelector(".giscus-host")?.appendChild(script);
+  host.value.appendChild(script);
 }
 
 function syncGiscusTheme() {
-  const iframe = document.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
+  const iframe = host.value?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
   iframe?.contentWindow?.postMessage(
     { giscus: { setConfig: { theme: currentTheme() } } },
     "https://giscus.app",
@@ -55,17 +66,28 @@ function syncGiscusTheme() {
 
 onMounted(() => {
   loadGiscus();
-  // 跟随站点亮/暗切换
-  const observer = new MutationObserver(syncGiscusTheme);
-  observer.observe(document.documentElement, {
+  themeObserver = new MutationObserver(syncGiscusTheme);
+  themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["class"],
   });
 });
+
+watch(
+  () => route.path,
+  () => {
+    loadGiscus();
+  },
+);
+
+onBeforeUnmount(() => {
+  themeObserver?.disconnect();
+  themeObserver = undefined;
+});
 </script>
 
 <template>
-  <div v-if="enabled" class="giscus-host">
+  <div v-if="enabled" ref="host" class="giscus-host">
     <div class="giscus" />
   </div>
 </template>
