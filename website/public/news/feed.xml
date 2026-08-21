@@ -6,8 +6,104 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 21 Aug 2026 08:55:05 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2026 23:29:03 GMT</lastBuildDate>
     <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Starcloud 融资 2.5 亿美元建设轨道数据中心，发射选项却日益枯竭</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 太空初创公司 Starcloud 宣布完成 2.5 亿美元融资，用于开发能够执行 AI 推理的卫星。然而，随着可用发射选项的减少，该公司在获取太空访问权方面将面临激烈竞争。这笔资金将用于推进其轨道数据中心计划，但行业整体的发射瓶颈可能成为其发展的关键制约因素。对读者：关注太空计算基础设施的投资者需评估发射供应链风险。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>美国司法部调查 a16z，风险投资行业面临反垄断新考验</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 美国司法部正依据一项已有 112 年历史的反垄断法，对知名风投 Andreessen Horowitz 展开调查。调查焦点是其两位合伙人分别担任存在竞争关系的公司董事，这可能引发对风投行业普遍存在的董事会交叉任职模式的重新审视。该调查已持续近一年，其走向可能重塑风险投资的运作规则。对读者：创业公司创始人应关注此案，评估投资机构背景可能带来的潜在监管风险。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>AI 数据初创公司 Micro1 在训练热潮中实现 5 亿美元毛收入运行率</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · AI 数据初创公司 Micro1 宣布其年度毛收入运行率已达到 5 亿美元，这得益于市场对独特 AI 训练数据的近乎无止境的需求。该公司及其竞争对手正从各大 AI 实验室对高质量、差异化数据集的迫切需求中获益，实现了快速增长。这一数据凸显了 AI 产业链上游数据环节的巨大商业价值。对读者：关注 AI 投资赛道的人士可留意数据服务领域的增长潜力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>新数据显示 OpenAI 在企业用户市场正追赶 Anthropic</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 最新数据表明，OpenAI 在企业级 AI 用户市场的份额正在增长，对 Anthropic 构成压力。然而，分析指出企业客户会在各实验室发布新模型时频繁切换供应商，这种不稳定性应引起两家公司投资者对企业 AI 支出“粘性”的担忧。市场竞争格局仍充满变数，客户忠诚度成为关键指标。对读者：企业在做 AI 技术选型时，应评估供应商的长期稳定性和迁移成本。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>ChatGPT 推出 Apple Messages 插件，可代发短信</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · OpenAI 为 ChatGPT 推出了一款新的 Apple Messages 集成插件，使其能够作为自动化文本助手，帮助用户撰写并发送短信。该功能旨在将 ChatGPT 定位为个人通信的智能助理，进一步拓展其应用场景。用户可以通过该插件授权 ChatGPT 处理短信任务。对读者：iPhone 用户可尝试此功能以提升消息处理效率，但需注意隐私与授权边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google Discover 将推出 AI 聊天机器人调优的信息流</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 宣布将为 Discover 信息流引入一项新功能，允许用户通过描述偏好来定制内容。该功能将在 Google 应用内以聊天机器人界面呈现，AI 会根据用户的描述自动调整信息流，并“记住”这些偏好用于未来的访问。用户可通过 Discover 信息流的菜单选项进入该功能。对读者：重度 Google 应用用户可期待更个性化的信息流体验，减少无关内容干扰。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>FinSkillBench：评估 AI 智能体在投资管理领域的专业技能</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：arXiv cs.AI · 研究人员推出了 FinSkillBench，这是一个用于评估语言模型智能体在投资管理中应用金融领域技能能力的基准测试。该基准涵盖投资组合构建、风险管理和基本面分析三大领域，要求智能体不仅生成文本，还要检索时点数据、调用专业方法并产出可审计的结构化输出。对读者：金融科技从业者可参考此基准评估 AI 智能体在专业领域的实际能力。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5-DSpark 草稿模型，推理速度提升高达 3.2 倍</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 上发布了 LFM2.5 系列三个模型的 DSpark 草稿模型检查点。DSpark 是一种投机解码技术，通过增加少量内存开销换取显著的解码速度提升，在 CPU 和 GPU 上均可实现高达 3.2 倍的推理加速，同时保持模型输出质量不变。该系列包括 1.2B、2.6B 和 8B 等尺寸。对读者：需要低成本部署 LLM 的开发者可尝试此方案，以显著降低推理延迟。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Vercel 发布 v0 API，引发对 AI 时代新语言的争议</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Vercel 正式推出 v0 API，允许开发者以编程方式访问其 AI 应用构建智能体。该 API 支持通过提示词生成和修改应用文件、在 Sandbox 中运行并提供预览 URL，还支持 MCP 服务器和技能加载。此举将 v0 定位为基础设施，与 Lovable 等交互式工具形成差异化。社区同时围绕 Vercel 的 Zero 语言展开讨论。对读者：开发者可将 v0 API 集成到自己的 CI/CD 或产品流程中，实现 AI 驱动的应用生成。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>CSS 类前缀选择器提案获解决，.prefix-* 语法或将到来</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：CSS-Tricks · 一项新的 CSS 提案已获解决，该提案允许开发者使用通配符语法（如 .prefix-*）来选择具有相同前缀的类名变体。这可以简化样式编写，避免列出所有变体或使用性能较差的属性选择器。该提案由 Lea Verou 于 2024 年提出，现已取得关键进展。对读者：前端开发者应关注此语法进展，未来可简化组件库的样式维护。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Astro 7 发布：Rust 重写编译器与 Markdown 流水线，构建速度提升最高 61%</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · 面向内容的 Web 框架 Astro 发布 7.0 版本，核心是转向原生工具链以提升构建性能。.astro 编译器已用 Rust 重写，Markdown 处理迁移到新的 Rust 流水线，并基于 Vite 8 和 Rolldown 打包器运行。官方基准测试显示构建速度提升了 15% 至 61%。新编译器也更为严格，未闭合标签将报错。对读者：Astro 用户升级后有望获得显著构建加速，但需注意新编译器的严格性变化。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>科技爱好者周刊（第 409 期）：程序员的职业未来</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-21</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：阮一峰的网络日志 · 本期周刊探讨了程序员的职业未来。文章引用行业分析指出，大多数商业软件开发是工业流程，AI 符合工业化要求。预测认为 AI 模型将更智能、更便宜，编码代理将持续存在并增强，但 AI 估值泡沫可能破裂。核心观点是，AI 替代的是手工编码，而非人类的判断力，但初级工程师的培养路径正受到挑战。对读者：程序员应关注从“写代码”向“监督与设计 AI 产出”的角色转变。</description>
+      <category>前端</category>
+    </item>
     <item>
       <title>Meta AI 推出 Mac 应用，支持跨应用听写和屏幕理解</title>
       <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
@@ -230,102 +326,6 @@
       <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
       <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
       <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 上发布了 LFM2.5 系列模型的 Q4_0 量化检查点，涵盖 230M 至 2.6B 参数版本。这些检查点通过量化感知蒸馏（QAD）技术训练，在保持 Q4_0 内存和速度的同时，显著降低了质量损失，使开发者能够在边缘设备上更高效地运行模型。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>IBM 研究：Agent 需要多少内存？能力决定剂量</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：Hugging Face Blog · IBM Research 发布文章探讨 AI Agent 的内存需求，核心观点是「剂量取决于能力」。文章指出学习发生在模型周围而非内部，并对比了三种不同配置。研究为 Agent 开发者在设计记忆系统时提供了参考，强调根据任务复杂度和所需能力来配置内存，而非一味追求大容量。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Cursor 推出代码托管平台，与 GitHub 展开竞争</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：TechCrunch AI · 以 AI 代码编辑器闻名的 Cursor 宣布推出自己的代码托管平台，直接挑战开发者长期首选的 GitHub。此举利用了部分开发者对 GitHub 的不满情绪，旨在构建从 AI 编码到代码存储、协作的完整闭环生态。该平台的具体功能和定价尚未完全公布。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>Canva 分享基于 S3 的会话撤销架构，支撑数亿会话</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开发者工具] · 来源：InfoQ 中文 · Canva 公开了其重新设计的会话撤销基础设施，该架构基于 Amazon S3 存储撤销数据，并以内存索引分发到应用网关，避免了大多数认证请求的数据库查询。此设计将撤销缓存的内存占用降低了 87.5%，提高了部署速度并减少了数据库开销，为处理数亿活跃会话提供了高效方案。</description>
-      <category>开发者工具</category>
-    </item>
-    <item>
-      <title>CSS 导航匹配新特性初探：声明式跨文档视图转换</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：CSS-Tricks · CSS-Tricks 报道了 CSS 导航匹配（Navigation Matching）特性的早期提案。该特性允许开发者通过 CSS 声明式地定义当用户从特定页面导航到另一页面时应用的样式，旨在将跨文档视图转换的源管理从 JavaScript 转移到 CSS，简化开发流程。目前该特性仍在概念阶段。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>WordPress.com 推出学生计划，提供一年免费托管</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-19</guid>
-      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[前端] · 来源：CSS-Tricks · WordPress.com 宣布推出面向学生的免费计划，提供为期一年的免费托管服务。该计划旨在消除学生学习和构建网站的成本障碍，让任何学科的学生都能创建和分享自己的作品，并从一开始就拥有自己的在线形象。此举被视为对教育领域的重大支持。</description>
-      <category>前端</category>
-    </item>
-    <item>
-      <title>Anthropic 年化收入飙升至 650 亿美元</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · Anthropic 的年化收入在两个月内新增 180 亿美元，总额达到 650 亿美元，显示出 AI 模型商业化进程的显著加速。这一增长反映了企业级 AI 需求的持续爆发，也进一步巩固了 Anthropic 在头部 AI 公司中的市场地位。对读者：关注头部模型厂商的收入增速，可作为评估 AI 行业整体健康度与商业化落地节奏的重要参考。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>AI 芯片初创公司 Etched 最新融资估值达 210 亿美元</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：1470 &amp;amp; 100.3 WMBD · AI 芯片初创公司 Etched 在最新一轮融资中估值达到 210 亿美元。该公司专注于为 Transformer 等特定 AI 架构设计专用芯片，其高估值反映了市场对 AI 推理算力定制化路线的强烈信心。对读者：专用 AI 芯片（ASIC）路线正获得资本重估，关注该赛道对现有 GPU 生态的潜在冲击与互补机会。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>AI 自动化初创公司 Relay 关闭，团队加入谷歌 Chrome 团队</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[业界] · 来源：TechCrunch AI · AI 自动化初创公司 Relay 宣布关闭，其创始人兼 CEO Jacob Bank 表示团队将加入谷歌 Chrome 团队，并透露有在 Chrome 中集成 AI 工作流的雄心计划。此次收购式招聘表明谷歌正加速将 AI 能力深度整合进浏览器这一核心入口。对读者：浏览器正成为 AI 代理的重要战场，前端开发者应关注 Chrome 即将推出的 AI 原生 API 与交互范式。</description>
-      <category>业界</category>
-    </item>
-    <item>
-      <title>OpenAI 推出 ChatGPT for Teens：面向学习场景，内置更强保护</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：OpenAI Blog · OpenAI 正式发布 ChatGPT for Teens，这是一个专为青少年设计的 ChatGPT 体验，旨在帮助学习与批判性思维，并内置了更强的安全保护、健康使用功能以及额外的家长控制选项。该产品在青少年已广泛使用 ChatGPT 的背景下推出，回应了日益增长的青少年 AI 安全与教育需求。对读者：面向 C 端教育场景的产品设计需将安全与家长控制作为核心模块，而非事后补充。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Firefox Smart Window 上线：AI 驱动的浏览器新体验</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：The Verge AI · Firefox 推出 Smart Window AI 浏览模式，通过与 Exa 合作，AI 聊天可引用当前网络信息并展示来源链接。该模式还支持通过自然语言搜索浏览历史、自动建议标签页分组，并显示之前访问页面的视觉预览，旨在让 AI 更深度地融入浏览器工作流。对读者：浏览器 AI 化竞争加剧，关注如何通过 AI 重构信息检索与标签页管理，提升日常浏览效率。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Asana 借助 OpenAI Codex 两周完成五年工程量</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：OpenAI Blog · Asana 使用 OpenAI Codex 在两周内替换了一个过时的测试系统，完成了原本预计需要五年、成本约 1.2 万美元的工程工作。这一案例展示了 AI 编程助手在大型遗留系统现代化改造中的巨大潜力，能够显著压缩项目周期与成本。对读者：评估 AI 编码工具时，可从小型、边界清晰的遗留系统改造项目入手，验证其实际投资回报率。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Sentence Transformers 支持多向量（后期交互）嵌入模型</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-18</guid>
-      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布了关于在 Sentence Transformers 库中实现多向量（后期交互）嵌入模型的博客，该技术通过更精细的 token 级交互，有望提升检索与重排序任务的精度。这一更新为开发者提供了更强大的工具来构建高质量的语义搜索系统。对读者：若你的 RAG 或搜索系统对精度要求高，可尝试基于后期交互的嵌入模型，以权衡性能与效果。</description>
       <category>开源</category>
     </item>
   </channel>
