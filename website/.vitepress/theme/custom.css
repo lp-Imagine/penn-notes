@@ -2421,10 +2421,11 @@ html:not(.dark) .home-btn--primary:hover {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  margin-bottom: 40px;
+  margin-bottom: 8px;
   padding-bottom: 0;
-  /* 与 .section-hero 的 border-bottom 叠在一起会变成双线；分区线只留给 .about-block */
+  /* section-hero 自带底部分割线，与下方 .about-block 顶部分割线会叠成双线 */
   border-bottom: none;
+  background: none;
   align-items: end;
 }
 
@@ -2496,6 +2497,10 @@ html:not(.dark) .home-btn--primary:hover {
   font-weight: 650 !important;
   letter-spacing: -0.02em;
   color: var(--text) !important;
+}
+
+.vp-doc .about-block-title::before {
+  display: none !important;
 }
 
 .about-skill-list {
