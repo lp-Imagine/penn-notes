@@ -196,12 +196,40 @@ export default defineConfig({
     ],
     sidebar: mergedSidebar,
     socialLinks: [{ icon: "github", link: GITHUB_PROFILE }],
-    search: { provider: "local" },
+    search: {
+      provider: "local",
+      options: {
+        /* 默认简洁结果；保留详情切换按钮，用户可手动开启正文摘要 */
+        detailedView: "auto",
+        translations: {
+          button: {
+            buttonText: "搜索",
+            buttonAriaLabel: "搜索",
+          },
+          modal: {
+            displayDetails: "显示正文摘要",
+            resetButtonTitle: "清除",
+            backButtonTitle: "关闭",
+            noResultsText: "未找到与",
+            footer: {
+              selectText: "选择",
+              selectKeyAriaLabel: "回车键",
+              navigateText: "移动",
+              navigateUpKeyAriaLabel: "上方向键",
+              navigateDownKeyAriaLabel: "下方向键",
+              closeText: "关闭",
+              closeKeyAriaLabel: "Esc 键",
+            },
+          },
+        },
+      },
+    },
     outline: { level: [2, 3], label: "章节索引" },
     sidebarMenuLabel: "目录",
     lastUpdated: { text: "上次更新" },
     docFooter: { prev: "上一篇", next: "下一篇" },
     returnToTopLabel: "返回顶部",
+    darkModeSwitchLabel: "外观",
     footer: {
       message: "Penn Notes · 前端学习笔记",
       copyright: "© 2020-present Penn · 记录前端路上的思考",
