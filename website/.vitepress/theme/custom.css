@@ -1251,15 +1251,14 @@ body {
   font-weight: 550;
 }
 
-/* ── Doc pages ── */
-/* 收紧正文左右边距：避免 VPDoc + container + content 多层 padding 叠太宽 */
-.VPDoc {
+/* ── Doc pages（仅文章详情 / AI 动态日报；栏目分类页走 .section-page 独立布局）── */
+.VPDoc:not(:has(.section-page)) {
   padding-left: 16px !important;
   padding-right: 16px !important;
 }
 
 @media (min-width: 768px) {
-  .VPDoc {
+  .VPDoc:not(:has(.section-page)) {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
@@ -1270,12 +1269,12 @@ body {
     --doc-page-inset: 24px;
   }
 
-  .VPDoc {
+  .VPDoc:not(:has(.section-page)) {
     padding-left: var(--doc-page-inset) !important;
     padding-right: var(--doc-page-inset) !important;
   }
 
-  .VPDoc .content {
+  .VPDoc:not(:has(.section-page)) .content {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -1288,7 +1287,7 @@ body {
 }
 
 @media (min-width: 1000px) {
-  .VPDoc .content {
+  .VPDoc:not(:has(.section-page)) .content {
     padding-left: 12px !important;
     padding-right: 16px !important;
   }
@@ -1298,18 +1297,18 @@ body {
   padding: var(--space-6) 0 var(--space-8);
 }
 
-.VPDoc .content-container {
+.VPDoc:not(:has(.section-page)) .content-container {
   max-width: var(--doc-content-max) !important;
 }
 
 @media (min-width: 1280px) {
-  .VPDoc .content-container {
+  .VPDoc:not(:has(.section-page)) .content-container {
     max-width: var(--doc-content-max-wide) !important;
   }
 }
 
 @media (min-width: 960px) {
-  .VPDoc .content-container {
+  .VPDoc:not(:has(.section-page)) .content-container {
     margin-left: auto;
     margin-right: auto;
   }
@@ -2215,7 +2214,7 @@ body {
     max-width: none;
   }
 
-  .VPDoc.has-aside .content-container {
+  .VPDoc.has-aside:not(:has(.section-page)) .content-container {
     max-width: min(var(--doc-content-max-wide), 100%) !important;
     margin-left: auto;
     margin-right: auto;
@@ -2368,7 +2367,7 @@ body {
     max-width: none;
   }
 
-  html.sidebar-collapsed .VPDoc .content-container {
+  html.sidebar-collapsed .VPDoc:not(:has(.section-page)) .content-container {
     max-width: min(var(--doc-content-max-wide), 100%) !important;
     width: 100%;
     margin-left: auto;
@@ -3112,7 +3111,7 @@ html:not(.dark) .home-btn--primary:hover {
     min-width: 0;
   }
 
-  html.sidebar-collapsed .VPDoc .content-container {
+  html.sidebar-collapsed .VPDoc:not(:has(.section-page)) .content-container {
     max-width: min(var(--doc-content-max-wide), 100%) !important;
     width: 100%;
     margin-left: auto;
