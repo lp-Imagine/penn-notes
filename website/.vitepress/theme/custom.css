@@ -34,6 +34,7 @@
   --page-max-width: 1680px;
   --doc-content-max: 52rem;
   --doc-content-max-wide: 56rem;
+  --doc-page-inset: 20px;
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
   --vp-font-family-base: "Inter", "Noto Sans SC", system-ui, sans-serif;
   --vp-c-brand-1: var(--link);
@@ -1265,26 +1266,31 @@ body {
 }
 
 @media (min-width: 960px) {
-  .VPDoc {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+  :root {
+    --doc-page-inset: 24px;
   }
 
-  .VPDoc .content {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-}
-
-@media (min-width: 1000px) {
   .VPDoc {
-    padding-left: 20px !important;
-    padding-right: 12px !important;
+    padding-left: var(--doc-page-inset) !important;
+    padding-right: var(--doc-page-inset) !important;
   }
 
   .VPDoc .content {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --doc-page-inset: 32px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .VPDoc .content {
+    padding-left: 12px !important;
+    padding-right: 16px !important;
   }
 }
 
@@ -1299,6 +1305,13 @@ body {
 @media (min-width: 1280px) {
   .VPDoc .content-container {
     max-width: var(--doc-content-max-wide) !important;
+  }
+}
+
+@media (min-width: 960px) {
+  .VPDoc .content-container {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -2204,7 +2217,8 @@ body {
 
   .VPDoc.has-aside .content-container {
     max-width: min(var(--doc-content-max-wide), 100%) !important;
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .VPLocalNav {
@@ -2355,8 +2369,10 @@ body {
   }
 
   html.sidebar-collapsed .VPDoc .content-container {
-    max-width: 100% !important;
+    max-width: min(var(--doc-content-max-wide), 100%) !important;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   html.sidebar-collapsed .VPLocalNav {
@@ -3089,7 +3105,7 @@ html:not(.dark) .home-btn--primary:hover {
     }
   }
 
-  /* 收起侧栏：正文占满「左侧 ↔ 章节索引」之间的全部宽度 */
+  /* 收起侧栏：正文仍限宽居中，两侧保留适度留白 */
   html.sidebar-collapsed .VPDoc .content {
     flex: 1 1 auto;
     max-width: none;
@@ -3097,8 +3113,10 @@ html:not(.dark) .home-btn--primary:hover {
   }
 
   html.sidebar-collapsed .VPDoc .content-container {
-    max-width: 100% !important;
+    max-width: min(var(--doc-content-max-wide), 100%) !important;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
