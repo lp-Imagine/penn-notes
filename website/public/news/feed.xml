@@ -6,8 +6,64 @@
     <link>https://lp-imagine.github.io/penn-notes/news/</link>
     <description>每日 AI 与前端精选动态 —— Penn Notes</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 22 Aug 2026 23:25:48 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 23:26:22 GMT</lastBuildDate>
     <generator>Penn Notes news feed</generator>
+    <item>
+      <title>英伟达AI服务器将涨价15%：内存成本飙升，1GW数据中心成本激增50亿美元</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：量子位 · 据彭博社与 The Information 消息，英伟达已告知部分大客户，明年初交付的 AI 服务器（含 Grace Blackwell 和 Vera Rubin）价格将上调 15% 以上，部分系统涨幅约 17%。内存芯片成本飙升是主因，一座 1GW 级 AI 数据中心可能因此额外增加至少 50 亿美元建设成本。对读者：AI 基础设施采购成本将显著上升，建议提前规划预算并评估替代硬件方案。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Gemini 3.7 Flash、Grok 4.6、GLM-5.3 与 DeepSeek V4 Pro 加入前沿模型竞争</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Hacker News · 8月中旬多家大模型密集发布：Grok 4.6、Gemini 3.7 Flash、DeepSeek V4 Pro 0813 以及开源模型 Qwen3.8 Max、GLM-5.3 等。评测显示，闭源模型在 Baba Is Bench 等任务上表现惊艳，且成本较前代降低 3-20 倍；开源模型进展则相对渐进。对读者：关注新模型在推理与成本上的显著提升，可考虑将高性价比模型接入现有应用以降低运营成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>VoltAgent/awesome-agent-skills：收录 1000+ 个 Agent 技能，兼容 Claude Code、Codex 等</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VoltAgent/awesome-agent-skills · 开源项目 awesome-agent-skills 收录了来自官方开发团队和社区的 1000 多个 Agent 技能，兼容 Claude Code、Codex、Gemini CLI、Cursor 等多种工具。对读者：可从中寻找现成的 Agent 技能，快速增强你的 AI 助手能力，避免重复造轮子。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude 插件社区市场 claude-plugins-community</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：anthropics/claude-plugins-community · Anthropic 推出 claude-plugins-community，这是一个面向 Claude Cowork 和 Claude Code 的社区插件市场（只读镜像），开发者可通过指定链接提交插件。对读者：可关注该插件市场，扩展 Claude Code 的功能，提升开发效率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>DynamoDB 原生支持向量搜索，向量数据库要被取代？</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · 亚马逊云科技为 DynamoDB 推出原生向量搜索功能，允许开发者将嵌入向量与应用数据存储在同一张表中，并直接运行近似最近邻查询，无需再维护单独的向量数据库。该功能支持最多 4096 维向量、多种距离函数及内联过滤，采用无服务器模式自动扩展。对读者：构建 AI 应用时可优先考虑 DynamoDB 原生向量能力，简化架构并降低数据同步成本。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>PostgreSQL 太难懂？开源项目 PGSimCity 把它做成了城市模拟器</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · 开发者 Nikolay Samokhvalov 发布 PGSimCity，一款开源教育可视化工具，将 PostgreSQL 18 集群的运行机制（如 shared_buffers、WAL、autovacuum 等）转换为交互式 3D 城市模拟，完全在浏览器中运行。项目使用 three.js 渲染，并集成 PGlite 在浏览器中运行真实 PostgreSQL。对读者：可通过该工具直观理解 PostgreSQL 内部机制，适合作为团队培训或学习辅助。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 推出 Cache Response Rules，在源站响应后进一步控制缓存</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Cloudflare 发布缓存响应规则（Cache Response Rules），这是一套新的规则引擎，运行在源站返回响应之后、内容写入缓存之前。它允许用户修改 Cache-Control 指令、管理 Cache Tag，并移除 Set-Cookie、ETag 等 Header，无需修改源站应用，从而提高缓存命中率并简化 CDN 迁移。对读者：可借此解决因意外 Header 导致缓存失效的问题，提升站点性能并降低源站带宽成本。</description>
+      <category>开发者工具</category>
+    </item>
     <item>
       <title>Anthropic 的 Opus 4.6 被曝可轻易绕过安全限制生成色情内容</title>
       <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-22</link>
@@ -103,6 +159,46 @@
       <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
       <description>[开发者工具] · 来源：InfoQ 中文 · npm 12 发布，将 allowScripts 默认关闭，依赖项的 preinstall、install 和 postinstall 脚本不再自动运行，需开发者明确批准。同时 --allow-git 和 --allow-remote 默认设为 none，阻断 Git 依赖和 HTTPS tarball 的代码执行路径。社区反应总体支持，但也有对审批疲劳和 patch-package 等合法用途的担忧。对读者：升级后需审查依赖脚本并配置允许列表，注意与 ignore-scripts 的优先级冲突。</description>
       <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI 呼吁加州加强 AI 安全法案 SB 53</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · OpenAI 一反此前立场，呼吁加州对去年通过的 AI 安全法案 SB 53 进行修订以加强保障，例如要求对前沿模型在训练或评估期间进行潜在严重事件监控，并加强整个模型开发生命周期的网络安全保护。对读者：AI 监管风向正在变化，企业应关注合规要求，提前调整模型开发与部署流程。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>研究：前沿 AI 实验室仍不愿透露如何控制失控模型</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Guidelight AI Standards 的一项新研究发现，顶级 AI 实验室中很少有公开记录的控制（containment）响应计划。控制计划定义了当 AI 试图颠覆人类控制时，应切断哪些访问权限以及何时完全关闭系统。对读者：AI 安全与治理仍是关键议题，企业部署 AI 时应自行评估风险并制定应急预案。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>视频生成迎来“Claude Code 时刻”，MiniMax Design 杀入 Adobe、Canva 腹地</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：InfoQ 中文 · 文章指出 AI 视频生成正从工具组合演进为端到端流水线，但多工具协同仍导致迭代效率瓶颈。营销内容需求激增与交付时效压缩形成矛盾，隐性成本集中在工具切换与重复适配。MiniMax Design 等产品试图以更一体化的方案切入，直接对标 Adobe、Canva 等传统设计工具。对读者：内容团队应关注端到端 AI 视频工作流，以降低多工具切换带来的隐性成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta 开源 300 亿参数端侧智能体模型 Muse Glimmer</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：InfoQ 中文 · Meta AI Research 发布 Muse Glimmer，一款 300 亿参数的开放权重模型（Apache 2.0），专为本地工作流设计，支持视觉输入与工具调用。通过动态量化，模型占用可降至约 17-20 GB，配合 DFlash 推测解码，在消费级 GPU 上生成吞吐量可提升至多 3.1 倍。对读者：可在本地 GPU 上运行自主智能体，适合对数据隐私和延迟敏感的应用场景。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>DeepMind 校友创立的 Inherent 发布 AI“队友” Faraday，称在复现研究任务上超越 Anthropic 和 OpenAI</title>
+      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</link>
+      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-23</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：TechCrunch AI · 伦敦 AI 实验室 Inherent 由 Google DeepMind 校友创立，发布 AI 智能体 Faraday，声称其复现科学论文的能力超越了 Anthropic 和 OpenAI 的更大模型，且模型规模更小。对读者：关注小型专业模型在特定任务上的潜力，可能以更低成本实现高效能。</description>
+      <category>模型</category>
     </item>
     <item>
       <title>Starcloud 融资 2.5 亿美元建设轨道数据中心，发射选项却日益枯竭</title>
@@ -231,102 +327,6 @@
       <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
       <description>[业界] · 来源：TechCrunch AI · OpenAI 和 Anthropic 正在竞争为企业客户提供更强大的数据隐私保护。OpenAI 推出了零数据保留和私有安全处理等新措施，而 Anthropic 则强调其隐私承诺。这场竞赛反映了企业客户对 AI 服务数据安全的高度重视，也推动了两家公司不断提升隐私标准。</description>
       <category>业界</category>
-    </item>
-    <item>
-      <title>OpenAI 推出 AI Futures 博客，探讨变革性 AI 的社会影响</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布推出新博客 AI Futures，由新成立的 Strategic Futures 团队运营，旨在探讨变革性 AI 如何重塑权力、治理、经济和个人自由。该博客将发表作者个人观点，不代表 OpenAI 官方立场。首篇文章由 Dean Ball 撰写，引用美国宪法观点，提出自由社会应如何应对 AI 权力扩张的问题。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Stampli 借助 ChatGPT Work 和 Codex 将上线时间缩短 68%</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：OpenAI Blog · 金融科技公司 Stampli 在固定截止日期和设计资源受限的情况下，使用 OpenAI 的 Codex 和 ChatGPT Work 将原本需要数周的上线准备工作压缩至数天。该公司每周使用 ChatGPT Work 创建数百条内容，并通过 Codex 实现了 3.16 倍的上线速度提升。这一案例展示了 AI 工具在真实业务场景中的效率价值。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Greg Brockman 在 OpenAI 内部权力日益集中</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：The Verge AI · 在 OpenAI 经历一系列高管离职和外部挑战后，联合创始人兼总裁 Greg Brockman 悄然积累了更多权力。他自公司成立以来一直担任核心工程角色，如今在战略决策中影响力更大。随着 OpenAI 准备 IPO，Brockman 的领导地位对公司的稳定和发展至关重要。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>Slack 推出协作式 vibe-coding 频道，支持 AI 代理共同开发</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[产品] · 来源：The Verge AI · Slack 发布 Slack Code 功能，引入专门的代码频道，团队可在其中与 AI 代理（如 Anthropic 的 Claude 或 Cognition 的 Devin）协作进行 vibe-coding。该功能支持项目特定的代码频道、变更对比和 HTML 预览，旨在减少团队在不同工具间的切换，提升开发协作效率。</description>
-      <category>产品</category>
-    </item>
-    <item>
-      <title>美图影像研究院提出场景文本编辑新方案，支持多语言无痕修改</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：InfoQ 中文 · 美图影像研究院（MT Lab）提出一种面向开放词汇的自提示场景文本编辑方法，可直接从输入图像提取字体风格并生成字形提示，实现端到端高保真文字替换。该方法无需 OCR 或固定字表，支持中文和小语种，避免了图像修补失真问题。相关成果被 ICML 2026 录用。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>vivo 提出知识驱动计算（KDC）长期运行主张：保存历史不等于形成记忆</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：InfoQ 中文 · vivo 研究员肖博在 InfoQ 发表文章，提出记忆的生命周期模型，包括形成、强化、衰减、冲突、遗忘、迁移和归档。文章强调记忆的价值在于选择性影响未来决策，而非无差别保存历史，并指出反馈验证与错误归因是系统自修正的关键机制。这是 KDC 系列第四篇。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>Colossal AI 分拆公司估值 38 亿美元，首个模型瞄准抗衰老</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：Dallas News · Colossal AI 的分拆公司以 38 亿美元估值融资，并推出首个模型，专注于抗衰老领域。这表明 AI 在生物技术和健康领域的应用前景广阔，吸引了大量投资。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>Sanja Fidler 的世界模型初创公司 Veeda AI 获 9000 万美元种子融资</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[模型] · 来源：SiliconANGLE · 由 AI 研究员 Sanja Fidler 创立的世界模型初创公司 Veeda AI 在种子轮融资中筹集了 9000 万美元。该公司专注于开发世界模型，这可能对机器人、自动驾驶和模拟等领域产生重要影响。</description>
-      <category>模型</category>
-    </item>
-    <item>
-      <title>OpenLogi：用 Rust 编写的 Logitech Options+ 本地替代品</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：AprilNEA/OpenLogi · OpenLogi 是一个用 Rust 编写的原生、本地优先的 Logitech Options+ 替代品，支持通过 HID++ 重新映射按钮、调整 DPI 和 SmartShift。无需账户，无遥测，注重隐私。对于希望自定义罗技设备的用户来说，这是一个开源的选择。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>MoneyPrinterTurbo：一键生成高清短视频的 AI 工具</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：harry0703/MoneyPrinterTurbo · MoneyPrinterTurbo 是一个开源项目，利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。它简化了视频制作流程，适合内容创作者和营销人员快速生成视频内容。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>Agent Substrate：核心系统开源</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：agent-substrate/substrate · Agent Substrate 的核心系统已在 GitHub 上开源。该项目旨在提供 AI 智能体的基础设施，可能包括调度、身份和生命周期管理等功能。对于构建复杂 AI 代理系统的开发者来说，这是一个值得关注的资源。</description>
-      <category>开源</category>
-    </item>
-    <item>
-      <title>PostHog：面向自驱产品的开发者工具平台</title>
-      <link>https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</link>
-      <guid isPermaLink="true">https://lp-imagine.github.io/penn-notes/news/2026-08/ai-news-2026-08-20</guid>
-      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
-      <description>[开源] · 来源：PostHog/posthog · PostHog 是一个开源平台，提供 AI 可观测性、分析、会话回放、功能开关、实验、错误跟踪和日志等工具，旨在捕获代理诊断问题所需的所有上下文。它帮助团队构建“自动驾驶”产品，通过数据驱动决策。</description>
-      <category>开源</category>
     </item>
   </channel>
 </rss>

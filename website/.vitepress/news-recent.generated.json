@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-08-23",
+    "title": "AI 动态 · 2026-08-23",
+    "link": "/news/2026-08/ai-news-2026-08-23",
+    "image": "/news/2026-08/eaf841b9e0bc.jpg"
+  },
+  {
     "date": "2026-08-22",
     "title": "AI 动态 · 2026-08-22",
     "link": "/news/2026-08/ai-news-2026-08-22",
@@ -40,11 +46,5 @@
     "title": "AI 动态 · 2026-08-16",
     "link": "/news/2026-08/ai-news-2026-08-16",
     "image": "/news/2026-08/a4626dba0fbd.jpg"
-  },
-  {
-    "date": "2026-08-15",
-    "title": "AI 动态 · 2026-08-15",
-    "link": "/news/2026-08/ai-news-2026-08-15",
-    "image": "/news/2026-08/8fb9ae5a0e70.jpg"
   }
 ]
