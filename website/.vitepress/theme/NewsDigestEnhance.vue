@@ -1,9 +1,12 @@
 <script setup>
+import { computed } from "vue";
 import { useRoute } from "vitepress";
 import NewsDigestFilter from "./NewsDigestFilter.vue";
 
 const route = useRoute();
-const isDigest = /\/news\/\d{4}-\d{2}\/ai-news-/.test(route.path);
+const isDigest = computed(() =>
+  /\/news\/\d{4}-\d{2}\/ai-news-/.test(route.path),
+);
 </script>
 
 <template>
