@@ -1,6 +1,6 @@
 {
-  "at": "2026-08-23T23:25:07.069Z",
-  "targetDate": "2026-08-23",
+  "at": "2026-08-24T23:25:57.567Z",
+  "targetDate": "2026-08-24",
   "ok": 20,
   "failed": 1,
   "successes": [
@@ -14,7 +14,7 @@
       "id": "techcrunch-ai",
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
-      "items": 7
+      "items": 6
     },
     {
       "id": "theverge-ai",
@@ -23,15 +23,33 @@
       "items": 0
     },
     {
-      "id": "mit-tr",
-      "name": "MIT Tech Review",
-      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-      "items": 0
-    },
-    {
       "id": "wired-ai",
       "name": "Wired AI",
       "url": "https://www.wired.com/feed/tag/ai/latest/rss",
+      "items": 1
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "items": 0
+    },
+    {
+      "id": "mit-tr",
+      "name": "MIT Tech Review",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+      "items": 2
+    },
+    {
+      "id": "hn-ai",
+      "name": "Hacker News AI",
+      "url": "https://hn.algolia.com/api/v1",
+      "items": 0
+    },
+    {
+      "id": "github-blog",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/feed/",
       "items": 0
     },
     {
@@ -53,24 +71,6 @@
       "items": 0
     },
     {
-      "id": "deepmind",
-      "name": "Google DeepMind",
-      "url": "https://deepmind.google/blog/rss.xml",
-      "items": 0
-    },
-    {
-      "id": "hn-ai",
-      "name": "Hacker News AI",
-      "url": "https://hn.algolia.com/api/v1",
-      "items": 31
-    },
-    {
-      "id": "github-blog",
-      "name": "GitHub Blog",
-      "url": "https://github.blog/feed/",
-      "items": 0
-    },
-    {
       "id": "javascript-weekly",
       "name": "JavaScript Weekly",
       "url": "https://javascriptweekly.com/rss",
@@ -80,13 +80,13 @@
       "id": "arxiv-cs-ai",
       "name": "arXiv cs.AI",
       "url": "https://rss.arxiv.org/rss/cs.AI",
-      "items": 0
+      "items": 290
     },
     {
       "id": "css-tricks",
       "name": "CSS-Tricks",
       "url": "https://css-tricks.com/feed/",
-      "items": 0
+      "items": 1
     },
     {
       "id": "ruanyifeng",
@@ -104,25 +104,25 @@
       "id": "openai-blog",
       "name": "OpenAI Blog",
       "url": "https://openai.com/blog/rss.xml",
-      "items": 0
+      "items": 1
     },
     {
       "id": "sspai",
       "name": "少数派",
       "url": "https://sspai.com/feed",
-      "items": 2
+      "items": 5
     },
     {
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "url": "https://www.infoq.cn/feed",
-      "items": 7
+      "items": 9
     },
     {
       "id": "quantumbit",
       "name": "量子位",
       "url": "https://www.qbitai.com/feed",
-      "items": 9
+      "items": 8
     }
   ],
   "failures": [
