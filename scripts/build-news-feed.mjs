@@ -30,8 +30,13 @@ function toRfc822(dateStr) {
   return new Date(Date.UTC(y, m - 1, d, 16, 0, 0)).toUTCString();
 }
 
+/** 无 sourceUrl 时用作 RSS guid 片段 */
+function titleAnchor(title) {
+  return encodeURIComponent(String(title || "").trim().slice(0, 120));
+}
+
 /**
- * @param {Array<{title:string, section:string, sourceName:string, itemDate:string, digestLink:string, digestDate:string, summary?:string}>} items
+ * @param {Array<{title:string, section:string, sourceName:string, sourceUrl?:string, itemDate:string, digestLink:string, digestDate:string, summary?:string}>} items
  */
 export function buildNewsFeedXml(items, opts = {}) {
   const limit = opts.limit ?? 40;
@@ -40,7 +45,11 @@ export function buildNewsFeedXml(items, opts = {}) {
 
   const channelItems = slice
     .map((item) => {
-      const link = siteUrl(item.digestLink.replace(/^\//, ""));
+      const digestUrl = siteUrl(item.digestLink.replace(/^\//, ""));
+      const sourceUrl = String(item.sourceUrl || "").trim();
+      // guid 优先用原文链接，避免同日多条动态共用 digest URL
+      const guid = sourceUrl || `${digestUrl}#${titleAnchor(item.title)}`;
+      const guidPermalink = sourceUrl ? "true" : "false";
       const desc = [
         item.section ? `[${item.section}]` : "",
         item.sourceName ? `来源：${item.sourceName}` : "",
@@ -50,8 +59,8 @@ export function buildNewsFeedXml(items, opts = {}) {
         .join(" · ");
       return `    <item>
       <title>${escapeXml(item.title)}</title>
-      <link>${escapeXml(link)}</link>
-      <guid isPermaLink="true">${escapeXml(link)}</guid>
+      <link>${escapeXml(sourceUrl || digestUrl)}</link>
+      <guid isPermaLink="${guidPermalink}">${escapeXml(guid)}</guid>
       <pubDate>${toRfc822(item.itemDate || item.digestDate)}</pubDate>
       <description>${escapeXml(desc)}</description>
       <category>${escapeXml(item.section)}</category>

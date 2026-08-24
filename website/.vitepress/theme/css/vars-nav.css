@@ -1,0 +1,456 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #ebebef;
+  --text: #1d1d1f;
+  --text-2: #6e6e73;
+  --text-3: #8e8e93;
+  --border: #e5e5ea;
+  --border-strong: #d2d2d7;
+  /* 全站分区：两端淡出的细分割线 */
+  --divider-fade: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--border) 88%, transparent) 12%,
+    color-mix(in srgb, var(--border-strong) 70%, var(--border)) 50%,
+    color-mix(in srgb, var(--border) 88%, transparent) 88%,
+    transparent 100%
+  );
+  --divider-soft: 0 1px 0 color-mix(in srgb, var(--border) 48%, transparent);
+  --link: #3451b2;
+  --link-hover: #2a4499;
+  --accent: #3b5bdb;
+  --accent-soft: rgba(59, 91, 219, 0.1);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --page-max-width: 1680px;
+  --doc-content-max: 52rem;
+  --doc-content-max-wide: 56rem;
+  --doc-page-inset: 20px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --vp-font-family-base: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --vp-c-brand-1: var(--link);
+  --vp-c-brand-2: var(--accent);
+  --vp-c-brand-3: #5672cd;
+  --vp-c-brand-soft: var(--accent-soft);
+  --vp-c-bg: var(--bg);
+  --vp-c-bg-soft: var(--surface);
+  --vp-c-bg-mute: var(--surface-2);
+  --vp-c-bg-alt: #eef0f4;
+  --vp-c-divider: var(--border);
+  --vp-c-gutter: var(--border);
+  --vp-c-text-1: var(--text);
+  --vp-c-text-2: var(--text-2);
+  --vp-c-text-3: var(--text-3);
+  --vp-c-code-bg: #eef0f4;
+  --vp-nav-bg-color: rgba(245, 245, 247, 0.82);
+  --vp-sidebar-bg-color: var(--bg);
+  --vp-code-block-bg: #ffffff;
+  --vp-layout-max-width: var(--page-max-width);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #000000;
+  --surface: #1d1d1f;
+  --surface-2: #2d2d2f;
+  --text: #f5f5f7;
+  --text-2: #a1a1a6;
+  --text-3: #86868b;
+  --border: #424245;
+  --border-strong: #525255;
+  --link: #a8b1ff;
+  --link-hover: #c0c6ff;
+  --accent: #5c73e7;
+  --accent-soft: rgba(168, 177, 255, 0.12);
+  --shadow-sm: none;
+  --vp-c-bg-alt: #0a0a0a;
+  --vp-c-code-bg: #2d2d2f;
+  --vp-nav-bg-color: rgba(0, 0, 0, 0.88);
+  --vp-sidebar-bg-color: var(--bg);
+  --vp-code-block-bg: #1d1d1f;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.VPNavBar {
+  backdrop-filter: blur(12px);
+  border-bottom: none !important;
+  background-color: var(--vp-nav-bg-color) !important;
+  /* 一条贯通细线，避免侧栏/内容区接缝隔断 */
+  box-shadow: var(--divider-soft);
+}
+
+/* 搜索按钮：跟随顶栏毛玻璃，去掉实心灰底 */
+@media (min-width: 768px) {
+  .VPNavBar .DocSearch-Button {
+    background: color-mix(in srgb, var(--text) 5%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+    border-radius: 8px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .VPNavBar .DocSearch-Button:hover {
+    background: color-mix(in srgb, var(--text) 8%, transparent) !important;
+    border-color: color-mix(in srgb, var(--border-strong) 70%, transparent);
+  }
+
+  .VPNavBar .DocSearch-Button-Key {
+    background: color-mix(in srgb, var(--surface) 55%, transparent) !important;
+    border-color: color-mix(in srgb, var(--border) 65%, transparent) !important;
+    box-shadow: none !important;
+    color: var(--text-3) !important;
+  }
+}
+
+/* 关掉 VitePress 默认分段分割线（侧栏下 + 内容区各画一段会断） */
+.VPNavBar .divider,
+.VPNavBar .divider-line,
+.VPNavBar:not(.home) .divider-line,
+.VPNavBar:not(.home.top) .divider-line {
+  display: none !important;
+  background: transparent !important;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .divider {
+    padding-left: 0 !important;
+  }
+
+  .VPNavBarTitle.has-sidebar .title {
+    border-bottom-color: transparent !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPNavBar.has-sidebar .divider {
+    padding-left: 0 !important;
+  }
+}
+
+.VPNavBarTitle .logo {
+  height: 28px;
+  width: 28px;
+  border-radius: 7px;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .VPNavBar .content {
+    min-width: 0;
+  }
+
+  .VPNavBar .content-body {
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .VPNavBarSearch {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .VPNavBarMenu {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .VPNavBarMenu .VPNavBarMenuLink,
+  .VPNavBarMenu .VPNavBarMenuGroup {
+    flex-shrink: 0;
+  }
+
+  .VPNavBarMenu .is-nav-overflow {
+    display: none !important;
+  }
+
+  .VPNavBarExtra,
+  .VPNavBarAppearance,
+  .VPNavBarSocialLinks,
+  .VPNavBarHamburger {
+    flex-shrink: 0;
+  }
+
+  .VPNavBarExtra {
+    position: relative;
+    z-index: 80;
+    overflow: visible;
+  }
+
+  .VPNavBarExtra .menu {
+    z-index: 80;
+  }
+
+  .penn-nav-more {
+    display: none;
+    position: relative;
+    z-index: 80;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  .penn-nav-more.is-visible {
+    display: block;
+  }
+
+  .penn-nav-more .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    height: var(--vp-nav-height);
+    color: var(--text);
+  }
+
+  .penn-nav-more .icon {
+    font-size: 20px;
+  }
+
+  .penn-nav-more .menu {
+    position: absolute;
+    top: calc(var(--vp-nav-height) / 2 + 20px);
+    right: 0;
+    z-index: 80;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0);
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .penn-nav-more.is-open .menu,
+  .penn-nav-more:hover .menu {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.penn-nav-overflow-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+}
+
+.VPNavBarExtra .group + .group,
+.penn-nav-more .group + .group {
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+/* 统一 ... 菜单内「外观」标签的字重/字号 */
+.VPNavBarExtra .label,
+.penn-nav-more .label {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+  line-height: 32px !important;
+}
+
+.penn-nav-overflow-link {
+  display: block;
+  padding: 0 12px;
+  border-radius: 6px;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.penn-nav-overflow-link:hover,
+.penn-nav-overflow-link.active {
+  color: var(--link);
+  background: var(--accent-soft);
+}
+
+/* 768 以上略窄时藏 ⌘K，给分类腾空间 */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .VPNavBar .DocSearch-Button-Keys {
+    display: none !important;
+  }
+}
+
+/* 中等宽度（≈960–1200）：文章页顶栏与首页同一逻辑——搜索靠左，分类占用剩余宽度 */
+@media (min-width: 960px) and (max-width: 1199.98px) {
+  .VPNavBar.has-sidebar .VPNavBarSearch {
+    flex: 0 1 auto !important;
+    min-width: 0;
+    max-width: 220px;
+    padding-left: 16px !important;
+  }
+
+  .VPNavBar.has-sidebar .DocSearch-Button {
+    width: 100%;
+  }
+
+  /* 略窄时只藏 ⌘K，保留「搜索」文字，给分类腾一点空间 */
+  .VPNavBar.has-sidebar .DocSearch-Button-Keys {
+    display: none !important;
+  }
+
+  .VPNavBar.has-sidebar .VPNavBarMenuLink {
+    padding: 0 8px !important;
+    font-size: 13px !important;
+  }
+
+  .VPNavBar.has-sidebar .menu + .appearance::before,
+  .VPNavBar.has-sidebar .translations + .appearance::before {
+    margin-right: 10px;
+    margin-left: 8px;
+  }
+
+  .VPNavBar.has-sidebar .appearance + .social-links::before {
+    margin-left: 10px;
+    margin-right: 6px;
+  }
+}
+
+/* 1000–1200：右侧章节索引略收窄，把宽度让给正文 */
+@media (min-width: 1000px) and (max-width: 1199.98px) {
+  .VPDoc .aside {
+    max-width: 200px !important;
+    padding-left: 20px !important;
+  }
+
+  .VPDoc .aside-container,
+  .VPDoc .aside-curtain {
+    width: 180px !important;
+  }
+
+  .VPDoc .container {
+    gap: 20px !important;
+  }
+
+  .VPDocAside .outline-title {
+    font-size: 12px;
+  }
+
+  .VPDocAside .outline-link {
+    font-size: 13px !important;
+  }
+}
+
+/* 移动端：顶栏固定，目录栏贴在其下方 */
+@media (max-width: 959.98px) {
+  .VPNav {
+    position: fixed !important;
+    top: var(--vp-layout-top-height, 0px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: var(--vp-z-index-nav);
+  }
+
+  .VPLocalNav {
+    top: var(--vp-nav-height, 64px) !important;
+    /* 顶栏 fixed 后脱离文档流，用 margin 把目录栏顶到其下方 */
+    margin-top: var(--vp-nav-height, 64px) !important;
+    border: none !important;
+  }
+
+  /* 无目录栏的页面，正文留出顶栏高度 */
+  .VPContent {
+    padding-top: var(--vp-nav-height, 64px);
+  }
+
+  .VPLocalNav ~ .VPContent {
+    padding-top: 0;
+  }
+
+  /* 无章节索引的页面不显示 LocalNav（如栏目索引页滚动后出现的空栏） */
+  .VPLocalNav.empty:not(.has-sidebar) {
+    display: none !important;
+  }
+}
+
+/* 无章节索引时不显示 LocalNav 内的「返回顶部」（已有右下角浮动按钮） */
+.VPLocalNavOutlineDropdown > button:not(:has(.menu-text)) {
+  display: none !important;
+}
+
+/* ── 移动端全屏导航菜单 ── */
+@media (max-width: 767.98px) {
+  .VPNavScreen {
+    padding: 0 16px;
+    background-color: var(--bg) !important;
+  }
+
+  .VPNavScreen .container {
+    max-width: 100%;
+    padding: 12px 0 40px;
+  }
+
+  .VPNavScreenMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .VPNavScreenMenuLink {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 14px !important;
+    border-bottom: none !important;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--text) !important;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .VPNavScreenMenuLink:active {
+    background: var(--accent-soft);
+    color: var(--link) !important;
+  }
+
+  .VPNavScreenMenuGroup {
+    height: auto;
+    overflow: visible;
+    border-bottom: none !important;
+    border-radius: var(--radius);
+  }
+
+  .VPNavScreenMenuGroup .button {
+    min-height: 48px;
+    padding: 12px 14px 12px 0;
+    font-size: 16px;
+  }
+
+  .VPNavScreen .menu + .translations,
+  .VPNavScreen .menu + .appearance,
+  .VPNavScreen .translations + .appearance {
+    margin-top: 8px;
+  }
+
+  .VPNavScreenAppearance {
+    min-height: 48px;
+    padding: 12px 14px !important;
+    border-radius: var(--radius);
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  .VPNavScreenAppearance .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .VPNavScreen .menu + .social-links,
+  .VPNavScreen .appearance + .social-links {
+    margin-top: 16px;
+  }
+}
+

@@ -4,6 +4,8 @@ date: 2022-09-05
 tags:
   - JavaScript
 section: web
+series: Promise 系列
+seriesOrder: 3
 ---
 
 # Promise(三)：拓展方法实现

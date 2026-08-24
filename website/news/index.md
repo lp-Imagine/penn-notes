@@ -2,6 +2,8 @@
 title: AI 动态
 description: 业界、产品、模型、开源与开发者工具 — 按日整理的 AI 要闻
 outline: false
+sidebar: false
+aside: false
 prev: false
 next: false
 ---

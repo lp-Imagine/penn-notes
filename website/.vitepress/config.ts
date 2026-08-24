@@ -17,6 +17,10 @@ const ICON_APPLE =
 // 站点绝对地址（GitHub Pages 部署域名），用于 OG / canonical / JSON-LD
 const SITE_URL = "https://lp-imagine.github.io/penn-notes";
 
+// Umami analytics — set env vars to enable
+const UMAMI_URL = process.env.UMAMI_URL || "";
+const UMAMI_ID = process.env.UMAMI_WEBSITE_ID || "";
+
 const faviconHeadSnippet = [
   `<link rel="icon" href="${ICON_ICO}" sizes="any">`,
   `<link rel="icon" type="image/png" sizes="32x32" href="${ICON_PNG}">`,
@@ -169,6 +173,27 @@ export default defineConfig({
         href: `${BASE}news/feed.xml`,
       },
     ],
+    [
+      "link",
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Penn Notes · 笔记更新",
+        href: `${BASE}notes/feed.xml`,
+      },
+    ],
+    ...(UMAMI_URL && UMAMI_ID
+      ? [
+          [
+            "script",
+            {
+              defer: "",
+              "data-website-id": UMAMI_ID,
+              src: `${UMAMI_URL}/script.js`,
+            },
+          ] as HeadConfig,
+        ]
+      : []),
   ],
   themeConfig: {
     siteTitle: "Penn Notes",
@@ -186,13 +211,15 @@ export default defineConfig({
     nav: [
       { text: "首页", link: "/" },
       { text: "AI 动态", link: "/news/", activeMatch: "/news/" },
+      { text: "标签", link: "/tags/", activeMatch: "/tags/" },
+      { text: "归档", link: "/archive/", activeMatch: "/archive/" },
       { text: "JS & 框架", link: "/web/", activeMatch: "/web/" },
       { text: "样式", link: "/ui/", activeMatch: "/ui/" },
       { text: "工具", link: "/tech/", activeMatch: "/tech/" },
-      { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
       { text: "AI Agent", link: "/agent/", activeMatch: "/agent/" },
-      { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
       { text: "关于", link: "/about/", activeMatch: "/about/" },
+      { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
+      { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
     ],
     sidebar: mergedSidebar,
     socialLinks: [{ icon: "github", link: GITHUB_PROFILE }],

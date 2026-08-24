@@ -1,0 +1,541 @@
+/* ── 标签 / 归档：压过 .vp-doc 列表与链接默认样式 ── */
+.vp-doc .discover-page ul,
+.vp-doc .discover-page ol,
+.vp-doc .discover-page li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vp-doc .discover-page li + li,
+.vp-doc .discover-page li::marker {
+  content: none;
+  margin: 0;
+}
+
+.vp-doc .discover-page a.discover-row,
+.vp-doc .discover-page a.discover-row:hover {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.discover-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.discover-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.discover-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.discover-chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  color: var(--link);
+  background: var(--surface-2);
+}
+
+.discover-chip.is-active {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--link);
+  background: var(--accent-soft);
+}
+
+.discover-chip-count {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+
+.discover-chip.is-active .discover-chip-count {
+  color: var(--link);
+}
+
+.discover-count {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.discover-count--archive {
+  margin: 0 0 8px;
+}
+
+.discover-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.discover-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-decoration: none !important;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.discover-row:hover {
+  background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.dark .discover-row:hover {
+  background: var(--surface-2);
+  box-shadow: none;
+}
+
+.discover-row-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.discover-row:hover .discover-row-title {
+  color: var(--link);
+}
+
+.discover-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.discover-row-summary {
+  display: block;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.discover-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.discover-row-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  color: var(--text-3);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.discover-row-tag.is-current,
+.discover-row-tag:hover {
+  background: var(--accent-soft);
+  color: var(--link);
+}
+
+.discover-row--compact {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px 16px;
+  padding: 12px 14px;
+}
+
+.discover-row-date {
+  flex: 0 0 3.25rem;
+  font-size: 13px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.discover-row--compact .discover-row-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.discover-row-section {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.vp-doc .discover-year-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+}
+
+.discover-year-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 14px;
+}
+
+.discover-year-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-3);
+}
+
+.discover-year + .discover-year {
+  margin-top: 36px;
+}
+
+.discover-month + .discover-month {
+  margin-top: 18px;
+}
+
+.discover-month-label {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.discover-empty {
+  padding: 40px 16px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface-2) 35%, transparent);
+}
+
+.discover-empty-title {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.discover-empty-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+@media (max-width: 640px) {
+  .discover-row--compact {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .discover-row-section {
+    width: 100%;
+    margin-left: 3.25rem;
+  }
+}
+
+/* 栏目 / 标签 / 归档页：与首页一致，左右始终留白 */
+.VPDoc:has(.section-page) {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.VPDoc:has(.section-page) .container {
+  display: block !important;
+  box-sizing: border-box;
+  max-width: var(--page-max-width) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.VPDoc:has(.section-page) .content {
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 767.98px) {
+  .VPDoc:has(.section-page) .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+.vp-doc .section-hero {
+  margin: 0 0 28px;
+  padding: 0 0 20px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
+.vp-doc .section-kicker {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.vp-doc .section-title {
+  margin: 0 0 10px !important;
+  font-size: clamp(1.8rem, 4vw, 2.4rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text) !important;
+  border: none !important;
+}
+
+.vp-doc .section-lead {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.vp-doc .section-count {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.section-index {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-group {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.vp-doc .section-group-head {
+  margin: 0 0 16px;
+}
+
+.vp-doc .section-group-title {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+}
+
+.vp-doc .section-group-desc,
+.vp-doc .section-group-label {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-3);
+  border: none;
+  line-height: 1.5;
+}
+
+/* 栏目卡片与 AI 动态卡片共用同一套尺寸/样式 */
+.news-item-grid,
+.section-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (min-width: 1100px) {
+  .news-item-grid,
+  .section-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1400px) {
+  .news-item-grid,
+  .section-card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .news-item-grid,
+  .section-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.news-item-card,
+.section-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none !important;
+  overflow: hidden;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s,
+    transform 0.15s;
+}
+
+.news-item-card:hover,
+.section-card:hover {
+  background: color-mix(in srgb, var(--surface) 88%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  transform: translateY(-1px);
+}
+
+.dark .news-item-card:hover,
+.dark .section-card:hover {
+  box-shadow: none;
+  background: var(--surface-2);
+}
+
+/* 卡片配图：首页最新动态、/news/ 归档、各栏目索引页共用 */
+.news-item-media,
+.section-card-media {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 96px;
+  /* 勿同时用 aspect-ratio + max-height：iOS Safari 会为保比例把宽度收窄，右侧留空 */
+  aspect-ratio: auto;
+  max-height: none;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.news-item-thumb,
+.section-card-thumb {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+  margin: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .news-item-media,
+  .section-card-media {
+    /* 移动端用 padding 比例盒，避免 iOS 上 aspect-ratio 仍可能收窄宽度 */
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+
+  .news-item-thumb,
+  .section-card-thumb {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.news-item-body,
+.section-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px 12px;
+}
+
+.news-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.vp-doc .news-item-title,
+.news-item-title,
+.vp-doc .section-card-title,
+.section-card-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--text);
+  border: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-item-card:hover .news-item-title,
+.section-card:hover .section-card-title {
+  color: var(--link);
+}
+
+.vp-doc .news-item-summary,
+.news-item-summary {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-item-meta,
+.section-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 2px;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.news-item-meta time,
+.section-card-meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+.news-item-meta span:last-child,
+.section-card-meta span:last-child {
+  color: var(--link);
+  font-weight: 550;
+}

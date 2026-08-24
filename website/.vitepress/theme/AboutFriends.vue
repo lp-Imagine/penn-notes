@@ -1,4 +1,12 @@
 <script setup lang="ts">
+function onAvatarError(event: Event, name: string) {
+  const img = event.target as HTMLImageElement | null;
+  if (!img || img.dataset.fallback === "1") return;
+  img.dataset.fallback = "1";
+  const seed = encodeURIComponent(name || "Friend");
+  img.src = `https://api.dicebear.com/9.x/initials/svg?seed=${seed}&radius=8`;
+}
+
 const friends = [
   {
     name: "麋鹿鲁哟",
@@ -79,6 +87,7 @@ const siteInfo = [
           :src="item.avatar"
           alt=""
           loading="lazy"
+          @error="onAvatarError($event, item.name)"
         />
         <span class="about-friend-body">
           <span class="about-friend-name">{{ item.name }}</span>

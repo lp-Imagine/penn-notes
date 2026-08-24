@@ -10,14 +10,19 @@
     "news:daily": "node scripts/generate-daily-news.mjs",
     "news:images": "node scripts/resolve-news-images.mjs",
     "news:feed": "node scripts/build-news-feed.mjs",
+    "notes:feed": "node scripts/build-notes-feed.mjs",
     "build:home": "node scripts/build-home.mjs",
+    "build:discover": "node scripts/build-discover.mjs",
+    "build:notes-feed": "node scripts/build-notes-feed.mjs",
     "build:redirects": "node scripts/build-redirects.mjs",
-    "prebuild": "npm run ingest && npm run sync:news && npm run build:home",
-    "dev": "npm run ingest && npm run sync:news && npm run build:home && vitepress dev website",
+    "feed-health": "node scripts/feed-health-summary.mjs",
+    "prebuild": "npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && npm run feed-health",
+    "dev": "npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && vitepress dev website",
     "build": "vitepress build website && npm run build:redirects && npm run build:sitemap",
     "preview": "vitepress preview website",
     "build:sitemap": "node scripts/build-sitemap.mjs",
-    "localize:images": "node scripts/localize-legacy-images.mjs"
+    "localize:images": "node scripts/localize-legacy-images.mjs",
+    "test": "node scripts/test-scripts.mjs"
   },
   "devDependencies": {
     "rss-parser": "^3.13.0",

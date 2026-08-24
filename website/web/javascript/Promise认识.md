@@ -4,6 +4,8 @@ date: 2022-09-05
 tags:
   - JavaScript
 section: web
+series: Promise 系列
+seriesOrder: 1
 ---
 
 # Promise(一)：Promise 认识

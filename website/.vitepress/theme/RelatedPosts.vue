@@ -1,32 +1,39 @@
 <script setup lang="ts">
 /**
- * 相关文章推荐：从 themeConfig.sidebar 定位当前文章所在栏目（section），
- * 优先取同分组内位置最近的 2-3 篇；同组不足时用同栏目其他分组的文章补齐。
- * （文章 tags 多为空，按同栏目邻近推荐是最稳的兜底。）
+ * 相关文章：优先同 tags 匹配，不足时回退侧栏邻近推荐。
  */
 import { computed } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
+// @ts-expect-error generated JSON
+import notes from "../notes-items.generated.json";
 
 const { theme } = useData();
 const route = useRoute();
 
 type SidebarItem = { text?: string; link?: string };
 type SidebarGroup = { text?: string; items?: SidebarItem[] };
+type NoteItem = {
+  title: string;
+  link: string;
+  tags?: string[];
+  date?: string;
+};
 
 const BASE = "/penn-notes";
 
-const related = computed<SidebarItem[]>(() => {
+function currentPath() {
   const raw = route.path;
-  // 中文文件名在 route.path 里是百分号编码的，sidebar 的 link 是明文，先解码再匹配
-  const current = decodeURI(
+  return decodeURI(
     raw.startsWith(BASE) ? raw.slice(BASE.length) : raw,
   ).replace(/\/$/, "");
+}
+
+function sidebarRelated(current: string): SidebarItem[] {
   const sidebar = theme.value.sidebar as
     | Record<string, SidebarGroup[]>
     | undefined;
   if (!sidebar) return [];
 
-  // 定位当前文章所在的栏目与分组
   let sectionKey: string | null = null;
   let groupIdx = -1;
   for (const [k, groups] of Object.entries(sidebar)) {
@@ -53,7 +60,6 @@ const related = computed<SidebarItem[]>(() => {
   return all
     .filter((x) => x.it.link !== current)
     .sort((a, b) => {
-      // 同分组优先；其次按在栏目内的位置邻近度
       const sameA = a.gi === groupIdx ? 0 : 1;
       const sameB = b.gi === groupIdx ? 0 : 1;
       if (sameA !== sameB) return sameA - sameB;
@@ -64,6 +70,38 @@ const related = computed<SidebarItem[]>(() => {
     })
     .slice(0, 3)
     .map((x) => x.it);
+}
+
+function tagRelated(current: string): SidebarItem[] {
+  const me = (notes as NoteItem[]).find((n) => n.link === current);
+  if (!me?.tags?.length) return [];
+  const tagSet = new Set(me.tags);
+  return (notes as NoteItem[])
+    .filter((n) => n.link !== current && n.tags?.some((t) => tagSet.has(t)))
+    .sort((a, b) => {
+      const score = (n: NoteItem) =>
+        n.tags?.filter((t) => tagSet.has(t)).length ?? 0;
+      const ds = score(b) - score(a);
+      if (ds !== 0) return ds;
+      return (b.date || "") > (a.date || "") ? 1 : -1;
+    })
+    .slice(0, 3)
+    .map((n) => ({ text: n.title, link: n.link }));
+}
+
+const related = computed<SidebarItem[]>(() => {
+  const current = currentPath();
+  const byTag = tagRelated(current);
+  if (byTag.length >= 2) return byTag;
+  const fallback = sidebarRelated(current);
+  const seen = new Set(byTag.map((x) => x.link));
+  for (const item of fallback) {
+    if (byTag.length >= 3) break;
+    if (!item.link || seen.has(item.link)) continue;
+    byTag.push(item);
+    seen.add(item.link);
+  }
+  return byTag;
 });
 
 function href(link?: string) {

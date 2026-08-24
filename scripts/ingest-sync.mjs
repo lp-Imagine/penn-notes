@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 /**
- * Validate website/sync/** Markdown against the ai-article sync contract.
+ * Validate ai-article synced Markdown across both legacy website/sync/ and
+ * current website/<section>/ paths (any file with `source: ai-article`).
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const syncRoot = path.join(root, "website", "sync");
-const SECTIONS = new Set(["web", "ui", "tech", "computer", "agent", "misc"]);
+const websiteRoot = path.join(root, "website");
+const syncRoot = path.join(websiteRoot, "sync");
+const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
+const SECTIONS = new Set(NOTE_SECTIONS);
 const REQUIRED = ["title", "date", "section", "source", "sourceId"];
 
 function walk(dir, acc = []) {
@@ -18,7 +21,7 @@ function walk(dir, acc = []) {
     const full = path.join(dir, name);
     const st = fs.statSync(full);
     if (st.isDirectory()) walk(full, acc);
-    else if (name.endsWith(".md")) acc.push(full);
+    else if (name.endsWith(".md") && name !== "index.md") acc.push(full);
   }
   return acc;
 }
@@ -40,15 +43,27 @@ function parseFm(raw) {
 function main() {
   if (!fs.existsSync(syncRoot)) {
     fs.mkdirSync(syncRoot, { recursive: true });
-    console.log("ingest-sync: created website/sync/");
-    return;
   }
 
-  const files = walk(syncRoot);
+  const candidates = [];
+
+  for (const full of walk(syncRoot)) {
+    candidates.push(full);
+  }
+
+  for (const section of NOTE_SECTIONS) {
+    for (const full of walk(path.join(websiteRoot, section))) {
+      const raw = fs.readFileSync(full, "utf8");
+      if (/^source:\s*ai-article\s*$/m.test(raw)) {
+        candidates.push(full);
+      }
+    }
+  }
+
   const errors = [];
   const seen = new Map();
 
-  for (const full of files) {
+  for (const full of candidates) {
     const rel = path.relative(root, full);
     const raw = fs.readFileSync(full, "utf8");
     const fm = parseFm(raw);
@@ -82,7 +97,7 @@ function main() {
     process.exit(1);
   }
 
-  console.log(`ingest-sync: ok (${files.length} file(s))`);
+  console.log(`ingest-sync: ok (${candidates.length} file(s))`);
 }
 
 main();

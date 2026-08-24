@@ -1,0 +1,693 @@
+/* Home: hide default hero/features */
+.VPHome .VPHero,
+.VPHome .VPFeatures {
+  display: none !important;
+}
+
+.VPHome .VPContent {
+  padding-top: 0 !important;
+}
+
+.VPHome .VPContent .content,
+.VPHome .content-container {
+  max-width: 100% !important;
+}
+
+/* 与栏目页共用同一内容宽度：max --page-max-width，左右 24px */
+.VPHome .vp-doc.container {
+  max-width: var(--page-max-width) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.VPHome .vp-doc > div {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.home-wrap {
+  max-width: 100%;
+  margin: 0;
+  padding: 48px 0 72px;
+}
+
+.home-hero {
+  margin-bottom: 36px;
+}
+
+.VPHome .vp-doc .home-headline {
+  margin: 0 0 12px;
+  font-size: clamp(2.4rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--link);
+  border: none;
+}
+
+.VPHome .vp-doc .home-tagline {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.VPHome .vp-doc .home-sub {
+  margin: 0 0 28px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.home-btn--primary {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff !important;
+}
+
+.home-btn--primary:hover {
+  filter: brightness(1.1);
+}
+
+.home-btn--text {
+  padding: 0;
+  color: var(--text) !important;
+  background: transparent;
+}
+
+.home-btn--text:hover {
+  color: var(--link) !important;
+}
+
+/* Home sections：去套娃卡片，用分隔线分区 */
+.home-section {
+  margin-bottom: 44px;
+}
+
+.home-section--pillars {
+  margin-bottom: 48px;
+}
+
+.home-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
+.VPHome .vp-doc .home-section-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  border: none;
+}
+
+.home-more {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--link) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.home-more:hover {
+  color: var(--link-hover) !important;
+}
+
+.home-empty {
+  margin: 8px 0 0;
+  color: var(--text-3);
+  font-size: 0.95rem;
+}
+
+.home-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 960px) {
+  .home-pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .home-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-decoration: none !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.home-pillar:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  background: var(--surface-2);
+}
+
+.VPHome .vp-doc .home-pillar-title,
+.home-pillar-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 650;
+  color: var(--text);
+  border: none;
+  line-height: 1.3;
+}
+
+.VPHome .vp-doc .home-pillar-desc,
+.home-pillar-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.VPHome .vp-doc .home-pillar-meta,
+.home-pillar-meta {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-3);
+}
+
+.home-note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-decoration: none !important;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.home-note:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: var(--surface-2);
+}
+
+.home-note-thumb {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: var(--surface-2);
+}
+
+.home-note-thumb--empty {
+  display: block;
+  border: 1px dashed var(--border);
+}
+
+.home-note-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.home-note-body time {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.VPHome .vp-doc .home-note-title,
+.home-note-title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  border: none;
+}
+
+.home-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-feed-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 12px 14px;
+  padding: 14px 0;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+  text-decoration: none !important;
+}
+
+.home-feed-item:first-child {
+  padding-top: 4px;
+}
+
+.home-feed-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.home-feed-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--link);
+  white-space: nowrap;
+}
+
+.VPHome .vp-doc .home-feed-title,
+.home-feed-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 550;
+  line-height: 1.45;
+  color: var(--text);
+  border: none;
+}
+
+.home-feed-item:hover .home-feed-title {
+  color: var(--link);
+}
+
+.home-feed-item time {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .home-feed-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .home-feed-item time {
+    grid-column: 2;
+  }
+}
+
+.home-block {
+  margin-bottom: 40px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.VPHome .vp-doc .home-block-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+  border: none;
+  color: var(--text);
+}
+
+.VPHome .vp-doc .home-block-desc {
+  margin: 0 0 18px;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+@media (min-width: 960px) {
+  .news-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  text-decoration: none !important;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.news-card:hover {
+  background: var(--surface-2);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.news-card time {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.VPHome .vp-doc .news-card-title {
+  display: block;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  border: none;
+}
+
+.news-card-action {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--link);
+}
+
+.news-card--media {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+  padding: 12px;
+}
+
+.news-card-thumb {
+  width: 88px;
+  min-width: 88px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.news-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.news-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+@media (max-width: 640px) {
+  .news-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.news-pillar {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.news-pillar-title {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.news-pillar-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+/* ---- AI 动态页 ---- */
+.vp-doc .news-page .news-hero {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: none;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
+.vp-doc .news-hero-meta {
+  margin-top: 12px;
+}
+
+.vp-doc .news-block {
+  margin: 0 0 40px;
+}
+
+.vp-doc .news-block-head {
+  margin: 0 0 16px;
+}
+
+.vp-doc .news-block-title {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  color: var(--text) !important;
+}
+
+.vp-doc .news-block-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+
+.news-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin: 0 0 8px;
+}
+
+.news-toolbar .news-filter {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.news-toolbar-aside {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.news-toolbar-count {
+  font-size: 13px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.news-toolbar-aside .news-rss-subscribe--compact {
+  margin: 0;
+}
+
+.news-archive {
+  margin-bottom: 0;
+}
+
+.news-feed-more {
+  display: flex;
+  justify-content: center;
+  padding: 22px 0 4px;
+}
+
+.news-feed-more-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.news-feed-more-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+/* 日报归档：紧凑日期链 */
+.news-digest-archive .news-digest-month + .news-digest-month {
+  margin-top: 20px;
+}
+
+.vp-doc .news-digest-month-label,
+.news-digest-month-label {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.news-digest-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.news-digest-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.25rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none !important;
+  font-size: 13px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2) !important;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.news-digest-date:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  color: var(--link) !important;
+  background: var(--surface-2);
+}
+
+.news-digest-date time {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .news-toolbar-aside {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.vp-doc p:has(> img[alt="配图"]) {
+  margin: 8px 0 16px;
+}
+
+.vp-doc img[alt="配图"] {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0;
+  border: 1px solid var(--border);
+}
+
+/* Article image zoom preview (medium-zoom) */
+.vp-doc img:not(.no-zoom):not(.about-friend-avatar):not(.VPImage) {
+  cursor: zoom-in;
+}
+
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 100;
+}
+
+
+.home-empty {
+  margin: 12px 0 0;
+  color: var(--text-3);
+}
+
+.news-home-empty a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.news-home-empty a:hover {
+  color: var(--link-hover);
+}
+
+.home-layout .VPSidebar,
+.home-layout .VPDocAside {
+  display: none !important;
+}
+
+.home-layout .VPDoc .container {
+  padding-top: 0 !important;
+}
+
+/* Section index pages (栏目目录)
+ * 与首页同一内容宽度：max --page-max-width，左右 24px，水平居中 */
+.VPDoc:has(.section-page) .aside {
+  display: none !important;
+}
+
+.VPDoc:has(.section-page) .content-container {
+  max-width: 100% !important;
+}
+
+.vp-doc .section-page {
+  max-width: 100%;
+}

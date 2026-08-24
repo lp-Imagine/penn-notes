@@ -83,9 +83,10 @@ function copyMonthNews(month) {
 
 function buildSidebar(months, monthFiles) {
   return {
-    "/news/": months.map((month) => ({
+    "/news/": months.map((month, index) => ({
       text: month,
-      collapsed: false,
+      // 仅展开最新月份，历史月份默认折叠
+      collapsed: index !== 0,
       items: monthFiles[month].map((item) => ({
         text: item.date,
         link: `/news/${month}/${item.slug}`,
@@ -110,6 +111,8 @@ function buildNewsIndex(months, monthFiles, itemCount = 0) {
     "title: AI 动态",
     "description: 业界、产品、模型、开源与开发者工具 — 按日整理的 AI 要闻",
     "outline: false",
+    "sidebar: false",
+    "aside: false",
     "prev: false",
     "next: false",
     "---",

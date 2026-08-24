@@ -4,6 +4,8 @@ date: 2022-09-05
 tags:
   - JavaScript
 section: web
+series: Promise 系列
+seriesOrder: 2
 ---
 
 # Promise(二)：手动实现一个 Promise

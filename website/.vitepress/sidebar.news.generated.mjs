@@ -101,7 +101,7 @@ export default {
     },
     {
       "text": "2026-07",
-      "collapsed": false,
+      "collapsed": true,
       "items": [
         {
           "text": "2026-07-31",
