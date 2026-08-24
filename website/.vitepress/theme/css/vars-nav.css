@@ -162,6 +162,8 @@ body {
     flex: 1 1 0;
     min-width: 0;
     overflow: hidden;
+    /* 占满搜索与右侧 Extra 之间的空间，链接仍靠右（VitePress 默认观感） */
+    justify-content: flex-end;
   }
 
   .VPNavBarMenu .VPNavBarMenuLink,
