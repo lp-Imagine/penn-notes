@@ -166,13 +166,13 @@ function shouldDropImageRef(src) {
     const hash = path.basename(src).replace(/\.[a-z]+$/i, "");
     if (BAD_LOCAL_HASHES.has(hash)) return true;
     const full = path.join(publicNews, src.slice(NEWS_PUBLIC_BASE.length));
-    if (fs.existsSync(full)) {
-      try {
-        const buf = fs.readFileSync(full);
-        if (isLogoOrPlaceholder(src, buf)) return true;
-      } catch {
-        /* ignore */
-      }
+    // 文件不存在：Vite/Rollup 会把 markdown 里的绝对路径当 import 解析并让构建失败
+    if (!fs.existsSync(full)) return true;
+    try {
+      const buf = fs.readFileSync(full);
+      if (isLogoOrPlaceholder(src, buf)) return true;
+    } catch {
+      return true;
     }
   }
   return false;

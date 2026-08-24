@@ -314,11 +314,7 @@ function buildHome(allBySection) {
       .join("、");
     const desc =
       groups && groups !== s.title && groups !== s.nav ? groups : s.desc;
-    return `  <a class="home-pillar" href="${link(s.link)}">
-    <span class="home-pillar-title">${escapeHtml(s.title)}</span>
-    <span class="home-pillar-desc">${escapeHtml(desc)}</span>
-    <span class="home-pillar-meta">${n} 篇</span>
-  </a>`;
+    return `  <a class="home-pillar" href="${link(s.link)}"><span class="home-pillar-title">${escapeHtml(s.title)}</span><span class="home-pillar-desc">${escapeHtml(desc)}</span><span class="home-pillar-meta">${n} 篇</span></a>`;
   }).join("\n");
 
   const noteItems =
@@ -330,13 +326,7 @@ ${recent
     const thumb = r.cover
       ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="" loading="lazy" />`
       : `<span class="home-note-thumb home-note-thumb--empty" aria-hidden="true"></span>`;
-    return `  <a class="home-note" href="${link(r.link)}">
-    ${thumb}
-    <span class="home-note-body">
-      <time datetime="${r.date}">${r.date}</time>
-      <span class="home-note-title">${escapeHtml(r.title)}</span>
-    </span>
-  </a>`;
+    return `  <a class="home-note" href="${link(r.link)}">${thumb}<span class="home-note-body"><time datetime="${r.date}">${r.date}</time><span class="home-note-title">${escapeHtml(r.title)}</span></span></a>`;
   })
   .join("\n")}
 </div>`;

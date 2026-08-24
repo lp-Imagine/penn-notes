@@ -15,36 +15,12 @@ layout: home
 
   <section class="home-section home-section--pillars" aria-label="浏览栏目">
     <div class="home-pillars">
-  <a class="home-pillar" href="/penn-notes/web/">
-    <span class="home-pillar-title">JS &amp; 框架</span>
-    <span class="home-pillar-desc">JavaScript、Vue、React</span>
-    <span class="home-pillar-meta">27 篇</span>
-  </a>
-  <a class="home-pillar" href="/penn-notes/ui/">
-    <span class="home-pillar-title">样式</span>
-    <span class="home-pillar-desc">HTML、CSS</span>
-    <span class="home-pillar-meta">18 篇</span>
-  </a>
-  <a class="home-pillar" href="/penn-notes/tech/">
-    <span class="home-pillar-title">工具备忘</span>
-    <span class="home-pillar-desc">常用文档、GitHub、Node.js</span>
-    <span class="home-pillar-meta">13 篇</span>
-  </a>
-  <a class="home-pillar" href="/penn-notes/computer/">
-    <span class="home-pillar-title">浏览器</span>
-    <span class="home-pillar-desc">浏览器渲染与 Chrome 扩展</span>
-    <span class="home-pillar-meta">2 篇</span>
-  </a>
-  <a class="home-pillar" href="/penn-notes/agent/">
-    <span class="home-pillar-title">AI Agent</span>
-    <span class="home-pillar-desc">实战、提示词、其它</span>
-    <span class="home-pillar-meta">4 篇</span>
-  </a>
-  <a class="home-pillar" href="/penn-notes/misc/">
-    <span class="home-pillar-title">杂项</span>
-    <span class="home-pillar-desc">随笔、其它</span>
-    <span class="home-pillar-meta">2 篇</span>
-  </a>
+  <a class="home-pillar" href="/penn-notes/web/"><span class="home-pillar-title">JS &amp; 框架</span><span class="home-pillar-desc">JavaScript、Vue、React</span><span class="home-pillar-meta">27 篇</span></a>
+  <a class="home-pillar" href="/penn-notes/ui/"><span class="home-pillar-title">样式</span><span class="home-pillar-desc">HTML、CSS</span><span class="home-pillar-meta">18 篇</span></a>
+  <a class="home-pillar" href="/penn-notes/tech/"><span class="home-pillar-title">工具备忘</span><span class="home-pillar-desc">常用文档、GitHub、Node.js</span><span class="home-pillar-meta">13 篇</span></a>
+  <a class="home-pillar" href="/penn-notes/computer/"><span class="home-pillar-title">浏览器</span><span class="home-pillar-desc">浏览器渲染与 Chrome 扩展</span><span class="home-pillar-meta">2 篇</span></a>
+  <a class="home-pillar" href="/penn-notes/agent/"><span class="home-pillar-title">AI Agent</span><span class="home-pillar-desc">实战、提示词、其它</span><span class="home-pillar-meta">4 篇</span></a>
+  <a class="home-pillar" href="/penn-notes/misc/"><span class="home-pillar-title">杂项</span><span class="home-pillar-desc">随笔、其它</span><span class="home-pillar-meta">2 篇</span></a>
     </div>
   </section>
 
@@ -54,48 +30,12 @@ layout: home
       <a class="home-more" href="/penn-notes/agent/">查看更多</a>
     </div>
 <div class="home-note-list">
-  <a class="home-note" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践">
-    <img class="home-note-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-08-20">2026-08-20</time>
-      <span class="home-note-title">Prompt Cache与上下文管理实践</span>
-    </span>
-  </a>
-  <a class="home-note" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战">
-    <img class="home-note-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-08-18">2026-08-18</time>
-      <span class="home-note-title">TypeScript6装饰器迁移实战</span>
-    </span>
-  </a>
-  <a class="home-note" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践">
-    <img class="home-note-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-08-17">2026-08-17</time>
-      <span class="home-note-title">AI Agent幻觉缓解：验证与重试实践</span>
-    </span>
-  </a>
-  <a class="home-note" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏">
-    <img class="home-note-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-08-12">2026-08-12</time>
-      <span class="home-note-title">记忆翻车复盘：让Agent长任务不跑偏</span>
-    </span>
-  </a>
-  <a class="home-note" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰">
-    <img class="home-note-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-08-05">2026-08-05</time>
-      <span class="home-note-title">个人知识库+AI，怎么搭才不吃灰</span>
-    </span>
-  </a>
-  <a class="home-note" href="/penn-notes/misc/essays/模型更快更贵该怎么选">
-    <img class="home-note-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" />
-    <span class="home-note-body">
-      <time datetime="2026-07-29">2026-07-29</time>
-      <span class="home-note-title">模型更快更贵，该怎么选</span>
-    </span>
-  </a>
+  <a class="home-note" href="/penn-notes/agent/prompts/Prompt-Cache与上下文管理实践"><img class="home-note-thumb" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-08-20">2026-08-20</time><span class="home-note-title">Prompt Cache与上下文管理实践</span></span></a>
+  <a class="home-note" href="/penn-notes/web/javascript/TypeScript6装饰器迁移实战"><img class="home-note-thumb" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-08-18">2026-08-18</time><span class="home-note-title">TypeScript6装饰器迁移实战</span></span></a>
+  <a class="home-note" href="/penn-notes/agent/practice/AI-Agent幻觉缓解验证与重试实践"><img class="home-note-thumb" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-08-17">2026-08-17</time><span class="home-note-title">AI Agent幻觉缓解：验证与重试实践</span></span></a>
+  <a class="home-note" href="/penn-notes/agent/practice/记忆翻车复盘让Agent长任务不跑偏"><img class="home-note-thumb" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-08-12">2026-08-12</time><span class="home-note-title">记忆翻车复盘：让Agent长任务不跑偏</span></span></a>
+  <a class="home-note" href="/penn-notes/agent/misc/个人知识库+AI怎么搭才不吃灰"><img class="home-note-thumb" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-08-05">2026-08-05</time><span class="home-note-title">个人知识库+AI，怎么搭才不吃灰</span></span></a>
+  <a class="home-note" href="/penn-notes/misc/essays/模型更快更贵该怎么选"><img class="home-note-thumb" src="/sync/cms5uvo220003zzin09y3tvcm/cover.jpg" alt="" loading="lazy" /><span class="home-note-body"><time datetime="2026-07-29">2026-07-29</time><span class="home-note-title">模型更快更贵，该怎么选</span></span></a>
 </div>
   </section>
 
