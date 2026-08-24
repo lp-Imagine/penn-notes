@@ -13,7 +13,8 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 3. `scripts/summarize-news.mjs` — DeepSeek（或其它 OpenAI 兼容 API）去重 / 分类 / 中文摘要
 4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`
 5. `scripts/resolve-news-images.mjs` — 从原文抓 `og:image`（HTTPS 外链优先；失败则落盘 `website/public/news/`）
-6. push 触发现有 CI 构建部署
+6. 提交 **`news/` 源稿 + 本地化配图 + `.state`**（首页 / 侧栏 / JSON / feed / `website/news/` 拷贝为构建生成物，不进 git）
+7. 构建部署时 `sync:news` + `build:home` 等重生生成物，再发布到 GitHub Pages
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
 
@@ -91,7 +92,7 @@ AI 动态提供 RSS，地址：
 
 `https://lp-imagine.github.io/penn-notes/news/feed.xml`
 
-本地构建后由 `npm run sync:news` 自动生成 `website/public/news/feed.xml`。可用 Feedly、Follow 等阅读器订阅。
+本地 / CI 构建时由 `npm run sync:news` 生成 `website/public/news/feed.xml`（生成物不进 git，线上在 Pages 构建产物中）。可用 Feedly、Follow 等阅读器订阅。
 
 ## 质量监控
 

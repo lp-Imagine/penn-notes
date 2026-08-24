@@ -5,6 +5,20 @@ yarn-error.log
 
 website/.vitepress/dist
 website/.vitepress/cache
+website/.vitepress/.temp
+
+# 构建生成物：本地 npm run dev / CI prebuild 时重生，不进 git
+website/.vitepress/*.generated.*
+website/public/news/feed.xml
+website/public/notes/feed.xml
+website/index.md
+website/web/index.md
+website/ui/index.md
+website/tech/index.md
+website/computer/index.md
+website/agent/index.md
+website/misc/index.md
+website/news/
 
 urls.txt
 .DS_Store

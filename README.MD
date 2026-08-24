@@ -13,10 +13,12 @@ npm run dev
 
 打开终端提示的本地地址。
 
+> 首页、侧栏、RSS、`website/news/` 等是构建生成物，**不进 git**。`npm run dev` / `npm run build` 会自动从 `news/` 与笔记正文重生；裸 `vitepress` 命令前请先跑上述脚本。
+
 ## 常用命令
 
 ```bash
-npm run dev           # 开发
+npm run dev           # 开发（含生成首页/侧栏/资讯同步）
 npm run build         # ingest + 资讯同步 + 首页/侧栏 + 构建
 npm run ingest        # 校验 website/sync 契约
 npm run sync:news     # 同步 news/ → website/news/
