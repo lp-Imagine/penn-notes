@@ -41,3 +41,17 @@ npm run build:home    # 仅重建首页与侧栏
 ## 部署
 
 Push `master`/`main`，或发送 `repository_dispatch`（`blog-sync`）触发 GitHub Actions，发布到 `gh-pages`。
+
+线上域名：https://penn-notes.draftly.cn/
+
+### 百度推送（可选）
+
+站点已在百度搜索资源平台验证后，可主动推送 URL（加快发现，不保证立刻收录）：
+
+```bash
+export BAIDU_PUSH_TOKEN=你的token   # 站长平台 → 资源提交 → API 提交
+npm run baidu:push                 # 推首页/栏目/最近日报与笔记
+npm run baidu:push -- --dry-run    # 只打印将要推送的 URL
+```
+
+token 勿提交进 git。

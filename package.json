@@ -24,6 +24,7 @@
     "preview": "vitepress preview website",
     "build:sitemap": "node scripts/build-sitemap.mjs",
     "localize:images": "node scripts/localize-legacy-images.mjs",
+    "baidu:push": "node scripts/baidu-push.mjs",
     "test": "node scripts/test-scripts.mjs"
   },
   "devDependencies": {
