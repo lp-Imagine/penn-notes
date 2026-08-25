@@ -120,14 +120,26 @@ jobs:
           echo "ci-checkout: ok $(git rev-parse --short HEAD)"
           du -sh . | awk '{print "ci-checkout: worktree "$1}'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
-          cache: npm
-        env:
-          # 加速 Node 发行版下载（setup-node）
-          NODE_DIST_URL: https://npmmirror.com/mirrors/node
+      # 不用 actions/setup-node：会从 GitHub 下 Node 发行版，国内易超时
+      - name: Ensure Node.js 20+
+        run: |
+          set -euo pipefail
+          if command -v node >/dev/null 2>&1; then
+            MAJOR="$(node -p "process.versions.node.split('.')[0]")"
+            if [ "$MAJOR" -ge 20 ]; then
+              echo "using existing $(node -v) / npm $(npm -v)"
+              exit 0
+            fi
+          fi
+          VER=24.19.0
+          echo "installing Node $VER from npmmirror…"
+          curl -fsSL --retry 3 \
+            "https://npmmirror.com/mirrors/node/v${VER}/node-v${VER}-linux-x64.tar.xz" \
+            -o /tmp/node-linux-x64.tar.xz
+          tar -xJf /tmp/node-linux-x64.tar.xz -C /usr/local --strip-components=1
+          hash -r || true
+          node -v
+          npm -v
 
       - name: Install
         run: |
