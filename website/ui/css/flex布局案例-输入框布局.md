@@ -2,7 +2,10 @@
 title: flex布局案例-输入框布局
 date: 2019-12-25
 tags:
+  - Flex
   - CSS
+series: Flex 布局系列
+seriesOrder: 6
 section: ui
 ---
 

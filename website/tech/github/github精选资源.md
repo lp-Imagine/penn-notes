@@ -3,6 +3,8 @@ title: GitHub精选资源
 date: 2022-09-06
 tags:
   - GitHub
+series: GitHub 系列
+seriesOrder: 3
 section: tech
 ---
 

@@ -2,13 +2,14 @@
 title: 常用meta整理
 date: 2020-02-21
 tags:
-  - null
+  - HTML
+  - meta
 section: ui
 ---
 
 # 常用meta整理
 
-<p class="article-meta"><time datetime="2020-02-21">2020-02-21</time></p>
+<p class="article-meta"><time datetime="2020-02-21">2020-02-21</time><span class="article-tag">HTML</span><span class="article-tag">meta</span></p>
 
 ## &lt;meta\&gt; 元素
 

@@ -60,3 +60,16 @@ npm run baidu:push -- --dry-run    # 只打印将要推送的 URL
 - **日报部署成功**会推首页/栏目 + 最新日报等（`--mode=daily`）
 
 未配置 secret 或额度用尽时会跳过，不阻断部署。token 勿提交进 git。
+
+### 访问统计 Umami（可选）
+
+构建时若配置了 Umami，会在页面注入统计脚本（见 `website/.vitepress/config.ts`）：
+
+仓库 Settings → Secrets：
+
+| Secret | 说明 |
+|--------|------|
+| `UMAMI_URL` | 实例根地址，如 `https://umami.example.com` |
+| `UMAMI_WEBSITE_ID` | 站点 Website ID |
+
+CI / 日报构建会读取上述变量；未配置则不注入，不影响部署。

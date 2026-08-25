@@ -2,13 +2,13 @@
 title: nodejs递归读取所有文件
 date: 2019-12-26
 tags:
-  - null
+  - Node.js
 section: tech
 ---
 
 # nodejs递归读取所有文件
 
-<p class="article-meta"><time datetime="2019-12-26">2019-12-26</time></p>
+<p class="article-meta"><time datetime="2019-12-26">2019-12-26</time><span class="article-tag">Node.js</span></p>
 
 ```js
 

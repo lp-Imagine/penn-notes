@@ -82,6 +82,9 @@ jobs:
       # prebuild 会 sync:news + build:home 等，生成物不必进主分支
       - name: Build site
         if: steps.commit.outputs.changed == 'true'
+        env:
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build
 
       - name: Deploy to gh-pages

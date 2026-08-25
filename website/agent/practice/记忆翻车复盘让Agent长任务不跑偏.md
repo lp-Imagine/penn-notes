@@ -2,7 +2,12 @@
 title: 记忆翻车复盘：让Agent长任务不跑偏
 date: 2026-08-12
 summary: 围绕「Agent 的记忆与状态管理：长任务不跑偏的工程手段」的一篇干货型稿，读完能带走可执行要点。
-tags: []
+tags:
+  - AI Agent
+  - 记忆
+  - 长任务
+series: Agent 实践系列
+seriesOrder: 1
 section: agent
 group: practice
 source: ai-article

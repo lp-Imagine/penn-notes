@@ -3,8 +3,8 @@ title: Claude Code 实战手册开源：编码秘籍
 date: 2026-07-28
 summary: 一本社区驱动的 Claude Code 实战手册正式开源，聚焦真实开发痛点：从环境配置避坑、高频提示词模板到多文件重构工作流，覆盖单元测试、重构与避坑技巧。每个案例可复制验证，10分钟跑通，助你告别低效编码。
 tags:
-  - Claude
-  - Code
+  - Claude Code
+  - 工具
 section: tech
 group: docs
 source: ai-article
@@ -14,7 +14,7 @@ draft: false
 ---
 # Claude Code 实战手册开源：编码秘籍
 
-<p class="article-meta"><time datetime="2026-07-28">2026-07-28</time><span class="article-tag">Claude</span><span class="article-tag">Code</span></p>
+<p class="article-meta"><time datetime="2026-07-28">2026-07-28</time><span class="article-tag">Claude Code</span><span class="article-tag">工具</span></p>
 
 <img class="article-cover" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="「Claude Code 实战手册开源：编码秘籍」封面" />
 

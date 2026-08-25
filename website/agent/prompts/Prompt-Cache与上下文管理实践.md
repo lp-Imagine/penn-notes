@@ -2,7 +2,10 @@
 title: Prompt Cache与上下文管理实践
 date: 2026-08-20
 summary: 从最小字典缓存开始，逐步加入TTL、LRU淘汰、Token精确截断与多字段缓存键设计，最后交付生产级pytest测试清单。这篇文章用可运行代码演示每个步骤，帮助你在Context Window约束下提高Cache命中率，降低成本和延迟。
-tags: []
+tags:
+  - Prompt
+  - Cache
+  - 上下文
 section: agent
 group: prompts
 source: ai-article

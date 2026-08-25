@@ -2,6 +2,9 @@
 title: Git修改分支名
 date: 2022-08-11
 tags:
+  - Git
+series: Git 系列
+seriesOrder: 3
 section: tech
 ---
 

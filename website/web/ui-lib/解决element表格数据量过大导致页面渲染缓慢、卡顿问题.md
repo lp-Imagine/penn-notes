@@ -2,6 +2,10 @@
 title: 解决element表格数据量过大导致页面渲染缓慢、卡顿问题
 date: 2022-09-06
 tags:
+  - Element-UI
+  - 性能
+series: Element-UI 系列
+seriesOrder: 3
 section: web
 ---
 

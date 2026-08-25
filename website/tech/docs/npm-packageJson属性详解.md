@@ -2,13 +2,14 @@
 title: npm packageJson属性详解
 date: 2020-04-08
 tags:
-  - null
+  - npm
+  - package.json
 section: tech
 ---
 
 # npm package.json属性详解
 
-<p class="article-meta"><time datetime="2020-04-08">2020-04-08</time></p>
+<p class="article-meta"><time datetime="2020-04-08">2020-04-08</time><span class="article-tag">npm</span><span class="article-tag">package.json</span></p>
 
 > 本文转自&lt;https://www.cnblogs.com/tzyy/p/5193811.html&gt;，作者：TZYY
 

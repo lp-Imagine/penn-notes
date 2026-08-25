@@ -2,13 +2,13 @@
 title: yaml语言教程
 date: 2021-12-25
 tags:
-  - null
+  - YAML
 section: tech
 ---
 
 # yaml语言教程
 
-<p class="article-meta"><time datetime="2021-12-25">2021-12-25</time></p>
+<p class="article-meta"><time datetime="2021-12-25">2021-12-25</time><span class="article-tag">YAML</span></p>
 
 ## 简介
 

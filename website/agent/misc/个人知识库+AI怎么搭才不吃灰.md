@@ -2,7 +2,10 @@
 title: 个人知识库+AI，怎么搭才不吃灰
 date: 2026-08-05
 summary: 多数人搭知识库失败，不是工具没选对，而是把AI当装饰而非入口。本文从一次真实翻车复盘出发，给出简化结构、每日触发、反馈循环三步改造方案，附可执行检查清单。
-tags: []
+tags:
+  - 知识库
+  - AI
+  - 工作流
 section: agent
 group: misc
 source: ai-article

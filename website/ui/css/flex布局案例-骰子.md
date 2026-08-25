@@ -2,7 +2,10 @@
 title: flex布局案例-骰子
 date: 2019-12-25
 tags:
+  - Flex
   - CSS
+series: Flex 布局系列
+seriesOrder: 5
 section: ui
 ---
 

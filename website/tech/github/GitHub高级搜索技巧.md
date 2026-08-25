@@ -3,6 +3,8 @@ title: GitHub高级搜索技巧
 date: 2020-12-25
 tags:
   - GitHub
+series: GitHub 系列
+seriesOrder: 2
 section: tech
 ---
 

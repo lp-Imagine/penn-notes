@@ -2,7 +2,9 @@
 title: TypeScript6装饰器迁移实战
 date: 2026-08-18
 summary: 针对TypeScript6正式版装饰器，解决前端工程从旧版迁移的编译报错问题，提供配置调整、分步迁移、生产级示例及边界处理方案，帮你避开绝大多数迁移坑，全是可落地的干货。
-tags: []
+tags:
+  - TypeScript
+  - 装饰器
 section: web
 group: javascript
 source: ai-article

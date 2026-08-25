@@ -12,6 +12,9 @@ const outDir = path.join(siteRoot, ".vitepress");
 
 const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
 
+/** Noise tags that should never appear in /tags/ (error tokens, bare fragments). */
+const TAG_DENYLIST = new Set(["terminated", "code"]);
+
 const SECTION_LABELS = {
   web: "JS & 框架",
   ui: "样式",
@@ -33,6 +36,12 @@ function walk(dir, acc = []) {
   return acc;
 }
 
+function keepTag(t) {
+  if (!t || t === "null" || t === "undefined") return false;
+  if (TAG_DENYLIST.has(t.toLowerCase())) return false;
+  return true;
+}
+
 function parseTags(yaml) {
   const tags = [];
   const block = yaml.match(/^tags:\s*\n((?:[ \t]+-\s+.+\n?)+)/m);
@@ -41,7 +50,7 @@ function parseTags(yaml) {
       const m = line.match(/^\s+-\s+(.+)$/);
       if (!m) continue;
       const t = m[1].trim().replace(/^["']|["']$/g, "");
-      if (t && t !== "null" && t !== "undefined") tags.push(t);
+      if (keepTag(t)) tags.push(t);
     }
     return tags;
   }
@@ -49,7 +58,7 @@ function parseTags(yaml) {
   if (inline) {
     for (const part of inline[1].split(",")) {
       const t = part.trim().replace(/^["']|["']$/g, "");
-      if (t && t !== "null" && t !== "undefined") tags.push(t);
+      if (keepTag(t)) tags.push(t);
     }
   }
   return tags;

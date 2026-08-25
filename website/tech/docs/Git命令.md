@@ -3,6 +3,8 @@ title: Git命令
 date: 2022-09-06
 tags:
   - Git
+series: Git 系列
+seriesOrder: 2
 section: tech
 ---
 

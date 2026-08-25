@@ -3,6 +3,8 @@ title: Git使用手册
 date: 2020-12-25
 tags:
   - Git
+series: Git 系列
+seriesOrder: 1
 section: tech
 ---
 

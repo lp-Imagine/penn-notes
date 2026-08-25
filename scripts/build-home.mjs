@@ -363,9 +363,7 @@ ${newsHeadlines
 </div>`;
 
   const latestHref = recent[0] ? link(recent[0].link) : link("/web/");
-  const notesMoreHref = recent[0]?.section
-    ? link(`/${recent[0].section}/`)
-    : link("/web/");
+  const notesMoreHref = link("/archive/");
 
   return `---
 layout: home

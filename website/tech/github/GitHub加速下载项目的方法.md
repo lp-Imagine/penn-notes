@@ -3,6 +3,8 @@ title: GitHub加速下载项目的方法
 date: 2020-03-09
 tags:
   - GitHub
+series: GitHub 系列
+seriesOrder: 1
 section: tech
 ---
 

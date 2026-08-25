@@ -39,7 +39,13 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Test
+        run: npm test
+
       - name: Build
+        env:
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build
 
       - name: Deploy to gh-pages

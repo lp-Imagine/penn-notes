@@ -257,7 +257,8 @@ export default defineConfig({
     footer: {
       message:
         'Penn Notes · 前端学习笔记 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a>',
-      copyright: "© 2020-present Penn · 记录前端路上的思考",
+      copyright:
+        '© 2020-present Penn · <a href="/notes/feed.xml">笔记 RSS</a> · <a href="/news/feed.xml">AI 动态 RSS</a>',
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

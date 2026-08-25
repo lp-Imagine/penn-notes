@@ -2,7 +2,10 @@
 title: flex布局语法
 date: 2019-12-25
 tags:
+  - Flex
   - CSS
+series: Flex 布局系列
+seriesOrder: 1
 section: ui
 ---
 

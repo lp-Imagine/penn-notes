@@ -15,6 +15,7 @@ next: false
       <div class="about-actions">
         <a class="home-btn home-btn--primary" href="https://github.com/lp-Imagine" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a class="home-btn home-btn--text" href="/news/">AI 动态</a>
+        <a class="home-btn home-btn--text" href="/notes/feed.xml">笔记 RSS</a>
         <a class="home-btn home-btn--text" href="/">浏览笔记</a>
       </div>
     </div>
@@ -48,6 +49,14 @@ next: false
       <a class="about-link" href="/news/">
         <span class="about-link-title">AI 动态</span>
         <span class="about-link-desc">每天自动更新的科技 / AI 精选</span>
+      </a>
+      <a class="about-link" href="/notes/feed.xml">
+        <span class="about-link-title">笔记 RSS</span>
+        <span class="about-link-desc">订阅笔记更新</span>
+      </a>
+      <a class="about-link" href="/news/feed.xml">
+        <span class="about-link-title">AI 动态 RSS</span>
+        <span class="about-link-desc">订阅每日精选，Feedly / Follow 可用</span>
       </a>
       <a class="about-link" href="/web/">
         <span class="about-link-title">JS &amp; 框架</span>

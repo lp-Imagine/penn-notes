@@ -2,13 +2,13 @@
 title: npm常用命令
 date: 2021-12-25
 tags:
-  - null
+  - npm
 section: tech
 ---
 
 # npm常用命令
 
-<p class="article-meta"><time datetime="2021-12-25">2021-12-25</time></p>
+<p class="article-meta"><time datetime="2021-12-25">2021-12-25</time><span class="article-tag">npm</span></p>
 
 ## 简介
 

@@ -2,7 +2,12 @@
 title: AI Agent幻觉缓解：验证与重试实践
 date: 2026-08-17
 summary: 本文从真实业务翻车场景切入，拆解AI Agent幻觉的核心解决手段：验证层3项可执行校验规则、重试机制2种触发逻辑，附实测A/B数据与可复用配置，帮读者落地降低幻觉率。
-tags: []
+tags:
+  - AI Agent
+  - 幻觉
+  - 重试
+series: Agent 实践系列
+seriesOrder: 2
 section: agent
 group: practice
 source: ai-article

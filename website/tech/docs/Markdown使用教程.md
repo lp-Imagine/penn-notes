@@ -2,13 +2,13 @@
 title: Markdown使用教程
 date: 2020-12-25
 tags:
-  - null
+  - Markdown
 section: tech
 ---
 
 # Markdown使用教程
 
-<p class="article-meta"><time datetime="2020-12-25">2020-12-25</time></p>
+<p class="article-meta"><time datetime="2020-12-25">2020-12-25</time><span class="article-tag">Markdown</span></p>
 
 ## 一、Markdown
 
