@@ -454,9 +454,12 @@
 @media (max-width: 640px) {
   .news-item-media,
   .section-card-media {
-    /* 移动端用 padding 比例盒，避免 iOS 上 aspect-ratio 仍可能收窄宽度 */
+    /*
+     * 继续用 padding 比例盒（避开 iOS 上 aspect-ratio 收窄宽度的问题），
+     * 比例从 16:9(~56%) 收到约 2.5:1(~40%)，头图不会半屏高。
+     */
     height: 0;
-    padding-bottom: 56.25%;
+    padding-bottom: 40%;
   }
 
   .news-item-thumb,
