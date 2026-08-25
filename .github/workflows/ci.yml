@@ -60,3 +60,10 @@ jobs:
           git commit -m "auto deploy, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
+
+      # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
+      - name: Baidu push (site)
+        env:
+          BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
+          BAIDU_SITE: https://penn-notes.draftly.cn
+        run: npm run baidu:push -- --mode=site --soft

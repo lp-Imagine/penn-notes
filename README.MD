@@ -54,4 +54,9 @@ npm run baidu:push                 # 推首页/栏目/最近日报与笔记
 npm run baidu:push -- --dry-run    # 只打印将要推送的 URL
 ```
 
-token 勿提交进 git。
+自动推送：在仓库 Settings → Secrets 添加 `BAIDU_PUSH_TOKEN` 后，
+
+- **CI 部署成功**会推首页/栏目/最近内容（`--mode=site`）
+- **日报部署成功**会推首页/栏目 + 最新日报等（`--mode=daily`）
+
+未配置 secret 或额度用尽时会跳过，不阻断部署。token 勿提交进 git。

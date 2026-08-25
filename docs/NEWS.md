@@ -66,6 +66,7 @@ curl -sS -X POST \
 | `LLM_API_KEY` | 是 | DeepSeek / OpenAI 等 API Key |
 | `LLM_BASE_URL` | 否 | 默认 `https://api.deepseek.com/v1` |
 | `LLM_MODEL` | 否 | 默认 `deepseek-chat` |
+| `BAIDU_PUSH_TOKEN` | 否 | 百度站长「API 提交」token；配置后日报/CI 部署会自动推送 URL |
 
 无 `LLM_API_KEY` 时脚本仍会写日报，但只用启发式摘要（质量较差）。
 

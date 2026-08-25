@@ -6,7 +6,8 @@
  *   export BAIDU_PUSH_TOKEN=你的token
  *   npm run baidu:push
  *   npm run baidu:push -- --dry-run
- *   npm run baidu:push -- --limit=20
+ *   npm run baidu:push -- --mode=daily --limit=30
+ *   npm run baidu:push -- --soft          # CI：失败不退出非 0
  *
  * 环境变量：
  *   BAIDU_PUSH_TOKEN  必填（站长平台 → 资源提交 → API 提交）
@@ -25,8 +26,24 @@ const TOKEN = process.env.BAIDU_PUSH_TOKEN || "";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
+const soft = args.includes("--soft");
+const modeArg = args.find((a) => a.startsWith("--mode="));
+const mode = modeArg ? modeArg.split("=")[1] : "site";
 const limitArg = args.find((a) => a.startsWith("--limit="));
-const limit = limitArg ? Number(limitArg.split("=")[1]) : 40;
+const limit = limitArg
+  ? Number(limitArg.split("=")[1])
+  : mode === "daily"
+    ? 30
+    : 40;
+
+function fail(msg, code = 1) {
+  console.error(msg);
+  if (soft) {
+    console.warn("baidu-push: --soft，忽略错误继续");
+    process.exit(0);
+  }
+  process.exit(code);
+}
 
 function siteUrl(p = "") {
   const clean = String(p).replace(/^\/+/, "");
@@ -76,8 +93,8 @@ function loadRecentDigestLinks(max = 10) {
   return out;
 }
 
-function collectUrls() {
-  const core = [
+function coreUrls() {
+  return [
     siteUrl("/"),
     siteUrl("news/"),
     siteUrl("tags/"),
@@ -87,9 +104,23 @@ function collectUrls() {
     siteUrl("ui/"),
     siteUrl("tech/"),
     siteUrl("agent/"),
+    siteUrl("computer/"),
+    siteUrl("misc/"),
   ];
+}
+
+function collectUrls() {
+  if (mode === "daily") {
+    // 日报后：首页/栏目 + 最新日报优先，再补近期笔记
+    return unique([
+      ...coreUrls(),
+      ...loadRecentDigestLinks(5),
+      ...loadRecentNoteLinks(8),
+    ]).slice(0, Math.max(1, limit));
+  }
+  // site：常规部署后推首页/栏目/最近内容
   return unique([
-    ...core,
+    ...coreUrls(),
     ...loadRecentDigestLinks(10),
     ...loadRecentNoteLinks(12),
   ]).slice(0, Math.max(1, limit));
@@ -115,17 +146,20 @@ async function push(urls) {
 
 async function main() {
   if (!TOKEN) {
-    console.error(
+    if (soft) {
+      console.warn("baidu-push: 未配置 BAIDU_PUSH_TOKEN，跳过");
+      return;
+    }
+    fail(
       "缺少 BAIDU_PUSH_TOKEN。\n" +
         "在百度站长平台 → 资源提交 → API 提交 复制 token，然后：\n" +
         "  export BAIDU_PUSH_TOKEN=xxxx\n" +
         "  npm run baidu:push",
     );
-    process.exit(1);
   }
 
   const urls = collectUrls();
-  console.log(`baidu-push: ${urls.length} url(s) → ${SITE}`);
+  console.log(`baidu-push: mode=${mode}, ${urls.length} url(s) → ${SITE}`);
   for (const u of urls) console.log(`  ${u}`);
 
   if (dryRun) {
@@ -137,8 +171,7 @@ async function main() {
   if (json) {
     console.log("baidu-push: response", json);
     if (json.error) {
-      console.error(`baidu-push: failed (${json.error}) ${json.message || ""}`);
-      process.exit(1);
+      fail(`baidu-push: failed (${json.error}) ${json.message || ""}`);
     }
     console.log(
       `baidu-push: success=${json.success ?? 0}, remain=${json.remain ?? "?"}`,
@@ -147,13 +180,11 @@ async function main() {
   }
 
   if (!ok) {
-    console.error(`baidu-push: HTTP ${status}\n${text}`);
-    process.exit(1);
+    fail(`baidu-push: HTTP ${status}\n${text}`);
   }
   console.log(text);
 }
 
 main().catch((err) => {
-  console.error("baidu-push:", err);
-  process.exit(1);
+  fail(`baidu-push: ${err?.stack || err}`);
 });
