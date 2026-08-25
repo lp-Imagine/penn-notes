@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Sync VitePress dist to Baota. Requires DEPLOY_HOST / DEPLOY_USER / DEPLOY_SSH_KEY / DEPLOY_PATH.
+# Publish VitePress dist to Baota via tar-over-ssh (faster than many-file rsync
+# from overseas runners). Unpack to a sibling dir, then sync into the live path
+# while preserving Baota's locked .user.ini.
 set -euo pipefail
 
 : "${DEPLOY_HOST:?DEPLOY_HOST is required}"
@@ -32,7 +34,7 @@ Path(sys.argv[1]).write_text(key)
 PY
 chmod 600 "$KEY_FILE"
 
-DEST="${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH%/}/"
+SITE="${DEPLOY_PATH%/}"
 SSH_CMD=(
   ssh
   -i "$KEY_FILE"
@@ -42,16 +44,33 @@ SSH_CMD=(
   -o StrictHostKeyChecking=accept-new
   -o ConnectTimeout=20
   -o ServerAliveInterval=15
-  -o ServerAliveCountMax=3
+  -o ServerAliveCountMax=6
 )
-echo "ci-rsync-dist: $DIST/ -> $DEST (port $PORT)"
 
-# Fail fast if key/firewall wrong (otherwise SSH may hang waiting for a password).
-"${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "test -d '${DEPLOY_PATH}' && echo ok"
+echo "ci-rsync-dist: packing $DIST -> ${DEPLOY_USER}@${DEPLOY_HOST}:${SITE} (port $PORT)"
 
-# shellcheck disable=SC2086
-rsync -az --delete --info=stats2 \
-  -e "${SSH_CMD[*]}" \
-  --exclude '.user.ini' \
-  "$DIST"/ \
-  "$DEST"
+BYTES="$(du -sb "$DIST" | awk '{print $1}')"
+echo "ci-rsync-dist: dist size ${BYTES} bytes"
+
+# Fail fast on auth / path problems before uploading.
+"${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "mkdir -p '$SITE' && echo ok"
+
+# Stream one archive (avoids per-file SSH round-trips that hang over CN links).
+# Remote: extract to .new, rsync into live site, keep .user.ini, drop staging.
+tar -C "$DIST" -czf - . | "${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" \
+  "set -euo pipefail
+   SITE='$SITE'
+   NEW=\"\${SITE}.new\"
+   rm -rf \"\$NEW\"
+   mkdir -p \"\$NEW\"
+   tar -xzf - -C \"\$NEW\"
+   if [ -f \"\$SITE/.user.ini\" ]; then
+     cp -a \"\$SITE/.user.ini\" \"\$NEW/.user.ini\" || true
+   fi
+   rsync -a --delete --exclude '.user.ini' \"\$NEW\"/ \"\$SITE\"/
+   rm -rf \"\$NEW\"
+   echo deploy-ok
+   ls -la \"\$SITE\" | head -n 8
+  "
+
+echo "ci-rsync-dist: done"

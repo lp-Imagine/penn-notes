@@ -11,7 +11,8 @@ on:
 
 concurrency:
   group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  # Keep in-flight deploy; canceling mid-upload leaves a half-synced site.
+  cancel-in-progress: false
 
 permissions:
   contents: write
