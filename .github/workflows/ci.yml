@@ -94,6 +94,9 @@ jobs:
   deploy-baota:
     needs: test
     runs-on: [self-hosted, baota]
+    # systemd 跑 runner 时往往不带 HOME，git --global 会直接失败
+    env:
+      HOME: /root
     steps:
       # 国内机直连 github.com 常失败，先改写 git URL 再 checkout
       - name: GitHub git mirror (CN)

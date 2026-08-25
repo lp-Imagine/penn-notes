@@ -115,6 +115,8 @@ jobs:
     needs: generate
     if: needs.generate.outputs.changed == 'true'
     runs-on: [self-hosted, baota]
+    env:
+      HOME: /root
     steps:
       - name: GitHub git mirror (CN)
         run: |
