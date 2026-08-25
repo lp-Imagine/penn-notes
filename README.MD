@@ -45,26 +45,53 @@ npm run build:home    # 仅重建首页与侧栏
 
 Push `master`/`main`，或发送 `repository_dispatch`（`blog-sync`）触发 GitHub Actions。流水线会构建两份静态站：
 
-1. `PENN_BASE=/` → rsync 到宝塔站点根目录（主站）
-2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份，路径带仓库前缀）
+1. `PENN_BASE=/` → **宝塔机 Self-hosted Runner 本机构建 + rsync**（主站）
+2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份，路径带仓库前缀；仍在 GitHub-hosted runner）
 
 canonical / sitemap / RSS / 百度推送始终指向主站 `https://penn-notes.draftly.cn`。AI 动态抓取与 LLM 仍在 GitHub Actions 上跑，不在轻量云执行。
 
-仓库 Settings → Secrets 需配置：
+### 宝塔 Self-hosted Runner（主站必需）
+
+海外 SCP 到国内轻量云经常超时，主站改为在服务器本机跑 `deploy-baota`。
+
+1. 仓库 **Settings → Actions → Runners → New self-hosted runner**，选 Linux x64，按页面命令下载。
+2. SSH 登录宝塔机，建议目录：`/opt/actions-runner`（勿放在站点 web 根下）。
+3. 配置时加上标签 **`baota`**（workflow 使用 `runs-on: [self-hosted, baota]`）：
+
+```bash
+./config.sh --url https://github.com/lp-Imagine/penn-notes --token <页面上的TOKEN> --labels baota --name baota
+```
+
+4. 安装依赖并以后台服务运行：
+
+```bash
+# Node 24（与 CI 一致；也可用 nvm）
+curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
+apt-get install -y nodejs rsync
+
+cd /opt/actions-runner
+sudo ./svc.sh install
+sudo ./svc.sh start
+sudo ./svc.sh status
+```
+
+5. Runner 进程用户需对站点目录可写（例如 `/www/wwwroot/penn-notes`）。若用 `www` 用户跑站点、用 `root` 跑 runner，一般可直接写；否则给 runner 用户 ACL/`chown` 写权限。
+
+6. 仓库 Secrets 至少保留：
 
 | Secret | 说明 |
 |--------|------|
-| `DEPLOY_HOST` | 轻量云公网 IP |
-| `DEPLOY_USER` | SSH 用户（一般为 `root`） |
-| `DEPLOY_SSH_KEY` | 部署私钥全文（`penn_notes_deploy`） |
 | `DEPLOY_PATH` | 宝塔站点根目录，如 `/www/wwwroot/penn-notes` |
-| `DEPLOY_PORT` | 可选，非 22 时填写 |
+
+`DEPLOY_HOST` / `DEPLOY_USER` / `DEPLOY_SSH_KEY` / `DEPLOY_PORT` 仅在 `DEPLOY_MODE=remote`（旧海外 SCP）时需要，本机部署可忽略。
 
 宝塔侧：纯静态 + HTTPS；伪静态用 `try_files $uri $uri/ $uri.html /index.html;`。站点目录里的 `.user.ini` 由面板锁定，rsync 会排除它，不必 `chown` 该文件。
 
-DNS：`penn-notes.draftly.cn` A 记录指向轻量云。GitHub Pages 不要再绑自定义域名。若 CI 里 rsync 超时，检查轻量云防火墙是否放行 22 端口。
+DNS：`penn-notes.draftly.cn` A 记录指向轻量云。GitHub Pages 不要再绑自定义域名。
 
 Pages 备份：仓库 Settings → Pages → Source 选 **Deploy from a branch**，Branch 为 `gh-pages` / `/ (root)`。国内访问 `github.io` 常不稳定，以主站为准。
+
+> 注意：Self-hosted runner 能执行任意 workflow 步骤，请保证仓库为私有，或只信任可推送代码的协作者。
 
 ### 百度推送（可选）
 

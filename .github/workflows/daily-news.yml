@@ -25,6 +25,9 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -72,14 +75,15 @@ jobs:
           if git diff --cached --quiet; then
             echo "No news changes to commit"
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "chore(news): daily digest $(TZ=Asia/Shanghai date +%F)"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接双发。
-      # 先推 Pages 备份（快），再传宝塔（海外 SSH 可能慢），避免备份站长期缺 CSS。
+      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接发 Pages；宝塔交给 self-hosted job。
       - name: Build (GitHub Pages backup)
         if: steps.commit.outputs.changed == 'true'
         env:
@@ -107,28 +111,40 @@ jobs:
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
 
+  deploy-baota:
+    needs: generate
+    if: needs.generate.outputs.changed == 'true'
+    runs-on: [self-hosted, baota]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.generate.outputs.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
       - name: Build (origin)
-        if: steps.commit.outputs.changed == 'true'
         env:
           PENN_BASE: /
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build
 
-      - name: Deploy to Baota
-        if: steps.commit.outputs.changed == 'true'
+      - name: Deploy to Baota (local)
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_MODE: local
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_TIMEOUT_SEC: "1200"
         run: bash scripts/ci-rsync-dist.sh
 
       # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
       - name: Baidu push (daily)
-        if: steps.commit.outputs.changed == 'true'
         env:
           BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
           BAIDU_SITE: https://penn-notes.draftly.cn

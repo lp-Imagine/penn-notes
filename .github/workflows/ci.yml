@@ -90,9 +90,10 @@ jobs:
           echo "Deployed. CSS should be under /penn-notes/assets/"
           ls assets/style*.css | head -n 3
 
+  # 主站：在宝塔机 Self-hosted Runner 上构建并本地 rsync（避开海外 SCP）
   deploy-baota:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, baota]
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -113,14 +114,10 @@ jobs:
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build
 
-      - name: Deploy to Baota
+      - name: Deploy to Baota (local)
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_MODE: local
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-          DEPLOY_TIMEOUT_SEC: "1200"
         run: bash scripts/ci-rsync-dist.sh
 
       # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
