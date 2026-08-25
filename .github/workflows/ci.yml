@@ -21,8 +21,8 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-  build:
-    # ai-article 同步会先 push 封面/正文，再发 repository_dispatch；跳过中间 push，只保留 dispatch 触发部署
+  # ai-article 同步会先 push 封面/正文，再发 repository_dispatch；跳过中间 push，只保留 dispatch 触发部署
+  test:
     if: |
       github.event_name != 'push' ||
       !startsWith(github.event.head_commit.message, 'blog-sync:')
@@ -43,21 +43,22 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Build (origin)
-        env:
-          PENN_BASE: /
-          UMAMI_URL: ${{ secrets.UMAMI_URL }}
-          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
-        run: npm run build
+  # Pages 与宝塔并行：海外 SSH 再慢也不挡备份站更新
+  deploy-pages:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
 
-      - name: Deploy to Baota
-        env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-        run: bash scripts/ci-rsync-dist.sh
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
 
       - name: Build (GitHub Pages backup)
         env:
@@ -84,6 +85,38 @@ jobs:
           git commit -m "auto deploy, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
+
+  deploy-baota:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build (origin)
+        env:
+          PENN_BASE: /
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+        run: npm run build
+
+      - name: Deploy to Baota
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: bash scripts/ci-rsync-dist.sh
 
       # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
       - name: Baidu push (site)

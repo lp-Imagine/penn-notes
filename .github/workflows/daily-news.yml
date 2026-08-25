@@ -78,26 +78,8 @@ jobs:
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接构建并双发
-      # prebuild 会 sync:news + build:home 等，生成物不必进主分支
-      - name: Build (origin)
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          PENN_BASE: /
-          UMAMI_URL: ${{ secrets.UMAMI_URL }}
-          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
-        run: npm run build
-
-      - name: Deploy to Baota
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
-        run: bash scripts/ci-rsync-dist.sh
-
+      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接双发。
+      # 先推 Pages 备份（快），再传宝塔（海外 SSH 可能慢），避免备份站长期缺 CSS。
       - name: Build (GitHub Pages backup)
         if: steps.commit.outputs.changed == 'true'
         env:
@@ -123,6 +105,24 @@ jobs:
           git commit -m "auto deploy news, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
+
+      - name: Build (origin)
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          PENN_BASE: /
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+        run: npm run build
+
+      - name: Deploy to Baota
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: bash scripts/ci-rsync-dist.sh
 
       # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
       - name: Baidu push (daily)
