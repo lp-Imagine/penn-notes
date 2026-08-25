@@ -98,14 +98,25 @@ jobs:
     env:
       HOME: /root
     steps:
-      # 国内机直连 github.com 常失败，先改写 git URL 再 checkout
-      - name: GitHub git mirror (CN)
+      # 不用 actions/checkout：直连 github.com 易挂死，且无进度。显式走镜像并 --progress。
+      - name: Checkout (CN mirror)
         run: |
-          git config --global --unset-all url.https://ghfast.top/https://github.com/.insteadof || true
-          git config --global url."https://ghfast.top/https://github.com/".insteadOf "https://github.com/"
-
-      - name: Checkout
-        uses: actions/checkout@v5
+          set -euo pipefail
+          MIRROR_BASE="${GIT_MIRROR_BASE:-https://ghfast.top/https://github.com}"
+          REPO_URL="${MIRROR_BASE}/${GITHUB_REPOSITORY}.git"
+          WORK="${GITHUB_WORKSPACE}"
+          echo "ci-checkout: cloning $REPO_URL @ $GITHUB_SHA"
+          rm -rf "$WORK"
+          mkdir -p "$WORK"
+          # 浅克隆当前提交；含 public/news 配图时可能要数分钟～十几分钟，看进度别急着杀
+          git clone --progress --depth 1 --branch "${GITHUB_REF_NAME}" \
+            "$REPO_URL" "$WORK" \
+            || git clone --progress --depth 50 "$REPO_URL" "$WORK"
+          cd "$WORK"
+          git fetch --progress --depth 1 origin "$GITHUB_SHA" || true
+          git checkout --force "$GITHUB_SHA"
+          echo "ci-checkout: ok $(git rev-parse --short HEAD)"
+          du -sh . | awk '{print "ci-checkout: worktree "$1}'
 
       - name: Setup Node.js
         uses: actions/setup-node@v5

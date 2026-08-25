@@ -118,15 +118,24 @@ jobs:
     env:
       HOME: /root
     steps:
-      - name: GitHub git mirror (CN)
+      - name: Checkout (CN mirror)
         run: |
-          git config --global --unset-all url.https://ghfast.top/https://github.com/.insteadof || true
-          git config --global url."https://ghfast.top/https://github.com/".insteadOf "https://github.com/"
-
-      - name: Checkout
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ needs.generate.outputs.sha }}
+          set -euo pipefail
+          MIRROR_BASE="${GIT_MIRROR_BASE:-https://ghfast.top/https://github.com}"
+          REPO_URL="${MIRROR_BASE}/${GITHUB_REPOSITORY}.git"
+          WORK="${GITHUB_WORKSPACE}"
+          SHA="${{ needs.generate.outputs.sha }}"
+          echo "ci-checkout: cloning $REPO_URL @ $SHA"
+          rm -rf "$WORK"
+          mkdir -p "$WORK"
+          git clone --progress --depth 1 --branch master \
+            "$REPO_URL" "$WORK" \
+            || git clone --progress --depth 50 "$REPO_URL" "$WORK"
+          cd "$WORK"
+          git fetch --progress --depth 1 origin "$SHA" || true
+          git checkout --force "$SHA"
+          echo "ci-checkout: ok $(git rev-parse --short HEAD)"
+          du -sh . | awk '{print "ci-checkout: worktree "$1}'
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
