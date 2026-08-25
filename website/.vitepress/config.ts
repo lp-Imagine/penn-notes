@@ -256,9 +256,9 @@ export default defineConfig({
     darkModeSwitchLabel: "外观",
     footer: {
       message:
-        'Penn Notes · 前端学习笔记 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a>',
+        '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">前端学习笔记 · 工程备忘 · AI 动态</span>',
       copyright:
-        '© 2020-present Penn · <a href="/notes/feed.xml">笔记 RSS</a> · <a href="/news/feed.xml">AI 动态 RSS</a>',
+        '<span class="footer-links"><a class="footer-link" href="/notes/feed.xml">笔记 RSS</a><a class="footer-link" href="/news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>',
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

@@ -5,10 +5,12 @@ import notes from "../notes-items.generated.json";
 import tagStats from "../tags.generated.json";
 
 const PAGE_SIZE = 10;
+const TOP_TAG_LIMIT = 10;
 const route = useRoute();
 const router = useRouter();
 const activeTag = ref("");
 const visible = ref(PAGE_SIZE);
+const showAllTags = ref(false);
 
 const taggedCount = computed(
   () => notes.filter((n) => n.tags?.length).length,
@@ -24,6 +26,12 @@ const hasMore = computed(() => visible.value < filtered.value.length);
 const remaining = computed(() =>
   Math.max(0, filtered.value.length - visible.value),
 );
+const topTags = computed(() => tagStats.slice(0, TOP_TAG_LIMIT));
+const restTags = computed(() => tagStats.slice(TOP_TAG_LIMIT));
+const hasHiddenTags = computed(() => restTags.value.length > 0);
+const visibleTags = computed(() =>
+  showAllTags.value ? tagStats : topTags.value,
+);
 
 watch(
   () => {
@@ -33,6 +41,10 @@ watch(
   (raw) => {
     activeTag.value = raw ? decodeURIComponent(String(raw)) : "";
     visible.value = PAGE_SIZE;
+    if (activeTag.value) {
+      const inRest = restTags.value.some((t) => t.name === activeTag.value);
+      if (inRest) showAllTags.value = true;
+    }
   },
   { immediate: true },
 );
@@ -46,6 +58,10 @@ function selectTag(name) {
   router.replace({
     query: activeTag.value ? { tag: activeTag.value } : {},
   });
+}
+
+function toggleMoreTags() {
+  showAllTags.value = !showAllTags.value;
 }
 
 function href(path) {
@@ -67,7 +83,7 @@ function href(path) {
           全部
         </button>
         <button
-          v-for="t in tagStats"
+          v-for="t in visibleTags"
           :key="t.name"
           type="button"
           class="discover-chip"
@@ -77,6 +93,15 @@ function href(path) {
         >
           {{ t.name }}
           <span class="discover-chip-count">{{ t.count }}</span>
+        </button>
+        <button
+          v-if="hasHiddenTags"
+          type="button"
+          class="discover-chip discover-chip--more"
+          :aria-expanded="showAllTags ? 'true' : 'false'"
+          @click="toggleMoreTags"
+        >
+          {{ showAllTags ? "收起标签" : `更多标签 ${restTags.length}` }}
         </button>
       </div>
       <p class="discover-count">

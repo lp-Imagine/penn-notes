@@ -24,55 +24,83 @@
   flex-direction: column;
   gap: 12px;
   margin: 0 0 20px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-2) 26%, transparent);
 }
 
 .discover-filter {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
 }
 
 .discover-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 34px;
-  padding: 6px 12px;
+  min-height: 32px;
+  padding: 5px 11px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
   color: var(--text-2);
   font-size: 13px;
-  font-weight: 550;
+  font-weight: 600;
+  letter-spacing: 0.005em;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  white-space: nowrap;
+  transition: border-color 0.16s, color 0.16s, background 0.16s, transform 0.16s;
 }
 
 .discover-chip:hover {
   border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
   color: var(--link);
-  background: var(--surface-2);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
 }
 
 .discover-chip.is-active {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--border));
   color: var(--link);
-  background: var(--accent-soft);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .discover-chip-count {
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  padding: 0 0.35em;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: var(--text-3);
+  background: color-mix(in srgb, var(--surface-2) 75%, transparent);
 }
 
 .discover-chip.is-active .discover-chip-count {
   color: var(--link);
+  background: color-mix(in srgb, var(--accent) 15%, var(--surface));
+}
+
+.discover-chip--more {
+  border-style: dashed;
+  color: var(--text-3);
+}
+
+.discover-chip--more:hover {
+  border-style: solid;
 }
 
 .discover-count {
   margin: 0;
-  font-size: 13px;
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--text-3);
   font-variant-numeric: tabular-nums;
 }
@@ -245,6 +273,36 @@
 }
 
 @media (max-width: 640px) {
+  .discover-toolbar {
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .discover-filter {
+    gap: 7px;
+  }
+
+  .discover-chip {
+    min-height: 36px;
+    padding: 6px 12px;
+    font-size: 12.5px;
+  }
+
+  .discover-chip-count {
+    min-width: 1.45em;
+    height: 1.45em;
+    font-size: 10.5px;
+  }
+
+  .discover-count {
+    font-size: 12px;
+  }
+
+  .discover-chip--more {
+    width: 100%;
+    justify-content: center;
+  }
+
   .discover-row--compact {
     flex-wrap: wrap;
     align-items: flex-start;
