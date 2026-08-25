@@ -11,6 +11,20 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "website", ".vitepress", "dist");
 const SITE_URL = "https://penn-notes.draftly.cn";
 
+function escapeXml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** loc：先 encodeURI，再把路径里残留的 & 编成 %26，最后做 XML 转义 */
+function locFor(pathRel) {
+  const encoded = encodeURI(pathRel).replace(/&/g, "%26");
+  return escapeXml(`${SITE_URL}${encoded}`);
+}
+
 function main() {
   if (!fs.existsSync(dist)) {
     console.warn("build-sitemap: dist missing, skip");
@@ -47,7 +61,7 @@ function main() {
       }
       return (
         "  <url>\n" +
-        `    <loc>${SITE_URL}${encodeURI(p)}</loc>` +
+        `    <loc>${locFor(p)}</loc>` +
         (lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "") +
         "\n  </url>"
       );
