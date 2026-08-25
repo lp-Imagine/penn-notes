@@ -52,7 +52,9 @@ function isNewsDigestDetail(path: string) {
 
 function currentSitePath() {
   if (typeof location === "undefined") return "/";
-  return sitePath(location.pathname);
+  const siteData = (globalThis as { __VP_SITE_DATA__?: { base?: string } })
+    .__VP_SITE_DATA__;
+  return sitePath(location.pathname, siteData?.base || "/");
 }
 
 function isReadableDetail(path = currentSitePath()) {

@@ -42,8 +42,25 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Build
+      - name: Build (origin)
         env:
+          PENN_BASE: /
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+        run: npm run build
+
+      - name: Deploy to Baota
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: bash scripts/ci-rsync-dist.sh
+
+      - name: Build (GitHub Pages backup)
+        env:
+          PENN_BASE: /penn-notes/
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build

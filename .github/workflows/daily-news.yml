@@ -78,11 +78,30 @@ jobs:
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接构建并部署到 gh-pages
+      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接构建并双发
       # prebuild 会 sync:news + build:home 等，生成物不必进主分支
-      - name: Build site
+      - name: Build (origin)
         if: steps.commit.outputs.changed == 'true'
         env:
+          PENN_BASE: /
+          UMAMI_URL: ${{ secrets.UMAMI_URL }}
+          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+        run: npm run build
+
+      - name: Deploy to Baota
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+        run: bash scripts/ci-rsync-dist.sh
+
+      - name: Build (GitHub Pages backup)
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          PENN_BASE: /penn-notes/
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
         run: npm run build

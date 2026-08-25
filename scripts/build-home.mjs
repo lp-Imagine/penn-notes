@@ -5,10 +5,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { pennBase } from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "website");
-const BASE = "/";
+const BASE = pennBase();
 
 const SECTIONS = [
   {

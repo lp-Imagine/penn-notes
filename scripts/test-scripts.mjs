@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
+import { pennBase, pennRedirectPrefix, pennSiteUrl } from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 let passed = 0;
@@ -28,6 +29,38 @@ function test(name, fn) {
 function run(cmd) {
   return execSync(cmd, { cwd: root, encoding: "utf8", timeout: 30000 });
 }
+
+// ── penn-base ──
+console.log("\npenn-base:");
+
+test("defaults to /", () => {
+  const prevBase = process.env.PENN_BASE;
+  const prevUrl = process.env.PENN_SITE_URL;
+  delete process.env.PENN_BASE;
+  delete process.env.PENN_SITE_URL;
+  try {
+    assert.equal(pennBase(), "/");
+    assert.equal(pennRedirectPrefix(), "");
+    assert.equal(pennSiteUrl(), "https://penn-notes.draftly.cn");
+  } finally {
+    if (prevBase !== undefined) process.env.PENN_BASE = prevBase;
+    else delete process.env.PENN_BASE;
+    if (prevUrl !== undefined) process.env.PENN_SITE_URL = prevUrl;
+    else delete process.env.PENN_SITE_URL;
+  }
+});
+
+test("normalizes /penn-notes", () => {
+  const prev = process.env.PENN_BASE;
+  process.env.PENN_BASE = "/penn-notes";
+  try {
+    assert.equal(pennBase(), "/penn-notes/");
+    assert.equal(pennRedirectPrefix(), "/penn-notes");
+  } finally {
+    if (prev !== undefined) process.env.PENN_BASE = prev;
+    else delete process.env.PENN_BASE;
+  }
+});
 
 // ── build-home ──
 console.log("\nbuild-home:");
@@ -54,6 +87,20 @@ test("generates section index pages", () => {
     const content = fs.readFileSync(f, "utf8");
     assert.ok(content.includes("section-page"), `${section} should contain section-page class`);
   }
+});
+
+test("PENN_BASE prefixes generated homepage hrefs", () => {
+  run("PENN_BASE=/penn-notes/ node scripts/build-home.mjs");
+  const content = fs.readFileSync(path.join(root, "website/index.md"), "utf8");
+  assert.ok(
+    content.includes('href="/penn-notes/news/"'),
+    "should prefix news link with /penn-notes/",
+  );
+  assert.ok(
+    !content.includes('href="/news/"'),
+    "should not leave root-relative news href",
+  );
+  run("node scripts/build-home.mjs");
 });
 
 // ── build-discover ──

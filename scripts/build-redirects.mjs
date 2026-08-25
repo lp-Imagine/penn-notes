@@ -5,11 +5,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { pennRedirectPrefix } from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const mapPath = path.join(root, "scripts", "redirects.generated.json");
 const dist = path.join(root, "website", ".vitepress", "dist");
-const BASE = "";
+const BASE = pennRedirectPrefix();
 
 function main() {
   if (!fs.existsSync(mapPath)) {

@@ -1,14 +1,15 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type HeadConfig } from "vitepress";
+import { pennBase, pennSiteUrl } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 
-const BASE = "/";
+const BASE = pennBase();
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
 
-// 自定义域名 penn-notes.draftly.cn（根路径）；绝对 URL 用于 OG / canonical / favicon
-const SITE_URL = "https://penn-notes.draftly.cn";
+// canonical / OG / favicon 始终指向主站；GitHub Pages 备份用 PENN_BASE=/penn-notes/
+const SITE_URL = pennSiteUrl();
 const ICON_PNG = `${SITE_URL}/pn-favicon-32.png`;
 const ICON_ICO = `${SITE_URL}/favicon.ico`;
 const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png`;
@@ -258,7 +259,7 @@ export default defineConfig({
       message:
         '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">前端学习笔记 · 工程备忘 · AI 动态</span>',
       copyright:
-        '<span class="footer-links"><a class="footer-link" href="/notes/feed.xml">笔记 RSS</a><a class="footer-link" href="/news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>',
+        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">笔记 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

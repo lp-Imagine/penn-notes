@@ -1,6 +1,9 @@
 # Penn Notes
 
-Penn 的前端笔记站（VitePress）。线上：https://penn-notes.draftly.cn/
+Penn 的前端笔记站（VitePress）。
+
+- **主站**：https://penn-notes.draftly.cn/（腾讯云宝塔）
+- **备份**：https://lp-Imagine.github.io/penn-notes/（GitHub Pages）
 
 ## 本地开发
 
@@ -40,9 +43,26 @@ npm run build:home    # 仅重建首页与侧栏
 
 ## 部署
 
-Push `master`/`main`，或发送 `repository_dispatch`（`blog-sync`）触发 GitHub Actions，发布到 `gh-pages`。
+Push `master`/`main`，或发送 `repository_dispatch`（`blog-sync`）触发 GitHub Actions。流水线会构建两份静态站：
 
-线上域名：https://penn-notes.draftly.cn/
+1. `PENN_BASE=/` → rsync 到宝塔站点根目录（主站）
+2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份，路径带仓库前缀）
+
+canonical / sitemap / RSS / 百度推送始终指向主站 `https://penn-notes.draftly.cn`。AI 动态抓取与 LLM 仍在 GitHub Actions 上跑，不在轻量云执行。
+
+仓库 Settings → Secrets 需配置：
+
+| Secret | 说明 |
+|--------|------|
+| `DEPLOY_HOST` | 轻量云公网 IP |
+| `DEPLOY_USER` | SSH 用户（一般为 `root`） |
+| `DEPLOY_SSH_KEY` | 部署私钥全文（`penn_notes_deploy`） |
+| `DEPLOY_PATH` | 宝塔站点根目录，如 `/www/wwwroot/penn-notes` |
+| `DEPLOY_PORT` | 可选，非 22 时填写 |
+
+宝塔侧：纯静态 + HTTPS；伪静态用 `try_files $uri $uri/ $uri.html /index.html;`。站点目录里的 `.user.ini` 由面板锁定，rsync 会排除它，不必 `chown` 该文件。
+
+DNS：`penn-notes.draftly.cn` A 记录指向轻量云。GitHub Pages 不要再绑自定义域名。若 CI 里 rsync 超时，检查轻量云防火墙是否放行 22 端口。
 
 ### 百度推送（可选）
 

@@ -7,13 +7,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseDigestMarkdown } from "./news/parse-digest.mjs";
 import { writeNewsFeed } from "./build-news-feed.mjs";
+import { pennBase } from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const srcNewsRoot = path.join(root, "news");
 const websiteRoot = path.join(root, "website");
 const newsRoot = path.join(websiteRoot, "news");
 const vitepressDir = path.join(websiteRoot, ".vitepress");
-const BASE = "/";
+const BASE = pennBase();
 
 const MONTH_DIR_RE = /^\d{4}-\d{2}$/;
 
