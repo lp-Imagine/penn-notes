@@ -994,15 +994,17 @@
 
 /* Dark keeps flatter cards; light relies on border + soft shadow */
 .dark .home-pillar,
-.dark .home-block,
-.dark .home-note {
+.dark .home-block {
   box-shadow: none;
 }
 
-.dark .home-pillar:hover,
-.dark .home-note:hover {
+.dark .home-pillar:hover {
   background: var(--surface-2);
   box-shadow: none;
+}
+
+.dark .home-note:hover {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .dark .news-card:hover {

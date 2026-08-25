@@ -391,16 +391,14 @@ ${pillars}
       <h2>最新笔记</h2>
       <a class="home-more" href="${notesMoreHref}">查看更多</a>
     </div>
-${noteItems}
-  </section>
+${noteItems}</section>
 
   <section class="home-section">
     <div class="home-section-head">
       <h2>最新动态</h2>
       <a class="home-more" href="${link("/news/")}">全部动态</a>
     </div>
-${aiNewsItems}
-  </section>
+${aiNewsItems}</section>
 </div>
 `;
 }
