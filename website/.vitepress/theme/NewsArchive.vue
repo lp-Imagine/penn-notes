@@ -111,7 +111,11 @@ function onThumbError(e) {
             v-for="(item, idx) in shown"
             :key="`${item.digestSlug}-${item.title}-${idx}`"
             class="news-item-card"
-            :class="{ 'news-item-card--media': !!item.image }"
+            :class="{
+              'news-item-card--media': !!item.image,
+              'news-item-card--text': !item.image,
+            }"
+            :data-tone="item.image ? undefined : item.section || '动态'"
             :href="link(item.digestLink)"
           >
             <div v-if="item.image" class="news-item-media">

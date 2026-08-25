@@ -466,6 +466,121 @@
   }
 }
 
+/*
+ * 无图卡片：不做假头图，改成「文字优先」版式。
+ * 轻色晕 + 更大标题 + 角落水印，去掉硬顶边线。
+ */
+.news-item-card--text,
+.section-card--text {
+  --ph-accent: var(--accent);
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ph-accent) 9%, var(--surface)) 0%,
+      var(--surface) 28%
+    );
+}
+
+.news-item-card--text[data-tone="业界"],
+.section-card--text[data-tone="业界"] {
+  --ph-accent: #3b5bdb;
+}
+.news-item-card--text[data-tone="产品"],
+.section-card--text[data-tone="产品"] {
+  --ph-accent: #2563eb;
+}
+.news-item-card--text[data-tone="模型"],
+.section-card--text[data-tone="模型"] {
+  --ph-accent: #4f46e5;
+}
+.news-item-card--text[data-tone="开源"],
+.section-card--text[data-tone="开源"] {
+  --ph-accent: #0f766e;
+}
+.news-item-card--text[data-tone="开发者工具"],
+.section-card--text[data-tone="开发者工具"] {
+  --ph-accent: #1d4ed8;
+}
+.news-item-card--text[data-tone="前端"],
+.section-card--text[data-tone="前端"] {
+  --ph-accent: #3451b2;
+}
+
+.news-item-card--text::after,
+.section-card--text::after {
+  content: attr(data-tone);
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  z-index: 0;
+  max-width: 46%;
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ph-accent);
+  opacity: 0.07;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.news-item-card--text .news-item-body,
+.section-card--text .section-card-body {
+  position: relative;
+  z-index: 1;
+  gap: 8px;
+  padding: 14px 14px 13px;
+}
+
+.news-item-card--text .news-item-title,
+.section-card--text .section-card-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.news-item-card--text .news-item-summary {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.news-item-card--text:hover,
+.section-card--text:hover {
+  border-color: color-mix(in srgb, var(--ph-accent) 32%, var(--border));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ph-accent) 12%, var(--surface)) 0%,
+      var(--surface) 32%
+    );
+}
+
+.dark .news-item-card--text,
+.dark .section-card--text {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ph-accent) 14%, var(--surface)) 0%,
+      var(--surface) 34%
+    );
+}
+
+.dark .news-item-card--text:hover,
+.dark .section-card--text:hover {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ph-accent) 18%, var(--surface)) 0%,
+      var(--surface) 36%
+    );
+}
+
 .news-item-body,
 .section-card-body {
   display: flex;

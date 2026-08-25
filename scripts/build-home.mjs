@@ -247,7 +247,13 @@ function writeSectionIndex(section, items) {
                 const media = cover
                   ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(cover))}" alt="" loading="lazy" /></span>`
                   : "";
-                return `    <a class="section-card${cover ? " section-card--media" : ""}" href="${link(item.link)}">${media}<span class="section-card-body"><span class="section-card-title">${escapeHtml(item.text)}</span><span class="section-card-meta"><time datetime="${date}">${date}</time><span>阅读全文</span></span></span></a>`;
+                const cardClass = cover
+                  ? "section-card section-card--media"
+                  : "section-card section-card--text";
+                const toneAttr = cover
+                  ? ""
+                  : ` data-tone="${escapeHtml(g.text)}"`;
+                return `    <a class="${cardClass}"${toneAttr} href="${link(item.link)}">${media}<span class="section-card-body"><span class="section-card-title">${escapeHtml(item.text)}</span><span class="section-card-meta"><time datetime="${date}">${date}</time><span>阅读全文</span></span></span></a>`;
               })
               .join("\n");
             return `  <section class="section-group">
@@ -358,7 +364,12 @@ ${newsHeadlines
     const summary = r.summary
       ? `<span class="news-item-summary">${escapeHtml(r.summary)}</span>`
       : "";
-    return `  <a class="section-card${r.image ? " section-card--media" : ""}" href="${link(r.link)}">${media}<span class="section-card-body">${tagsRow}<span class="section-card-title">${escapeHtml(r.title)}</span>${summary}<span class="section-card-meta"><time datetime="${r.date}">${r.date}</time><span>阅读全文</span></span></span></a>`;
+    const tone = escapeHtml(r.section || "动态");
+    const cardClass = r.image
+      ? "section-card section-card--media"
+      : "section-card section-card--text";
+    const toneAttr = r.image ? "" : ` data-tone="${tone}"`;
+    return `  <a class="${cardClass}"${toneAttr} href="${link(r.link)}">${media}<span class="section-card-body">${tagsRow}<span class="section-card-title">${escapeHtml(r.title)}</span>${summary}<span class="section-card-meta"><time datetime="${r.date}">${r.date}</time><span>阅读全文</span></span></span></a>`;
   })
   .join("\n")}
 </div>`;
