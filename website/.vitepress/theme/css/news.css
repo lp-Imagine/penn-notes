@@ -106,7 +106,11 @@
 }
 
 .discover-count--archive {
-  margin: 0 0 8px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 84%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 24%, transparent);
 }
 
 .discover-rows {
@@ -186,31 +190,98 @@
 }
 
 .discover-row--compact {
-  flex-direction: row;
-  align-items: baseline;
-  gap: 12px 16px;
-  padding: 12px 14px;
+  /* 固定三列：日期 | 标题 | 栏目，避免长标题把标签挤换行 */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: 12px;
+  row-gap: 0;
+  position: relative;
+  padding: 11px 14px 11px 22px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 76%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 76%, transparent) 0%,
+      transparent 70%
+    ),
+    var(--surface);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 42%, transparent);
+  transition: border-color 0.16s, background 0.16s, transform 0.16s;
+}
+
+.discover-row--compact::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 1.15em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 50%, var(--border-strong));
+  opacity: 0.8;
 }
 
 .discover-row-date {
-  flex: 0 0 3.25rem;
-  font-size: 13px;
+  grid-column: 1;
+  margin: 0;
+  padding-top: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
   color: var(--text-3);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .discover-row--compact .discover-row-title {
-  flex: 1 1 auto;
+  grid-column: 2;
   min-width: 0;
   font-size: 14px;
   font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 .discover-row-section {
-  flex: 0 0 auto;
-  margin-left: auto;
-  font-size: 12px;
+  grid-column: 3;
+  justify-self: end;
+  align-self: start;
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
   color: var(--text-3);
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  white-space: nowrap;
+  max-width: 7.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discover-row--compact:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  background: color-mix(in srgb, var(--surface) 86%, var(--surface-2));
+  transform: translateY(-1px);
+}
+
+.discover-row--compact:hover .discover-row-title {
+  color: var(--link);
+}
+
+.dark .discover-row--compact:hover {
+  background: var(--surface-2);
+  transform: none;
 }
 
 .vp-doc .discover-year-title {
@@ -226,29 +297,69 @@
 .discover-year-head {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  margin: 0 0 14px;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
 }
 
 .discover-year-desc {
   margin: 0;
-  font-size: 0.9rem;
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+  font-size: 0.77rem;
+  font-weight: 600;
   color: var(--text-3);
 }
 
 .discover-year + .discover-year {
-  margin-top: 36px;
+  margin-top: 32px;
 }
 
 .discover-month + .discover-month {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .discover-month-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   margin: 0 0 8px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--text-3);
+}
+
+.discover-month-label::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 45%, var(--border-strong));
+}
+
+.discover-archive .discover-year {
+  position: relative;
+}
+
+.discover-archive .discover-month {
+  position: relative;
+  padding-left: 12px;
+}
+
+.discover-archive .discover-month::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  bottom: 10px;
+  width: 1px;
+  background: color-mix(in srgb, var(--border-strong) 70%, transparent);
 }
 
 .discover-empty {
@@ -304,13 +415,46 @@
   }
 
   .discover-row--compact {
-    flex-wrap: wrap;
-    align-items: flex-start;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 8px;
+    padding: 10px 10px 10px 20px;
+  }
+
+  .discover-row--compact::before {
+    left: 8px;
+    top: 1.1em;
+  }
+
+  .discover-row-date {
+    font-size: 11.5px;
+  }
+
+  .discover-row--compact .discover-row-title {
+    font-size: 13.5px;
   }
 
   .discover-row-section {
-    width: 100%;
-    margin-left: 3.25rem;
+    max-width: 5.8em;
+    font-size: 10.5px;
+    padding: 2px 6px;
+  }
+
+  .discover-year-head {
+    margin-bottom: 10px;
+    padding-bottom: 9px;
+  }
+
+  .discover-year-desc {
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+
+  .discover-archive .discover-month {
+    padding-left: 10px;
+  }
+
+  .discover-archive .discover-month::before {
+    left: 1px;
   }
 }
 
