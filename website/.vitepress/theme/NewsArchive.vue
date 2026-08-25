@@ -42,10 +42,17 @@ function loadMore() {
 function onThumbError(e) {
   const img = e?.target;
   if (!(img instanceof HTMLImageElement)) return;
+  img.classList.add("news-img-hidden");
   img.removeAttribute("src");
   img.setAttribute("hidden", "");
   img.style.display = "none";
-  img.closest(".news-item-card--media")?.classList.remove("news-item-card--media");
+  const card = img.closest(".news-item-card--media");
+  if (card) {
+    card.classList.remove("news-item-card--media");
+    card.classList.add("news-item-card--text");
+  }
+  // 失败时去掉配图区，避免留下空白块
+  img.closest(".news-item-media")?.remove();
 }
 </script>
 
