@@ -1,85 +1,386 @@
-/* ── About page ── */
-.vp-doc .about-page {
-  max-width: 100%;
+/* ── About：首页同款氛围层 + 栏目轻卡片 ── */
+
+/*
+ * 桌面端 VitePress 默认 .VPContent { padding-top: nav-height }，
+ * 会在导航和氛围层之间留出空白（DevTools 里那条绿色）。
+ * 与首页一样清掉；横向裁切挂在 Layout，避免裁掉氛围上延。
+ */
+body:has(.about-page) .Layout {
+  overflow-x: clip;
 }
 
-.vp-doc .about-hero {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  margin-bottom: 8px;
-  padding-bottom: 0;
-  /* section-hero 自带底部分割线，与下方 .about-block 顶部分割线会叠成双线 */
-  border-bottom: none;
-  background: none;
-  align-items: end;
+body:has(.about-page) .VPContent,
+.VPContent:has(.about-page) {
+  padding-top: 0 !important;
 }
 
-@media (min-width: 900px) {
-  .vp-doc .about-hero {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    gap: 48px;
+@media (min-width: 960px) {
+  body:has(.about-page) .VPContent,
+  .VPContent:has(.about-page) {
+    padding-top: 0 !important;
   }
 }
 
-.about-hero-main {
-  min-width: 0;
+.vp-doc .about-page {
+  max-width: 100%;
+  /* 等价首页 .home-wrap，把正文顶到固定导航下方 */
+  padding-top: 36px;
+}
+
+/* 移动端顶栏 fixed 且 VPContent 已去 padding，这里补回导航高度 */
+@media (max-width: 959.98px) {
+  .vp-doc .about-page {
+    padding-top: calc(var(--vp-nav-height, 64px) + 12px);
+  }
+}
+
+.vp-doc .about-page ul,
+.vp-doc .about-page ol,
+.vp-doc .about-page li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc .about-page li + li {
+  margin-top: 0;
+}
+
+.vp-doc .about-hero {
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 40px;
+  /* 对齐首页 .home-hero，不再额外加 nav-height */
+  padding: 28px 0 36px;
+  border: none;
+  border-radius: 0;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.vp-doc .about-hero::before,
+.vp-doc .about-hero::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.vp-doc .about-hero::before {
+  top: -72px;
+  height: min(440px, 62vw);
+  opacity: 1;
+  will-change: transform;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 9%, var(--bg)) 0%,
+      color-mix(in srgb, var(--bg) 55%, transparent) 38%,
+      transparent 78%
+    ),
+    radial-gradient(
+      58% 70% at 16% 6%,
+      color-mix(in srgb, var(--accent) 26%, transparent) 0%,
+      color-mix(in srgb, var(--link) 10%, transparent) 42%,
+      transparent 72%
+    ),
+    radial-gradient(
+      42% 55% at 86% -4%,
+      color-mix(in srgb, var(--link) 16%, transparent) 0%,
+      transparent 64%
+    ),
+    radial-gradient(
+      36% 40% at 40% 62%,
+      color-mix(in srgb, var(--accent) 7%, transparent) 0%,
+      transparent 70%
+    );
+  animation:
+    home-hero-glow-in 0.9s ease,
+    home-hero-drift 22s ease-in-out 0.6s infinite alternate;
+}
+
+.vp-doc .about-hero::after {
+  top: -56px;
+  height: min(340px, 50vw);
+  opacity: 0.5;
+  will-change: background-position;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--link) 14%, var(--border)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--link) 14%, var(--border)) 1px,
+      transparent 1px
+    );
+  background-size: 28px 28px;
+  background-position: 0 0;
+  -webkit-mask-image:
+    radial-gradient(90% 85% at 22% 18%, #000 0%, transparent 68%),
+    linear-gradient(180deg, #000 0%, #000 42%, transparent 92%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(90% 85% at 22% 18%, #000 0%, transparent 68%),
+    linear-gradient(180deg, #000 0%, #000 42%, transparent 92%);
+  mask-composite: intersect;
+  animation:
+    home-hero-glow-in 1.1s ease 0.08s both,
+    home-hero-grid-drift 36s linear 0.8s infinite;
+}
+
+
+.dark .vp-doc .about-hero::before {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 14%, var(--bg)) 0%,
+      color-mix(in srgb, var(--bg) 70%, transparent) 40%,
+      transparent 78%
+    ),
+    radial-gradient(
+      58% 70% at 14% 4%,
+      color-mix(in srgb, var(--accent) 32%, transparent) 0%,
+      color-mix(in srgb, var(--link) 12%, transparent) 40%,
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 50% at 88% -6%,
+      color-mix(in srgb, var(--link) 18%, transparent) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      34% 38% at 38% 58%,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+      transparent 68%
+    );
+}
+
+.dark .vp-doc .about-hero::after {
+  opacity: 0.26;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--link) 22%, var(--border)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--link) 22%, var(--border)) 1px,
+      transparent 1px
+    );
+}
+
+/* ── 入场动效：复用首页 keyframes ── */
+.vp-doc .about-hero .section-kicker {
+  animation: home-hero-in 0.55s ease both;
 }
 
 .vp-doc .about-brand {
-  color: var(--link) !important;
+  animation: home-hero-in 0.55s ease 0.06s both;
+}
+
+.vp-doc .about-hero .section-lead {
+  animation: home-hero-in 0.55s ease 0.1s both;
 }
 
 .vp-doc .about-sub {
-  margin: 0 0 22px;
+  animation: home-hero-in 0.55s ease 0.14s both;
+}
+
+.vp-doc .about-intro {
+  animation: home-hero-in 0.55s ease 0.18s both;
+}
+
+.about-actions {
+  animation: home-hero-in 0.55s ease 0.22s both;
+}
+
+.about-page .home-btn--primary {
+  animation:
+    home-hero-in 0.55s ease 0.22s both,
+    home-cta-breathe 3.6s ease-in-out 1s infinite alternate;
+}
+
+.about-block-head {
+  animation: home-hero-in 0.5s ease both;
+}
+
+.about-block:nth-of-type(1) .about-block-head {
+  animation-delay: 0.26s;
+}
+
+.about-block--links .about-block-head {
+  animation-delay: 0.34s;
+}
+
+.about-block--friends .about-block-head {
+  animation-delay: 0.42s;
+}
+
+.about-skill,
+.about-link,
+.about-friend,
+.about-friends-apply {
+  animation: home-hero-in 0.5s ease both;
+}
+
+.about-skill:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.about-skill:nth-child(2) {
+  animation-delay: 0.34s;
+}
+.about-skill:nth-child(3) {
+  animation-delay: 0.38s;
+}
+
+.about-link:nth-child(1) {
+  animation-delay: 0.38s;
+}
+.about-link:nth-child(2) {
+  animation-delay: 0.42s;
+}
+.about-link:nth-child(3) {
+  animation-delay: 0.46s;
+}
+.about-link:nth-child(4) {
+  animation-delay: 0.5s;
+}
+.about-link:nth-child(5) {
+  animation-delay: 0.54s;
+}
+.about-link:nth-child(6) {
+  animation-delay: 0.58s;
+}
+
+.about-friend:nth-child(1) {
+  animation-delay: 0.46s;
+}
+.about-friend:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.about-friend:nth-child(3) {
+  animation-delay: 0.54s;
+}
+.about-friend:nth-child(4) {
+  animation-delay: 0.58s;
+}
+.about-friend:nth-child(5) {
+  animation-delay: 0.62s;
+}
+.about-friend:nth-child(6) {
+  animation-delay: 0.66s;
+}
+.about-friend:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.about-friend:nth-child(8) {
+  animation-delay: 0.74s;
+}
+
+.about-friends-lead {
+  animation: home-hero-in 0.5s ease 0.44s both;
+}
+
+.about-friends-apply {
+  animation-delay: 0.78s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-doc .about-hero::before,
+  .vp-doc .about-hero::after,
+  .vp-doc .about-hero .section-kicker,
+  .vp-doc .about-brand,
+  .vp-doc .about-hero .section-lead,
+  .vp-doc .about-sub,
+  .vp-doc .about-intro,
+  .about-actions,
+  .about-page .home-btn--primary,
+  .about-block-head,
+  .about-skill,
+  .about-link,
+  .about-friend,
+  .about-friends-lead,
+  .about-friends-apply {
+    animation: none !important;
+  }
+
+  .vp-doc .about-hero::before,
+  .vp-doc .about-hero::after {
+    will-change: auto;
+  }
+
+  .about-link:hover,
+  .about-friend:hover {
+    transform: none;
+  }
+}
+
+.vp-doc .about-brand {
+  margin: 0 0 12px !important;
+  font-size: clamp(2.2rem, 5vw, 3.1rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  color: var(--link) !important;
+}
+
+.vp-doc .about-hero .section-lead {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.vp-doc .about-sub {
+  margin: 0 0 12px;
+  max-width: 36em;
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-3);
+}
+
+.vp-doc .about-intro {
+  margin: 0 0 24px;
+  max-width: 40em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-2);
 }
 
 .about-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  gap: 14px 18px;
 }
 
-.about-hero-aside {
-  padding: 22px 24px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.vp-doc .about-aside-label {
-  margin: 0 0 10px;
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-3);
-}
-
-.vp-doc .about-aside-text {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-2);
-}
-
+/* 区块头 */
 .about-block {
-  margin: 0 0 32px;
-  padding: 24px 0 0;
-  border-top: none;
-  background: var(--divider-fade) no-repeat top / 100% 1px;
+  margin: 0 0 36px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.about-block-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
 }
 
 .vp-doc .about-block-title {
-  margin: 0 0 16px !important;
+  margin: 0 !important;
   padding: 0 !important;
   border: none !important;
-  font-size: 1.05rem !important;
+  font-size: 1.12rem !important;
   font-weight: 650 !important;
   letter-spacing: -0.02em;
   color: var(--text) !important;
@@ -89,46 +390,82 @@
   display: none !important;
 }
 
-.about-skill-list {
-  list-style: none;
+.vp-doc .about-block-desc {
   margin: 0;
-  padding: 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* 技能：与下方链接同款轻卡片，三列填满 */
+.about-skill-list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
   .about-skill-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.about-skill-list li {
+.about-skill {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-height: 100%;
-  padding: 18px 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  /* 盖过 .about-page li { padding: 0 } */
+  padding: 18px 16px 16px !important;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--accent) 8%, var(--surface)) 0%,
+      var(--surface) 44%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
+  overflow: hidden;
+}
+
+.about-skill-index {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
 }
 
 .about-skill-label {
+  position: relative;
+  z-index: 1;
   font-size: 12px;
   font-weight: 650;
+  letter-spacing: 0.03em;
   color: var(--link);
-  letter-spacing: 0.02em;
 }
 
 .about-skill-desc {
-  font-size: 0.95rem;
+  position: relative;
+  z-index: 1;
+  font-size: 0.92rem;
   line-height: 1.55;
   color: var(--text-2);
 }
 
+.dark .about-skill {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 5%, transparent);
+}
+
+/* 常去的地方 */
 .about-link-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -137,7 +474,7 @@
 
 @media (min-width: 960px) {
   .about-link-row {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -148,52 +485,95 @@
 }
 
 .about-link {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 18px 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  min-height: 100%;
+  padding: 16px 40px 16px 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--accent) 7%, var(--surface)) 0%,
+      var(--surface) 42%
+    );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
   text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
 .about-link:hover {
-  background: var(--surface-2);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--accent) 11%, var(--surface)) 0%,
+      color-mix(in srgb, var(--surface) 88%, var(--surface-2)) 48%
+    );
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  transform: translateY(-1px);
 }
 
 .about-link-title {
   font-size: 0.95rem;
   font-weight: 650;
+  letter-spacing: -0.01em;
   color: var(--text);
+  transition: color 0.15s ease;
+}
+
+.about-link:hover .about-link-title {
+  color: var(--link);
 }
 
 .about-link-desc {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   line-height: 1.5;
   color: var(--text-3);
 }
 
-.dark .about-hero-aside,
-.dark .about-skill-list li,
-.dark .about-link {
-  box-shadow: none;
+.about-link-go {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-2px);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-3);
+  opacity: 0.45;
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease;
 }
 
+.about-link:hover .about-link-go {
+  opacity: 1;
+  color: var(--link);
+  transform: translateY(-50%) translateX(0);
+}
+
+.dark .about-link {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 5%, transparent);
+}
+
+.dark .about-link:hover {
+  transform: none;
+}
+
+/* 友链 */
 .vp-doc .about-friends-lead {
-  margin: 0 0 16px;
-  font-size: 0.92rem;
-  line-height: 1.6;
+  margin: -4px 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.55;
   color: var(--text-3);
 }
 
 .about-friends-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 @media (min-width: 640px) {
@@ -213,45 +593,52 @@
   align-items: flex-start;
   gap: 12px;
   min-width: 0;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   text-decoration: none !important;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
 }
 
 .about-friend:hover {
-  background: var(--surface-2);
-  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  transform: translateY(-1px);
 }
 
 .about-friend-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
   object-fit: cover;
   flex-shrink: 0;
   background: var(--surface-2);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
 }
 
 .about-friend-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .about-friend-name {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 650;
+  letter-spacing: -0.01em;
   color: var(--text);
   line-height: 1.35;
+  transition: color 0.15s ease;
+}
+
+.about-friend:hover .about-friend-name {
+  color: var(--link);
 }
 
 .about-friend-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   line-height: 1.45;
   color: var(--text-3);
   display: -webkit-box;
@@ -262,45 +649,103 @@
 
 .about-friends-apply {
   margin-top: 18px;
-  padding: 18px 20px;
-  border: 1px dashed color-mix(in srgb, var(--accent) 28%, var(--border));
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  padding: 16px 18px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 26%, var(--border));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 
 .vp-doc .about-friends-apply-title {
-  margin: 0 0 8px !important;
+  margin: 0 0 6px !important;
   padding: 0 !important;
   border: none !important;
-  font-size: 0.95rem !important;
+  font-size: 0.92rem !important;
   font-weight: 650 !important;
   color: var(--text) !important;
 }
 
 .vp-doc .about-friends-apply-text {
   margin: 0 0 12px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   line-height: 1.6;
   color: var(--text-2);
 }
 
+.vp-doc .about-friends-code-wrap {
+  position: relative;
+}
+
 .vp-doc .about-friends-code {
   margin: 0 !important;
-  padding: 12px 14px !important;
+  padding: 14px 72px 14px 16px !important;
   border-radius: 10px !important;
   background: var(--surface) !important;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   overflow-x: auto;
 }
 
 .vp-doc .about-friends-code code {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   line-height: 1.55;
   color: var(--text-2);
   background: transparent !important;
   padding: 0 !important;
 }
 
-.dark .about-friend {
-  box-shadow: none;
+.about-friends-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-2) 80%, var(--surface));
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.about-friends-copy:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+  color: var(--link);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.about-friends-copy.is-copied {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+  color: var(--link);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+
+.dark .about-friend:hover {
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .vp-doc .about-hero {
+    padding: 20px 0 28px;
+    margin-bottom: 28px;
+  }
+
+  .vp-doc .about-brand {
+    font-size: clamp(2rem, 9vw, 2.5rem) !important;
+  }
+
+  .about-block-head {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+  }
+
+  .about-link {
+    padding: 14px 38px 14px 14px;
+  }
 }

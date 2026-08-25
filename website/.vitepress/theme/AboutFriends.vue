@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 function onAvatarError(event: Event, name: string) {
   const img = event.target as HTMLImageElement | null;
   if (!img || img.dataset.fallback === "1") return;
@@ -66,12 +68,31 @@ const siteInfo = [
   "  avatar: https://penn-notes.draftly.cn/pn-favicon-32.png",
   "  link: https://penn-notes.draftly.cn/",
 ].join("\n");
+
+const copied = ref(false);
+let copyTimer: ReturnType<typeof setTimeout> | undefined;
+
+async function copySiteInfo() {
+  try {
+    await navigator.clipboard.writeText(siteInfo);
+    copied.value = true;
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(() => {
+      copied.value = false;
+    }, 2000);
+  } catch {
+    window.prompt("复制站点信息：", siteInfo);
+  }
+}
 </script>
 
 <template>
   <section class="about-block about-block--friends" id="friends">
-    <h2 class="about-block-title">友情链接</h2>
-    <p class="about-friends-lead">一些常逛的博客与站点。欢迎互换友链。</p>
+    <div class="about-block-head">
+      <h2 class="about-block-title">友情链接</h2>
+      <p class="about-block-desc">一些常逛的博客与站点</p>
+    </div>
+    <p class="about-friends-lead">欢迎互换友链。</p>
 
     <div class="about-friends-grid">
       <a
@@ -107,7 +128,17 @@ const siteInfo = [
         >GitHub</a>
         联系我，附上站点信息：
       </p>
-      <pre class="about-friends-code"><code>{{ siteInfo }}</code></pre>
+      <div class="about-friends-code-wrap">
+        <pre class="about-friends-code"><code>{{ siteInfo }}</code></pre>
+        <button
+          type="button"
+          class="about-friends-copy"
+          :class="{ 'is-copied': copied }"
+          @click="copySiteInfo"
+        >
+          {{ copied ? "已复制" : "复制" }}
+        </button>
+      </div>
     </div>
   </section>
 </template>
