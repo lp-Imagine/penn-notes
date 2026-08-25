@@ -45,6 +45,20 @@ function isNoteArticleDetail(path: string) {
   return false;
 }
 
+/** AI 动态日报详情（不含 /news/ 归档首页） */
+function isNewsDigestDetail(path: string) {
+  return /\/news\/\d{4}-\d{2}\/ai-news-/.test(path);
+}
+
+function currentSitePath() {
+  if (typeof location === "undefined") return "/";
+  return sitePath(location.pathname);
+}
+
+function isReadableDetail(path = currentSitePath()) {
+  return isNoteArticleDetail(path) || isNewsDigestDetail(path);
+}
+
 const SIDEBAR_KEY = "penn-sidebar-collapsed";
 let sidebarToggleBtn: HTMLButtonElement | null = null;
 let sidebarObserver: MutationObserver | undefined;
@@ -267,15 +281,14 @@ function setupNavOverflow() {
   schedule();
 }
 
-// ---- 阅读进度条（仅带 .article-meta 的笔记正文页）----
+// ---- 阅读进度条（笔记正文 + AI 动态日报详情）----
 let progressBar: HTMLDivElement | null = null;
 
 function updateReadingProgress() {
   if (!progressBar) return;
-  const doc = document.querySelector(".vp-doc");
-  const hasArticle = Boolean(doc?.querySelector(".article-meta"));
-  progressBar.classList.toggle("is-hidden", !hasArticle);
-  if (!hasArticle) {
+  const show = isReadableDetail();
+  progressBar.classList.toggle("is-hidden", !show);
+  if (!show) {
     progressBar.style.transform = "scaleX(0)";
     return;
   }
@@ -472,50 +485,88 @@ function setupBackToTop() {
   update();
 }
 
-// ---- 预计阅读时间（仅文章详情：有 .article-meta 的正文页）----
+// ---- 预计阅读时间（笔记正文 + AI 动态日报详情）----
 // 中文 350 字/分（技术文精读）、英文/数字词 200 词/分，
 // 代码块单独计时（约 25 行/分，最多计 5 分钟，避免把快速扫代码的读者算太高）
 function clearReadingTime(doc: Element) {
   doc.querySelectorAll(".reading-time, .reading-time-standalone").forEach((n) => n.remove());
 }
 
+function estimateReadingMinutes(doc: Element) {
+  const clone = doc.cloneNode(true) as HTMLElement;
+  clone
+    .querySelectorAll(
+      "script, style, .article-meta, .article-cover, .reading-time, .reading-time-standalone",
+    )
+    .forEach((n) => n.remove());
+  let codeLines = 0;
+  clone.querySelectorAll("pre").forEach((pre) => {
+    codeLines += (pre.textContent?.match(/\n/g)?.length ?? 0) + 1;
+    pre.remove();
+  });
+  const text = (clone.textContent ?? "").replace(/\s+/g, "");
+  const cn = (text.match(/[\u4e00-\u9fff]/g) ?? []).length;
+  const en =
+    (text.match(/[a-zA-Z]+/g) ?? []).length +
+    (text.match(/[0-9]+/g) ?? []).length;
+  return Math.max(
+    1,
+    Math.round(cn / 350 + en / 200 + Math.min(codeLines / 25, 5)),
+  );
+}
+
 function updateReadingTime() {
   nextTick(() => {
     const doc = document.querySelector(".vp-doc");
     if (!doc) return;
-    const meta = doc.querySelector(".article-meta");
-    // 首页 / 栏目索引 / AI 动态日报等没有 article-meta，不显示阅读时间
-    if (!meta) {
+    const path = currentSitePath();
+    const isNote = isNoteArticleDetail(path);
+    const isNews = isNewsDigestDetail(path);
+    if (!isNote && !isNews) {
       clearReadingTime(doc);
       return;
     }
-    const clone = doc.cloneNode(true) as HTMLElement;
-    clone
-      .querySelectorAll(
-        "script, style, .article-meta, .article-cover, .reading-time, .reading-time-standalone",
-      )
-      .forEach((n) => n.remove());
-    let codeLines = 0;
-    clone.querySelectorAll("pre").forEach((pre) => {
-      codeLines += (pre.textContent?.match(/\n/g)?.length ?? 0) + 1;
-      pre.remove();
-    });
-    const text = (clone.textContent ?? "").replace(/\s+/g, "");
-    const cn = (text.match(/[\u4e00-\u9fff]/g) ?? []).length;
-    const en =
-      (text.match(/[a-zA-Z]+/g) ?? []).length +
-      (text.match(/[0-9]+/g) ?? []).length;
-    const minutes = Math.max(
-      1,
-      Math.round(cn / 350 + en / 200 + Math.min(codeLines / 25, 5)),
-    );
-    let el = meta.querySelector<HTMLElement>(".reading-time");
-    if (!el) {
-      el = document.createElement("span");
-      el.className = "reading-time";
-      meta.appendChild(el);
+    const minutes = estimateReadingMinutes(doc);
+    const label = `约 ${minutes} 分钟读完`;
+
+    if (isNote) {
+      const meta = doc.querySelector(".article-meta");
+      if (!meta) return;
+      let el = meta.querySelector<HTMLElement>(".reading-time");
+      if (!el) {
+        el = document.createElement("span");
+        el.className = "reading-time";
+        meta.appendChild(el);
+      }
+      el.textContent = ` · ${label}`;
+      return;
     }
-    el.textContent = ` · 约 ${minutes} 分钟读完`;
+
+    let el = doc.querySelector<HTMLElement>(".reading-time-standalone");
+    if (!el) {
+      el = document.createElement("p");
+      el.className = "article-meta reading-time-standalone";
+      const h1 = doc.querySelector("h1");
+      if (h1) h1.insertAdjacentElement("afterend", el);
+      else doc.prepend(el);
+    }
+    const date =
+      doc.querySelector("time[datetime]")?.getAttribute("datetime") || "";
+    const key = `${date}|${minutes}`;
+    if (el.dataset.rendered === key) return;
+    el.dataset.rendered = key;
+    if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      el.replaceChildren();
+      const time = document.createElement("time");
+      time.dateTime = date;
+      time.textContent = date;
+      const span = document.createElement("span");
+      span.className = "reading-time";
+      span.textContent = ` · ${label}`;
+      el.append(time, span);
+    } else {
+      el.textContent = label;
+    }
   });
 }
 

@@ -530,8 +530,9 @@
   }
 }
 
-/* ===== 预计阅读时间（仅文章 .article-meta） ===== */
-.vp-doc .article-meta .reading-time {
+/* ===== 预计阅读时间（文章 .article-meta / AI 动态日报标题下） ===== */
+.vp-doc .article-meta .reading-time,
+.vp-doc .reading-time-standalone {
   color: var(--text-3);
 }
 

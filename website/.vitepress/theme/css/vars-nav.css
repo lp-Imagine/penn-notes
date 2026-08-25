@@ -120,7 +120,32 @@ body {
   background: transparent !important;
 }
 
+/* 带侧栏页（文章 / AI 动态详情）：顶栏左右留白与首页、标签、栏目页一致
+ * VitePress 默认 .has-sidebar .wrapper { padding: 0 }，Logo 再占满侧栏宽度 */
 @media (min-width: 960px) {
+  .VPNavBar.has-sidebar .wrapper {
+    padding: 0 32px !important;
+  }
+
+  .VPNavBar.has-sidebar .container {
+    max-width: calc(var(--vp-layout-max-width) - 64px) !important;
+  }
+
+  .VPNavBar.has-sidebar .title {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+    height: var(--vp-nav-height) !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   .VPNavBar.has-sidebar .divider {
     padding-left: 0 !important;
   }
@@ -131,6 +156,16 @@ body {
 }
 
 @media (min-width: 1440px) {
+  .VPNavBar.has-sidebar .title {
+    padding-left: 0 !important;
+    width: auto !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   .VPNavBar.has-sidebar .divider {
     padding-left: 0 !important;
   }
