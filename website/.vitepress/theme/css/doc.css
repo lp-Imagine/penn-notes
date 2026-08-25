@@ -993,13 +993,7 @@
 }
 
 /* Dark keeps flatter cards; light relies on border + soft shadow */
-.dark .home-pillar,
 .dark .home-block {
-  box-shadow: none;
-}
-
-.dark .home-pillar:hover {
-  background: var(--surface-2);
   box-shadow: none;
 }
 

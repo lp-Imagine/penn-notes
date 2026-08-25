@@ -305,7 +305,7 @@ function buildHome(allBySection) {
   const total = Object.values(allBySection).reduce((n, a) => n + a.length, 0);
 
   // 栏目入口：紧凑网格，放在 hero 后便于跳转
-  const pillars = SECTIONS.map((s) => {
+  const pillars = SECTIONS.map((s, i) => {
     const items = allBySection[s.id] || [];
     const n = items.length;
     const groups = groupSidebar(items, s.id)
@@ -314,7 +314,8 @@ function buildHome(allBySection) {
       .join("、");
     const desc =
       groups && groups !== s.title && groups !== s.nav ? groups : s.desc;
-    return `  <a class="home-pillar" href="${link(s.link)}"><span class="home-pillar-title">${escapeHtml(s.title)}</span><span class="home-pillar-desc">${escapeHtml(desc)}</span><span class="home-pillar-meta">${n} 篇</span></a>`;
+    const idx = String(i + 1).padStart(2, "0");
+    return `  <a class="home-pillar home-pillar--${escapeHtml(s.id)}" href="${link(s.link)}"><span class="home-pillar-index" aria-hidden="true">${idx}</span><span class="home-pillar-main"><span class="home-pillar-title">${escapeHtml(s.title)}</span><span class="home-pillar-desc">${escapeHtml(desc)}</span></span><span class="home-pillar-foot"><span class="home-pillar-meta">${n} 篇</span><span class="home-pillar-go" aria-hidden="true">→</span></span></a>`;
   }).join("\n");
 
   const noteItems =
