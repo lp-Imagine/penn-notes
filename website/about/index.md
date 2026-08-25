@@ -14,8 +14,8 @@ next: false
       <p class="about-sub">积跬步以至千里 · 前端学习、工程备忘与 AI 动态精选</p>
       <div class="about-actions">
         <a class="home-btn home-btn--primary" href="https://github.com/lp-Imagine" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a class="home-btn home-btn--text" href="/penn-notes/news/">AI 动态</a>
-        <a class="home-btn home-btn--text" href="/penn-notes/">浏览笔记</a>
+        <a class="home-btn home-btn--text" href="/news/">AI 动态</a>
+        <a class="home-btn home-btn--text" href="/">浏览笔记</a>
       </div>
     </div>
     <aside class="about-hero-aside">
@@ -45,15 +45,15 @@ next: false
   <section class="about-block about-block--links">
     <h2 class="about-block-title">常去的地方</h2>
     <div class="about-link-row">
-      <a class="about-link" href="/penn-notes/news/">
+      <a class="about-link" href="/news/">
         <span class="about-link-title">AI 动态</span>
         <span class="about-link-desc">每天自动更新的科技 / AI 精选</span>
       </a>
-      <a class="about-link" href="/penn-notes/web/">
+      <a class="about-link" href="/web/">
         <span class="about-link-title">JS &amp; 框架</span>
         <span class="about-link-desc">JavaScript、Vue、React 笔记</span>
       </a>
-      <a class="about-link" href="/penn-notes/ui/">
+      <a class="about-link" href="/ui/">
         <span class="about-link-title">样式</span>
         <span class="about-link-desc">HTML、CSS、布局与动效</span>
       </a>

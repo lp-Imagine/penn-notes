@@ -7,7 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SITE = "https://lp-imagine.github.io/penn-notes";
+const SITE = "https://penn-notes.draftly.cn";
 
 function siteUrl(path = "") {
   const p = String(path).replace(/^\/+/, "");

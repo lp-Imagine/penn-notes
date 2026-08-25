@@ -7,7 +7,7 @@ import { useData, useRoute, withBase } from "vitepress";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
 
-const { theme } = useData();
+const { theme, site } = useData();
 const route = useRoute();
 
 type SidebarItem = { text?: string; link?: string };
@@ -19,13 +19,14 @@ type NoteItem = {
   date?: string;
 };
 
-const BASE = "/penn-notes";
-
 function currentPath() {
   const raw = route.path;
-  return decodeURI(
-    raw.startsWith(BASE) ? raw.slice(BASE.length) : raw,
-  ).replace(/\/$/, "");
+  const base = (site.value.base || "/").replace(/\/$/, "");
+  const stripped =
+    base && base !== "/" && raw.startsWith(base)
+      ? raw.slice(base.length)
+      : raw;
+  return decodeURI(stripped).replace(/\/$/, "");
 }
 
 function sidebarRelated(current: string): SidebarItem[] {

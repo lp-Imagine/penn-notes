@@ -63,8 +63,8 @@ const friends = [
 const siteInfo = [
   "- name: Penn Notes",
   "  desc: 前端学习笔记 · 工程备忘 · AI 动态",
-  "  avatar: https://lp-imagine.github.io/penn-notes/pn-favicon-32.png",
-  "  link: https://lp-imagine.github.io/penn-notes/",
+  "  avatar: https://penn-notes.draftly.cn/pn-favicon-32.png",
+  "  link: https://penn-notes.draftly.cn/",
 ].join("\n");
 </script>
 

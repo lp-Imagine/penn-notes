@@ -4,18 +4,14 @@ import { defineConfig, type HeadConfig } from "vitepress";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 
-const BASE = "/penn-notes/";
+const BASE = "/";
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
 
-// Absolute URLs: Chrome on GitHub project Pages often ignores late/subpath icon links
-// and falls back to https://lp-imagine.github.io/favicon.ico
-const ICON_PNG = "https://lp-imagine.github.io/penn-notes/pn-favicon-32.png";
-const ICON_ICO = "https://lp-imagine.github.io/penn-notes/favicon.ico";
-const ICON_APPLE =
-  "https://lp-imagine.github.io/penn-notes/img/pn-apple-touch.png";
-
-// 站点绝对地址（GitHub Pages 部署域名），用于 OG / canonical / JSON-LD
-const SITE_URL = "https://lp-imagine.github.io/penn-notes";
+// 自定义域名 penn-notes.draftly.cn（根路径）；绝对 URL 用于 OG / canonical / favicon
+const SITE_URL = "https://penn-notes.draftly.cn";
+const ICON_PNG = `${SITE_URL}/pn-favicon-32.png`;
+const ICON_ICO = `${SITE_URL}/favicon.ico`;
+const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png`;
 
 // Umami analytics — set env vars to enable
 const UMAMI_URL = process.env.UMAMI_URL || "";
@@ -258,7 +254,8 @@ export default defineConfig({
     returnToTopLabel: "返回顶部",
     darkModeSwitchLabel: "外观",
     footer: {
-      message: "Penn Notes · 前端学习笔记",
+      message:
+        'Penn Notes · 前端学习笔记 · <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a>',
       copyright: "© 2020-present Penn · 记录前端路上的思考",
     },
     // 文章评论（giscus，基于 GitHub Discussions）

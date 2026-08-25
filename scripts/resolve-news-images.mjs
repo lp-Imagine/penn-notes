@@ -26,9 +26,7 @@ const fetch = globalThis.fetch.bind(globalThis);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const newsRoot = path.join(root, "news");
 const publicNews = path.join(root, "website/public/news");
-const BASE = "/penn-notes/";
-// 本地图在 markdown 中写不带 base 的站内路径（/news/...），
-// VitePress 构建时自动加 base 前缀，运行时 URL 为 /penn-notes/news/...
+// 本地图在 markdown 中写站内路径 /news/...（base=/ 时运行时同路径）
 const NEWS_PUBLIC_BASE = "/news/";
 
 const UA =

@@ -1,16 +1,19 @@
 <script setup>
 import { computed } from "vue";
-import { useRoute, withBase } from "vitepress";
+import { useData, useRoute, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
 
-const BASE = "/penn-notes";
+const { site } = useData();
 const route = useRoute();
 
 const currentPath = computed(() => {
   const raw = route.path;
-  return decodeURI(
-    raw.startsWith(BASE) ? raw.slice(BASE.length) : raw,
-  ).replace(/\/$/, "");
+  const base = (site.value.base || "/").replace(/\/$/, "");
+  const stripped =
+    base && base !== "/" && raw.startsWith(base)
+      ? raw.slice(base.length)
+      : raw;
+  return decodeURI(stripped).replace(/\/$/, "");
 });
 
 const seriesBlock = computed(() => {

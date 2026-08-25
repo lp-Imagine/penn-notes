@@ -20,9 +20,12 @@ let observer: MutationObserver | undefined;
 const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
 
 /** 剥离 base 后的站点路径，如 /web/javascript/foo */
-function sitePath(routePath: string, base = "/penn-notes") {
-  const p = routePath.startsWith(base) ? routePath.slice(base.length) : routePath;
-  return p || "/";
+function sitePath(routePath: string, base = "/") {
+  const b = (base || "/").replace(/\/$/, "");
+  if (b && b !== "/" && routePath.startsWith(b)) {
+    return routePath.slice(b.length) || "/";
+  }
+  return routePath || "/";
 }
 
 /** 笔记正文详情页（非栏目索引、非 AI 动态、非关于/首页） */

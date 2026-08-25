@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "website", ".vitepress", "dist");
-const SITE_URL = "https://lp-imagine.github.io/penn-notes";
+const SITE_URL = "https://penn-notes.draftly.cn";
 
 function main() {
   if (!fs.existsSync(dist)) {

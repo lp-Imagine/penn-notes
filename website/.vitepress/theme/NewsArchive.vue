@@ -3,7 +3,7 @@ import { computed, ref, watch } from "vue";
 import items from "../news-items.generated.json";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 
-const BASE = "/penn-notes/";
+const BASE = "/";
 const PAGE_SIZE = 24;
 const sections = ["全部", "业界", "产品", "模型", "开源", "开发者工具", "前端"];
 const active = ref("全部");

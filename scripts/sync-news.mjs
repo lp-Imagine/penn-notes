@@ -13,7 +13,7 @@ const srcNewsRoot = path.join(root, "news");
 const websiteRoot = path.join(root, "website");
 const newsRoot = path.join(websiteRoot, "news");
 const vitepressDir = path.join(websiteRoot, ".vitepress");
-const BASE = "/penn-notes/";
+const BASE = "/";
 
 const MONTH_DIR_RE = /^\d{4}-\d{2}$/;
 

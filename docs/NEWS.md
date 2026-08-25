@@ -90,7 +90,7 @@ npm run sync:news && npm run build:home && npm run dev
 
 AI 动态提供 RSS，地址：
 
-`https://lp-imagine.github.io/penn-notes/news/feed.xml`
+`https://penn-notes.draftly.cn/news/feed.xml`
 
 本地 / CI 构建时由 `npm run sync:news` 生成 `website/public/news/feed.xml`（生成物不进 git，线上在 Pages 构建产物中）。可用 Feedly、Follow 等阅读器订阅。
 

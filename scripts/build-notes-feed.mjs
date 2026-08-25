@@ -7,7 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SITE = "https://lp-imagine.github.io/penn-notes";
+const SITE = "https://penn-notes.draftly.cn";
 const OUT = path.join(root, "website/public/notes/feed.xml");
 const ITEMS_JSON = path.join(root, "website/.vitepress/notes-items.generated.json");
 
