@@ -1,9 +1,9 @@
 <script setup>
 import { computed, ref, watch } from "vue";
+import { withBase } from "vitepress";
 import items from "../news-items.generated.json";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 
-const BASE = "/";
 const PAGE_SIZE = 24;
 const sections = ["全部", "业界", "产品", "模型", "开源", "开发者工具", "前端"];
 const active = ref("全部");
@@ -27,8 +27,12 @@ watch(active, () => {
   visible.value = PAGE_SIZE;
 });
 
-function link(path) {
-  return BASE + String(path).replace(/^\/+/, "");
+function href(path) {
+  const raw = String(path || "").trim();
+  if (!raw) return withBase("/");
+  if (/^https?:\/\//i.test(raw)) return raw;
+  const p = raw.replace(/^\/+/, "/");
+  return withBase(p.startsWith("/") ? p : `/${p}`);
 }
 
 function loadMore() {
@@ -116,12 +120,12 @@ function onThumbError(e) {
               'news-item-card--text': !item.image,
             }"
             :data-tone="item.image ? undefined : item.section || '动态'"
-            :href="link(item.digestLink)"
+            :href="href(item.digestLink)"
           >
             <div v-if="item.image" class="news-item-media">
               <img
                 class="news-item-thumb"
-                :src="item.image"
+                :src="href(item.image)"
                 alt=""
                 loading="lazy"
                 @error="onThumbError"
