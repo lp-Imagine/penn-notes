@@ -131,6 +131,7 @@ export default defineConfig({
     return head;
   },
   head: [
+    ["meta", { name: "baidu-site-verification", content: "codeva-6kNoNaHFfB" }],
     ["link", { rel: "icon", href: ICON_ICO, sizes: "any" }],
     [
       "link",
