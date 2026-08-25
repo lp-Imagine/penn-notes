@@ -95,6 +95,12 @@ jobs:
     needs: test
     runs-on: [self-hosted, baota]
     steps:
+      # 国内机直连 github.com 常失败，先改写 git URL 再 checkout
+      - name: GitHub git mirror (CN)
+        run: |
+          git config --global --unset-all url.https://ghfast.top/https://github.com/.insteadof || true
+          git config --global url."https://ghfast.top/https://github.com/".insteadOf "https://github.com/"
+
       - name: Checkout
         uses: actions/checkout@v5
 
@@ -103,9 +109,14 @@ jobs:
         with:
           node-version: 24
           cache: npm
+        env:
+          # 加速 Node 发行版下载（setup-node）
+          NODE_DIST_URL: https://npmmirror.com/mirrors/node
 
       - name: Install
-        run: npm ci
+        run: |
+          npm config set registry https://registry.npmmirror.com
+          npm ci
 
       - name: Build (origin)
         env:

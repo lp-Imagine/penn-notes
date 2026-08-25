@@ -116,6 +116,11 @@ jobs:
     if: needs.generate.outputs.changed == 'true'
     runs-on: [self-hosted, baota]
     steps:
+      - name: GitHub git mirror (CN)
+        run: |
+          git config --global --unset-all url.https://ghfast.top/https://github.com/.insteadof || true
+          git config --global url."https://ghfast.top/https://github.com/".insteadOf "https://github.com/"
+
       - name: Checkout
         uses: actions/checkout@v5
         with:
@@ -126,9 +131,13 @@ jobs:
         with:
           node-version: 24
           cache: npm
+        env:
+          NODE_DIST_URL: https://npmmirror.com/mirrors/node
 
       - name: Install
-        run: npm ci
+        run: |
+          npm config set registry https://registry.npmmirror.com
+          npm ci
 
       - name: Build (origin)
         env:
