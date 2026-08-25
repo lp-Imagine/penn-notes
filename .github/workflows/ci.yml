@@ -106,6 +106,8 @@ jobs:
           REPO_URL="${MIRROR_BASE}/${GITHUB_REPOSITORY}.git"
           WORK="${GITHUB_WORKSPACE}"
           echo "ci-checkout: cloning $REPO_URL @ $GITHUB_SHA"
+          # 默认 cwd 就是 WORK；先离开再删，否则 git 报 Unable to read cwd
+          cd /tmp
           rm -rf "$WORK"
           mkdir -p "$WORK"
           # 浅克隆当前提交；含 public/news 配图时可能要数分钟～十几分钟，看进度别急着杀

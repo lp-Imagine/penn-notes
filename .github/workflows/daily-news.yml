@@ -126,6 +126,7 @@ jobs:
           WORK="${GITHUB_WORKSPACE}"
           SHA="${{ needs.generate.outputs.sha }}"
           echo "ci-checkout: cloning $REPO_URL @ $SHA"
+          cd /tmp
           rm -rf "$WORK"
           mkdir -p "$WORK"
           git clone --progress --depth 1 --branch master \
