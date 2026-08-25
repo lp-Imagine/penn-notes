@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Publish VitePress dist to Baota via tar-over-ssh (faster than many-file rsync
-# from overseas runners). Unpack to a sibling dir, then sync into the live path
-# while preserving Baota's locked .user.ini.
+# Publish VitePress dist to Baota.
+# Pack locally, then scp one archive (clearer than a silent tar pipe over CN links).
 set -euo pipefail
 
 : "${DEPLOY_HOST:?DEPLOY_HOST is required}"
@@ -9,6 +8,8 @@ set -euo pipefail
 : "${DEPLOY_SSH_KEY:?DEPLOY_SSH_KEY is required}"
 : "${DEPLOY_PATH:?DEPLOY_PATH is required}"
 PORT="${DEPLOY_PORT:-22}"
+# Hard cap so a stalled CN hop fails the job instead of hanging forever.
+DEPLOY_TIMEOUT_SEC="${DEPLOY_TIMEOUT_SEC:-480}"
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DIST="$ROOT/website/.vitepress/dist"
@@ -18,7 +19,8 @@ if [ ! -d "$DIST" ]; then
 fi
 
 KEY_FILE="$(mktemp)"
-cleanup() { rm -f "$KEY_FILE"; }
+ARCHIVE="$(mktemp -t penn-dist.XXXXXX).tgz"
+cleanup() { rm -f "$KEY_FILE" "$ARCHIVE"; }
 trap cleanup EXIT
 umask 077
 
@@ -46,24 +48,43 @@ SSH_CMD=(
   -o ServerAliveInterval=15
   -o ServerAliveCountMax=6
 )
+SCP_CMD=(
+  scp
+  -i "$KEY_FILE"
+  -P "$PORT"
+  -o IdentitiesOnly=yes
+  -o BatchMode=yes
+  -o StrictHostKeyChecking=accept-new
+  -o ConnectTimeout=20
+  -o ServerAliveInterval=15
+  -o ServerAliveCountMax=6
+)
 
-echo "ci-rsync-dist: packing $DIST -> ${DEPLOY_USER}@${DEPLOY_HOST}:${SITE} (port $PORT)"
+echo "ci-rsync-dist: packing $DIST"
+tar -C "$DIST" -czf "$ARCHIVE" .
+SIZE="$(du -h "$ARCHIVE" | awk '{print $1}')"
+BYTES="$(wc -c <"$ARCHIVE" | tr -d ' ')"
+echo "ci-rsync-dist: archive $SIZE ($BYTES bytes) -> ${DEPLOY_USER}@${DEPLOY_HOST}:${SITE} (port $PORT, timeout ${DEPLOY_TIMEOUT_SEC}s)"
 
-BYTES="$(du -sb "$DIST" | awk '{print $1}')"
-echo "ci-rsync-dist: dist size ${BYTES} bytes"
+"${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "mkdir -p '$SITE' /tmp && echo ok"
 
-# Fail fast on auth / path problems before uploading.
-"${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "mkdir -p '$SITE' && echo ok"
+REMOTE_TGZ="/tmp/penn-notes-dist-$$.tgz"
+echo "ci-rsync-dist: uploading…"
+# timeout(1) is on ubuntu-latest; kill hung scp/ssh to China.
+timeout --signal=TERM --kill-after=30s "$DEPLOY_TIMEOUT_SEC" \
+  "${SCP_CMD[@]}" "$ARCHIVE" "${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_TGZ}"
+echo "ci-rsync-dist: upload done, extracting on server…"
 
-# Stream one archive (avoids per-file SSH round-trips that hang over CN links).
-# Remote: extract to .new, rsync into live site, keep .user.ini, drop staging.
-tar -C "$DIST" -czf - . | "${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" \
+timeout --signal=TERM --kill-after=30s 120 \
+  "${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" \
   "set -euo pipefail
    SITE='$SITE'
+   TGZ='$REMOTE_TGZ'
    NEW=\"\${SITE}.new\"
    rm -rf \"\$NEW\"
    mkdir -p \"\$NEW\"
-   tar -xzf - -C \"\$NEW\"
+   tar -xzf \"\$TGZ\" -C \"\$NEW\"
+   rm -f \"\$TGZ\"
    if [ -f \"\$SITE/.user.ini\" ]; then
      cp -a \"\$SITE/.user.ini\" \"\$NEW/.user.ini\" || true
    fi
