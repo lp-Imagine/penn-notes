@@ -9,7 +9,8 @@ set -euo pipefail
 : "${DEPLOY_PATH:?DEPLOY_PATH is required}"
 PORT="${DEPLOY_PORT:-22}"
 # Hard cap so a stalled CN hop fails the job instead of hanging forever.
-DEPLOY_TIMEOUT_SEC="${DEPLOY_TIMEOUT_SEC:-480}"
+# 112MB over GH Actions → CN can exceed 8m; allow 20m before giving up.
+DEPLOY_TIMEOUT_SEC="${DEPLOY_TIMEOUT_SEC:-1200}"
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DIST="$ROOT/website/.vitepress/dist"
