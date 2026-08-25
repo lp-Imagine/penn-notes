@@ -77,6 +77,8 @@ jobs:
           deploy_branch=gh-pages
           repo_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           cd website/.vitepress/dist
+          # Prevent Jekyll from filtering VitePress assets on github.io
+          touch .nojekyll
           git config --global init.defaultBranch "$deploy_branch"
           git init
           git config user.name "$user_name"
@@ -85,6 +87,8 @@ jobs:
           git commit -m "auto deploy, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
+          echo "Deployed. CSS should be under /penn-notes/assets/"
+          ls assets/style*.css | head -n 3
 
   deploy-baota:
     needs: test

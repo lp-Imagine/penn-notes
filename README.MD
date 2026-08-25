@@ -64,6 +64,8 @@ canonical / sitemap / RSS / 百度推送始终指向主站 `https://penn-notes.d
 
 DNS：`penn-notes.draftly.cn` A 记录指向轻量云。GitHub Pages 不要再绑自定义域名。若 CI 里 rsync 超时，检查轻量云防火墙是否放行 22 端口。
 
+Pages 备份：仓库 Settings → Pages → Source 选 **Deploy from a branch**，Branch 为 `gh-pages` / `/ (root)`。国内访问 `github.io` 常不稳定，以主站为准。
+
 ### 百度推送（可选）
 
 站点已在百度搜索资源平台验证后，可主动推送 URL（加快发现，不保证立刻收录）：
