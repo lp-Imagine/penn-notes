@@ -33,10 +33,25 @@ PY
 chmod 600 "$KEY_FILE"
 
 DEST="${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH%/}/"
+SSH_CMD=(
+  ssh
+  -i "$KEY_FILE"
+  -p "$PORT"
+  -o IdentitiesOnly=yes
+  -o BatchMode=yes
+  -o StrictHostKeyChecking=accept-new
+  -o ConnectTimeout=20
+  -o ServerAliveInterval=15
+  -o ServerAliveCountMax=3
+)
 echo "ci-rsync-dist: $DIST/ -> $DEST (port $PORT)"
 
-rsync -az --delete \
-  -e "ssh -i $KEY_FILE -p $PORT -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
+# Fail fast if key/firewall wrong (otherwise SSH may hang waiting for a password).
+"${SSH_CMD[@]}" "${DEPLOY_USER}@${DEPLOY_HOST}" "test -d '${DEPLOY_PATH}' && echo ok"
+
+# shellcheck disable=SC2086
+rsync -az --delete --info=stats2 \
+  -e "${SSH_CMD[*]}" \
   --exclude '.user.ini' \
   "$DIST"/ \
   "$DEST"
