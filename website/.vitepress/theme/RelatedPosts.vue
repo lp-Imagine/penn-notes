@@ -112,10 +112,12 @@ function href(link?: string) {
 
 <template>
   <div v-if="related.length" class="related-posts">
-    <h2 class="related-title">相关文章</h2>
+    <div class="related-head">
+      <h2 class="related-title">相关阅读</h2>
+    </div>
     <ul class="related-list">
       <li v-for="item in related" :key="item.link">
-        <a :href="href(item.link)">{{ item.text }}</a>
+        <a class="related-link" :href="href(item.link)">{{ item.text }}</a>
       </li>
     </ul>
   </div>
@@ -123,39 +125,66 @@ function href(link?: string) {
 
 <style scoped>
 .related-posts {
-  margin-top: 40px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border);
+  margin-top: 36px;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: none;
 }
+
+.related-head {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 4px;
+  padding-bottom: 10px;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
 .related-title {
-  font-size: 15px;
+  margin: 0;
+  font-size: 0.95rem;
   font-weight: 650;
+  letter-spacing: -0.01em;
   color: var(--text);
-  margin: 0 0 14px;
-  letter-spacing: 0.02em;
+  border: none;
 }
+
 .related-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
-.related-list a {
+
+.related-list li {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.related-list li + li {
+  border-top: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+}
+
+.related-link {
   display: block;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--surface-2) 40%, transparent);
-  color: var(--text-2);
-  font-size: 14px;
-  line-height: 1.6;
+  padding: 13px 6px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  transition: color 0.15s ease, background 0.15s ease;
 }
-.related-list a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
+
+.related-link:hover {
+  color: var(--link);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 </style>

@@ -94,8 +94,8 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .giscus-host {
-  margin-top: 48px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
 }
 </style>

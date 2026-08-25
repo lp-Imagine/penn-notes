@@ -46,25 +46,29 @@ function href(path) {
 
 <template>
   <nav v-if="seriesBlock" class="series-nav" aria-label="系列导航">
-    <p class="series-nav-label">
-      系列 · {{ seriesBlock.name }}
-      <span class="series-nav-progress">{{ seriesBlock.index }} / {{ seriesBlock.total }}</span>
-    </p>
+    <div class="series-nav-head">
+      <p class="series-nav-label">系列 · {{ seriesBlock.name }}</p>
+      <span class="series-nav-progress"
+        >{{ seriesBlock.index }} / {{ seriesBlock.total }}</span
+      >
+    </div>
     <div class="series-nav-links">
       <a
         v-if="seriesBlock.prev"
         class="series-nav-link"
         :href="href(seriesBlock.prev.link)"
       >
-        ← {{ seriesBlock.prev.title }}
+        <span class="series-nav-dir">上一篇</span>
+        <span class="series-nav-title">{{ seriesBlock.prev.title }}</span>
       </a>
-      <span v-else class="series-nav-placeholder" />
+      <span v-else class="series-nav-placeholder" aria-hidden="true" />
       <a
         v-if="seriesBlock.next"
         class="series-nav-link series-nav-link--next"
         :href="href(seriesBlock.next.link)"
       >
-        {{ seriesBlock.next.title }} →
+        <span class="series-nav-dir">下一篇</span>
+        <span class="series-nav-title">{{ seriesBlock.next.title }}</span>
       </a>
     </div>
   </nav>
@@ -72,47 +76,112 @@ function href(path) {
 
 <style scoped>
 .series-nav {
-  margin-bottom: 28px;
-  padding: 16px 18px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--surface-2) 35%, transparent);
+  margin: 0 0 28px;
+  padding: 0 0 18px;
+  border: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background: transparent;
+  border-radius: 0;
 }
+
+.series-nav-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+}
+
 .series-nav-label {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 650;
+  letter-spacing: -0.01em;
   color: var(--text-2);
 }
+
 .series-nav-progress {
-  margin-left: 8px;
+  flex-shrink: 0;
+  font-size: 12px;
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
   color: var(--text-3);
 }
+
 .series-nav-links {
   display: grid;
-  gap: 8px;
+  gap: 0;
 }
+
 @media (min-width: 640px) {
   .series-nav-links {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 16px;
+  }
+
+  .series-nav-link--next {
+    padding-left: 0;
+  }
+
+  .series-nav-placeholder + .series-nav-link--next {
+    grid-column: 2;
   }
 }
+
 .series-nav-link {
-  display: block;
-  font-size: 14px;
-  line-height: 1.45;
-  color: var(--link);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 4px;
+  min-width: 0;
   text-decoration: none;
+  border-radius: 0;
+  transition: background 0.15s ease;
 }
-.series-nav-link--next {
-  text-align: right;
-}
+
 .series-nav-link:hover {
-  color: var(--link-hover);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
+
+.series-nav-dir {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: 0.01em;
+}
+
+.series-nav-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+
+.series-nav-link:hover .series-nav-title {
+  color: var(--link);
+}
+
+.series-nav-link--next {
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .series-nav-link--next {
+    text-align: right;
+  }
+}
+
 .series-nav-placeholder {
   display: none;
+}
+
+@media (min-width: 640px) {
+  .series-nav-placeholder {
+    display: block;
+  }
 }
 </style>
