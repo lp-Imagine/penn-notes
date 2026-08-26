@@ -24,15 +24,43 @@ function main() {
 
   const redirects = JSON.parse(fs.readFileSync(mapPath, "utf8"));
   let n = 0;
+  let skipped = 0;
   for (const { from, to } of redirects) {
-    const fromPath = from.replace(/\/$/, "");
+    const fromPath = String(from || "").replace(/\/$/, "");
+    const toPath = String(to || "").replace(/\/$/, "") || "/";
+    if (!fromPath || fromPath === "/") {
+      skipped++;
+      continue;
+    }
+
+    const outRel = fromPath.replace(/^\//, "");
+    const toRel = toPath.replace(/^\//, "");
+    // /about → /about/ would write dist/about/index.html and self-loop
+    if (outRel === toRel) {
+      console.warn(`build-redirects: skip self-overwrite ${from} → ${to}`);
+      skipped++;
+      continue;
+    }
+
+    const destFile = path.join(dist, outRel, "index.html");
+    if (fs.existsSync(destFile)) {
+      const existing = fs.readFileSync(destFile, "utf8");
+      // VitePress already built a real page here — never clobber
+      if (!existing.includes("<title>Redirecting")) {
+        console.warn(
+          `build-redirects: skip clobber existing page ${from} → ${to}`,
+        );
+        skipped++;
+        continue;
+      }
+    }
+
     const target = `${BASE}${to.startsWith("/") ? to : `/${to}`}`.replace(
       /\/+/g,
       "/",
     );
-    // ensure trailing semantics for cleanUrls
-    const href = target.endsWith("/") ? target : target;
-    const dir = path.join(dist, fromPath.replace(/^\//, ""));
+    const href = target;
+    const dir = path.join(dist, outRel);
     fs.mkdirSync(dir, { recursive: true });
     const html = `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -48,10 +76,12 @@ function main() {
 </body>
 </html>
 `;
-    fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
+    fs.writeFileSync(destFile, html, "utf8");
     n++;
   }
-  console.log(`build-redirects: wrote ${n} redirect page(s)`);
+  console.log(
+    `build-redirects: wrote ${n} redirect page(s)${skipped ? `, skipped ${skipped}` : ""}`,
+  );
 }
 
 main();

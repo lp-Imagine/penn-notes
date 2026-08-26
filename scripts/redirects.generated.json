@@ -200,10 +200,6 @@
     "to": "/tech/nodejs/nodejs递归读取所有文件"
   },
   {
-    "from": "/about",
-    "to": "/about/"
-  },
-  {
     "from": "/pages/browser",
     "to": "/computer/browser/浏览器渲染过程简介"
   },
