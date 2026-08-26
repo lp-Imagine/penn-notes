@@ -12,14 +12,14 @@ section: agent
 group: practice
 source: ai-article
 sourceId: cmswogeh60013qt01avmoagui
-cover: /sync/cmswogeh60013qt01avmoagui/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmswogeh60013qt01avmoagui/cover.jpg
 draft: false
 ---
 # AI Agent幻觉缓解：验证与重试实践
 
 <p class="article-meta"><time datetime="2026-08-17">2026-08-17</time></p>
 
-<img class="article-cover" src="/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="「AI Agent幻觉缓解：验证与重试实践」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmswogeh60013qt01avmoagui/cover.jpg" alt="「AI Agent幻觉缓解：验证与重试实践」封面" />
 
 你有没有遇到过AI Agent生成的订单数据完全无效？比如把用户地址写成「火星」，订单金额乱填——这就是典型的幻觉翻车，直接导致业务出错。
 

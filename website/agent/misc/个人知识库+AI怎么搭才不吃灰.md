@@ -10,14 +10,14 @@ section: agent
 group: misc
 source: ai-article
 sourceId: cmsfyztfz0003p101uzsala8q
-cover: /sync/cmsfyztfz0003p101uzsala8q/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmsfyztfz0003p101uzsala8q/cover.jpg
 draft: false
 ---
 # 个人知识库+AI，怎么搭才不吃灰
 
 <p class="article-meta"><time datetime="2026-08-05">2026-08-05</time></p>
 
-<img class="article-cover" src="/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="「个人知识库+AI，怎么搭才不吃灰」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmsfyztfz0003p101uzsala8q/cover.jpg" alt="「个人知识库+AI，怎么搭才不吃灰」封面" />
 
 搭个人知识库+AI，最常见的结局是：花一个周末配好工具、导入几百条笔记，三天后打开率归零。问题不在工具选型，而在你把AI当成了「高级搜索框」，而不是每天必须经过的入口。
 

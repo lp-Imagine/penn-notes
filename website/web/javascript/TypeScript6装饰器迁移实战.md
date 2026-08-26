@@ -9,14 +9,14 @@ section: web
 group: javascript
 source: ai-article
 sourceId: cmsy2er2q000hnm01hgt6t1rp
-cover: /sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg
 draft: false
 ---
 # TypeScript6装饰器迁移实战
 
 <p class="article-meta"><time datetime="2026-08-18">2026-08-18</time></p>
 
-<img class="article-cover" src="/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="「TypeScript6装饰器迁移实战」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmsy2er2q000hnm01hgt6t1rp/cover.jpg" alt="「TypeScript6装饰器迁移实战」封面" />
 
 很多前端开发者升级到TypeScript6正式版后，旧项目里的装饰器直接编译报错——比如属性装饰器的类型校验失效，类装饰器逻辑不执行，这是因为TS6对装饰器的编译规则做了重大调整，不是简单改个配置就能搞定。
 

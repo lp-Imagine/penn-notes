@@ -192,7 +192,7 @@ section: computer
 
 > `popup`： 是点击 `browser_action` 或者 `page_action` 图标时打开的一个小窗口网页，焦点离开网页就立即关闭，一般用来做一些临时性的交互。
 
-![](/img/legacy/b8f64c1c2849-popup.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/b8f64c1c2849-popup.png)
 
 `popup` 可以包含任意你想要的 `HTML` 内容，并且会自适应大小。可以通过 `default_popup` 字段来指定 `popup` 页面，也可以调用 `setPopup()`方法。
 配置 🌰：
@@ -251,7 +251,7 @@ function injectCustomJs(jsPath) {
 - `tooltip`
   修改 `browser_action` 的 `manifest` 中 `default_title` 字段，或者调用 `setTitle()`方法。
 
-![](/img/legacy/b9b497812683-tooltip.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/b9b497812683-tooltip.png)
 
 - `badge`
   所谓 `badge`就是在图标上显示一些文本，可以用来更新一些小的扩展状态提示信息。因为 `badge` 空间有限，所以只支持 4 个以下的字符（英文 4 个，中文 2 个）。`badge` 无法通过配置文件来指定，必须通过代码实现，设置 `badge` 文字和颜色可以分别使用 `setBadgeText()`和 `setBadgeBackgroundColor()`。
@@ -261,7 +261,7 @@ chrome.browserAction.setBadgeText({ text: "new" });
 chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
 ```
 
-![](/img/legacy/2b555c2e9c63-badge.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/2b555c2e9c63-badge.png)
 
 > `pageAction`：所谓 pageAction，指的是只有当某些特定页面打开才显示的图标，它和 `browserAction` 最大的区别是一个始终都显示，一个只在特定情况才显示。
 
@@ -278,7 +278,7 @@ chrome.contextMenus.create({
 });
 ```
 
-![](/img/legacy/2550d9a47ddf-click.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/2550d9a47ddf-click.png)
 
 > `override`：使用 `override` 页可以将 `Chrome` 默认的一些特定页面替换掉，改为使用扩展提供的页面。
 > 扩展可以替代如下页面：
@@ -301,15 +301,15 @@ chrome.contextMenus.create({
 }
 ```
 
-![](/img/legacy/4cbfaee8395b-override.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/4cbfaee8395b-override.png)
 
 > `devtools`：`Chrome` 允许插件在开发者工具(`devtools`)上动手脚，主要表现在：
 
 - 自定义一个和多个和 `Elements、Console、Sources` 等同级别的面板；
 - 自定义侧边栏(`sidebar`)，目前只能自定义 `Elements` 面板的侧边栏；
 - `devtools` 扩展介绍
-  ![](/img/legacy/abc32cb426e0-vue.png)
-  ![](/img/legacy/e2e61f8498eb-devtools.png)
+  ![](https://img.penn-notes.draftly.cn/img/legacy/abc32cb426e0-vue.png)
+  ![](https://img.penn-notes.draftly.cn/img/legacy/e2e61f8498eb-devtools.png)
 
 - 每打开一个开发者工具窗口，都会创建 `devtools` 页面的实例，`F12` 窗口关闭，页面也随着关闭，所以 `devtools` 页面的生命周期和 `devtools` 窗口是一致的。`devtools` 页面可以访问一组特有的 `DevTools API` 以及有限的扩展 `API`，这组特有的 `DevTools API` 只有 `devtools` 页面才可以访问，`background` 都无权访问，这些 `API` 包括：
 - `chrome.devtools.panels`：面板相关；
@@ -329,9 +329,9 @@ chrome.contextMenus.create({
 }
 ```
 
-![](/img/legacy/d06b4687d2a8-option.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/d06b4687d2a8-option.png)
 
-![](/img/legacy/56c449e0d91b-option1.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/56c449e0d91b-option1.png)
 
 > `omnibox`： 是向用户提供搜索建议的一种方式。
 
@@ -339,7 +339,7 @@ chrome.contextMenus.create({
 > 当用户输入你的扩展关键字，用户开始与你的扩展交互。每个击键都会发送给你的扩展，扩展提供建议作为相应的响应。
 > 建议可以被格式化多种方式。当用户接受建议，你的扩展被通知可以执行动作。
 
-![](/img/legacy/de2870cf0c77-go.gif)
+![](https://img.penn-notes.draftly.cn/img/legacy/de2870cf0c77-go.gif)
 
 > 配置字段：
 
@@ -411,9 +411,9 @@ function openUrlCurrentTab(url) {
 
 | js 类型         | 可访问的 API                                     | DOM 访问情况   | js 访问情况 | 跨域 | 调试方式                                                                                                              |
 | --------------- | ------------------------------------------------ | -------------- | ----------- | ---- | --------------------------------------------------------------------------------------------------------------------- |
-| content script  | 只能访问 extension、runtime 等部分 API           | ✔              | ×           | ×    | 打开 Console,如图切换![tiaoshi.png](/img/legacy/0736b062d1c6-tiaoshi.png)        |
+| content script  | 只能访问 extension、runtime 等部分 API           | ✔              | ×           | ×    | 打开 Console,如图切换![tiaoshi.png](https://img.penn-notes.draftly.cn/img/legacy/0736b062d1c6-tiaoshi.png)        |
 | popup js        | 可访问绝大部分 API，除了 devtools 系列           | 不可以直接访问 | ×           | ✔    | popup 页面右键选择“审查弹出内容”                                                                                      |
-| background js   | 可访问绝大部分 API，除了 devtools 系列           | 不可以直接访问 | ×           | ✔    | 插件管理页面点击背景页![background.png](/img/legacy/3b145fbdcaa5-background.png) |
+| background js   | 可访问绝大部分 API，除了 devtools 系列           | 不可以直接访问 | ×           | ✔    | 插件管理页面点击背景页![background.png](https://img.penn-notes.draftly.cn/img/legacy/3b145fbdcaa5-background.png) |
 | devtools js     | 只能访问 devtools、extension、runtime 等部分 API | ✔              | ✔           | ×    | 暂时没有找到有效的调试方法                                                                                            |
 | injected script | 和普通 JS 无任何差别，不能访问任何扩展 API       | ✔              | ✔           | ×    | 直接普通的 F12 即可                                                                                                   |
 
@@ -653,7 +653,7 @@ chrome.storage.sync.set({ color: "blue" }, function () {
 通过 `webRequest` 系列 API 可以对 HTTP 请求进行任性地修改、定制。
 生命周期图：
 
-![](/img/legacy/260cad0557d5-webRequest.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/260cad0557d5-webRequest.png)
 
 ```javascript
 //manifest.json
@@ -777,7 +777,7 @@ chrome.webRequest.onCompleted.addListener(
 - 在 JS 中则直接 `chrome.i18n.getMessage("helloWorld")`。
 - 测试时，通过给 chrome 建立一个不同的快捷方式 `chrome.exe --lang=en` 来切换语言
 
-![](/img/legacy/7189802a5a8e-i18n.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/7189802a5a8e-i18n.png)
 
 ## 常见的 API
 

@@ -11,7 +11,7 @@ section: ui
 <p class="article-meta"><time datetime="2020-03-31">2020-03-31</time><span class="article-tag">CSS</span></p>
 
 <p align="center">
-  <img src="/img/legacy/88b7ee0ebf44-20200427163531.jpg" width="500">
+  <img src="https://img.penn-notes.draftly.cn/img/legacy/88b7ee0ebf44-20200427163531.jpg" width="500">
 </p>
 
 很多人喜欢选择APP或网站中的深色模式，也许他们更喜欢这样的外观，或者他们想让自己的眼睛免受疲劳。这篇文章将告诉你如何在网站中实现一个自动的CSS深色模式，根据访客的系统主题来自动响应。

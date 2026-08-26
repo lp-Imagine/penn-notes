@@ -61,7 +61,7 @@ cartesianProduct([
 ```
 
 得到的结果：
-![](/img/legacy/794dc4412f36-1629962811000.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/794dc4412f36-1629962811000.png)
 
 ---
 

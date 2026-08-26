@@ -61,7 +61,7 @@ next: false
         <span class="about-link-desc">订阅笔记更新</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
-      <a class="about-link" href="/news/feed.xml">
+      <a class="about-link" href="https://img.penn-notes.draftly.cn/news/feed.xml">
         <span class="about-link-title">AI 动态 RSS</span>
         <span class="about-link-desc">订阅每日精选，Feedly / Follow 可用</span>
         <span class="about-link-go" aria-hidden="true">→</span>

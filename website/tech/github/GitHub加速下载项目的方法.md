@@ -17,7 +17,7 @@ section: tech
 
 
 
-![](/img/legacy/118e7d2cf3fa-20200309112604.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/118e7d2cf3fa-20200309112604.png)
 
 
 
@@ -27,17 +27,17 @@ section: tech
 
 2. 登录码云之后在页面右上角的加号选择`从GitHub/GitLab导入项目`
 
-   ![](/img/legacy/fdd60264032f-20200309112711.jpg)
+   ![](https://img.penn-notes.draftly.cn/img/legacy/fdd60264032f-20200309112711.jpg)
 
    
 
 3. 选择`从URL导入`，粘贴从GitHub复制来的仓库地址，然后导入，这个导入过程一般是很快的。
 
-   ![](/img/legacy/7429de6664c6-20200309112710.jpg)
+   ![](https://img.penn-notes.draftly.cn/img/legacy/7429de6664c6-20200309112710.jpg)
 
 4. 从码云克隆刚导入的这个项目，克隆速度会快很多，网速好的能达到几兆每秒（具体速度就看你的网速了，吐槽一下我家网速，总在关键时刻显示"视频加载中"....）
 
-   ![](/img/legacy/d688f1105b0c-20200309112712.jpg)
+   ![](https://img.penn-notes.draftly.cn/img/legacy/d688f1105b0c-20200309112712.jpg)
 
 5. 另外要注意的一点，克隆下来的项目关联的是码云的仓库，如果你需要关联github仓库需要更改远程仓库。
 

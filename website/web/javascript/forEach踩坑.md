@@ -52,7 +52,7 @@ arr.forEach(function (self, index, arr) {
 }, obj);
 ```
 
-![](/img/legacy/4800d0e20448-each01.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/4800d0e20448-each01.png)
 
 可以看到，arr 参数其实就是我们正在遍历的数组，而回调函数中的 this 指向我们提供的 obj。
 

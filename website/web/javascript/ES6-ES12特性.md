@@ -216,7 +216,7 @@ const reg = /(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]
 const match = reg.exec("2021-05-31");
 ```
 
-![](/img/legacy/1434966e9a6e-exec.png)
+![](https://img.penn-notes.draftly.cn/img/legacy/1434966e9a6e-exec.png)
 
 ### 正则表达式 dotAll 模式
 

@@ -12,14 +12,14 @@ section: agent
 group: practice
 source: ai-article
 sourceId: cmspws3nm0005zzez3yduit0a
-cover: /sync/cmspws3nm0005zzez3yduit0a/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmspws3nm0005zzez3yduit0a/cover.jpg
 draft: false
 ---
 # 记忆翻车复盘：让Agent长任务不跑偏
 
 <p class="article-meta"><time datetime="2026-08-12">2026-08-12</time></p>
 
-<img class="article-cover" src="/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="「记忆翻车复盘：让Agent长任务不跑偏」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmspws3nm0005zzez3yduit0a/cover.jpg" alt="「记忆翻车复盘：让Agent长任务不跑偏」封面" />
 
 ## 一个自动规划旅行 Agent 是怎么把行程搞砸的
 

@@ -10,14 +10,14 @@ section: agent
 group: prompts
 source: ai-article
 sourceId: cmt0vtjum001rzzd9z2ahemdr
-cover: /sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg
 draft: false
 ---
 # Prompt Cache与上下文管理实践
 
 <p class="article-meta"><time datetime="2026-08-20">2026-08-20</time></p>
 
-<img class="article-cover" src="/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="「Prompt Cache与上下文管理实践」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmt0vtjum001rzzd9z2ahemdr/cover.jpg" alt="「Prompt Cache与上下文管理实践」封面" />
 
 调用LLM时，Prompt Cache是把双刃剑：用不好，它只是给代码加一层字典；用得好，它能让延迟和成本显著下降，同时把上下文窗口变成可控的资源。
 

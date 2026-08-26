@@ -7,7 +7,7 @@ tags:
 section: misc
 source: ai-article
 sourceId: example-source-id-do-not-use
-cover: /sync/example-source-id-do-not-use/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/example-source-id-do-not-use/cover.jpg
 draft: true
 ---
 
@@ -20,12 +20,12 @@ draft: true
 正文请使用 Markdown。图片放到 `website/public/sync/<sourceId>/` 后用**不含站点 base** 的根路径引用（VitePress 构建时会按 `base` 改写；勿写成 `/penn-notes/sync/...`，否则 Rollup 会当成模块解析失败）：
 
 ```md
-<img class="article-cover" src="/sync/<sourceId>/cover.jpg" alt="封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/<sourceId>/cover.jpg" alt="封面" />
 
-![配图](/sync/<sourceId>/img-1.jpg)
+![配图](https://img.penn-notes.draftly.cn/sync/<sourceId>/img-1.jpg)
 
 <figure class="inline-figure">
-  <img src="/sync/<sourceId>/img-1.jpg" alt="配图" />
+  <img src="https://img.penn-notes.draftly.cn/sync/<sourceId>/img-1.jpg" alt="配图" />
   <figcaption>第一章 配图</figcaption>
 </figure>
 ```

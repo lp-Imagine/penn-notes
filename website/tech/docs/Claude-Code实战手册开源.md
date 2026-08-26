@@ -9,14 +9,14 @@ section: tech
 group: docs
 source: ai-article
 sourceId: cms49bxh60007zz9zfexa2vs0
-cover: /sync/cms49bxh60007zz9zfexa2vs0/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg
 draft: false
 ---
 # Claude Code 实战手册开源：编码秘籍
 
 <p class="article-meta"><time datetime="2026-07-28">2026-07-28</time><span class="article-tag">Claude Code</span><span class="article-tag">工具</span></p>
 
-<img class="article-cover" src="/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="「Claude Code 实战手册开源：编码秘籍」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg" alt="「Claude Code 实战手册开源：编码秘籍」封面" />
 
 开发中，环境配置报错、提示词写不对、多文件修改漏改——这些是使用 Claude Code 时的高频卡点。这本开源手册没有空谈，只提供可复用的解决方案。
 
