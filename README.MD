@@ -2,12 +2,15 @@
 
 Penn 的前端笔记站（VitePress）。
 
-- **主站**：https://penn-notes.draftly.cn/（腾讯云宝塔）
-- **备份**：https://lp-Imagine.github.io/penn-notes/（GitHub Pages）
+| | |
+|--|--|
+| **主站** | https://penn-notes.draftly.cn/（腾讯云宝塔） |
+| **备份** | https://lp-Imagine.github.io/penn-notes/（GitHub Pages） |
+| **配图 CDN** | https://img.penn-notes.draftly.cn/（腾讯云 COS 源站域名） |
 
 ## 本地开发
 
-需要 Node.js **20+**（`nvm use 20`）。
+需要 Node.js **20+**。
 
 ```bash
 npm install
@@ -16,116 +19,94 @@ npm run dev
 
 打开终端提示的本地地址。
 
-> 首页、侧栏、RSS、`website/news/` 等是构建生成物，**不进 git**。`npm run dev` / `npm run build` 会自动从 `news/` 与笔记正文重生；裸 `vitepress` 命令前请先跑上述脚本。
+> 首页、侧栏、RSS、`website/news/` 等是构建生成物，**不进 git**。`npm run dev` / `npm run build` 会自动重生；勿直接裸跑 `vitepress`。
 
-## 常用命令
+### 常用命令
 
 ```bash
-npm run dev           # 开发（含生成首页/侧栏/资讯同步）
-npm run build         # ingest + 资讯同步 + 首页/侧栏 + 构建
-npm run ingest        # 校验 website/sync 契约
-npm run sync:news     # 同步 news/ → website/news/
+npm run dev           # 开发（含首页 / 侧栏 / 资讯同步）
+npm run build         # prebuild + VitePress 构建
+npm run ingest        # 校验 ai-article 同步契约；有 COS_* 时上传封面
+npm run sync:news     # news/ → website/news/
 npm run news:daily    # 生成昨日 AI 动态（需 LLM_API_KEY）
+npm run news:images   # 为日报补配图并上传 COS
 npm run build:home    # 仅重建首页与侧栏
-npm run cos:migrate   # 历史上传文章图到 COS 并改写 md（需 .env COS_*）
-npm run cos:health    # 抽查 CDN URL
+npm run cos:health    # 抽查 CDN URL 是否可访问
 ```
 
 ## 文章配图（COS）
 
-新闻配图、笔记封面、旧插图托管在 `https://img.penn-notes.draftly.cn`（腾讯云 COS 源站域名）。仓库不再跟踪这些二进制。说明见 [CDN-IMAGES-PLAN.md](CDN-IMAGES-PLAN.md)。
+新闻配图、笔记封面、旧插图已迁到 `https://img.penn-notes.draftly.cn`，仓库不再跟踪这些二进制（logo / favicon 仍留仓）。
 
-首次全量迁移：Actions → **COS migrate images** → Run workflow（需已配 `COS_*` Secrets）。
+| 类型 | COS 对象键前缀 |
+|------|----------------|
+| AI 动态 | `news/…` |
+| 笔记封面 | `sync/…` |
+| 旧笔记插图 | `img/legacy/…` |
+
+设计与迁移说明：[CDN-IMAGES-PLAN.md](CDN-IMAGES-PLAN.md)。历史全量迁移已完成；若需重跑：Actions → **COS migrate images**。
+
+本地上传需仓库根目录 `.env`（已 gitignore）写入下方 `COS_*`。
+
 ## AI 动态
 
-每天早上自动抓取 RSS + 大模型摘要，按日归档。说明见 [docs/NEWS.md](docs/NEWS.md)。
+每天早上自动抓取 RSS + 大模型摘要，按日归档。详见 [docs/NEWS.md](docs/NEWS.md)。
 
 栏目：**业界 · 产品 · 模型 · 开源 · 开发者工具 · 前端**
 
-需配置仓库 Secret：`LLM_API_KEY`（可选 `LLM_BASE_URL` / `LLM_MODEL`）。
-
 ## ai-article 同步
 
-约定见 [docs/SYNC.md](docs/SYNC.md)。入库目录：`website/sync/<section>/`。
+约定见 [docs/SYNC.md](docs/SYNC.md)。正文写入 `website/<section>/…`；封面上传 COS 后使用绝对 CDN URL。
 
 ## 部署
 
-Push `master`/`main`，或发送 `repository_dispatch`（`blog-sync`）触发 GitHub Actions。流水线会构建两份静态站：
+Push `master` / `main`，或 `repository_dispatch`（`blog-sync`）触发 **CI**：
 
-1. `PENN_BASE=/` → **宝塔机 Self-hosted Runner 本机构建 + rsync**（主站）
-2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份，路径带仓库前缀；仍在 GitHub-hosted runner）
+1. `PENN_BASE=/` → 宝塔 Self-hosted Runner 本机构建 + rsync（主站）
+2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份）
 
-canonical / sitemap / RSS / 百度推送始终指向主站 `https://penn-notes.draftly.cn`。AI 动态抓取与 LLM 仍在 GitHub Actions 上跑，不在轻量云执行。
+canonical / sitemap / RSS / 百度推送始终指向主站。日报抓取与 LLM 在 GitHub-hosted runner 上跑。
 
-### 宝塔 Self-hosted Runner（主站必需）
+### 仓库 Secrets
 
-海外 SCP 到国内轻量云经常超时，主站改为在服务器本机跑 `deploy-baota`。
-
-1. 仓库 **Settings → Actions → Runners → New self-hosted runner**，选 Linux x64，按页面命令下载。
-2. SSH 登录宝塔机，建议目录：`/opt/actions-runner`（勿放在站点 web 根下）。
-3. 配置时加上标签 **`baota`**（workflow 使用 `runs-on: [self-hosted, baota]`）：
-
-```bash
-./config.sh --url https://github.com/lp-Imagine/penn-notes --token <页面上的TOKEN> --labels baota --name baota
-```
-
-4. 安装依赖并以后台服务运行：
-
-```bash
-# Node 24（与 CI 一致；也可用 nvm）
-curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
-apt-get install -y nodejs rsync
-
-cd /opt/actions-runner
-sudo ./svc.sh install
-sudo ./svc.sh start
-sudo ./svc.sh status
-```
-
-5. Runner 进程用户需对站点目录可写（例如 `/www/wwwroot/penn-notes`）。若用 `www` 用户跑站点、用 `root` 跑 runner，一般可直接写；否则给 runner 用户 ACL/`chown` 写权限。
-
-6. 仓库 Secrets 至少保留：
-
-| Secret | 说明 |
+| Secret | 用途 |
 |--------|------|
-| `DEPLOY_PATH` | 宝塔站点根目录，如 `/www/wwwroot/penn-notes` |
+| `DEPLOY_PATH` | 宝塔站点根，如 `/www/wwwroot/penn-notes` |
+| `COS_SECRET_ID` / `COS_SECRET_KEY` | COS 上传 |
+| `COS_BUCKET` / `COS_REGION` | 如 `penn-notes-img-1300329311` / `ap-guangzhou` |
+| `COS_CDN_BASE` | `https://img.penn-notes.draftly.cn`（无尾斜杠） |
+| `LLM_API_KEY` | AI 动态摘要（可选 `LLM_BASE_URL` / `LLM_MODEL`） |
+| `BAIDU_PUSH_TOKEN` | 百度 API 推送（可选） |
+| `UMAMI_URL` / `UMAMI_WEBSITE_ID` | Umami 统计（可选） |
 
-`DEPLOY_HOST` / `DEPLOY_USER` / `DEPLOY_SSH_KEY` / `DEPLOY_PORT` 仅在 `DEPLOY_MODE=remote`（旧海外 SCP）时需要，本机部署可忽略。
+### 宝塔 Self-hosted Runner
 
-宝塔侧：纯静态 + HTTPS；伪静态用 `try_files $uri $uri/ $uri.html /index.html;`。站点目录里的 `.user.ini` 由面板锁定，rsync 会排除它，不必 `chown` 该文件。
+主站在服务器本机构建部署（避免海外 SCP 超时）。标签必须为 **`baota`**。
 
-DNS：`penn-notes.draftly.cn` A 记录指向轻量云。GitHub Pages 不要再绑自定义域名。
+```bash
+# 配置 runner（目录建议 /opt/actions-runner）
+./config.sh --url https://github.com/lp-Imagine/penn-notes \
+  --token <页面TOKEN> --labels baota --name baota
 
-Pages 备份：仓库 Settings → Pages → Source 选 **Deploy from a branch**，Branch 为 `gh-pages` / `/ (root)`。国内访问 `github.io` 常不稳定，以主站为准。
+sudo ./svc.sh install && sudo ./svc.sh start
+```
 
-> 注意：Self-hosted runner 能执行任意 workflow 步骤，请保证仓库为私有，或只信任可推送代码的协作者。
+站点：纯静态 + HTTPS；伪静态 `try_files $uri $uri/ $uri.html /index.html;`。rsync 会排除面板锁定的 `.user.ini`。
+
+DNS：`penn-notes.draftly.cn` A → 轻量云；Pages 不要绑自定义域名。Pages Source：`gh-pages` / `/ (root)`。
+
+> Self-hosted runner 权限大：仓库宜私有，或只信任可推送协作者。
 
 ### 百度推送（可选）
 
-站点已在百度搜索资源平台验证后，可主动推送 URL（加快发现，不保证立刻收录）：
-
 ```bash
-export BAIDU_PUSH_TOKEN=你的token   # 站长平台 → 资源提交 → API 提交
-npm run baidu:push                 # 推首页/栏目/最近日报与笔记
-npm run baidu:push -- --dry-run    # 只打印将要推送的 URL
+export BAIDU_PUSH_TOKEN=你的token
+npm run baidu:push                 # 推首页 / 栏目 / 最近内容
+npm run baidu:push -- --dry-run
 ```
 
-自动推送：在仓库 Settings → Secrets 添加 `BAIDU_PUSH_TOKEN` 后，
+配置 Secret 后，CI 部署成功会 `--mode=site`，日报部署成功会 `--mode=daily`。未配置或额度用尽时跳过，不阻断部署。
 
-- **CI 部署成功**会推首页/栏目/最近内容（`--mode=site`）
-- **日报部署成功**会推首页/栏目 + 最新日报等（`--mode=daily`）
+### Umami（可选）
 
-未配置 secret 或额度用尽时会跳过，不阻断部署。token 勿提交进 git。
-
-### 访问统计 Umami（可选）
-
-构建时若配置了 Umami，会在页面注入统计脚本（见 `website/.vitepress/config.ts`）：
-
-仓库 Settings → Secrets：
-
-| Secret | 说明 |
-|--------|------|
-| `UMAMI_URL` | 实例根地址，如 `https://umami.example.com` |
-| `UMAMI_WEBSITE_ID` | 站点 Website ID |
-
-CI / 日报构建会读取上述变量；未配置则不注入，不影响部署。
+构建时注入统计脚本。未配置 `UMAMI_*` 则不注入，不影响部署。
