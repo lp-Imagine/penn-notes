@@ -56,8 +56,14 @@ jobs:
           fi
           node scripts/generate-daily-news.mjs "${ARGS[@]}"
 
-      # 统一把配图下载到本地（外链图会被替换），避免防盗链/地域网络加载失败
+      # 配图上传 COS（需 Secrets: COS_*）；失败则该条不插图
       - name: Resolve news images (all)
+        env:
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
         run: node scripts/resolve-news-images.mjs
 
       - name: Sync to website
@@ -68,10 +74,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # 只提交源稿 + 本地化配图 + 去重状态；首页/侧栏/JSON/feed/website/news 由 build 时生成
-          git add news website/public/news || true
-          # 避免把已忽略的 feed.xml 等生成物重新加进去
-          git reset HEAD -- website/public/news/feed.xml website/public/notes/feed.xml 2>/dev/null || true
+          # 只提交源稿（配图已在 COS，不再提交 public/news 二进制）
+          git add news || true
           if git diff --cached --quiet; then
             echo "No news changes to commit"
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -90,6 +94,11 @@ jobs:
           PENN_BASE: /penn-notes/
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
         run: npm run build
 
       - name: Deploy to gh-pages
@@ -168,6 +177,11 @@ jobs:
           PENN_BASE: /
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
           UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
         run: npm run build
 
       - name: Deploy to Baota (local)

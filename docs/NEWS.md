@@ -12,9 +12,9 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 2. `scripts/search-news.mjs` — Google News 对 AI 关键词**联网检索**，逐条回源核验（抓不到 / 非文章页丢弃），补充国外一手新闻
 3. `scripts/summarize-news.mjs` — DeepSeek（或其它 OpenAI 兼容 API）去重 / 分类 / 中文摘要
 4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`
-5. `scripts/resolve-news-images.mjs` — 从原文抓 `og:image`（HTTPS 外链优先；失败则落盘 `website/public/news/`）
-6. 提交 **`news/` 源稿 + 本地化配图 + `.state`**（首页 / 侧栏 / JSON / feed / `website/news/` 拷贝为构建生成物，不进 git）
-7. 构建部署时 `sync:news` + `build:home` 等重生生成物，再发布到 GitHub Pages
+5. `scripts/resolve-news-images.mjs` — 从原文抓 `og:image`，上传腾讯云 COS，正文写 `https://img.penn-notes.draftly.cn/news/…`
+6. 提交 **`news/` 源稿**（配图在 COS，不再进 git）
+7. 构建部署时 `sync:news` + `build:home` 等重生生成物，再发布到 GitHub Pages / 宝塔
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
 
@@ -67,8 +67,13 @@ curl -sS -X POST \
 | `LLM_BASE_URL` | 否 | 默认 `https://api.deepseek.com/v1` |
 | `LLM_MODEL` | 否 | 默认 `deepseek-chat` |
 | `BAIDU_PUSH_TOKEN` | 否 | 百度站长「API 提交」token；配置后日报/CI 部署会自动推送 URL |
+| `COS_SECRET_ID` / `COS_SECRET_KEY` | 是* | 腾讯云 COS 上传密钥（配图） |
+| `COS_BUCKET` / `COS_REGION` | 是* | 如 `penn-notes-img-1300329311` / `ap-guangzhou` |
+| `COS_CDN_BASE` | 是* | `https://img.penn-notes.draftly.cn`（无尾斜杠） |
 
-无 `LLM_API_KEY` 时脚本仍会写日报，但只用启发式摘要（质量较差）。
+\* 无 COS Secrets 时日报仍可生成，但**不会插图**。
+
+本地补配图需在仓库根目录 `.env` 写入同上变量（已 gitignore），再 `npm run news:images`。
 
 ## 本地命令
 

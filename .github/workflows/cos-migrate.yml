@@ -1,0 +1,68 @@
+# One-shot: upload article images to COS, rewrite md, remove binaries from git.
+name: COS migrate images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Upload + rewrite
+        env:
+          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
+          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
+        run: node scripts/migrate-article-images-to-cos.mjs
+
+      - name: Health check sample
+        env:
+          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
+        run: |
+          set -euo pipefail
+          curl -fsSIL --max-time 20 "${COS_CDN_BASE}/test.png" | head -5
+          SAMPLE=$(grep -RhoE 'https://img\.penn-notes\.draftly\.cn/news/[^)"[:space:]]+' news 2>/dev/null | head -1 || true)
+          if [ -n "$SAMPLE" ]; then
+            echo "checking $SAMPLE"
+            curl -fsSIL --max-time 20 "$SAMPLE" | head -5
+          fi
+
+      - name: Remove tracked binaries + commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git ls-files 'website/public/news/**/*.jpg' 'website/public/news/**/*.jpeg' \
+            'website/public/news/**/*.png' 'website/public/news/**/*.gif' \
+            'website/public/news/**/*.webp' 'website/public/news/**/*.avif' \
+            'website/public/sync/**' 'website/public/img/legacy/**' \
+            | xargs -r git rm -f --
+          find website/public/news -type f \( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.gif' -o -name '*.webp' -o -name '*.avif' \) -delete 2>/dev/null || true
+          rm -rf website/public/sync website/public/img/legacy
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "chore(images): migrate article images to COS" \
+            -m "Upload news/sync/legacy to img.penn-notes.draftly.cn; rewrite md; drop binaries from git."
+          git push

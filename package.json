@@ -24,6 +24,9 @@
     "preview": "vitepress preview website",
     "build:sitemap": "node scripts/build-sitemap.mjs",
     "localize:images": "node scripts/localize-legacy-images.mjs",
+    "cos:migrate": "node scripts/migrate-article-images-to-cos.mjs",
+    "cos:health": "node scripts/cos-health.mjs",
+    "cos:sync-assets": "node scripts/ensure-cos-sync-assets.mjs",
     "baidu:push": "node scripts/baidu-push.mjs",
     "test": "node scripts/test-scripts.mjs"
   },
@@ -36,6 +39,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "cos-nodejs-sdk-v5": "^3.0.0",
     "medium-zoom": "^1.1.0"
   }
 }

@@ -27,8 +27,15 @@ npm run ingest        # 校验 website/sync 契约
 npm run sync:news     # 同步 news/ → website/news/
 npm run news:daily    # 生成昨日 AI 动态（需 LLM_API_KEY）
 npm run build:home    # 仅重建首页与侧栏
+npm run cos:migrate   # 历史上传文章图到 COS 并改写 md（需 .env COS_*）
+npm run cos:health    # 抽查 CDN URL
 ```
 
+## 文章配图（COS）
+
+新闻配图、笔记封面、旧插图托管在 `https://img.penn-notes.draftly.cn`（腾讯云 COS 源站域名）。仓库不再跟踪这些二进制。说明见 [CDN-IMAGES-PLAN.md](CDN-IMAGES-PLAN.md)。
+
+首次全量迁移：Actions → **COS migrate images** → Run workflow（需已配 `COS_*` Secrets）。
 ## AI 动态
 
 每天早上自动抓取 RSS + 大模型摘要，按日归档。说明见 [docs/NEWS.md](docs/NEWS.md)。

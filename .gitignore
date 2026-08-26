@@ -2,6 +2,8 @@ node_modules
 yarn.lock
 pnpm-lock.yaml
 yarn-error.log
+.env
+.env.*
 
 website/.vitepress/dist
 website/.vitepress/cache
@@ -19,6 +21,16 @@ website/computer/index.md
 website/agent/index.md
 website/misc/index.md
 website/news/
+
+# 文章配图已迁 COS（logo / favicon 等站点图标仍保留）
+website/public/news/**/*.jpg
+website/public/news/**/*.jpeg
+website/public/news/**/*.png
+website/public/news/**/*.gif
+website/public/news/**/*.webp
+website/public/news/**/*.avif
+website/public/sync/
+website/public/img/legacy/
 
 urls.txt
 .DS_Store

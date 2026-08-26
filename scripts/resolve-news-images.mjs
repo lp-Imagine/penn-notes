@@ -1,8 +1,8 @@
 /**
  * Resolve og:image for news markdown items.
- * 优先下载到 website/public/news/（本地化），避免外链被防盗链/网络限制。
- * 拉取失败、或判定为站标/Google News 默认 logo → 不插图（删掉已有坏图），
- * 不再回退展示外链 logo。
+ * 下载后上传腾讯云 COS，markdown 写绝对 CDN URL（COS_CDN_BASE）。
+ * Secrets 缺失或上传失败 → 该条不插图；不写回 website/public/news。
+ * 拉取失败、或判定为站标/Google News 默认 logo → 不插图。
  *
  * Usage:
  *   node scripts/resolve-news-images.mjs
@@ -13,6 +13,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fetch as undiciFetch, Headers, Request, Response } from "undici";
+import {
+  cosConfigured,
+  loadDotEnv,
+  uploadBuffer,
+  isCdnUrl,
+  cosConfig,
+} from "./cos-upload.mjs";
 
 if (typeof globalThis.fetch !== "function") {
   globalThis.fetch = undiciFetch;
@@ -23,11 +30,14 @@ if (typeof globalThis.fetch !== "function") {
 
 const fetch = globalThis.fetch.bind(globalThis);
 
+loadDotEnv();
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const newsRoot = path.join(root, "news");
 const publicNews = path.join(root, "website/public/news");
-// 本地图在 markdown 中写站内路径 /news/...（base=/ 时运行时同路径）
+// 历史本地路径（迁移前）；新图一律 CDN
 const NEWS_PUBLIC_BASE = "/news/";
+let warnedNoCos = false;
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
@@ -156,13 +166,30 @@ function isLogoOrPlaceholder(url, buf) {
   return false;
 }
 
-/** 本地 /news/... 或外链是否应丢弃（不展示）。 */
+function newsHashFromSrc(src) {
+  return path.basename(String(src).split("?")[0]).replace(/\.[a-z]+$/i, "");
+}
+
+function isNewsLocalOrCdn(src) {
+  if (!src) return false;
+  if (src.startsWith(NEWS_PUBLIC_BASE)) return true;
+  if (isCdnUrl(src) && src.includes("/news/")) return true;
+  const base = cosConfig().cdnBase;
+  return Boolean(base && src.startsWith(base + "/news/"));
+}
+
+/** 本地 /news/...、CDN news URL 或外链是否应丢弃（不展示）。 */
 function shouldDropImageRef(src) {
   if (!src) return true;
   if (STRIP_IMAGE.test(src)) return true;
+  const hash = newsHashFromSrc(src);
+  if (BAD_LOCAL_HASHES.has(hash)) return true;
+
+  if (isCdnUrl(src) || (cosConfig().cdnBase && src.startsWith(cosConfig().cdnBase))) {
+    return false;
+  }
+
   if (src.startsWith(NEWS_PUBLIC_BASE)) {
-    const hash = path.basename(src).replace(/\.[a-z]+$/i, "");
-    if (BAD_LOCAL_HASHES.has(hash)) return true;
     const full = path.join(publicNews, src.slice(NEWS_PUBLIC_BASE.length));
     // 文件不存在：Vite/Rollup 会把 markdown 里的绝对路径当 import 解析并让构建失败
     if (!fs.existsSync(full)) return true;
@@ -222,6 +249,16 @@ async function downloadImage(url, month, cache) {
     cache.set(key, null);
     return null;
   }
+  if (!cosConfigured()) {
+    if (!warnedNoCos) {
+      console.warn(
+        "resolve-news-images: COS env not set — skip new images (no local fallback)",
+      );
+      warnedNoCos = true;
+    }
+    cache.set(key, null);
+    return null;
+  }
   try {
     const res = await fetch(url, {
       headers: { "User-Agent": UA },
@@ -252,14 +289,44 @@ async function downloadImage(url, month, cache) {
     else if (ct.includes("webp")) ext = "webp";
     else if (ct.includes("gif")) ext = "gif";
     const hash = crypto.createHash("sha1").update(url).digest("hex").slice(0, 12);
-    const dir = path.join(publicNews, month);
-    fs.mkdirSync(dir, { recursive: true });
-    const file = `${hash}.${ext}`;
-    fs.writeFileSync(path.join(dir, file), buf);
-    const local = `${NEWS_PUBLIC_BASE}${month}/${file}`;
-    cache.set(key, local);
-    return local;
-  } catch {
+    const objectKey = `news/${month}/${hash}.${ext}`;
+    const cdn = await uploadBuffer(objectKey, buf, {
+      contentType: ct.split(";")[0].trim() || undefined,
+    });
+    cache.set(key, cdn);
+    return cdn;
+  } catch (err) {
+    console.warn(
+      `resolve-news-images: upload failed for ${url}: ${err.message || err}`,
+    );
+    cache.set(key, null);
+    return null;
+  }
+}
+
+/** If md still has /news/... and file exists on disk, upload to COS and return CDN URL. */
+async function migrateLocalNewsRef(src, cache) {
+  if (!src?.startsWith(NEWS_PUBLIC_BASE) || !cosConfigured()) return null;
+  const key = `mig:${src}`;
+  if (cache.has(key)) return cache.get(key);
+  const rel = src.slice(NEWS_PUBLIC_BASE.length);
+  const full = path.join(publicNews, rel);
+  if (!fs.existsSync(full)) {
+    cache.set(key, null);
+    return null;
+  }
+  try {
+    const buf = fs.readFileSync(full);
+    if (isLogoOrPlaceholder(src, buf)) {
+      cache.set(key, null);
+      return null;
+    }
+    const objectKey = `news/${rel.split(path.sep).join("/")}`;
+    const cdn = await uploadBuffer(objectKey, buf);
+    cache.set(key, cdn);
+    return cdn;
+  } catch (err) {
+    console.warn(`migrate local news ref failed ${src}: ${err.message || err}`);
     cache.set(key, null);
     return null;
   }
@@ -360,8 +427,31 @@ export async function resolveFileImages(filePath, cache = new Map()) {
           results.set(i, stripImageFromBlock(block));
           continue;
         }
-        if (existing.startsWith(NEWS_PUBLIC_BASE)) {
+        // 已是 CDN 新闻图 → 跳过
+        if (isNewsLocalOrCdn(existing) && !existing.startsWith(NEWS_PUBLIC_BASE)) {
           results.set(i, block);
+          continue;
+        }
+        // 历史本地 /news/… → 尽量迁到 COS
+        if (existing.startsWith(NEWS_PUBLIC_BASE)) {
+          const cdn = await migrateLocalNewsRef(existing, cache);
+          if (cdn) {
+            updated++;
+            results.set(
+              i,
+              block.replace(imgLineMatch[2], `![配图](${cdn})\n\n`),
+            );
+          } else if (
+            fs.existsSync(
+              path.join(publicNews, existing.slice(NEWS_PUBLIC_BASE.length)),
+            )
+          ) {
+            // 无 COS 时保留本地，避免误删
+            results.set(i, block);
+          } else {
+            updated++;
+            results.set(i, stripImageFromBlock(block));
+          }
           continue;
         }
         const local = await downloadImage(existing, month, cache);

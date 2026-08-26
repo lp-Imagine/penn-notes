@@ -7,7 +7,9 @@
 | 类型 | 路径 |
 |------|------|
 | 正文 | `website/<section>/<group>/<slug>.md`（与手写笔记同目录，才能挂上对应侧栏） |
-| 图片 | `website/public/sync/<sourceId>/...` |
+| 图片 | 上传 COS 后 URL 为 `https://img.penn-notes.draftly.cn/sync/<sourceId>/...`（本地落盘目录仍可为 `website/public/sync/<sourceId>/`，`npm run ingest` 在配置 COS 时会上传并改写） |
+
+推荐直接在 frontmatter / 正文写 **CDN 绝对 URL**；若仍写 `/sync/...` 且本地有文件，构建前 `ingest` 会上传并改写（需 `COS_*` 环境变量）。
 
 `section` 枚举：`web` | `ui` | `tech` | `computer` | `agent` | `misc`
 
@@ -38,7 +40,7 @@ section: web
 group: javascript
 source: ai-article
 sourceId: clxxxxxxxx          # Article.id，幂等主键
-cover: /sync/clxxxxxxxx/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/clxxxxxxxx/cover.jpg
 draft: false
 ---
 
@@ -46,7 +48,7 @@ draft: false
 
 <p class="article-meta">...</p>
 
-<img class="article-cover" src="/sync/clxxxxxxxx/cover.jpg" alt="「文章标题」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/clxxxxxxxx/cover.jpg" alt="「文章标题」封面" />
 
 正文使用 **Markdown**（代码块用 fenced ```）。
 ```

@@ -2,10 +2,12 @@
 /**
  * Validate ai-article synced Markdown across both legacy website/sync/ and
  * current website/<section>/ paths (any file with `source: ai-article`).
+ * When COS env is set, upload public/sync assets and rewrite /sync/ → CDN URLs.
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { ensureCosSyncAssets } from "./ensure-cos-sync-assets.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const websiteRoot = path.join(root, "website");
@@ -40,7 +42,7 @@ function parseFm(raw) {
   return fm;
 }
 
-function main() {
+async function main() {
   if (!fs.existsSync(syncRoot)) {
     fs.mkdirSync(syncRoot, { recursive: true });
   }
@@ -98,6 +100,13 @@ function main() {
   }
 
   console.log(`ingest-sync: ok (${candidates.length} file(s))`);
+
+  try {
+    await ensureCosSyncAssets();
+  } catch (err) {
+    console.error("ingest-sync: COS sync assets failed:", err.message || err);
+    process.exit(1);
+  }
 }
 
-main();
+await main();
