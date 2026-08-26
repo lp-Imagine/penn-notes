@@ -62,7 +62,9 @@ function isReadableDetail(path = currentSitePath()) {
 }
 
 const SIDEBAR_KEY = "penn-sidebar-collapsed";
+const FOCUS_KEY = "penn-focus-mode";
 let sidebarToggleBtn: HTMLButtonElement | null = null;
+let focusToggleBtn: HTMLButtonElement | null = null;
 let sidebarObserver: MutationObserver | undefined;
 
 function applySidebarToggleState() {
@@ -97,6 +99,53 @@ function updateSidebarToggleVisibility() {
   // 只有带左侧菜单的页面（文章详情等）显示按钮；SPA 切换路由时跟随更新
   const hasSidebar = Boolean(document.querySelector(".VPContent.has-sidebar"));
   document.body.classList.toggle("has-vp-sidebar", hasSidebar);
+}
+
+function updateFocusToggleVisibility() {
+  if (!focusToggleBtn) return;
+  // 专注模式按钮只在可读详情页（文章 / AI 动态日报）出现
+  document.body.classList.toggle("has-readable-detail", isReadableDetail());
+}
+
+// ---- 沉浸式阅读（专注模式）：仅桌面端详情页生效，记忆状态 ----
+function applyFocusToggleState() {
+  if (!focusToggleBtn) return;
+  const on = document.documentElement.classList.contains("focus-mode");
+  focusToggleBtn.classList.toggle("is-active", on);
+  focusToggleBtn.setAttribute("aria-pressed", on ? "true" : "false");
+  focusToggleBtn.setAttribute(
+    "aria-label",
+    on ? "退出沉浸式阅读" : "沉浸式阅读",
+  );
+  focusToggleBtn.title = on ? "退出沉浸式阅读" : "沉浸式阅读";
+}
+
+function createFocusToggle() {
+  if (focusToggleBtn || typeof document === "undefined") return;
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "focus-toggle";
+  btn.innerHTML =
+    '<svg class="focus-icon-enter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>' +
+    '<svg class="focus-icon-exit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
+  btn.addEventListener("click", () => {
+    btn.blur();
+    const on = document.documentElement.classList.toggle("focus-mode");
+    try {
+      localStorage.setItem(FOCUS_KEY, on ? "1" : "0");
+    } catch {
+      // ignore storage errors
+    }
+    applyFocusToggleState();
+    // 布局变了，大纲/进度条需要重算
+    requestAnimationFrame(() => {
+      updateOutlineActive();
+      updateReadingProgress();
+    });
+  });
+  document.body.appendChild(btn);
+  focusToggleBtn = btn;
+  applyFocusToggleState();
 }
 
 // ---- 侧栏滚动条：滚动中短暂显示 ----
@@ -522,9 +571,8 @@ function setupBackToTop() {
   backTopBtn = btn;
 
   const update = () => {
-    const show =
-      window.scrollY > BACK_TOP_SHOW_Y &&
-      !window.matchMedia("(min-width: 960px)").matches;
+    // 全端显示：桌面端归入右下角工具组
+    const show = window.scrollY > BACK_TOP_SHOW_Y;
     btn.classList.toggle("is-visible", show);
   };
   window.addEventListener("scroll", () => requestAnimationFrame(update), {
@@ -668,6 +716,19 @@ function bindNewsImageFallback(rootEl: ParentNode = document) {
   });
 }
 
+function enhanceArticleImages() {
+  document.querySelectorAll<HTMLImageElement>(".vp-doc img").forEach((img) => {
+    if (img.classList.contains("article-cover")) {
+      img.loading = "eager";
+      img.setAttribute("fetchpriority", "high");
+      img.decoding = "async";
+      return;
+    }
+    if (!img.getAttribute("loading")) img.loading = "lazy";
+    if (!img.getAttribute("decoding")) img.decoding = "async";
+  });
+}
+
 function collectImages(): HTMLElement[] {
   return Array.from(
     document.querySelectorAll<HTMLImageElement>(".vp-doc img"),
@@ -698,6 +759,7 @@ function scheduleRefresh() {
   debounceTimer = setTimeout(() => {
     nextTick(() => {
       bindNewsImageFallback();
+      enhanceArticleImages();
       refreshZoom();
       updateReadingTime();
       updateReadingProgress();
@@ -767,6 +829,12 @@ export default {
           localStorage.getItem(SIDEBAR_KEY) === "1" &&
           window.matchMedia("(min-width: 960px)").matches;
         if (collapsed) document.documentElement.classList.add("sidebar-collapsed");
+        // 沉浸式阅读：仅桌面端 + 可读详情页才恢复，避免配色作用到全局页面
+        const focusOn =
+          localStorage.getItem(FOCUS_KEY) === "1" &&
+          window.matchMedia("(min-width: 960px)").matches &&
+          isReadableDetail();
+        if (focusOn) document.documentElement.classList.add("focus-mode");
       } catch {
         // ignore storage errors
       }
@@ -778,17 +846,26 @@ export default {
             if (localStorage.getItem(SIDEBAR_KEY) === "1") {
               document.documentElement.classList.add("sidebar-collapsed");
             }
+            if (
+              localStorage.getItem(FOCUS_KEY) === "1" &&
+              isReadableDetail()
+            ) {
+              document.documentElement.classList.add("focus-mode");
+            }
           } catch {
             // ignore
           }
         } else {
-          // 移动端移除收起类，保证「目录」抽屉可正常打开
+          // 移动端移除收起/专注类，保证「目录」抽屉可正常打开
           document.documentElement.classList.remove("sidebar-collapsed");
+          document.documentElement.classList.remove("focus-mode");
         }
         updateSidebarToggleVisibility();
       };
       window.addEventListener("resize", onViewportResize);
       createSidebarToggle();
+      createFocusToggle();
+      updateFocusToggleVisibility();
       updateSidebarToggleVisibility();
       bindSidebarOverlayScrollbar();
       setupReadingProgress();
@@ -814,6 +891,24 @@ export default {
         requestAnimationFrame(updateOutlineActive);
         requestAnimationFrame(updateNavOverflow);
         pinnedOutlineLink = null;
+        // 专注模式（含护眼配色）只作用于详情页：切走即退出并还原主题；
+        // 切回详情页时按记忆恢复（仅桌面端）
+        if (isReadableDetail()) {
+          try {
+            if (
+              localStorage.getItem(FOCUS_KEY) === "1" &&
+              window.matchMedia("(min-width: 960px)").matches
+            ) {
+              document.documentElement.classList.add("focus-mode");
+            }
+          } catch {
+            // ignore storage errors
+          }
+        } else {
+          document.documentElement.classList.remove("focus-mode");
+        }
+        updateFocusToggleVisibility();
+        applyFocusToggleState();
       },
     );
   },

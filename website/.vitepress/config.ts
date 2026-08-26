@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type HeadConfig } from "vitepress";
+import { pennCalloutsPlugin } from "./markdown-callouts";
 import { pennBase, pennSiteUrl } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
@@ -62,6 +63,11 @@ export default defineConfig({
     /^https?:\/\//,
     /^mailto:/,
   ],
+  markdown: {
+    config(md) {
+      pennCalloutsPlugin(md);
+    },
+  },
   // ai-article 同步过来的表格偶尔会多出一个尾随空白列（由 convertTable 的 padding 逻辑触发），
   // 在这里把所有内容为空白/只有 &nbsp; 的最后列 cell 删掉，避免下游文章都各自修。
   // 同时包一层 .vp-table-scroll，方便 CSS：铺满 + 列多时横向滚动兼容。

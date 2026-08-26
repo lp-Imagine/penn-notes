@@ -67,6 +67,19 @@
   color: var(--text);
 }
 
+/* 移动端：字号/行距略收，长文不那么「重」；h1 同步压低 */
+@media (max-width: 768px) {
+  .vp-doc {
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .vp-doc h1 {
+    font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+}
+
 .vp-doc h2,
 .vp-doc h3,
 .vp-doc h4 {
@@ -89,7 +102,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin: 0 0 var(--space-6) !important;
+  margin: 0 0 var(--space-5) !important;
   font-size: 13px;
   line-height: 1.4;
   color: var(--text-3);
@@ -112,8 +125,8 @@
 
 .vp-doc h2 {
   position: relative;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 650;
   letter-spacing: -0.02em;
   line-height: 1.35;
   margin: var(--space-7) 0 var(--space-4);
@@ -152,27 +165,29 @@
   display: none;
 }
 
-/* ai-article 同步稿封面：紧跟 meta 之后，全宽圆角 */
+/* ai-article 同步稿封面：紧跟 meta 之后，全宽圆角；高度略收，避免首屏过压 */
 .vp-doc .article-cover {
   display: block;
   width: 100%;
-  height: 220px;
+  height: 200px;
   max-height: none;
   margin: 0 0 var(--space-6);
   border-radius: var(--radius-lg);
   object-fit: cover;
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface-2);
 }
 
 @media (min-width: 768px) {
   .vp-doc .article-cover {
-    height: 420px;
+    height: 340px;
   }
 }
 
 /* ai-article 章节配图：figure + figcaption */
 .vp-doc .inline-figure {
-  margin: var(--space-5) 0;
+  margin: var(--space-6) 0;
   text-align: center;
 }
 
@@ -181,13 +196,17 @@
   max-width: 100%;
   height: auto;
   display: block;
+  margin-inline: auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface-2);
 }
 
 .vp-doc .inline-figure figcaption {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 13px;
+  line-height: 1.5;
   color: var(--text-3);
 }
 
@@ -213,7 +232,7 @@
 }
 
 .vp-doc h3 {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   margin: var(--space-6) 0 var(--space-3);
   color: var(--text);
@@ -518,13 +537,6 @@
   font-size: 0.9em;
 }
 
-.vp-doc div[class*="language-"] {
-  margin: 0 0 var(--space-5);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface) !important;
-}
-
 .vp-doc blockquote {
   margin: 0 0 var(--space-5);
   padding: 12px 16px;
@@ -532,6 +544,12 @@
   border-radius: 0 var(--radius) var(--radius) 0;
   background: var(--accent-soft);
   color: var(--text-2);
+}
+
+.vp-doc blockquote.is-annotation {
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface-2));
 }
 
 .vp-doc blockquote p {
@@ -1317,8 +1335,8 @@ html:not(.dark) .VPSidebar {
 }
 
 html:not(.dark) .vp-doc :not(pre) > code {
-  background: var(--surface-2);
-  color: #3b3b45;
+  background: #e9ebf1;
+  color: #2b2b33;
 }
 
 html:not(.dark) .home-btn--primary:hover {

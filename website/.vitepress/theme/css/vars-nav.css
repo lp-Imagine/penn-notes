@@ -30,8 +30,8 @@
   --space-7: 48px;
   --space-8: 64px;
   --page-max-width: 1680px;
-  --doc-content-max: 52rem;
-  --doc-content-max-wide: 56rem;
+  --doc-content-max: 48rem;
+  --doc-content-max-wide: 52rem;
   --doc-page-inset: 20px;
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
   --vp-font-family-base: "Inter", "Noto Sans SC", system-ui, sans-serif;
@@ -51,7 +51,7 @@
   --vp-c-code-bg: #eef0f4;
   --vp-nav-bg-color: rgba(245, 245, 247, 0.82);
   --vp-sidebar-bg-color: var(--bg);
-  --vp-code-block-bg: #ffffff;
+  --vp-code-block-bg: #f0f1f5;
   --vp-layout-max-width: var(--page-max-width);
 }
 
@@ -74,7 +74,7 @@
   --vp-c-code-bg: #2d2d2f;
   --vp-nav-bg-color: rgba(0, 0, 0, 0.88);
   --vp-sidebar-bg-color: var(--bg);
-  --vp-code-block-bg: #1d1d1f;
+  --vp-code-block-bg: #111113;
 }
 
 body {
