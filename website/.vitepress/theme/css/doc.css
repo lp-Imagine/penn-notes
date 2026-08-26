@@ -675,6 +675,10 @@
     padding: 4px 8px 6px;
   }
 
+  .VPLocalNavOutlineDropdown .VPDocOutlineItem.root > li > .outline-link.active {
+    color: var(--link);
+  }
+
   /* h3 条目：允许多行、加大触控区 */
   .VPLocalNavOutlineDropdown .VPDocOutlineItem.nested {
     padding: 0 0 2px;
@@ -1233,6 +1237,10 @@
     letter-spacing: 0.03em;
     color: var(--text-3);
     padding: 4px 8px 6px;
+  }
+
+  .VPLocalNavOutlineDropdown .VPDocOutlineItem.root > li > .outline-link.active {
+    color: var(--link);
   }
 
   .VPLocalNavOutlineDropdown .VPDocOutlineItem.nested .outline-link {

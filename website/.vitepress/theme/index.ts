@@ -345,6 +345,20 @@ function findHeading(id: string) {
   );
 }
 
+/** 标题是否在布局中可见（过滤日报栏目 display:none 等） */
+function isHeadingVisible(el: HTMLElement) {
+  if (!el.isConnected) return false;
+  const rect = el.getBoundingClientRect();
+  if (rect.width === 0 && rect.height === 0) return false;
+  let node: HTMLElement | null = el;
+  while (node && node !== document.body) {
+    const style = getComputedStyle(node);
+    if (style.display === "none" || style.visibility === "hidden") return false;
+    node = node.parentElement;
+  }
+  return true;
+}
+
 /** 获取页面中所有有效的大纲容器（桌面右侧 + 移动端下拉） */
 function outlineContainers(): HTMLElement[] {
   const els: HTMLElement[] = [];
@@ -412,11 +426,25 @@ function updateOutlineActive() {
   let active: HTMLAnchorElement | null = null;
   for (const link of links) {
     const heading = findHeading(outlineHash(link.getAttribute("href") || ""));
-    if (!heading) continue;
+    if (!heading || !isHeadingVisible(heading)) continue;
     if (heading.getBoundingClientRect().top <= offset) active = link;
   }
 
   applyOutlineActive(active);
+}
+
+function scrollActiveOutlineIntoFlyout() {
+  const flyout = document.querySelector<HTMLElement>(
+    ".VPLocalNavOutlineDropdown .items",
+  );
+  if (!flyout) return;
+  const active = flyout.querySelector<HTMLAnchorElement>("a.outline-link.active");
+  active?.scrollIntoView({ block: "nearest" });
+}
+
+function syncOutlineAfterFlyoutOpen() {
+  updateOutlineActive();
+  scrollActiveOutlineIntoFlyout();
 }
 
 function onOutlineClick(e: Event) {
@@ -452,6 +480,25 @@ function setupOutlineSpy() {
   window.addEventListener("resize", onScroll);
   window.addEventListener("hashchange", updateOutlineActive);
   document.addEventListener("click", onOutlineClick, true);
+  // LocalNav 在 VPContent 外；下拉用 v-if，打开时需立刻同步 .active
+  document.addEventListener(
+    "click",
+    (e) => {
+      const t = e.target as Element | null;
+      if (!t?.closest?.(".VPLocalNavOutlineDropdown > button")) return;
+      requestAnimationFrame(() => syncOutlineAfterFlyoutOpen());
+      setTimeout(() => syncOutlineAfterFlyoutOpen(), 40);
+    },
+    true,
+  );
+  const localNav = document.querySelector(".VPLocalNav");
+  if (localNav) {
+    new MutationObserver(() => {
+      if (document.querySelector(".VPLocalNavOutlineDropdown .items")) {
+        syncOutlineAfterFlyoutOpen();
+      }
+    }).observe(localNav, { childList: true, subtree: true });
+  }
   updateOutlineActive();
 }
 
@@ -705,8 +752,14 @@ export default {
       scheduleRefresh();
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
+        // 含 style：日报栏目筛选会改 display，需重算章节高亮
         observer = new MutationObserver(() => scheduleRefresh());
-        observer.observe(content, { childList: true, subtree: true });
+        observer.observe(content, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["style", "class", "hidden"],
+        });
       }
       // 左侧菜单收起/展开：恢复记忆状态（仅桌面端生效，移动端不加类以免影响目录抽屉）+ 创建按钮 + 跟随路由更新可见性
       try {
