@@ -10,7 +10,7 @@ const items = computed(() => digests.items ?? []);
 
 const latest = computed(() => items.value[0] ?? null);
 
-const recentStrip = computed(() => items.value.slice(0, RECENT_STRIP));
+const recentStrip = computed(() => items.value.slice(1, RECENT_STRIP + 1));
 
 const monthGroups = computed(() => {
   const map = new Map();
@@ -27,10 +27,6 @@ const monthGroups = computed(() => {
       items: groupItems,
     }));
 });
-
-if (monthGroups.value[0]) {
-  expandedMonths.value.add(monthGroups.value[0].month);
-}
 
 function imageSrc(url) {
   const raw = String(url || "").trim();
@@ -65,10 +61,15 @@ function isExpanded(month) {
 }
 
 function toggleMonth(month) {
-  const next = new Set(expandedMonths.value);
-  if (next.has(month)) next.delete(month);
-  else next.add(month);
-  expandedMonths.value = next;
+  if (expandedMonths.value.has(month)) {
+    expandedMonths.value = new Set();
+    return;
+  }
+  expandedMonths.value = new Set([month]);
+}
+
+function isLatest(item) {
+  return !!latest.value && item.slug === latest.value.slug;
 }
 
 function onThumbError(e) {
@@ -111,14 +112,13 @@ function onThumbError(e) {
       </div>
     </a>
 
-    <div v-if="recentStrip.length > 1" class="news-digest-recent">
+    <div v-if="recentStrip.length" class="news-digest-recent">
       <p class="news-digest-recent-label">近期</p>
       <div class="news-digest-recent-scroll" tabindex="0" role="list">
         <a
-          v-for="(item, idx) in recentStrip"
+          v-for="item in recentStrip"
           :key="item.slug"
           class="news-digest-chip"
-          :class="{ 'is-latest': idx === 0 }"
           role="listitem"
           :href="href(item)"
         >
@@ -128,6 +128,7 @@ function onThumbError(e) {
     </div>
 
     <div class="news-digest-months">
+      <p class="news-digest-recent-label">按月查阅</p>
       <div
         v-for="group in monthGroups"
         :key="group.month"
@@ -149,6 +150,7 @@ function onThumbError(e) {
             v-for="item in group.items"
             :key="item.slug"
             class="news-digest-date"
+            :class="{ 'is-latest': isLatest(item) }"
             :href="href(item)"
           >
             <time :datetime="item.date">{{ dayLabel(item.date) }}</time>

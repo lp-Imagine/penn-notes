@@ -1008,10 +1008,22 @@
 
 /* ── AI 动态页：页内导航 + 日报归档面板 ── */
 .news-page-jump {
+  position: sticky;
+  top: var(--vp-nav-height, 64px);
+  z-index: 12;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin: -8px 0 28px;
+  padding: 10px 0 12px;
+  background: color-mix(in srgb, var(--vp-c-bg, var(--surface)) 86%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#digests,
+#feed {
+  scroll-margin-top: calc(var(--vp-nav-height, 64px) + 52px);
 }
 
 .news-page-jump-link {
@@ -1071,7 +1083,7 @@
 
 .news-digest-featured {
   display: grid;
-  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   align-items: stretch;
   margin-bottom: 18px;
@@ -1081,6 +1093,10 @@
   background: var(--surface);
   text-decoration: none !important;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.news-digest-featured:has(.news-digest-featured-media) {
+  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
 }
 
 .news-digest-featured:hover {
@@ -1179,7 +1195,8 @@
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
-.news-digest-chip.is-latest {
+.news-digest-chip.is-latest,
+.news-digest-date.is-latest {
   border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
   background: color-mix(in srgb, var(--accent) 10%, var(--surface));
   color: var(--link) !important;
@@ -1259,7 +1276,8 @@
     border-radius: 14px;
   }
 
-  .news-digest-featured {
+  .news-digest-featured,
+  .news-digest-featured:has(.news-digest-featured-media) {
     grid-template-columns: 1fr;
   }
 
