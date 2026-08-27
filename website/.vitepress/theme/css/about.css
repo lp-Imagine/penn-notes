@@ -30,7 +30,7 @@ body:has(.about-page) .VPContent,
 /* 移动端顶栏 fixed 且 VPContent 已去 padding，这里补回导航高度 */
 @media (max-width: 959.98px) {
   .vp-doc .about-page {
-    padding-top: calc(var(--vp-nav-height, 64px) + 12px);
+    padding-top: var(--vp-nav-height, 64px);
   }
 }
 
@@ -57,6 +57,12 @@ body:has(.about-page) .VPContent,
   background: var(--divider-fade) no-repeat bottom / 100% 1px;
   overflow: visible;
   box-shadow: none;
+}
+
+@media (max-width: 959.98px) {
+  .vp-doc .about-hero {
+    padding-top: 8px;
+  }
 }
 
 .vp-doc .about-hero::before,

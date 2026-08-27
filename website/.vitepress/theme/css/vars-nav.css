@@ -81,6 +81,25 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 无侧栏页（首页 / 标签 / 归档 / 栏目 / 关于）：裁掉横向溢出。
+   首页、关于页原先各自 clip；标签页漏了，移动端滚到页底橡皮筋时会左右滑。
+   有侧栏的文章页不 clip，避免裁掉从左侧滑入的目录抽屉。 */
+.Layout:not(:has(.VPSidebar)) {
+  overflow-x: clip;
+}
+
+@media (max-width: 767.98px) {
+  html {
+    overscroll-behavior-x: none;
+  }
+
+  .VPNav,
+  .VPNavBar {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+}
+
 .VPNavBar {
   backdrop-filter: blur(12px);
   border-bottom: none !important;

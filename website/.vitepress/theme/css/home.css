@@ -34,12 +34,24 @@
   padding: 36px 0 72px;
 }
 
+@media (max-width: 959.98px) {
+  .home-wrap {
+    padding: 8px 0 56px;
+  }
+}
+
 .home-hero {
   position: relative;
   isolation: isolate;
   margin: 0 0 44px;
   padding: 28px 0 40px;
   overflow: visible;
+}
+
+@media (max-width: 959.98px) {
+  .home-hero {
+    padding-top: 12px;
+  }
 }
 
 /*

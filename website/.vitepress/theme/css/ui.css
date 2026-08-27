@@ -946,6 +946,8 @@ body,
 .VPFooter.VPFooter {
   border-top: none;
   padding: 36px 24px calc(40px + env(safe-area-inset-bottom, 0px));
+  max-width: 100%;
+  overflow-x: clip;
   background:
     var(--divider-fade) no-repeat top center / min(560px, 72%) 1px,
     color-mix(in srgb, var(--surface-2) 18%, transparent);
@@ -957,6 +959,8 @@ body,
   align-items: center;
   gap: 16px;
   max-width: 28rem;
+  width: 100%;
+  min-width: 0;
   margin: 0 auto;
   text-align: center;
 }
@@ -1015,6 +1019,8 @@ body,
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .VPFooter .footer-link {
@@ -1106,7 +1112,9 @@ body,
 
   .VPFooter .container {
     gap: 14px;
-    max-width: none;
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
   }
 
   .VPFooter .message {

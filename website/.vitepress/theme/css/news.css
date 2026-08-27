@@ -19,12 +19,19 @@
   text-decoration: none !important;
 }
 
+.discover-browse {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .discover-toolbar {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 0 0 20px;
   padding: 12px;
+  min-width: 0;
+  max-width: 100%;
   border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
   border-radius: 14px;
   background: color-mix(in srgb, var(--surface-2) 26%, transparent);
@@ -35,6 +42,8 @@
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .discover-chip {
@@ -51,6 +60,9 @@
   font-weight: 600;
   letter-spacing: 0.005em;
   cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   transition: border-color 0.16s, color 0.16s, background 0.16s, transform 0.16s;
 }
@@ -115,13 +127,17 @@
 
 .discover-rows {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
+  min-width: 0;
 }
 
 .discover-row {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -141,12 +157,20 @@
   box-shadow: none;
 }
 
+.discover-row-body,
+.discover-row-title,
+.discover-row-summary {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .discover-row-title {
   display: block;
   font-size: 15px;
   font-weight: 650;
   line-height: 1.45;
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 .discover-row:hover .discover-row-title {
@@ -166,12 +190,15 @@
   color: var(--text-2);
   font-size: 13px;
   line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
 .discover-row-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .discover-row-tag {
@@ -481,6 +508,16 @@
   margin-right: auto !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+@media (max-width: 959.98px) {
+  .VPDoc:has(.section-page) {
+    padding-top: 0 !important;
+  }
+
+  .VPDoc:has(.section-page) .container {
+    padding-top: 12px !important;
+  }
 }
 
 @media (max-width: 767.98px) {
