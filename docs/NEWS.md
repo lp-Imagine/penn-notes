@@ -18,47 +18,84 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
 
-## 定时策略（推荐）
+## 定时策略
 
 | 优先级 | 触发方式 | 时间（北京时间） | 说明 |
 |--------|----------|------------------|------|
-| **主** | 外部 cron → `workflow_dispatch` | **07:00** | 最准时，见下节 cron-job.org |
+| **主** | **宝塔计划任务** → `workflow_dispatch` | **07:00** | 见下节（推荐，与主站同机） |
 | 备 1 | GitHub `schedule` | 07:00 | `cron: 0 23 * * *`（UTC），可能漏跑 |
 | 备 2 | GitHub `schedule` | 08:30 | `cron: 30 0 * * *`（UTC），07:00 漏跑时补救 |
 
 日报默认汇总 **昨天**（上海时区）。若 digest 已存在，`generate-daily-news.mjs` 会 skip，因此多层触发不会重复 commit。
 
-> GitHub 内置 `schedule` **可能延迟或整天漏跑**（与仓库 push 无关）。务必配置外部 cron 作为主触发。
+触发后 **GitHub Actions 会同时部署**：
 
-## 外部定时触发（主方案 · cron-job.org）
+- **GitHub Pages** 备份站（`gh-pages`）
+- **宝塔主站**（`penn-notes.draftly.cn`，Self-hosted Runner）
 
-1. 创建 GitHub Personal Access Token（Fine-grained 需 **Actions: Read and write** + **Contents: Read**；Classic 勾选 `repo`）
-2. 登录 [cron-job.org](https://cron-job.org) → **Create cronjob**
-3. 填写：
+宝塔 cron **只负责叫醒 workflow**，不在本机构建站点。
 
-| 字段 | 值 |
-|------|-----|
-| Title | penn-notes daily AI news |
-| URL | `https://api.github.com/repos/lp-Imagine/penn-notes/actions/workflows/daily-news.yml/dispatches` |
-| Schedule | 每天 **07:00**，时区 **Asia/Shanghai** |
-| Request method | **POST** |
-| Headers | `Accept: application/vnd.github+json` |
-| Headers | `Authorization: Bearer <你的PAT>` |
-| Headers | `X-GitHub-Api-Version: 2022-11-28` |
-| Body (JSON) | `{"ref":"master"}` |
+> GitHub 内置 `schedule` 可能漏跑；请配置宝塔计划任务作为主触发。
 
-4. 保存后可用 **Run now** 测一次；GitHub Actions 里应出现 `workflow_dispatch` 运行记录
+## 外部定时触发（主方案 · 宝塔计划任务）
 
-也可在本地 / 服务器 crontab 调用仓库脚本：
+与 Draftly「博客同步」可共用同一个 GitHub PAT（需 **repo** + **workflow** 权限）。
+
+### 1. 在宝塔 SSH 一次性安装
+
+```bash
+mkdir -p /root/.config/penn-notes /root/scripts /var/log
+
+# 写入 PAT（与 ai-article 设置里博客同步 Token 相同即可）
+echo 'ghp_你的PAT' > /root/.config/penn-notes/github_token
+chmod 600 /root/.config/penn-notes/github_token
+
+# 下载触发脚本（或 git clone 仓库后复制 scripts/baota-cron-daily-news.sh）
+curl -fsSL -o /root/scripts/penn-notes-cron-daily-news.sh \
+  https://raw.githubusercontent.com/lp-Imagine/penn-notes/master/scripts/baota-cron-daily-news.sh
+chmod +x /root/scripts/penn-notes-cron-daily-news.sh
+
+# 试跑一次（Actions 里应出现 workflow_dispatch）
+/bin/bash /root/scripts/penn-notes-cron-daily-news.sh
+tail -n 3 /var/log/penn-notes-daily-news-cron.log
+```
+
+### 2. 宝塔面板添加计划任务
+
+| 项 | 值 |
+|----|-----|
+| 任务类型 | **Shell 脚本** |
+| 任务名称 | penn-notes AI 动态日报 |
+| 执行周期 | 每天 **07:00** |
+| 脚本内容 | `/bin/bash /root/scripts/penn-notes-cron-daily-news.sh` |
+
+保存后可在计划任务里点 **执行** 测一次，再到 GitHub → Actions → **Daily AI News** 确认有 `workflow_dispatch` 运行。
+
+### 3. 补跑 / 强制覆盖
+
+SSH 到宝塔：
+
+```bash
+# 补跑指定日期
+NEWS_DATE=2026-08-26 /bin/bash /root/scripts/penn-notes-cron-daily-news.sh
+
+# 覆盖已有 digest
+NEWS_DATE=2026-08-26 FORCE=true /bin/bash /root/scripts/penn-notes-cron-daily-news.sh
+```
+
+日志：`/var/log/penn-notes-daily-news-cron.log`
+
+### 备选：cron-job.org / 本地脚本
+
+无宝塔时可用 [cron-job.org](https://cron-job.org) 每天 07:00 POST 同一 API，或本地：
 
 ```bash
 export GITHUB_TOKEN=ghp_xxx
 bash scripts/trigger-daily-news.sh
-# 补跑指定日期
 bash scripts/trigger-daily-news.sh --date=2026-08-26
 ```
 
-### 方式 B：`repository_dispatch`（可选）
+### 可选：`repository_dispatch`
 
 ```bash
 curl -sS -X POST \
@@ -137,7 +174,7 @@ AI 动态提供 RSS，地址：
 
 ## 排查
 
-- **今天没更新 / schedule 没跑**：GitHub 内置 cron 可能漏跑，与 blog-sync 等 push 无关。到 Actions → Daily AI News 看是否有今日 run；没有则 `bash scripts/trigger-daily-news.sh` 补跑，并配置 [cron-job.org](#外部定时触发主方案--cron-joborg)
+- **今天没更新 / schedule 没跑**：配置 [宝塔计划任务](#外部定时触发主方案--宝塔计划任务)；或 Actions → Daily AI News → Run workflow / `bash scripts/trigger-daily-news.sh` 补跑
 - **页面没更新**：多半是日报已 commit，但旧版 workflow 用 `GITHUB_TOKEN` 推送不会触发 CI。现在 daily-news 会自行部署；也可手动跑 CI → Run workflow
 - **RSS 失败**：日志里会列出失败源，详情见 `news/.state/feed-health.json`
 - **质量差 / 英文标题**：多半没配 `LLM_API_KEY`，或用了 `--allow-heuristic`
