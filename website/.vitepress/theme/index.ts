@@ -5,6 +5,7 @@ import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
 import Comments from "./Comments.vue";
 import NewsArchive from "./NewsArchive.vue";
+import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 import NotesArchive from "./NotesArchive.vue";
@@ -915,6 +916,7 @@ export default {
   enhanceApp({ app }) {
     app.component("AboutFriends", AboutFriends);
     app.component("NewsArchive", NewsArchive);
+    app.component("NewsDigestArchive", NewsDigestArchive);
     app.component("NewsRssSubscribe", NewsRssSubscribe);
     app.component("TagsBrowse", TagsBrowse);
     app.component("NotesArchive", NotesArchive);

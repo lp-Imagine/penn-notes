@@ -126,41 +126,21 @@ function buildNewsIndex(months, monthFiles, itemCount = 0) {
     `    <p class="section-count news-hero-meta">${escapeHtml(metaBits.join(" · "))}</p>`,
     "  </header>",
     "",
-    '  <section class="news-block">',
+    '  <nav class="news-page-jump" aria-label="页内导航">',
+    '    <a class="news-page-jump-link" href="#digests">日报归档</a>',
+    '    <a class="news-page-jump-link" href="#feed">动态流</a>',
+    "  </nav>",
+    "",
+    "  <NewsDigestArchive />",
+    "",
+    '  <section id="feed" class="news-block news-feed-block">',
     '    <div class="news-block-head">',
-    '      <h2 class="news-block-title">最新动态</h2>',
-    '      <p class="news-block-desc">按栏目筛选，浏览近期要闻</p>',
+    '      <h2 class="news-block-title">动态流</h2>',
+    '      <p class="news-block-desc">单条要闻筛选浏览，向下滚动自动加载</p>',
     "    </div>",
     "    <NewsArchive />",
     "  </section>",
   ];
-
-  if (digestCount > 0) {
-    lines.push("");
-    lines.push('  <section class="news-block news-digest-archive">');
-    lines.push('    <div class="news-block-head">');
-    lines.push('      <h2 class="news-block-title">日报归档</h2>');
-    lines.push('      <p class="news-block-desc">按日期打开完整日报</p>');
-    lines.push("    </div>");
-    for (const month of months) {
-      const files = monthFiles[month];
-      if (!files.length) continue;
-      lines.push(`    <div class="news-digest-month">`);
-      lines.push(
-        `      <p class="news-digest-month-label">${escapeHtml(month)} · ${files.length} 期</p>`,
-      );
-      lines.push('      <div class="news-digest-dates">');
-      for (const item of files) {
-        const day = item.date.slice(5); // MM-DD
-        lines.push(
-          `        <a class="news-digest-date" href="${link(`/news/${month}/${item.slug}`)}"><time datetime="${escapeHtml(item.date)}">${escapeHtml(day)}</time></a>`,
-        );
-      }
-      lines.push("      </div>");
-      lines.push("    </div>");
-    }
-    lines.push("  </section>");
-  }
 
   lines.push("</div>");
   lines.push("");
@@ -253,6 +233,25 @@ function main() {
   fs.writeFileSync(
     path.join(vitepressDir, "news-items.generated.json"),
     JSON.stringify(allItems, null, 2) + "\n",
+    "utf8",
+  );
+
+  const digestItems = [];
+  for (const month of months) {
+    for (const item of monthFiles[month] || []) {
+      digestItems.push({
+        month,
+        date: item.date,
+        slug: item.slug,
+        title: item.title,
+        image: item.image || "",
+      });
+    }
+  }
+  digestItems.sort((a, b) => (a.date < b.date ? 1 : -1));
+  fs.writeFileSync(
+    path.join(vitepressDir, "news-digests.generated.json"),
+    JSON.stringify({ items: digestItems }, null, 2) + "\n",
     "utf8",
   );
 

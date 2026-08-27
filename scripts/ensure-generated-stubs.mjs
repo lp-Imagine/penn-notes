@@ -33,6 +33,7 @@ const stubs = [
     "// Auto-generated stub — run npm run sync:news\nexport default []\n",
   ],
   [path.join(vp, "news-items.generated.json"), "[]\n"],
+  [path.join(vp, "news-digests.generated.json"), '{"items":[]}\n'],
   [path.join(vp, "news-recent.generated.json"), "[]\n"],
   [path.join(vp, "notes-items.generated.json"), "[]\n"],
   [path.join(vp, "tags.generated.json"), "{}\n"],
