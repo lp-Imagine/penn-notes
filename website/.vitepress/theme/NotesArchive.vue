@@ -2,13 +2,16 @@
 import { computed, ref } from "vue";
 import { withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
+import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
 const PAGE_SIZE = 10;
 const visible = ref(PAGE_SIZE);
 
 const shownNotes = computed(() => notes.slice(0, visible.value));
 const hasMore = computed(() => visible.value < notes.length);
-const remaining = computed(() => Math.max(0, notes.length - visible.value));
+const allLoaded = computed(
+  () => notes.length > 0 && visible.value >= notes.length,
+);
 
 const grouped = computed(() => {
   const years = new Map();
@@ -40,6 +43,14 @@ function loadMore() {
   visible.value += PAGE_SIZE;
 }
 
+const { sentinel, isLoading } = useInfiniteScroll({
+  hasMore,
+  loadMore,
+  visible,
+  rootMargin: "640px 0px",
+  prefetchRootMargin: "1000px 0px",
+});
+
 function monthLabel(ym) {
   if (ym === "未知") return ym;
   const m = Number(ym.split("-")[1]);
@@ -61,7 +72,7 @@ function dayLabel(date) {
     <section
       v-for="y in grouped"
       :key="y.year"
-      class="discover-year"
+      class="discover-year list-reveal"
     >
       <header class="discover-year-head">
         <h2 class="discover-year-title">{{ y.year }}</h2>
@@ -76,9 +87,10 @@ function dayLabel(date) {
         <p class="discover-month-label">{{ monthLabel(g.month) }} · {{ g.items.length }} 篇</p>
         <div class="discover-rows discover-rows--compact">
           <a
-            v-for="item in g.items"
+            v-for="(item, idx) in g.items"
             :key="item.link"
-            class="discover-row discover-row--compact"
+            class="discover-row discover-row--compact list-reveal"
+            :style="{ animationDelay: revealDelay(idx, 6) }"
             :href="href(item.link)"
           >
             <time class="discover-row-date" :datetime="item.date">{{ dayLabel(item.date) }}</time>
@@ -89,10 +101,17 @@ function dayLabel(date) {
       </div>
     </section>
 
-    <div v-if="hasMore" class="news-feed-more">
-      <button type="button" class="news-feed-more-btn" @click="loadMore">
-        加载更多（还有 {{ remaining }} 篇）
-      </button>
+    <div
+      v-if="hasMore"
+      ref="sentinel"
+      class="news-feed-sentinel"
+      aria-live="polite"
+    >
+      <span class="news-feed-sentinel-dot" aria-hidden="true" />
+      <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
     </div>
+    <p v-else-if="allLoaded && notes.length > PAGE_SIZE" class="news-feed-end">
+      已加载全部 {{ notes.length }} 篇
+    </p>
   </div>
 </template>

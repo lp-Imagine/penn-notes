@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import items from "../news-items.generated.json";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
+import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
 const PAGE_SIZE = 24;
 const sections = ["全部", "业界", "产品", "模型", "开源", "开发者工具", "前端"];
@@ -19,8 +20,8 @@ const filtered = computed(() => {
 const shown = computed(() => filtered.value.slice(0, visible.value));
 
 const hasMore = computed(() => visible.value < filtered.value.length);
-const remaining = computed(() =>
-  Math.max(0, filtered.value.length - visible.value),
+const allLoaded = computed(
+  () => filtered.value.length > 0 && visible.value >= filtered.value.length,
 );
 
 watch(active, () => {
@@ -39,6 +40,22 @@ function loadMore() {
   visible.value += PAGE_SIZE;
 }
 
+function getPrefetchUrls() {
+  return filtered.value
+    .slice(visible.value, visible.value + PAGE_SIZE)
+    .map((item) => (item.image ? href(item.image) : null))
+    .filter(Boolean);
+}
+
+const { sentinel, isLoading } = useInfiniteScroll({
+  hasMore,
+  loadMore,
+  visible,
+  getPrefetchUrls,
+  prefetchRootMargin: "1400px 0px",
+  rootMargin: "720px 0px",
+});
+
 function onThumbError(e) {
   const img = e?.target;
   if (!(img instanceof HTMLImageElement)) return;
@@ -51,7 +68,6 @@ function onThumbError(e) {
     card.classList.remove("news-item-card--media");
     card.classList.add("news-item-card--text");
   }
-  // 失败时去掉配图区，避免留下空白块
   img.closest(".news-item-media")?.remove();
 }
 </script>
@@ -121,7 +137,8 @@ function onThumbError(e) {
           <a
             v-for="(item, idx) in shown"
             :key="`${item.digestSlug}-${item.title}-${idx}`"
-            class="news-item-card"
+            class="news-item-card list-reveal"
+            :style="{ animationDelay: revealDelay(idx % PAGE_SIZE) }"
             :class="{
               'news-item-card--media': !!item.image,
               'news-item-card--text': !item.image,
@@ -134,7 +151,9 @@ function onThumbError(e) {
                 class="news-item-thumb"
                 :src="href(item.image)"
                 alt=""
-                loading="lazy"
+                :loading="idx < PAGE_SIZE ? 'eager' : 'lazy'"
+                :fetchpriority="idx < 8 ? 'high' : 'auto'"
+                decoding="async"
                 @error="onThumbError"
               />
             </div>
@@ -157,11 +176,18 @@ function onThumbError(e) {
           </a>
         </div>
 
-        <div v-if="hasMore" class="news-feed-more">
-          <button type="button" class="news-feed-more-btn" @click="loadMore">
-            加载更多（还有 {{ remaining }} 条）
-          </button>
+        <div
+          v-if="hasMore"
+          ref="sentinel"
+          class="news-feed-sentinel"
+          aria-live="polite"
+        >
+          <span class="news-feed-sentinel-dot" aria-hidden="true" />
+          <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
         </div>
+        <p v-else-if="allLoaded && filtered.length > PAGE_SIZE" class="news-feed-end">
+          已加载全部 {{ filtered.length }} 条
+        </p>
       </template>
     </template>
   </div>

@@ -859,3 +859,149 @@
   color: var(--link);
   font-weight: 550;
 }
+
+/* ── 列表 / 栏目页入场动效（复用 home.css 的 home-hero-in）── */
+.vp-doc .section-page .section-kicker {
+  animation: home-hero-in 0.5s ease both;
+}
+
+.vp-doc .section-page .section-title {
+  animation: home-hero-in 0.5s ease both 0.06s;
+}
+
+.vp-doc .section-page .section-lead {
+  animation: home-hero-in 0.5s ease both 0.1s;
+}
+
+.vp-doc .section-page .section-count,
+.vp-doc .section-page .news-hero-meta {
+  animation: home-hero-in 0.5s ease both 0.14s;
+}
+
+.vp-doc .section-page .news-block-head,
+.vp-doc .section-page .section-group-head {
+  animation: home-hero-in 0.45s ease both 0.12s;
+}
+
+.vp-doc .section-page .section-group:nth-child(1) {
+  animation: home-hero-in 0.45s ease both 0.16s;
+}
+
+.vp-doc .section-page .section-group:nth-child(2) {
+  animation: home-hero-in 0.45s ease both 0.22s;
+}
+
+.vp-doc .section-page .section-group:nth-child(3) {
+  animation: home-hero-in 0.45s ease both 0.28s;
+}
+
+.vp-doc .section-page .section-group:nth-child(n + 4) {
+  animation: home-hero-in 0.45s ease both 0.32s;
+}
+
+.section-card-grid .section-card,
+.section-card-grid .news-item-card {
+  animation: home-hero-in 0.45s ease both;
+}
+
+.section-card-grid .section-card:nth-child(1),
+.section-card-grid .news-item-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.section-card-grid .section-card:nth-child(2),
+.section-card-grid .news-item-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.section-card-grid .section-card:nth-child(3),
+.section-card-grid .news-item-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.section-card-grid .section-card:nth-child(4),
+.section-card-grid .news-item-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.section-card-grid .section-card:nth-child(5),
+.section-card-grid .news-item-card:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.section-card-grid .section-card:nth-child(6),
+.section-card-grid .news-item-card:nth-child(6) {
+  animation-delay: 0.28s;
+}
+
+.section-card-grid .section-card:nth-child(n + 7),
+.section-card-grid .news-item-card:nth-child(n + 7) {
+  animation-delay: 0.32s;
+}
+
+.list-reveal {
+  animation: home-hero-in 0.42s ease both;
+}
+
+/* 滚动触底加载哨兵 */
+.news-feed-sentinel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 20px 0 8px;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.news-feed-sentinel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+  animation: feed-sentinel-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes feed-sentinel-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+.news-feed-end {
+  margin: 16px 0 4px;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-doc .section-page .section-kicker,
+  .vp-doc .section-page .section-title,
+  .vp-doc .section-page .section-lead,
+  .vp-doc .section-page .section-count,
+  .vp-doc .section-page .news-hero-meta,
+  .vp-doc .section-page .news-block-head,
+  .vp-doc .section-page .section-group-head,
+  .vp-doc .section-page .section-group,
+  .section-card-grid .section-card,
+  .section-card-grid .news-item-card,
+  .list-reveal {
+    animation: none !important;
+  }
+
+  .news-feed-sentinel-dot {
+    animation: none;
+    opacity: 0.55;
+  }
+}

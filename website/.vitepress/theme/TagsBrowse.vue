@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { useRoute, useRouter, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
 import tagStats from "../tags.generated.json";
+import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
 const PAGE_SIZE = 10;
 const TOP_TAG_LIMIT = 10;
@@ -23,8 +24,8 @@ const filtered = computed(() => {
 
 const shown = computed(() => filtered.value.slice(0, visible.value));
 const hasMore = computed(() => visible.value < filtered.value.length);
-const remaining = computed(() =>
-  Math.max(0, filtered.value.length - visible.value),
+const allLoaded = computed(
+  () => filtered.value.length > 0 && visible.value >= filtered.value.length,
 );
 const topTags = computed(() => tagStats.slice(0, TOP_TAG_LIMIT));
 const restTags = computed(() => tagStats.slice(TOP_TAG_LIMIT));
@@ -52,6 +53,14 @@ watch(
 function loadMore() {
   visible.value += PAGE_SIZE;
 }
+
+const { sentinel, isLoading } = useInfiniteScroll({
+  hasMore,
+  loadMore,
+  visible,
+  rootMargin: "640px 0px",
+  prefetchRootMargin: "1000px 0px",
+});
 
 function selectTag(name) {
   activeTag.value = activeTag.value === name ? "" : name;
@@ -116,9 +125,10 @@ function href(path) {
     </div>
     <div v-else class="discover-rows">
       <a
-        v-for="item in shown"
+        v-for="(item, idx) in shown"
         :key="item.link"
-        class="discover-row"
+        class="discover-row list-reveal"
+        :style="{ animationDelay: revealDelay(idx % PAGE_SIZE) }"
         :href="href(item.link)"
       >
         <span class="discover-row-body">
@@ -140,10 +150,17 @@ function href(path) {
         </span>
       </a>
     </div>
-    <div v-if="hasMore" class="news-feed-more">
-      <button type="button" class="news-feed-more-btn" @click="loadMore">
-        加载更多（还有 {{ remaining }} 篇）
-      </button>
+    <div
+      v-if="hasMore"
+      ref="sentinel"
+      class="news-feed-sentinel"
+      aria-live="polite"
+    >
+      <span class="news-feed-sentinel-dot" aria-hidden="true" />
+      <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
     </div>
+    <p v-else-if="allLoaded && filtered.length > PAGE_SIZE" class="news-feed-end">
+      已加载全部 {{ filtered.length }} 篇
+    </p>
   </div>
 </template>
