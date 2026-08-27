@@ -2,8 +2,11 @@ name: Daily AI News
 
 on:
   schedule:
-    # UTC 23:00 = Asia/Shanghai 07:00（备用；推荐用外部 cron 调 workflow_dispatch）
+    # 内置 schedule 仅作兜底（GitHub 可能延迟或漏跑）；主触发见 docs/NEWS.md 外部 cron。
+    # UTC 23:00 = 北京 07:00
     - cron: "0 23 * * *"
+    # UTC 00:30 = 北京 08:30（07:00 漏跑时补救；digest 已存在则 generate 步骤 skip）
+    - cron: "30 0 * * *"
   repository_dispatch:
     types: [daily-news]
   workflow_dispatch:
@@ -15,6 +18,11 @@ on:
         description: "Overwrite existing digest (true/false)"
         required: false
         default: "false"
+
+# 避免外部 cron 与 schedule 叠跑；不 cancel 进行中的任务，防止部署半截
+concurrency:
+  group: daily-news
+  cancel-in-progress: false
 
 permissions:
   contents: write

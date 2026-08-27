@@ -18,44 +18,56 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
 
-定时：GitHub Actions [`.github/workflows/daily-news.yml`](../.github/workflows/daily-news.yml)，每天 **北京时间 07:00**（UTC 23:00）汇总 **昨天**。
+## 定时策略（推荐）
 
-> GitHub 内置 `schedule` 可能延迟几十分钟甚至更久。推荐用外部定时服务调 `workflow_dispatch`（见下）。
+| 优先级 | 触发方式 | 时间（北京时间） | 说明 |
+|--------|----------|------------------|------|
+| **主** | 外部 cron → `workflow_dispatch` | **07:00** | 最准时，见下节 cron-job.org |
+| 备 1 | GitHub `schedule` | 07:00 | `cron: 0 23 * * *`（UTC），可能漏跑 |
+| 备 2 | GitHub `schedule` | 08:30 | `cron: 30 0 * * *`（UTC），07:00 漏跑时补救 |
 
-## 外部定时触发（推荐）
+日报默认汇总 **昨天**（上海时区）。若 digest 已存在，`generate-daily-news.mjs` 会 skip，因此多层触发不会重复 commit。
 
-比 GitHub `schedule` 更准时。支持两种方式：
+> GitHub 内置 `schedule` **可能延迟或整天漏跑**（与仓库 push 无关）。务必配置外部 cron 作为主触发。
 
-### 方式 A：`workflow_dispatch`（cron-job.org 等）
+## 外部定时触发（主方案 · cron-job.org）
 
-1. 创建 GitHub Personal Access Token（`repo` 或 `workflow` 权限）
-2. 在 [cron-job.org](https://cron-job.org) 新建任务，每天 **07:00 北京时间** 执行：
+1. 创建 GitHub Personal Access Token（Fine-grained 需 **Actions: Read and write** + **Contents: Read**；Classic 勾选 `repo`）
+2. 登录 [cron-job.org](https://cron-job.org) → **Create cronjob**
+3. 填写：
+
+| 字段 | 值 |
+|------|-----|
+| Title | penn-notes daily AI news |
+| URL | `https://api.github.com/repos/lp-Imagine/penn-notes/actions/workflows/daily-news.yml/dispatches` |
+| Schedule | 每天 **07:00**，时区 **Asia/Shanghai** |
+| Request method | **POST** |
+| Headers | `Accept: application/vnd.github+json` |
+| Headers | `Authorization: Bearer <你的PAT>` |
+| Headers | `X-GitHub-Api-Version: 2022-11-28` |
+| Body (JSON) | `{"ref":"master"}` |
+
+4. 保存后可用 **Run now** 测一次；GitHub Actions 里应出现 `workflow_dispatch` 运行记录
+
+也可在本地 / 服务器 crontab 调用仓库脚本：
 
 ```bash
-curl -sS -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer <你的PAT>" \
-  https://api.github.com/repos/lp-Imagine/penn-notes/actions/workflows/daily-news.yml/dispatches \
-  -d '{"ref":"master"}'
-```
-
-也可直接运行仓库脚本（需先 `export GITHUB_TOKEN=ghp_xxx`）：
-
-```bash
+export GITHUB_TOKEN=ghp_xxx
 bash scripts/trigger-daily-news.sh
+# 补跑指定日期
+bash scripts/trigger-daily-news.sh --date=2026-08-26
 ```
 
-### 方式 B：`repository_dispatch`
+### 方式 B：`repository_dispatch`（可选）
 
 ```bash
 curl -sS -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer <你的PAT>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/lp-Imagine/penn-notes/dispatches \
   -d '{"event_type":"daily-news"}'
 ```
-
-内置 `schedule` 仍保留作备用。
 
 ## Secrets
 
@@ -125,6 +137,7 @@ AI 动态提供 RSS，地址：
 
 ## 排查
 
+- **今天没更新 / schedule 没跑**：GitHub 内置 cron 可能漏跑，与 blog-sync 等 push 无关。到 Actions → Daily AI News 看是否有今日 run；没有则 `bash scripts/trigger-daily-news.sh` 补跑，并配置 [cron-job.org](#外部定时触发主方案--cron-joborg)
 - **页面没更新**：多半是日报已 commit，但旧版 workflow 用 `GITHUB_TOKEN` 推送不会触发 CI。现在 daily-news 会自行部署；也可手动跑 CI → Run workflow
 - **RSS 失败**：日志里会列出失败源，详情见 `news/.state/feed-health.json`
 - **质量差 / 英文标题**：多半没配 `LLM_API_KEY`，或用了 `--allow-heuristic`
