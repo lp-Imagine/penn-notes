@@ -93,13 +93,19 @@ function loadRecentDigestLinks(max = 10) {
   return out;
 }
 
-function coreUrls() {
+/** 新站 sitemap 提交额度常为 0；API 按列表顺序扣额度，重要页放前面。 */
+function hubUrls() {
   return [
     siteUrl("/"),
     siteUrl("news/"),
+    siteUrl("about/"),
     siteUrl("tags/"),
     siteUrl("archive/"),
-    siteUrl("about/"),
+  ];
+}
+
+function sectionUrls() {
+  return [
     siteUrl("web/"),
     siteUrl("ui/"),
     siteUrl("tech/"),
@@ -111,18 +117,18 @@ function coreUrls() {
 
 function collectUrls() {
   if (mode === "daily") {
-    // 日报后：首页/栏目 + 最新日报优先，再补近期笔记
     return unique([
-      ...coreUrls(),
-      ...loadRecentDigestLinks(5),
-      ...loadRecentNoteLinks(8),
+      ...hubUrls(),
+      ...loadRecentDigestLinks(8),
+      ...loadRecentNoteLinks(6),
+      ...sectionUrls(),
     ]).slice(0, Math.max(1, limit));
   }
-  // site：常规部署后推首页/栏目/最近内容
   return unique([
-    ...coreUrls(),
+    ...hubUrls(),
     ...loadRecentDigestLinks(10),
     ...loadRecentNoteLinks(12),
+    ...sectionUrls(),
   ]).slice(0, Math.max(1, limit));
 }
 
@@ -145,6 +151,15 @@ async function push(urls) {
 }
 
 async function main() {
+  const urls = collectUrls();
+  console.log(`baidu-push: mode=${mode}, ${urls.length} url(s) → ${SITE}`);
+  for (const u of urls) console.log(`  ${u}`);
+
+  if (dryRun) {
+    console.log("baidu-push: dry-run，未实际推送");
+    return;
+  }
+
   if (!TOKEN) {
     if (soft) {
       console.warn("baidu-push: 未配置 BAIDU_PUSH_TOKEN，跳过");
@@ -156,15 +171,6 @@ async function main() {
         "  export BAIDU_PUSH_TOKEN=xxxx\n" +
         "  npm run baidu:push",
     );
-  }
-
-  const urls = collectUrls();
-  console.log(`baidu-push: mode=${mode}, ${urls.length} url(s) → ${SITE}`);
-  for (const u of urls) console.log(`  ${u}`);
-
-  if (dryRun) {
-    console.log("baidu-push: dry-run，未实际推送");
-    return;
   }
 
   const { ok, status, text, json } = await push(urls);

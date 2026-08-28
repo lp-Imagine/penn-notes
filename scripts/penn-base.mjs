@@ -22,3 +22,25 @@ export function pennSiteUrl() {
     "",
   );
 }
+
+/**
+ * VitePress relativePath → 线上 200 的 pathname。
+ * 栏目 index（about/index.md、news/index.md）带尾斜杠，对齐 nginx 目录 301；
+ * 文章页不带斜杠。
+ */
+export function pennCanonicalPath(relativePath) {
+  const posix = String(relativePath || "").replace(/\\/g, "/");
+  const isDirIndex = /(^|\/)index\.md$/.test(posix);
+  const rel = posix
+    .replace(/\.md$/, "")
+    .replace(/\/index$/, "")
+    .replace(/^index$/, "");
+  if (!rel) return "/";
+  return isDirIndex ? `/${rel}/` : `/${rel}`;
+}
+
+export function pennCanonicalUrl(relativePath) {
+  const p = pennCanonicalPath(relativePath);
+  const base = pennSiteUrl();
+  return p === "/" ? `${base}/` : `${base}${p}`;
+}

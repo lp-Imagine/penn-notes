@@ -25,6 +25,24 @@ function locFor(pathRel) {
   return escapeXml(`${SITE_URL}${encoded}`);
 }
 
+/** 栏目目录在 nginx 会 301 到尾斜杠；sitemap 直接写 200 地址 */
+function publicPath(rel) {
+  if (!rel || rel === "index") return "/";
+  const dirOnDisk = path.join(dist, rel);
+  if (fs.existsSync(dirOnDisk) && fs.statSync(dirOnDisk).isDirectory()) {
+    return `/${rel}/`;
+  }
+  return `/${rel}`;
+}
+
+function htmlFileFor(p) {
+  if (p === "/") return path.join(dist, "index.html");
+  const rel = p.replace(/^\//, "").replace(/\/$/, "");
+  const asIndex = path.join(dist, rel, "index.html");
+  if (fs.existsSync(asIndex)) return asIndex;
+  return path.join(dist, `${rel}.html`);
+}
+
 function main() {
   if (!fs.existsSync(dist)) {
     console.warn("build-sitemap: dist missing, skip");
@@ -42,17 +60,18 @@ function main() {
       if (!name.endsWith(".html") || name === "404.html") continue;
       const rel = path
         .relative(dist, p)
+        .replace(/\\/g, "/")
         .replace(/\.html$/, "")
         .replace(/\/index$/, "");
-      urls.push(rel === "index" ? "/" : `/${rel}`);
+      urls.push(publicPath(rel));
     }
   };
   walk(dist);
-  urls.sort();
+  const unique = [...new Set(urls)].sort();
 
-  const items = urls
+  const items = unique
     .map((p) => {
-      const filePath = path.join(dist, p === "/" ? "index.html" : `${p}.html`);
+      const filePath = htmlFileFor(p);
       let lastmod = "";
       try {
         lastmod = new Date(fs.statSync(filePath).mtime).toISOString().slice(0, 10);
@@ -74,7 +93,7 @@ function main() {
     `${items}\n` +
     `</urlset>\n`;
   fs.writeFileSync(path.join(dist, "sitemap.xml"), xml);
-  console.log(`build-sitemap: ${urls.length} urls -> sitemap.xml`);
+  console.log(`build-sitemap: ${unique.length} urls -> sitemap.xml`);
 }
 
 main();

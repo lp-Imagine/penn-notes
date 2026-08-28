@@ -8,7 +8,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { pennBase, pennRedirectPrefix, pennSiteUrl } from "./penn-base.mjs";
+import {
+  pennBase,
+  pennCanonicalPath,
+  pennCanonicalUrl,
+  pennRedirectPrefix,
+  pennSiteUrl,
+} from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 let passed = 0;
@@ -60,6 +66,20 @@ test("normalizes /penn-notes", () => {
     if (prev !== undefined) process.env.PENN_BASE = prev;
     else delete process.env.PENN_BASE;
   }
+});
+
+test("canonical path: index vs article", () => {
+  assert.equal(pennCanonicalPath("index.md"), "/");
+  assert.equal(pennCanonicalPath("news/index.md"), "/news/");
+  assert.equal(pennCanonicalPath("about/index.md"), "/about/");
+  assert.equal(
+    pennCanonicalPath("news/2026-07/ai-news-2026-07-26.md"),
+    "/news/2026-07/ai-news-2026-07-26",
+  );
+  assert.equal(
+    pennCanonicalUrl("web/index.md"),
+    "https://penn-notes.draftly.cn/web/",
+  );
 });
 
 // ── build-home ──

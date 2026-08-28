@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type HeadConfig } from "vitepress";
 import { pennCalloutsPlugin } from "./markdown-callouts";
-import { pennBase, pennSiteUrl } from "../../scripts/penn-base.mjs";
+import { pennBase, pennCanonicalUrl, pennSiteUrl } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 
@@ -102,10 +102,7 @@ export default defineConfig({
       fm.summary ||
       pageData.description ||
       siteData.description;
-    const rel = pageData.relativePath
-      .replace(/\.md$/, "")
-      .replace(/^index$/, "");
-    const pageUrl = SITE_URL + "/" + rel;
+    const pageUrl = pennCanonicalUrl(pageData.relativePath);
     const image = (fm.cover ? SITE_URL + fm.cover : null) || ICON_PNG;
     const head: HeadConfig[] = [
       ["meta", { property: "og:type", content: "article" }],
