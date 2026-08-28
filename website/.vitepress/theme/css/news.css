@@ -485,8 +485,9 @@
   }
 }
 
-/* 栏目 / 标签 / 归档页：与首页一致，左右始终留白 */
+/* 栏目 / 标签 / 归档页：与顶栏同一套左右留白，去掉 VitePress 默认顶 padding */
 .VPDoc:has(.section-page) {
+  padding-top: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -498,8 +499,9 @@
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
+  padding-top: 16px !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
 }
 
 .VPDoc:has(.section-page) .content {
@@ -511,10 +513,6 @@
 }
 
 @media (max-width: 959.98px) {
-  .VPDoc:has(.section-page) {
-    padding-top: 0 !important;
-  }
-
   .VPDoc:has(.section-page) .container {
     padding-top: 12px !important;
   }
@@ -1044,6 +1042,10 @@
 }
 
 /* ── AI 动态页：页内导航 + 日报归档面板 ── */
+body:has(.news-page) .VPNavBar {
+  box-shadow: none !important;
+}
+
 .news-page-jump {
   position: sticky;
   top: var(--vp-nav-height, 64px);
@@ -1051,11 +1053,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: -8px 0 28px;
-  padding: 10px 0 12px;
-  background: color-mix(in srgb, var(--vp-c-bg, var(--surface)) 86%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  margin: 0 0 20px;
+  padding: 8px 0 10px;
+  background: var(--bg);
+  /* 向上铺底色，盖住顶栏底边被毛玻璃晕开的中间淡出线 */
+  box-shadow: 0 -16px 0 var(--bg);
+}
+
+.vp-doc .news-page .section-hero,
+.vp-doc .news-page .news-hero {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  background: none;
 }
 
 #digests,
@@ -1143,6 +1152,9 @@
 }
 
 .news-digest-featured-media {
+  width: 100%;
+  min-width: 0;
+  justify-self: stretch;
   border-radius: 10px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
@@ -1319,7 +1331,8 @@
   }
 
   .news-digest-featured-media {
-    max-height: 160px;
+    width: 100%;
+    max-height: none;
     aspect-ratio: 16 / 9;
   }
 }

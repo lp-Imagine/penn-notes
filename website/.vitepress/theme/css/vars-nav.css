@@ -92,12 +92,6 @@ body {
   html {
     overscroll-behavior-x: none;
   }
-
-  .VPNav,
-  .VPNavBar {
-    max-width: 100%;
-    overflow-x: clip;
-  }
 }
 
 .VPNavBar {

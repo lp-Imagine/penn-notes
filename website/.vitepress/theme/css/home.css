@@ -19,8 +19,15 @@
   width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+
+@media (max-width: 767.98px) {
+  .VPHome .vp-doc.container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
 
 .VPHome .vp-doc > div {
@@ -984,11 +991,11 @@
 }
 
 /* ---- AI 动态页 ---- */
-.vp-doc .news-page .news-hero {
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: none;
-  background: var(--divider-fade) no-repeat bottom / 100% 1px;
+.vp-doc .news-page .news-hero,
+.vp-doc .news-page .section-hero {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  background: none;
 }
 
 .vp-doc .news-hero-meta {

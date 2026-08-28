@@ -1053,6 +1053,11 @@
     box-shadow: var(--divider-soft) !important;
   }
 
+  /* AI 动态：pill 贴顶栏，底部分割线会被毛玻璃晕成中间一条淡出线 */
+  body:has(.news-page) .VPNavBar {
+    box-shadow: none !important;
+  }
+
   /* 有目录栏：整块玻璃铺在两栏背后（z 低于 nav/local-nav） */
   body:has(.VPLocalNav:not(.empty)) .Layout::before {
     content: "";
