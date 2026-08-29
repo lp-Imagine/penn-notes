@@ -19,7 +19,7 @@ import { rewriteLocalImagePaths } from "./cos-rewrite.mjs";
 const root = repoRoot;
 const publicSync = path.join(root, "website/public/sync");
 const websiteRoot = path.join(root, "website");
-const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
+const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif)$/i;
 
 function walkFiles(dir, acc = []) {

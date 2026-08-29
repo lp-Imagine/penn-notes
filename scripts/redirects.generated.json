@@ -153,7 +153,7 @@
   },
   {
     "from": "/pages/9a7ee40fc232253e",
-    "to": "/tech/docs/Git使用手册"
+    "to": "/engineering/git/Git使用手册"
   },
   {
     "from": "/pages/ad247c4332211551",
@@ -161,27 +161,27 @@
   },
   {
     "from": "/pages/61f2f95fd7da14fd",
-    "to": "/tech/docs/npm常用命令"
+    "to": "/engineering/npm/npm常用命令"
   },
   {
     "from": "/pages/dec4f3f00e71a312",
-    "to": "/tech/docs/npm-packageJson属性详解"
+    "to": "/engineering/npm/npm-packageJson属性详解"
   },
   {
     "from": "/pages/4e8444e2d534d14f",
-    "to": "/tech/docs/yaml语言教程"
+    "to": "/engineering/toolchain/yaml语言教程"
   },
   {
     "from": "/pages/922650",
-    "to": "/tech/docs/Git修改分支名"
+    "to": "/engineering/git/Git修改分支名"
   },
   {
     "from": "/pages/c55947",
-    "to": "/tech/docs/Git命令"
+    "to": "/engineering/git/Git命令"
   },
   {
     "from": "/pages/c28fac",
-    "to": "/tech/docs/MySQL数据库常用操作"
+    "to": "/backend/mysql/MySQL数据库常用操作"
   },
   {
     "from": "/pages/4c778760be26d8b3",
@@ -197,7 +197,7 @@
   },
   {
     "from": "/pages/117708e0af7f0bd9",
-    "to": "/tech/nodejs/nodejs递归读取所有文件"
+    "to": "/backend/nodejs/nodejs递归读取所有文件"
   },
   {
     "from": "/pages/browser",
@@ -237,7 +237,7 @@
   },
   {
     "from": "/tech/docs/cms49bxh60007zz9zfexa2vs0",
-    "to": "/tech/docs/Claude-Code实战手册开源"
+    "to": "/engineering/toolchain/Claude-Code实战手册开源"
   },
   {
     "from": "/agent/practice/cmswogeh60013qt01avmoagui",
@@ -262,5 +262,41 @@
   {
     "from": "/misc/misc/cms4d9t3s0001zzc66tg4t69r",
     "to": "/misc/misc/长文生成总超时两报错定位五步提效"
+  },
+  {
+    "from": "/tech/docs/Git使用手册",
+    "to": "/engineering/git/Git使用手册"
+  },
+  {
+    "from": "/tech/docs/Git修改分支名",
+    "to": "/engineering/git/Git修改分支名"
+  },
+  {
+    "from": "/tech/docs/Git命令",
+    "to": "/engineering/git/Git命令"
+  },
+  {
+    "from": "/tech/docs/npm常用命令",
+    "to": "/engineering/npm/npm常用命令"
+  },
+  {
+    "from": "/tech/docs/npm-packageJson属性详解",
+    "to": "/engineering/npm/npm-packageJson属性详解"
+  },
+  {
+    "from": "/tech/docs/yaml语言教程",
+    "to": "/engineering/toolchain/yaml语言教程"
+  },
+  {
+    "from": "/tech/docs/Claude-Code实战手册开源",
+    "to": "/engineering/toolchain/Claude-Code实战手册开源"
+  },
+  {
+    "from": "/tech/docs/MySQL数据库常用操作",
+    "to": "/backend/mysql/MySQL数据库常用操作"
+  },
+  {
+    "from": "/tech/nodejs/nodejs递归读取所有文件",
+    "to": "/backend/nodejs/nodejs递归读取所有文件"
   }
 ]

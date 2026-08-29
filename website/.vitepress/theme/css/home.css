@@ -247,6 +247,34 @@
   animation: home-hero-in 0.55s ease 0.06s both;
 }
 
+.VPHome .vp-doc .home-tagline--typewriter {
+  display: flex;
+  align-items: center;
+  min-height: 1.5em;
+}
+
+.VPHome .vp-doc .home-tagline-cursor {
+  display: inline-block;
+  width: 0.08em;
+  height: 1.05em;
+  margin-left: 0.12em;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--link) 78%, var(--text));
+  vertical-align: -0.12em;
+  animation: home-tagline-blink 0.9s steps(1) infinite;
+}
+
+@keyframes home-tagline-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .VPHome .vp-doc .home-sub {
   margin: 0 0 28px;
   font-size: 0.95rem;
@@ -268,6 +296,7 @@
   .home-hero::after,
   .VPHome .vp-doc .home-headline,
   .VPHome .vp-doc .home-tagline,
+  .VPHome .vp-doc .home-tagline-cursor,
   .VPHome .vp-doc .home-sub,
   .home-actions,
   .home-btn--primary,
@@ -490,6 +519,14 @@
   --pillar-accent: #3451b2;
   --pillar-wash: color-mix(in srgb, #3451b2 9%, transparent);
 }
+.home-pillar--engineering {
+  --pillar-accent: #2f56c6;
+  --pillar-wash: color-mix(in srgb, #2f56c6 9%, transparent);
+}
+.home-pillar--backend {
+  --pillar-accent: #3858b8;
+  --pillar-wash: color-mix(in srgb, #3858b8 9%, transparent);
+}
 .home-pillar--computer {
   --pillar-accent: #3d6cc7;
   --pillar-wash: color-mix(in srgb, #3d6cc7 9%, transparent);
@@ -664,7 +701,7 @@
   border-top-color: color-mix(in srgb, var(--border) 70%, transparent);
 }
 
-/* 最新笔记：阅读列表感，弱化卡片，突出标题 */
+/* 最新文章：阅读列表感，弱化卡片，突出标题 */
 .home-note-list {
   display: flex;
   flex-direction: column;

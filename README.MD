@@ -1,6 +1,6 @@
 # Penn Notes
 
-Penn 的前端笔记站（VitePress）。
+Penn 的技术博客（VitePress）：前端、工程化、后端与 AI 动态。
 
 | | |
 |--|--|

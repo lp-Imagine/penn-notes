@@ -60,9 +60,9 @@ export function buildNotesFeedXml(items, opts = {}) {
 <?xml-stylesheet type="text/xsl" href="../news/feed.xsl"?>
 <rss version="2.0">
   <channel>
-    <title>Penn Notes · 笔记更新</title>
+    <title>Penn Notes · 文章更新</title>
     <link>${siteUrl()}</link>
-    <description>Penn Notes 笔记更新订阅（JavaScript、CSS、工具与 AI Agent）</description>
+    <description>Penn Notes 技术博客订阅（前端、工程化、后端与 AI Agent）</description>
     <language>zh-CN</language>
     <lastBuildDate>${lastBuild}</lastBuildDate>
     <generator>Penn Notes notes feed</generator>

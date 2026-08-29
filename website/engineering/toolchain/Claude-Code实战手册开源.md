@@ -5,8 +5,8 @@ summary: 一本社区驱动的 Claude Code 实战手册正式开源，聚焦真�
 tags:
   - Claude Code
   - 工具
-section: tech
-group: docs
+section: engineering
+group: toolchain
 source: ai-article
 sourceId: cms49bxh60007zz9zfexa2vs0
 cover: https://img.penn-notes.draftly.cn/sync/cms49bxh60007zz9zfexa2vs0/cover.jpg

@@ -3,7 +3,8 @@ title: npm常用命令
 date: 2021-12-25
 tags:
   - npm
-section: tech
+section: engineering
+group: npm
 ---
 
 # npm常用命令

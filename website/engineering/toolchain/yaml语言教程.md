@@ -3,7 +3,8 @@ title: yaml语言教程
 date: 2021-12-25
 tags:
   - YAML
-section: tech
+section: engineering
+group: toolchain
 ---
 
 # yaml语言教程

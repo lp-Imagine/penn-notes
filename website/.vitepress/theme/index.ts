@@ -4,6 +4,7 @@ import { getScrollOffset, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
 import Comments from "./Comments.vue";
+import HomeTypewriter from "./HomeTypewriter.vue";
 import NewsArchive from "./NewsArchive.vue";
 import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
@@ -18,7 +19,7 @@ let zoom: Zoom | undefined;
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
 let observer: MutationObserver | undefined;
 
-const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
+const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 
 /** 剥离 base 后的站点路径，如 /web/javascript/foo */
 function sitePath(routePath: string, base = "/") {
@@ -915,6 +916,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.component("AboutFriends", AboutFriends);
+    app.component("HomeTypewriter", HomeTypewriter);
     app.component("NewsArchive", NewsArchive);
     app.component("NewsDigestArchive", NewsDigestArchive);
     app.component("NewsRssSubscribe", NewsRssSubscribe);

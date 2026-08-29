@@ -120,7 +120,7 @@ function href(path) {
     </div>
 
     <div v-if="!filtered.length" class="discover-empty">
-      <p class="discover-empty-title">暂无匹配笔记</p>
+      <p class="discover-empty-title">暂无匹配文章</p>
       <p class="discover-empty-desc">试试切换其他标签</p>
     </div>
     <div v-else class="discover-rows">

@@ -101,7 +101,7 @@ test("generates homepage index.md", () => {
 });
 
 test("generates section index pages", () => {
-  for (const section of ["web", "ui", "tech", "agent"]) {
+  for (const section of ["web", "ui", "engineering", "backend", "tech", "agent"]) {
     const f = path.join(root, `website/${section}/index.md`);
     assert.ok(fs.existsSync(f), `${section}/index.md should exist`);
     const content = fs.readFileSync(f, "utf8");

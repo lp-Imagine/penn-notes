@@ -10,7 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const siteRoot = path.join(root, "website");
 const outDir = path.join(siteRoot, ".vitepress");
 
-const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
+const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 
 /** Noise tags that should never appear in /tags/ (error tokens, bare fragments). */
 const TAG_DENYLIST = new Set(["terminated", "code"]);
@@ -18,6 +18,8 @@ const TAG_DENYLIST = new Set(["terminated", "code"]);
 const SECTION_LABELS = {
   web: "JS & 框架",
   ui: "样式",
+  engineering: "工程化",
+  backend: "后端",
   tech: "工具备忘",
   computer: "浏览器",
   agent: "AI Agent",

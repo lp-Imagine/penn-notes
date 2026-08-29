@@ -36,7 +36,7 @@ export const NEWS_PILLARS = [
   },
   {
     title: "前端",
-    desc: "框架、构建、样式、Web 平台与 DX —— 本站笔记强相关",
+    desc: "框架、构建、样式、Web 平台与 DX —— 与本站文章强相关",
   },
 ];
 

@@ -52,7 +52,7 @@ const mergedSidebar = {
 export default defineConfig({
   title: "Penn Notes",
   description:
-    "Penn 的前端笔记：JavaScript、Vue、React、CSS、Git 等学习与总结。",
+    "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
   lang: "zh-CN",
   base: BASE,
   cleanUrls: true,
@@ -179,7 +179,7 @@ export default defineConfig({
       {
         rel: "alternate",
         type: "application/rss+xml",
-        title: "Penn Notes · 笔记更新",
+        title: "Penn Notes · 文章更新",
         href: `${BASE}notes/feed.xml`,
       },
     ],
@@ -216,6 +216,8 @@ export default defineConfig({
       { text: "归档", link: "/archive/", activeMatch: "/archive/" },
       { text: "JS & 框架", link: "/web/", activeMatch: "/web/" },
       { text: "样式", link: "/ui/", activeMatch: "/ui/" },
+      { text: "工程化", link: "/engineering/", activeMatch: "/engineering/" },
+      { text: "后端", link: "/backend/", activeMatch: "/backend/" },
       { text: "工具", link: "/tech/", activeMatch: "/tech/" },
       { text: "AI Agent", link: "/agent/", activeMatch: "/agent/" },
       { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
@@ -260,9 +262,9 @@ export default defineConfig({
     darkModeSwitchLabel: "外观",
     footer: {
       message:
-        '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">前端学习笔记 · 工程备忘 · AI 动态</span>',
+        '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">认真生活，随便折腾</span>',
       copyright:
-        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">笔记 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
+        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">文章 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

@@ -4,7 +4,8 @@ date: 2020-04-08
 tags:
   - npm
   - package.json
-section: tech
+section: engineering
+group: npm
 ---
 
 # npm package.json属性详解

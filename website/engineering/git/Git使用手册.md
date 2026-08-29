@@ -5,7 +5,8 @@ tags:
   - Git
 series: Git 系列
 seriesOrder: 1
-section: tech
+section: engineering
+group: git
 ---
 
 # Git使用手册

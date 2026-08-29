@@ -5,7 +5,8 @@ tags:
   - Git
 series: Git 系列
 seriesOrder: 3
-section: tech
+section: engineering
+group: git
 ---
 
 ## 同时修改本地分支名和对应的远程分支名

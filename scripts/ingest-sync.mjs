@@ -12,7 +12,7 @@ import { ensureCosSyncAssets } from "./ensure-cos-sync-assets.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const websiteRoot = path.join(root, "website");
 const syncRoot = path.join(websiteRoot, "sync");
-const NOTE_SECTIONS = ["web", "ui", "tech", "computer", "agent", "misc"];
+const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 const SECTIONS = new Set(NOTE_SECTIONS);
 const REQUIRED = ["title", "date", "section", "source", "sourceId"];
 

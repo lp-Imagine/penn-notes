@@ -108,6 +108,8 @@ function sectionUrls() {
   return [
     siteUrl("web/"),
     siteUrl("ui/"),
+    siteUrl("engineering/"),
+    siteUrl("backend/"),
     siteUrl("tech/"),
     siteUrl("agent/"),
     siteUrl("computer/"),

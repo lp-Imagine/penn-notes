@@ -11,14 +11,14 @@ next: false
   <header class="section-hero about-hero">
     <p class="section-kicker">About</p>
     <h1 class="section-title about-brand">Penn Notes</h1>
-    <p class="section-lead">Penn · 平平无奇的 web 前端开发者</p>
-    <p class="about-sub">积跬步以至千里 · 前端学习、工程备忘与 AI 动态精选</p>
-    <p class="about-intro">日常与工作的前端笔记汇总：JavaScript、Vue / React、CSS、工具链与浏览器实践。文章仅作个人备忘，资历尚浅，如有误还请指正。</p>
+    <p class="section-lead">Penn · Web 前端工程师</p>
+    <p class="about-sub">认真生活，随便折腾</p>
+    <p class="about-intro">这是我的技术博客：写前端与工程化的踩坑、取舍与可复用经验，也覆盖后端（Node.js、数据库）与浏览器实践；同时每日精选 AI / 科技动态。欢迎订阅 RSS，文中疏漏欢迎指正。</p>
     <div class="about-actions">
       <a class="home-btn home-btn--primary" href="https://github.com/lp-Imagine" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a class="home-btn home-btn--text" href="/news/">AI 动态</a>
-      <a class="home-btn home-btn--text" href="/notes/feed.xml">笔记 RSS</a>
-      <a class="home-btn home-btn--text" href="/">浏览笔记</a>
+      <a class="home-btn home-btn--text" href="/notes/feed.xml">文章 RSS</a>
+      <a class="home-btn home-btn--text" href="/">浏览文章</a>
     </div>
   </header>
 
@@ -30,17 +30,17 @@ next: false
       <li class="about-skill">
         <span class="about-skill-index" aria-hidden="true">01</span>
         <span class="about-skill-label">前端</span>
-        <span class="about-skill-desc">熟悉 JavaScript、HTML、CSS、Vue、React 的拼写</span>
+        <span class="about-skill-desc">JavaScript、Vue、React、CSS —— 拼写和运行时都略懂</span>
       </li>
       <li class="about-skill">
         <span class="about-skill-index" aria-hidden="true">02</span>
-        <span class="about-skill-label">系统</span>
-        <span class="about-skill-desc">了解 Linux、Windows、macOS 的开关机方式</span>
+        <span class="about-skill-label">工程化</span>
+        <span class="about-skill-desc">Git 不只会 pull / push，npm 和配置文件也会一起翻车</span>
       </li>
       <li class="about-skill">
         <span class="about-skill-index" aria-hidden="true">03</span>
-        <span class="about-skill-label">协作</span>
-        <span class="about-skill-desc">精通 Git 的 pull 和 push，并注册了 GitHub 帐号刷了一些 star</span>
+        <span class="about-skill-label">后端</span>
+        <span class="about-skill-desc">Node.js 能起服务，MySQL 会写 SELECT *</span>
       </li>
     </ul>
   </section>
@@ -57,8 +57,8 @@ next: false
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
       <a class="about-link" href="/notes/feed.xml">
-        <span class="about-link-title">笔记 RSS</span>
-        <span class="about-link-desc">订阅笔记更新</span>
+        <span class="about-link-title">文章 RSS</span>
+        <span class="about-link-desc">订阅博客更新</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
       <a class="about-link" href="/news/feed.xml">
@@ -68,7 +68,17 @@ next: false
       </a>
       <a class="about-link" href="/web/">
         <span class="about-link-title">JS &amp; 框架</span>
-        <span class="about-link-desc">JavaScript、Vue、React 笔记</span>
+        <span class="about-link-desc">JavaScript、Vue、React 实践</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
+      <a class="about-link" href="/engineering/">
+        <span class="about-link-title">工程化</span>
+        <span class="about-link-desc">Git、npm 与开发工具链</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
+      <a class="about-link" href="/backend/">
+        <span class="about-link-title">后端</span>
+        <span class="about-link-desc">Node.js、MySQL 与服务端</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
       <a class="about-link" href="/ui/">

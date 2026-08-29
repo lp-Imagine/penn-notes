@@ -3,7 +3,8 @@ title: nodejs递归读取所有文件
 date: 2019-12-26
 tags:
   - Node.js
-section: tech
+section: backend
+group: nodejs
 ---
 
 # nodejs递归读取所有文件

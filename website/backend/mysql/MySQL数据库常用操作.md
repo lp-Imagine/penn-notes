@@ -3,7 +3,8 @@ title: MySQL数据库常用操作
 date: 2022-09-06
 tags:
   - MySQL
-section: tech
+section: backend
+group: mysql
 ---
 
 # MySQL数据库常用操作

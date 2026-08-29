@@ -27,10 +27,24 @@ const SECTIONS = [
     link: "/ui/",
   },
   {
+    id: "engineering",
+    title: "工程化",
+    nav: "工程化",
+    desc: "Git、npm、配置与开发工具链",
+    link: "/engineering/",
+  },
+  {
+    id: "backend",
+    title: "后端",
+    nav: "后端",
+    desc: "Node.js、数据库与服务端实践",
+    link: "/backend/",
+  },
+  {
     id: "tech",
     title: "工具备忘",
     nav: "工具",
-    desc: "Git、npm、常用命令与资源收藏",
+    desc: "常用文档、GitHub 技巧与资源收藏",
     link: "/tech/",
   },
   {
@@ -51,7 +65,7 @@ const SECTIONS = [
     id: "misc",
     title: "杂项",
     nav: "杂项",
-    desc: "职场、生活、方法论与其它不成体系的笔记",
+    desc: "职场、生活、方法论与其它不成体系的随笔",
     link: "/misc/",
   },
 ];
@@ -67,6 +81,10 @@ const GROUP_META = {
   docs: { label: "常用文档", order: 10 },
   github: { label: "GitHub", order: 20 },
   nodejs: { label: "Node.js", order: 30 },
+  mysql: { label: "MySQL", order: 20 },
+  git: { label: "Git", order: 10 },
+  npm: { label: "npm", order: 20 },
+  toolchain: { label: "工具链", order: 30 },
   bookmarks: { label: "资源收藏", order: 40 },
   more: { label: "其它", order: 50 },
   browser: { label: "浏览器", order: 10 },
@@ -175,9 +193,15 @@ const GROUP_LABELS = {
   framework: "框架扩展",
   web: "前端",
   ui: "页面",
-  tech: "技术",
+  tech: "工具",
+  engineering: "工程化",
+  backend: "后端",
   computer: "计算机",
   agent: "AI Agent",
+  git: "Git",
+  npm: "npm",
+  toolchain: "工具链",
+  mysql: "MySQL",
   practice: "实战",
   workflow: "工作流",
   prompts: "提示词",
@@ -260,7 +284,7 @@ function writeSectionIndex(section, items) {
             return `  <section class="section-group">
     <div class="section-group-head">
       <h2 class="section-group-title">${escapeHtml(g.text)}</h2>
-      <p class="section-group-desc">${g.items.length} 篇笔记</p>
+      <p class="section-group-desc">${g.items.length} 篇文章</p>
     </div>
     <div class="section-card-grid">
 ${cards}
@@ -282,7 +306,7 @@ aside: false
     <p class="section-kicker">栏目</p>
     <h1 class="section-title">${section.title}</h1>
     <p class="section-lead">${section.desc}</p>
-    <p class="section-count">共 ${n} 篇笔记</p>
+    <p class="section-count">共 ${n} 篇文章</p>
   </header>
 
   <div class="section-index">
@@ -385,10 +409,10 @@ layout: home
 <div class="home-wrap">
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
-    <p class="home-tagline">前端学习笔记 · 工程备忘 · AI 动态</p>
-    <p class="home-sub">积跬步以至千里 · 共 ${total} 篇笔记</p>
+    <HomeTypewriter text="认真生活，随便折腾" />
+    <p class="home-sub">积跬步以至千里 · 共 ${total} 篇文章</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="${latestHref}">阅读最新笔记</a>
+      <a class="home-btn home-btn--primary" href="${latestHref}">阅读最新文章</a>
       <a class="home-btn home-btn--text" href="${link("/news/")}">今日 AI 动态</a>
     </div>
   </section>
@@ -401,7 +425,7 @@ ${pillars}
 
   <section class="home-section">
     <div class="home-section-head">
-      <h2>最新笔记</h2>
+      <h2>最新文章</h2>
       <a class="home-more" href="${notesMoreHref}">查看更多</a>
     </div>
 ${noteItems}</section>

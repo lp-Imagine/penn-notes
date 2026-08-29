@@ -11,13 +11,15 @@
 
 推荐直接在 frontmatter / 正文写 **CDN 绝对 URL**；若仍写 `/sync/...` 且本地有文件，构建前 `ingest` 会上传并改写（需 `COS_*` 环境变量）。
 
-`section` 枚举：`web` | `ui` | `tech` | `computer` | `agent` | `misc`
+`section` 枚举：`web` | `ui` | `engineering` | `backend` | `tech` | `computer` | `agent` | `misc`
 
 `group` 与侧栏分组对齐，例如：
 
 - `web`：`javascript` / `vue` / `react` / `ui-lib` / `misc`
 - `ui`：`html` / `css` / `misc`
-- `tech`：`docs` / `github` / `nodejs` / `bookmarks` / `misc`
+- `engineering`：`git` / `npm` / `toolchain` / `misc`
+- `backend`：`nodejs` / `mysql` / `misc`
+- `tech`：`docs` / `github` / `bookmarks` / `misc`
 - `computer`：`browser` / `misc`
 - `agent`：`practice` / `workflow` / `prompts` / `tools` / `misc`（AI Agent 栏目）
 - `misc`：`essays` / `career` / `life` / `method` / `misc`（杂项栏目）
