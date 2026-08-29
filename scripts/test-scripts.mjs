@@ -201,11 +201,18 @@ test("validates synced files without errors", () => {
 console.log("\nfeed-health-summary:");
 
 test("prints summary without crashing", () => {
-  const output = run("node scripts/feed-health-summary.mjs");
+  const output = run("node scripts/feed-health-summary.mjs --warn-threshold 99");
   assert.ok(
     output.includes("Feed Health Summary") || output.includes("no state files"),
     "should print summary or skip message",
   );
+});
+
+test("does not double-count the same RSS failures across state files", () => {
+  // Current state lists the same 2 failures in feed-health + last-run; unique count is 2.
+  const output = run("node scripts/feed-health-summary.mjs --warn-threshold 3");
+  assert.ok(output.includes("Feed Health Summary"), "should print summary");
+  assert.ok(!output.includes("exceed threshold"), "2 unique failures must not trip threshold 3");
 });
 
 // ── slug / path sanity ──

@@ -27,11 +27,14 @@ const parser = new Parser({
   },
 });
 
-async function fetchFeedText(url) {
+async function fetchFeedText(url, { softAccept = false } = {}) {
   const res = await fetch(url, {
     headers: {
       "User-Agent": BROWSER_UA,
-      Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
+      // Some CDNs/WordPress return 415 for strict RSS Accept from datacenter IPs.
+      Accept: softAccept
+        ? "*/*"
+        : "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
       "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
     },
     redirect: "follow",
@@ -49,12 +52,14 @@ async function parseSourceFeed(src) {
   const urls = [src.url, ...(src.fallbackUrls || [])].filter(Boolean);
   let lastErr = null;
   for (const url of urls) {
-    try {
-      const text = await fetchFeedText(url);
-      const feed = await parser.parseString(text);
-      return { feed, url };
-    } catch (err) {
-      lastErr = err;
+    for (const softAccept of [false, true]) {
+      try {
+        const text = await fetchFeedText(url, { softAccept });
+        const feed = await parser.parseString(text);
+        return { feed, url };
+      } catch (err) {
+        lastErr = err;
+      }
     }
   }
   throw lastErr || new Error("Feed fetch failed");

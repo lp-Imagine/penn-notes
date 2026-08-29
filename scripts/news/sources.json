@@ -105,6 +105,7 @@
       "id": "css-tricks",
       "name": "CSS-Tricks",
       "url": "https://css-tricks.com/feed/",
+      "fallbackUrls": ["https://feeds.feedburner.com/CssTricks"],
       "section": "前端"
     },
     {
@@ -122,7 +123,8 @@
     {
       "id": "jiqizhixin",
       "name": "36氪",
-      "url": "https://36kr.com/feed",
+      "url": "https://www.36kr.com/feed",
+      "fallbackUrls": ["https://36kr.com/feed"],
       "section": "业界"
     },
     {

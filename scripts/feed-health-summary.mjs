@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Print a concise source health summary from news/.state/feed-health.json
- * and news/.state/last-run.json. Exits 1 when failures exceed threshold.
+ * and news/.state/last-run.json. Failures are de-duplicated across both files
+ * (they describe the same fetch). Exits 1 when unique failures exceed threshold.
  *
  * Usage:  node scripts/feed-health-summary.mjs [--warn-threshold N]
  */
@@ -21,6 +22,20 @@ function readJson(name) {
   const p = path.join(stateDir, name);
   if (!fs.existsSync(p)) return null;
   return JSON.parse(fs.readFileSync(p, "utf8"));
+}
+
+/** Prefer named failures; fall back to max count (same run, never sum). */
+function uniqueFailureCount(health, lastRun) {
+  const byKey = new Map();
+  for (const f of [...(health?.failures || []), ...(lastRun?.rss?.failures || [])]) {
+    const key = String(f.id || f.name || "")
+      .trim()
+      .toLowerCase();
+    if (!key) continue;
+    if (!byKey.has(key)) byKey.set(key, f);
+  }
+  if (byKey.size > 0) return byKey.size;
+  return Math.max(health?.failed || 0, lastRun?.rss?.failed || 0);
 }
 
 function main() {
@@ -76,7 +91,8 @@ function main() {
 
   console.log("══════════════════════════════════════");
 
-  const totalFailed = (health?.failed || 0) + (lastRun?.rss?.failed || 0);
+  // feed-health.json and last-run.json describe the same fetch; never sum both.
+  const totalFailed = uniqueFailureCount(health, lastRun);
   if (totalFailed > warnThreshold) {
     console.error(
       `\n⚠ ${totalFailed} feed failures exceed threshold (${warnThreshold}). Check sources!`,
