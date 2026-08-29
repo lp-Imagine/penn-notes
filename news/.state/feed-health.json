@@ -1,8 +1,8 @@
 {
-  "at": "2026-08-28T23:00:27.015Z",
-  "targetDate": "2026-08-28",
-  "ok": 19,
-  "failed": 2,
+  "at": "2026-08-29T23:00:22.051Z",
+  "targetDate": "2026-08-29",
+  "ok": 21,
+  "failed": 0,
   "successes": [
     {
       "id": "anthropic-news",
@@ -11,16 +11,16 @@
       "items": 0
     },
     {
-      "id": "theverge-ai",
-      "name": "The Verge AI",
-      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-      "items": 3
-    },
-    {
       "id": "techcrunch-ai",
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
-      "items": 10
+      "items": 5
+    },
+    {
+      "id": "theverge-ai",
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "items": 2
     },
     {
       "id": "mit-tr",
@@ -32,12 +32,18 @@
       "id": "wired-ai",
       "name": "Wired AI",
       "url": "https://www.wired.com/feed/tag/ai/latest/rss",
-      "items": 8
+      "items": 4
     },
     {
       "id": "github-blog",
       "name": "GitHub Blog",
       "url": "https://github.blog/feed/",
+      "items": 0
+    },
+    {
+      "id": "ars-technica-ai",
+      "name": "Ars Technica AI",
+      "url": "https://arstechnica.com/ai/feed/",
       "items": 1
     },
     {
@@ -47,22 +53,22 @@
       "items": 0
     },
     {
+      "id": "arxiv-cs-ai",
+      "name": "arXiv cs.AI",
+      "url": "https://rss.arxiv.org/rss/cs.AI",
+      "items": 0
+    },
+    {
       "id": "deepmind",
       "name": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "items": 1
+      "items": 0
     },
     {
       "id": "huggingface",
       "name": "Hugging Face Blog",
       "url": "https://huggingface.co/blog/feed.xml",
-      "items": 1
-    },
-    {
-      "id": "arxiv-cs-ai",
-      "name": "arXiv cs.AI",
-      "url": "https://rss.arxiv.org/rss/cs.AI",
-      "items": 312
+      "items": 0
     },
     {
       "id": "javascript-weekly",
@@ -71,16 +77,22 @@
       "items": 0
     },
     {
+      "id": "css-tricks",
+      "name": "CSS-Tricks",
+      "url": "https://css-tricks.com/feed/",
+      "items": 0
+    },
+    {
       "id": "ruanyifeng",
       "name": "阮一峰的网络日志",
       "url": "https://www.ruanyifeng.com/blog/atom.xml",
-      "items": 1
+      "items": 0
     },
     {
-      "id": "ars-technica-ai",
-      "name": "Ars Technica AI",
-      "url": "https://arstechnica.com/ai/feed/",
-      "items": 5
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "items": 0
     },
     {
       "id": "openai-blog",
@@ -89,9 +101,9 @@
       "items": 1
     },
     {
-      "id": "google-ai",
-      "name": "Google AI Blog",
-      "url": "https://blog.google/technology/ai/rss/",
+      "id": "sspai",
+      "name": "少数派",
+      "url": "https://sspai.com/feed",
       "items": 1
     },
     {
@@ -101,34 +113,23 @@
       "items": 0
     },
     {
-      "id": "sspai",
-      "name": "少数派",
-      "url": "https://sspai.com/feed",
-      "items": 5
-    },
-    {
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "url": "https://www.infoq.cn/feed",
       "items": 14
     },
     {
+      "id": "jiqizhixin",
+      "name": "36氪",
+      "url": "https://www.36kr.com/feed",
+      "items": 30
+    },
+    {
       "id": "quantumbit",
       "name": "量子位",
       "url": "https://www.qbitai.com/feed",
-      "items": 10
+      "items": 7
     }
   ],
-  "failures": [
-    {
-      "id": "css-tricks",
-      "name": "CSS-Tricks",
-      "error": "Status code 415"
-    },
-    {
-      "id": "jiqizhixin",
-      "name": "36氪",
-      "error": "Feed not recognized as RSS/Atom"
-    }
-  ]
+  "failures": []
 }
