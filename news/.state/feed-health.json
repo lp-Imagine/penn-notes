@@ -1,6 +1,6 @@
 {
-  "at": "2026-08-30T23:00:24.143Z",
-  "targetDate": "2026-08-30",
+  "at": "2026-08-31T23:00:27.616Z",
+  "targetDate": "2026-08-31",
   "ok": 21,
   "failed": 0,
   "successes": [
@@ -11,22 +11,22 @@
       "items": 0
     },
     {
-      "id": "theverge-ai",
-      "name": "The Verge AI",
-      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-      "items": 2
-    },
-    {
-      "id": "arxiv-cs-ai",
-      "name": "arXiv cs.AI",
-      "url": "https://rss.arxiv.org/rss/cs.AI",
-      "items": 0
-    },
-    {
       "id": "techcrunch-ai",
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
-      "items": 3
+      "items": 5
+    },
+    {
+      "id": "theverge-ai",
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "items": 4
+    },
+    {
+      "id": "mit-tr",
+      "name": "MIT Tech Review",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+      "items": 0
     },
     {
       "id": "wired-ai",
@@ -47,34 +47,16 @@
       "items": 0
     },
     {
-      "id": "mit-tr",
-      "name": "MIT Tech Review",
-      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-      "items": 0
-    },
-    {
-      "id": "ars-technica-ai",
-      "name": "Ars Technica AI",
-      "url": "https://arstechnica.com/ai/feed/",
-      "items": 1
-    },
-    {
       "id": "huggingface",
       "name": "Hugging Face Blog",
       "url": "https://huggingface.co/blog/feed.xml",
       "items": 0
     },
     {
-      "id": "javascript-weekly",
-      "name": "JavaScript Weekly",
-      "url": "https://javascriptweekly.com/rss",
-      "items": 0
-    },
-    {
-      "id": "ruanyifeng",
-      "name": "阮一峰的网络日志",
-      "url": "https://www.ruanyifeng.com/blog/atom.xml",
-      "items": 0
+      "id": "ars-technica-ai",
+      "name": "Ars Technica AI",
+      "url": "https://arstechnica.com/ai/feed/",
+      "items": 2
     },
     {
       "id": "deepmind",
@@ -83,22 +65,52 @@
       "items": 0
     },
     {
-      "id": "google-ai",
-      "name": "Google AI Blog",
-      "url": "https://blog.google/technology/ai/rss/",
+      "id": "arxiv-cs-ai",
+      "name": "arXiv cs.AI",
+      "url": "https://rss.arxiv.org/rss/cs.AI",
+      "items": 301
+    },
+    {
+      "id": "javascript-weekly",
+      "name": "JavaScript Weekly",
+      "url": "https://javascriptweekly.com/rss",
+      "items": 0
+    },
+    {
+      "id": "css-tricks",
+      "name": "CSS-Tricks",
+      "url": "https://css-tricks.com/feed/",
+      "items": 2
+    },
+    {
+      "id": "ruanyifeng",
+      "name": "阮一峰的网络日志",
+      "url": "https://www.ruanyifeng.com/blog/atom.xml",
       "items": 0
     },
     {
       "id": "openai-blog",
       "name": "OpenAI Blog",
       "url": "https://openai.com/blog/rss.xml",
+      "items": 1
+    },
+    {
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
       "items": 0
     },
     {
-      "id": "css-tricks",
-      "name": "CSS-Tricks",
-      "url": "https://feeds.feedburner.com/CssTricks",
-      "items": 0
+      "id": "sspai",
+      "name": "少数派",
+      "url": "https://sspai.com/feed",
+      "items": 6
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "36氪",
+      "url": "https://www.36kr.com/feed",
+      "items": 24
     },
     {
       "id": "hn-ai",
@@ -107,28 +119,16 @@
       "items": 0
     },
     {
-      "id": "sspai",
-      "name": "少数派",
-      "url": "https://sspai.com/feed",
-      "items": 1
-    },
-    {
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "url": "https://www.infoq.cn/feed",
-      "items": 8
-    },
-    {
-      "id": "jiqizhixin",
-      "name": "36氪",
-      "url": "https://www.36kr.com/feed",
-      "items": 26
+      "items": 14
     },
     {
       "id": "quantumbit",
       "name": "量子位",
       "url": "https://www.qbitai.com/feed",
-      "items": 1
+      "items": 7
     }
   ],
   "failures": []
