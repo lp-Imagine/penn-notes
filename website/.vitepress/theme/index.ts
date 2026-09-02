@@ -14,6 +14,7 @@ import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import "./custom.css";
+import { setupFlyingFish } from "./flying-fish";
 
 let zoom: Zoom | undefined;
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
@@ -874,6 +875,7 @@ export default {
       setupOutlineSpy();
       setupNavOverflow();
       setupBackToTop();
+      setupFlyingFish();
       updateReadingTime();
       bindNewsImageFallback();
       const vpContent = document.querySelector(".VPContent");

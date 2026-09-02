@@ -24,6 +24,11 @@
   --accent-soft: rgba(59, 91, 219, 0.1);
   --radius: 8px;
   --radius-lg: 12px;
+  /* 页脚游鱼：水域渐变 + 鱼身（Canvas 分层绘制） */
+  --fish-water-top: color-mix(in srgb, var(--accent) 10%, transparent);
+  --fish-water-bottom: color-mix(in srgb, var(--accent) 22%, var(--surface-2));
+  --fish-body: color-mix(in srgb, var(--link) 48%, transparent);
+  --fish-wave-stroke: color-mix(in srgb, var(--accent) 28%, transparent);
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
@@ -69,6 +74,10 @@
   --link-hover: #c0c6ff;
   --accent: #5c73e7;
   --accent-soft: rgba(168, 177, 255, 0.12);
+  --fish-water-top: color-mix(in srgb, var(--accent) 14%, transparent);
+  --fish-water-bottom: color-mix(in srgb, var(--accent) 26%, var(--surface));
+  --fish-body: color-mix(in srgb, var(--link) 58%, transparent);
+  --fish-wave-stroke: color-mix(in srgb, var(--link) 32%, transparent);
   --shadow-sm: none;
   --vp-c-bg-alt: #0a0a0a;
   --vp-c-code-bg: #2d2d2f;

@@ -944,16 +944,59 @@ body,
 
 /* ===== 页脚 ===== */
 .VPFooter.VPFooter {
+  position: relative;
   border-top: none;
   padding: 36px 24px calc(40px + env(safe-area-inset-bottom, 0px));
   max-width: 100%;
-  overflow-x: clip;
+  overflow: hidden;
   background:
     var(--divider-fade) no-repeat top center / min(560px, 72%) 1px,
     color-mix(in srgb, var(--surface-2) 18%, transparent);
 }
 
+.VPFooter.has-flying-fish {
+  padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+}
+
+.VPFooter .penn-fish-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  height: min(156px, 30vw);
+  min-height: 112px;
+  pointer-events: auto;
+  cursor: default;
+  touch-action: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 4%, transparent) 42%,
+    color-mix(in srgb, var(--accent) 9%, var(--surface-2)) 100%
+  );
+}
+
+.dark .VPFooter .penn-fish-container {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 38%,
+    color-mix(in srgb, var(--accent) 12%, var(--surface)) 100%
+  );
+}
+
+.VPFooter .penn-fish-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* 顶部渐隐，与页脚正文过渡更自然 */
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 26%, #000 100%);
+}
+
 .VPFooter .container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -963,6 +1006,7 @@ body,
   min-width: 0;
   margin: 0 auto;
   text-align: center;
+  pointer-events: auto;
 }
 
 .VPFooter .message {
@@ -1064,6 +1108,17 @@ body,
   color: var(--text-3);
 }
 
+.VPFooter.has-flying-fish .footer-meta,
+.VPFooter.has-flying-fish .footer-copy {
+  color: var(--text-2);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--surface) 65%, transparent);
+}
+
+.dark .VPFooter.has-flying-fish .footer-meta,
+.dark .VPFooter.has-flying-fish .footer-copy {
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--bg) 80%, transparent);
+}
+
 .VPFooter .footer-copy {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.01em;
@@ -1105,9 +1160,24 @@ body,
   border-bottom-color: color-mix(in srgb, var(--border) 80%, transparent);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .VPFooter .penn-fish-container {
+    display: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   .VPFooter.VPFooter {
     padding: 28px 16px calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .VPFooter.has-flying-fish {
+    padding-bottom: calc(44px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .VPFooter .penn-fish-container {
+    height: min(132px, 36vw);
+    min-height: 96px;
   }
 
   .VPFooter .container {
