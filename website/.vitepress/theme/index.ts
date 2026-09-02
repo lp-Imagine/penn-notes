@@ -1,8 +1,9 @@
 import mediumZoom, { type Zoom } from "medium-zoom";
-import { nextTick, onMounted, watch, defineComponent, h } from "vue";
-import { getScrollOffset, useRoute } from "vitepress";
+import { nextTick, onBeforeUnmount, onMounted, watch, defineComponent, h } from "vue";
+import { getScrollOffset, useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
+import ArticleOutdateNotice from "./ArticleOutdateNotice.vue";
 import Comments from "./Comments.vue";
 import HomeTypewriter from "./HomeTypewriter.vue";
 import NewsArchive from "./NewsArchive.vue";
@@ -10,11 +11,15 @@ import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 import NotesArchive from "./NotesArchive.vue";
+import PostCopyright from "./PostCopyright.vue";
 import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
+import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import "./custom.css";
+import { setupCopyCopyright } from "./copy-copyright";
 import { setupFlyingFish } from "./flying-fish";
+import { setupSiteRuntime } from "./site-runtime";
 
 let zoom: Zoom | undefined;
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
@@ -241,6 +246,24 @@ function ensureNavOverflowFlyout(menu: HTMLElement) {
 function fillOverflowGroup(group: HTMLElement, hidden: HTMLElement[]) {
   group.replaceChildren();
   for (const item of hidden) {
+    if (item.classList.contains("VPNavBarMenuGroup")) {
+      const label = item.querySelector(".button")?.textContent?.trim();
+      if (label) {
+        const span = document.createElement("span");
+        span.className = "penn-nav-overflow-label";
+        span.textContent = label;
+        group.appendChild(span);
+      }
+      item.querySelectorAll<HTMLAnchorElement>(".VPMenuLink .link").forEach((link) => {
+        const a = document.createElement("a");
+        a.className = "penn-nav-overflow-link";
+        a.href = link.getAttribute("href") || "#";
+        a.textContent = link.textContent?.trim() || "";
+        if (link.classList.contains("active")) a.classList.add("active");
+        group.appendChild(a);
+      });
+      continue;
+    }
     const href = item.getAttribute("href") || item.querySelector("a")?.getAttribute("href") || "";
     const text = (item.textContent || "").trim();
     const a = document.createElement("a");
@@ -791,9 +814,15 @@ const Layout = defineComponent({
             slots["doc-before"]?.(),
             h(NewsDigestEnhance),
             showArticleExtras ? h(SeriesNav, { key: `series-${path}` }) : null,
+            showArticleExtras
+              ? h(ArticleOutdateNotice, { key: `outdate-${path}` })
+              : null,
           ],
           "doc-after": () => [
             slots["doc-after"]?.(),
+            showArticleExtras
+              ? h(PostCopyright, { key: `copyright-${path}` })
+              : null,
             showArticleExtras
               ? h(RelatedPosts, { key: `related-${path}` })
               : null,
@@ -813,6 +842,10 @@ export default {
   // VitePress theme-level setup (runs on client; official medium-zoom pattern)
   setup() {
     const route = useRoute();
+    const { theme } = useData();
+    let teardownCopyCopyright: (() => void) | undefined;
+    let teardownSiteRuntime: (() => void) | undefined;
+
     onMounted(() => {
       scheduleRefresh();
       const content = document.querySelector(".VPContent") || document.getElementById("app");
@@ -876,6 +909,20 @@ export default {
       setupNavOverflow();
       setupBackToTop();
       setupFlyingFish();
+      const postCopyright = theme.value.postCopyright as
+        | { author?: string; siteName?: string; siteUrl?: string }
+        | undefined;
+      const copyCopyright = theme.value.copyCopyright as
+        | { limitChars?: number }
+        | undefined;
+      const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
+      teardownCopyCopyright = setupCopyCopyright({
+        limitChars: copyCopyright?.limitChars,
+        author: postCopyright?.author,
+        siteName: postCopyright?.siteName,
+        siteUrl: postCopyright?.siteUrl,
+      });
+      teardownSiteRuntime = setupSiteRuntime(siteRuntime?.since ?? "2020-01-03");
       updateReadingTime();
       bindNewsImageFallback();
       const vpContent = document.querySelector(".VPContent");
@@ -915,6 +962,11 @@ export default {
         applyFocusToggleState();
       },
     );
+
+    onBeforeUnmount(() => {
+      teardownCopyCopyright?.();
+      teardownSiteRuntime?.();
+    });
   },
   enhanceApp({ app }) {
     app.component("AboutFriends", AboutFriends);
@@ -924,5 +976,6 @@ export default {
     app.component("NewsRssSubscribe", NewsRssSubscribe);
     app.component("TagsBrowse", TagsBrowse);
     app.component("NotesArchive", NotesArchive);
+    app.component("RecentPage", RecentPage);
   },
 };

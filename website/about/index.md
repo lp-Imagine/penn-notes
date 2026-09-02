@@ -56,6 +56,21 @@ next: false
         <span class="about-link-desc">每天自动更新的科技 / AI 精选</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
+      <a class="about-link" href="/collect/">
+        <span class="about-link-title">收藏</span>
+        <span class="about-link-desc">外链精选，前端与工程化好文</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
+      <a class="about-link" href="/books/">
+        <span class="about-link-title">书单</span>
+        <span class="about-link-desc">在读与计划中的技术书</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
+      <a class="about-link" href="/recent/">
+        <span class="about-link-title">近况</span>
+        <span class="about-link-desc">站点与个人的零碎更新；资讯见 AI 动态</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
       <a class="about-link" href="/notes/feed.xml">
         <span class="about-link-title">文章 RSS</span>
         <span class="about-link-desc">订阅博客更新</span>

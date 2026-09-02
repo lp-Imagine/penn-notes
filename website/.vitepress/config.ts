@@ -211,17 +211,39 @@ export default defineConfig({
     },
     nav: [
       { text: "首页", link: "/" },
-      { text: "AI 动态", link: "/news/", activeMatch: "/news/" },
-      { text: "标签", link: "/tags/", activeMatch: "/tags/" },
-      { text: "归档", link: "/archive/", activeMatch: "/archive/" },
-      { text: "JS & 框架", link: "/web/", activeMatch: "/web/" },
-      { text: "样式", link: "/ui/", activeMatch: "/ui/" },
-      { text: "工程化", link: "/engineering/", activeMatch: "/engineering/" },
-      { text: "后端", link: "/backend/", activeMatch: "/backend/" },
-      { text: "工具", link: "/tech/", activeMatch: "/tech/" },
-      { text: "AI Agent", link: "/agent/", activeMatch: "/agent/" },
-      { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
-      { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
+      {
+        text: "目录",
+        activeMatch: "/news/|/tags/|/archive/",
+        items: [
+          { text: "AI 动态", link: "/news/", activeMatch: "/news/" },
+          { text: "标签", link: "/tags/", activeMatch: "/tags/" },
+          { text: "归档", link: "/archive/", activeMatch: "/archive/" },
+        ],
+      },
+      {
+        text: "清单",
+        activeMatch: "/collect/|/books/|/recent/",
+        items: [
+          { text: "收藏", link: "/collect/", activeMatch: "/collect/" },
+          { text: "书单", link: "/books/", activeMatch: "/books/" },
+          { text: "近况", link: "/recent/", activeMatch: "/recent/" },
+        ],
+      },
+      {
+        text: "分类",
+        activeMatch:
+          "/web/|/ui/|/engineering/|/backend/|/tech/|/agent/|/computer/|/misc/",
+        items: [
+          { text: "JS & 框架", link: "/web/", activeMatch: "/web/" },
+          { text: "样式", link: "/ui/", activeMatch: "/ui/" },
+          { text: "工程化", link: "/engineering/", activeMatch: "/engineering/" },
+          { text: "后端", link: "/backend/", activeMatch: "/backend/" },
+          { text: "工具", link: "/tech/", activeMatch: "/tech/" },
+          { text: "AI Agent", link: "/agent/", activeMatch: "/agent/" },
+          { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
+          { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
+        ],
+      },
       { text: "关于", link: "/about/", activeMatch: "/about/" },
     ],
     sidebar: mergedSidebar,
@@ -264,7 +286,28 @@ export default defineConfig({
       message:
         '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">认真生活，随便折腾</span>',
       copyright:
-        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">文章 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
+        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">文章 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-runtime" aria-label="网站运行时间"><span class="footer-runtime-badge">安全运行</span><span class="footer-runtime-value" id="penn-site-runtime">—</span></span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
+    },
+    // 文章实用增强（由 imagineblog 移植）
+    outdateNotice: {
+      // 3 年；若改为 5 年可设 limitDays: 1825
+      limitDays: 1095,
+      messagePrev: "本文距上次更新已过",
+      messageNext: "天，内容可能已过时，请以最新文档为准。",
+    },
+    postCopyright: {
+      author: "Penn",
+      authorUrl: GITHUB_PROFILE,
+      siteName: "Penn Notes",
+      siteUrl: SITE_URL,
+      license: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0/deed.zh",
+    },
+    copyCopyright: {
+      limitChars: 50,
+    },
+    siteRuntime: {
+      since: "2020-01-03",
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

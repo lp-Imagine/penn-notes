@@ -251,7 +251,7 @@ body {
   .VPNavBarMenu {
     flex: 1 1 0;
     min-width: 0;
-    overflow: hidden;
+    overflow: visible;
     /* 占满搜索与右侧 Extra 之间的空间，链接仍靠右（VitePress 默认观感） */
     justify-content: flex-end;
   }
@@ -363,6 +363,251 @@ body {
 .penn-nav-overflow-link.active {
   color: var(--link);
   background: var(--accent-soft);
+}
+
+.penn-nav-overflow-label {
+  display: block;
+  padding: 6px 12px 2px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+/* ── 顶栏下拉菜单（归类导航，参考 imagineblog）── */
+@media (min-width: 768px) {
+  .VPNav {
+    overflow: visible !important;
+  }
+
+  .VPNavBar,
+  .VPNavBar .wrapper,
+  .VPNavBar .container,
+  .VPNavBar .content,
+  .VPNavBar .content-body {
+    overflow: visible !important;
+  }
+
+  .VPNavBarMenuGroup {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+  }
+
+  .VPNavBarMenuGroup:hover,
+  .VPNavBarMenuGroup:has(.button[aria-expanded="true"]) {
+    z-index: 200;
+  }
+
+  .VPNavBarMenuGroup .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 12px;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.2s ease;
+  }
+
+  .VPNavBarMenuGroup .button .text {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 1;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  /* 使用 VitePress 自带 chevron，隐藏重复的 ::after */
+  .VPNavBarMenuGroup .text-icon {
+    margin-left: 2px;
+    font-size: 12px;
+    opacity: 0.72;
+    transition: transform 0.22s ease, opacity 0.2s ease;
+  }
+
+  .VPNavBarMenuGroup:hover .button,
+  .VPNavBarMenuGroup.active .button {
+    color: var(--link);
+  }
+
+  .VPNavBarMenuGroup:hover .text-icon,
+  .VPNavBarMenuGroup:has(.button[aria-expanded="true"]) .text-icon {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .VPNavBarMenuGroup.active .button {
+    box-shadow: inset 0 -2px 0 var(--link);
+  }
+
+  /* 下拉层：紧贴按钮下方，避免被顶栏裁切 */
+  .VPNavBarMenuGroup .menu {
+    position: absolute !important;
+    top: calc(100% - 2px) !important;
+    right: 0 !important;
+    left: auto !important;
+    padding-top: 8px;
+    z-index: 210;
+  }
+
+  .VPNavBarMenuGroup:hover .menu,
+  .VPNavBarMenuGroup .button[aria-expanded="true"] + .menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
+  .VPNavBarMenuGroup .VPMenu {
+    min-width: 176px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    background: color-mix(in srgb, var(--surface) 94%, var(--surface-2));
+    box-shadow:
+      0 16px 40px color-mix(in srgb, #000 14%, transparent),
+      0 4px 12px color-mix(in srgb, #000 8%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .VPNavBarMenuGroup .VPMenuLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 38px;
+    padding: 0 !important;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text) !important;
+    white-space: nowrap;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .VPNavBarMenuGroup .VPMenuLink .link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 12px !important;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text) !important;
+  }
+
+  .VPNavBarMenuGroup .VPMenuLink .link:hover {
+    color: var(--link) !important;
+    background: var(--accent-soft);
+  }
+
+  .VPNavBarMenuGroup .VPMenuLink .link.active {
+    color: var(--link) !important;
+    background: color-mix(in srgb, var(--accent-soft) 80%, var(--surface));
+  }
+
+  /* 顶栏分组图标：目录 / 清单 / 分类 */
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(1) .button .text::before,
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(2) .button .text::before,
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(3) .button .text::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.92;
+    mask: var(--penn-nav-group-icon) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-group-icon) center / contain no-repeat;
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(1) .button .text {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(2) .button .text {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 11l3 3L22 4'/%3E%3Cpath d='M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(3) .button .text {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3C/svg%3E");
+  }
+
+  /* 下拉项图标（按链接路径） */
+  .VPNavBarMenuGroup .link::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.88;
+    mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+  }
+
+  .VPNavBarMenuGroup .link[href*="/news/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/%3E%3Cpath d='M18 14h-8'/%3E%3Cpath d='M15 18h-5'/%3E%3Cpath d='M10 6h8v4h-8V6Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/tags/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z'/%3E%3Cpath d='M7 7h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/archive/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='5' rx='1'/%3E%3Cpath d='M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8'/%3E%3Cpath d='M10 12h4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/collect/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/books/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/recent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/web/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/ui/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/engineering/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/backend/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='20' height='8' rx='2'/%3E%3Crect x='2' y='14' width='20' height='8' rx='2'/%3E%3Cpath d='M6 6h.01'/%3E%3Cpath d='M6 18h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/tech/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/agent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect x='4' y='12' width='8' height='8' rx='2'/%3E%3Cpath d='M12 12h4a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/computer/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='14' rx='2'/%3E%3Cpath d='M8 21h8'/%3E%3Cpath d='M12 17v4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenuGroup .link[href*="/misc/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
+  }
 }
 
 /* 768 以上略窄时藏 ⌘K，给分类腾空间 */
@@ -512,12 +757,124 @@ body {
     overflow: visible;
     border-bottom: none !important;
     border-radius: var(--radius);
+    margin-top: 4px;
   }
 
   .VPNavScreenMenuGroup .button {
     min-height: 48px;
     padding: 12px 14px 12px 0;
     font-size: 16px;
+    font-weight: 600;
+  }
+
+  .VPNavScreenMenuGroup .menu {
+    padding: 0 0 8px 12px;
+  }
+
+  .VPNavScreenMenuGroup .VPMenuLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 14px !important;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .VPNavScreenMenuGroup .VPMenuLink::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.88;
+    mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/news/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/%3E%3Cpath d='M18 14h-8'/%3E%3Cpath d='M15 18h-5'/%3E%3Cpath d='M10 6h8v4h-8V6Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/tags/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z'/%3E%3Cpath d='M7 7h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/archive/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='5' rx='1'/%3E%3Cpath d='M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8'/%3E%3Cpath d='M10 12h4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/collect/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/books/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/recent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/web/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/ui/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/engineering/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/backend/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='20' height='8' rx='2'/%3E%3Crect x='2' y='14' width='20' height='8' rx='2'/%3E%3Cpath d='M6 6h.01'/%3E%3Cpath d='M6 18h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/tech/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/agent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect x='4' y='12' width='8' height='8' rx='2'/%3E%3Cpath d='M12 12h4a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/computer/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='14' rx='2'/%3E%3Cpath d='M8 21h8'/%3E%3Cpath d='M12 17v4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .link[href*="/misc/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroup .button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .VPNavScreenMenuGroup .button::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background: var(--link);
+    mask: var(--penn-nav-group-icon) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-group-icon) center / contain no-repeat;
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(1) .button {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(2) .button {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 11l3 3L22 4'/%3E%3Cpath d='M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(3) .button {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3C/svg%3E");
   }
 
   .VPNavScreen .menu + .translations,

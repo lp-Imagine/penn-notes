@@ -1,0 +1,160 @@
+/* ── 近况页：时间线（样式类名保留 talks-* 以减少改动）── */
+
+.talks-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 24px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--link) 28%, var(--border));
+  background: color-mix(in srgb, var(--link) 7%, var(--surface));
+}
+
+.talks-banner-icon {
+  flex: 0 0 auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.talks-banner-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.talks-banner-text a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.talks-banner-text a:hover {
+  text-decoration: underline;
+}
+
+.talks-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 18px;
+}
+
+.talks-timeline::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 55%, var(--border)),
+    color-mix(in srgb, var(--border) 70%, transparent)
+  );
+}
+
+.talk-item {
+  position: relative;
+  padding: 0 0 22px 16px;
+}
+
+.talk-item:last-child {
+  padding-bottom: 0;
+}
+
+.talk-item::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid var(--surface);
+  background: color-mix(in srgb, var(--accent) 68%, var(--link));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.talk-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.talk-item time {
+  font-size: 12px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+
+.talk-item-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  background: color-mix(in srgb, var(--surface-2) 65%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+}
+
+.talk-item-body {
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 90%, var(--surface-2));
+  box-shadow: var(--shadow-sm);
+}
+
+.talk-item-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+.talk-item-body p + p {
+  margin-top: 8px;
+}
+
+.talk-item-body a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.talk-item-body a:hover {
+  text-decoration: underline;
+}
+
+.dark .talk-item-body {
+  background: color-mix(in srgb, var(--surface-2) 58%, var(--surface));
+}
+
+.talks-page .talks-note {
+  margin: 24px 0 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 35%, var(--surface));
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-3);
+}
+
+.talks-page .talks-note a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.talks-page .talks-note a:hover {
+  text-decoration: underline;
+}
