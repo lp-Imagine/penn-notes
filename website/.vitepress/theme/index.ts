@@ -798,7 +798,7 @@ const Layout = defineComponent({
               ? h(RelatedPosts, { key: `related-${path}` })
               : null,
             showArticleExtras
-              ? h(Comments, { key: `giscus-${path}` })
+              ? h(Comments)
               : null,
           ],
         },

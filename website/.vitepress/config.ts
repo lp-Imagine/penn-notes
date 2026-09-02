@@ -270,10 +270,12 @@ export default defineConfig({
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →
     // 访问 https://giscus.app 按提示安装 giscus App 并配置 →
     // 把生成的 data-repo-id / data-category-id 填到下面，即可生效
+    // 分类名需与仓库 Discussions 一致：建议在 GitHub → Settings → Discussions
+    // 将原 Announcements 重命名为 Comments（categoryId 可不变）。
     giscus: {
       repo: "lp-Imagine/penn-notes",
       repoId: "R_kgDOH7Mqqg",
-      category: "Announcements",
+      category: "Comments",
       categoryId: "DIC_kwDOH7Mqqs4DDyOt",
     },
   },

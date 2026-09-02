@@ -694,6 +694,7 @@
   .back-to-top,
   .reading-progress,
   .related-posts,
+  .comments-section,
   .giscus-host,
   .series-nav {
     display: none !important;
