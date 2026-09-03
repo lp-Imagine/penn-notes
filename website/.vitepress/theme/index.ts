@@ -17,6 +17,7 @@ import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import "./custom.css";
+import { setupBooksShelf } from "./books-shelf";
 import { setupCopyCopyright } from "./copy-copyright";
 import { setupFlyingFish } from "./flying-fish";
 import { setupSiteRuntime } from "./site-runtime";
@@ -786,6 +787,7 @@ function scheduleRefresh() {
     nextTick(() => {
       bindNewsImageFallback();
       enhanceArticleImages();
+      setupBooksShelf();
       refreshZoom();
       updateReadingTime();
       updateReadingProgress();

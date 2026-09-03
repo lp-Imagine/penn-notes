@@ -1,5 +1,10 @@
 /* ── 书单页（3D 书脊效果，移植自 imagineblog books.css）── */
 
+/* 避免 Layout overflow-x:clip 把 3D 书脊压成平面 */
+.Layout:has(.books-page) {
+  overflow-x: visible;
+}
+
 .books-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -23,7 +28,8 @@
   box-shadow:
     0 14px 38px color-mix(in srgb, #000 6%, transparent),
     0 3px 8px color-mix(in srgb, #000 4%, transparent);
-  overflow: hidden;
+  /* visible：overflow:hidden 会压扁 preserve-3d，书脊看起来像平面封面 */
+  overflow: visible;
   transition:
     border-color 0.28s ease,
     transform 0.55s cubic-bezier(0.6, 0.2, 0.1, 1),
@@ -57,6 +63,7 @@
   min-height: 158px;
   margin-right: 10px;
   perspective: 600px;
+  transform-style: preserve-3d;
   text-decoration: none;
 }
 
@@ -66,13 +73,40 @@
   height: 150px;
   transform-style: preserve-3d;
   transform: rotateY(-30deg);
+  transform-origin: center left;
   transition: transform 1s ease;
   list-style: none;
 }
 
+@keyframes book-slide-in {
+  0% {
+    transform: rotateY(-88deg);
+  }
+  62% {
+    transform: rotateY(-8deg);
+  }
+  100% {
+    transform: rotateY(-30deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .book-card.is-waiting .book {
+    transform: rotateY(-88deg);
+    transition: none;
+  }
+
+  .book-card.is-inview:not(.is-resting) .book {
+    animation: book-slide-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--book-stagger, 0) * 90ms);
+  }
+}
+
 .book-card:hover .book,
 .book-container:hover .book,
-.book-container:focus-visible .book {
+.book-container:focus-visible .book,
+.book-card:active .book {
+  animation: none;
   transform: rotateY(0deg);
 }
 
@@ -241,6 +275,8 @@
   line-height: 1.7;
   color: var(--text-2);
   border-top: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
 }
 
 .books-page .books-note {
@@ -267,11 +303,16 @@
   .book {
     transform: rotateY(-30deg);
     transition: none;
+    animation: none;
   }
 
+  .book-card.is-waiting .book,
+  .book-card.is-inview .book,
   .book-card:hover .book,
-  .book-container:hover .book {
+  .book-container:hover .book,
+  .book-card:active .book {
     transform: rotateY(-30deg);
+    animation: none;
   }
 
   .book-card {
@@ -288,10 +329,12 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding-top: 18px;
+    padding-top: 22px;
   }
 
   .book-container {
+    width: 140px;
+    min-height: 168px;
     margin: 0 0 12px;
   }
 

@@ -173,6 +173,21 @@ function collectAllNewsItems(months) {
   return all;
 }
 
+function extractHeadlines(content, limit = 3) {
+  const titles = [];
+  for (const line of content.split("\n")) {
+    const m = line.match(/^###\s+(.+)/);
+    if (!m) continue;
+    titles.push(m[1].trim());
+    if (titles.length >= limit) break;
+  }
+  return titles;
+}
+
+function countHeadlines(content) {
+  return (content.match(/^###\s+/gm) || []).length;
+}
+
 export function collectRecentNews(limit = 8) {
   const months = listMonthDirs();
   const recent = [];
@@ -188,11 +203,14 @@ export function collectRecentNews(limit = 8) {
       const content = fs.readFileSync(path.join(dir, file), "utf8");
       const date = (file.match(/(\d{4}-\d{2}-\d{2})/) || [])[1] || "";
       const slug = file.replace(/\.md$/, "");
+      const headlines = extractHeadlines(content, 3);
       recent.push({
         date,
         title: `AI 动态 · ${date}`,
         link: `/news/${month}/${slug}`,
         image: extractFirstImage(content),
+        count: countHeadlines(content),
+        headlines,
       });
       if (recent.length >= limit) return recent;
     }

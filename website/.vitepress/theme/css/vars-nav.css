@@ -338,13 +338,118 @@ body {
   box-shadow: none !important;
 }
 
-/* 统一 ... 菜单内「外观」标签的字重/字号 */
+/* PC「...」菜单：与下拉分组同一套卡片行 */
+.VPNavBarExtra .VPMenu,
+.penn-nav-more .VPMenu {
+  min-width: 196px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, var(--surface-2));
+  box-shadow:
+    0 16px 40px color-mix(in srgb, #000 14%, transparent),
+    0 4px 12px color-mix(in srgb, #000 8%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.VPNavBarExtra .group,
+.penn-nav-more .group {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.VPNavBarExtra .group + .group {
+  margin-top: 2px !important;
+}
+
+.VPNavBarExtra .item,
+.penn-nav-more .item {
+  padding: 0 !important;
+}
+
+.VPNavBarExtra .item.appearance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0 !important;
+  min-height: 38px;
+  padding: 0 12px !important;
+  border-radius: 8px;
+}
+
 .VPNavBarExtra .label,
 .penn-nav-more .label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  margin: 0;
   font-size: 14px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   color: var(--text) !important;
-  line-height: 32px !important;
+  line-height: 1.35 !important;
+}
+
+.VPNavBarExtra .label::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background: var(--link);
+  opacity: 0.88;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12,2v2M12,20v2M4.93,4.93l1.41,1.41M17.66,17.66l1.41,1.41M2,12h2M20,12h2M6.34,17.66l-1.41,1.41M19.07,4.93l-1.41,1.41'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12,2v2M12,20v2M4.93,4.93l1.41,1.41M17.66,17.66l1.41,1.41M2,12h2M20,12h2M6.34,17.66l-1.41,1.41M19.07,4.93l-1.41,1.41'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.VPNavBarExtra .appearance-action {
+  margin: 0 !important;
+}
+
+.VPNavBarExtra .item.social-links {
+  display: block;
+}
+
+.VPNavBarExtra .social-links-list,
+.VPNavBarExtra .VPSocialLinks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 !important;
+}
+
+.VPNavBarExtra .VPSocialLink {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  gap: 10px;
+  width: 100% !important;
+  height: 38px !important;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: var(--text) !important;
+  text-decoration: none;
+}
+
+.VPNavBarExtra .VPSocialLink > :is(svg, [class^="vpi-social-"]) {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0;
+  color: var(--link);
+}
+
+.VPNavBarExtra .VPSocialLink[aria-label="github"]::after {
+  content: "GitHub";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.VPNavBarExtra .VPSocialLink:hover {
+  color: var(--link) !important;
+  background: var(--accent-soft);
 }
 
 .penn-nav-overflow-link {
@@ -512,6 +617,38 @@ body {
   .VPNavBarMenuGroup .VPMenuLink .link.active {
     color: var(--link) !important;
     background: color-mix(in srgb, var(--accent-soft) 80%, var(--surface));
+  }
+
+  /* 顶栏链接图标：首页 / 关于 */
+  .VPNavBarMenu > .VPNavBarMenuLink {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuLink::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.92;
+    mask: var(--penn-nav-link-icon) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-link-icon) center / contain no-repeat;
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuLink:first-child,
+  .VPNavBarMenu > .VPNavBarMenuLink[href="/"],
+  .VPNavBarMenu > .VPNavBarMenuLink[href="/penn-notes/"],
+  .VPNavBarMenu > .VPNavBarMenuLink[href="/penn-notes"] {
+    /* 单 path、无空格，避免 data-uri mask 解析失败变成色块 */
+    --penn-nav-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12,3L21,10.5V20a1,1,0,0,1-1,1h-5v-7H9v7H4a1,1,0,0,1-1-1V10.5Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuLink:last-child,
+  .VPNavBarMenu > .VPNavBarMenuLink[href*="/about"] {
+    --penn-nav-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
   }
 
   /* 顶栏分组图标：目录 / 清单 / 分类 */
@@ -718,33 +855,79 @@ body {
 /* ── 移动端全屏导航菜单 ── */
 @media (max-width: 767.98px) {
   .VPNavScreen {
+    --penn-mobile-nav-gap: 8px;
     padding: 0 16px;
     background-color: var(--bg) !important;
   }
 
   .VPNavScreen .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--penn-mobile-nav-gap);
     max-width: 100%;
-    padding: 12px 0 40px;
+    padding: 12px 0 32px;
+  }
+
+  /* 覆盖 VitePress 默认 24px / 16px 分段间距，统一交给 container gap */
+  .VPNavScreen .menu,
+  .VPNavScreen .translations,
+  .VPNavScreen .appearance,
+  .VPNavScreen .social-links {
+    margin-top: 0 !important;
+  }
+
+  .VPNavScreen .menu + .translations,
+  .VPNavScreen .menu + .appearance,
+  .VPNavScreen .translations + .appearance,
+  .VPNavScreen .menu + .social-links,
+  .VPNavScreen .appearance + .social-links {
+    margin-top: 0 !important;
   }
 
   .VPNavScreenMenu {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--penn-mobile-nav-gap);
   }
 
+  /* !important：盖过 VitePress scoped 的 display:block，否则 ::before 图标无法横排对齐 */
   .VPNavScreenMenuLink {
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
     min-height: 48px;
-    padding: 12px 14px !important;
+    padding: 0 14px !important;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
     border-bottom: none !important;
-    border-radius: var(--radius);
-    font-size: 16px;
-    font-weight: 500;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 90%, var(--surface-2));
+    font-size: 15px !important;
+    font-weight: 650 !important;
     line-height: 1.35;
     color: var(--text) !important;
-    transition: background 0.15s, color 0.15s;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .VPNavScreenMenuLink::before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.9;
+    mask: var(--penn-nav-link-icon) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-link-icon) center / contain no-repeat;
+  }
+
+  /* 首页 / 关于：按菜单内首尾链接定位，避免 base/cleanUrls 影响 href 匹配 */
+  .VPNavScreenMenu > .VPNavScreenMenuLink:first-child {
+    --penn-nav-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12,3L21,10.5V20a1,1,0,0,1-1,1h-5v-7H9v7H4a1,1,0,0,1-1-1V10.5Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuLink:last-child,
+  .VPNavScreenMenuLink[href*="/about"] {
+    --penn-nav-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
   }
 
   .VPNavScreenMenuLink:active {
@@ -752,107 +935,75 @@ body {
     color: var(--link) !important;
   }
 
+  /* 分组折叠：恢复 VitePress 默认高度裁切，避免全部展开 */
   .VPNavScreenMenuGroup {
+    margin-top: 0 !important;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent) !important;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 90%, var(--surface-2));
+    height: 48px;
+    overflow: hidden;
+    transition:
+      height 0.28s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .VPNavScreenMenuGroup.open {
     height: auto;
-    overflow: visible;
-    border-bottom: none !important;
-    border-radius: var(--radius);
-    margin-top: 4px;
+    padding-bottom: 6px;
+    border-color: color-mix(in srgb, var(--link) 28%, var(--border)) !important;
+    background: color-mix(in srgb, var(--accent-soft) 35%, var(--surface));
   }
 
   .VPNavScreenMenuGroup .button {
-    min-height: 48px;
-    padding: 12px 14px 12px 0;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .VPNavScreenMenuGroup .menu {
-    padding: 0 0 8px 12px;
-  }
-
-  .VPNavScreenMenuGroup .VPMenuLink {
     display: flex;
     align-items: center;
     gap: 10px;
-    min-height: 44px;
-    padding: 10px 14px !important;
-    border-radius: var(--radius);
-    font-size: 15px;
-    font-weight: 600;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px !important;
+    border: none;
+    border-radius: 0;
+    font-size: 15px !important;
+    font-weight: 650 !important;
+    line-height: 1.35;
+    color: var(--text) !important;
+    background: transparent;
+    transition: color 0.2s ease;
   }
 
-  .VPNavScreenMenuGroup .VPMenuLink::before {
+  .VPNavScreenMenuGroup.open .button {
+    color: var(--link) !important;
+  }
+
+  .VPNavScreenMenuGroup .button-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  /* 用 chevron 替代默认 + 号（旋转 45° 会像 ×） */
+  .VPNavScreenMenuGroup .button-icon {
+    display: none !important;
+  }
+
+  .VPNavScreenMenuGroup .button::after {
     content: "";
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
     flex-shrink: 0;
-    background: var(--link);
-    opacity: 0.88;
-    mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
-    -webkit-mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+    opacity: 0.55;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    transition: transform 0.22s ease, opacity 0.2s ease;
   }
 
-  .VPNavScreenMenuGroup .link[href*="/news/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/%3E%3Cpath d='M18 14h-8'/%3E%3Cpath d='M15 18h-5'/%3E%3Cpath d='M10 6h8v4h-8V6Z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/tags/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z'/%3E%3Cpath d='M7 7h.01'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/archive/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='5' rx='1'/%3E%3Cpath d='M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8'/%3E%3Cpath d='M10 12h4'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/collect/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/books/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/recent/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/web/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/ui/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/engineering/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/backend/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='20' height='8' rx='2'/%3E%3Crect x='2' y='14' width='20' height='8' rx='2'/%3E%3Cpath d='M6 6h.01'/%3E%3Cpath d='M6 18h.01'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/tech/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/agent/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect x='4' y='12' width='8' height='8' rx='2'/%3E%3Cpath d='M12 12h4a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/computer/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='14' rx='2'/%3E%3Cpath d='M8 21h8'/%3E%3Cpath d='M12 17v4'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .link[href*="/misc/"] {
-    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
-  }
-
-  .VPNavScreenMenuGroup .button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .VPNavScreenMenuGroup.open .button::after {
+    transform: rotate(180deg);
+    opacity: 0.9;
   }
 
   .VPNavScreenMenuGroup .button::before {
@@ -861,6 +1012,7 @@ body {
     height: 18px;
     flex-shrink: 0;
     background: var(--link);
+    opacity: 0.9;
     mask: var(--penn-nav-group-icon) center / contain no-repeat;
     -webkit-mask: var(--penn-nav-group-icon) center / contain no-repeat;
   }
@@ -877,29 +1029,196 @@ body {
     --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3C/svg%3E");
   }
 
-  .VPNavScreen .menu + .translations,
-  .VPNavScreen .menu + .appearance,
-  .VPNavScreen .translations + .appearance {
-    margin-top: 8px;
+  .VPNavScreenMenuGroup .items {
+    padding: 2px 8px 8px;
+  }
+
+  .VPNavScreenMenuGroup .item + .item {
+    margin-top: 2px;
+  }
+
+  .VPNavScreenMenuGroupLink {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0 !important;
+    min-height: 42px;
+    padding: 8px 10px 8px 12px !important;
+    border-radius: 8px;
+    font-size: 14px !important;
+    font-weight: 550 !important;
+    line-height: 1.35 !important;
+    color: var(--text-2) !important;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .VPNavScreenMenuGroupLink:active,
+  .VPNavScreenMenuGroupLink:hover {
+    color: var(--link) !important;
+    background: color-mix(in srgb, var(--accent-soft) 65%, transparent);
+  }
+
+  .VPNavScreenMenuGroupLink::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.82;
+    mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+    -webkit-mask: var(--penn-nav-item-icon, none) center / contain no-repeat;
+  }
+
+  /* 分类子项较多：展开后双列，减少滚动 */
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(3).open .items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px 6px;
+    padding: 2px 8px 10px;
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(3) .VPNavScreenMenuGroupLink {
+    min-height: 40px;
+    padding: 8px 8px 8px 10px !important;
+    font-size: 13px !important;
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/news/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'/%3E%3Cpath d='M18 14h-8'/%3E%3Cpath d='M15 18h-5'/%3E%3Cpath d='M10 6h8v4h-8V6Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/tags/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z'/%3E%3Cpath d='M7 7h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/archive/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='5' rx='1'/%3E%3Cpath d='M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8'/%3E%3Cpath d='M10 12h4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/collect/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/books/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20'/%3E%3Cpath d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/recent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/web/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/ui/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='13.5' cy='6.5' r='.5'/%3E%3Ccircle cx='17.5' cy='10.5' r='.5'/%3E%3Ccircle cx='8.5' cy='7.5' r='.5'/%3E%3Ccircle cx='6.5' cy='12.5' r='.5'/%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/engineering/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/backend/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='2' width='20' height='8' rx='2'/%3E%3Crect x='2' y='14' width='20' height='8' rx='2'/%3E%3Cpath d='M6 6h.01'/%3E%3Cpath d='M6 18h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/tech/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/agent/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 8V4H8'/%3E%3Crect x='4' y='12' width='8' height='8' rx='2'/%3E%3Cpath d='M12 12h4a2 2 0 0 1 2 2v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/computer/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='14' rx='2'/%3E%3Cpath d='M8 21h8'/%3E%3Cpath d='M12 17v4'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenuGroupLink[href*="/misc/"] {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
   }
 
   .VPNavScreenAppearance {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     min-height: 48px;
-    padding: 12px 14px !important;
-    border-radius: var(--radius);
-    background-color: transparent !important;
-    border: none !important;
+    margin-top: 0 !important;
+    padding: 0 14px !important;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 90%, var(--surface-2)) !important;
+  }
+
+  .VPNavScreenAppearance::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background: var(--link);
+    opacity: 0.9;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2'/%3E%3Cpath d='M12 20v2'/%3E%3Cpath d='m4.93 4.93 1.41 1.41'/%3E%3Cpath d='m17.66 17.66 1.41 1.41'/%3E%3Cpath d='M2 12h2'/%3E%3Cpath d='M20 12h2'/%3E%3Cpath d='m6.34 17.66-1.41 1.41'/%3E%3Cpath d='m19.07 4.93-1.41 1.41'/%3E%3C/svg%3E")
+      center / contain no-repeat;
   }
 
   .VPNavScreenAppearance .text {
-    font-size: 16px;
-    font-weight: 500;
+    flex: 1;
+    font-size: 15px !important;
+    font-weight: 650 !important;
     color: var(--text);
   }
 
-  .VPNavScreen .menu + .social-links,
-  .VPNavScreen .appearance + .social-links {
-    margin-top: 16px;
+  .VPNavScreen .social-links {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 48px;
+    margin-top: 0 !important;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--surface) 90%, var(--surface-2));
+  }
+
+  .VPNavScreen .VPSocialLinks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .VPNavScreen .VPSocialLink {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center;
+    gap: 10px;
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 14px;
+    color: var(--text) !important;
+    text-decoration: none;
+  }
+
+  .VPNavScreen .VPSocialLink > :is(svg, [class^="vpi-social-"]) {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0;
+    color: var(--link);
+  }
+
+  .VPNavScreen .VPSocialLink[aria-label="github"]::after {
+    content: "GitHub";
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.35;
+  }
+
+  .VPNavScreen .VPSocialLink:active {
+    background: var(--accent-soft);
+    color: var(--link) !important;
   }
 }
 

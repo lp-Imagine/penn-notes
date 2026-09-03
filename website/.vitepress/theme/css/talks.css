@@ -107,6 +107,12 @@
   border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
 }
 
+.talk-item-tag--news {
+  color: var(--link);
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+}
+
 .talk-item-body {
   padding: 12px 14px;
   border-radius: var(--radius-lg);

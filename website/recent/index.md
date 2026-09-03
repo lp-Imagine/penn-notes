@@ -1,6 +1,6 @@
 ---
 title: 近况
-description: 站点与个人的零碎更新；科技资讯见 AI 动态
+description: 站点碎碎念，以及每日 AI 动态摘要
 outline: false
 sidebar: false
 aside: false
