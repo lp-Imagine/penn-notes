@@ -22,7 +22,7 @@ export function getArticleContentDate(page: {
   return parseArticleDate(fm.updated ?? fm.date);
 }
 
-/** 版权块等展示用：正文日期优先，无 frontmatter 时回退 git lastUpdated */
+/** 展示用：正文日期优先，无 frontmatter 时回退 git lastUpdated */
 export function getArticleUpdateTime(page: {
   lastUpdated?: number;
   frontmatter?: Record<string, unknown>;

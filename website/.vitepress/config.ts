@@ -295,17 +295,6 @@ export default defineConfig({
       messagePrev: "本文距上次更新已过",
       messageNext: "天，内容可能已过时，请以最新文档为准。",
     },
-    postCopyright: {
-      author: "Penn",
-      authorUrl: GITHUB_PROFILE,
-      siteName: "Penn Notes",
-      siteUrl: SITE_URL,
-      license: "CC BY 4.0",
-      licenseUrl: "https://creativecommons.org/licenses/by/4.0/deed.zh",
-    },
-    copyCopyright: {
-      limitChars: 50,
-    },
     siteRuntime: {
       since: "2020-01-03",
     },

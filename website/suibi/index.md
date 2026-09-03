@@ -1,9 +1,19 @@
 ---
 title: 近况
-redirect: /recent/
 outline: false
 sidebar: false
 aside: false
 ---
 
-页面已迁移至 [近况](/recent/)。
+<script setup>
+import { onMounted } from "vue";
+import { withBase, useRouter } from "vitepress";
+
+const href = withBase("/recent/");
+const router = useRouter();
+onMounted(() => {
+  router.go(href);
+});
+</script>
+
+<p>页面已迁移至 <a :href="href">近况</a>。</p>

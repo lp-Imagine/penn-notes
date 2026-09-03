@@ -11,14 +11,12 @@ import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 import NotesArchive from "./NotesArchive.vue";
-import PostCopyright from "./PostCopyright.vue";
 import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import "./custom.css";
 import { setupBooksShelf } from "./books-shelf";
-import { setupCopyCopyright } from "./copy-copyright";
 import { setupFlyingFish } from "./flying-fish";
 import { setupSiteRuntime } from "./site-runtime";
 
@@ -823,9 +821,6 @@ const Layout = defineComponent({
           "doc-after": () => [
             slots["doc-after"]?.(),
             showArticleExtras
-              ? h(PostCopyright, { key: `copyright-${path}` })
-              : null,
-            showArticleExtras
               ? h(RelatedPosts, { key: `related-${path}` })
               : null,
             showArticleExtras
@@ -845,7 +840,6 @@ export default {
   setup() {
     const route = useRoute();
     const { theme } = useData();
-    let teardownCopyCopyright: (() => void) | undefined;
     let teardownSiteRuntime: (() => void) | undefined;
 
     onMounted(() => {
@@ -911,19 +905,7 @@ export default {
       setupNavOverflow();
       setupBackToTop();
       setupFlyingFish();
-      const postCopyright = theme.value.postCopyright as
-        | { author?: string; siteName?: string; siteUrl?: string }
-        | undefined;
-      const copyCopyright = theme.value.copyCopyright as
-        | { limitChars?: number }
-        | undefined;
       const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
-      teardownCopyCopyright = setupCopyCopyright({
-        limitChars: copyCopyright?.limitChars,
-        author: postCopyright?.author,
-        siteName: postCopyright?.siteName,
-        siteUrl: postCopyright?.siteUrl,
-      });
       teardownSiteRuntime = setupSiteRuntime(siteRuntime?.since ?? "2020-01-03");
       updateReadingTime();
       bindNewsImageFallback();
@@ -966,7 +948,6 @@ export default {
     );
 
     onBeforeUnmount(() => {
-      teardownCopyCopyright?.();
       teardownSiteRuntime?.();
     });
   },

@@ -29,6 +29,7 @@
   --fish-water-bottom: color-mix(in srgb, var(--accent) 22%, var(--surface-2));
   --fish-body: color-mix(in srgb, var(--link) 48%, transparent);
   --fish-wave-stroke: color-mix(in srgb, var(--accent) 28%, transparent);
+  --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
   --space-6: 32px;
@@ -39,7 +40,9 @@
   --doc-content-max-wide: 52rem;
   --doc-page-inset: 20px;
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --vp-font-family-base: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --vp-font-family-base:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   --vp-c-brand-1: var(--link);
   --vp-c-brand-2: var(--accent);
   --vp-c-brand-3: #5672cd;

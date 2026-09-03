@@ -1,7 +1,10 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useRoute } from "vitepress";
+
 const sections = ["全部", "业界", "产品", "模型", "开源", "开发者工具", "前端"];
 const active = ref("全部");
+const route = useRoute();
 let sectionsRoot = null;
 
 function applyFilter() {
@@ -14,14 +17,27 @@ function applyFilter() {
   });
 }
 
-onMounted(() => {
+function resetFilter() {
+  active.value = "全部";
   sectionsRoot = document.querySelector(".vp-doc");
   applyFilter();
+}
+
+onMounted(() => {
+  resetFilter();
 });
 
 onUnmounted(() => {
   sectionsRoot = null;
 });
+
+watch(
+  () => route.path,
+  () => {
+    // SPA 切到另一篇日报时重置筛选，避免 Tab 与正文栏目错位
+    resetFilter();
+  },
+);
 
 function setActive(sec) {
   active.value = sec;

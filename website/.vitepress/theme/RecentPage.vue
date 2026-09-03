@@ -3,6 +3,7 @@
  * 近况：手动碎碎念 + 每日 AI 动态摘要（随 sync:news 自动更新）
  */
 import { computed } from "vue";
+import { withBase } from "vitepress";
 // @ts-expect-error JSON 数据
 import rawManual from "../../recent/recent.json";
 // @ts-expect-error 构建时由 scripts/sync-news.mjs 生成
@@ -44,8 +45,21 @@ function escapeHtml(s: string) {
     .replace(/"/g, "&quot;");
 }
 
+function siteHref(path: string) {
+  const raw = path || "/";
+  return withBase(raw.startsWith("/") ? raw : `/${raw}`);
+}
+
+/** 把站内绝对路径 href="/…" 改成带 base 的链接；外链不动 */
+function rewriteInternalHrefs(html: string) {
+  return html.replace(
+    /href="(\/[^"]*)"/g,
+    (_m, path: string) => `href="${siteHref(path)}"`,
+  );
+}
+
 function newsContent(item: NewsRecentItem) {
-  const href = item.link || "/news/";
+  const href = siteHref(item.link || "/news/");
   const headlines = (item.headlines || []).map(escapeHtml);
   if (headlines.length) {
     const extra =
@@ -55,11 +69,14 @@ function newsContent(item: NewsRecentItem) {
   return `AI 动态日报已更新。<a href="${href}">${escapeHtml(item.title)}</a>`;
 }
 
+const newsPath = siteHref("/news/");
+const archivePath = siteHref("/archive/");
+
 const items = computed(() => {
   const manual: TimelineItem[] = (rawManual as ManualItem[]).map((item) => ({
     date: item.date,
     tag: item.tag || "碎碎念",
-    content: item.content,
+    content: rewriteInternalHrefs(item.content),
     kind: "manual",
   }));
   const news: TimelineItem[] = (rawNews as NewsRecentItem[]).map((item) => ({
@@ -84,10 +101,10 @@ const countLabel = computed(() => `共 ${items.value.length} 条`);
       </p>
       <p class="section-count">{{ countLabel }}</p>
       <div class="talks-hero-actions">
-        <a class="talks-hero-btn talks-hero-btn--primary" href="/news/"
+        <a class="talks-hero-btn talks-hero-btn--primary" :href="newsPath"
           >去看 AI 动态</a
         >
-        <a class="talks-hero-btn" href="/archive/">浏览文章归档</a>
+        <a class="talks-hero-btn" :href="archivePath">浏览文章归档</a>
       </div>
     </header>
 
@@ -95,7 +112,7 @@ const countLabel = computed(() => `共 ${items.value.length} 条`);
       <span class="talks-banner-icon" aria-hidden="true">ℹ️</span>
       <p class="talks-banner-text">
         <strong>AI 动态</strong>日报会自动出现在时间线里；站点碎碎念仍手写。全文请看
-        <a href="/news/">AI 动态</a>。
+        <a :href="newsPath">AI 动态</a>。
       </p>
     </div>
 
@@ -121,8 +138,8 @@ const countLabel = computed(() => `共 ${items.value.length} 条`);
     </div>
 
     <p class="talks-note">
-      追每日资讯 → <a href="/news/">AI 动态</a> · 读长文 →
-      <a href="/archive/">归档</a>
+      追每日资讯 → <a :href="newsPath">AI 动态</a> · 读长文 →
+      <a :href="archivePath">归档</a>
     </p>
   </div>
 </template>

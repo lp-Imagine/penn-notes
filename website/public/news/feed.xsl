@@ -14,7 +14,7 @@
           * { box-sizing: border-box; }
           body {
             margin: 0;
-            font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
             background: #000;
             color: #f5f5f7;
             line-height: 1.6;
