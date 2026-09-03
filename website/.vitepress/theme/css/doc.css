@@ -123,12 +123,12 @@
   font-weight: 500;
 }
 
-/* ── 文章章节 h2：与 callout 同语汇的序号条（日报除外）── */
-.vp-doc:not(:has(.news-section)) {
+/* ── 文章章节 h2：仅笔记正文（.note-article），首页/栏目/日报不套用 ── */
+.note-article .vp-doc {
   counter-reset: penn-chapter;
 }
 
-.vp-doc:not(:has(.news-section)) h2 {
+.note-article .vp-doc h2 {
   counter-increment: penn-chapter;
   display: flex;
   align-items: center;
@@ -150,7 +150,7 @@
   color: var(--text);
 }
 
-.vp-doc:not(:has(.news-section)) h2::before {
+.note-article .vp-doc h2::before {
   content: counter(penn-chapter, decimal-leading-zero);
   flex: 0 0 auto;
   position: relative;
@@ -177,7 +177,7 @@
   color: var(--link);
 }
 
-.vp-doc:not(:has(.news-section)) h2 .header-anchor {
+.note-article .vp-doc h2 .header-anchor {
   position: absolute;
   left: 10px;
   top: 50%;
@@ -190,30 +190,30 @@
   transition: opacity 0.15s ease;
 }
 
-.vp-doc:not(:has(.news-section)) h2:hover .header-anchor,
-.vp-doc:not(:has(.news-section)) h2:focus-within .header-anchor {
+.note-article .vp-doc h2:hover .header-anchor,
+.note-article .vp-doc h2:focus-within .header-anchor {
   opacity: 0.55;
 }
 
-.vp-doc:not(:has(.news-section)) h2:first-of-type,
-.vp-doc:not(:has(.news-section)) .article-meta + h2,
-.vp-doc:not(:has(.news-section)) hr + h2 {
+.note-article .vp-doc h2:first-of-type,
+.note-article .vp-doc .article-meta + h2,
+.note-article .vp-doc hr + h2 {
   margin-top: var(--space-5);
 }
 
-.vp-doc:not(:has(.news-section)) h2:first-of-type::before,
-.vp-doc:not(:has(.news-section)) .article-meta + h2::before,
-.vp-doc:not(:has(.news-section)) hr + h2::before {
+.note-article .vp-doc h2:first-of-type::before,
+.note-article .vp-doc .article-meta + h2::before,
+.note-article .vp-doc hr + h2::before {
   display: inline-block;
 }
 
-.dark .vp-doc:not(:has(.news-section)) h2 {
+.dark .note-article .vp-doc h2 {
   border-color: color-mix(in srgb, var(--link) 24%, var(--border));
   border-left-color: var(--link);
   background: color-mix(in srgb, var(--link) 9%, var(--surface));
 }
 
-.dark .vp-doc:not(:has(.news-section)) h2::before {
+.dark .note-article .vp-doc h2::before {
   border-right-color: color-mix(in srgb, var(--border) 90%, transparent);
   color: var(--link);
   background:
@@ -346,7 +346,7 @@
   display: none;
 }
 
-.vp-doc:not(:has(.news-section)) hr + h2 {
+.note-article .vp-doc hr + h2 {
   margin-top: var(--space-5);
 }
 

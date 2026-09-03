@@ -801,10 +801,14 @@ const Layout = defineComponent({
     return () => {
       const path = sitePath(route.path);
       const isHome = path === "/" || path.endsWith("/index.html");
-      const layoutClass = ["site-layout", isHome ? "home-layout" : ""]
+      const showArticleExtras = isNoteArticleDetail(path);
+      const layoutClass = [
+        "site-layout",
+        isHome ? "home-layout" : "",
+        showArticleExtras ? "note-article" : "",
+      ]
         .filter(Boolean)
         .join(" ");
-      const showArticleExtras = isNoteArticleDetail(path);
       return h(
         DefaultTheme.Layout,
         { class: layoutClass },
