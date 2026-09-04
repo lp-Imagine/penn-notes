@@ -56,6 +56,21 @@ next: false
         <span class="about-link-desc">每天自动更新的科技 / AI 精选</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
+      <a class="about-link" href="https://draftly.cn" target="_blank" rel="noopener noreferrer">
+        <span class="about-link-title">Draftly</span>
+        <span class="about-link-desc">公众号内容工作台：选题到推送草稿箱</span>
+        <span class="about-link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="about-link" href="https://interview.draftly.cn" target="_blank" rel="noopener noreferrer">
+        <span class="about-link-title">面镜</span>
+        <span class="about-link-desc">AI 面试助手，按简历与 JD 练题</span>
+        <span class="about-link-go" aria-hidden="true">↗</span>
+      </a>
+      <a class="about-link" href="https://nav.draftly.cn" target="_blank" rel="noopener noreferrer">
+        <span class="about-link-title">导航</span>
+        <span class="about-link-desc">网址导航小站，常用站点速达</span>
+        <span class="about-link-go" aria-hidden="true">↗</span>
+      </a>
       <a class="about-link" href="/collect/">
         <span class="about-link-title">收藏</span>
         <span class="about-link-desc">外链精选，前端与工程化好文</span>

@@ -258,16 +258,22 @@ function fillOverflowGroup(group: HTMLElement, hidden: HTMLElement[]) {
         a.className = "penn-nav-overflow-link";
         a.href = link.getAttribute("href") || "#";
         a.textContent = link.textContent?.trim() || "";
+        if (link.target) a.target = link.target;
+        if (link.rel) a.rel = link.rel;
         if (link.classList.contains("active")) a.classList.add("active");
         group.appendChild(a);
       });
       continue;
     }
-    const href = item.getAttribute("href") || item.querySelector("a")?.getAttribute("href") || "";
+    const src =
+      item.matches("a") ? (item as HTMLAnchorElement) : item.querySelector("a");
+    const href = src?.getAttribute("href") || item.getAttribute("href") || "";
     const text = (item.textContent || "").trim();
     const a = document.createElement("a");
     a.className = "penn-nav-overflow-link";
     if (href) a.setAttribute("href", href);
+    if (src?.target) a.target = src.target;
+    if (src?.rel) a.rel = src.rel;
     a.textContent = text;
     if (item.classList.contains("active") || item.querySelector(".active")) {
       a.classList.add("active");
@@ -301,9 +307,13 @@ function updateNavOverflow() {
   const widths = items.map((item) => item.getBoundingClientRect().width);
   const menuWidth = menu.clientWidth;
   const total = widths.reduce((sum, w) => sum + w, 0);
-  const fitsAll = total <= menuWidth - 4;
-  const flyoutWidth = extraVisible ? 0 : 40;
-  const available = fitsAll ? menuWidth : Math.max(0, menuWidth - flyoutWidth - 4);
+  /* 预留边距：菜单项带 ::before 图标后易低估宽度，过紧会让首页盖住搜索 */
+  const EDGE = 32;
+  const fitsAll = total <= menuWidth - EDGE;
+  const flyoutWidth = extraVisible ? 0 : 44;
+  const available = fitsAll
+    ? menuWidth - 8
+    : Math.max(0, menuWidth - flyoutWidth - EDGE);
 
   let hideFrom = items.length;
   let used = 0;
@@ -355,6 +365,9 @@ function setupNavOverflow() {
     navOverflowObserver.observe(nav);
   }
   schedule();
+  // 图标 ::before 生效后再量一次，避免首页盖住搜索
+  requestAnimationFrame(() => requestAnimationFrame(schedule));
+  window.addEventListener("load", schedule, { once: true });
 }
 
 // ---- 阅读进度条（笔记正文 + AI 动态日报详情）----

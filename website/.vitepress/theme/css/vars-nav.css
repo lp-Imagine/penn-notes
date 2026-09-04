@@ -237,9 +237,12 @@ body {
   }
 
   .VPNavBarSearch {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     min-width: 0;
-    max-width: 168px;
+    max-width: 148px;
+    margin-right: 8px;
+    position: relative;
+    z-index: 2;
   }
 
   .VPNavBar #local-search,
@@ -248,7 +251,7 @@ body {
   }
 
   .VPNavBar .DocSearch-Button {
-    max-width: 168px;
+    max-width: 148px;
   }
 
   .VPNavBarMenu {
@@ -257,6 +260,8 @@ body {
     overflow: visible;
     /* 占满搜索与右侧 Extra 之间的空间，链接仍靠右（VitePress 默认观感） */
     justify-content: flex-end;
+    position: relative;
+    z-index: 1;
   }
 
   .VPNavBarMenu .VPNavBarMenuLink,
@@ -512,7 +517,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 0 12px;
+    padding: 0 8px;
     font-weight: 600;
     color: var(--text);
     transition: color 0.2s ease;
@@ -627,6 +632,7 @@ body {
     display: inline-flex !important;
     align-items: center;
     gap: 6px;
+    padding: 0 8px !important;
   }
 
   .VPNavBarMenu > .VPNavBarMenuLink::before {
@@ -654,10 +660,11 @@ body {
     --penn-nav-link-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
   }
 
-  /* 顶栏分组图标：目录 / 清单 / 分类 */
+  /* 顶栏分组图标：目录 / 清单 / 分类 / 小站 */
   .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(1) .button .text::before,
   .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(2) .button .text::before,
-  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(3) .button .text::before {
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(3) .button .text::before,
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(4) .button .text::before {
     content: "";
     width: 16px;
     height: 16px;
@@ -679,6 +686,10 @@ body {
 
   .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(3) .button .text {
     --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(4) .button .text {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M2,12h20'/%3E%3Cpath d='M12,2a15.3,15.3,0,0,1,4,10,15.3,15.3,0,0,1-4,10,15.3,15.3,0,0,1-4-10A15.3,15.3,0,0,1,12,2z'/%3E%3C/svg%3E");
   }
 
   /* 下拉项图标（按链接路径） */
@@ -748,12 +759,52 @@ body {
   .VPNavBarMenuGroup .link[href*="/misc/"] {
     --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
   }
+
+  /* 小站：按分组内顺序设图标（不依赖外链 href，避免 mask 未命中变成色块） */
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(4) .items > .VPMenuLink:nth-child(1) .link {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12,20h9'/%3E%3Cpath d='M16.5,3.5a2.12,2.12,0,0,1,3,3L7,19l-4,1Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(4) .items > .VPMenuLink:nth-child(2) .link {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21,15a2,2,0,0,1-2,2H7l-4,4V5a2,2,0,0,1,2-2h14a2,2,0,0,1,2,2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuGroup:nth-of-type(4) .items > .VPMenuLink:nth-child(3) .link {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M16.24,7.76L14.12,14.12,7.76,16.24,9.88,9.88Z'/%3E%3C/svg%3E");
+  }
 }
 
-/* 768 以上略窄时藏 ⌘K，给分类腾空间 */
-@media (min-width: 768px) and (max-width: 1199.98px) {
+/* 略窄时藏 ⌘K /「搜索」文案，给菜单腾空间，避免与首页重叠 */
+@media (min-width: 768px) and (max-width: 1279.98px) {
   .VPNavBar .DocSearch-Button-Keys {
     display: none !important;
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder {
+    display: none !important;
+  }
+
+  .VPNavBar .DocSearch-Button {
+    width: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    padding: 0 !important;
+    justify-content: center;
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Search-Icon {
+    margin-right: 0 !important;
+  }
+
+  .VPNavBarSearch {
+    max-width: 34px;
+    margin-right: 10px;
+  }
+
+  .VPNavBarMenu > .VPNavBarMenuLink,
+  .VPNavBarMenuGroup .button {
+    padding: 0 6px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -1032,6 +1083,10 @@ body {
     --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='3' width='7' height='7' rx='1'/%3E%3Crect x='14' y='14' width='7' height='7' rx='1'/%3E%3Crect x='3' y='14' width='7' height='7' rx='1'/%3E%3C/svg%3E");
   }
 
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(4) .button {
+    --penn-nav-group-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M2,12h20'/%3E%3Cpath d='M12,2a15.3,15.3,0,0,1,4,10,15.3,15.3,0,0,1-4,10,15.3,15.3,0,0,1-4-10A15.3,15.3,0,0,1,12,2z'/%3E%3C/svg%3E");
+  }
+
   .VPNavScreenMenuGroup .items {
     padding: 2px 8px 8px;
   }
@@ -1140,6 +1195,19 @@ body {
 
   .VPNavScreenMenuGroupLink[href*="/misc/"] {
     --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M4 12h16'/%3E%3Cpath d='M4 17h10'/%3E%3C/svg%3E");
+  }
+
+  /* 小站子项：Draftly / 面镜 / 导航 */
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(4) .item:nth-child(1) .VPNavScreenMenuGroupLink {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12,20h9'/%3E%3Cpath d='M16.5,3.5a2.12,2.12,0,0,1,3,3L7,19l-4,1Z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(4) .item:nth-child(2) .VPNavScreenMenuGroupLink {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21,15a2,2,0,0,1-2,2H7l-4,4V5a2,2,0,0,1,2-2h14a2,2,0,0,1,2,2z'/%3E%3C/svg%3E");
+  }
+
+  .VPNavScreenMenu > .VPNavScreenMenuGroup:nth-of-type(4) .item:nth-child(3) .VPNavScreenMenuGroupLink {
+    --penn-nav-item-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M16.24,7.76L14.12,14.12,7.76,16.24,9.88,9.88Z'/%3E%3C/svg%3E");
   }
 
   .VPNavScreenAppearance {

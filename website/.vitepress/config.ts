@@ -244,6 +244,14 @@ export default defineConfig({
           { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
         ],
       },
+      {
+        text: "小站",
+        items: [
+          { text: "Draftly", link: "https://draftly.cn" },
+          { text: "面镜", link: "https://interview.draftly.cn" },
+          { text: "导航", link: "https://nav.draftly.cn" },
+        ],
+      },
       { text: "关于", link: "/about/", activeMatch: "/about/" },
     ],
     sidebar: mergedSidebar,
