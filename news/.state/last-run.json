@@ -1,8 +1,8 @@
 {
-  "at": "2026-09-03T23:05:51.421Z",
+  "at": "2026-09-04T23:00:50.658Z",
   "type": "daily",
-  "date": "2026-09-03",
-  "candidates": 80,
+  "date": "2026-09-04",
+  "candidates": 72,
   "search": {
     "ok": true,
     "queries": 6,
@@ -10,19 +10,19 @@
     "items": 16,
     "failures": []
   },
-  "editorial": 12,
+  "editorial": 13,
   "sections": {
     "业界": 3,
-    "产品": 2,
-    "模型": 3,
+    "产品": 3,
+    "模型": 1,
     "开源": 2,
-    "开发者工具": 1,
-    "前端": 1
+    "开发者工具": 2,
+    "前端": 2
   },
   "rss": {
     "ok": 21,
     "failed": 0,
     "failures": []
   },
-  "output": "news/2026-09/ai-news-2026-09-03.md"
+  "output": "news/2026-09/ai-news-2026-09-04.md"
 }
