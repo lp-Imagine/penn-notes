@@ -19,6 +19,13 @@ const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png`;
 const UMAMI_URL = process.env.UMAMI_URL || "";
 const UMAMI_ID = process.env.UMAMI_WEBSITE_ID || "";
 
+// 站内助手：主站默认同域 /api/assistant；GitHub Pages 备份默认关闭（可设 ASSISTANT_API_BASE 指向主站）
+const IS_PAGES_BACKUP = BASE.replace(/\/$/, "") === "/penn-notes";
+const ASSISTANT_API_BASE = (process.env.ASSISTANT_API_BASE || "").trim();
+const ASSISTANT_ENABLED =
+  process.env.ASSISTANT_ENABLED === "true" ||
+  (!IS_PAGES_BACKUP && process.env.ASSISTANT_ENABLED !== "false");
+
 const faviconHeadSnippet = [
   `<link rel="icon" href="${ICON_ICO}" sizes="any">`,
   `<link rel="icon" type="image/png" sizes="32x32" href="${ICON_PNG}">`,
@@ -305,6 +312,12 @@ export default defineConfig({
     },
     siteRuntime: {
       since: "2020-01-03",
+    },
+    // 站内导读助手（宝塔 Node 反代 /api/assistant；密钥不进前端）
+    assistant: {
+      enabled: ASSISTANT_ENABLED,
+      // 空字符串 = 同域相对路径；Pages 若开启可设 https://penn-notes.draftly.cn
+      apiBase: ASSISTANT_API_BASE,
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

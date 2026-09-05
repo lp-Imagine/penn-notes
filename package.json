@@ -16,10 +16,11 @@
     "build:home": "node scripts/build-home.mjs",
     "build:discover": "node scripts/build-discover.mjs",
     "build:notes-feed": "node scripts/build-notes-feed.mjs",
+    "build:assistant-index": "node scripts/build-assistant-index.mjs",
     "build:redirects": "node scripts/build-redirects.mjs",
     "feed-health": "node scripts/feed-health-summary.mjs",
-    "prebuild": "npm run stubs && npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && npm run feed-health",
-    "dev": "npm run stubs && npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && vitepress dev website",
+    "prebuild": "npm run stubs && npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && npm run build:assistant-index && npm run feed-health",
+    "dev": "npm run stubs && npm run ingest && npm run sync:news && npm run build:home && npm run build:discover && npm run build:notes-feed && npm run build:assistant-index && vitepress dev website",
     "build": "vitepress build website && npm run build:redirects && npm run build:sitemap",
     "preview": "vitepress preview website",
     "build:sitemap": "node scripts/build-sitemap.mjs",
@@ -28,6 +29,8 @@
     "cos:health": "node scripts/cos-health.mjs",
     "cos:sync-assets": "node scripts/ensure-cos-sync-assets.mjs",
     "baidu:push": "node scripts/baidu-push.mjs",
+    "assistant:server": "node assistant-server/server.mjs",
+    "assistant:dev": "node scripts/assistant-dev.mjs",
     "test": "node scripts/test-scripts.mjs"
   },
   "devDependencies": {

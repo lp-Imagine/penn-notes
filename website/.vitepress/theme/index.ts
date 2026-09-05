@@ -4,6 +4,7 @@ import { getScrollOffset, useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
 import ArticleOutdateNotice from "./ArticleOutdateNotice.vue";
+import AssistantWidget from "./AssistantWidget.vue";
 import Comments from "./Comments.vue";
 import HomeTypewriter from "./HomeTypewriter.vue";
 import NewsArchive from "./NewsArchive.vue";
@@ -16,6 +17,7 @@ import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import "./custom.css";
+import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
 import { setupFlyingFish } from "./flying-fish";
 import { setupSiteRuntime } from "./site-runtime";
@@ -844,6 +846,10 @@ const Layout = defineComponent({
               ? h(Comments)
               : null,
           ],
+          "layout-bottom": () => [
+            slots["layout-bottom"]?.(),
+            h(AssistantWidget),
+          ],
         },
       );
     };
@@ -971,6 +977,7 @@ export default {
   enhanceApp({ app }) {
     app.component("AboutFriends", AboutFriends);
     app.component("HomeTypewriter", HomeTypewriter);
+    app.component("AssistantWidget", AssistantWidget);
     app.component("NewsArchive", NewsArchive);
     app.component("NewsDigestArchive", NewsDigestArchive);
     app.component("NewsRssSubscribe", NewsRssSubscribe);

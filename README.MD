@@ -107,6 +107,16 @@ npm run baidu:push -- --dry-run
 
 配置 Secret 后，CI 部署成功会 `--mode=site`，日报部署成功会 `--mode=daily`。未配置或额度用尽时跳过，不阻断部署。
 
+### 站内 AI 助手（可选）
+
+右下角导读浮窗：总结当前文、找相关文章。API 跑在宝塔本机，密钥不进前端。详见 [docs/ASSISTANT.md](docs/ASSISTANT.md)。
+
+```bash
+npm run build:assistant-index   # 生成检索索引
+npm run assistant:dev           # 本地开发（改代码自动重启，读 .env）
+npm run assistant:server        # 生产启动（宝塔 / PM2）
+```
+
 ### Umami（可选）
 
 构建时注入统计脚本。未配置 `UMAMI_*` 则不注入，不影响部署。

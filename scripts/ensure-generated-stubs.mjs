@@ -45,6 +45,10 @@ const stubs = [
     path.join(publicNotes, "feed.xml"),
     '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Penn Notes</title></channel></rss>\n',
   ],
+  [
+    path.join(root, "website", "public", "assistant", "index.json"),
+    '{"generatedAt":"","site":"https://penn-notes.draftly.cn","count":0,"items":[]}\n',
+  ],
 ];
 
 let n = 0;
