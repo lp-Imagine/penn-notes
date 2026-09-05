@@ -1,11 +1,43 @@
-/* 站内 AI 助手浮窗 —— 可拖拽贴边，默认左下角避开右下角工具组 */
+/* 站内 AI 助手浮窗 —— 可拖拽贴边，默认右下角最底部（工具组在 CSS 上移让位） */
 
 .penn-assistant {
   position: fixed;
-  z-index: 62;
-  width: 48px;
-  height: 48px;
+  /* 高于顶栏 / 抽屉（约 80–210），保证遮罩能收到点击 */
+  z-index: 220;
+  width: 40px;
+  height: 40px;
   pointer-events: none;
+}
+
+/* 移动端遮罩：与助手同层，铺满视口，点空白处关闭 */
+.penn-assistant-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.32);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  animation: penn-assistant-scrim-in 0.18s ease-out;
+}
+
+@keyframes penn-assistant-scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .penn-assistant-scrim {
+    animation: none;
+  }
 }
 
 .penn-assistant-fab,
@@ -21,11 +53,13 @@
 }
 
 .penn-assistant-fab {
-  width: 48px;
-  height: 48px;
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
   padding: 0;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   background: color-mix(in srgb, var(--accent) 92%, #0f172a);
   color: #fff;
   box-shadow: var(--shadow-sm);
@@ -38,7 +72,8 @@
   user-select: none;
   -webkit-user-select: none;
   transition: transform 0.18s ease, filter 0.18s ease, border-color 0.18s ease,
-    box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, opacity 0.2s;
+  opacity: 0.95;
 }
 
 .penn-assistant-fab-icon {
@@ -101,6 +136,7 @@
 
 .penn-assistant-panel {
   position: absolute;
+  z-index: 1;
   bottom: calc(100% + 12px);
   width: min(var(--penn-assistant-panel-w, 360px), calc(100vw - 28px));
   max-height: var(--penn-assistant-panel-max-h, min(560px, calc(100vh - 100px)));
@@ -248,6 +284,12 @@
   white-space: nowrap;
 }
 
+.penn-assistant-pagechip--switch {
+  border-color: color-mix(in srgb, var(--link) 28%, var(--border));
+  background: color-mix(in srgb, var(--link) 10%, var(--surface));
+  color: var(--text);
+}
+
 .penn-assistant-selchip {
   display: flex;
   align-items: center;
@@ -393,6 +435,7 @@
   flex: 1;
   min-height: 0;
   overflow: auto;
+  overflow-anchor: none; /* 答完插入「继续问」时禁止浏览器把视口钉在底部 */
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   padding: 4px 14px 20px;

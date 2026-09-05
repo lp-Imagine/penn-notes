@@ -22,6 +22,10 @@ type ChatMsg = {
 const { theme, page, site } = useData();
 const route = useRoute();
 
+/** 面板展示名（与品牌一致，偏「导读」而非泛 AI 助手） */
+const ASSISTANT_NAME = "Penn 导读";
+const ASSISTANT_TAGLINE = "读懂本站 · 随时追问";
+
 const open = ref(false);
 const input = ref("");
 const loading = ref(false);
@@ -485,7 +489,7 @@ async function exportAnswerCard(idx: number) {
   }
 
   ctx.font = "600 28px system-ui, sans-serif";
-  const qLines = wrapCanvasText(ctx, q ? `问：${q}` : "站内助手回答", W - pad * 2);
+  const qLines = wrapCanvasText(ctx, q ? `问：${q}` : `${ASSISTANT_NAME}回答`, W - pad * 2);
   ctx.font = "400 22px system-ui, sans-serif";
   const aLines = wrapCanvasText(ctx, a, W - pad * 2);
   const H = Math.min(
@@ -523,7 +527,7 @@ async function exportAnswerCard(idx: number) {
   let y = pad;
   ctx.fillStyle = muted;
   ctx.font = "600 16px system-ui, sans-serif";
-  ctx.fillText("Penn Notes · 站内助手", pad + 8, y);
+  ctx.fillText(`Penn Notes · ${ASSISTANT_NAME}`, pad + 8, y);
   y += 28;
   ctx.fillStyle = fg;
   ctx.font = "600 18px system-ui, sans-serif";
@@ -603,7 +607,7 @@ function roundRect(
 }
 
 async function shareConversation() {
-  const lines: string[] = ["# Penn Notes 站内助手会话", ""];
+  const lines: string[] = [`# Penn Notes ${ASSISTANT_NAME}会话`, ""];
   const title = String(page.value?.title || "").trim();
   if (title) lines.push(`> 页面：《${title}》`, "");
   for (const m of messages.value) {
@@ -1019,6 +1023,50 @@ const pageTitleShort = computed(() => {
   return t.length > 22 ? `${t.slice(0, 22)}…` : t;
 });
 
+const SECTION_CHIP_LABEL: Record<string, string> = {
+  web: "JS & 框架",
+  ui: "样式",
+  engineering: "工程化",
+  backend: "后端",
+  tech: "工具备忘",
+  computer: "浏览器",
+  agent: "AI Agent",
+  misc: "杂项",
+  news: "AI 动态",
+  about: "关于",
+  archive: "归档",
+  tags: "标签",
+  recent: "最近",
+};
+
+/** 顶栏胶囊用：首页等无 frontmatter title 时给可读名，避免「新页面」 */
+const pageLabelShort = computed(() => {
+  const path = (pathOnly.value || "/").replace(/\/$/, "") || "/";
+  if (path === "/") return "首页";
+
+  const titled = pageTitleShort.value;
+  if (titled) return titled;
+
+  const parts = path.split("/").filter(Boolean);
+  if (parts.length === 1 && SECTION_CHIP_LABEL[parts[0]]) {
+    return SECTION_CHIP_LABEL[parts[0]];
+  }
+
+  if (typeof document !== "undefined") {
+    const doc = String(document.title || "")
+      .replace(/\s*[|·\-–—]\s*Penn Notes.*$/i, "")
+      .replace(/^Penn Notes\s*[|·\-–—]\s*/i, "")
+      .trim();
+    if (doc && !/^penn notes$/i.test(doc)) {
+      return doc.length > 22 ? `${doc.slice(0, 22)}…` : doc;
+    }
+  }
+
+  const last = parts[parts.length - 1] || "";
+  if (last) return decodeURIComponent(last).slice(0, 22);
+  return "当前页";
+});
+
 function pageContext() {
   const title = String(page.value?.title || document.title || "").trim();
   const path = sitePathOnly();
@@ -1124,39 +1172,43 @@ async function scrollStreamIntoView() {
   }
 }
 
-/** 答完后：尽量让本轮提问可见，并保证底部「继续问」不被裁切 */
+/** 答完后：滚回本轮提问置顶，露出「提问 + 回答开头」（图二效果） */
 async function scrollLatestTurnIntoView() {
-  await nextTick();
-  await new Promise<void>((r) => requestAnimationFrame(() => r()));
-  await new Promise<void>((r) => requestAnimationFrame(() => r()));
   const list = listRef.value;
   if (!list) return;
 
-  const users = list.querySelectorAll('.penn-assistant-msg[data-role="user"]');
-  const target = (users[users.length - 1] ||
-    list.querySelector(
-      '.penn-assistant-msg[data-role="assistant"]:last-of-type',
-    )) as HTMLElement | null;
-  if (!target) return;
+  const pinTurnTop = () => {
+    const box = listRef.value;
+    if (!box) return false;
+    const users = box.querySelectorAll('.penn-assistant-msg[data-role="user"]');
+    const el = users[users.length - 1] as HTMLElement | undefined;
+    if (!el) return false;
+    // 用内容坐标计算，避免 flex / 锚定导致相对 delta 失效
+    const top =
+      el.getBoundingClientRect().top -
+      box.getBoundingClientRect().top +
+      box.scrollTop;
+    box.scrollTop = Math.max(0, top - 8);
+    return true;
+  };
 
-  const delta =
-    target.getBoundingClientRect().top -
-    list.getBoundingClientRect().top -
-    8;
-  list.scrollTop = Math.max(0, list.scrollTop + delta);
+  const settle = async () => {
+    await nextTick();
+    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+  };
 
-  // 追问芯片若卡在列表底边（半截可见），再往下滚一点，完整露出
-  await nextTick();
-  const followups = list.querySelector(
-    ".penn-assistant-followups",
-  ) as HTMLElement | null;
-  if (!followups) return;
-  const listRect = list.getBoundingClientRect();
-  const fRect = followups.getBoundingClientRect();
-  const pad = 10;
-  if (fRect.top < listRect.bottom - 2 && fRect.bottom > listRect.bottom - pad) {
-    list.scrollTop += fRect.bottom - listRect.bottom + pad;
-  }
+  await settle();
+  pinTurnTop();
+  // 全文 HTML /「继续问」挂载后再钉，防止仍停在图一底部
+  await settle();
+  pinTurnTop();
+  window.setTimeout(() => {
+    pinTurnTop();
+  }, 80);
+  window.setTimeout(() => {
+    pinTurnTop();
+  }, 200);
 }
 
 /** 提问刚发出时：保证用户气泡与思考态完整在视野内 */
@@ -1547,6 +1599,7 @@ async function ask(text: string, opts?: { fromChip?: boolean }) {
   } finally {
     activePacer = null;
     askAbort = null;
+    // 先禁止流式跟滚，再结束 loading（插入继续问），最后强制滚回本轮提问
     preferTurnPin = true;
     loading.value = false;
     persistSession();
@@ -1559,20 +1612,23 @@ function onSubmit(e: Event) {
   void ask(input.value);
 }
 
-function toggle() {
-  const next = !open.value;
-  open.value = next;
-  if (next) {
-    updatePanelFlip();
-    if (firstVisit.value && !messages.value.length) {
-      showOnboard.value = true;
-    }
-    trackAssistant("assistant_open", {
-      path: pathOnly.value.split("/").filter(Boolean)[0] || "home",
-      onboard: showOnboard.value ? 1 : 0,
-    });
-    void nextTick(() => inputRef.value?.focus());
-  } else if (listening.value) {
+const MOBILE_MQ = "(max-width: 767px)";
+const isMobileUi = ref(false);
+let mobileMq: MediaQueryList | null = null;
+
+function syncMobileUi() {
+  if (typeof window === "undefined") return;
+  isMobileUi.value = window.matchMedia(MOBILE_MQ).matches;
+}
+
+function onMobileMqChange() {
+  syncMobileUi();
+}
+
+function closePanel() {
+  if (!open.value) return;
+  open.value = false;
+  if (listening.value) {
     try {
       speechRec?.stop();
     } catch {
@@ -1582,37 +1638,64 @@ function toggle() {
   }
 }
 
+/** 移动端：点弹窗/FAB 以外区域关闭（捕获阶段，不被顶栏挡住） */
+function onDocPointerDownOutside(e: PointerEvent) {
+  if (!open.value || dragging.value) return;
+  if (typeof window === "undefined") return;
+  if (!window.matchMedia(MOBILE_MQ).matches) return;
+  const t = e.target;
+  if (!(t instanceof Element)) return;
+  if (t.closest(".penn-assistant-panel, .penn-assistant-fab")) return;
+  closePanel();
+}
+
+function toggle() {
+  const next = !open.value;
+  if (!next) {
+    closePanel();
+    return;
+  }
+  open.value = true;
+  updatePanelFlip();
+  if (firstVisit.value && !messages.value.length) {
+    showOnboard.value = true;
+  }
+  trackAssistant("assistant_open", {
+    path: pathOnly.value.split("/").filter(Boolean)[0] || "home",
+    onboard: showOnboard.value ? 1 : 0,
+  });
+  void nextTick(() => inputRef.value?.focus());
+}
+
 function onDocKey(e: KeyboardEvent) {
   if (e.key === "Escape" && open.value) {
-    open.value = false;
+    closePanel();
     return;
   }
-  // ⌘/Ctrl + / 开关助手
-  if (e.key === "/" && (e.metaKey || e.ctrlKey)) {
+  // ⌘/Ctrl + Shift + L：开关导读
+  // 不用 ⌘K（站内搜索）、⌘/（部分键盘别扭）、⌘⇧A（Chrome 搜标签页）
+  if (
+    (e.key === "l" || e.key === "L") &&
+    (e.metaKey || e.ctrlKey) &&
+    e.shiftKey &&
+    !e.altKey
+  ) {
     const t = e.target as HTMLElement | null;
-    if (t?.closest?.("textarea, [contenteditable=true]")) return;
+    if (t?.closest?.("textarea, input, [contenteditable=true]")) return;
     e.preventDefault();
     toggle();
-    return;
-  }
-  // ⌘/Ctrl + K：打开并聚焦输入框
-  if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
-    const t = e.target as HTMLElement | null;
-    if (t?.closest?.("textarea, [contenteditable=true]")) return;
-    e.preventDefault();
-    focusInput();
   }
 }
 
-const FAB_SIZE = 48;
-const FAB_MARGIN = 16;
+const FAB_SIZE = 40;
+const FAB_MARGIN = 20;
 const DRAG_THRESHOLD = 6;
-const FAB_POS_KEY = "penn-assistant-fab-pos";
+const FAB_POS_KEY = "penn-assistant-fab-pos-v3";
 
 type FabEdge = "left" | "right";
 type FabPos = { edge: FabEdge; y: number };
 
-const fabPos = ref<FabPos>({ edge: "left", y: FAB_MARGIN });
+const fabPos = ref<FabPos>({ edge: "right", y: FAB_MARGIN });
 const dragging = ref(false);
 const dragMoved = ref(false);
 const liveXY = ref({ x: FAB_MARGIN, y: FAB_MARGIN });
@@ -1651,6 +1734,7 @@ function clampFabY(y: number) {
   return Math.max(FAB_MARGIN, Math.min(max, y));
 }
 
+/** 默认贴右下角最底部（其它工具按钮已在 CSS 上移让位） */
 function defaultFabY() {
   if (typeof window === "undefined") return FAB_MARGIN;
   return clampFabY(window.innerHeight - FAB_SIZE - FAB_MARGIN);
@@ -1672,8 +1756,7 @@ function loadFabPos() {
   } catch {
     /* ignore */
   }
-  // 默认左下角，避开右下角侧栏/聚焦/回顶按钮叠层
-  fabPos.value = { edge: "left", y: defaultFabY() };
+  fabPos.value = { edge: "right", y: defaultFabY() };
 }
 
 function saveFabPos() {
@@ -1801,7 +1884,11 @@ function onFabPointerDown(e: PointerEvent) {
 }
 
 function onWinResize() {
-  fabPos.value = { ...fabPos.value, y: clampFabY(fabPos.value.y) };
+  fabPos.value = {
+    ...fabPos.value,
+    y: clampFabY(fabPos.value.y),
+  };
+  syncMobileUi();
   updatePanelFlip();
 }
 
@@ -1813,11 +1900,11 @@ watch(
       pageSwitchHint.value = "";
       return;
     }
-    const title = String(page.value?.title || "").trim();
-    pageSwitchHint.value = title
-      ? `已切换到《${title}》，可继续问或清空`
-      : "已切换页面，可继续问或清空";
-    persistSession();
+    void nextTick(() => {
+      const label = pageLabelShort.value || "当前页";
+      pageSwitchHint.value = `已切换到《${label}》，可继续问或清空`;
+      persistSession();
+    });
   },
 );
 
@@ -1844,20 +1931,29 @@ onMounted(() => {
     firstVisit.value = true;
   }
   loadFabPos();
+  syncMobileUi();
+  mobileMq = window.matchMedia(MOBILE_MQ);
+  mobileMq.addEventListener?.("change", onMobileMqChange);
   updatePanelFlip();
   syncContentDock();
   document.addEventListener("keydown", onDocKey);
+  document.addEventListener("pointerdown", onDocPointerDownOutside, true);
   document.addEventListener("mouseup", captureDocSelection);
   document.addEventListener("selectionchange", onSelectionChange);
   window.addEventListener("resize", onWinResize);
   window.addEventListener("scroll", updateReadingSection, { passive: true });
-  void nextTick(() => bindPanelScrollLock());
+  void nextTick(() => {
+    bindPanelScrollLock();
+  });
 });
 
 onBeforeUnmount(() => {
   unbindPanelScrollLock();
   clearContentDock();
+  mobileMq?.removeEventListener?.("change", onMobileMqChange);
+  mobileMq = null;
   document.removeEventListener("keydown", onDocKey);
+  document.removeEventListener("pointerdown", onDocPointerDownOutside, true);
   document.removeEventListener("mouseup", captureDocSelection);
   document.removeEventListener("selectionchange", onSelectionChange);
   if (selectionSyncTimer != null) clearTimeout(selectionSyncTimer);
@@ -1885,12 +1981,19 @@ onBeforeUnmount(() => {
     :data-flip="panelFlip ? '1' : '0'"
     :style="rootStyle"
   >
+    <button
+      v-if="open && isMobileUi"
+      type="button"
+      class="penn-assistant-scrim"
+      :aria-label="`关闭${ASSISTANT_NAME}`"
+      @click="closePanel"
+    />
     <div
       v-show="open"
       ref="dialogRef"
       class="penn-assistant-panel"
       role="dialog"
-      aria-label="站内助手"
+      :aria-label="ASSISTANT_NAME"
     >
       <header class="penn-assistant-head">
         <div class="penn-assistant-brand">
@@ -1908,10 +2011,8 @@ onBeforeUnmount(() => {
             </svg>
           </span>
           <div class="penn-assistant-brand-text">
-            <p class="penn-assistant-title">站内助手</p>
-            <p class="penn-assistant-sub">
-              {{ pageSwitchHint || "导读本站文章 · 可追问" }}
-            </p>
+            <p class="penn-assistant-title">{{ ASSISTANT_NAME }}</p>
+            <p class="penn-assistant-sub">{{ ASSISTANT_TAGLINE }}</p>
           </div>
         </div>
         <div class="penn-assistant-head-actions">
@@ -1955,13 +2056,24 @@ onBeforeUnmount(() => {
           >
             清空
           </button>
-          <button type="button" class="penn-assistant-close" aria-label="关闭" @click="open = false">
+          <button type="button" class="penn-assistant-close" aria-label="关闭" @click="closePanel">
             ×
           </button>
         </div>
       </header>
-      <p v-if="pageTitleShort && !pageSwitchHint" class="penn-assistant-pagechip" :title="page.title">
-        当前：{{ pageTitleShort }}
+      <p
+        v-if="pageSwitchHint"
+        class="penn-assistant-pagechip penn-assistant-pagechip--switch"
+        :title="pageSwitchHint"
+      >
+        已切换 · {{ pageLabelShort }}
+      </p>
+      <p
+        v-else-if="pageLabelShort"
+        class="penn-assistant-pagechip"
+        :title="page.title || pageLabelShort"
+      >
+        当前：{{ pageLabelShort }}
       </p>
       <p v-if="selectionPreview" class="penn-assistant-selchip">
         <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
@@ -2287,7 +2399,7 @@ onBeforeUnmount(() => {
           type="text"
           maxlength="500"
           :placeholder="
-            listening ? '正在听，再说一次或点停止…' : '问问本站…（⌘K 聚焦）'
+            listening ? '正在听，再说一次或点停止…' : '问问本站…（⌘⇧L 开关）'
           "
           :disabled="loading"
           autocomplete="off"
@@ -2389,16 +2501,16 @@ onBeforeUnmount(() => {
       class="penn-assistant-fab"
       :class="{ 'is-dismiss': open }"
       :aria-expanded="open ? 'true' : 'false'"
-      :aria-label="open ? '关闭站内助手' : '打开站内助手（可拖拽贴边）'"
+      :aria-label="open ? `关闭${ASSISTANT_NAME}` : `打开${ASSISTANT_NAME}（可拖拽贴边）`"
       @pointerdown="onFabPointerDown"
     >
-      <!-- 打开态：轻量收起（圆环 + 均衡叉） -->
+      <!-- 打开态：轻量收起 -->
       <svg
         v-if="open"
         class="penn-assistant-fab-icon penn-assistant-fab-icon--close"
         viewBox="0 0 24 24"
-        width="22"
-        height="22"
+        width="18"
+        height="18"
         aria-hidden="true"
         focusable="false"
       >
@@ -2424,8 +2536,8 @@ onBeforeUnmount(() => {
         v-else
         class="penn-assistant-fab-icon"
         viewBox="0 0 24 24"
-        width="22"
-        height="22"
+        width="18"
+        height="18"
         aria-hidden="true"
         focusable="false"
       >

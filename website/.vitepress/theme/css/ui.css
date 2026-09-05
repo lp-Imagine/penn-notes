@@ -737,7 +737,7 @@
 }
 
 /* ===== 左侧菜单收起/展开（文章详情页） ===== */
-/* 桌面工具组：右下角逐层堆叠（回到顶部同款毛玻璃圆形按钮），不遮挡侧栏内容 */
+/* 桌面工具组：右下角堆叠；最底部留给站内助手，其它按钮上移一格 */
 .sidebar-toggle {
   position: fixed;
   right: 20px;
@@ -758,7 +758,8 @@
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
   cursor: pointer;
   opacity: 0.9;
-  transition: opacity 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+  transition: opacity 0.2s, background 0.2s, border-color 0.2s, color 0.2s,
+    bottom 0.25s ease;
 }
 .sidebar-toggle:hover {
   opacity: 1;
@@ -783,13 +784,18 @@
   body.has-vp-sidebar .sidebar-toggle {
     display: flex;
   }
+
+  /* 有专注按钮时，侧栏按钮再上移一格 */
+  body.has-readable-detail.has-vp-sidebar .sidebar-toggle {
+    bottom: 124px;
+  }
 }
 
 /* ===== 沉浸式阅读（专注模式）：隐藏侧栏 + 大纲，正文居中 ===== */
 .focus-toggle {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 72px;
   z-index: 60;
   display: none;
   align-items: center;
@@ -806,7 +812,8 @@
   -webkit-backdrop-filter: saturate(1.2) blur(12px);
   cursor: pointer;
   opacity: 0.9;
-  transition: opacity 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+  transition: opacity 0.2s, background 0.2s, border-color 0.2s, color 0.2s,
+    bottom 0.25s ease;
 }
 
 .focus-toggle:hover {
@@ -1316,14 +1323,15 @@ body,
 /* ===== 回到顶部 ===== */
 .back-to-top {
   position: fixed;
-  right: 16px;
-  bottom: max(20px, env(safe-area-inset-bottom, 0px) + 16px);
+  right: 20px;
+  /* 最底部留给站内助手（40+20），回顶上移一格 */
+  bottom: max(72px, env(safe-area-inset-bottom, 0px) + 68px);
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   border-radius: 999px;
@@ -1342,8 +1350,8 @@ body,
 }
 
 .back-to-top-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
@@ -1377,26 +1385,33 @@ body,
 }
 
 @media (min-width: 960px) {
-  /* 桌面端：与右下工具组对齐，默认贴底；文章页（带工具组）堆到最上方 */
+  /* 自下而上：助手 → 专注 → 侧栏 → 回顶 */
   .back-to-top {
     right: 20px;
-    bottom: 20px;
+    bottom: 72px;
     width: 40px;
     height: 40px;
   }
 
-  .back-to-top-icon {
-    width: 18px;
-    height: 18px;
+  body.has-readable-detail .back-to-top {
+    bottom: 124px;
   }
 
   body.has-vp-sidebar .back-to-top {
     bottom: 124px;
   }
 
-  /* 专注模式：收起侧栏按钮隐藏后，回到顶部补位，保持紧凑堆叠 */
+  body.has-vp-sidebar.has-readable-detail .back-to-top {
+    bottom: 176px;
+  }
+
+  /* 专注模式：侧栏按钮隐藏，回顶下移补位 */
   html.focus-mode body.has-vp-sidebar .back-to-top {
-    bottom: 72px;
+    bottom: 124px;
+  }
+
+  html.focus-mode body.has-vp-sidebar.has-readable-detail .back-to-top {
+    bottom: 124px;
   }
 }
 
