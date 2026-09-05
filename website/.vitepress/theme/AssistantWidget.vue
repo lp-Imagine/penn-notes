@@ -1664,7 +1664,10 @@ function toggle() {
     path: pathOnly.value.split("/").filter(Boolean)[0] || "home",
     onboard: showOnboard.value ? 1 : 0,
   });
-  void nextTick(() => inputRef.value?.focus());
+  // 移动端不自动聚焦，避免唤起键盘；桌面仍聚焦输入
+  if (!isMobileUi.value) {
+    void nextTick(() => inputRef.value?.focus());
+  }
 }
 
 function onDocKey(e: KeyboardEvent) {
@@ -2399,7 +2402,11 @@ onBeforeUnmount(() => {
           type="text"
           maxlength="500"
           :placeholder="
-            listening ? '正在听，再说一次或点停止…' : '问问本站…（⌘⇧L 开关）'
+            listening
+              ? '正在听，再说一次或点停止…'
+              : isMobileUi
+                ? '问问本站…'
+                : '问问本站…（⌘⇧L 开关）'
           "
           :disabled="loading"
           autocomplete="off"
