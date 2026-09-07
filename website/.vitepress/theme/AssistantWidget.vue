@@ -53,12 +53,24 @@ const readingSection = ref("");
 const panelW = ref(0);
 const panelH = ref(0);
 const resizing = ref(false);
+/** 全屏浮层（默认开）；可切回右下角小窗 */
+const panelExpanded = ref(true);
+/** 站内确认框（替代 window.confirm） */
+const confirmDialog = ref<{
+  title: string;
+  detail?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  danger?: boolean;
+  onConfirm: () => void;
+} | null>(null);
 
 const SESSION_KEY = "penn-assistant-session";
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const ONBOARD_KEY = "penn-assistant-onboarded";
 const FONT_KEY = "penn-assistant-font";
 const PANEL_SIZE_KEY = "penn-assistant-panel-size";
+const PANEL_EXPANDED_KEY = "penn-assistant-expanded";
 const FONT_STEPS = [0.9, 1, 1.12, 1.25] as const;
 const REWRITE_PROMPTS = ["说得更短一点", "只要操作步骤", "换个角度再讲"];
 let askAbort: AbortController | null = null;
@@ -362,14 +374,38 @@ function isReadingPathQuestion(q: string) {
   );
 }
 
+function requestConfirm(opts: {
+  title: string;
+  detail?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  danger?: boolean;
+  onConfirm: () => void;
+}) {
+  confirmDialog.value = opts;
+}
+
+function cancelConfirm() {
+  confirmDialog.value = null;
+}
+
+function runConfirm() {
+  const action = confirmDialog.value?.onConfirm;
+  confirmDialog.value = null;
+  action?.();
+}
+
 function clearChat(opts?: { skipConfirm?: boolean }) {
   if (loading.value) return;
-  if (
-    !opts?.skipConfirm &&
-    messages.value.length &&
-    typeof window !== "undefined" &&
-    !window.confirm("清空当前对话？此操作不可恢复。")
-  ) {
+  if (!opts?.skipConfirm && messages.value.length) {
+    requestConfirm({
+      title: "清空当前对话？",
+      detail: "清空后不可恢复，可重新提问继续聊。",
+      confirmLabel: "清空",
+      cancelLabel: "取消",
+      danger: true,
+      onConfirm: () => clearChat({ skipConfirm: true }),
+    });
     return;
   }
   messages.value = [];
@@ -832,7 +868,7 @@ function toggleVoice() {
 function focusInput() {
   if (!open.value) {
     open.value = true;
-    updatePanelFlip();
+    updatePanelMaxH();
   }
   void nextTick(() => inputRef.value?.focus());
 }
@@ -887,6 +923,7 @@ function savePanelSize() {
 
 function onResizePointerDown(e: PointerEvent) {
   if (typeof window === "undefined") return;
+  if (panelExpanded.value) return;
   if (!window.matchMedia("(min-width: 768px)").matches) return;
   e.preventDefault();
   e.stopPropagation();
@@ -898,19 +935,13 @@ function onResizePointerDown(e: PointerEvent) {
   const rect = panel.getBoundingClientRect();
   const startW = rect.width;
   const startH = rect.height;
-  const edge = fabPos.value.edge;
 
   const onMove = (ev: PointerEvent) => {
     const dx = ev.clientX - startX;
     const dy = ev.clientY - startY;
-    // 右贴边：向左拖变宽；左贴边：向右拖变宽
-    const nextW =
-      edge === "right" ? startW - dx : startW + dx;
-    // 默认向上展开：向上拖（dy 负）变高
-    const flipped = panelFlip.value;
-    const nextH = flipped ? startH + dy : startH - dy;
-    panelW.value = Math.max(320, Math.min(560, nextW));
-    panelH.value = Math.max(320, Math.min(820, nextH));
+    // 右下角小窗：向左拖变宽，向上拖变高
+    panelW.value = Math.max(320, Math.min(560, startW - dx));
+    panelH.value = Math.max(320, Math.min(820, startH - dy));
     panelMaxH.value = panelH.value;
   };
   const onUp = () => {
@@ -1627,6 +1658,7 @@ function onMobileMqChange() {
 
 function closePanel() {
   if (!open.value) return;
+  confirmDialog.value = null;
   open.value = false;
   if (listening.value) {
     try {
@@ -1638,14 +1670,15 @@ function closePanel() {
   }
 }
 
-/** 移动端：点弹窗/FAB 以外区域关闭（捕获阶段，不被顶栏挡住） */
+/** 全屏/移动端：点弹窗/FAB 以外关闭 */
 function onDocPointerDownOutside(e: PointerEvent) {
-  if (!open.value || dragging.value) return;
-  if (typeof window === "undefined") return;
-  if (!window.matchMedia(MOBILE_MQ).matches) return;
+  if (!open.value) return;
+  if (!panelExpanded.value && !isMobileUi.value) return;
   const t = e.target;
   if (!(t instanceof Element)) return;
-  if (t.closest(".penn-assistant-panel, .penn-assistant-fab")) return;
+  if (t.closest(".penn-assistant-panel, .penn-assistant-fab, .penn-assistant-scrim")) {
+    return;
+  }
   closePanel();
 }
 
@@ -1656,7 +1689,6 @@ function toggle() {
     return;
   }
   open.value = true;
-  updatePanelFlip();
   if (firstVisit.value && !messages.value.length) {
     showOnboard.value = true;
   }
@@ -1664,19 +1696,47 @@ function toggle() {
     path: pathOnly.value.split("/").filter(Boolean)[0] || "home",
     onboard: showOnboard.value ? 1 : 0,
   });
-  // 移动端不自动聚焦，避免唤起键盘；桌面仍聚焦输入
   if (!isMobileUi.value) {
     void nextTick(() => inputRef.value?.focus());
   }
 }
 
+function togglePanelExpanded() {
+  panelExpanded.value = !panelExpanded.value;
+  savePanelExpanded();
+}
+
+function loadPanelExpanded() {
+  try {
+    const raw = localStorage.getItem(PANEL_EXPANDED_KEY);
+    if (raw === "0") panelExpanded.value = false;
+    else panelExpanded.value = true;
+  } catch {
+    panelExpanded.value = true;
+  }
+}
+
+function savePanelExpanded() {
+  try {
+    localStorage.setItem(PANEL_EXPANDED_KEY, panelExpanded.value ? "1" : "0");
+  } catch {
+    /* ignore */
+  }
+}
+
 function onDocKey(e: KeyboardEvent) {
-  if (e.key === "Escape" && open.value) {
-    closePanel();
-    return;
+  if (e.key === "Escape") {
+    if (confirmDialog.value) {
+      e.preventDefault();
+      cancelConfirm();
+      return;
+    }
+    if (open.value) {
+      closePanel();
+      return;
+    }
   }
   // ⌘/Ctrl + Shift + L：开关导读
-  // 不用 ⌘K（站内搜索）、⌘/（部分键盘别扭）、⌘⇧A（Chrome 搜标签页）
   if (
     (e.key === "l" || e.key === "L") &&
     (e.metaKey || e.ctrlKey) &&
@@ -1690,209 +1750,37 @@ function onDocKey(e: KeyboardEvent) {
   }
 }
 
-const FAB_SIZE = 40;
-const FAB_MARGIN = 20;
-const DRAG_THRESHOLD = 6;
-const FAB_POS_KEY = "penn-assistant-fab-pos-v3";
-
-type FabEdge = "left" | "right";
-type FabPos = { edge: FabEdge; y: number };
-
-const fabPos = ref<FabPos>({ edge: "right", y: FAB_MARGIN });
-const dragging = ref(false);
-const dragMoved = ref(false);
-const liveXY = ref({ x: FAB_MARGIN, y: FAB_MARGIN });
-const panelFlip = ref(false);
 const panelMaxH = ref(680);
-const PANEL_GAP = 12;
 const PANEL_MAX = 680;
-const PANEL_MIN = 260;
 
-function syncContentDock() {
-  if (typeof document === "undefined") return;
-  const root = document.documentElement;
-  if (open.value) {
-    root.classList.add("penn-assistant-docked");
-    root.dataset.assistantEdge = fabPos.value.edge;
-  } else {
-    root.classList.remove("penn-assistant-docked");
-    delete root.dataset.assistantEdge;
-  }
-}
-
-function clearContentDock() {
-  if (typeof document === "undefined") return;
-  const root = document.documentElement;
-  root.classList.remove("penn-assistant-docked");
-  delete root.dataset.assistantEdge;
-}
-
-let activePointerId: number | null = null;
-let dragStartClient = { x: 0, y: 0 };
-let dragStartFab = { x: 0, y: 0 };
-
-function clampFabY(y: number) {
-  if (typeof window === "undefined") return y;
-  const max = window.innerHeight - FAB_SIZE - FAB_MARGIN;
-  return Math.max(FAB_MARGIN, Math.min(max, y));
-}
-
-/** 默认贴右下角最底部（其它工具按钮已在 CSS 上移让位） */
-function defaultFabY() {
-  if (typeof window === "undefined") return FAB_MARGIN;
-  return clampFabY(window.innerHeight - FAB_SIZE - FAB_MARGIN);
-}
-
-function loadFabPos() {
-  try {
-    const raw = localStorage.getItem(FAB_POS_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw) as Partial<FabPos>;
-      if (parsed.edge === "left" || parsed.edge === "right") {
-        fabPos.value = {
-          edge: parsed.edge,
-          y: clampFabY(Number(parsed.y) || defaultFabY()),
-        };
-        return;
-      }
-    }
-  } catch {
-    /* ignore */
-  }
-  fabPos.value = { edge: "right", y: defaultFabY() };
-}
-
-function saveFabPos() {
-  try {
-    localStorage.setItem(FAB_POS_KEY, JSON.stringify(fabPos.value));
-  } catch {
-    /* ignore */
-  }
-}
-
-function fabScreenXY() {
-  const y = fabPos.value.y;
-  const x =
-    fabPos.value.edge === "left"
-      ? FAB_MARGIN
-      : window.innerWidth - FAB_SIZE - FAB_MARGIN;
-  return { x, y };
-}
-
-function updatePanelFlip() {
+function updatePanelMaxH() {
   if (typeof window === "undefined") return;
-  const y = dragging.value ? liveXY.value.y : fabPos.value.y;
-  const vh = window.innerHeight;
-  const edgePad = 8;
-  const spaceAbove = y - PANEL_GAP - edgePad;
-  const spaceBelow = vh - y - FAB_SIZE - PANEL_GAP - edgePad;
-
-  // 移动端保持更克制的高度上限；桌面可用更大弹窗
+  if (panelExpanded.value) {
+    panelMaxH.value = Math.floor(window.innerHeight * 0.92);
+    return;
+  }
   const isDesktop = window.matchMedia("(min-width: 768px)").matches;
   const idealMax = isDesktop ? PANEL_MAX : 560;
-  const need = Math.min(idealMax, vh * (isDesktop ? 0.8 : 0.72));
-  panelFlip.value = spaceAbove < need && spaceBelow > spaceAbove;
-
-  const avail = panelFlip.value ? spaceBelow : spaceAbove;
-  const capped = Math.max(PANEL_MIN, Math.min(idealMax, avail));
   panelMaxH.value =
-    panelH.value > 0 ? Math.min(panelH.value, capped) : capped;
+    panelH.value > 0
+      ? Math.min(panelH.value, idealMax)
+      : Math.min(idealMax, Math.floor(window.innerHeight * 0.7));
 }
-
-const edgePreview = computed<FabEdge>(() => {
-  if (!dragging.value || typeof window === "undefined") return fabPos.value.edge;
-  const cx = liveXY.value.x + FAB_SIZE / 2;
-  return cx < window.innerWidth / 2 ? "left" : "right";
-});
 
 const rootStyle = computed(() => {
   const panelVars = {
     "--penn-assistant-panel-max-h": `${panelMaxH.value}px`,
     "--penn-assistant-fs": String(fontScale.value),
-    ...(panelW.value > 0
+    ...(panelW.value > 0 && !panelExpanded.value
       ? { "--penn-assistant-panel-w": `${panelW.value}px` }
       : {}),
   } as Record<string, string>;
-  if (dragging.value) {
-    return {
-      ...panelVars,
-      left: `${liveXY.value.x}px`,
-      top: `${liveXY.value.y}px`,
-      right: "auto",
-      bottom: "auto",
-    };
-  }
-  return {
-    ...panelVars,
-    left: fabPos.value.edge === "left" ? `${FAB_MARGIN}px` : "auto",
-    right: fabPos.value.edge === "right" ? `${FAB_MARGIN}px` : "auto",
-    top: `${fabPos.value.y}px`,
-    bottom: "auto",
-  };
+  return panelVars;
 });
 
-function onFabPointerMove(e: PointerEvent) {
-  if (activePointerId !== e.pointerId) return;
-  const dx = e.clientX - dragStartClient.x;
-  const dy = e.clientY - dragStartClient.y;
-  if (!dragMoved.value && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
-  dragMoved.value = true;
-  dragging.value = true;
-  liveXY.value = {
-    x: Math.max(
-      FAB_MARGIN,
-      Math.min(window.innerWidth - FAB_SIZE - FAB_MARGIN, dragStartFab.x + dx),
-    ),
-    y: clampFabY(dragStartFab.y + dy),
-  };
-  updatePanelFlip();
-}
-
-function onFabPointerUp(e: PointerEvent) {
-  if (activePointerId !== null && e.pointerId !== activePointerId) return;
-  window.removeEventListener("pointermove", onFabPointerMove);
-  window.removeEventListener("pointerup", onFabPointerUp);
-  window.removeEventListener("pointercancel", onFabPointerUp);
-  activePointerId = null;
-
-  if (dragMoved.value) {
-    const cx = liveXY.value.x + FAB_SIZE / 2;
-    fabPos.value = {
-      edge: cx < window.innerWidth / 2 ? "left" : "right",
-      y: clampFabY(liveXY.value.y),
-    };
-    saveFabPos();
-    dragging.value = false;
-    updatePanelFlip();
-    return;
-  }
-  dragging.value = false;
-  toggle();
-}
-
-function onFabPointerDown(e: PointerEvent) {
-  if (e.button !== 0) return;
-  const el = e.currentTarget as HTMLElement;
-  el.setPointerCapture(e.pointerId);
-  activePointerId = e.pointerId;
-  dragging.value = false;
-  dragMoved.value = false;
-  const xy = fabScreenXY();
-  dragStartClient = { x: e.clientX, y: e.clientY };
-  dragStartFab = { ...xy };
-  liveXY.value = { ...xy };
-  window.addEventListener("pointermove", onFabPointerMove);
-  window.addEventListener("pointerup", onFabPointerUp);
-  window.addEventListener("pointercancel", onFabPointerUp);
-}
-
 function onWinResize() {
-  fabPos.value = {
-    ...fabPos.value,
-    y: clampFabY(fabPos.value.y),
-  };
   syncMobileUi();
-  updatePanelFlip();
+  updatePanelMaxH();
 }
 
 watch(
@@ -1918,14 +1806,22 @@ watch(
   },
 );
 
-watch([open, () => fabPos.value.edge], () => {
-  syncContentDock();
+watch([open, panelExpanded], () => {
+  updatePanelMaxH();
+  syncBodyScrollLock();
 });
+
+function syncBodyScrollLock() {
+  if (typeof document === "undefined") return;
+  const lock = open.value && panelExpanded.value;
+  document.documentElement.classList.toggle("penn-assistant-scroll-lock", lock);
+}
 
 onMounted(() => {
   restoreSession();
   loadFontScale();
   loadPanelSize();
+  loadPanelExpanded();
   initSpeech();
   updateReadingSection();
   try {
@@ -1933,12 +1829,11 @@ onMounted(() => {
   } catch {
     firstVisit.value = true;
   }
-  loadFabPos();
   syncMobileUi();
   mobileMq = window.matchMedia(MOBILE_MQ);
   mobileMq.addEventListener?.("change", onMobileMqChange);
-  updatePanelFlip();
-  syncContentDock();
+  updatePanelMaxH();
+  syncBodyScrollLock();
   document.addEventListener("keydown", onDocKey);
   document.addEventListener("pointerdown", onDocPointerDownOutside, true);
   document.addEventListener("mouseup", captureDocSelection);
@@ -1952,7 +1847,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   unbindPanelScrollLock();
-  clearContentDock();
+  document.documentElement.classList.remove("penn-assistant-scroll-lock");
   mobileMq?.removeEventListener?.("change", onMobileMqChange);
   mobileMq = null;
   document.removeEventListener("keydown", onDocKey);
@@ -1962,9 +1857,6 @@ onBeforeUnmount(() => {
   if (selectionSyncTimer != null) clearTimeout(selectionSyncTimer);
   window.removeEventListener("resize", onWinResize);
   window.removeEventListener("scroll", updateReadingSection);
-  window.removeEventListener("pointermove", onFabPointerMove);
-  window.removeEventListener("pointerup", onFabPointerUp);
-  window.removeEventListener("pointercancel", onFabPointerUp);
   try {
     speechRec?.stop();
   } catch {
@@ -1979,22 +1871,23 @@ onBeforeUnmount(() => {
     v-if="enabled"
     ref="panelRef"
     class="penn-assistant"
-    :class="{ 'is-open': open, 'is-dragging': dragging }"
-    :data-edge="edgePreview"
-    :data-flip="panelFlip ? '1' : '0'"
+    :class="{ 'is-open': open, 'is-expanded': panelExpanded }"
     :style="rootStyle"
   >
     <button
-      v-if="open && isMobileUi"
+      v-if="open && panelExpanded"
       type="button"
       class="penn-assistant-scrim"
       :aria-label="`关闭${ASSISTANT_NAME}`"
       @click="closePanel"
+      @wheel.prevent
+      @touchmove.prevent
     />
     <div
       v-show="open"
       ref="dialogRef"
       class="penn-assistant-panel"
+      :class="{ 'is-expanded': panelExpanded }"
       role="dialog"
       :aria-label="ASSISTANT_NAME"
     >
@@ -2055,75 +1948,125 @@ onBeforeUnmount(() => {
             type="button"
             class="penn-assistant-clear"
             :disabled="loading"
-            @click="clearChat"
+            @click="clearChat()"
           >
             清空
+          </button>
+          <button
+            type="button"
+            class="penn-assistant-expand"
+            :aria-label="panelExpanded ? '退出全屏' : '全屏'"
+            :title="panelExpanded ? '退出全屏' : '全屏'"
+            @click="togglePanelExpanded"
+          >
+            <svg
+              v-if="panelExpanded"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                d="M9 3.8H3.8V9M15 3.8h5.2V9M9 20.2H3.8V15M15 20.2h5.2V15"
+              />
+            </svg>
+            <svg
+              v-else
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                d="M14.5 3.8H20.2V9.5M9.5 3.8H3.8V9.5M14.5 20.2H20.2V14.5M9.5 20.2H3.8V14.5"
+              />
+            </svg>
           </button>
           <button type="button" class="penn-assistant-close" aria-label="关闭" @click="closePanel">
             ×
           </button>
         </div>
       </header>
-      <p
-        v-if="pageSwitchHint"
-        class="penn-assistant-pagechip penn-assistant-pagechip--switch"
-        :title="pageSwitchHint"
+      <div
+        v-if="
+          pageSwitchHint ||
+          pageLabelShort ||
+          selectionPreview ||
+          (readingSection && open)
+        "
+        class="penn-assistant-context"
       >
-        已切换 · {{ pageLabelShort }}
-      </p>
-      <p
-        v-else-if="pageLabelShort"
-        class="penn-assistant-pagechip"
-        :title="page.title || pageLabelShort"
-      >
-        当前：{{ pageLabelShort }}
-      </p>
-      <p v-if="selectionPreview" class="penn-assistant-selchip">
-        <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
-        <span class="penn-assistant-selchip-text" :title="selectionText">{{
-          selectionPreview
-        }}</span>
-        <button
-          type="button"
-          class="penn-assistant-selchip-ask"
-          :disabled="loading"
-          @click="
-            ask(
-              selectionIsCode ? '解释这段代码' : '解释我选中的这段',
-              { fromChip: true },
-            )
-          "
+        <p
+          v-if="pageSwitchHint"
+          class="penn-assistant-pagechip penn-assistant-pagechip--switch"
+          :title="pageSwitchHint"
         >
-          解释
-        </button>
-        <button
-          type="button"
-          class="penn-assistant-selchip-clear"
-          aria-label="清除选中"
-          @click="clearSelectionChip"
+          已切换 · {{ pageLabelShort }}
+        </p>
+        <p
+          v-else-if="pageLabelShort"
+          class="penn-assistant-pagechip"
+          :title="page.title || pageLabelShort"
         >
-          ×
-        </button>
-      </p>
-      <p
-        v-else-if="readingSection && open"
-        class="penn-assistant-selchip penn-assistant-selchip--section"
-      >
-        <span class="penn-assistant-selchip-label">在看</span>
-        <span class="penn-assistant-selchip-text" :title="readingSection">{{
-          readingSection.length > 20
-            ? `${readingSection.slice(0, 20)}…`
-            : readingSection
-        }}</span>
-        <button
-          type="button"
-          class="penn-assistant-selchip-ask"
-          :disabled="loading"
-          @click="askSummarizeSection"
+          当前：{{ pageLabelShort }}
+        </p>
+        <p v-if="selectionPreview" class="penn-assistant-selchip">
+          <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
+          <span class="penn-assistant-selchip-text" :title="selectionText">{{
+            selectionPreview
+          }}</span>
+          <button
+            type="button"
+            class="penn-assistant-selchip-ask"
+            :disabled="loading"
+            @click="
+              ask(
+                selectionIsCode ? '解释这段代码' : '解释我选中的这段',
+                { fromChip: true },
+              )
+            "
+          >
+            解释
+          </button>
+          <button
+            type="button"
+            class="penn-assistant-selchip-clear"
+            aria-label="清除选中"
+            @click="clearSelectionChip"
+          >
+            ×
+          </button>
+        </p>
+        <p
+          v-else-if="readingSection && open"
+          class="penn-assistant-selchip penn-assistant-selchip--section"
         >
-          总结这节
-        </button>
-      </p>
+          <span class="penn-assistant-selchip-label">在看</span>
+          <span class="penn-assistant-selchip-text" :title="readingSection">{{
+            readingSection.length > 28
+              ? `${readingSection.slice(0, 28)}…`
+              : readingSection
+          }}</span>
+          <button
+            type="button"
+            class="penn-assistant-selchip-ask"
+            :disabled="loading"
+            @click="askSummarizeSection"
+          >
+            总结这节
+          </button>
+        </p>
+      </div>
 
       <div ref="listRef" class="penn-assistant-messages">
         <div v-if="!messages.length" class="penn-assistant-empty">
@@ -2182,7 +2125,7 @@ onBeforeUnmount(() => {
               <span class="penn-assistant-dots" aria-hidden="true"
                 ><i /><i /><i
               /></span>
-              思考中
+              读取文章
             </span>
             <div
               v-else-if="loading && i === messages.length - 1"
@@ -2404,9 +2347,7 @@ onBeforeUnmount(() => {
           :placeholder="
             listening
               ? '正在听，再说一次或点停止…'
-              : isMobileUi
-                ? '问问本站…'
-                : '问问本站…（⌘⇧L 开关）'
+              : '输入你想问的问题…'
           "
           :disabled="loading"
           autocomplete="off"
@@ -2489,12 +2430,51 @@ onBeforeUnmount(() => {
           >
             <path
               fill="currentColor"
-              d="M4.2 11.1 19.4 4.4a.9.9 0 0 1 1.2 1.1L14.8 20a.9.9 0 0 1-1.66.1l-2.5-5.7-5.7-2.5a.9.9 0 0 1 .26-1.8Z"
+              d="M12 19.8a.9.9 0 0 1-.9-.9V7.94l-3.3 3.3a.9.9 0 1 1-1.28-1.27l4.84-4.84a.9.9 0 0 1 1.28 0l4.84 4.84a.9.9 0 1 1-1.28 1.27l-3.3-3.3V18.9a.9.9 0 0 1-.9.9Z"
             />
           </svg>
         </button>
       </form>
+      <p class="penn-assistant-foot">AI 生成可能有误，注意核实</p>
+      <div
+        v-if="confirmDialog"
+        class="penn-assistant-confirm"
+        role="alertdialog"
+        aria-modal="true"
+        :aria-label="confirmDialog.title"
+      >
+        <button
+          type="button"
+          class="penn-assistant-confirm-scrim"
+          aria-label="取消"
+          @click="cancelConfirm"
+        />
+        <div class="penn-assistant-confirm-card">
+          <p class="penn-assistant-confirm-title">{{ confirmDialog.title }}</p>
+          <p v-if="confirmDialog.detail" class="penn-assistant-confirm-detail">
+            {{ confirmDialog.detail }}
+          </p>
+          <div class="penn-assistant-confirm-actions">
+            <button
+              type="button"
+              class="penn-assistant-confirm-btn"
+              @click="cancelConfirm"
+            >
+              {{ confirmDialog.cancelLabel || "取消" }}
+            </button>
+            <button
+              type="button"
+              class="penn-assistant-confirm-btn"
+              :class="{ 'is-danger': confirmDialog.danger }"
+              @click="runConfirm"
+            >
+              {{ confirmDialog.confirmLabel || "确定" }}
+            </button>
+          </div>
+        </div>
+      </div>
       <button
+        v-if="!panelExpanded"
         type="button"
         class="penn-assistant-resize"
         aria-label="拖拽调整大小"
@@ -2508,8 +2488,8 @@ onBeforeUnmount(() => {
       class="penn-assistant-fab"
       :class="{ 'is-dismiss': open }"
       :aria-expanded="open ? 'true' : 'false'"
-      :aria-label="open ? `关闭${ASSISTANT_NAME}` : `打开${ASSISTANT_NAME}（可拖拽贴边）`"
-      @pointerdown="onFabPointerDown"
+      :aria-label="open ? `关闭${ASSISTANT_NAME}` : `打开${ASSISTANT_NAME}`"
+      @click="toggle"
     >
       <!-- 打开态：轻量收起 -->
       <svg

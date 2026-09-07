@@ -1,15 +1,26 @@
-/* 站内 AI 助手浮窗 —— 可拖拽贴边，默认右下角最底部（工具组在 CSS 上移让位） */
+/* 站内 AI 助手浮窗 —— FAB 固定右下角；默认全屏，可切小窗 */
+
+/* 全屏打开时锁住页面滚动，避免滚轮穿透到正文 */
+html.penn-assistant-scroll-lock,
+html.penn-assistant-scroll-lock body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
 
 .penn-assistant {
   position: fixed;
+  right: 20px;
+  bottom: 20px;
+  left: auto;
+  top: auto;
   /* 高于顶栏 / 抽屉（约 80–210），保证遮罩能收到点击 */
   z-index: 220;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   pointer-events: none;
 }
 
-/* 移动端遮罩：与助手同层，铺满视口，点空白处关闭 */
+/* 遮罩：打开时铺满视口，点空白处关闭 */
 .penn-assistant-scrim {
   position: fixed;
   inset: 0;
@@ -19,7 +30,7 @@
   padding: 0;
   pointer-events: auto;
   cursor: pointer;
-  background: rgba(15, 23, 42, 0.32);
+  background: rgba(15, 23, 42, 0.14);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   animation: penn-assistant-scrim-in 0.18s ease-out;
@@ -46,29 +57,30 @@
 .penn-assistant-chip,
 .penn-assistant-close,
 .penn-assistant-clear,
+.penn-assistant-expand,
 .penn-assistant-send,
 .penn-assistant-stop,
-.penn-assistant-copy {
+.penn-assistant-copy,
+.penn-assistant-confirm {
   pointer-events: auto;
 }
 
 .penn-assistant-fab {
   position: relative;
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   background: color-mix(in srgb, var(--accent) 92%, #0f172a);
   color: #fff;
   box-shadow: var(--shadow-sm);
-  cursor: grab;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
-  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
   transition: transform 0.18s ease, filter 0.18s ease, border-color 0.18s ease,
@@ -122,13 +134,6 @@
   filter: none;
 }
 
-.penn-assistant.is-dragging .penn-assistant-fab {
-  cursor: grabbing;
-  transform: scale(1.06);
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
-  filter: none;
-}
-
 .penn-assistant-fab:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
   outline-offset: 2px;
@@ -138,6 +143,8 @@
   position: absolute;
   z-index: 1;
   bottom: calc(100% + 12px);
+  right: 0;
+  left: auto;
   width: min(var(--penn-assistant-panel-w, 360px), calc(100vw - 28px));
   max-height: var(--penn-assistant-panel-max-h, min(560px, calc(100vh - 100px)));
   display: flex;
@@ -163,12 +170,110 @@
   animation: penn-assistant-panel-in 0.22s ease-out;
 }
 
+.penn-assistant-panel.is-expanded {
+  position: fixed;
+  inset: 0;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 1;
+  /* 空白处点穿到 scrim，便于关闭 */
+  pointer-events: none;
+  overflow: hidden;
+  align-items: center;
+  animation: penn-assistant-panel-in 0.22s ease-out;
+}
+
+.penn-assistant-panel.is-expanded > * {
+  pointer-events: auto;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-brand {
+  display: none;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-head {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top, 0px) + 10px);
+  right: max(12px, env(safe-area-inset-right, 0px) + 10px);
+  left: auto;
+  z-index: 3;
+  padding: 0;
+  width: auto;
+  justify-content: flex-end;
+  background: transparent;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-context {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: min(520px, calc(100vw - 32px));
+  margin: max(56px, env(safe-area-inset-top, 0px) + 44px) auto 0;
+  flex-shrink: 0;
+  padding: 0 2px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-pagechip,
+.penn-assistant-panel.is-expanded .penn-assistant-selchip {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-messages {
+  flex: 1;
+  min-height: 0;
+  width: min(720px, calc(100vw - 32px));
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 12px 4px 12px;
+  background: transparent;
+}
+
+.penn-assistant-panel.is-expanded > .penn-assistant-messages:first-of-type {
+  padding-top: max(64px, env(safe-area-inset-top, 0px) + 52px);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-empty {
+  margin-top: min(12vh, 96px);
+  text-align: center;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-form {
+  width: min(640px, calc(100vw - 32px));
+  margin: 0 auto 8px;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-foot {
+  width: min(640px, calc(100vw - 32px));
+  margin: 0 auto max(76px, env(safe-area-inset-bottom, 0px) + 64px);
+  text-align: center;
+  padding: 0 8px 4px;
+}
+
+.penn-assistant-panel.is-expanded,
+.penn-assistant-panel.is-expanded .penn-assistant-messages {
+  overscroll-behavior: none;
+}
+
 @media (min-width: 768px) {
-  .penn-assistant-panel {
+  .penn-assistant-panel:not(.is-expanded) {
     width: min(var(--penn-assistant-panel-w, 420px), calc(100vw - 24px));
   }
 
-  .penn-assistant-resize {
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-resize {
     display: block;
   }
 }
@@ -197,21 +302,6 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-.penn-assistant[data-edge="left"] .penn-assistant-panel {
-  left: 0;
-  right: auto;
-}
-
-.penn-assistant[data-edge="right"] .penn-assistant-panel {
-  right: 0;
-  left: auto;
-}
-
-.penn-assistant[data-flip="1"] .penn-assistant-panel {
-  bottom: auto;
-  top: calc(100% + 12px);
 }
 
 .penn-assistant-head {
@@ -282,6 +372,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.penn-assistant-context {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  padding: 0 0 2px;
+}
+
+.penn-assistant-panel:not(.is-expanded) .penn-assistant-context {
+  width: 100%;
+}
+
+.penn-assistant-panel:not(.is-expanded) .penn-assistant-pagechip,
+.penn-assistant-panel:not(.is-expanded) .penn-assistant-selchip {
+  position: relative;
+  z-index: 1;
 }
 
 .penn-assistant-pagechip--switch {
@@ -431,6 +542,26 @@
   background: var(--surface-2);
 }
 
+.penn-assistant-expand {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 0;
+  padding: 0;
+}
+
+.penn-assistant-expand:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
 .penn-assistant-messages {
   flex: 1;
   min-height: 0;
@@ -438,6 +569,8 @@
   overflow-anchor: none; /* 答完插入「继续问」时禁止浏览器把视口钉在底部 */
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   padding: 4px 14px 20px;
   display: flex;
   flex-direction: column;
@@ -448,6 +581,12 @@
       color-mix(in srgb, var(--accent) 5%, transparent),
       transparent 55%
     );
+}
+
+.penn-assistant-messages::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 .penn-assistant-empty {
@@ -1095,17 +1234,6 @@
   opacity: 0.9;
 }
 
-.penn-assistant[data-edge="left"] .penn-assistant-resize {
-  right: 6px;
-  left: auto;
-  cursor: nesw-resize;
-}
-
-.penn-assistant[data-flip="1"] .penn-assistant-resize {
-  bottom: auto;
-  top: 6px;
-}
-
 .penn-assistant-source-title {
   flex: 1;
   min-width: 0;
@@ -1291,37 +1419,1155 @@
   }
 }
 
-/* 宽屏：打开助手时给正文让位，避免长期挡阅读区 */
-@media (min-width: 1100px) {
-  html.penn-assistant-docked {
-    --penn-assistant-inset: 440px;
-  }
 
-  html.penn-assistant-docked[data-assistant-edge="right"] .VPContent,
-  html.penn-assistant-docked[data-assistant-edge="right"] .VPLocalNav {
-    padding-right: var(--penn-assistant-inset);
-    transition: padding-right 0.28s ease;
-    box-sizing: border-box;
-  }
+/* ────────────────────────────────────────────────────────────
+ * 玻璃皮肤：贴合博客 Apple 风 token，浅色 / 深色各自适配
+ * 布局仍是小窗卡片 + 全屏透明浮层；颜色走 --surface / --accent
+ * ──────────────────────────────────────────────────────────── */
 
-  html.penn-assistant-docked[data-assistant-edge="left"] .VPContent,
-  html.penn-assistant-docked[data-assistant-edge="left"] .VPLocalNav {
-    padding-left: var(--penn-assistant-inset);
-    transition: padding-left 0.28s ease;
-    box-sizing: border-box;
-  }
+.penn-assistant-panel {
+  /* 浅色小窗：半透明雾面 */
+  --pa-bg: color-mix(in srgb, var(--surface) 42%, transparent);
+  --pa-bg-soft: color-mix(in srgb, var(--surface) 52%, transparent);
+  --pa-bg-chip: color-mix(in srgb, var(--surface-2) 48%, transparent);
+  --pa-bg-chip-hover: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  --pa-border: color-mix(in srgb, var(--border) 60%, transparent);
+  --pa-text: var(--text);
+  --pa-text-2: var(--text-2);
+  --pa-text-3: var(--text-3);
+  --pa-user: var(--accent);
+  --pa-ok: #34c759;
+  --pa-input: color-mix(in srgb, var(--surface) 50%, transparent);
+  --pa-shadow: 0 12px 40px rgba(15, 23, 42, 0.1), 0 0 0 1px color-mix(in srgb, var(--accent) 6%, transparent);
+  --pa-glass-blur: saturate(1.45) blur(18px);
+  border-radius: 18px;
+  border: 1px solid var(--pa-border);
+  /* 本体透明，玻璃交给 ::after，避免 overflow:hidden 把 backdrop-filter 吃掉 */
+  background: transparent;
+  box-shadow: var(--pa-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  isolation: isolate;
+}
 
-  /* 右侧大纲与助手同侧时，略收一点，少抢空间 */
-  html.penn-assistant-docked[data-assistant-edge="right"] .VPDoc .aside {
-    display: none;
+.dark .penn-assistant-panel {
+  --pa-bg: color-mix(in srgb, var(--surface) 38%, transparent);
+  --pa-bg-soft: color-mix(in srgb, var(--surface-2) 36%, transparent);
+  --pa-bg-chip: color-mix(in srgb, var(--surface-2) 34%, transparent);
+  --pa-bg-chip-hover: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  --pa-border: color-mix(in srgb, var(--border) 50%, transparent);
+  --pa-input: color-mix(in srgb, var(--surface) 42%, transparent);
+  --pa-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* 小窗玻璃底：伪元素承载 blur + 半透明填充 */
+.penn-assistant-panel:not(.is-expanded)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--accent) 6%, var(--pa-bg)) 0%,
+      var(--pa-bg) 48%,
+      color-mix(in srgb, var(--bg) 10%, var(--pa-bg)) 100%
+    );
+  backdrop-filter: var(--pa-glass-blur);
+  -webkit-backdrop-filter: var(--pa-glass-blur);
+}
+
+.penn-assistant-panel:not(.is-expanded) > * {
+  position: relative;
+  z-index: 1;
+}
+
+.penn-assistant-scrim {
+  /* 全屏只压暗、不糊字；浅/深主题浓度不同 */
+  background: rgba(29, 29, 31, 0.18);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.dark .penn-assistant-scrim {
+  background: rgba(0, 0, 0, 0.38);
+}
+
+/* 全屏：外壳透明，内容块各自承托 */
+.penn-assistant-panel.is-expanded {
+  --pa-bg: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-head-actions {
+  gap: 8px;
+}
+
+.penn-assistant-panel::before {
+  display: none;
+}
+
+.penn-assistant-head {
+  padding: 14px 14px 10px;
+}
+
+.penn-assistant-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, #fff 55%, transparent);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 88%, #fff),
+    var(--accent)
+  );
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.penn-assistant-title {
+  color: var(--pa-text);
+  font-size: 0.95rem;
+}
+
+.penn-assistant-sub {
+  color: var(--pa-text-3);
+}
+
+.penn-assistant-font-btn,
+.penn-assistant-clear,
+.penn-assistant-close,
+.penn-assistant-expand {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-2) 65%, transparent);
+  color: var(--pa-text-2);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+  font-size: 0.72rem;
+}
+
+.penn-assistant-clear {
+  width: auto;
+  padding: 0 10px;
+  font-size: 0.72rem;
+}
+
+.penn-assistant-font-btn:hover:not(:disabled),
+.penn-assistant-clear:hover:not(:disabled),
+.penn-assistant-close:hover,
+.penn-assistant-expand:hover {
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--pa-text);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.penn-assistant-pagechip {
+  margin: 0 14px 8px;
+  border-radius: 999px;
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  color: var(--pa-text-2);
+}
+
+.penn-assistant-pagechip--switch {
+  border-color: color-mix(in srgb, var(--pa-ok) 35%, var(--border));
+  background: color-mix(in srgb, var(--pa-ok) 10%, var(--surface));
+  color: var(--pa-text);
+}
+
+.penn-assistant-selchip {
+  border-radius: 999px;
+  border-color: var(--pa-border);
+  background: var(--pa-bg-chip);
+  color: var(--pa-text-2);
+}
+
+.penn-assistant-selchip-label {
+  color: var(--accent);
+}
+
+.penn-assistant-selchip-ask {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  color: var(--accent);
+}
+
+.penn-assistant-selchip-clear:hover {
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  color: var(--pa-text);
+}
+
+.penn-assistant-messages {
+  padding: 6px 14px 14px;
+  gap: 14px;
+  background: transparent;
+}
+
+.penn-assistant-empty-lead {
+  color: var(--pa-text-2);
+  font-size: 0.84rem;
+}
+
+.penn-assistant-chip {
+  border-radius: 999px;
+  border: 1px solid var(--pa-border);
+  background: var(--pa-bg-chip);
+  color: var(--pa-text-2);
+  padding: 10px 14px;
+}
+
+.penn-assistant-chip-go {
+  display: none;
+}
+
+.penn-assistant-chip:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+  background: var(--pa-bg-chip-hover);
+  color: var(--pa-text);
+  transform: none;
+}
+
+.penn-assistant-followups {
+  border-top: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+}
+
+.penn-assistant-followups-label {
+  color: var(--pa-text-3);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.penn-assistant-msg[data-role="user"] .penn-assistant-bubble {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--accent) 88%, #fff),
+    var(--accent)
+  );
+  border-radius: 999px;
+  border-bottom-right-radius: 999px;
+  padding: 9px 16px;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 22%, transparent);
+  font-size: calc(0.86rem * var(--penn-assistant-fs, 1));
+  color: #fff;
+}
+
+.penn-assistant-msg[data-role="assistant"] .penn-assistant-bubble {
+  background: var(--pa-bg-soft);
+  border: 1px solid var(--pa-border);
+  border-radius: 16px;
+  border-bottom-left-radius: 16px;
+  color: var(--pa-text);
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.dark .penn-assistant-msg[data-role="assistant"] .penn-assistant-bubble {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+.penn-assistant-bubble--md .penn-assistant-md :deep(p),
+.penn-assistant-bubble--md .penn-assistant-md :deep(li) {
+  color: var(--pa-text);
+}
+
+.penn-assistant-bubble--md .penn-assistant-md :deep(strong) {
+  color: var(--pa-text);
+  font-weight: 700;
+}
+
+.penn-assistant-bubble--md .penn-assistant-md :deep(a),
+.penn-assistant-bubble--md .penn-assistant-md :deep(.penn-assistant-booklink) {
+  color: var(--link);
+  border-bottom-color: color-mix(in srgb, var(--link) 30%, transparent);
+}
+
+.penn-assistant-bubble--md .penn-assistant-md :deep(hr) {
+  border-top-color: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.penn-assistant-bubble--md .penn-assistant-md :deep(code) {
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  color: var(--pa-text);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+
+.penn-assistant-bubble.is-waiting {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  min-height: 0;
+  padding: 0 !important;
+  animation: none;
+}
+
+.penn-assistant-waiting {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pa-ok) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--pa-ok) 32%, var(--border));
+  color: color-mix(in srgb, var(--pa-ok) 55%, var(--text));
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.dark .penn-assistant-waiting {
+  color: color-mix(in srgb, var(--pa-ok) 70%, #fff);
+}
+
+.penn-assistant-waiting .penn-assistant-dots i {
+  background: var(--pa-ok);
+  width: 4px;
+  height: 4px;
+}
+
+.penn-assistant-bubble.is-streaming:not(.is-waiting) {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.penn-assistant-caret {
+  background: color-mix(in srgb, var(--accent) 75%, transparent);
+}
+
+.penn-assistant-act {
+  border-radius: 999px;
+  color: var(--pa-text-3);
+}
+
+.penn-assistant-act:hover {
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  color: var(--pa-text-2);
+}
+
+.penn-assistant-act.is-done,
+.penn-assistant-feedback-done {
+  color: var(--accent);
+}
+
+.penn-assistant-feedback-input {
+  border-radius: 999px;
+  border-color: var(--pa-border);
+  background: var(--pa-input);
+  color: var(--pa-text);
+}
+
+.penn-assistant-feedback-submit {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  color: var(--accent);
+}
+
+.penn-assistant-sources-summary {
+  color: var(--pa-text-3);
+}
+
+.penn-assistant-sources-summary:hover {
+  color: var(--pa-text-2);
+}
+
+.penn-assistant-sources {
+  border-left-color: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.penn-assistant-source-title {
+  color: var(--link);
+}
+
+.penn-assistant-source-tag {
+  color: var(--pa-text-3);
+}
+
+.penn-assistant-source-preview {
+  border-color: var(--pa-border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--pa-text-2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.penn-assistant-jump-chip {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  color: var(--accent);
+}
+
+.penn-assistant-form {
+  margin: 0 12px 12px;
+  padding: 6px 6px 6px 14px;
+  gap: 6px;
+  border: 1px solid var(--pa-border);
+  border-radius: 999px;
+  border-top: 1px solid var(--pa-border);
+  background: var(--pa-input);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--text) 8%, transparent);
+  align-items: center;
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+
+.dark .penn-assistant-form {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.penn-assistant-input {
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pa-text);
+  padding: 0 4px;
+  box-shadow: none;
+}
+
+.penn-assistant-input::placeholder {
+  color: var(--pa-text-3);
+}
+
+.penn-assistant-input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+.penn-assistant-voice,
+.penn-assistant-send,
+.penn-assistant-stop {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 0;
+}
+
+.penn-assistant-voice {
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  color: var(--pa-text-2);
+  border: 1px solid transparent;
+}
+
+.penn-assistant-voice:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--pa-text);
+}
+
+.penn-assistant-voice.is-on {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.penn-assistant-send {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.penn-assistant-send:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.penn-assistant-send:disabled {
+  opacity: 0.35;
+}
+
+.penn-assistant-stop {
+  background: color-mix(in srgb, #ff3b30 12%, var(--surface));
+  color: color-mix(in srgb, #ff3b30 70%, var(--text));
+  border: 1px solid color-mix(in srgb, #ff3b30 22%, var(--border));
+}
+
+.dark .penn-assistant-stop {
+  color: #ffb4ae;
+}
+
+.penn-assistant-foot {
+  margin: 0 14px 12px;
+  padding: 0;
+  text-align: center;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: var(--pa-text-3);
+  flex-shrink: 0;
+}
+
+.penn-assistant-fab {
+  width: 48px;
+  height: 48px;
+  border: 2px solid color-mix(in srgb, #fff 78%, transparent);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--accent) 88%, #fff),
+    var(--accent)
+  );
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent),
+    0 10px 24px color-mix(in srgb, var(--accent) 30%, transparent);
+  opacity: 1;
+}
+
+.penn-assistant-fab:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.penn-assistant-fab.is-dismiss {
+  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  border-color: color-mix(in srgb, var(--border-strong) 70%, transparent);
+  color: var(--text);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 8%, transparent),
+    0 10px 24px color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.dark .penn-assistant-fab.is-dismiss {
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  border-color: color-mix(in srgb, var(--border) 80%, transparent);
+  color: var(--text);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.penn-assistant-resize {
+  opacity: 0.45;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .penn-assistant-fab:hover {
+    transform: none;
   }
 }
 
-@media (min-width: 1100px) and (prefers-reduced-motion: reduce) {
-  html.penn-assistant-docked[data-assistant-edge="right"] .VPContent,
-  html.penn-assistant-docked[data-assistant-edge="right"] .VPLocalNav,
-  html.penn-assistant-docked[data-assistant-edge="left"] .VPContent,
-  html.penn-assistant-docked[data-assistant-edge="left"] .VPLocalNav {
-    transition: none;
+/* 全屏：浅色雾面白玻璃 / 深色炭黑玻璃，保持不糊正文 */
+.penn-assistant-panel.is-expanded {
+  --pa-text: var(--text);
+  --pa-text-2: var(--text-2);
+  --pa-text-3: var(--text-3);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-font-btn,
+.penn-assistant-panel.is-expanded .penn-assistant-clear,
+.penn-assistant-panel.is-expanded .penn-assistant-close,
+.penn-assistant-panel.is-expanded .penn-assistant-expand {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  color: var(--text-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-font-btn:hover:not(:disabled),
+.penn-assistant-panel.is-expanded .penn-assistant-clear:hover:not(:disabled),
+.penn-assistant-panel.is-expanded .penn-assistant-close:hover,
+.penn-assistant-panel.is-expanded .penn-assistant-expand:hover {
+  background: #fff;
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-msg[data-role="assistant"] .penn-assistant-bubble {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  color: var(--text);
+  border-radius: 22px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.1);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(p),
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(li),
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(strong) {
+  color: var(--text);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(a),
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(.penn-assistant-booklink) {
+  color: var(--link);
+  border-bottom-color: color-mix(in srgb, var(--link) 30%, transparent);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(code) {
+  background: color-mix(in srgb, var(--surface-2) 85%, transparent);
+  color: var(--text);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-msg[data-role="user"] .penn-assistant-bubble {
+  background: color-mix(in srgb, var(--accent) 88%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 20%, transparent);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #fff;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-form {
+  width: min(640px, calc(100vw - 32px));
+  margin: 0 auto 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-input {
+  color: var(--text);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-input::placeholder {
+  color: var(--text-3);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-voice {
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  color: var(--text-2);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-voice:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--text);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-send {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-send:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-stop {
+  background: color-mix(in srgb, #ff3b30 10%, #fff);
+  color: #d70015;
+  border-color: color-mix(in srgb, #ff3b30 22%, var(--border));
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-chip {
+  background: rgba(255, 255, 255, 0.86);
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  color: var(--text-2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-chip:hover:not(:disabled) {
+  background: #fff;
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-act {
+  color: var(--text-3);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-act:hover {
+  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  color: var(--text-2);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-empty-lead,
+.penn-assistant-panel.is-expanded .penn-assistant-foot {
+  color: var(--text-3);
+  text-shadow: none;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-waiting {
+  background: color-mix(in srgb, #34c759 12%, #fff);
+  border-color: color-mix(in srgb, #34c759 32%, var(--border));
+  color: color-mix(in srgb, #248a3d 70%, var(--text));
+}
+
+/* 全屏上下文条：更实、更紧凑，避免正文透出干扰 */
+.penn-assistant-panel.is-expanded .penn-assistant-pagechip {
+  width: fit-content;
+  max-width: 100%;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  color: var(--text-2);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-pagechip--switch {
+  background: color-mix(in srgb, #34c759 14%, #fff);
+  border-color: color-mix(in srgb, #34c759 32%, var(--border));
+  color: color-mix(in srgb, #1f7a33 55%, var(--text));
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  color: var(--text-2);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip-label {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 650;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip-ask {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip-ask:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-selchip-clear {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+}
+
+/* 全屏 · 深色 */
+.dark .penn-assistant-panel.is-expanded {
+  --pa-text: rgba(255, 255, 255, 0.94);
+  --pa-text-2: rgba(255, 255, 255, 0.62);
+  --pa-text-3: rgba(255, 255, 255, 0.42);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-font-btn,
+.dark .penn-assistant-panel.is-expanded .penn-assistant-clear,
+.dark .penn-assistant-panel.is-expanded .penn-assistant-close,
+.dark .penn-assistant-panel.is-expanded .penn-assistant-expand {
+  background: rgba(32, 34, 40, 0.82);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-font-btn:hover:not(:disabled),
+.dark .penn-assistant-panel.is-expanded .penn-assistant-clear:hover:not(:disabled),
+.dark .penn-assistant-panel.is-expanded .penn-assistant-close:hover,
+.dark .penn-assistant-panel.is-expanded .penn-assistant-expand:hover {
+  background: rgba(48, 50, 58, 0.88);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-msg[data-role="assistant"] .penn-assistant-bubble {
+  background: rgba(36, 38, 46, 0.86);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.36);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(p),
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(li),
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(strong) {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(a),
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(.penn-assistant-booklink) {
+  color: #b4c0ff;
+  border-bottom-color: rgba(180, 192, 255, 0.35);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-bubble--md .penn-assistant-md :deep(code) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8ecff;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-msg[data-role="user"] .penn-assistant-bubble {
+  background: rgba(140, 158, 220, 0.78);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(80, 100, 180, 0.18);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-form {
+  background: rgba(32, 34, 42, 0.88);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.36);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-input {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-voice {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-voice:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-send {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  box-shadow: none;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-send:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.22);
+  filter: none;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-stop {
+  background: rgba(255, 90, 90, 0.2);
+  color: #ffc9c9;
+  border-color: transparent;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-chip {
+  background: rgba(36, 38, 46, 0.86);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-chip:hover:not(:disabled) {
+  background: rgba(48, 50, 58, 0.9);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-act {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-act:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-empty-lead,
+.dark .penn-assistant-panel.is-expanded .penn-assistant-foot {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-waiting {
+  background: rgba(62, 207, 142, 0.16);
+  border-color: rgba(62, 207, 142, 0.35);
+  color: #b8f5d5;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-pagechip {
+  background: rgba(40, 42, 50, 0.92);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-pagechip--switch {
+  background: rgba(62, 207, 142, 0.16);
+  border-color: rgba(62, 207, 142, 0.35);
+  color: #b8f5d5;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-selchip {
+  background: rgba(36, 38, 46, 0.94);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-selchip-label {
+  background: rgba(140, 158, 220, 0.18);
+  color: #b4c0ff;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-selchip-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-selchip-ask {
+  background: rgba(140, 158, 220, 0.85);
+  color: #fff;
+}
+
+.dark .penn-assistant-panel.is-expanded .penn-assistant-selchip-clear:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* 移动端弹窗：全屏浮层 + 紧凑顶栏 / 底部安全区 */
+@media (max-width: 767px) {
+  .penn-assistant {
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: max(16px, env(safe-area-inset-bottom, 0px));
   }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-head {
+    top: max(10px, env(safe-area-inset-top, 0px) + 8px);
+    right: max(10px, env(safe-area-inset-right, 0px) + 8px);
+    left: max(10px, env(safe-area-inset-left, 0px) + 8px);
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-head-actions {
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 100%;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-font-btn,
+  .penn-assistant-panel.is-expanded .penn-assistant-clear,
+  .penn-assistant-panel.is-expanded .penn-assistant-close,
+  .penn-assistant-panel.is-expanded .penn-assistant-expand {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-clear {
+    width: auto;
+    min-width: 34px;
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-messages {
+    width: min(100%, calc(100vw - 24px));
+    max-width: none;
+    padding: 12px 2px 10px;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-context {
+    width: min(100%, calc(100vw - 24px));
+    margin-top: max(52px, env(safe-area-inset-top, 0px) + 40px);
+  }
+
+  .penn-assistant-panel.is-expanded > .penn-assistant-messages:first-of-type {
+    padding-top: max(56px, env(safe-area-inset-top, 0px) + 48px);
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-form {
+    width: min(100%, calc(100vw - 24px));
+    margin: 0 auto 6px;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-foot {
+    width: min(100%, calc(100vw - 24px));
+    margin: 0 auto max(84px, env(safe-area-inset-bottom, 0px) + 72px);
+    font-size: 0.65rem;
+  }
+
+  .penn-assistant-panel.is-expanded .penn-assistant-empty {
+    margin-top: 8vh;
+  }
+
+  /* 兜底：万一仍进小窗，也避免标题被挤成「Pe / nn」 */
+  .penn-assistant-panel:not(.is-expanded) {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: max(76px, env(safe-area-inset-bottom, 0px) + 68px);
+    width: auto;
+    max-height: min(72vh, calc(100vh - 100px));
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-sub {
+    display: none;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.92rem;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-brand {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-head {
+    align-items: center;
+    gap: 8px;
+    padding: 12px 12px 8px;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-head-actions {
+    gap: 2px;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-font {
+    display: none;
+  }
+
+  .penn-assistant-panel:not(.is-expanded) .penn-assistant-clear {
+    padding: 0 6px;
+    font-size: 0.68rem;
+  }
+}
+
+/* 站内确认框：替代 window.confirm */
+.penn-assistant-confirm {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: auto;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-confirm {
+  position: fixed;
+  inset: 0;
+}
+
+.penn-assistant-confirm-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.28);
+}
+
+.dark .penn-assistant-confirm-scrim {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.penn-assistant-confirm-card {
+  position: relative;
+  z-index: 1;
+  width: min(320px, 100%);
+  padding: 18px 16px 14px;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  color: var(--text);
+}
+
+.dark .penn-assistant-confirm-card {
+  background: rgba(36, 38, 46, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.penn-assistant-confirm-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.penn-assistant-confirm-detail {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.dark .penn-assistant-confirm-detail {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.penn-assistant-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.penn-assistant-confirm-btn {
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  color: var(--text-2);
+  font-size: 0.8rem;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.penn-assistant-confirm-btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.penn-assistant-confirm-btn.is-danger {
+  border-color: color-mix(in srgb, #ff3b30 28%, transparent);
+  background: color-mix(in srgb, #ff3b30 12%, var(--surface));
+  color: #d70015;
+}
+
+.penn-assistant-confirm-btn.is-danger:hover {
+  background: color-mix(in srgb, #ff3b30 18%, var(--surface));
+}
+
+.dark .penn-assistant-confirm-btn {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dark .penn-assistant-confirm-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.dark .penn-assistant-confirm-btn.is-danger {
+  border-color: rgba(255, 90, 90, 0.35);
+  background: rgba(255, 90, 90, 0.18);
+  color: #ffc9c9;
+}
+
+.dark .penn-assistant-confirm-btn.is-danger:hover {
+  background: rgba(255, 90, 90, 0.28);
 }

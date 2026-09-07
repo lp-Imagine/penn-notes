@@ -1348,8 +1348,8 @@ body,
 .back-to-top {
   position: fixed;
   right: 20px;
-  /* 最底部留给站内助手（40+20），回顶上移一格 */
-  bottom: max(72px, env(safe-area-inset-bottom, 0px) + 68px);
+  /* 最底部留给站内助手（48+20），回顶上移一格 */
+  bottom: max(80px, env(safe-area-inset-bottom, 0px) + 76px);
   z-index: 60;
   display: flex;
   align-items: center;
