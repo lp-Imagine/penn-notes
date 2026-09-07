@@ -187,8 +187,37 @@ function buildTagsIndex(notes) {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "zh"));
 }
 
+function isWeakSummary(s) {
+  const t = String(s || "").trim();
+  if (t.length < 36) return true;
+  if (/围绕[「"].+[」"].*干货/.test(t)) return true;
+  if (/读完能带走可执行要点/.test(t)) return true;
+  if (/一篇干货型稿/.test(t)) return true;
+  return false;
+}
+
+function loadLlmSummaries() {
+  const file = path.join(siteRoot, "data", "note-summaries.json");
+  try {
+    const data = JSON.parse(fs.readFileSync(file, "utf8"));
+    return data?.items && typeof data.items === "object" ? data.items : {};
+  } catch {
+    return {};
+  }
+}
+
 function main() {
-  const notes = collectNotes();
+  const llmSummaries = loadLlmSummaries();
+  const notes = collectNotes().map((note) => {
+    const llm = llmSummaries[note.link]?.summary;
+    if (llm && String(llm).trim().length >= 18) {
+      return { ...note, summary: String(llm).trim(), summarySource: "llm" };
+    }
+    if (note.summary && isWeakSummary(note.summary)) {
+      return { ...note, summarySource: "weak" };
+    }
+    return { ...note, summarySource: note.summary ? "fm" : "body" };
+  });
   const tags = buildTagsIndex(notes);
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(
@@ -201,8 +230,9 @@ function main() {
     JSON.stringify(tags, null, 2) + "\n",
     "utf8",
   );
+  const llmCount = notes.filter((n) => n.summarySource === "llm").length;
   console.log(
-    `build-discover: ${notes.length} note(s), ${tags.length} tag(s)`,
+    `build-discover: ${notes.length} note(s), ${tags.length} tag(s), ${llmCount} llm summar(ies)`,
   );
 }
 

@@ -4,6 +4,7 @@ import { getScrollOffset, useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
 import ArticleOutdateNotice from "./ArticleOutdateNotice.vue";
+import ArticleSummary from "./ArticleSummary.vue";
 import AssistantWidget from "./AssistantWidget.vue";
 import Comments from "./Comments.vue";
 import HomeTypewriter from "./HomeTypewriter.vue";
@@ -835,6 +836,9 @@ const Layout = defineComponent({
             slots["doc-before"]?.(),
             h(NewsDigestEnhance),
             showArticleExtras ? h(SeriesNav, { key: `series-${path}` }) : null,
+            showArticleExtras
+              ? h(ArticleSummary, { key: `summary-${path}` })
+              : null,
             showArticleExtras
               ? h(ArticleOutdateNotice, { key: `outdate-${path}` })
               : null,
