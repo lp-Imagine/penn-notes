@@ -47,7 +47,14 @@ function href(path) {
 <template>
   <nav v-if="seriesBlock" class="series-nav" aria-label="系列导航">
     <div class="series-nav-head">
-      <p class="series-nav-label">系列 · {{ seriesBlock.name }}</p>
+      <p class="series-nav-label">
+        系列 ·
+        <a
+          class="series-nav-topics"
+          :href="`${href('/topics/')}?series=${encodeURIComponent(seriesBlock.name)}`"
+          >{{ seriesBlock.name }}</a
+        >
+      </p>
       <span class="series-nav-progress"
         >{{ seriesBlock.index }} / {{ seriesBlock.total }}</span
       >
@@ -100,6 +107,17 @@ function href(path) {
   font-weight: 650;
   letter-spacing: -0.01em;
   color: var(--text-2);
+}
+
+.series-nav-topics {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent, #3b82f6) 45%, transparent);
+}
+
+.series-nav-topics:hover {
+  color: var(--link, var(--accent, #3b82f6));
+  border-bottom-style: solid;
 }
 
 .series-nav-progress {

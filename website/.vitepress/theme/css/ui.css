@@ -3,6 +3,30 @@
  * 的可读性：导语、强调、列表、表格、链接、代码块、callout 等。
  * ──────────────────────────────────────────────────────────── */
 
+/* 跳过导航（键盘无障碍） */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  z-index: 10000;
+  padding: 8px 14px;
+  border-radius: 0 0 8px 8px;
+  background: var(--accent, #3b82f6);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid color-mix(in srgb, #fff 70%, transparent);
+  outline-offset: 2px;
+}
+
 /* 导语：紧跟 meta / 封面之后的第一段（同步稿常有 2～3 段引入再 ---） */
 .vp-doc .article-meta + p,
 .vp-doc .article-cover + p,
@@ -1526,6 +1550,56 @@ body,
   align-items: center;
   gap: 0;
   padding: 0;
+}
+
+.VPLocalSearchBox .titles::before {
+  flex: 0 0 auto;
+  margin-right: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--border) 55%, transparent);
+  content: "页面";
+}
+
+.VPLocalSearchBox .result[href*="/news/"] .titles::before {
+  content: "AI 动态";
+  color: color-mix(in srgb, var(--accent) 85%, var(--text));
+  background: var(--accent-soft);
+}
+
+.VPLocalSearchBox .result[href*="/web/"] .titles::before,
+.VPLocalSearchBox .result[href*="/ui/"] .titles::before,
+.VPLocalSearchBox .result[href*="/engineering/"] .titles::before,
+.VPLocalSearchBox .result[href*="/backend/"] .titles::before,
+.VPLocalSearchBox .result[href*="/tech/"] .titles::before,
+.VPLocalSearchBox .result[href*="/agent/"] .titles::before,
+.VPLocalSearchBox .result[href*="/computer/"] .titles::before,
+.VPLocalSearchBox .result[href*="/misc/"] .titles::before,
+.VPLocalSearchBox .result[href*="/sync/"] .titles::before {
+  content: "笔记";
+  color: color-mix(in srgb, var(--accent) 85%, var(--text));
+  background: var(--accent-soft);
+}
+
+.VPLocalSearchBox .result[href*="/tags/"] .titles::before,
+.VPLocalSearchBox .result[href*="/archive/"] .titles::before,
+.VPLocalSearchBox .result[href*="/topics/"] .titles::before {
+  content: "目录";
+}
+
+.VPLocalSearchBox .result[href*="/collect/"] .titles::before,
+.VPLocalSearchBox .result[href*="/books/"] .titles::before,
+.VPLocalSearchBox .result[href*="/recent/"] .titles::before {
+  content: "清单";
+}
+
+.VPLocalSearchBox .result[href*="/about/"] .titles::before {
+  content: "关于";
 }
 
 .VPLocalSearchBox .title-icon {

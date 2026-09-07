@@ -1,0 +1,132 @@
+{
+  "title": "收藏",
+  "description": "外链精选：前端、工程化与其它值得重读的好文",
+  "lead": "外链精选，不定期更新；偏前端与工程化，方便以后重读。",
+  "groups": [
+    {
+      "title": "语言与基础",
+      "links": [
+        {
+          "title": "TypeScript 教程一之基本类型",
+          "url": "https://cuiqingcai.com/30000.html",
+          "domain": "cuiqingcai.com"
+        },
+        {
+          "title": "JS 数据结构",
+          "url": "https://www.jianshu.com/p/6db9933af715",
+          "domain": "jianshu.com"
+        }
+      ]
+    },
+    {
+      "title": "Vue 与实践",
+      "links": [
+        {
+          "title": "Vue 单页多接口统一 / 顺序请求",
+          "url": "https://blog.csdn.net/wangyl1995/article/details/108470083",
+          "domain": "csdn.net"
+        },
+        {
+          "title": "Vue + wangEditor 小试牛刀",
+          "url": "https://segmentfault.com/a/1190000016010354",
+          "domain": "segmentfault.com"
+        },
+        {
+          "title": "在 Vue 项目中使用 wangEditor",
+          "url": "https://www.cnblogs.com/huge1122/p/11346115.html",
+          "domain": "cnblogs.com"
+        },
+        {
+          "title": "Vue 下载各格式文件",
+          "url": "https://blog.csdn.net/weixin_45676887/article/details/111490883",
+          "domain": "csdn.net"
+        },
+        {
+          "title": "前端 Vue 中文件下载的几种方式",
+          "url": "https://blog.csdn.net/mobile18611667978/article/details/88988884",
+          "domain": "csdn.net"
+        },
+        {
+          "title": "Vue 导出页面为 PDF",
+          "url": "https://blog.csdn.net/pratise/article/details/79249943",
+          "domain": "csdn.net"
+        }
+      ]
+    },
+    {
+      "title": "React 与渲染",
+      "links": [
+        {
+          "title": "Vue 组件间通信六种方式",
+          "url": "https://juejin.cn/post/6844903845642911752",
+          "domain": "juejin.cn"
+        },
+        {
+          "title": "深入理解 React 虚拟 DOM 与 diff",
+          "url": "https://www.cnblogs.com/zhuzhenwei918/p/7271305.html",
+          "domain": "cnblogs.com"
+        },
+        {
+          "title": "React Fiber 是什么",
+          "url": "https://zhuanlan.zhihu.com/p/26027085",
+          "domain": "zhihu.com"
+        },
+        {
+          "title": "React Fiber 原理介绍",
+          "url": "https://segmentfault.com/a/1190000018250127",
+          "domain": "segmentfault.com"
+        }
+      ]
+    },
+    {
+      "title": "工程化与网络",
+      "links": [
+        {
+          "title": "彻底解决 webpack 打包体积过大",
+          "url": "https://www.jianshu.com/p/a64735eb0e2b",
+          "domain": "jianshu.com"
+        },
+        {
+          "title": "详解跨域（最全解决方案）",
+          "url": "https://www.imooc.com/article/21976",
+          "domain": "imooc.com"
+        },
+        {
+          "title": "扫码登录的技术原理",
+          "url": "https://mp.weixin.qq.com/s/DdEJwmARHgLeQb_qYrFr-A",
+          "domain": "weixin.qq.com"
+        }
+      ]
+    },
+    {
+      "title": "动画、导出与其它",
+      "links": [
+        {
+          "title": "实现前端动画的 6 种方式",
+          "url": "https://www.cnblogs.com/zhaowy/p/8817944.html",
+          "domain": "cnblogs.com"
+        },
+        {
+          "title": "HTML 页面导出为 PDF",
+          "url": "https://blog.csdn.net/huyuyang6688/article/details/79710704/",
+          "domain": "csdn.net"
+        },
+        {
+          "title": "html2canvas 截图不全的问题",
+          "url": "https://www.jianshu.com/p/96a7ee1341be",
+          "domain": "jianshu.com"
+        },
+        {
+          "title": "Node.js 爬虫：爬取图片并下载到本地",
+          "url": "https://segmentfault.com/a/1190000022644630",
+          "domain": "segmentfault.com"
+        },
+        {
+          "title": "前端热门图书推荐与阅读顺序",
+          "url": "https://blog.csdn.net/weixin_44670973/article/details/111480214",
+          "domain": "csdn.net"
+        }
+      ]
+    }
+  ]
+}

@@ -13,7 +13,9 @@ import {
   pennCanonicalPath,
   pennCanonicalUrl,
   pennRedirectPrefix,
+  pennRewriteRootUrlsInHtml,
   pennSiteUrl,
+  pennWithBasePath,
 } from "./penn-base.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -82,6 +84,28 @@ test("canonical path: index vs article", () => {
   );
 });
 
+test("withBasePath prefixes Pages backup", () => {
+  assert.equal(pennWithBasePath("/news/", "/"), "/news/");
+  assert.equal(pennWithBasePath("/news/", "/penn-notes/"), "/penn-notes/news/");
+  assert.equal(pennWithBasePath("/", "/penn-notes/"), "/penn-notes/");
+  assert.equal(
+    pennWithBasePath("/penn-notes/about/", "/penn-notes/"),
+    "/penn-notes/about/",
+  );
+  assert.equal(pennWithBasePath("//cdn.example/a.png", "/penn-notes/"), "//cdn.example/a.png");
+});
+
+test("rewriteRootUrlsInHtml only touches root paths", () => {
+  const html =
+    '<a href="/news/">n</a><a href="https://x.com">x</a><img src="/sync/a.jpg"><img src="https://img.penn-notes.draftly.cn/sync/a.jpg">';
+  const out = pennRewriteRootUrlsInHtml(html, "/penn-notes/");
+  assert.match(out, /href="\/penn-notes\/news\/"/);
+  assert.match(out, /href="https:\/\/x\.com"/);
+  assert.match(out, /src="\/penn-notes\/sync\/a\.jpg"/);
+  assert.match(out, /src="https:\/\/img\.penn-notes\.draftly\.cn\/sync\/a\.jpg"/);
+  assert.equal(pennRewriteRootUrlsInHtml(html, "/"), html);
+});
+
 // ── build-home ──
 console.log("\nbuild-home:");
 
@@ -123,6 +147,25 @@ test("PENN_BASE prefixes generated homepage hrefs", () => {
   run("node scripts/build-home.mjs");
 });
 
+// ── build-lists ──
+console.log("\nbuild-lists:");
+
+test("generates collect and books from JSON", () => {
+  run("node scripts/build-lists.mjs");
+  const collect = fs.readFileSync(
+    path.join(root, "website/collect/index.md"),
+    "utf8",
+  );
+  const books = fs.readFileSync(
+    path.join(root, "website/books/index.md"),
+    "utf8",
+  );
+  assert.ok(collect.includes("collect-page"), "collect page markup");
+  assert.ok(collect.includes("collect-card"), "collect cards");
+  assert.ok(books.includes("books-page"), "books page markup");
+  assert.ok(books.includes("book-card"), "book cards");
+});
+
 // ── build-discover ──
 console.log("\nbuild-discover:");
 
@@ -136,6 +179,7 @@ test("generates notes-items.generated.json", () => {
   const first = items[0];
   assert.ok(first.title, "note should have a title");
   assert.ok(first.link, "note should have a link");
+  assert.ok("updated" in first, "note should expose updated field");
 });
 
 test("generates tags.generated.json", () => {

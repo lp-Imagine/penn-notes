@@ -1,0 +1,108 @@
+/* ── 阅读路径 / 专题 ── */
+.topics-paths {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 8px;
+}
+
+.topics-path {
+  padding: 0;
+}
+
+.topics-path-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+}
+
+.topics-path-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-text-1);
+}
+
+.topics-path-meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3);
+}
+
+.topics-path-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 55%, transparent);
+}
+
+.topics-step {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: stretch;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.topics-step:first-child {
+  border-top: 0;
+}
+
+.topics-step-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vp-c-text-3);
+  background: color-mix(in srgb, var(--accent, #3b82f6) 8%, transparent);
+  border-right: 1px solid var(--vp-c-divider);
+}
+
+.topics-step-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 12px 14px;
+  text-decoration: none !important;
+  color: inherit;
+  transition: background 0.15s ease;
+}
+
+.topics-step-link:hover {
+  background: var(--accent-soft, color-mix(in srgb, var(--accent, #3b82f6) 10%, transparent));
+}
+
+.topics-step-title {
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: var(--vp-c-text-1);
+  line-height: 1.45;
+}
+
+.topics-step-link:hover .topics-step-title {
+  color: var(--link, var(--accent, #3b82f6));
+}
+
+.topics-step-date {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  white-space: nowrap;
+}
+
+.vp-doc .topics-page ol,
+.vp-doc .topics-page li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,7 +1,7 @@
 # 计划：文章配图全部迁移至 CDN / 对象存储
 
-> 状态：阶段 B/C 代码已落地；历史迁移请跑 Actions「COS migrate images」或本地 `npm run cos:migrate`  
-> 更新日期：2026-08-26  
+> 状态：**已完成**（阶段 B/C 落地；配图走 COS 源站域名，仓内不再跟踪文章图）  
+> 更新日期：2026-09-07  
 > 范围：一期迁走 **全部文章配图**（AI 动态 + 笔记封面 + 旧笔记插图）。  
 > 背景：双托管后 Checkout / SCP 被约 **110MB+** 图片拖慢。配图上 COS，仓库与 dist 只留 HTML/CSS/JS 与站点图标。  
 >
@@ -25,7 +25,7 @@
 
 本期迁出（文章配图）：
 
-| 类型 | 现路径前缀 | COS 对象键前缀 |
+| 类型 | 旧路径前缀 | COS 对象键前缀 |
 |------|------------|----------------|
 | AI 动态配图 | `/news/YYYY-MM/…` | `news/YYYY-MM/…` |
 | 笔记封面 | `/sync/<id>/…` | `sync/<id>/…` |
@@ -38,44 +38,44 @@
 
 ---
 
-## 2. 现状：文章配图都在哪
+## 2. 现状（迁移后）
 
-全部在 `website/public/`（构建进 dist，再发宝塔 / Pages）。无独立对象存储。
+文章配图已在 COS，正文 / 卡片 / frontmatter 使用 **绝对 URL**  
+`https://img.penn-notes.draftly.cn/{news|sync|img/legacy}/…`。  
+`website/public/` 下 **不再** 存放新闻图、封面、legacy 插图（已从 git 移除）；仅保留 logo / favicon 等站点图标。
 
-| 类型 | 磁盘路径 | 引用方式 | 约体积 | 数量 | 本期 |
-|------|----------|----------|--------|------|------|
-| AI 动态配图 | `website/public/news/YYYY-MM/<hash>.*` | md：`![配图](/news/…)` | **~107MB** | ~234 | **迁** |
-| 笔记封面 | `website/public/sync/<id>/cover.jpg` 等 | frontmatter `cover:` + 正文 `<img src="/sync/…">` | ~7.5MB | ~14 | **迁** |
-| 旧笔记插图 | `website/public/img/legacy/…` | md：`![](/img/legacy/…)` | ~2.1MB | ~59 | **迁** |
-| 站点图标等 | `website/public/img/logo.svg`、favicon 等 | 主题 / config | 很小 | — | **留仓** |
-
-合计文章配图约 **~117MB**，是 clone / 部署的主要负担。
+| 类型 | 线上引用 | 说明 |
+|------|----------|------|
+| AI 动态配图 | `https://img.…/news/YYYY-MM/<hash>.*` | `resolve-news-images.mjs` 上传后写回 md |
+| 笔记封面 | `https://img.…/sync/<id>/cover.jpg` | ingest / 同步路径上传 COS |
+| 旧笔记插图 | `https://img.…/img/legacy/…` | 历史迁移已改写 |
+| 站点图标等 | `/img/logo.svg`、favicon 等（随 `PENN_BASE`） | 仍进仓、随站点部署 |
 
 ### 2.1 各流水线怎么写入
 
 **AI 动态**（`docs/NEWS.md`）
 
 1. 摘要 → `news/YYYY-MM/ai-news-*.md`
-2. `resolve-news-images.mjs` → 下载到 `public/news/…`，路径 `/news/…`
-3. `sync:news` / `build:home` 卡片 `image` 同路径
+2. `resolve-news-images.mjs` → 临时下载 → 上传 COS → md 写 `${COS_CDN_BASE}/news/…`
+3. `sync:news` / `build:home` 卡片 `image` 同为绝对 CDN URL
 
 **笔记封面**（`docs/SYNC.md`）
 
-1. ai-article 同步写入正文 + `website/public/sync/<sourceId>/…`
-2. frontmatter：`cover: /sync/<id>/cover.jpg`
-3. 正文常有 `<img class="article-cover" src="/sync/…">`
-4. `build-home` 的 `publicAssetSrc()`：**相对路径**（`/sync/…`）交给 Vite 按 `base` 改写；**绝对 `https://` 应原样输出**（已有 `https?://` 判断）
+1. ai-article 同步写入正文；封面经 COS 上传
+2. frontmatter：`cover: https://img.…/sync/<id>/cover.jpg`
+3. 正文：`<img class="article-cover" src="https://img.…/sync/…">`
+4. `build-home` 的 `publicAssetSrc()`：`https://` 原样输出；若仍有相对 `/sync/…` 会按 Vite `base` 处理（应尽快改成 CDN 绝对 URL）
 
 **旧笔记插图**
 
-1. 已本地化在 `public/img/legacy/`
-2. 正文 `![](/img/legacy/…)`；无单独下载流水线，主要靠历史迁移改写
+1. 已迁 COS；正文为 CDN 绝对 URL
+2. 无日常下载流水线；漏网可用 `npm run cos:migrate` / Actions「COS migrate images」补跑
 
-### 2.2 痛点
+### 2.2 已解决的痛点
 
-- 仓与 dist 随内容累积变大
-- 宝塔 Runner Checkout、`deploy-baota` 被图片主导
-- 主站 / Pages 双份静态图；迁 CDN 后两端只引同一 URL
+- 仓与 dist 不再被 ~110MB 配图拖慢
+- 宝塔 Runner Checkout / 部署以代码为主
+- 主站 / Pages 共用同一套 CDN URL，无需双份静态图
 
 ---
 
@@ -188,32 +188,14 @@ website/public/img/legacy/**
 
 ## 5. 实施阶段
 
-### 阶段 A — 基础设施
+| 阶段 | 内容 | 状态 |
+|------|------|------|
+| A | COS + 源站域名 + Secrets | 完成 |
+| B | 增量：新日报 / 新封面走 CDN | 完成 |
+| C | 历史全量迁移 + 从 git 移除配图 | 完成 |
+| D | 文档收尾 | 进行中（本文已按「迁移后」改写） |
 
-1. COS + CDN + HTTPS + Secrets  
-2. 小文件 Put / 公网 GET 验收  
-
-### 阶段 B — 增量写入走 CDN
-
-1. 改造 `resolve-news-images.mjs`（新日报）  
-2. 改造封面同步落点（新笔记封面）  
-3. 手工 / `workflow_dispatch` 验收新闻与一篇同步稿  
-
-**验收：** 新内容 md 中为 `https://img.…`；`public/news`、`public/sync` 不再新增对应文件。
-
-### 阶段 C — 历史全量迁移（一期必做）
-
-1. 跑迁移脚本：news + sync + img/legacy  
-2. 抽查旧日报、带封面笔记、含 legacy 插图的笔记  
-3. `git rm` 三类目录下图片并提交  
-4. 对比 Checkout / 部署耗时  
-
-**验收：** 旧文出图正常；仓库减少约 **110MB+**。
-
-### 阶段 D — 收尾
-
-1. 文档与（可选）CDN 告警  
-2. 确认 logo/favicon 仍在仓内且页面正常  
+补跑迁移：Actions → **COS migrate images**，或本地 `npm run cos:migrate`（需 `.env` 中 `COS_*`）。
 
 ---
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate sitemap.xml from built VitePress HTML files (GitHub Pages).
+ * Prefer article date/updated (and news digestDate) over HTML mtime.
  * Run after `vitepress build website`.
  */
 import fs from "node:fs";
@@ -9,6 +10,7 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "website", ".vitepress", "dist");
+const vp = path.join(root, "website", ".vitepress");
 const SITE_URL = "https://penn-notes.draftly.cn";
 
 function escapeXml(s) {
@@ -43,12 +45,80 @@ function htmlFileFor(p) {
   return path.join(dist, `${rel}.html`);
 }
 
+function normalizeKey(p) {
+  if (!p || p === "/") return "/";
+  let s = String(p).trim();
+  if (!s.startsWith("/")) s = `/${s}`;
+  if (s.length > 1 && s.endsWith("/")) s = s.slice(0, -1);
+  return s;
+}
+
+function isIsoDate(s) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(s);
+}
+
+function preferLater(a, b) {
+  if (!a) return b || "";
+  if (!b) return a;
+  return a >= b ? a : b;
+}
+
+function loadContentDates() {
+  const map = new Map();
+  const put = (link, date) => {
+    if (!link || !isIsoDate(date)) return;
+    const key = normalizeKey(link);
+    map.set(key, preferLater(map.get(key), date));
+  };
+
+  try {
+    const notes = JSON.parse(
+      fs.readFileSync(path.join(vp, "notes-items.generated.json"), "utf8"),
+    );
+    for (const n of notes) {
+      put(n.link, preferLater(n.updated, n.date));
+    }
+  } catch {
+    // ignore
+  }
+
+  try {
+    const news = JSON.parse(
+      fs.readFileSync(path.join(vp, "news-items.generated.json"), "utf8"),
+    );
+    for (const n of news) {
+      put(n.digestLink, n.digestDate || n.itemDate);
+    }
+  } catch {
+    // ignore
+  }
+
+  return map;
+}
+
+function lastmodFor(p, contentDates) {
+  const key = normalizeKey(p);
+  const fromContent =
+    contentDates.get(key) ||
+    (key !== "/" ? contentDates.get(`${key}/`) : "") ||
+    "";
+  if (fromContent) return fromContent;
+
+  const filePath = htmlFileFor(p);
+  try {
+    return new Date(fs.statSync(filePath).mtime).toISOString().slice(0, 10);
+  } catch {
+    return "";
+  }
+}
+
 function main() {
   if (!fs.existsSync(dist)) {
     console.warn("build-sitemap: dist missing, skip");
     return;
   }
 
+  const contentDates = loadContentDates();
   const urls = [];
   const walk = (dir) => {
     for (const name of fs.readdirSync(dir)) {
@@ -69,14 +139,12 @@ function main() {
   walk(dist);
   const unique = [...new Set(urls)].sort();
 
+  let fromContent = 0;
   const items = unique
     .map((p) => {
-      const filePath = htmlFileFor(p);
-      let lastmod = "";
-      try {
-        lastmod = new Date(fs.statSync(filePath).mtime).toISOString().slice(0, 10);
-      } catch {
-        // ignore
+      const lastmod = lastmodFor(p, contentDates);
+      if (contentDates.has(normalizeKey(p)) || contentDates.has(`${normalizeKey(p)}/`)) {
+        fromContent += 1;
       }
       return (
         "  <url>\n" +
@@ -93,7 +161,9 @@ function main() {
     `${items}\n` +
     `</urlset>\n`;
   fs.writeFileSync(path.join(dist, "sitemap.xml"), xml);
-  console.log(`build-sitemap: ${unique.length} urls -> sitemap.xml`);
+  console.log(
+    `build-sitemap: ${unique.length} urls -> sitemap.xml (${fromContent} lastmod from content dates)`,
+  );
 }
 
 main();

@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { defineConfig, type HeadConfig } from "vitepress";
 import { pennCalloutsPlugin } from "./markdown-callouts";
-import { pennBase, pennCanonicalUrl, pennSiteUrl } from "../../scripts/penn-base.mjs";
+import { pennBase, pennCanonicalUrl, pennSiteUrl, pennRewriteRootUrlsInHtml } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 
@@ -82,7 +82,7 @@ export default defineConfig({
     // 末尾空白 cell：标签 + 可含 &nbsp; / 全角空格 / 空白 / 嵌套空标签（strong/em/span/br 等）
     const EMPTY_CELL =
       /<t[hd](?:\s[^>]*)?>(?:&nbsp;|&#160;|&#xa0;|\s|<(?:strong|em|b|i|code|span)\b[^>]*>(?:\s|&nbsp;|&#160;|&#xa0;)*<\/(?:strong|em|b|i|code|span)>|<br\s*\/?>)*<\/t[hd]>\s*$/i;
-    return html.replace(
+    let out = html.replace(
       /<table\b[^>]*>[\s\S]*?<\/table>/g,
       (table) => {
         const cleaned = table.replace(
@@ -95,6 +95,9 @@ export default defineConfig({
         return `<div class="vp-table-scroll">${cleaned}</div>`;
       },
     );
+    // 手写页（about/collect/books）raw HTML 的 /news/ 等；Pages 备份需带 PENN_BASE
+    out = pennRewriteRootUrlsInHtml(out, BASE);
+    return out;
   },
   // Post-process built HTML so icons sit at the very start of <head>
   async buildEnd(siteConfig) {
@@ -220,10 +223,11 @@ export default defineConfig({
       { text: "首页", link: "/" },
       {
         text: "目录",
-        activeMatch: "/news/|/tags/|/archive/",
+        activeMatch: "/news/|/tags/|/archive/|/topics/",
         items: [
           { text: "AI 动态", link: "/news/", activeMatch: "/news/" },
           { text: "标签", link: "/tags/", activeMatch: "/tags/" },
+          { text: "阅读路径", link: "/topics/", activeMatch: "/topics/" },
           { text: "归档", link: "/archive/", activeMatch: "/archive/" },
         ],
       },
@@ -268,10 +272,17 @@ export default defineConfig({
       options: {
         /* 默认简洁结果；保留详情切换按钮，用户可手动开启正文摘要 */
         detailedView: "auto",
+        miniSearch: {
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true,
+            boost: { title: 5, text: 2, titles: 3 },
+          },
+        },
         translations: {
           button: {
-            buttonText: "搜索",
-            buttonAriaLabel: "搜索",
+            buttonText: "搜索笔记 / 动态",
+            buttonAriaLabel: "搜索笔记与 AI 动态",
           },
           modal: {
             displayDetails: "显示正文摘要",

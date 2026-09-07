@@ -105,6 +105,7 @@ function parseFm(raw) {
       tags: [],
       series: "",
       seriesOrder: 0,
+      updated: "",
     };
   }
   const end = raw.indexOf("\n---", 3);
@@ -119,6 +120,7 @@ function parseFm(raw) {
       tags: [],
       series: "",
       seriesOrder: 0,
+      updated: "",
     };
   }
   const yaml = raw.slice(4, end);
@@ -138,6 +140,7 @@ function parseFm(raw) {
     tags: parseTags(yaml),
     series: get("series"),
     seriesOrder: orderRaw ? Number.parseInt(orderRaw, 10) || 0 : 0,
+    updated: get("updated").slice(0, 10),
   };
 }
 
@@ -163,6 +166,7 @@ function collectNotes() {
         tags: fm.tags,
         series: fm.series || "",
         seriesOrder: fm.seriesOrder,
+        updated: fm.updated || "",
       });
     }
   }

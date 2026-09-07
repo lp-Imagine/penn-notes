@@ -16,6 +16,7 @@ import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
+import TopicsBrowse from "./TopicsBrowse.vue";
 import "./custom.css";
 import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
@@ -846,6 +847,14 @@ const Layout = defineComponent({
               ? h(Comments)
               : null,
           ],
+          "layout-top": () => [
+            h(
+              "a",
+              { class: "skip-link", href: "#VPContent" },
+              "跳到正文",
+            ),
+            slots["layout-top"]?.(),
+          ],
           "layout-bottom": () => [
             slots["layout-bottom"]?.(),
             h(AssistantWidget),
@@ -982,6 +991,7 @@ export default {
     app.component("NewsDigestArchive", NewsDigestArchive);
     app.component("NewsRssSubscribe", NewsRssSubscribe);
     app.component("TagsBrowse", TagsBrowse);
+    app.component("TopicsBrowse", TopicsBrowse);
     app.component("NotesArchive", NotesArchive);
     app.component("RecentPage", RecentPage);
   },

@@ -1,0 +1,117 @@
+{
+  "title": "书单",
+  "description": "前端、后端与 AI 相关技术书籍",
+  "lead": "闲下来看看书；记录读过、在读与计划中的技术书。",
+  "books": [
+    {
+      "title": "JavaScript 高级程序设计（第 4 版）",
+      "url": "https://www.ituring.com.cn/book/2472",
+      "cover": "https://file.ituring.com.cn/LargeCover/20080d81a4fb8a268c40",
+      "coverAlt": "JavaScript 高级程序设计（第 4 版）封面",
+      "author": "[美] 马特·弗里斯比（Matt Frisbie）",
+      "published": "2020-09-11",
+      "status": "done",
+      "stars": 5,
+      "desc": "JavaScript 经典新版，涵盖 ECMAScript 2019，从基础到高级特性，适合系统补全前端语言功底。"
+    },
+    {
+      "title": "精通 CSS：高级 Web 标准解决方案（第 3 版）",
+      "url": "https://www.ituring.com.cn/book/1910",
+      "cover": "https://file.ituring.com.cn/LargeCover/1901327acd3956e426b9",
+      "coverAlt": "精通 CSS（第 3 版）封面",
+      "author": "安迪·巴德（Andy Budd）等",
+      "published": "2019-02-25",
+      "status": "done",
+      "stars": 5,
+      "desc": "结合 CSS3 与 HTML5 特性全面改写，布局、排版与视觉细节都值得反复翻。"
+    },
+    {
+      "title": "深入浅出 Node.js",
+      "url": "https://www.ituring.com.cn/book/1290",
+      "cover": "https://file.ituring.com.cn/LargeCover/010062ed2dd24ac49ff9",
+      "coverAlt": "深入浅出 Node.js 封面",
+      "author": "朴灵",
+      "published": "2013-11-25",
+      "status": "done",
+      "stars": 4,
+      "desc": "从不同视角讲 Node 内在机制，适合想理解运行时而不只会调 API 的读者。"
+    },
+    {
+      "title": "你不知道的 JavaScript（上卷）",
+      "url": "https://www.ituring.com.cn/book/1488",
+      "cover": "https://file.ituring.com.cn/LargeCover/01003352233cf3572e64",
+      "coverAlt": "你不知道的 JavaScript（上卷）封面",
+      "author": "Kyle Simpson",
+      "published": "2015-04-14",
+      "status": "done",
+      "stars": 5,
+      "desc": "直面 JS 语言内部机制，初学者可建立正确模型，老手也能补盲区。"
+    },
+    {
+      "title": "React 设计模式与最佳实践",
+      "url": "https://www.ituring.com.cn/book/2007",
+      "cover": "https://file.ituring.com.cn/LargeCover/180769e560ba42c2cfb7",
+      "coverAlt": "React 设计模式与最佳实践封面",
+      "author": "[意] 米凯莱·贝尔托利（Michele Bertoli）",
+      "published": "2018-08-11",
+      "status": "reading",
+      "stars": 5,
+      "desc": "从组件设计、状态管理到可测试性，系统梳理 React 工程实践中的常见模式。"
+    },
+    {
+      "title": "微前端设计与实现",
+      "url": "https://www.ituring.com.cn/book/2850",
+      "cover": "https://file.ituring.com.cn/LargeCover/22071bc47efe033a1403",
+      "coverAlt": "微前端设计与实现封面",
+      "author": "[意] 卢卡·梅扎利拉（Luca Mezzalira）",
+      "published": "2022-08-02",
+      "status": "plan",
+      "stars": 4,
+      "desc": "讲清微前端架构的拆分策略、集成方式与团队协作，适合大型前端应用演进。"
+    },
+    {
+      "title": "学透 Spring：从入门到项目实战",
+      "url": "https://www.ituring.com.cn/book/2910",
+      "cover": "https://file.ituring.com.cn/LargeCover/23027cf5bbb49553f373",
+      "coverAlt": "学透 Spring 封面",
+      "author": "丁雪丰",
+      "published": "2023-03-02",
+      "status": "reading",
+      "stars": 5,
+      "desc": "Spring 核心概念到项目落地一条龙，适合补全 Java 后端框架体系。"
+    },
+    {
+      "title": "Python 3 网络爬虫开发实战（第 2 版）",
+      "url": "https://www.ituring.com.cn/book/2847",
+      "cover": "https://file.ituring.com.cn/LargeCover/2111779cd4b0e82de5fa",
+      "coverAlt": "Python 3 网络爬虫开发实战（第 2 版）封面",
+      "author": "崔庆才",
+      "published": "2021-11-24",
+      "status": "plan",
+      "stars": 4,
+      "desc": "从请求、解析到反爬与分布式，Python 爬虫实战手册，数据采集场景很实用。"
+    },
+    {
+      "title": "深度学习在自然语言处理中的应用：从词表征到 ChatGPT",
+      "url": "https://www.ituring.com.cn/book/2567",
+      "cover": "https://file.ituring.com.cn/LargeCover/2305a5ba3e7cbb9802de",
+      "coverAlt": "深度学习在自然语言处理中的应用封面",
+      "author": "张镭",
+      "published": "2023-06-06",
+      "status": "reading",
+      "stars": 5,
+      "desc": "从词向量到预训练大模型，系统梳理 NLP 深度学习脉络，贴近当前 AI 应用。"
+    },
+    {
+      "title": "信息检索与深度学习",
+      "url": "https://www.ituring.com.cn/book/3240",
+      "cover": "https://file.ituring.com.cn/LargeCover/2312820d00e64180182d",
+      "coverAlt": "信息检索与深度学习封面",
+      "author": "郭嘉丰、兰艳艳、程学旗",
+      "published": "2024-01-05",
+      "status": "plan",
+      "stars": 4,
+      "desc": "检索系统与深度学习结合，覆盖排序、表示学习与搜索场景，RAG 方向值得读。"
+    }
+  ]
+}

@@ -8,14 +8,14 @@ section: web
 group: javascript
 source: ai-article
 sourceId: cmt9waifo0012zzkoqo2mpuyt
-cover: /sync/cmt9waifo0012zzkoqo2mpuyt/cover.jpg
+cover: https://img.penn-notes.draftly.cn/sync/cmt9waifo0012zzkoqo2mpuyt/cover.jpg
 draft: false
 ---
 # App Router 缓存翻车：从数据不刷新说起
 
 <p class="article-meta"><time datetime="2026-08-26">2026-08-26</time><span class="article-tag">NextJs</span></p>
 
-<img class="article-cover" src="/sync/cmt9waifo0012zzkoqo2mpuyt/cover.jpg" alt="「App Router 缓存翻车：从数据不刷新说起」封面" />
+<img class="article-cover" src="https://img.penn-notes.draftly.cn/sync/cmt9waifo0012zzkoqo2mpuyt/cover.jpg" alt="「App Router 缓存翻车：从数据不刷新说起」封面" />
 
 ## 一次翻车：页面数据就是不刷新
 

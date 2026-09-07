@@ -270,7 +270,7 @@ function writeSectionIndex(section, items) {
                 const cover = meta?.cover || "";
                 // 注意：VitePress md 里 <a> 不能包 <div>，且标签间不能空行，否则会报 missing end tag
                 const media = cover
-                  ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(cover))}" alt="" loading="lazy" /></span>`
+                  ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(cover))}" alt="${escapeHtml(item.text)}" loading="lazy" /></span>`
                   : "";
                 const cardClass = cover
                   ? "section-card section-card--media"
@@ -356,7 +356,7 @@ function buildHome(allBySection) {
 ${recent
   .map((r) => {
     const thumb = r.cover
-      ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="" loading="lazy" />`
+      ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="${escapeHtml(r.title)}" loading="lazy" />`
       : `<span class="home-note-thumb home-note-thumb--empty" aria-hidden="true"></span>`;
     return `  <a class="home-note" href="${link(r.link)}">${thumb}<span class="home-note-body"><time datetime="${r.date}">${r.date}</time><span class="home-note-title">${escapeHtml(r.title)}</span></span></a>`;
   })
@@ -371,7 +371,7 @@ ${recent
 ${newsHeadlines
   .map((r) => {
     const media = r.image
-      ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(r.image))}" alt="" loading="lazy" /></span>`
+      ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(r.image))}" alt="${escapeHtml(r.title)}" loading="lazy" /></span>`
       : "";
     const tags = [
       r.section
