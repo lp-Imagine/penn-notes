@@ -98,9 +98,12 @@ function hubUrls() {
   return [
     siteUrl("/"),
     siteUrl("news/"),
-    siteUrl("about/"),
+    siteUrl("topics/"),
     siteUrl("tags/"),
     siteUrl("archive/"),
+    siteUrl("collect/"),
+    siteUrl("books/"),
+    siteUrl("about/"),
   ];
 }
 

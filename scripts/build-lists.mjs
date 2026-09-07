@@ -39,6 +39,8 @@ const STATUS_LABEL = {
   plan: "计划中",
 };
 
+const BOOK_STATUS = new Set(["done", "reading", "plan"]);
+
 function buildCollect(data) {
   const totalLinks = data.groups.reduce((n, g) => n + g.links.length, 0);
   const groupsHtml = data.groups
@@ -99,12 +101,12 @@ function buildBooks(data) {
   }
   const cards = data.books
     .map((b) => {
-      const statusClass =
-        b.status === "plan" ? " book-status--plan" : "";
-      const label = STATUS_LABEL[b.status] || b.status;
+      const status = BOOK_STATUS.has(b.status) ? b.status : "reading";
+      const statusClass = status === "plan" ? " book-status--plan" : "";
+      const label = STATUS_LABEL[status] || status;
       const stars = starsHtml(b.stars);
       const alt = escapeHtml(b.coverAlt || `${b.title}封面`);
-      return `    <article class="book-card"><div class="book-card-head"><a class="book-container" href="${escapeHtml(b.url)}" target="_blank" rel="noopener noreferrer"><div class="book"><img src="${escapeHtml(b.cover)}" alt="${alt}" loading="lazy" /></div></a><div class="book-meta"><h2 class="book-title"><a href="${escapeHtml(b.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(b.title)}</a></h2><p class="book-author">${escapeHtml(b.author)}</p><p class="book-detail">出版：${escapeHtml(b.published)}</p><span class="book-status${statusClass}">${escapeHtml(label)}<span class="book-stars" aria-label="推荐指数 ${b.stars} 星">${stars}</span></span></div></div><p class="book-desc">${escapeHtml(b.desc)}</p></article>`;
+      return `    <article class="book-card" data-status="${escapeHtml(status)}"><div class="book-card-head"><a class="book-container" href="${escapeHtml(b.url)}" target="_blank" rel="noopener noreferrer"><div class="book"><img src="${escapeHtml(b.cover)}" alt="${alt}" loading="lazy" /></div></a><div class="book-meta"><h2 class="book-title"><a href="${escapeHtml(b.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(b.title)}</a></h2><p class="book-author">${escapeHtml(b.author)}</p><p class="book-detail">出版：${escapeHtml(b.published)}</p><span class="book-status${statusClass}">${escapeHtml(label)}<span class="book-stars" aria-label="推荐指数 ${b.stars} 星">${stars}</span></span></div></div><p class="book-desc">${escapeHtml(b.desc)}</p></article>`;
     })
     .join("\n");
 
@@ -123,12 +125,18 @@ next: false
     <p class="section-kicker">Bookshelf</p>
     <h1 class="section-title">${escapeHtml(data.title)}</h1>
     <p class="section-lead">${escapeHtml(data.lead)}</p>
-    <p class="section-count">共 ${data.books.length} 本 · ${counts.done} 本已读 · ${counts.reading} 本在读 · ${counts.plan} 本计划中</p>
+    <p class="section-count" data-books-count>共 ${data.books.length} 本 · ${counts.done} 本已读 · ${counts.reading} 本在读 · ${counts.plan} 本计划中</p>
     <div class="books-hero-actions">
       <a class="books-hero-btn books-hero-btn--primary" href="${link("/collect/")}">外链收藏</a>
       <a class="books-hero-btn" href="${link("/recent/")}">近况</a>
     </div>
   </header>
+  <div class="books-filter" role="list" aria-label="按阅读状态筛选" data-total="${data.books.length}" data-done="${counts.done}" data-reading="${counts.reading}" data-plan="${counts.plan}">
+    <button type="button" class="books-filter-chip is-active" data-status="" role="listitem">全部<span class="books-filter-count">${data.books.length}</span></button>
+    <button type="button" class="books-filter-chip" data-status="done" role="listitem">已读<span class="books-filter-count">${counts.done}</span></button>
+    <button type="button" class="books-filter-chip" data-status="reading" role="listitem">在读<span class="books-filter-count">${counts.reading}</span></button>
+    <button type="button" class="books-filter-chip" data-status="plan" role="listitem">计划中<span class="books-filter-count">${counts.plan}</span></button>
+  </div>
   <div class="books-grid">
 ${cards}
   </div>

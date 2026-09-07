@@ -41,7 +41,10 @@ jobs:
         run: npm ci
 
       - name: Test
-        run: npm test
+        run: |
+          npm test
+          npm run build:lists
+          npm run check:lists
 
   # Pages 与宝塔并行：海外 SSH 再慢也不挡备份站更新
   deploy-pages:

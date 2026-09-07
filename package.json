@@ -15,6 +15,7 @@
     "notes:feed": "node scripts/build-notes-feed.mjs",
     "build:home": "node scripts/build-home.mjs",
     "build:lists": "node scripts/build-lists.mjs",
+    "check:lists": "node scripts/check-lists.mjs",
     "build:discover": "node scripts/build-discover.mjs",
     "build:notes-feed": "node scripts/build-notes-feed.mjs",
     "build:assistant-index": "node scripts/build-assistant-index.mjs",

@@ -21,6 +21,7 @@ import "./custom.css";
 import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
 import { setupFlyingFish } from "./flying-fish";
+import { setupSearchEnhance, teardownSearchEnhance } from "./search-enhance";
 import { setupSiteRuntime } from "./site-runtime";
 
 let zoom: Zoom | undefined;
@@ -876,6 +877,7 @@ export default {
 
     onMounted(() => {
       scheduleRefresh();
+      setupSearchEnhance();
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
         // 含 style：日报栏目筛选会改 display，需重算章节高亮
@@ -981,6 +983,7 @@ export default {
 
     onBeforeUnmount(() => {
       teardownSiteRuntime?.();
+      teardownSearchEnhance();
     });
   },
   enhanceApp({ app }) {

@@ -1,22 +1,65 @@
-/** 书单 3D 入场：仅对「滚进视口」的书播放，首屏已可见的不播。 */
+/** 书单：状态筛选 + 3D 入场（仅对滚进视口的书播放） */
 
 let observer: IntersectionObserver | undefined;
 
-function teardown() {
+function teardownAnimation() {
   observer?.disconnect();
   observer = undefined;
 }
 
-export function setupBooksShelf() {
-  const page = document.querySelector<HTMLElement>(".books-page");
-  if (!page) {
-    teardown();
-    return;
-  }
-  // 避免 MutationObserver 看到 is-inview 后又重置动画
+function setupBooksFilter(page: HTMLElement) {
+  const filter = page.querySelector<HTMLElement>(".books-filter");
+  if (!filter || filter.dataset.bound === "1") return;
+  filter.dataset.bound = "1";
+
+  const countEl = page.querySelector<HTMLElement>("[data-books-count]");
+  const cards = [...page.querySelectorAll<HTMLElement>(".book-card")];
+  const totals = {
+    "": Number(filter.dataset.total || cards.length),
+    done: Number(filter.dataset.done || 0),
+    reading: Number(filter.dataset.reading || 0),
+    plan: Number(filter.dataset.plan || 0),
+  };
+
+  const apply = (status: string) => {
+    let shown = 0;
+    for (const card of cards) {
+      const match = !status || card.dataset.status === status;
+      card.hidden = !match;
+      if (match) shown += 1;
+    }
+    filter.querySelectorAll<HTMLButtonElement>(".books-filter-chip").forEach((btn) => {
+      const active = (btn.dataset.status || "") === status;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    if (countEl) {
+      if (!status) {
+        countEl.textContent = `共 ${totals[""]} 本 · ${totals.done} 本已读 · ${totals.reading} 本在读 · ${totals.plan} 本计划中`;
+      } else {
+        const label =
+          status === "done" ? "已读" : status === "reading" ? "在读" : "计划中";
+        countEl.textContent = `当前 ${shown} 本${label}（共 ${totals[""]} 本）`;
+      }
+    }
+  };
+
+  filter.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement | null)?.closest<HTMLButtonElement>(
+      ".books-filter-chip",
+    );
+    if (!btn || !filter.contains(btn)) return;
+    e.preventDefault();
+    apply(btn.dataset.status || "");
+  });
+
+  apply("");
+}
+
+function setupBooksAnimation(page: HTMLElement) {
   if (page.dataset.bookShelfBound === "1" && observer) return;
 
-  teardown();
+  teardownAnimation();
   page.dataset.bookShelfBound = "1";
 
   const cards = [...page.querySelectorAll<HTMLElement>(".book-card")];
@@ -60,4 +103,14 @@ export function setupBooksShelf() {
     card.style.setProperty("--book-stagger", String(i % 4));
     observer?.observe(card);
   });
+}
+
+export function setupBooksShelf() {
+  const page = document.querySelector<HTMLElement>(".books-page");
+  if (!page) {
+    teardownAnimation();
+    return;
+  }
+  setupBooksFilter(page);
+  setupBooksAnimation(page);
 }

@@ -164,6 +164,20 @@ test("generates collect and books from JSON", () => {
   assert.ok(collect.includes("collect-card"), "collect cards");
   assert.ok(books.includes("books-page"), "books page markup");
   assert.ok(books.includes("book-card"), "book cards");
+  assert.ok(books.includes("books-filter"), "books status filter");
+  assert.ok(books.includes('data-status="done"'), "books cards have status");
+});
+
+test("check-lists validates JSON schema", () => {
+  const out = run("node scripts/check-lists.mjs");
+  assert.ok(out.includes("ok schema"), "schema should pass");
+});
+
+test("topics page exists", () => {
+  const f = path.join(root, "website/topics/index.md");
+  assert.ok(fs.existsSync(f), "topics/index.md should exist");
+  const content = fs.readFileSync(f, "utf8");
+  assert.ok(content.includes("TopicsBrowse"), "should mount TopicsBrowse");
 });
 
 // ── build-discover ──
@@ -267,6 +281,16 @@ test("sidebar items have valid links (no undefined/null)", () => {
   const content = fs.readFileSync(f, "utf8");
   assert.ok(!content.includes("undefined"), "should not contain 'undefined'");
   assert.ok(!content.includes(": null"), "should not contain null links");
+});
+
+// ── baidu-push hubs ──
+console.log("\nbaidu-push:");
+
+test("site hub list includes topics/collect/books", () => {
+  const out = run("node scripts/baidu-push.mjs --dry-run --mode=site --limit=40");
+  assert.ok(out.includes("/topics/"), "should push topics hub");
+  assert.ok(out.includes("/collect/"), "should push collect hub");
+  assert.ok(out.includes("/books/"), "should push books hub");
 });
 
 // ── Summary ──
