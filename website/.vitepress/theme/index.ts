@@ -24,6 +24,7 @@ import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
 import { setupCodeCollapse } from "./code-collapse";
 import { setupFlyingFish } from "./flying-fish";
+import { ensureHeroParticles, teardownHeroParticles } from "./hero-particles";
 import { setupSearchEnhance, teardownSearchEnhance } from "./search-enhance";
 import { setupSiteRuntime } from "./site-runtime";
 
@@ -778,10 +779,18 @@ function enhanceArticleImages() {
 
 /** 有封面时：把 h1 + meta + cover 合成一体文头 */
 function enhanceArticleHero() {
-  if (!isNoteArticleDetail(currentSitePath())) return;
+  if (!isNoteArticleDetail(currentSitePath())) {
+    teardownHeroParticles();
+    return;
+  }
 
   const doc = document.querySelector<HTMLElement>(".vp-doc");
-  if (!doc || doc.querySelector(".article-hero")) return;
+  if (!doc) return;
+
+  if (doc.querySelector(".article-hero")) {
+    ensureHeroParticles();
+    return;
+  }
 
   // VitePress 常在 .vp-doc 内再包一层 <div>，不能只用 :scope > h1
   const root =
@@ -797,7 +806,11 @@ function enhanceArticleHero() {
   const cover =
     root.querySelector<HTMLImageElement>(":scope > img.article-cover") ||
     coverWrapped;
-  if (!h1 || !cover) return;
+  if (!h1 || !cover) {
+    // 无封面文头：确保拆掉上一篇残留的粒子
+    ensureHeroParticles();
+    return;
+  }
 
   const coverParent = cover.parentElement;
 
@@ -821,6 +834,8 @@ function enhanceArticleHero() {
   ) {
     coverParent.remove();
   }
+
+  ensureHeroParticles();
 }
 
 /** 速览挪到文头之后：封面文章贴 hero，无封面贴 meta/h1 */
@@ -1028,7 +1043,8 @@ export default {
                     n instanceof Element &&
                     (n.classList.contains("medium-zoom-overlay") ||
                       n.classList.contains("medium-zoom-image--opened") ||
-                      n.classList.contains("reading-time")),
+                      n.classList.contains("reading-time") ||
+                      n.classList.contains("article-hero-particles")),
                 )
               ) {
                 return false;
@@ -1143,6 +1159,7 @@ export default {
     onBeforeUnmount(() => {
       teardownSiteRuntime?.();
       teardownSearchEnhance();
+      teardownHeroParticles();
     });
   },
   enhanceApp({ app }) {
