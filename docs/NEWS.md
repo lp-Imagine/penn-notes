@@ -14,9 +14,12 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`
 5. `scripts/resolve-news-images.mjs` — 从原文抓 `og:image`，上传腾讯云 COS，正文写 `https://img.penn-notes.draftly.cn/news/…`
 6. 提交 **`news/` 源稿**（配图在 COS，不再进 git）
-7. 构建部署时 `sync:news` + `build:home` 等重生生成物，再发布到 GitHub Pages / 宝塔
+7. 同一次流水线跑 `sync:friends`，构建时再写入友链动态页（生成物不进 git）
+8. **每日都会**构建并部署 GitHub Pages / 宝塔（即使日报已存在被 skip，也会刷新友链动态）
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
+>
+> [友链动态](../website/friends/) 与 AI 动态共用同一条 Daily 流水线与宝塔 07:00 触发。
 
 ## 定时策略
 

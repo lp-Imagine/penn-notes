@@ -7,6 +7,7 @@ import ArticleOutdateNotice from "./ArticleOutdateNotice.vue";
 import ArticleSummary from "./ArticleSummary.vue";
 import AssistantWidget from "./AssistantWidget.vue";
 import Comments from "./Comments.vue";
+import FriendsMomentsPage from "./FriendsMomentsPage.vue";
 import HomeTypewriter from "./HomeTypewriter.vue";
 import NewsArchive from "./NewsArchive.vue";
 import NewsDigestArchive from "./NewsDigestArchive.vue";
@@ -1146,6 +1147,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.component("AboutFriends", AboutFriends);
+    app.component("FriendsMomentsPage", FriendsMomentsPage);
     app.component("HomeTypewriter", HomeTypewriter);
     app.component("AssistantWidget", AssistantWidget);
     app.component("NewsArchive", NewsArchive);

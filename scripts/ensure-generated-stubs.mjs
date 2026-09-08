@@ -35,6 +35,7 @@ const stubs = [
   [path.join(vp, "news-items.generated.json"), "[]\n"],
   [path.join(vp, "news-digests.generated.json"), '{"items":[]}\n'],
   [path.join(vp, "news-recent.generated.json"), "[]\n"],
+  [path.join(vp, "friends-moments.generated.json"), '{"generatedAt":"","total":0,"items":[]}\n'],
   [path.join(vp, "notes-items.generated.json"), "[]\n"],
   [path.join(vp, "tags.generated.json"), "{}\n"],
   [

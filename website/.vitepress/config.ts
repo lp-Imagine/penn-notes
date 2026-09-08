@@ -254,11 +254,12 @@ export default defineConfig({
       },
       {
         text: "清单",
-        activeMatch: "/collect/|/books/|/recent/",
+        activeMatch: "/collect/|/books/|/recent/|/friends/",
         items: [
           { text: "收藏", link: "/collect/", activeMatch: "/collect/" },
           { text: "书单", link: "/books/", activeMatch: "/books/" },
           { text: "近况", link: "/recent/", activeMatch: "/recent/" },
+          { text: "友链动态", link: "/friends/", activeMatch: "/friends/" },
         ],
       },
       {

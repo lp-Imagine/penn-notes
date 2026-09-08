@@ -77,6 +77,10 @@ jobs:
       - name: Sync to website
         run: npm run sync:news && npm run build:home
 
+      # 友链动态：与 AI 动态同节奏拉取（生成物不进 git，构建时 prebuild 还会再跑一次）
+      - name: Sync friends moments
+        run: npm run sync:friends -- --soft
+
       - name: Commit and push
         id: commit
         run: |
@@ -96,8 +100,8 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       # GITHUB_TOKEN 推送不会触发 CI，所以这里直接发 Pages；宝塔交给 self-hosted job。
+      # 即使日报无变更也构建部署，保证友链动态每日刷新。
       - name: Build (GitHub Pages backup)
-        if: steps.commit.outputs.changed == 'true'
         env:
           PENN_BASE: /penn-notes/
           UMAMI_URL: ${{ secrets.UMAMI_URL }}
@@ -110,7 +114,6 @@ jobs:
         run: npm run build
 
       - name: Deploy to gh-pages
-        if: steps.commit.outputs.changed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -124,13 +127,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "auto deploy news, $commit_info"
+          git commit -m "auto deploy news/friends, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
 
   deploy-baota:
     needs: generate
-    if: needs.generate.outputs.changed == 'true'
+    # 每日必部署：友链动态依赖构建时 sync:friends，不能仅在有新闻 commit 时才更新主站
+    if: needs.generate.result == 'success'
     runs-on: [self-hosted, baota]
     env:
       HOME: /root

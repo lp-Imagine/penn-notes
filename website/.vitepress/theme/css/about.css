@@ -755,3 +755,126 @@ body:has(.about-page) .VPContent,
     padding: 14px 38px 14px 14px;
   }
 }
+
+/* ===== 友链动态页 ===== */
+.friends-moments-updated {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+.friends-moments-empty {
+  margin: 8px 0 24px;
+  padding: 28px 20px;
+  border: 1px dashed color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 14px;
+  text-align: center;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.friends-moments-empty p {
+  margin: 0;
+}
+
+.friends-moments-empty-hint {
+  margin-top: 8px !important;
+  font-size: 0.85rem;
+  color: var(--text-3);
+}
+
+.friends-moments-empty-hint code {
+  font-size: 0.8em;
+}
+
+.friends-moments-list {
+  list-style: none;
+  margin: 4px 0 32px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.friends-moments-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+
+.friends-moments-item:hover {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 45%, var(--surface));
+  transform: translateY(-1px);
+}
+
+.friends-moments-avatar-link {
+  flex-shrink: 0;
+  line-height: 0;
+  text-decoration: none !important;
+}
+
+.friends-moments-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: var(--surface-2);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.friends-moments-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.friends-moments-title {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text) !important;
+  text-decoration: none !important;
+}
+
+.friends-moments-title:hover {
+  color: var(--link, var(--accent)) !important;
+}
+
+.friends-moments-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text-3);
+}
+
+.friends-moments-site {
+  color: var(--text-2) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.friends-moments-site:hover {
+  color: var(--link, var(--accent)) !important;
+}
+
+.friends-moments-date {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
