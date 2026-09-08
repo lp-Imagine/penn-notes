@@ -90,8 +90,8 @@ function onAvatarError(event: Event, name: string) {
       <p class="section-kicker">Friends</p>
       <h1 class="section-title">友链动态</h1>
       <p class="section-lead">
-        订阅友链站点的 RSS/Atom，汇总最近更新；与 AI 动态同一条每日流水线自动刷新。无
-        feed 的友链不会出现在这里。
+        订阅友链 RSS/Atom，汇总近半年更新（每站最近几篇；半年未更的站不收录）。与 AI
+        动态同一条每日流水线自动刷新；无 feed 的友链不会出现在这里。
       </p>
       <p class="section-count">{{ countLabel }}</p>
       <p v-if="updatedLabel" class="friends-moments-updated">{{ updatedLabel }}</p>

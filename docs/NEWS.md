@@ -19,7 +19,7 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 > 注意：Actions 用 `GITHUB_TOKEN` 推送 **不会** 再触发另一个 workflow。因此 `daily-news.yml` 在生成后会**自行 build 并部署到 gh-pages**，不依赖 CI。
 >
-> [友链动态](../website/friends/) 与 AI 动态共用同一条 Daily 流水线与宝塔 07:00 触发。
+> [友链动态](../website/friends/) 与 AI 动态共用同一条 Daily 流水线与宝塔 07:00 触发；只汇总近半年更新。
 
 ## 定时策略
 
