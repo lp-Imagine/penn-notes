@@ -45,10 +45,9 @@ const feedbackReason = ref("");
 const firstVisit = ref(false);
 const showOnboard = ref(false);
 const fontScale = ref(1);
-const inputRef = ref<HTMLInputElement | null>(null);
+const inputRef = ref<HTMLTextAreaElement | null>(null);
 const listening = ref(false);
 const voiceSupported = ref(false);
-const sourcePreview = ref<{ title: string; summary: string } | null>(null);
 const readingSection = ref("");
 const panelW = ref(0);
 const panelH = ref(0);
@@ -97,44 +96,224 @@ const COMPARE_PROMPT = "对比当前这篇和站内相关文";
 const TOC_PROMPT = "本页有哪些章节？";
 const CODE_PROMPT = "解释本页主要代码";
 const TODAY_PROMPT = "今日要点是什么？";
+const SUMMARY_PROMPT = "总结一下当前这篇文章";
+const PITFALL_PROMPT = "有哪些容易踩的坑？";
+const TAKEAWAY_PROMPT = "这篇的核心结论是什么？";
 const ONBOARD_PROMPTS = [
   "本站有哪些内容？",
   PATH_PROMPT,
-  "总结一下当前这篇文章",
+  "最近在写什么？",
+  "前端入门该从哪篇看？",
 ];
+
+const DOC_SECTIONS = [
+  "/tech",
+  "/engineering",
+  "/backend",
+  "/web",
+  "/ui",
+  "/computer",
+  "/agent",
+  "/misc",
+  "/life",
+  "/ai",
+] as const;
+
+function pathParts(p: string) {
+  return p.split("/").filter(Boolean);
+}
+
+function isDocSection(p: string) {
+  return DOC_SECTIONS.some((s) => p === s || p.startsWith(`${s}/`));
+}
+
+function isDocIndex(p: string) {
+  return DOC_SECTIONS.some((s) => p === s);
+}
+
+/** 按栏目 / 子主题补充几条更贴页的提问 */
+function sectionExtraPrompts(p: string): string[] {
+  const [sec, topic = ""] = pathParts(p);
+  if (sec === "web") {
+    if (topic === "react") {
+      return ["React 相关还有哪些文？", "和 Hooks / Virtual DOM 怎么串起来？"];
+    }
+    if (topic === "vue") {
+      return ["Vue 相关还有哪些文？", "和组件通信 / 生命周期怎么串？"];
+    }
+    if (topic === "javascript") {
+      return ["JS / TS 相关还有哪些文？", "和 Promise / 异步怎么串起来？"];
+    }
+    if (topic === "ui-lib") {
+      return ["UI 组件库相关还有哪些？", "这类问题常见解法是什么？"];
+    }
+    return ["前端相关还有哪些文？", "这篇适合什么场景用？"];
+  }
+  if (sec === "ui") {
+    if (topic === "css") {
+      return ["还有哪些 CSS 布局技巧？", "深色模式相关怎么处理？"];
+    }
+    return ["UI / 样式相关还有哪些？", "有没有更简的写法？"];
+  }
+  if (sec === "engineering") {
+    if (topic === "git") return ["Git 相关手册还有哪些？", "常见协作场景怎么用？"];
+    if (topic === "npm") return ["npm / 包管理相关还有哪些？", "踩坑点有哪些？"];
+    if (topic === "toolchain") {
+      return ["工程工具链相关还有哪些？", "怎么落到日常工作流？"];
+    }
+    return ["工程化相关还有哪些？", "怎么落到日常工作流？"];
+  }
+  if (sec === "agent") {
+    return ["Agent 实践还有哪些？", "怎么落到日常工作流？"];
+  }
+  if (sec === "backend") {
+    return ["后端相关还有哪些文？", "和前端联调时要注意什么？"];
+  }
+  if (sec === "computer") {
+    return ["浏览器 / 计算机相关还有哪些？", "和前端渲染怎么对应？"];
+  }
+  if (sec === "tech") {
+    if (topic === "github") {
+      return ["GitHub 技巧还有哪些？", "有没有更快的检索方式？"];
+    }
+    return ["工具 / 文档相关还有哪些？", "有没有可直接套用的清单？"];
+  }
+  if (sec === "misc") {
+    return ["这类随想还有哪些？", "这篇想表达什么观点？"];
+  }
+  return ["站内还有哪些相关文？"];
+}
+
+function buildArticleQuickPrompts(p: string): string[] {
+  const items = [SUMMARY_PROMPT, TAKEAWAY_PROMPT, COMPARE_PROMPT, TOC_PROMPT];
+  if (pageHasCode()) items.splice(1, 0, CODE_PROMPT);
+  items.push(PITFALL_PROMPT, ...sectionExtraPrompts(p));
+  return uniquePrompts(items, 6);
+}
+
+function uniquePrompts(items: string[], limit: number) {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const q of items) {
+    const t = q.trim();
+    if (!t || seen.has(t)) continue;
+    seen.add(t);
+    out.push(t);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
 
 const quickPrompts = computed(() => {
   if (showOnboard.value && !messages.value.length) {
     return ONBOARD_PROMPTS;
   }
   const p = pathOnly.value;
-  if (p.startsWith("/news")) {
+
+  if (p === "/" || p === "") {
     return [
-      TODAY_PROMPT,
-      "这条动态在讲什么？",
-      "站内有没有相关实践文？",
+      "本站有哪些内容？",
+      "最近在写什么？",
+      PATH_PROMPT,
+      "前端入门该从哪篇看？",
+      "工程化相关有哪些？",
+      "Agent 实践从哪开始？",
     ];
   }
-  if (
-    p.startsWith("/tech") ||
-    p.startsWith("/engineering") ||
-    p.startsWith("/backend") ||
-    p.startsWith("/web") ||
-    p.startsWith("/ui") ||
-    p.startsWith("/computer") ||
-    p.startsWith("/agent") ||
-    p.startsWith("/misc") ||
-    p.startsWith("/life") ||
-    p.startsWith("/ai")
-  ) {
-    const items = ["总结一下当前这篇文章", COMPARE_PROMPT, TOC_PROMPT];
-    if (pageHasCode()) items.splice(1, 0, CODE_PROMPT);
-    return items.slice(0, 4);
+  if (p === "/news" || p === "/news/") {
+    return [
+      TODAY_PROMPT,
+      "最近有哪些动态？",
+      "挑一条值得深读的",
+      "站内有没有相关实践文？",
+      PATH_PROMPT,
+    ];
+  }
+  if (p.startsWith("/news/")) {
+    return [
+      "这条动态在讲什么？",
+      TODAY_PROMPT,
+      "和本站哪篇笔记最相关？",
+      "站内有没有相关实践文？",
+      "值得跟进的点有哪些？",
+    ];
+  }
+  if (p.startsWith("/books")) {
+    return [
+      "书架上有哪些书？",
+      "推荐一本入门书",
+      "和前端相关的书有哪些？",
+      "最近在读什么？",
+      PATH_PROMPT,
+    ];
+  }
+  if (p.startsWith("/collect")) {
+    return [
+      "收藏夹里有什么？",
+      "有哪些值得先看？",
+      "帮我按主题归一下",
+      PATH_PROMPT,
+    ];
+  }
+  if (p.startsWith("/topics")) {
+    return [
+      "有哪些专题？",
+      "推荐一个适合现在看的专题",
+      "专题和单篇笔记有什么区别？",
+      PATH_PROMPT,
+    ];
+  }
+  if (p.startsWith("/tags")) {
+    return [
+      "有哪些热门标签？",
+      PATH_PROMPT,
+      "前端相关标签有哪些？",
+      "工程化相关标签有哪些？",
+    ];
+  }
+  if (p.startsWith("/about")) {
+    return [
+      "作者是谁？在做什么？",
+      "本站怎么用最合适？",
+      "站内内容是怎么组织的？",
+      PATH_PROMPT,
+    ];
+  }
+  if (p.startsWith("/recent")) {
+    return [
+      "最近更新了什么？",
+      "哪几篇值得先看？",
+      PATH_PROMPT,
+      "工程化相关有哪些？",
+    ];
+  }
+  if (p.startsWith("/archive") || p.startsWith("/talks") || p.startsWith("/suibi")) {
+    return [
+      "这一页主要有什么？",
+      "挑几条值得看的",
+      PATH_PROMPT,
+      "和站内笔记有什么关系？",
+    ];
+  }
+  if (isDocIndex(p)) {
+    const label = pathParts(p)[0] || "这个分类";
+    return [
+      `${label} 分类下有哪些文章？`,
+      "推荐一篇入门文",
+      "最近更新了什么？",
+      PATH_PROMPT,
+      "和其它分类怎么串着看？",
+    ];
+  }
+  if (isDocSection(p)) {
+    return buildArticleQuickPrompts(p);
   }
   return [
     "最近在写什么？",
     PATH_PROMPT,
     "工程化相关有哪些？",
+    "前端入门该从哪篇看？",
+    "本站有哪些内容？",
   ];
 });
 
@@ -144,16 +323,24 @@ const followUpPrompts = computed(() => {
   if (last?.role !== "assistant" || !last.content.trim()) return [];
   if (last.feedback === "down") return [...REWRITE_PROMPTS];
   const title = String(page.value?.title || "").trim();
+  const p = pathOnly.value;
   const related = title
     ? `和《${title}》还有哪些相关文？`
     : "站内还有哪些相关文章？";
   const items = ["展开其中一点", related, COMPARE_PROMPT];
+  if (isDocSection(p) && !isDocIndex(p)) {
+    items.push(TAKEAWAY_PROMPT, PITFALL_PROMPT, ...sectionExtraPrompts(p));
+  } else if (p.startsWith("/news")) {
+    items.push("和本站哪篇笔记最相关？", "值得跟进的点有哪些？");
+  } else {
+    items.push(PATH_PROMPT, "还有哪些值得接着看？");
+  }
   if (selectionText.value) {
     items.unshift(
       selectionIsCode.value ? "解释这段代码" : "解释我选中的这段",
     );
   }
-  return items;
+  return uniquePrompts(items, 5);
 });
 
 const followUpsLabel = computed(() =>
@@ -904,7 +1091,7 @@ function loadPanelSize() {
     if (!raw) return;
     const parsed = JSON.parse(raw) as { w?: number; h?: number };
     if (parsed.w && parsed.w >= 320 && parsed.w <= 560) panelW.value = parsed.w;
-    if (parsed.h && parsed.h >= 320 && parsed.h <= 820) panelH.value = parsed.h;
+    if (parsed.h && parsed.h >= 360 && parsed.h <= 860) panelH.value = parsed.h;
   } catch {
     /* ignore */
   }
@@ -941,7 +1128,7 @@ function onResizePointerDown(e: PointerEvent) {
     const dy = ev.clientY - startY;
     // 右下角小窗：向左拖变宽，向上拖变高
     panelW.value = Math.max(320, Math.min(560, startW - dx));
-    panelH.value = Math.max(320, Math.min(820, startH - dy));
+    panelH.value = Math.max(360, Math.min(860, startH - dy));
     panelMaxH.value = panelH.value;
   };
   const onUp = () => {
@@ -1273,21 +1460,47 @@ async function scrollPendingTurnIntoView() {
 /** 阻止弹窗内滚动穿透到页面 */
 let touchStartY = 0;
 
-function shouldBlockScrollChain(deltaY: number, target: EventTarget | null) {
-  const list = listRef.value;
-  if (!list) return true;
-  const node = target instanceof Node ? target : null;
-  if (!node || !list.contains(node)) return true;
-  const max = list.scrollHeight - list.clientHeight;
+function scrollChainBlocked(
+  deltaY: number,
+  el: HTMLElement | null,
+  target: Node | null,
+) {
+  if (!el || !target || !el.contains(target)) return null;
+  const max = el.scrollHeight - el.clientHeight;
   if (max <= 0) return true;
-  const top = list.scrollTop;
+  const top = el.scrollTop;
   if (deltaY < 0 && top <= 0) return true;
   if (deltaY > 0 && top >= max - 1) return true;
   return false;
 }
 
+function shouldBlockScrollChain(deltaY: number, target: EventTarget | null) {
+  const node = target instanceof Node ? target : null;
+  // 输入框多行溢出时放行原生滚动（原先只认消息列表，导致 textarea 滚轮失效）
+  const inputBlock = scrollChainBlocked(deltaY, inputRef.value, node);
+  if (inputBlock !== null) return inputBlock;
+  const listBlock = scrollChainBlocked(deltaY, listRef.value, node);
+  if (listBlock !== null) return listBlock;
+  return true;
+}
+
 function onPanelWheel(e: WheelEvent) {
   e.stopPropagation();
+  const input = inputRef.value;
+  const node = e.target instanceof Node ? e.target : null;
+  // 多行输入：由我们滚动 textarea，避免面板防穿透把滚轮吞掉
+  if (input && node && input.contains(node)) {
+    const max = Math.max(0, input.scrollHeight - input.clientHeight);
+    if (max > 0) {
+      const prev = input.scrollTop;
+      const next = Math.min(max, Math.max(0, prev + e.deltaY));
+      if (next !== prev) {
+        input.scrollTop = next;
+        e.preventDefault();
+        return;
+      }
+    }
+  }
   if (shouldBlockScrollChain(e.deltaY, e.target)) {
     e.preventDefault();
   }
@@ -1301,6 +1514,21 @@ function onPanelTouchMove(e: TouchEvent) {
   e.stopPropagation();
   const y = e.touches[0]?.clientY ?? 0;
   const deltaY = touchStartY - y;
+  const input = inputRef.value;
+  const node = e.target instanceof Node ? e.target : null;
+  if (input && node && input.contains(node)) {
+    const max = Math.max(0, input.scrollHeight - input.clientHeight);
+    if (max > 0) {
+      const prev = input.scrollTop;
+      const next = Math.min(max, Math.max(0, prev + deltaY));
+      if (next !== prev) {
+        input.scrollTop = next;
+        touchStartY = y;
+        e.preventDefault();
+        return;
+      }
+    }
+  }
   if (shouldBlockScrollChain(deltaY, e.target)) {
     e.preventDefault();
   }
@@ -1643,6 +1871,31 @@ function onSubmit(e: Event) {
   void ask(input.value);
 }
 
+function resizeInput() {
+  const el = inputRef.value;
+  if (!el) return;
+  // 先塌到 0 再量内容高，避免被当前 height 限制导致 scrollHeight 偏小
+  el.style.height = "0px";
+  const cs = getComputedStyle(el);
+  const min = Number.parseFloat(cs.minHeight) || 0;
+  const max = Number.parseFloat(cs.maxHeight) || Number.POSITIVE_INFINITY;
+  const next = Math.max(min, Math.min(el.scrollHeight, max));
+  el.style.height = `${next}px`;
+  // 超过 5 行后靠 overflow 滚动；显式保持可滚（不隐藏 overflow）
+  el.style.overflowY = "auto";
+}
+
+function onInputKeydown(e: KeyboardEvent) {
+  if (e.key !== "Enter" || e.shiftKey || e.isComposing) return;
+  e.preventDefault();
+  if (loading.value) return;
+  void ask(input.value);
+}
+
+watch(input, () => {
+  void nextTick(resizeInput);
+});
+
 const MOBILE_MQ = "(max-width: 767px)";
 const isMobileUi = ref(false);
 let mobileMq: MediaQueryList | null = null;
@@ -1750,8 +2003,8 @@ function onDocKey(e: KeyboardEvent) {
   }
 }
 
-const panelMaxH = ref(680);
-const PANEL_MAX = 680;
+const panelMaxH = ref(720);
+const PANEL_MAX = 720;
 
 function updatePanelMaxH() {
   if (typeof window === "undefined") return;
@@ -1760,11 +2013,11 @@ function updatePanelMaxH() {
     return;
   }
   const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-  const idealMax = isDesktop ? PANEL_MAX : 560;
+  const idealMax = isDesktop ? PANEL_MAX : 600;
   panelMaxH.value =
     panelH.value > 0
       ? Math.min(panelH.value, idealMax)
-      : Math.min(idealMax, Math.floor(window.innerHeight * 0.7));
+      : Math.min(idealMax, Math.floor(window.innerHeight * 0.78));
 }
 
 const rootStyle = computed(() => {
@@ -1894,15 +2147,100 @@ onBeforeUnmount(() => {
       <header class="penn-assistant-head">
         <div class="penn-assistant-brand">
           <span class="penn-assistant-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <svg
+              class="penn-assistant-mark-avatar"
+              viewBox="0 0 64 64"
+              width="28"
+              height="28"
+              fill="none"
+            >
+              <defs>
+                <linearGradient
+                  id="paMarkBg"
+                  x1="12"
+                  y1="6"
+                  x2="52"
+                  y2="58"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#7ea0ff" />
+                  <stop offset="1" stop-color="#3b5bdb" />
+                </linearGradient>
+                <linearGradient
+                  id="paMarkFace"
+                  x1="20"
+                  y1="14"
+                  x2="44"
+                  y2="48"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#5b7cfa" />
+                  <stop offset="1" stop-color="#364fc7" />
+                </linearGradient>
+                <linearGradient
+                  id="paMarkShine"
+                  x1="18"
+                  y1="12"
+                  x2="34"
+                  y2="28"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#fff" stop-opacity="0.55" />
+                  <stop offset="1" stop-color="#fff" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <circle cx="32" cy="32" r="30" fill="url(#paMarkBg)" />
+              <circle cx="32" cy="32" r="26.5" fill="#eef2ff" opacity="0.22" />
+              <ellipse cx="32" cy="44" rx="14" ry="11" fill="url(#paMarkFace)" />
+              <circle cx="32" cy="28" r="13.5" fill="url(#paMarkFace)" />
               <path
-                fill="currentColor"
-                d="M12 3.2c.28 0 .52.17.62.43l1.05 2.72 2.85.28a.66.66 0 0 1 .38 1.15l-2.18 1.9.7 2.78a.66.66 0 0 1-.98.72L12 11.7l-2.44 1.48a.66.66 0 0 1-.98-.72l.7-2.78-2.18-1.9a.66.66 0 0 1 .38-1.15l2.85-.28 1.05-2.72A.66.66 0 0 1 12 3.2Z"
+                d="M22 22c2.2-5 8-8 12.5-6.2 3.2 1.2 5.4 4 6.2 7.2"
+                fill="#2b3f9b"
+                opacity="0.35"
               />
               <path
-                fill="currentColor"
-                opacity="0.85"
-                d="M18.35 13.4c.2 0 .38.12.45.31l.55 1.5 1.55.2a.48.48 0 0 1 .27.83l-1.18 1.05.35 1.55a.48.48 0 0 1-.72.52L18.35 18l-1.27.76a.48.48 0 0 1-.72-.52l.35-1.55-1.18-1.05a.48.48 0 0 1 .27-.83l1.55-.2.55-1.5a.48.48 0 0 1 .45-.31Z"
+                d="M18.5 27.5c0-8.2 6-14.5 13.5-14.5s13.5 6.3 13.5 14.5"
+                fill="none"
+                stroke="#1f2937"
+                stroke-width="3.2"
+                stroke-linecap="round"
+              />
+              <rect x="15.2" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
+              <rect x="42.6" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
+              <path
+                d="M48.8 33.5v6.2c0 1.5-1.1 2.7-2.5 2.9"
+                fill="none"
+                stroke="#111827"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <circle cx="45.2" cy="43.2" r="2.1" fill="#f59f00" />
+              <circle cx="27.2" cy="28.2" r="4.1" fill="#fff" />
+              <circle cx="36.8" cy="28.2" r="4.1" fill="#fff" />
+              <circle cx="27.8" cy="28.6" r="1.85" fill="#111827" />
+              <circle cx="37.4" cy="28.6" r="1.85" fill="#111827" />
+              <circle cx="28.5" cy="27.7" r="0.7" fill="#fff" />
+              <circle cx="38.1" cy="27.7" r="0.7" fill="#fff" />
+              <path
+                d="M28.8 34.2c1.4 1.5 4.8 1.6 6.4 0"
+                fill="none"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                opacity="0.9"
+              />
+              <circle cx="41.5" cy="41.5" r="5.2" fill="#fff" />
+              <path
+                fill="#3b5bdb"
+                d="M41.5 38.4c.12 0 .22.07.26.18l.32.9.94.12a.27.27 0 0 1 .15.47l-.7.64.2.93a.27.27 0 0 1-.4.3l-.77-.46-.77.46a.27.27 0 0 1-.4-.3l.2-.93-.7-.64a.27.27 0 0 1 .15-.47l.94-.12.32-.9a.27.27 0 0 1 .26-.18Z"
+              />
+              <ellipse
+                cx="24"
+                cy="20"
+                rx="6"
+                ry="3.2"
+                fill="url(#paMarkShine)"
+                transform="rotate(-28 24 20)"
               />
             </svg>
           </span>
@@ -2006,66 +2344,72 @@ onBeforeUnmount(() => {
         "
         class="penn-assistant-context"
       >
-        <p
-          v-if="pageSwitchHint"
-          class="penn-assistant-pagechip penn-assistant-pagechip--switch"
-          :title="pageSwitchHint"
-        >
-          已切换 · {{ pageLabelShort }}
-        </p>
-        <p
-          v-else-if="pageLabelShort"
-          class="penn-assistant-pagechip"
-          :title="page.title || pageLabelShort"
-        >
-          当前：{{ pageLabelShort }}
-        </p>
-        <p v-if="selectionPreview" class="penn-assistant-selchip">
-          <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
-          <span class="penn-assistant-selchip-text" :title="selectionText">{{
-            selectionPreview
-          }}</span>
-          <button
-            type="button"
-            class="penn-assistant-selchip-ask"
-            :disabled="loading"
-            @click="
-              ask(
-                selectionIsCode ? '解释这段代码' : '解释我选中的这段',
-                { fromChip: true },
-              )
-            "
+        <div class="penn-assistant-context-card">
+          <p
+            v-if="pageSwitchHint"
+            class="penn-assistant-pagechip penn-assistant-pagechip--switch"
+            :title="pageSwitchHint"
           >
-            解释
-          </button>
-          <button
-            type="button"
-            class="penn-assistant-selchip-clear"
-            aria-label="清除选中"
-            @click="clearSelectionChip"
+            {{
+              readingSection || selectionPreview
+                ? "已切换页面"
+                : `已切换 · ${pageLabelShort}`
+            }}
+          </p>
+          <p
+            v-else-if="pageLabelShort && (panelExpanded || !readingSection)"
+            class="penn-assistant-pagechip"
+            :title="page.title || pageLabelShort"
           >
-            ×
-          </button>
-        </p>
-        <p
-          v-else-if="readingSection && open"
-          class="penn-assistant-selchip penn-assistant-selchip--section"
-        >
-          <span class="penn-assistant-selchip-label">在看</span>
-          <span class="penn-assistant-selchip-text" :title="readingSection">{{
-            readingSection.length > 28
-              ? `${readingSection.slice(0, 28)}…`
-              : readingSection
-          }}</span>
-          <button
-            type="button"
-            class="penn-assistant-selchip-ask"
-            :disabled="loading"
-            @click="askSummarizeSection"
+            当前：{{ pageLabelShort }}
+          </p>
+          <p v-if="selectionPreview" class="penn-assistant-selchip">
+            <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
+            <span class="penn-assistant-selchip-text" :title="selectionText">{{
+              selectionPreview
+            }}</span>
+            <button
+              type="button"
+              class="penn-assistant-selchip-ask"
+              :disabled="loading"
+              @click="
+                ask(
+                  selectionIsCode ? '解释这段代码' : '解释我选中的这段',
+                  { fromChip: true },
+                )
+              "
+            >
+              解释
+            </button>
+            <button
+              type="button"
+              class="penn-assistant-selchip-clear"
+              aria-label="清除选中"
+              @click="clearSelectionChip"
+            >
+              ×
+            </button>
+          </p>
+          <p
+            v-else-if="readingSection && open"
+            class="penn-assistant-selchip penn-assistant-selchip--section"
           >
-            总结这节
-          </button>
-        </p>
+            <span class="penn-assistant-selchip-label">在看</span>
+            <span class="penn-assistant-selchip-text" :title="readingSection">{{
+              readingSection.length > 24
+                ? `${readingSection.slice(0, 24)}…`
+                : readingSection
+            }}</span>
+            <button
+              type="button"
+              class="penn-assistant-selchip-ask"
+              :disabled="loading"
+              @click="askSummarizeSection"
+            >
+              总结这节
+            </button>
+          </p>
+        </div>
       </div>
 
       <div ref="listRef" class="penn-assistant-messages">
@@ -2073,7 +2417,7 @@ onBeforeUnmount(() => {
           <p class="penn-assistant-empty-lead">
             {{
               showOnboard
-                ? "第一次用？先从下面三问摸清本站。"
+                ? "第一次用？先从下面几问摸清本站。"
                 : "想快速摸清本站，或弄懂当前这篇？先试下面几问。"
             }}
           </p>
@@ -2259,6 +2603,7 @@ onBeforeUnmount(() => {
           <details
             v-if="m.sources?.length && !(loading && i === messages.length - 1)"
             class="penn-assistant-sources-wrap"
+            open
           >
             <summary class="penn-assistant-sources-summary">
               参考 {{ Math.min(m.sources.length, 3) }} 篇
@@ -2268,53 +2613,44 @@ onBeforeUnmount(() => {
                 v-for="s in m.sources.slice(0, 3)"
                 :key="s.link"
                 class="penn-assistant-source-row"
-                @mouseenter="
-                  sourcePreview = s.summary
-                    ? { title: s.title, summary: s.summary }
-                    : null
-                "
-                @mouseleave="sourcePreview = null"
               >
-                <a class="penn-assistant-source-title" :href="withSiteBase(s.link)">{{
-                  s.title
-                }}</a>
-                <span v-if="s.sectionLabel" class="penn-assistant-source-tag">{{
-                  s.sectionLabel
-                }}</span>
-                <button
-                  type="button"
-                  class="penn-assistant-source-open"
-                  aria-label="打开参考文章"
-                  title="打开"
-                  @click.prevent="openSource(s.link)"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    aria-hidden="true"
-                    focusable="false"
+                <div class="penn-assistant-source-main">
+                  <a
+                    class="penn-assistant-source-title"
+                    :href="withSiteBase(s.link)"
+                    >{{ s.title }}</a
                   >
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M7 17 17 7M10 7h7v7"
-                    />
-                  </svg>
-                </button>
-                <div
-                  v-if="
-                    sourcePreview &&
-                    sourcePreview.title === s.title &&
-                    sourcePreview.summary
-                  "
-                  class="penn-assistant-source-preview"
-                >
-                  {{ sourcePreview.summary }}
+                  <span v-if="s.sectionLabel" class="penn-assistant-source-tag">{{
+                    s.sectionLabel
+                  }}</span>
+                  <button
+                    type="button"
+                    class="penn-assistant-source-open"
+                    aria-label="打开参考文章"
+                    title="打开"
+                    @click.prevent="openSource(s.link)"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M7 17 17 7M10 7h7v7"
+                      />
+                    </svg>
+                  </button>
                 </div>
+                <p v-if="s.summary" class="penn-assistant-source-desc">
+                  {{ s.summary }}
+                </p>
               </li>
             </ul>
           </details>
@@ -2337,12 +2673,16 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <form class="penn-assistant-form" @submit="onSubmit">
-        <input
+      <form
+        class="penn-assistant-form"
+        :class="{ 'is-answering': loading }"
+        @submit="onSubmit"
+      >
+        <textarea
           ref="inputRef"
           v-model="input"
           class="penn-assistant-input"
-          type="text"
+          rows="3"
           maxlength="500"
           :placeholder="
             listening
@@ -2350,7 +2690,10 @@ onBeforeUnmount(() => {
               : '输入你想问的问题…'
           "
           :disabled="loading"
-          autocomplete="off"
+          enterkeyhint="send"
+          title="Enter 发送，Shift+Enter 换行"
+          @keydown="onInputKeydown"
+          @input="resizeInput"
         />
         <button
           v-if="voiceSupported"
@@ -2417,7 +2760,7 @@ onBeforeUnmount(() => {
           class="penn-assistant-send"
           type="submit"
           aria-label="发送"
-          title="发送"
+          title="发送（Enter）"
           :disabled="!input.trim()"
         >
           <svg
@@ -2491,54 +2834,100 @@ onBeforeUnmount(() => {
       :aria-label="open ? `关闭${ASSISTANT_NAME}` : `打开${ASSISTANT_NAME}`"
       @click="toggle"
     >
-      <!-- 打开态：轻量收起 -->
+      <span v-if="!open" class="penn-assistant-fab-tip" aria-hidden="true"
+        >站内导读</span
+      >
+      <!-- 打开态：收起 -->
       <svg
         v-if="open"
         class="penn-assistant-fab-icon penn-assistant-fab-icon--close"
         viewBox="0 0 24 24"
-        width="18"
-        height="18"
+        width="20"
+        height="20"
         aria-hidden="true"
         focusable="false"
       >
-        <circle
-          cx="12"
-          cy="12"
-          r="8.25"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.4"
-          opacity="0.28"
-        />
         <path
           fill="none"
           stroke="currentColor"
-          stroke-width="1.85"
+          stroke-width="2.2"
           stroke-linecap="round"
-          d="M9.2 9.2 14.8 14.8M14.8 9.2 9.2 14.8"
+          d="M7.5 7.5 16.5 16.5M16.5 7.5 7.5 16.5"
         />
       </svg>
-      <!-- 入口：聊天气泡 + 星标 -->
+      <!-- 入口：可爱导读助手头像（Heo 风格） -->
       <svg
         v-else
-        class="penn-assistant-fab-icon"
-        viewBox="0 0 24 24"
-        width="18"
-        height="18"
+        class="penn-assistant-fab-icon penn-assistant-fab-icon--avatar"
+        viewBox="0 0 64 64"
+        width="40"
+        height="40"
         aria-hidden="true"
         focusable="false"
       >
+        <defs>
+          <linearGradient id="paFabBg" x1="12" y1="6" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7ea0ff" />
+            <stop offset="1" stop-color="#3b5bdb" />
+          </linearGradient>
+          <linearGradient id="paFabFace" x1="20" y1="14" x2="44" y2="48" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#5b7cfa" />
+            <stop offset="1" stop-color="#364fc7" />
+          </linearGradient>
+          <linearGradient id="paFabShine" x1="18" y1="12" x2="34" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity="0.55" />
+            <stop offset="1" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <!-- soft plate -->
+        <circle cx="32" cy="32" r="30" fill="url(#paFabBg)" />
+        <circle cx="32" cy="32" r="26.5" fill="#eef2ff" opacity="0.22" />
+        <!-- body -->
+        <ellipse cx="32" cy="44" rx="14" ry="11" fill="url(#paFabFace)" />
+        <!-- head -->
+        <circle cx="32" cy="28" r="13.5" fill="url(#paFabFace)" />
+        <path d="M22 22c2.2-5 8-8 12.5-6.2 3.2 1.2 5.4 4 6.2 7.2" fill="#2b3f9b" opacity="0.35" />
+        <!-- headset -->
         <path
-          fill="currentColor"
-          d="M4.75 5.5A2.75 2.75 0 0 1 7.5 2.75h9A2.75 2.75 0 0 1 19.25 5.5v6.25a2.75 2.75 0 0 1-2.75 2.75h-3.85l-3.7 2.7a.7.7 0 0 1-1.12-.64l.42-2.06H7.5a2.75 2.75 0 0 1-2.75-2.75V5.5Z"
+          d="M18.5 27.5c0-8.2 6-14.5 13.5-14.5s13.5 6.3 13.5 14.5"
+          fill="none"
+          stroke="#1f2937"
+          stroke-width="3.2"
+          stroke-linecap="round"
         />
-        <circle cx="9.1" cy="8.6" r="1.05" fill="#1e3a8a" />
-        <circle cx="12" cy="8.6" r="1.05" fill="#1e3a8a" />
-        <circle cx="14.9" cy="8.6" r="1.05" fill="#1e3a8a" />
+        <rect x="15.2" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
+        <rect x="42.6" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
         <path
-          fill="currentColor"
-          d="M18.6 14.15c.18 0 .34.11.4.28l.48 1.35 1.4.18a.42.42 0 0 1 .24.73l-1.05.95.3 1.4a.42.42 0 0 1-.63.46L18.6 18.7l-1.14.7a.42.42 0 0 1-.63-.46l.3-1.4-1.05-.95a.42.42 0 0 1 .24-.73l1.4-.18.48-1.35a.42.42 0 0 1 .4-.28Z"
+          d="M48.8 33.5v6.2c0 1.5-1.1 2.7-2.5 2.9"
+          fill="none"
+          stroke="#111827"
+          stroke-width="2.2"
+          stroke-linecap="round"
         />
+        <circle cx="45.2" cy="43.2" r="2.1" fill="#f59f00" />
+        <!-- face -->
+        <circle cx="27.2" cy="28.2" r="4.1" fill="#fff" />
+        <circle cx="36.8" cy="28.2" r="4.1" fill="#fff" />
+        <circle cx="27.8" cy="28.6" r="1.85" fill="#111827" />
+        <circle cx="37.4" cy="28.6" r="1.85" fill="#111827" />
+        <circle cx="28.5" cy="27.7" r="0.7" fill="#fff" />
+        <circle cx="38.1" cy="27.7" r="0.7" fill="#fff" />
+        <path
+          d="M28.8 34.2c1.4 1.5 4.8 1.6 6.4 0"
+          fill="none"
+          stroke="#fff"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          opacity="0.9"
+        />
+        <!-- guide badge -->
+        <circle cx="41.5" cy="41.5" r="5.2" fill="#fff" />
+        <path
+          fill="#3b5bdb"
+          d="M41.5 38.4c.12 0 .22.07.26.18l.32.9.94.12a.27.27 0 0 1 .15.47l-.7.64.2.93a.27.27 0 0 1-.4.3l-.77-.46-.77.46a.27.27 0 0 1-.4-.3l.2-.93-.7-.64a.27.27 0 0 1 .15-.47l.94-.12.32-.9a.27.27 0 0 1 .26-.18Z"
+        />
+        <!-- highlight -->
+        <ellipse cx="24" cy="20" rx="6" ry="3.2" fill="url(#paFabShine)" transform="rotate(-28 24 20)" />
       </svg>
     </button>
   </div>

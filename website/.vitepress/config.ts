@@ -25,6 +25,7 @@ const ASSISTANT_API_BASE = (process.env.ASSISTANT_API_BASE || "").trim();
 const ASSISTANT_ENABLED =
   process.env.ASSISTANT_ENABLED === "true" ||
   (!IS_PAGES_BACKUP && process.env.ASSISTANT_ENABLED !== "false");
+const ASSISTANT_DEV_TARGET = `http://${process.env.ASSISTANT_HOST || "127.0.0.1"}:${process.env.ASSISTANT_PORT || "8787"}`;
 
 const faviconHeadSnippet = [
   `<link rel="icon" href="${ICON_ICO}" sizes="any">`,
@@ -102,6 +103,17 @@ export default defineConfig({
   // Post-process built HTML so icons sit at the very start of <head>
   async buildEnd(siteConfig) {
     injectFaviconEarly(siteConfig.outDir);
+  },
+  // 本地 dev：同域 /api/assistant → 助手进程（与生产反代一致；无需 ASSISTANT_API_BASE）
+  vite: {
+    server: {
+      proxy: {
+        "/api/assistant": {
+          target: ASSISTANT_DEV_TARGET,
+          changeOrigin: true,
+        },
+      },
+    },
   },
   // 每页注入 OG / Twitter / JSON-LD（微信/Google 分享卡片）
   transformHead({ pageData, siteData }) {
