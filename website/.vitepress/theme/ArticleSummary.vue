@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, nextTick, onMounted, onUpdated, ref } from "vue";
 import { useData, useRoute } from "vitepress";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
@@ -8,6 +8,7 @@ import summaryStore from "../../data/note-summaries.json";
 const { frontmatter, page, site } = useData();
 const route = useRoute();
 const expanded = ref(false);
+const rootEl = ref<HTMLElement | null>(null);
 
 type NoteItem = { link?: string; summary?: string };
 type SummaryEntry = { summary?: string; hash?: string };
@@ -63,18 +64,68 @@ const summary = computed(() => {
   return normalize(page.value.description);
 });
 
-const COLLAPSE_AT = 168;
+const COLLAPSE_AT = 200;
+
+function collapseSummary(text: string, max = COLLAPSE_AT) {
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const marks = ["。", "！", "？", "；", "，"];
+  let cut = -1;
+  for (const m of marks) {
+    cut = Math.max(cut, slice.lastIndexOf(m));
+  }
+  if (cut >= Math.floor(max * 0.55)) {
+    return `${slice.slice(0, cut + 1)}…`;
+  }
+  const soft = slice.replace(/\s+\S*$/, "").trimEnd();
+  return `${soft || slice}…`;
+}
+
 const needsCollapse = computed(() => summary.value.length > COLLAPSE_AT);
 const shownText = computed(() => {
   if (!needsCollapse.value || expanded.value) return summary.value;
-  return `${summary.value.slice(0, COLLAPSE_AT).replace(/\s+\S*$/, "")}…`;
+  return collapseSummary(summary.value);
 });
 
 const visible = computed(() => summary.value.length >= 18);
+
+/** 贴到一体文头 / meta / h1 之后，避免出现在封面标题前面 */
+function relocateAfterHeader() {
+  const el = rootEl.value;
+  if (!el) return;
+
+  const doc = document.querySelector<HTMLElement>(".vp-doc");
+  if (!doc) return;
+
+  const root =
+    (doc.querySelector(":scope > div > h1, :scope > div > .article-hero")
+      ? doc.querySelector<HTMLElement>(":scope > div")
+      : doc) || doc;
+
+  const anchor =
+    root.querySelector<HTMLElement>(":scope > .article-hero") ||
+    root.querySelector<HTMLElement>(":scope > .article-meta") ||
+    root.querySelector<HTMLElement>(":scope > h1");
+  if (!anchor || anchor.nextElementSibling === el) return;
+
+  anchor.after(el);
+}
+
+onMounted(() => {
+  nextTick(relocateAfterHeader);
+  // hero 由主题 JS 异步合成，稍后再贴一次
+  setTimeout(relocateAfterHeader, 160);
+});
+onUpdated(() => nextTick(relocateAfterHeader));
 </script>
 
 <template>
-  <aside v-if="visible" class="article-summary" aria-label="文章速览">
+  <aside
+    v-if="visible"
+    ref="rootEl"
+    class="article-summary"
+    aria-label="文章速览"
+  >
     <div class="article-summary-head">
       <p class="article-summary-label">速览</p>
       <button
@@ -93,8 +144,8 @@ const visible = computed(() => summary.value.length >= 18);
 
 <style scoped>
 .article-summary {
-  margin: 2px 0 26px;
-  padding: 0 0 22px;
+  margin: 0 0 28px;
+  padding: 2px 0 20px;
   border: none;
   border-radius: 0;
   background: transparent;
@@ -126,23 +177,27 @@ const visible = computed(() => summary.value.length >= 18);
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--text-3);
+  color: var(--text-2);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 1.2;
   cursor: pointer;
-  transition: color 0.15s ease;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
 }
 
 .article-summary-toggle:hover,
 .article-summary-toggle:focus-visible {
-  color: var(--text-2);
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--text) 35%, transparent);
   outline: none;
 }
 
 .article-summary-text {
   margin: 0;
-  max-width: 40em;
+  max-width: none;
   font-size: 1.02rem;
   line-height: 1.82;
   letter-spacing: 0.015em;
@@ -164,7 +219,6 @@ const visible = computed(() => summary.value.length >= 18);
   .article-summary-text {
     font-size: 0.98rem;
     line-height: 1.75;
-    max-width: none;
   }
 }
 </style>

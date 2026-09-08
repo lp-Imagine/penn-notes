@@ -27,7 +27,9 @@ import { setupSiteRuntime } from "./site-runtime";
 
 let zoom: Zoom | undefined;
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+let heroRetryTimer: ReturnType<typeof setTimeout> | undefined;
 let observer: MutationObserver | undefined;
+let suppressDomRefresh = false;
 
 const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 
@@ -636,7 +638,7 @@ function estimateReadingMinutes(doc: Element) {
   const clone = doc.cloneNode(true) as HTMLElement;
   clone
     .querySelectorAll(
-      "script, style, .article-meta, .article-cover, .reading-time, .reading-time-standalone",
+      "script, style, .article-meta, .article-cover, .article-hero, .reading-time, .reading-time-standalone",
     )
     .forEach((n) => n.remove());
   let codeLines = 0;
@@ -772,6 +774,78 @@ function enhanceArticleImages() {
   });
 }
 
+/** 有封面时：把 h1 + meta + cover 合成一体文头 */
+function enhanceArticleHero() {
+  if (!isNoteArticleDetail(currentSitePath())) return;
+
+  const doc = document.querySelector<HTMLElement>(".vp-doc");
+  if (!doc || doc.querySelector(".article-hero")) return;
+
+  // VitePress 常在 .vp-doc 内再包一层 <div>，不能只用 :scope > h1
+  const root =
+    (doc.querySelector(":scope > div > h1")
+      ? doc.querySelector<HTMLElement>(":scope > div")
+      : doc) || doc;
+
+  const h1 = root.querySelector<HTMLElement>(":scope > h1");
+  const meta = root.querySelector<HTMLElement>(":scope > .article-meta");
+  const coverWrapped = root.querySelector<HTMLImageElement>(
+    ":scope > p > img.article-cover",
+  );
+  const cover =
+    root.querySelector<HTMLImageElement>(":scope > img.article-cover") ||
+    coverWrapped;
+  if (!h1 || !cover) return;
+
+  const coverParent = cover.parentElement;
+
+  const hero = document.createElement("header");
+  hero.className = "article-hero";
+
+  const copy = document.createElement("div");
+  copy.className = "article-hero-copy";
+
+  h1.before(hero);
+  hero.appendChild(cover);
+  hero.appendChild(copy);
+  copy.appendChild(h1);
+  if (meta) copy.appendChild(meta);
+
+  // 封面若被 <p> 包裹，挪走后删掉空段落
+  if (
+    coverParent?.tagName === "P" &&
+    !coverParent.textContent?.trim() &&
+    !coverParent.querySelector("img")
+  ) {
+    coverParent.remove();
+  }
+}
+
+/** 速览挪到文头之后：封面文章贴 hero，无封面贴 meta/h1 */
+function placeArticleSummary() {
+  if (!isNoteArticleDetail(currentSitePath())) return;
+
+  const summary = document.querySelector<HTMLElement>(".article-summary");
+  if (!summary) return;
+
+  const doc = document.querySelector<HTMLElement>(".vp-doc");
+  if (!doc) return;
+
+  const root =
+    (doc.querySelector(":scope > div > h1, :scope > div > .article-hero")
+      ? doc.querySelector<HTMLElement>(":scope > div")
+      : doc) || doc;
+
+  const anchor =
+    root.querySelector<HTMLElement>(":scope > .article-hero") ||
+    root.querySelector<HTMLElement>(":scope > .article-meta") ||
+    root.querySelector<HTMLElement>(":scope > h1");
+  if (!anchor) return;
+  if (anchor.nextElementSibling === summary) return;
+
+  anchor.after(summary);
+}
+
 function collectImages(): HTMLElement[] {
   return Array.from(
     document.querySelectorAll<HTMLImageElement>(".vp-doc img"),
@@ -797,17 +871,46 @@ function refreshZoom() {
   });
 }
 
+function withSuppressedDomRefresh(fn: () => void) {
+  suppressDomRefresh = true;
+  try {
+    fn();
+  } finally {
+    // 等本次 DOM 变更冒泡完再恢复监听
+    queueMicrotask(() => {
+      suppressDomRefresh = false;
+    });
+  }
+}
+
 function scheduleRefresh() {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
     nextTick(() => {
-      bindNewsImageFallback();
-      enhanceArticleImages();
-      setupBooksShelf();
+      withSuppressedDomRefresh(() => {
+        bindNewsImageFallback();
+        enhanceArticleImages();
+        enhanceArticleHero();
+        placeArticleSummary();
+        setupBooksShelf();
+        updateReadingTime();
+        updateReadingProgress();
+        updateOutlineActive();
+      });
+      // zoom 放在 suppress 外：它会给 img 加 class，不应再触发整页 refresh
       refreshZoom();
-      updateReadingTime();
-      updateReadingProgress();
-      updateOutlineActive();
+      // 水合后再补一次文头（已有则跳过），避免首屏未挂上
+      clearTimeout(heroRetryTimer);
+      heroRetryTimer = setTimeout(() => {
+        withSuppressedDomRefresh(() => {
+          if (!document.querySelector(".vp-doc .article-hero")) {
+            enhanceArticleHero();
+          }
+          placeArticleSummary();
+          updateReadingTime();
+        });
+        refreshZoom();
+      }, 150);
     });
   }, 80);
 }
@@ -885,7 +988,39 @@ export default {
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
         // 含 style：日报栏目筛选会改 display，需重算章节高亮
-        observer = new MutationObserver(() => scheduleRefresh());
+        // 忽略 medium-zoom 自身改 class，否则会 detach 掉正在预览的图
+        observer = new MutationObserver((mutations) => {
+          if (suppressDomRefresh) return;
+          const shouldRefresh = mutations.some((m) => {
+            const el = m.target as Element;
+            if (m.type === "attributes" && el?.classList) {
+              if (
+                el.classList.contains("medium-zoom-image") ||
+                el.classList.contains("medium-zoom-image--opened") ||
+                el.classList.contains("medium-zoom-overlay")
+              ) {
+                return false;
+              }
+            }
+            if (m.type === "childList") {
+              const nodes = [...m.addedNodes, ...m.removedNodes];
+              if (
+                nodes.length &&
+                nodes.every(
+                  (n) =>
+                    n instanceof Element &&
+                    (n.classList.contains("medium-zoom-overlay") ||
+                      n.classList.contains("medium-zoom-image--opened") ||
+                      n.classList.contains("reading-time")),
+                )
+              ) {
+                return false;
+              }
+            }
+            return true;
+          });
+          if (shouldRefresh) scheduleRefresh();
+        });
         observer.observe(content, {
           childList: true,
           subtree: true,

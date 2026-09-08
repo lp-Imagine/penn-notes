@@ -72,6 +72,10 @@ export default defineConfig({
     /^mailto:/,
   ],
   markdown: {
+    theme: {
+      light: "github-light",
+      dark: "github-dark-dimmed",
+    },
     config(md) {
       pennCalloutsPlugin(md);
     },

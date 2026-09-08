@@ -1198,7 +1198,7 @@
 
 .medium-zoom-overlay,
 .medium-zoom-image--opened {
-  z-index: 100;
+  z-index: 400;
 }
 
 

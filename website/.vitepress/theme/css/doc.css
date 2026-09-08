@@ -97,6 +97,17 @@
   color: var(--text);
 }
 
+/* 笔记文头：无封面时保持标题+meta；有封面时由 .article-hero 接管 */
+.note-article .vp-doc > h1:first-of-type {
+  font-size: clamp(28px, 3.8vw, 36px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.22;
+  margin: 2px 0 14px;
+  text-wrap: balance;
+  color: var(--text);
+}
+
 .vp-doc .article-meta {
   display: flex;
   flex-wrap: wrap;
@@ -108,7 +119,22 @@
   color: var(--text-3);
 }
 
+.note-article .vp-doc > h1 + .article-meta,
+.note-article .vp-doc > .article-meta {
+  gap: 10px;
+  margin: 0 0 18px !important;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
 .vp-doc .article-meta time {
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.note-article .vp-doc > .article-meta time {
+  font-weight: 600;
   color: var(--text-2);
   font-variant-numeric: tabular-nums;
 }
@@ -121,6 +147,296 @@
   color: var(--link);
   font-size: 12px;
   font-weight: 500;
+}
+
+.note-article .vp-doc > .article-meta .article-tag {
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--link) 16%, var(--border));
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  color: var(--link);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.note-article .vp-doc > .article-meta .reading-time {
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* 一体文头：封面为舞台，标题叠在底部渐变上（深浅色分别调） */
+.vp-doc .article-hero {
+  --hero-ink: #fff;
+  --hero-ink-soft: rgba(255, 255, 255, 0.86);
+  --hero-ink-mute: rgba(255, 255, 255, 0.64);
+  --hero-tag-bg: rgba(255, 255, 255, 0.14);
+  --hero-tag-border: rgba(255, 255, 255, 0.26);
+  --hero-scrim: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(15, 23, 42, 0.02) 34%,
+    rgba(15, 23, 42, 0.18) 52%,
+    rgba(15, 23, 42, 0.48) 68%,
+    rgba(15, 23, 42, 0.78) 84%,
+    rgba(15, 23, 42, 0.92) 100%
+  );
+  --hero-ring: color-mix(in srgb, var(--border) 82%, transparent);
+  --hero-glow: 0 1px 0 color-mix(in srgb, #fff 55%, transparent) inset;
+
+  position: relative;
+  display: block;
+  isolation: isolate;
+  margin: 0 0 22px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--hero-ring);
+  background: #0b1220;
+  box-shadow:
+    var(--hero-glow),
+    0 1px 2px color-mix(in srgb, var(--text) 5%, transparent),
+    0 14px 36px color-mix(in srgb, var(--text) 8%, transparent);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.dark .vp-doc .article-hero {
+  --hero-ink: #f5f7ff;
+  --hero-ink-soft: rgba(245, 247, 255, 0.86);
+  --hero-ink-mute: rgba(245, 247, 255, 0.6);
+  --hero-tag-bg: rgba(255, 255, 255, 0.1);
+  --hero-tag-border: rgba(255, 255, 255, 0.18);
+  --hero-scrim: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 34%,
+    rgba(0, 0, 0, 0.22) 52%,
+    rgba(0, 0, 0, 0.52) 70%,
+    rgba(0, 0, 0, 0.82) 86%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+  --hero-ring: color-mix(in srgb, #fff 7%, transparent);
+  --hero-glow: 0 1px 0 color-mix(in srgb, #fff 5%, transparent) inset;
+  background: #05070d;
+  border-color: var(--hero-ring);
+  box-shadow:
+    var(--hero-glow),
+    0 0 0 1px color-mix(in srgb, #fff 4%, transparent),
+    0 18px 42px rgba(0, 0, 0, 0.5);
+}
+
+html.focus-mode:not(.dark) .vp-doc .article-hero {
+  --hero-scrim: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(40, 32, 18, 0.03) 34%,
+    rgba(40, 32, 18, 0.2) 52%,
+    rgba(40, 32, 18, 0.5) 70%,
+    rgba(40, 32, 18, 0.82) 86%,
+    rgba(40, 32, 18, 0.92) 100%
+  );
+  --hero-ring: color-mix(in srgb, var(--border-strong) 55%, transparent);
+  background: #2a2418;
+}
+
+/* 浅色：边框略加强，避免顶边融进灰底看不清 */
+html:not(.dark) .vp-doc .article-hero {
+  --hero-ring: color-mix(in srgb, var(--border-strong) 78%, var(--border));
+  border-color: var(--hero-ring);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+    0 0 0 1px color-mix(in srgb, var(--border) 55%, transparent),
+    0 1px 2px color-mix(in srgb, var(--text) 5%, transparent),
+    0 12px 28px color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.vp-doc .article-hero:has(+ .article-summary) {
+  margin-bottom: 10px;
+}
+
+.vp-doc .article-hero .article-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #111827;
+  transform: scale(1.001);
+  transition: filter 0.25s ease;
+}
+
+.dark .vp-doc .article-hero .article-cover {
+  filter: brightness(0.9) saturate(1.05);
+  background: #0a0c12;
+}
+
+.vp-doc .article-hero-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 9px;
+  min-height: 48%;
+  padding: 64px 24px 18px;
+  background: var(--hero-scrim);
+  pointer-events: none;
+}
+
+/* 底部柔焦：去掉“硬切一条黑带”的感觉 */
+.vp-doc .article-hero-copy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 38%,
+    color-mix(in srgb, #0b1220 18%, transparent) 72%,
+    color-mix(in srgb, #0b1220 42%, transparent) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.45) 68%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.45) 68%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  pointer-events: none;
+}
+
+.dark .vp-doc .article-hero-copy::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.22) 72%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+}
+
+.vp-doc .article-hero-copy > * {
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.vp-doc .article-hero h1 {
+  margin: 0;
+  padding: 0;
+  border: none;
+  max-width: 32em;
+  color: var(--hero-ink);
+  font-size: clamp(18px, 2.6vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.3;
+  text-wrap: balance;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.32),
+    0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.vp-doc .article-hero .article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0 !important;
+  padding: 0;
+  color: var(--hero-ink-soft);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.vp-doc .article-hero .article-meta time {
+  color: var(--hero-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.94;
+}
+
+.vp-doc .article-hero .article-tag {
+  padding: 1px 8px;
+  border: 1px solid var(--hero-tag-border);
+  border-radius: 999px;
+  background: var(--hero-tag-bg);
+  color: var(--hero-ink);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.vp-doc .article-hero .reading-time {
+  color: var(--hero-ink-mute);
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.vp-doc .article-hero .header-anchor {
+  color: color-mix(in srgb, var(--hero-ink) 40%, transparent) !important;
+  text-decoration: none !important;
+}
+
+.vp-doc .article-hero h1:hover .header-anchor,
+.vp-doc .article-hero h1:focus-within .header-anchor {
+  color: var(--hero-ink) !important;
+}
+
+@media (max-width: 767.98px) {
+  .note-article .vp-doc > h1:first-of-type {
+    font-size: clamp(24px, 6.5vw, 28px);
+    margin-bottom: 12px;
+  }
+
+  .vp-doc .article-hero {
+    margin-bottom: 22px;
+    border-radius: 14px;
+  }
+
+  .vp-doc .article-hero .article-cover {
+    aspect-ratio: 16 / 10;
+  }
+
+  .vp-doc .article-hero-copy {
+    min-height: 52%;
+    gap: 8px;
+    padding: 48px 16px 15px;
+  }
+
+  .vp-doc .article-hero-copy::before {
+    backdrop-filter: blur(8px) saturate(1.05);
+    -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  }
+
+  .vp-doc .article-hero h1 {
+    font-size: clamp(16px, 4.6vw, 20px);
+  }
 }
 
 /* ── 文章章节 h2：仅笔记正文（.note-article），首页/栏目/日报不套用 ── */
@@ -139,8 +455,8 @@
   font-weight: 650;
   letter-spacing: -0.015em;
   line-height: 1.45;
-  margin: var(--space-7) 0 var(--space-4);
-  padding: 12px 16px 12px 18px;
+  margin: calc(var(--space-7) + 4px) 0 var(--space-4);
+  padding: 12px 40px 12px 18px;
   border: 1px solid color-mix(in srgb, var(--link) 18%, var(--border));
   border-left-width: 4px;
   border-left-color: var(--link);
@@ -179,7 +495,8 @@
 
 .note-article .vp-doc h2 .header-anchor {
   position: absolute;
-  left: 10px;
+  left: auto;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   margin: 0;
@@ -197,14 +514,10 @@
 
 .note-article .vp-doc h2:first-of-type,
 .note-article .vp-doc .article-meta + h2,
+.note-article .vp-doc .article-hero + h2,
+.note-article .vp-doc .article-summary + h2,
 .note-article .vp-doc hr + h2 {
-  margin-top: var(--space-5);
-}
-
-.note-article .vp-doc h2:first-of-type::before,
-.note-article .vp-doc .article-meta + h2::before,
-.note-article .vp-doc hr + h2::before {
-  display: inline-block;
+  margin-top: 12px;
 }
 
 .dark .note-article .vp-doc h2 {
@@ -279,11 +592,12 @@
   display: none;
 }
 
-/* ai-article 同步稿封面：紧跟 meta 之后，全宽圆角；高度略收，避免首屏过压 */
+/* ai-article 同步稿封面：无 hero 时的兜底；比例与 hero 对齐，减轻合成前 CLS */
 .vp-doc .article-cover {
   display: block;
   width: 100%;
-  height: 200px;
+  height: auto;
+  aspect-ratio: 2 / 1;
   max-height: none;
   margin: 0 0 var(--space-6);
   border-radius: var(--radius-lg);
@@ -293,9 +607,9 @@
   background: var(--surface-2);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767.98px) {
   .vp-doc .article-cover {
-    height: 340px;
+    aspect-ratio: 16 / 10;
   }
 }
 
