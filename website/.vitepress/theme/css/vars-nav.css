@@ -243,8 +243,35 @@ body {
 .VPNavBarTitle .logo {
   height: 28px;
   width: 28px;
-  border-radius: 7px;
+  border-radius: 8px;
   object-fit: contain;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 2px 8px color-mix(in srgb, var(--text) 8%, transparent);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+.VPNavBarTitle .title:hover .logo {
+  transform: translateY(-0.5px) scale(1.04);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 32%, transparent),
+    0 4px 12px color-mix(in srgb, var(--accent) 18%, transparent);
+  filter: brightness(1.04);
+}
+
+.dark .VPNavBarTitle .logo {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #a8b1ff 22%, transparent),
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.dark .VPNavBarTitle .title:hover .logo {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #c5d0ff 36%, transparent),
+    0 4px 14px rgba(0, 0, 0, 0.42);
 }
 
 @media (min-width: 768px) {

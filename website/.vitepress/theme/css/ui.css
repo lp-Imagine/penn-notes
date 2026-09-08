@@ -555,18 +555,21 @@
   border-color: var(--border);
 }
 
-/* ===== 代码块：轻顶栏 + 语言徽标 + 常显复制 ===== */
+/* ===== 代码块：macOS 窗口顶栏（三色点 + 语言）+ 常显复制 ===== */
 .vp-doc div[class*="language-"] {
-  --penn-code-chrome-h: 40px;
+  --penn-code-chrome-h: 38px;
+  --penn-code-dot: 10px;
+  --penn-code-dot-gap: 7px;
+  --penn-code-dots-pad: 14px;
   position: relative;
   margin: 0 0 var(--space-5);
-  border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
-  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: 10px;
   background: var(--vp-code-block-bg) !important;
   box-shadow:
-    0 1px 0 color-mix(in srgb, #fff 65%, transparent) inset,
+    0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
     0 1px 2px color-mix(in srgb, var(--text) 4%, transparent),
-    0 12px 28px color-mix(in srgb, var(--text) 5%, transparent);
+    0 10px 24px color-mix(in srgb, var(--text) 5%, transparent);
   overflow: hidden;
 }
 
@@ -577,25 +580,116 @@
     0 12px 32px rgba(0, 0, 0, 0.38);
 }
 
-/* 顶栏条 */
+/* 顶栏：三色圆点 + 底部分割线 */
 .vp-doc div[class*="language-"]::before {
   content: "";
   display: block;
   height: var(--penn-code-chrome-h);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--surface) 96%, transparent) 0%,
-    color-mix(in srgb, var(--surface-2) 42%, var(--vp-code-block-bg)) 100%
-  );
-  border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  background:
+    radial-gradient(
+      circle at
+        calc(var(--penn-code-dots-pad) + var(--penn-code-dot) / 2)
+        50%,
+      #ff5f57 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + var(--penn-code-dot) + var(--penn-code-dot-gap) +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #febc2e 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + (var(--penn-code-dot) + var(--penn-code-dot-gap)) * 2 +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #28c840 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    linear-gradient(180deg, #ececef 0%, #e4e4e8 100%);
+  border-bottom: 1px solid #c8c8cd;
 }
 
 .dark .vp-doc div[class*="language-"]::before {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--surface) 88%, transparent) 0%,
-    color-mix(in srgb, var(--surface-2) 35%, var(--vp-code-block-bg)) 100%
-  );
+  background:
+    radial-gradient(
+      circle at
+        calc(var(--penn-code-dots-pad) + var(--penn-code-dot) / 2)
+        50%,
+      #ff5f57 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + var(--penn-code-dot) + var(--penn-code-dot-gap) +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #febc2e 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + (var(--penn-code-dot) + var(--penn-code-dot-gap)) * 2 +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #28c840 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 92%, #2a2a2e) 0%,
+      color-mix(in srgb, var(--surface-2) 55%, var(--vp-code-block-bg)) 100%
+    );
+  border-bottom-color: color-mix(in srgb, var(--border) 88%, transparent);
+}
+
+/* 护眼模式：顶栏改暖灰，三色点保留 */
+html.focus-mode:not(.dark) .vp-doc div[class*="language-"]::before {
+  background:
+    radial-gradient(
+      circle at
+        calc(var(--penn-code-dots-pad) + var(--penn-code-dot) / 2)
+        50%,
+      #ff5f57 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + var(--penn-code-dot) + var(--penn-code-dot-gap) +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #febc2e 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    radial-gradient(
+      circle at
+        calc(
+          var(--penn-code-dots-pad) + (var(--penn-code-dot) + var(--penn-code-dot-gap)) * 2 +
+            var(--penn-code-dot) / 2
+        )
+        50%,
+      #28c840 0 calc(var(--penn-code-dot) / 2),
+      transparent calc(var(--penn-code-dot) / 2 + 0.5px)
+    ),
+    linear-gradient(180deg, #ebe6d8 0%, #e3ddcb 100%);
+  border-bottom-color: #d2cbb5;
+}
+
+html.focus-mode:not(.dark) .vp-doc [class*="language-"] > span.lang {
+  color: #6b6656;
 }
 
 /* 相邻代码块保持统一间距 */
@@ -646,26 +740,36 @@
   width: calc(100% + 2 * 16px);
 }
 
-/* 语言徽标：顶栏左侧胶囊 */
+/* 语言标签：三色点右侧，大写灰字 */
 .vp-doc [class*="language-"] > span.lang {
-  top: 10px;
-  left: 12px;
+  position: absolute;
+  top: 0;
+  left: calc(
+    var(--penn-code-dots-pad) + (var(--penn-code-dot) + var(--penn-code-dot-gap)) * 3 + 6px
+  );
   right: auto;
   bottom: auto;
+  height: var(--penn-code-chrome-h);
   z-index: 3;
-  padding: 0 8px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  line-height: 20px;
-  color: var(--text-2);
+  line-height: 1;
+  color: #6e6e73;
   opacity: 1;
   user-select: none;
   pointer-events: none;
+}
+
+.dark .vp-doc [class*="language-"] > span.lang {
+  color: var(--text-2);
 }
 
 .vp-doc [class*="language-"]:hover > button.copy + span.lang,
@@ -675,7 +779,7 @@
 
 /* 复制按钮：顶栏右侧常显 */
 .vp-doc [class*="language-"] > button.copy {
-  top: 5px;
+  top: 4px;
   right: 8px;
   z-index: 3;
   width: 30px;
@@ -717,6 +821,80 @@
 .vp-doc [class*="language-"] > button.copy:hover.copied::before {
   display: none;
   content: none;
+}
+
+/* 长代码块：默认收起 + 底部展开/收起 */
+.vp-doc div[class*="language-"].penn-code-collapsible.is-collapsed > pre {
+  max-height: calc(1.7em * var(--penn-code-preview-lines, 12) + 30px);
+  overflow: hidden;
+}
+
+.vp-doc .penn-code-toggle {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 12px 11px;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 88%, var(--vp-code-block-bg)) 0%,
+    color-mix(in srgb, var(--surface-2) 35%, var(--vp-code-block-bg)) 100%
+  );
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.vp-doc .penn-code-toggle:hover {
+  color: var(--accent, var(--link));
+  background: color-mix(in srgb, var(--accent-soft, transparent) 55%, var(--surface));
+}
+
+.vp-doc .penn-code-toggle:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: -2px;
+}
+
+.vp-doc div[class*="language-"].penn-code-collapsible.is-collapsed > .penn-code-toggle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 44px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vp-code-block-bg) 0%, transparent) 0%,
+    var(--vp-code-block-bg) 100%
+  );
+}
+
+.dark .vp-doc .penn-code-toggle {
+  border-top-color: color-mix(in srgb, var(--border) 88%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 70%, var(--vp-code-block-bg)) 0%,
+    color-mix(in srgb, var(--surface-2) 40%, var(--vp-code-block-bg)) 100%
+  );
+}
+
+.dark .vp-doc .penn-code-toggle:hover {
+  color: var(--link, var(--accent));
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface));
 }
 
 .dark .vp-doc [class*="language-"] > button.copy.copied,

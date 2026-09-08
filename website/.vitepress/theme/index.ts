@@ -21,6 +21,7 @@ import TopicsBrowse from "./TopicsBrowse.vue";
 import "./custom.css";
 import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
+import { setupCodeCollapse } from "./code-collapse";
 import { setupFlyingFish } from "./flying-fish";
 import { setupSearchEnhance, teardownSearchEnhance } from "./search-enhance";
 import { setupSiteRuntime } from "./site-runtime";
@@ -883,7 +884,19 @@ function withSuppressedDomRefresh(fn: () => void) {
   }
 }
 
+/** 文头合成尽量抢在 debounce 之前，减少「分离 → 一体」的可见跳变 */
+function enhanceArticleChromeNow() {
+  withSuppressedDomRefresh(() => {
+    enhanceArticleHero();
+    placeArticleSummary();
+  });
+}
+
 function scheduleRefresh() {
+  // 先下一帧合成文头（不等 80ms debounce）
+  requestAnimationFrame(() => {
+    enhanceArticleChromeNow();
+  });
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
     nextTick(() => {
@@ -893,6 +906,7 @@ function scheduleRefresh() {
         enhanceArticleHero();
         placeArticleSummary();
         setupBooksShelf();
+        setupCodeCollapse();
         updateReadingTime();
         updateReadingProgress();
         updateOutlineActive();
@@ -983,6 +997,8 @@ export default {
     let teardownSiteRuntime: (() => void) | undefined;
 
     onMounted(() => {
+      // 同步抢跑一次：CSS 叠层兜底后尽快换成真正的 .article-hero
+      enhanceArticleChromeNow();
       scheduleRefresh();
       setupSearchEnhance();
       const content = document.querySelector(".VPContent") || document.getElementById("app");
@@ -1091,6 +1107,9 @@ export default {
     watch(
       () => route.path,
       () => {
+        void nextTick(() => {
+          enhanceArticleChromeNow();
+        });
         scheduleRefresh();
         updateSidebarToggleVisibility();
         bindSidebarOverlayScrollbar();

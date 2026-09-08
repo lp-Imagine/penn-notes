@@ -408,6 +408,184 @@ html:not(.dark) .vp-doc .article-hero {
   color: var(--hero-ink) !important;
 }
 
+/*
+ * 封面文头「合成前」叠层：h1 / meta / cover 尚未被 JS 包进 .article-hero 时，
+ * 用 grid 叠成与最终态接近的一体卡，避免刷新/进入时先看到分离排版再跳变。
+ */
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) {
+  --hero-ink: #fff;
+  --hero-ink-soft: rgba(255, 255, 255, 0.86);
+  --hero-ink-mute: rgba(255, 255, 255, 0.64);
+  --hero-tag-bg: rgba(255, 255, 255, 0.14);
+  --hero-tag-border: rgba(255, 255, 255, 0.26);
+  --hero-ring: color-mix(in srgb, var(--border) 82%, transparent);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.dark :is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) {
+  --hero-ink: #f5f7ff;
+  --hero-ink-soft: rgba(245, 247, 255, 0.86);
+  --hero-ink-mute: rgba(245, 247, 255, 0.6);
+  --hero-tag-bg: rgba(255, 255, 255, 0.1);
+  --hero-tag-border: rgba(255, 255, 255, 0.18);
+  --hero-ring: color-mix(in srgb, #fff 7%, transparent);
+}
+
+html:not(.dark) :is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) {
+  --hero-ring: color-mix(in srgb, var(--border-strong) 78%, var(--border));
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > img.article-cover {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 0;
+  align-self: start;
+  justify-self: stretch;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  max-height: none;
+  margin: 0 0 22px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--hero-ring);
+  border-radius: 16px;
+  background: #0b1220;
+  box-shadow:
+    inset 0 -120px 72px -36px rgba(15, 23, 42, 0.88),
+    inset 0 -40px 28px -20px rgba(15, 23, 42, 0.35),
+    0 1px 2px color-mix(in srgb, var(--text) 5%, transparent),
+    0 14px 36px color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.dark :is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > img.article-cover {
+  filter: brightness(0.9) saturate(1.05);
+  background: #05070d;
+  box-shadow:
+    inset 0 -120px 72px -36px rgba(0, 0, 0, 0.9),
+    inset 0 -40px 28px -20px rgba(0, 0, 0, 0.45),
+    0 18px 42px rgba(0, 0, 0, 0.5);
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > h1 {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
+  align-self: end;
+  justify-self: stretch;
+  box-sizing: border-box;
+  max-width: none;
+  margin: 0 0 22px;
+  padding: 64px 24px 50px;
+  border: none;
+  color: var(--hero-ink);
+  font-size: clamp(18px, 2.6vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.3;
+  text-wrap: balance;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.32),
+    0 8px 20px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > h1 .header-anchor {
+  pointer-events: auto;
+  color: color-mix(in srgb, var(--hero-ink) 40%, transparent) !important;
+  text-decoration: none !important;
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > .article-meta {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
+  align-self: end;
+  justify-self: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0 0 22px !important;
+  padding: 0 24px 18px;
+  color: var(--hero-ink-soft);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > .article-meta > * {
+  pointer-events: auto;
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > .article-meta time {
+  color: var(--hero-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.94;
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > .article-meta .article-tag {
+  padding: 1px 8px;
+  border: 1px solid var(--hero-tag-border);
+  border-radius: 999px;
+  background: var(--hero-tag-bg);
+  color: var(--hero-ink);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+:is(
+  .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+  .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+) > .article-meta .reading-time {
+  color: var(--hero-ink-mute);
+  font-weight: 500;
+  opacity: 0.95;
+}
+
 @media (max-width: 767.98px) {
   .note-article .vp-doc > h1:first-of-type {
     font-size: clamp(24px, 6.5vw, 28px);
@@ -437,6 +615,29 @@ html:not(.dark) .vp-doc .article-hero {
   .vp-doc .article-hero h1 {
     font-size: clamp(16px, 4.6vw, 20px);
   }
+
+  :is(
+    .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+    .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+  ) > img.article-cover {
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+  }
+
+  :is(
+    .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+    .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+  ) > h1 {
+    padding: 48px 16px 44px;
+    font-size: clamp(16px, 4.6vw, 20px);
+  }
+
+  :is(
+    .vp-doc > div:has(> h1):has(> img.article-cover):not(:has(> .article-hero)),
+    .vp-doc:has(> h1):has(> img.article-cover):not(:has(> .article-hero))
+  ) > .article-meta {
+    padding: 0 16px 15px;
+  }
 }
 
 /* ── 文章章节 h2：仅笔记正文（.note-article），首页/栏目/日报不套用 ── */
@@ -445,24 +646,31 @@ html:not(.dark) .vp-doc .article-hero {
 }
 
 .note-article .vp-doc h2 {
+  --penn-chapter-accent: var(--accent, var(--link));
   counter-increment: penn-chapter;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px 12px;
+  gap: 8px 14px;
   position: relative;
-  font-size: clamp(16px, 2.2vw, 18px);
+  font-size: clamp(15px, 2.1vw, 17px);
   font-weight: 650;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.012em;
   line-height: 1.45;
   margin: calc(var(--space-7) + 4px) 0 var(--space-4);
-  padding: 12px 40px 12px 18px;
-  border: 1px solid color-mix(in srgb, var(--link) 18%, var(--border));
-  border-left-width: 4px;
-  border-left-color: var(--link);
+  padding: 13px 40px 13px 16px;
+  border: 1px solid color-mix(in srgb, var(--penn-chapter-accent) 12%, var(--border));
+  border-left: 4px solid var(--penn-chapter-accent);
   border-radius: 10px;
-  background: color-mix(in srgb, var(--link) 6%, var(--surface));
-  box-shadow: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--penn-chapter-accent) 4.5%, var(--surface)) 0%,
+      color-mix(in srgb, var(--penn-chapter-accent) 2.5%, var(--surface)) 100%
+    );
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 72%, transparent) inset,
+    0 1px 2px color-mix(in srgb, var(--text) 3.5%, transparent);
   color: var(--text);
 }
 
@@ -475,22 +683,17 @@ html:not(.dark) .vp-doc .article-hero {
   right: auto;
   height: auto;
   margin: 0;
-  padding: 0 12px 4px 0;
-  border-right: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  padding: 0 14px 5px 2px;
+  border-right: 1px solid color-mix(in srgb, var(--penn-chapter-accent) 14%, var(--border));
   background:
-    linear-gradient(
-      90deg,
-      var(--link) 0%,
-      color-mix(in srgb, var(--link) 40%, transparent) 70%,
-      transparent 100%
-    )
-    left bottom / 100% 2px no-repeat;
-  font-size: 0.95em;
+    linear-gradient(var(--penn-chapter-accent), var(--penn-chapter-accent))
+    no-repeat left 2px bottom 0 / 1.35em 2px;
+  font-size: 0.98em;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
-  color: var(--link);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  color: var(--penn-chapter-accent);
 }
 
 .note-article .vp-doc h2 .header-anchor {
@@ -501,7 +704,7 @@ html:not(.dark) .vp-doc .article-hero {
   transform: translateY(-50%);
   margin: 0;
   opacity: 0;
-  color: var(--link);
+  color: var(--penn-chapter-accent);
   font-size: 14px;
   font-weight: 600;
   transition: opacity 0.15s ease;
@@ -521,22 +724,37 @@ html:not(.dark) .vp-doc .article-hero {
 }
 
 .dark .note-article .vp-doc h2 {
-  border-color: color-mix(in srgb, var(--link) 24%, var(--border));
-  border-left-color: var(--link);
-  background: color-mix(in srgb, var(--link) 9%, var(--surface));
+  border-color: color-mix(in srgb, var(--penn-chapter-accent) 22%, var(--border));
+  border-left-color: var(--penn-chapter-accent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--penn-chapter-accent) 11%, var(--surface)) 0%,
+      color-mix(in srgb, var(--penn-chapter-accent) 7%, var(--surface)) 100%
+    );
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 4%, transparent) inset,
+    0 1px 2px rgba(0, 0, 0, 0.22);
 }
 
 .dark .note-article .vp-doc h2::before {
-  border-right-color: color-mix(in srgb, var(--border) 90%, transparent);
-  color: var(--link);
+  border-right-color: color-mix(in srgb, var(--penn-chapter-accent) 22%, var(--border));
+  color: var(--penn-chapter-accent);
+  background:
+    linear-gradient(var(--penn-chapter-accent), var(--penn-chapter-accent))
+    no-repeat left 2px bottom 0 / 1.35em 2px;
+}
+
+/* 护眼模式：章节卡跟暖色表面，左边条略收饱和 */
+html.focus-mode:not(.dark) .note-article .vp-doc h2 {
+  border-color: color-mix(in srgb, var(--penn-chapter-accent) 10%, var(--border));
   background:
     linear-gradient(
-      90deg,
-      var(--link) 0%,
-      color-mix(in srgb, var(--link) 35%, transparent) 70%,
-      transparent 100%
-    )
-    left bottom / 100% 2px no-repeat;
+      180deg,
+      color-mix(in srgb, var(--penn-chapter-accent) 3.5%, var(--surface)) 0%,
+      var(--surface) 100%
+    );
+  box-shadow: 0 1px 0 color-mix(in srgb, #fff 55%, transparent) inset;
 }
 
 /* 日报等：保留原先的淡分割线 h2 */

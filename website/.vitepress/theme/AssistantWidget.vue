@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
+import AssistantBrandIcon from "./AssistantBrandIcon.vue";
+import AssistantCloseIcon from "./AssistantCloseIcon.vue";
 
 type AssistantConfig = {
   enabled?: boolean;
@@ -2147,102 +2149,7 @@ onBeforeUnmount(() => {
       <header class="penn-assistant-head">
         <div class="penn-assistant-brand">
           <span class="penn-assistant-mark" aria-hidden="true">
-            <svg
-              class="penn-assistant-mark-avatar"
-              viewBox="0 0 64 64"
-              width="28"
-              height="28"
-              fill="none"
-            >
-              <defs>
-                <linearGradient
-                  id="paMarkBg"
-                  x1="12"
-                  y1="6"
-                  x2="52"
-                  y2="58"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#7ea0ff" />
-                  <stop offset="1" stop-color="#3b5bdb" />
-                </linearGradient>
-                <linearGradient
-                  id="paMarkFace"
-                  x1="20"
-                  y1="14"
-                  x2="44"
-                  y2="48"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#5b7cfa" />
-                  <stop offset="1" stop-color="#364fc7" />
-                </linearGradient>
-                <linearGradient
-                  id="paMarkShine"
-                  x1="18"
-                  y1="12"
-                  x2="34"
-                  y2="28"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#fff" stop-opacity="0.55" />
-                  <stop offset="1" stop-color="#fff" stop-opacity="0" />
-                </linearGradient>
-              </defs>
-              <circle cx="32" cy="32" r="30" fill="url(#paMarkBg)" />
-              <circle cx="32" cy="32" r="26.5" fill="#eef2ff" opacity="0.22" />
-              <ellipse cx="32" cy="44" rx="14" ry="11" fill="url(#paMarkFace)" />
-              <circle cx="32" cy="28" r="13.5" fill="url(#paMarkFace)" />
-              <path
-                d="M22 22c2.2-5 8-8 12.5-6.2 3.2 1.2 5.4 4 6.2 7.2"
-                fill="#2b3f9b"
-                opacity="0.35"
-              />
-              <path
-                d="M18.5 27.5c0-8.2 6-14.5 13.5-14.5s13.5 6.3 13.5 14.5"
-                fill="none"
-                stroke="#1f2937"
-                stroke-width="3.2"
-                stroke-linecap="round"
-              />
-              <rect x="15.2" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
-              <rect x="42.6" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
-              <path
-                d="M48.8 33.5v6.2c0 1.5-1.1 2.7-2.5 2.9"
-                fill="none"
-                stroke="#111827"
-                stroke-width="2.2"
-                stroke-linecap="round"
-              />
-              <circle cx="45.2" cy="43.2" r="2.1" fill="#f59f00" />
-              <circle cx="27.2" cy="28.2" r="4.1" fill="#fff" />
-              <circle cx="36.8" cy="28.2" r="4.1" fill="#fff" />
-              <circle cx="27.8" cy="28.6" r="1.85" fill="#111827" />
-              <circle cx="37.4" cy="28.6" r="1.85" fill="#111827" />
-              <circle cx="28.5" cy="27.7" r="0.7" fill="#fff" />
-              <circle cx="38.1" cy="27.7" r="0.7" fill="#fff" />
-              <path
-                d="M28.8 34.2c1.4 1.5 4.8 1.6 6.4 0"
-                fill="none"
-                stroke="#fff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                opacity="0.9"
-              />
-              <circle cx="41.5" cy="41.5" r="5.2" fill="#fff" />
-              <path
-                fill="#3b5bdb"
-                d="M41.5 38.4c.12 0 .22.07.26.18l.32.9.94.12a.27.27 0 0 1 .15.47l-.7.64.2.93a.27.27 0 0 1-.4.3l-.77-.46-.77.46a.27.27 0 0 1-.4-.3l.2-.93-.7-.64a.27.27 0 0 1 .15-.47l.94-.12.32-.9a.27.27 0 0 1 .26-.18Z"
-              />
-              <ellipse
-                cx="24"
-                cy="20"
-                rx="6"
-                ry="3.2"
-                fill="url(#paMarkShine)"
-                transform="rotate(-28 24 20)"
-              />
-            </svg>
+            <AssistantBrandIcon uid="pa-mark" :size="28" class="penn-assistant-mark-avatar" />
           </span>
           <div class="penn-assistant-brand-text">
             <p class="penn-assistant-title">{{ ASSISTANT_NAME }}</p>
@@ -2423,15 +2330,28 @@ onBeforeUnmount(() => {
           </p>
           <div class="penn-assistant-chips">
             <button
-              v-for="q in quickPrompts"
+              v-for="(q, qi) in quickPrompts"
               :key="q"
               type="button"
-              class="penn-assistant-chip"
+              class="penn-assistant-chip penn-assistant-chip--prompt"
               :disabled="loading"
               @click="ask(q, { fromChip: true })"
             >
+              <span class="penn-assistant-chip-index" aria-hidden="true">{{
+                String(qi + 1).padStart(2, "0")
+              }}</span>
               <span class="penn-assistant-chip-text">{{ q }}</span>
-              <span class="penn-assistant-chip-go" aria-hidden="true">→</span>
+              <span class="penn-assistant-chip-go" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                  <path
+                    d="M3.5 8h9M8.5 4l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
@@ -2657,17 +2577,41 @@ onBeforeUnmount(() => {
         </div>
 
         <div v-if="followUpPrompts.length" class="penn-assistant-followups">
-          <p class="penn-assistant-followups-label">{{ followUpsLabel }}</p>
-          <div class="penn-assistant-chips penn-assistant-chips--row">
+          <div class="penn-assistant-followups-head">
+            <span class="penn-assistant-followups-badge" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none">
+                <path
+                  d="M3.2 8h9.6M8 3.2v9.6"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <p class="penn-assistant-followups-label">{{ followUpsLabel }}</p>
+          </div>
+          <div class="penn-assistant-chips penn-assistant-chips--follow">
             <button
               v-for="q in followUpPrompts"
               :key="q"
               type="button"
-              class="penn-assistant-chip penn-assistant-chip--soft"
+              class="penn-assistant-chip penn-assistant-chip--follow"
               :disabled="loading"
               @click="ask(q, { fromChip: true })"
             >
+              <span class="penn-assistant-chip-mark" aria-hidden="true" />
               <span class="penn-assistant-chip-text">{{ q }}</span>
+              <span class="penn-assistant-chip-go" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+                  <path
+                    d="M3.5 8h9M8.5 4l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
@@ -2837,98 +2781,20 @@ onBeforeUnmount(() => {
       <span v-if="!open" class="penn-assistant-fab-tip" aria-hidden="true"
         >站内导读</span
       >
-      <!-- 打开态：收起 -->
-      <svg
+      <!-- 打开态：同家族收起标 -->
+      <AssistantCloseIcon
         v-if="open"
+        uid="pa-close"
+        :size="40"
         class="penn-assistant-fab-icon penn-assistant-fab-icon--close"
-        viewBox="0 0 24 24"
-        width="20"
-        height="20"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.2"
-          stroke-linecap="round"
-          d="M7.5 7.5 16.5 16.5M16.5 7.5 7.5 16.5"
-        />
-      </svg>
-      <!-- 入口：可爱导读助手头像（Heo 风格） -->
-      <svg
+      />
+      <!-- 入口：AI 星芒导读标 -->
+      <AssistantBrandIcon
         v-else
+        uid="pa-fab"
+        :size="40"
         class="penn-assistant-fab-icon penn-assistant-fab-icon--avatar"
-        viewBox="0 0 64 64"
-        width="40"
-        height="40"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <linearGradient id="paFabBg" x1="12" y1="6" x2="52" y2="58" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#7ea0ff" />
-            <stop offset="1" stop-color="#3b5bdb" />
-          </linearGradient>
-          <linearGradient id="paFabFace" x1="20" y1="14" x2="44" y2="48" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#5b7cfa" />
-            <stop offset="1" stop-color="#364fc7" />
-          </linearGradient>
-          <linearGradient id="paFabShine" x1="18" y1="12" x2="34" y2="28" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#fff" stop-opacity="0.55" />
-            <stop offset="1" stop-color="#fff" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-        <!-- soft plate -->
-        <circle cx="32" cy="32" r="30" fill="url(#paFabBg)" />
-        <circle cx="32" cy="32" r="26.5" fill="#eef2ff" opacity="0.22" />
-        <!-- body -->
-        <ellipse cx="32" cy="44" rx="14" ry="11" fill="url(#paFabFace)" />
-        <!-- head -->
-        <circle cx="32" cy="28" r="13.5" fill="url(#paFabFace)" />
-        <path d="M22 22c2.2-5 8-8 12.5-6.2 3.2 1.2 5.4 4 6.2 7.2" fill="#2b3f9b" opacity="0.35" />
-        <!-- headset -->
-        <path
-          d="M18.5 27.5c0-8.2 6-14.5 13.5-14.5s13.5 6.3 13.5 14.5"
-          fill="none"
-          stroke="#1f2937"
-          stroke-width="3.2"
-          stroke-linecap="round"
-        />
-        <rect x="15.2" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
-        <rect x="42.6" y="25.2" width="6.2" height="9.2" rx="3.1" fill="#111827" />
-        <path
-          d="M48.8 33.5v6.2c0 1.5-1.1 2.7-2.5 2.9"
-          fill="none"
-          stroke="#111827"
-          stroke-width="2.2"
-          stroke-linecap="round"
-        />
-        <circle cx="45.2" cy="43.2" r="2.1" fill="#f59f00" />
-        <!-- face -->
-        <circle cx="27.2" cy="28.2" r="4.1" fill="#fff" />
-        <circle cx="36.8" cy="28.2" r="4.1" fill="#fff" />
-        <circle cx="27.8" cy="28.6" r="1.85" fill="#111827" />
-        <circle cx="37.4" cy="28.6" r="1.85" fill="#111827" />
-        <circle cx="28.5" cy="27.7" r="0.7" fill="#fff" />
-        <circle cx="38.1" cy="27.7" r="0.7" fill="#fff" />
-        <path
-          d="M28.8 34.2c1.4 1.5 4.8 1.6 6.4 0"
-          fill="none"
-          stroke="#fff"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          opacity="0.9"
-        />
-        <!-- guide badge -->
-        <circle cx="41.5" cy="41.5" r="5.2" fill="#fff" />
-        <path
-          fill="#3b5bdb"
-          d="M41.5 38.4c.12 0 .22.07.26.18l.32.9.94.12a.27.27 0 0 1 .15.47l-.7.64.2.93a.27.27 0 0 1-.4.3l-.77-.46-.77.46a.27.27 0 0 1-.4-.3l.2-.93-.7-.64a.27.27 0 0 1 .15-.47l.94-.12.32-.9a.27.27 0 0 1 .26-.18Z"
-        />
-        <!-- highlight -->
-        <ellipse cx="24" cy="20" rx="6" ry="3.2" fill="url(#paFabShine)" transform="rotate(-28 24 20)" />
-      </svg>
+      />
     </button>
   </div>
 </template>

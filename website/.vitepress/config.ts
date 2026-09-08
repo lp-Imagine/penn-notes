@@ -11,9 +11,12 @@ const GITHUB_PROFILE = "https://github.com/lp-Imagine";
 
 // canonical / OG / favicon 始终指向主站；GitHub Pages 备份用 PENN_BASE=/penn-notes/
 const SITE_URL = pennSiteUrl();
-const ICON_PNG = `${SITE_URL}/pn-favicon-32.png`;
-const ICON_ICO = `${SITE_URL}/favicon.ico`;
-const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png`;
+/** 换 logo 后 bump，逼浏览器标签栏刷新缓存 */
+const ICON_VER = "20260908";
+const ICON_SVG = `${SITE_URL}/img/logo.svg?v=${ICON_VER}`;
+const ICON_PNG = `${SITE_URL}/pn-favicon-32.png?v=${ICON_VER}`;
+const ICON_ICO = `${SITE_URL}/favicon.ico?v=${ICON_VER}`;
+const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png?v=${ICON_VER}`;
 
 // Umami analytics — set env vars to enable
 const UMAMI_URL = process.env.UMAMI_URL || "";
@@ -28,6 +31,7 @@ const ASSISTANT_ENABLED =
 const ASSISTANT_DEV_TARGET = `http://${process.env.ASSISTANT_HOST || "127.0.0.1"}:${process.env.ASSISTANT_PORT || "8787"}`;
 
 const faviconHeadSnippet = [
+  `<link rel="icon" type="image/svg+xml" href="${ICON_SVG}">`,
   `<link rel="icon" href="${ICON_ICO}" sizes="any">`,
   `<link rel="icon" type="image/png" sizes="32x32" href="${ICON_PNG}">`,
   `<link rel="apple-touch-icon" sizes="180x180" href="${ICON_APPLE}">`,
@@ -162,6 +166,7 @@ export default defineConfig({
   },
   head: [
     ["meta", { name: "baidu-site-verification", content: "codeva-6kNoNaHFfB" }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: ICON_SVG }],
     ["link", { rel: "icon", href: ICON_ICO, sizes: "any" }],
     [
       "link",
