@@ -119,22 +119,43 @@ body {
   .VPNavBar .DocSearch-Button {
     height: 34px !important;
     padding: 0 8px 0 10px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    box-sizing: border-box;
     background: color-mix(in srgb, var(--text) 5%, transparent) !important;
     border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
     border-radius: 7px;
     transition: background 0.15s, border-color 0.15s;
   }
 
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Container {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
   .VPNavBar .DocSearch-Button .DocSearch-Search-Icon {
     width: 13px !important;
     height: 13px !important;
     margin-right: 6px !important;
+    flex-shrink: 0;
   }
 
   .VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder {
     margin-top: 0;
-    padding: 0 10px 0 0;
+    padding: 0;
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .VPNavBar .DocSearch-Button-Keys {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
   }
 
   .VPNavBar .DocSearch-Button-Key {
@@ -239,7 +260,9 @@ body {
   .VPNavBarSearch {
     flex: 0 0 auto;
     min-width: 0;
-    max-width: 148px;
+    /* 「搜索笔记 / 动态」+ ⌘K 需要比英文 Search 更宽，避免快捷键掉出灰底 */
+    width: max-content;
+    max-width: 240px;
     margin-right: 8px;
     position: relative;
     z-index: 2;
@@ -247,11 +270,13 @@ body {
 
   .VPNavBar #local-search,
   .VPNavBar #docsearch {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
   }
 
   .VPNavBar .DocSearch-Button {
-    max-width: 148px;
+    width: auto;
+    max-width: 240px;
   }
 
   .VPNavBarMenu {
@@ -778,31 +803,41 @@ body {
   }
 }
 
-/* 略窄时藏 ⌘K /「搜索」文案，给菜单腾空间，避免与首页重叠 */
+/* ≥768：始终展示搜索文案；窄屏只藏 ⌘K，避免再缩成孤零零的图标 */
 @media (min-width: 768px) and (max-width: 1279.98px) {
   .VPNavBar .DocSearch-Button-Keys {
     display: none !important;
   }
 
-  .VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder {
-    display: none !important;
+  .VPNavBarSearch {
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: 210px;
+    margin-right: 10px;
   }
 
   .VPNavBar .DocSearch-Button {
-    width: 34px !important;
-    min-width: 34px !important;
-    max-width: 34px !important;
-    padding: 0 !important;
-    justify-content: center;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 210px !important;
+    height: 34px !important;
+    padding: 0 10px !important;
+    justify-content: flex-start !important;
+    gap: 0;
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder {
+    display: inline-block !important;
+    padding: 0;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .VPNavBar .DocSearch-Button .DocSearch-Search-Icon {
-    margin-right: 0 !important;
-  }
-
-  .VPNavBarSearch {
-    max-width: 34px;
-    margin-right: 10px;
+    margin-right: 6px !important;
+    flex-shrink: 0;
   }
 
   .VPNavBarMenu > .VPNavBarMenuLink,
@@ -812,20 +847,25 @@ body {
   }
 }
 
-/* 中等宽度（≈960–1200）：文章页顶栏与首页同一逻辑——搜索靠左，分类占用剩余宽度 */
+/* 中等宽度（≈960–1200）：文章页顶栏搜索靠左，与首页同款文案按钮 */
 @media (min-width: 960px) and (max-width: 1199.98px) {
   .VPNavBar.has-sidebar .VPNavBarSearch {
     flex: 0 1 auto !important;
     min-width: 0;
-    max-width: 156px;
+    width: max-content;
+    max-width: 210px;
     padding-left: 16px !important;
   }
 
   .VPNavBar.has-sidebar .DocSearch-Button {
-    width: 100%;
+    width: auto !important;
+    max-width: 210px !important;
   }
 
-  /* 略窄时只藏 ⌘K，保留「搜索」文字，给分类腾一点空间 */
+  .VPNavBar.has-sidebar .DocSearch-Button .DocSearch-Button-Placeholder {
+    display: inline-block !important;
+  }
+
   .VPNavBar.has-sidebar .DocSearch-Button-Keys {
     display: none !important;
   }
