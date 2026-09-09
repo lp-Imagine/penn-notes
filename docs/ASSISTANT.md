@@ -76,19 +76,28 @@ npm run assistant:dev
 
 ### 1. 代码与进程
 
-在服务器仓库目录（或单独 clone）启动：
+推荐在仓库根目录写 **`.env`**（已 gitignore），`assistant-server` 启动时会自动加载，PM2 不必再 `export` 密钥：
 
 ```bash
-cd /path/to/penn-notes
-export LLM_API_KEY=...
-export ASSISTANT_HOST=127.0.0.1
-export ASSISTANT_PORT=8787
-# 站点 rsync 后索引一般在：
-# export ASSISTANT_INDEX_PATH=/www/wwwroot/penn-notes/assistant/index.json
-npm run assistant:server
+cd /opt/penn-notes   # 或你的 clone 目录
+cp .env.example .env
+# 编辑 .env，至少填：
+#   LLM_API_KEY=...
+#   LLM_BASE_URL=https://api.deepseek.com/v1
+#   LLM_MODEL=deepseek-chat
+#   ASSISTANT_HOST=127.0.0.1
+#   ASSISTANT_PORT=8787
+# 可选显式指定索引（默认也会优先找 wwwroot）：
+#   ASSISTANT_INDEX_PATH=/www/wwwroot/penn-notes/assistant/index.json
+# Decap 另见 docs/DECAP.md（GITHUB_OAUTH_* / DECAP_PUBLIC_ORIGIN）
+
+pm2 start npm --name penn-assistant -- run assistant:server
+# 改 .env 后：pm2 restart penn-assistant
 ```
 
-建议用 **PM2 / 宝塔 Node 项目 / systemd** 守护，开机自启；密钥放环境变量，勿写进 git。
+启动日志应含 `env: /opt/penn-notes/.env`、`llm: on`，以及 `index: /www/wwwroot/penn-notes/assistant/index.json`。
+
+密钥只放服务器 `.env`，勿提交 git。
 
 ### 2. Nginx 反代（站点配置）
 

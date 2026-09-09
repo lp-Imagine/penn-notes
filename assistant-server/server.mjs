@@ -39,9 +39,12 @@ import { handleDecapAuth } from "./lib/decap-auth.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 
-/** Load KEY=VALUE from .env without overriding existing process.env. */
+/**
+ * Load KEY=VALUE from 仓库根 .env。
+ * 已有非空 process.env 不覆盖（便于 CI/PM2 临时覆盖）；空字符串会被 .env 填上。
+ */
 function loadDotEnv(filePath) {
-  if (!fs.existsSync(filePath)) return;
+  if (!fs.existsSync(filePath)) return false;
   const text = fs.readFileSync(filePath, "utf8");
   for (const line of text.split(/\n/)) {
     const trimmed = line.trim();
@@ -56,11 +59,14 @@ function loadDotEnv(filePath) {
     ) {
       val = val.slice(1, -1);
     }
-    if (process.env[key] === undefined) process.env[key] = val;
+    const cur = process.env[key];
+    if (cur === undefined || cur === "") process.env[key] = val;
   }
+  return true;
 }
 
-loadDotEnv(path.join(root, ".env"));
+const ENV_FILE = path.join(root, ".env");
+const ENV_LOADED = loadDotEnv(ENV_FILE);
 
 const PORT = Number(process.env.ASSISTANT_PORT || 8787);
 const HOST = process.env.ASSISTANT_HOST || "127.0.0.1";
@@ -98,14 +104,15 @@ const DECAP_PUBLIC_ORIGIN = (
 
 function resolveIndexPath() {
   if (process.env.ASSISTANT_INDEX_PATH) return process.env.ASSISTANT_INDEX_PATH;
+  // 宝塔：站点 rsync 目录优先于仓库 clone 里可能过期的 public 副本
   const candidates = [
-    path.join(root, "website/public/assistant/index.json"),
     "/www/wwwroot/penn-notes/assistant/index.json",
+    path.join(root, "website/public/assistant/index.json"),
   ];
   for (const p of candidates) {
     if (fs.existsSync(p)) return p;
   }
-  return candidates[0];
+  return candidates[1];
 }
 
 let indexCache = { mtimeMs: 0, data: { items: [] } };
@@ -1016,6 +1023,6 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(
-    `assistant-server listening on http://${HOST}:${PORT} (index: ${resolveIndexPath()}; rate ${RATE_MAX}/min, ${RATE_DAILY}/day per IP; decap-oauth: ${GITHUB_OAUTH_CLIENT_ID ? "on" : "off"})`,
+    `assistant-server listening on http://${HOST}:${PORT} (env: ${ENV_LOADED ? ENV_FILE : "none"}; llm: ${LLM_API_KEY ? "on" : "off"}; index: ${resolveIndexPath()}; rate ${RATE_MAX}/min, ${RATE_DAILY}/day per IP; decap-oauth: ${GITHUB_OAUTH_CLIENT_ID ? "on" : "off"})`,
   );
 });
