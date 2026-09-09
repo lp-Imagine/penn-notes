@@ -4,6 +4,7 @@ import { useData, useRoute } from "vitepress";
 import { daysSince, getArticleContentDate, parseArticleDate } from "./article-dates";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
+import { stripLocalePrefix, stripSiteBase } from "./i18n";
 
 const { page, theme, frontmatter, site } = useData();
 const route = useRoute();
@@ -21,13 +22,8 @@ const cfg = computed(
 );
 
 function currentPath() {
-  const raw = route.path;
-  const base = (site.value.base || "/").replace(/\/$/, "");
-  const stripped =
-    base && base !== "/" && raw.startsWith(base)
-      ? raw.slice(base.length)
-      : raw;
-  return decodeURI(stripped).replace(/\/$/, "");
+  const stripped = stripSiteBase(route.path, site.value.base);
+  return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
 }
 
 const contentDate = computed(() => {

@@ -6,9 +6,17 @@ import { computed } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
+import {
+  detectLocaleKey,
+  stripLocalePrefix,
+  stripSiteBase,
+  useI18n,
+  withLocalePrefix,
+} from "./i18n";
 
 const { theme, site } = useData();
 const route = useRoute();
+const { t } = useI18n();
 
 type SidebarItem = { text?: string; link?: string };
 type SidebarGroup = { text?: string; items?: SidebarItem[] };
@@ -20,13 +28,12 @@ type NoteItem = {
 };
 
 function currentPath() {
-  const raw = route.path;
-  const base = (site.value.base || "/").replace(/\/$/, "");
-  const stripped =
-    base && base !== "/" && raw.startsWith(base)
-      ? raw.slice(base.length)
-      : raw;
-  return decodeURI(stripped).replace(/\/$/, "");
+  const stripped = stripSiteBase(route.path, site.value.base);
+  return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
+}
+
+function localeKey() {
+  return detectLocaleKey(stripSiteBase(route.path, site.value.base));
 }
 
 function sidebarRelated(current: string): SidebarItem[] {
@@ -106,14 +113,15 @@ const related = computed<SidebarItem[]>(() => {
 });
 
 function href(link?: string) {
-  return link ? withBase(link) : "#";
+  if (!link) return "#";
+  return withBase(withLocalePrefix(link, localeKey()));
 }
 </script>
 
 <template>
   <div v-if="related.length" class="related-posts">
     <div class="related-head">
-      <h2 class="related-title">相关阅读</h2>
+      <h2 class="related-title">{{ t('related').title }}</h2>
     </div>
     <ul class="related-list">
       <li v-for="item in related" :key="item.link">

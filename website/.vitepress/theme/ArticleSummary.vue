@@ -4,9 +4,11 @@ import { useData, useRoute } from "vitepress";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
 import summaryStore from "../../data/note-summaries.json";
+import { stripLocalePrefix, stripSiteBase, useI18n } from "./i18n";
 
 const { frontmatter, page, site } = useData();
 const route = useRoute();
+const { t } = useI18n();
 const expanded = ref(false);
 const rootEl = ref<HTMLElement | null>(null);
 
@@ -17,13 +19,8 @@ type SummaryStore = {
 };
 
 function currentPath() {
-  const raw = route.path;
-  const base = (site.value.base || "/").replace(/\/$/, "");
-  const stripped =
-    base && base !== "/" && raw.startsWith(base)
-      ? raw.slice(base.length)
-      : raw;
-  return decodeURI(stripped).replace(/\/$/, "");
+  const stripped = stripSiteBase(route.path, site.value.base);
+  return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
 }
 
 function normalize(s: unknown) {
@@ -124,10 +121,10 @@ onUpdated(() => nextTick(relocateAfterHeader));
     v-if="visible"
     ref="rootEl"
     class="article-summary"
-    aria-label="文章速览"
+    :aria-label="t('summary').ariaLabel"
   >
     <div class="article-summary-head">
-      <p class="article-summary-label">速览</p>
+      <p class="article-summary-label">{{ t('summary').label }}</p>
       <button
         v-if="needsCollapse"
         type="button"
@@ -135,7 +132,7 @@ onUpdated(() => nextTick(relocateAfterHeader));
         :aria-expanded="expanded ? 'true' : 'false'"
         @click="expanded = !expanded"
       >
-        {{ expanded ? "收起" : "展开" }}
+        {{ expanded ? t('summary').collapse : t('summary').expand }}
       </button>
     </div>
     <p class="article-summary-text">{{ shownText }}</p>

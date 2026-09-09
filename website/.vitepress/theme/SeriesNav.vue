@@ -2,19 +2,24 @@
 import { computed } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
+import {
+  detectLocaleKey,
+  stripLocalePrefix,
+  stripSiteBase,
+  withLocalePrefix,
+} from "./i18n";
 
 const { site } = useData();
 const route = useRoute();
 
 const currentPath = computed(() => {
-  const raw = route.path;
-  const base = (site.value.base || "/").replace(/\/$/, "");
-  const stripped =
-    base && base !== "/" && raw.startsWith(base)
-      ? raw.slice(base.length)
-      : raw;
-  return decodeURI(stripped).replace(/\/$/, "");
+  const stripped = stripSiteBase(route.path, site.value.base);
+  return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
 });
+
+const localeKey = computed(() =>
+  detectLocaleKey(stripSiteBase(route.path, site.value.base)),
+);
 
 const seriesBlock = computed(() => {
   const current = notes.find((n) => n.link === currentPath.value);
@@ -40,7 +45,8 @@ const seriesBlock = computed(() => {
 
 function href(path) {
   const p = String(path || "").replace(/^\/+/, "/");
-  return withBase(p.startsWith("/") ? p : `/${p}`);
+  const abs = p.startsWith("/") ? p : `/${p}`;
+  return withBase(withLocalePrefix(abs, localeKey.value));
 }
 </script>
 

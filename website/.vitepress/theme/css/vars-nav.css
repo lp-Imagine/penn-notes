@@ -114,6 +114,16 @@ body {
   box-shadow: var(--divider-soft);
 }
 
+/* 使用自定义 LocaleSwitcher，隐藏默认语言下拉 */
+.VPNavBarTranslations {
+  display: none !important;
+}
+
+/* 语言切换紧挨搜索/外观区 */
+.VPNavBar .content-body {
+  align-items: center;
+}
+
 /* 搜索按钮：跟随顶栏毛玻璃，略收紧尺寸 */
 @media (min-width: 768px) {
   .VPNavBar .DocSearch-Button {

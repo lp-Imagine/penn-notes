@@ -18,6 +18,7 @@ import AssistantWidget from "./AssistantWidget.vue";
 import Comments from "./Comments.vue";
 import FriendsMomentsPage from "./FriendsMomentsPage.vue";
 import HomeTypewriter from "./HomeTypewriter.vue";
+import LocaleSwitcher from "./LocaleSwitcher.vue";
 import NewsArchive from "./NewsArchive.vue";
 import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
@@ -28,6 +29,11 @@ import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import TopicsBrowse from "./TopicsBrowse.vue";
+import {
+  getUiText,
+  stripLocalePrefix,
+  stripSiteBase,
+} from "./i18n";
 import "./custom.css";
 import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
@@ -155,42 +161,58 @@ let suppressDomRefresh = false;
 
 const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 
-/** 剥离 base 后的站点路径，如 /web/javascript/foo */
+/** 剥离 base 后的站点路径，如 /web/javascript/foo 或 /en/web/... */
 function sitePath(routePath: string, base = "/") {
-  const b = (base || "/").replace(/\/$/, "");
-  if (b && b !== "/" && routePath.startsWith(b)) {
-    return routePath.slice(b.length) || "/";
-  }
-  return routePath || "/";
+  return stripSiteBase(routePath, base);
+}
+
+/** 去掉 locale 前缀后的逻辑路径（用于判断栏目/详情） */
+function logicalPath(path: string) {
+  return stripLocalePrefix(path);
+}
+
+function isHomePath(path: string) {
+  const p = logicalPath(path);
+  return p === "/" || p.endsWith("/index.html");
 }
 
 /** 笔记正文详情页（非栏目索引、非 AI 动态、非关于/首页） */
 function isNoteArticleDetail(path: string) {
-  if (path.startsWith("/news")) return false;
-  if (path === "/about" || path === "/about/") return false;
-  if (path === "/" || path.endsWith("/index.html")) return false;
+  const p = logicalPath(path);
+  if (p.startsWith("/news")) return false;
+  if (p === "/about" || p === "/about/") return false;
+  if (p === "/" || p.endsWith("/index.html")) return false;
 
   for (const section of NOTE_SECTIONS) {
     const prefix = `/${section}/`;
-    if (path.startsWith(prefix)) {
-      const rest = path.slice(prefix.length).replace(/\/$/, "");
+    if (p.startsWith(prefix)) {
+      const rest = p.slice(prefix.length).replace(/\/$/, "");
       return rest.length > 0;
     }
-    if (path === `/${section}` || path === `/${section}/`) return false;
+    if (p === `/${section}` || p === `/${section}/`) return false;
   }
   return false;
 }
 
 /** AI 动态日报详情（不含 /news/ 归档首页） */
 function isNewsDigestDetail(path: string) {
-  return /\/news\/\d{4}-\d{2}\/ai-news-/.test(path);
+  return /\/news\/\d{4}-\d{2}\/ai-news-/.test(logicalPath(path));
 }
 
 function currentSitePath() {
   if (typeof location === "undefined") return "/";
-  const siteData = (globalThis as { __VP_SITE_DATA__?: { base?: string } })
+  const siteData = (globalThis as { __VP_SITE_DATA__?: { base?: string; lang?: string } })
     .__VP_SITE_DATA__;
   return sitePath(location.pathname, siteData?.base || "/");
+}
+
+function currentUiLang() {
+  if (typeof document !== "undefined" && document.documentElement.lang) {
+    return document.documentElement.lang;
+  }
+  const siteData = (globalThis as { __VP_SITE_DATA__?: { lang?: string } })
+    .__VP_SITE_DATA__;
+  return siteData?.lang || "zh-CN";
 }
 
 function isReadableDetail(path = currentSitePath()) {
@@ -214,7 +236,7 @@ function createSidebarToggle() {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "sidebar-toggle";
-  btn.setAttribute("aria-label", "收起/展开左侧菜单");
+  btn.setAttribute("aria-label", getUiText(currentUiLang()).sidebarToggle);
   btn.innerHTML = '<span class="sidebar-toggle-chevron"></span>';
   btn.addEventListener("click", () => {
     const collapsed = document.documentElement.classList.toggle("sidebar-collapsed");
@@ -247,13 +269,14 @@ function updateFocusToggleVisibility() {
 function applyFocusToggleState() {
   if (!focusToggleBtn) return;
   const on = document.documentElement.classList.contains("focus-mode");
+  const fm = getUiText(currentUiLang()).focusMode;
   focusToggleBtn.classList.toggle("is-active", on);
   focusToggleBtn.setAttribute("aria-pressed", on ? "true" : "false");
   focusToggleBtn.setAttribute(
     "aria-label",
-    on ? "退出沉浸式阅读" : "沉浸式阅读",
+    on ? fm.exit : fm.enter,
   );
-  focusToggleBtn.title = on ? "退出沉浸式阅读" : "沉浸式阅读";
+  focusToggleBtn.title = on ? fm.exit : fm.enter;
 }
 
 function createFocusToggle() {
@@ -343,7 +366,7 @@ function ensureNavOverflowFlyout(menu: HTMLElement) {
   const el = document.createElement("div");
   el.className = "penn-nav-more VPFlyout";
   el.innerHTML = `
-    <button type="button" class="button" aria-label="更多导航" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="button" aria-label="${getUiText(currentUiLang()).navMore}" aria-haspopup="true" aria-expanded="false">
       <span class="vpi-more-horizontal icon"></span>
     </button>
     <div class="menu">
@@ -727,7 +750,7 @@ function setupBackToTop() {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "back-to-top";
-  btn.setAttribute("aria-label", "回到顶部");
+  btn.setAttribute("aria-label", getUiText(currentUiLang()).backToTop);
   btn.innerHTML =
     '<svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   btn.addEventListener("click", () => {
@@ -791,7 +814,7 @@ function updateReadingTime() {
       return;
     }
     const minutes = estimateReadingMinutes(doc);
-    const label = `约 ${minutes} 分钟读完`;
+    const label = getUiText(currentUiLang()).readingTime(minutes);
 
     if (isNote) {
       const meta = doc.querySelector(".article-meta");
@@ -1068,10 +1091,12 @@ const Layout = defineComponent({
   name: "PennLayout",
   setup(_props, { slots }) {
     const route = useRoute();
+    const { lang } = useData();
     return () => {
       const path = sitePath(route.path);
-      const isHome = path === "/" || path.endsWith("/index.html");
+      const isHome = isHomePath(path);
       const showArticleExtras = isNoteArticleDetail(path);
+      const skipLabel = getUiText(lang.value).skipToContent;
       const layoutClass = [
         "site-layout",
         isHome ? "home-layout" : "",
@@ -1084,6 +1109,10 @@ const Layout = defineComponent({
         { class: layoutClass },
         {
           ...slots,
+          "nav-bar-content-after": () => [
+            h(LocaleSwitcher),
+            slots["nav-bar-content-after"]?.(),
+          ],
           "doc-before": () => [
             slots["doc-before"]?.(),
             h(NewsDigestEnhance),
@@ -1108,7 +1137,7 @@ const Layout = defineComponent({
             h(
               "a",
               { class: "skip-link", href: "#VPContent" },
-              "跳到正文",
+              skipLabel,
             ),
             slots["layout-top"]?.(),
           ],
@@ -1129,14 +1158,39 @@ export default {
   // VitePress theme-level setup (runs on client; official medium-zoom pattern)
   setup() {
     const route = useRoute();
-    const { theme } = useData();
+    const { theme, lang } = useData();
     let teardownSiteRuntime: (() => void) | undefined;
+
+    const refreshLocalizedChrome = () => {
+      applyFocusToggleState();
+      if (sidebarToggleBtn) {
+        sidebarToggleBtn.setAttribute(
+          "aria-label",
+          getUiText(lang.value).sidebarToggle,
+        );
+      }
+      if (backTopBtn) {
+        backTopBtn.setAttribute(
+          "aria-label",
+          getUiText(lang.value).backToTop,
+        );
+      }
+      const badge = document.querySelector<HTMLElement>(".footer-runtime-badge");
+      if (badge) badge.textContent = getUiText(lang.value).siteRuntime.badge;
+      const runtimeEl = document.querySelector<HTMLElement>(".footer-runtime");
+      if (runtimeEl) {
+        runtimeEl.setAttribute(
+          "aria-label",
+          getUiText(lang.value).siteRuntime.badge,
+        );
+      }
+    };
 
     onMounted(() => {
       // 同步抢跑一次：CSS 叠层兜底后尽快换成真正的 .article-hero
       enhanceArticleChromeNow();
       scheduleRefresh();
-      setupSearchEnhance();
+      setupSearchEnhance(() => getUiText(lang.value).searchFilter);
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
         // 含 style：日报栏目筛选会改 display，需重算章节高亮
@@ -1232,7 +1286,11 @@ export default {
       setupBackToTop();
       setupFlyingFish();
       const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
-      teardownSiteRuntime = setupSiteRuntime(siteRuntime?.since ?? "2020-01-03");
+      teardownSiteRuntime = setupSiteRuntime(
+        siteRuntime?.since ?? "2020-01-03",
+        (y, d) => getUiText(lang.value).siteRuntime.format(y, d),
+      );
+      refreshLocalizedChrome();
       updateReadingTime();
       bindNewsImageFallback();
       const vpContent = document.querySelector(".VPContent");
@@ -1273,6 +1331,23 @@ export default {
         }
         updateFocusToggleVisibility();
         applyFocusToggleState();
+        refreshLocalizedChrome();
+      },
+    );
+
+    watch(
+      () => lang.value,
+      () => {
+        refreshLocalizedChrome();
+        updateReadingTime();
+        teardownSiteRuntime?.();
+        const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
+        teardownSiteRuntime = setupSiteRuntime(
+          siteRuntime?.since ?? "2020-01-03",
+          (y, d) => getUiText(lang.value).siteRuntime.format(y, d),
+        );
+        teardownSearchEnhance();
+        setupSearchEnhance(() => getUiText(lang.value).searchFilter);
       },
     );
 

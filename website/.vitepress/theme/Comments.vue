@@ -5,11 +5,13 @@
  * - SPA：首载后通过 postMessage 切换 term
  * - 主题：dark → dark_dimmed；focus → 暖色 CSS（jsDelivr，需 CORS）；其余 light
  */
-import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
+import { resolveUiLocale, useI18n } from "./i18n";
 
-const { theme } = useData();
+const { theme, lang } = useData();
 const route = useRoute();
+const { t } = useI18n();
 const root = ref<HTMLElement | null>(null);
 const host = ref<HTMLElement | null>(null);
 
@@ -20,6 +22,13 @@ const giscus = theme.value.giscus as
 const enabled = Boolean(
   giscus && giscus.repo && giscus.repoId && giscus.category && giscus.categoryId,
 );
+
+const giscusLang = computed(() => {
+  const ui = resolveUiLocale(lang.value);
+  if (ui === "en") return "en";
+  if (ui === "zh-TW") return "zh-TW";
+  return "zh-CN";
+});
 
 let themeObserver: MutationObserver | undefined;
 let loadObserver: IntersectionObserver | undefined;
@@ -82,7 +91,7 @@ function mountGiscusScript() {
   script.setAttribute("data-emit-metadata", "0");
   script.setAttribute("data-input-position", "bottom");
   script.setAttribute("data-theme", giscusThemeName());
-  script.setAttribute("data-lang", "zh-CN");
+  script.setAttribute("data-lang", giscusLang.value);
   script.setAttribute("crossorigin", "anonymous");
   script.async = true;
   host.value.appendChild(script);
@@ -96,6 +105,11 @@ function syncGiscusTheme() {
 function syncGiscusTerm() {
   if (!giscusReady) return;
   sendGiscusMessage({ setConfig: { term: discussionTerm() } });
+}
+
+function syncGiscusLang() {
+  if (!giscusReady) return;
+  sendGiscusMessage({ setConfig: { lang: giscusLang.value } });
 }
 
 function onGiscusMessage(event: MessageEvent) {
@@ -140,6 +154,13 @@ watch(
   },
 );
 
+watch(
+  () => giscusLang.value,
+  () => {
+    syncGiscusLang();
+  },
+);
+
 onBeforeUnmount(() => {
   window.removeEventListener("message", onGiscusMessage);
   themeObserver?.disconnect();
@@ -150,12 +171,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section v-if="enabled" ref="root" class="comments-section" aria-label="评论">
+  <section v-if="enabled" ref="root" class="comments-section" :aria-label="t('comments').ariaLabel">
     <div class="comments-panel">
       <header class="comments-head">
-        <h2 class="comments-title">评论</h2>
+        <h2 class="comments-title">{{ t('comments').title }}</h2>
         <p class="comments-hint">
-          使用 GitHub 账号登录后即可留言；需能正常访问 GitHub。
+          {{ t('comments').hint }}
         </p>
       </header>
       <div ref="host" class="giscus-host">

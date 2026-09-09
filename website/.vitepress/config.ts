@@ -1,29 +1,37 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig, type HeadConfig } from "vitepress";
 import { pennCalloutsPlugin } from "./markdown-callouts";
 import { pennBase, pennCanonicalUrl, pennSiteUrl, pennRewriteRootUrlsInHtml } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 import musicDefaults from "../data/music.json";
+import { buildThemeConfig } from "./i18n/theme-config";
+import {
+  buildContentRewrites,
+  ensureLocaleContentAliases,
+} from "./i18n/rewrites";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const WEBSITE_ROOT = join(__dirname, "..");
+
+// 为 en/、zh-TW/ 挂上栏目符号链接，复用简体 md
+ensureLocaleContentAliases(WEBSITE_ROOT);
 
 const BASE = pennBase();
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
 
-// canonical / OG / favicon 始终指向主站；GitHub Pages 备份用 PENN_BASE=/penn-notes/
 const SITE_URL = pennSiteUrl();
-/** 换 logo 后 bump，逼浏览器标签栏刷新缓存 */
 const ICON_VER = "20260908";
 const ICON_SVG = `${SITE_URL}/img/logo.svg?v=${ICON_VER}`;
 const ICON_PNG = `${SITE_URL}/pn-favicon-32.png?v=${ICON_VER}`;
 const ICON_ICO = `${SITE_URL}/favicon.ico?v=${ICON_VER}`;
 const ICON_APPLE = `${SITE_URL}/img/pn-apple-touch.png?v=${ICON_VER}`;
 
-// Umami analytics — set env vars to enable
 const UMAMI_URL = process.env.UMAMI_URL || "";
 const UMAMI_ID = process.env.UMAMI_WEBSITE_ID || "";
 
-// 站内助手：主站默认同域 /api/assistant；GitHub Pages 备份默认关闭（可设 ASSISTANT_API_BASE 指向主站）
 const IS_PAGES_BACKUP = BASE.replace(/\/$/, "") === "/penn-notes";
 const ASSISTANT_API_BASE = (process.env.ASSISTANT_API_BASE || "").trim();
 const ASSISTANT_ENABLED =
@@ -31,7 +39,6 @@ const ASSISTANT_ENABLED =
   (!IS_PAGES_BACKUP && process.env.ASSISTANT_ENABLED !== "false");
 const ASSISTANT_DEV_TARGET = `http://${process.env.ASSISTANT_HOST || "127.0.0.1"}:${process.env.ASSISTANT_PORT || "8787"}`;
 
-/** 音乐胶囊：默认读 website/data/music.json，可用环境变量覆盖 */
 const MUSIC_ENABLED =
   process.env.MUSIC_ENABLED === "true" ||
   (process.env.MUSIC_ENABLED !== "false" && Boolean(musicDefaults.enabled));
@@ -81,20 +88,56 @@ const mergedSidebar = {
   ...newsSidebar,
 };
 
+const sharedThemeExtras = {
+  socialLinks: [{ icon: "github" as const, link: GITHUB_PROFILE }],
+  siteRuntime: {
+    since: "2020-01-03",
+  },
+  assistant: {
+    enabled: ASSISTANT_ENABLED,
+    apiBase: ASSISTANT_API_BASE,
+  },
+  music: {
+    enabled: MUSIC_ENABLED,
+    provider: MUSIC_PROVIDER,
+    server: MUSIC_SERVER,
+    type: MUSIC_TYPE,
+    id: MUSIC_PLAYLIST_ID,
+    volume: musicDefaults.volume ?? 0.7,
+    order: musicDefaults.order ?? "random",
+    loop: musicDefaults.loop ?? "all",
+    metingApi: MUSIC_METING_API,
+    myhkwPlayerId: MUSIC_MYHKW_PLAYER_ID,
+    myhkwMobile: (musicDefaults as { myhkwMobile?: boolean }).myhkwMobile !== false,
+    myhkwAutoplay: Boolean((musicDefaults as { myhkwAutoplay?: boolean }).myhkwAutoplay),
+    myhkwPosition:
+      (musicDefaults as { myhkwPosition?: "l" | "r" }).myhkwPosition === "r" ? "r" : "l",
+  },
+  giscus: {
+    repo: "lp-Imagine/penn-notes",
+    repoId: "R_kgDOH7Mqqg",
+    category: "Comments",
+    categoryId: "DIC_kwDOH7Mqqs4DDyOt",
+  },
+};
+
+const themeExtras = {
+  base: BASE,
+  sidebar: mergedSidebar,
+  shared: sharedThemeExtras,
+};
+
 export default defineConfig({
   title: "Penn Notes",
-  description:
-    "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
-  lang: "zh-CN",
   base: BASE,
   cleanUrls: true,
   lastUpdated: true,
-  appearance: true, // 默认跟随系统，可手动切换
-  // 站内死链直接失败，外链（http/mailto）不拦；同步稿偶发坏链也能在 CI 暴露
+  appearance: true,
   ignoreDeadLinks: [
     /^https?:\/\//,
     /^mailto:/,
   ],
+  rewrites: buildContentRewrites(),
   markdown: {
     theme: {
       light: "github-light",
@@ -104,11 +147,7 @@ export default defineConfig({
       pennCalloutsPlugin(md);
     },
   },
-  // ai-article 同步过来的表格偶尔会多出一个尾随空白列（由 convertTable 的 padding 逻辑触发），
-  // 在这里把所有内容为空白/只有 &nbsp; 的最后列 cell 删掉，避免下游文章都各自修。
-  // 同时包一层 .vp-table-scroll，方便 CSS：铺满 + 列多时横向滚动兼容。
   async transformPageHtml(html) {
-    // 末尾空白 cell：标签 + 可含 &nbsp; / 全角空格 / 空白 / 嵌套空标签（strong/em/span/br 等）
     const EMPTY_CELL =
       /<t[hd](?:\s[^>]*)?>(?:&nbsp;|&#160;|&#xa0;|\s|<(?:strong|em|b|i|code|span)\b[^>]*>(?:\s|&nbsp;|&#160;|&#xa0;)*<\/(?:strong|em|b|i|code|span)>|<br\s*\/?>)*<\/t[hd]>\s*$/i;
     let out = html.replace(
@@ -124,15 +163,12 @@ export default defineConfig({
         return `<div class="vp-table-scroll">${cleaned}</div>`;
       },
     );
-    // 手写页（about/collect/books）raw HTML 的 /news/ 等；Pages 备份需带 PENN_BASE
     out = pennRewriteRootUrlsInHtml(out, BASE);
     return out;
   },
-  // Post-process built HTML so icons sit at the very start of <head>
   async buildEnd(siteConfig) {
     injectFaviconEarly(siteConfig.outDir);
   },
-  // 本地 dev：同域 /api/assistant → 助手进程（与生产反代一致；无需 ASSISTANT_API_BASE）
   vite: {
     server: {
       proxy: {
@@ -140,12 +176,10 @@ export default defineConfig({
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
         },
-        // Decap CMS GitHub OAuth（与助手同进程）
         "/api/decap-auth": {
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
         },
-        // 本地开发：绕过浏览器直连公共 Meting 的超时/CORS 波动（injahow 对 QQ 歌单更稳）
         "/api/meting": {
           target: "https://api.injahow.cn",
           changeOrigin: true,
@@ -154,7 +188,6 @@ export default defineConfig({
       },
     },
   },
-  // 每页注入 OG / Twitter / JSON-LD（微信/Google 分享卡片）
   transformHead({ pageData, siteData }) {
     const fm = pageData.frontmatter ?? {};
     const title = pageData.title || fm.title || siteData.title;
@@ -258,160 +291,29 @@ export default defineConfig({
         ]
       : []),
   ],
-  themeConfig: {
-    siteTitle: "Penn Notes",
-    logo: {
-      light: "/img/logo.svg",
-      dark: "/img/logo.svg",
-      alt: "Penn Notes",
+  locales: {
+    root: {
+      label: "简体",
+      lang: "zh-CN",
+      description:
+        "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
+      themeConfig: buildThemeConfig("zh-CN", themeExtras),
     },
-    notFound: {
-      title: "页面不存在",
-      quote: "该页面不存在或链接已失效。",
-      linkLabel: "返回首页",
-      linkText: "返回首页",
+    "zh-TW": {
+      label: "繁體",
+      lang: "zh-TW",
+      link: "/zh-TW/",
+      description:
+        "Penn 的技術部落格：前端、工程化、後端實踐，以及每日 AI 動態。",
+      themeConfig: buildThemeConfig("zh-TW", themeExtras),
     },
-    nav: [
-      { text: "首页", link: "/" },
-      {
-        text: "目录",
-        activeMatch: "/news/|/tags/|/archive/|/topics/",
-        items: [
-          { text: "AI 动态", link: "/news/", activeMatch: "/news/" },
-          { text: "标签", link: "/tags/", activeMatch: "/tags/" },
-          { text: "阅读路径", link: "/topics/", activeMatch: "/topics/" },
-          { text: "归档", link: "/archive/", activeMatch: "/archive/" },
-        ],
-      },
-      {
-        text: "清单",
-        activeMatch: "/collect/|/books/|/recent/|/friends/",
-        items: [
-          { text: "收藏", link: "/collect/", activeMatch: "/collect/" },
-          { text: "书单", link: "/books/", activeMatch: "/books/" },
-          { text: "近况", link: "/recent/", activeMatch: "/recent/" },
-          { text: "友链动态", link: "/friends/", activeMatch: "/friends/" },
-        ],
-      },
-      {
-        text: "分类",
-        activeMatch:
-          "/web/|/ui/|/engineering/|/backend/|/tech/|/agent/|/computer/|/misc/",
-        items: [
-          { text: "JS & 框架", link: "/web/", activeMatch: "/web/" },
-          { text: "样式", link: "/ui/", activeMatch: "/ui/" },
-          { text: "工程化", link: "/engineering/", activeMatch: "/engineering/" },
-          { text: "后端", link: "/backend/", activeMatch: "/backend/" },
-          { text: "工具", link: "/tech/", activeMatch: "/tech/" },
-          { text: "AI Agent", link: "/agent/", activeMatch: "/agent/" },
-          { text: "浏览器", link: "/computer/", activeMatch: "/computer/" },
-          { text: "杂项", link: "/misc/", activeMatch: "/misc/" },
-        ],
-      },
-      {
-        text: "小站",
-        items: [
-          { text: "Draftly", link: "https://draftly.cn" },
-          { text: "面镜", link: "https://interview.draftly.cn" },
-          { text: "导航", link: "https://nav.draftly.cn" },
-        ],
-      },
-      { text: "关于", link: "/about/", activeMatch: "/about/" },
-    ],
-    sidebar: mergedSidebar,
-    socialLinks: [{ icon: "github", link: GITHUB_PROFILE }],
-    search: {
-      provider: "local",
-      options: {
-        /* 默认简洁结果；保留详情切换按钮，用户可手动开启正文摘要 */
-        detailedView: "auto",
-        miniSearch: {
-          searchOptions: {
-            fuzzy: 0.2,
-            prefix: true,
-            boost: { title: 5, text: 2, titles: 3 },
-          },
-        },
-        translations: {
-          button: {
-            buttonText: "搜索笔记 / 动态",
-            buttonAriaLabel: "搜索笔记与 AI 动态",
-          },
-          modal: {
-            displayDetails: "显示正文摘要",
-            resetButtonTitle: "清除",
-            backButtonTitle: "关闭",
-            noResultsText: "未找到与",
-            footer: {
-              selectText: "选择",
-              selectKeyAriaLabel: "回车键",
-              navigateText: "移动",
-              navigateUpKeyAriaLabel: "上方向键",
-              navigateDownKeyAriaLabel: "下方向键",
-              closeText: "关闭",
-              closeKeyAriaLabel: "Esc 键",
-            },
-          },
-        },
-      },
-    },
-    outline: { level: [2, 3], label: "章节索引" },
-    sidebarMenuLabel: "目录",
-    lastUpdated: { text: "上次更新" },
-    docFooter: { prev: "上一篇", next: "下一篇" },
-    returnToTopLabel: "返回顶部",
-    darkModeSwitchLabel: "外观",
-    footer: {
-      message:
-        '<span class="footer-brand">Penn Notes</span><span class="footer-tagline">认真生活，随便折腾</span>',
-      copyright:
-        `<span class="footer-links"><a class="footer-link" href="${BASE}notes/feed.xml">文章 RSS</a><a class="footer-link" href="${BASE}news/feed.xml">AI 动态 RSS</a></span><span class="footer-meta"><span class="footer-runtime" aria-label="网站运行时间"><span class="footer-runtime-badge">安全运行</span><span class="footer-runtime-value" id="penn-site-runtime">—</span></span><span class="footer-sep" aria-hidden="true">·</span><span class="footer-copy">© 2020-present Penn</span><span class="footer-sep" aria-hidden="true">·</span><a class="footer-beian" href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">赣ICP备2026017678号-1</a></span>`,
-    },
-    // 文章实用增强（由 imagineblog 移植）
-    outdateNotice: {
-      // 3 年；若改为 5 年可设 limitDays: 1825
-      limitDays: 1095,
-      messagePrev: "本文距上次更新已过",
-      messageNext: "天，内容可能已过时，请以最新文档为准。",
-    },
-    siteRuntime: {
-      since: "2020-01-03",
-    },
-    // 站内导读助手（宝塔 Node 反代 /api/assistant；密钥不进前端）
-    assistant: {
-      enabled: ASSISTANT_ENABLED,
-      // 空字符串 = 同域相对路径；Pages 若开启可设 https://penn-notes.draftly.cn
-      apiBase: ASSISTANT_API_BASE,
-    },
-    // 音乐：provider=meting 优先自研胶囊；配了 myhkwPlayerId 时限流/失败兜底明月浩空
-    // provider=myhkw 则只用明月浩空。改配置：website/data/music.json 或 MUSIC_*
-    music: {
-      enabled: MUSIC_ENABLED,
-      provider: MUSIC_PROVIDER,
-      server: MUSIC_SERVER,
-      type: MUSIC_TYPE,
-      id: MUSIC_PLAYLIST_ID,
-      volume: musicDefaults.volume ?? 0.7,
-      order: musicDefaults.order ?? "random",
-      loop: musicDefaults.loop ?? "all",
-      metingApi: MUSIC_METING_API,
-      myhkwPlayerId: MUSIC_MYHKW_PLAYER_ID,
-      myhkwMobile: (musicDefaults as { myhkwMobile?: boolean }).myhkwMobile !== false,
-      myhkwAutoplay: Boolean((musicDefaults as { myhkwAutoplay?: boolean }).myhkwAutoplay),
-      myhkwPosition:
-        (musicDefaults as { myhkwPosition?: "l" | "r" }).myhkwPosition === "r" ? "r" : "l",
-    },
-    // 文章评论（giscus，基于 GitHub Discussions）
-    // 启用步骤：仓库 Settings → Features → 开启 Discussions →
-    // 访问 https://giscus.app 按提示安装 giscus App 并配置 →
-    // 把生成的 data-repo-id / data-category-id 填到下面，即可生效
-    // 分类名需与仓库 Discussions 一致：建议在 GitHub → Settings → Discussions
-    // 将原 Announcements 重命名为 Comments（categoryId 可不变）。
-    giscus: {
-      repo: "lp-Imagine/penn-notes",
-      repoId: "R_kgDOH7Mqqg",
-      category: "Comments",
-      categoryId: "DIC_kwDOH7Mqqs4DDyOt",
+    en: {
+      label: "English",
+      lang: "en-US",
+      link: "/en/",
+      description:
+        "Penn's notes on frontend, engineering, backend, and daily AI news.",
+      themeConfig: buildThemeConfig("en", themeExtras),
     },
   },
 });
