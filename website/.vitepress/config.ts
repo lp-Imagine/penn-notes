@@ -140,6 +140,11 @@ export default defineConfig({
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
         },
+        // Decap CMS GitHub OAuth（与助手同进程）
+        "/api/decap-auth": {
+          target: ASSISTANT_DEV_TARGET,
+          changeOrigin: true,
+        },
         // 本地开发：绕过浏览器直连公共 Meting 的超时/CORS 波动（injahow 对 QQ 歌单更稳）
         "/api/meting": {
           target: "https://api.injahow.cn",

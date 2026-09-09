@@ -12,6 +12,8 @@
  *   ASSISTANT_RATE_MAX   requests per minute per IP (default 20)
  *   ASSISTANT_RATE_DAILY requests per day per IP (default 80, Asia/Shanghai)
  *   ASSISTANT_HOST       default 127.0.0.1
+ *   GITHUB_OAUTH_CLIENT_ID / GITHUB_OAUTH_CLIENT_SECRET  Decap CMS 登录（可选）
+ *   DECAP_PUBLIC_ORIGIN  OAuth 回调公网源，默认 https://penn-notes.draftly.cn
  *
  * 本地开发：npm run assistant:dev  （改代码自动重启）
  * 宝塔生产：npm run assistant:server + PM2/systemd
@@ -32,6 +34,7 @@ import {
   listNoteDocs,
   retrieve,
 } from "./lib/retrieve.mjs";
+import { handleDecapAuth } from "./lib/decap-auth.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -84,6 +87,14 @@ const EXTRA_ORIGINS = String(process.env.ASSISTANT_CORS_ORIGINS || "")
   .filter(Boolean);
 
 const ALLOWED_ORIGINS = new Set([...DEFAULT_ORIGINS, ...EXTRA_ORIGINS]);
+
+const GITHUB_OAUTH_CLIENT_ID = process.env.GITHUB_OAUTH_CLIENT_ID || "";
+const GITHUB_OAUTH_CLIENT_SECRET = process.env.GITHUB_OAUTH_CLIENT_SECRET || "";
+const DECAP_PUBLIC_ORIGIN = (
+  process.env.DECAP_PUBLIC_ORIGIN ||
+  process.env.PENN_SITE_URL ||
+  "https://penn-notes.draftly.cn"
+).replace(/\/$/, "");
 
 function resolveIndexPath() {
   if (process.env.ASSISTANT_INDEX_PATH) return process.env.ASSISTANT_INDEX_PATH;
@@ -909,6 +920,18 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (
+    req.method === "GET" &&
+    (url.pathname === "/api/decap-auth" || url.pathname === "/api/decap-auth/callback")
+  ) {
+    await handleDecapAuth(req, res, url, {
+      clientId: GITHUB_OAUTH_CLIENT_ID,
+      clientSecret: GITHUB_OAUTH_CLIENT_SECRET,
+      publicOrigin: DECAP_PUBLIC_ORIGIN,
+    });
+    return;
+  }
+
   if (req.method === "GET" && url.pathname === "/api/assistant/health") {
     const index = loadIndex();
     send(
@@ -993,6 +1016,6 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(
-    `assistant-server listening on http://${HOST}:${PORT} (index: ${resolveIndexPath()}; rate ${RATE_MAX}/min, ${RATE_DAILY}/day per IP)`,
+    `assistant-server listening on http://${HOST}:${PORT} (index: ${resolveIndexPath()}; rate ${RATE_MAX}/min, ${RATE_DAILY}/day per IP; decap-oauth: ${GITHUB_OAUTH_CLIENT_ID ? "on" : "off"})`,
   );
 });

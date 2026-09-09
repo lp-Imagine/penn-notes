@@ -273,6 +273,62 @@ test("does not double-count the same RSS failures across state files", () => {
   assert.ok(!output.includes("exceed threshold"), "2 unique failures must not trip threshold 3");
 });
 
+// ── Decap CMS admin ──
+console.log("\ndecap admin:");
+
+test("ships /admin static entry and github oauth endpoint contract", () => {
+  const adminHtml = path.join(root, "website/public/admin/index.html");
+  const adminYml = path.join(root, "website/public/admin/config.yml");
+  assert.ok(fs.existsSync(adminHtml), "admin/index.html missing");
+  assert.ok(fs.existsSync(adminYml), "admin/config.yml missing");
+  const yml = fs.readFileSync(adminYml, "utf8");
+  assert.ok(yml.includes("auth_endpoint: api/decap-auth"), "oauth endpoint missing");
+  assert.ok(yml.includes("repo: lp-Imagine/penn-notes"), "repo missing");
+  for (const name of ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"]) {
+    assert.ok(yml.includes(`name: ${name}`), `collection ${name} missing`);
+  }
+  const out = run("node scripts/decap-auth-smoke.mjs");
+  assert.ok(out.includes("decap-auth-smoke: ok"), "oauth smoke failed");
+});
+
+test("draft frontmatter from Decap is skipped by build-home", () => {
+  const draftPath = path.join(root, "website/misc/essays/_decap-verify-draft.md");
+  fs.mkdirSync(path.dirname(draftPath), { recursive: true });
+  fs.writeFileSync(
+    draftPath,
+    [
+      "---",
+      "title: Decap Verify Draft",
+      "date: 2099-01-01",
+      "section: misc",
+      "group: essays",
+      "draft: true",
+      "tags:",
+      "  - verify",
+      "---",
+      "",
+      "# Decap Verify Draft",
+      "",
+      "temporary draft for CI smoke; should not appear in sidebar.",
+      "",
+    ].join("\n"),
+  );
+  try {
+    run("node scripts/build-home.mjs");
+    const sidebar = fs.readFileSync(
+      path.join(root, "website/.vitepress/sidebar.generated.mjs"),
+      "utf8",
+    );
+    assert.ok(
+      !sidebar.includes("Decap Verify Draft"),
+      "draft title must not enter sidebar",
+    );
+  } finally {
+    fs.unlinkSync(draftPath);
+    run("node scripts/build-home.mjs");
+  }
+});
+
 // ── slug / path sanity ──
 console.log("\nslug sanity:");
 

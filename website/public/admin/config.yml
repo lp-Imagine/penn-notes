@@ -1,0 +1,333 @@
+# Decap CMS — https://penn-notes.draftly.cn/admin/
+# 手写笔记（勿填 source: ai-article）；保存后 push master → CI 部署
+
+backend:
+  name: github
+  repo: lp-Imagine/penn-notes
+  branch: master
+  base_url: https://penn-notes.draftly.cn
+  auth_endpoint: api/decap-auth
+  commit_messages:
+    create: 'content: create {{collection}} "{{slug}}"'
+    update: 'content: update {{collection}} "{{slug}}"'
+    delete: 'content: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'content: upload media "{{path}}"'
+    deleteMedia: 'content: delete media "{{path}}"'
+
+# 本地联调可临时打开（需 npx decap-server）：
+# local_backend: true
+
+slug:
+  encoding: unicode
+  clean_accents: false
+  sanitize_replacement: "-"
+
+collections:
+  - name: web
+    label: Web
+    folder: website/web
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: web }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: JavaScript, value: javascript },
+              { label: Vue, value: vue },
+              { label: React, value: react },
+              { label: UI 组件, value: ui-lib },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - {
+          label: 封面 URL,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "填 COS/外链绝对地址，如 https://img.penn-notes.draftly.cn/...",
+        }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: ui
+    label: UI
+    folder: website/ui
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: ui }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: HTML, value: html },
+              { label: CSS, value: css },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: engineering
+    label: Engineering
+    folder: website/engineering
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: engineering }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: Git, value: git },
+              { label: npm, value: npm },
+              { label: 工具链, value: toolchain },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: backend
+    label: Backend
+    folder: website/backend
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: backend }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: Node.js, value: nodejs },
+              { label: MySQL, value: mysql },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: tech
+    label: Tech
+    folder: website/tech
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: tech }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: 常用文档, value: docs },
+              { label: GitHub, value: github },
+              { label: 资源收藏, value: bookmarks },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: computer
+    label: Computer
+    folder: website/computer
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: computer }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: 浏览器, value: browser },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: agent
+    label: Agent
+    folder: website/agent
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: agent }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: 实战, value: practice },
+              { label: 工作流, value: workflow },
+              { label: 提示词, value: prompts },
+              { label: 工具链, value: tools },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: misc
+    label: Misc
+    folder: website/misc
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    path: "{{group}}/{{slug}}"
+    summary: "{{title}} ({{group}})"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: Section, name: section, widget: hidden, default: misc }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - {
+          label: 分组,
+          name: group,
+          widget: select,
+          options:
+            [
+              { label: 随笔, value: essays },
+              { label: 职场, value: career },
+              { label: 生活, value: life },
+              { label: 方法论, value: method },
+              { label: 其它, value: misc },
+            ],
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 一句话摘要, name: summary, widget: text, required: false }
+      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 正文, name: body, widget: markdown }

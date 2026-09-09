@@ -58,6 +58,10 @@ npm run cos:health    # 抽查 CDN URL 是否可访问
 
 约定见 [docs/SYNC.md](docs/SYNC.md)。正文写入 `website/<section>/…`；封面上传 COS 后使用绝对 CDN URL。
 
+## 在线写笔记（Decap CMS）
+
+打开主站 [/admin/](https://penn-notes.draftly.cn/admin/)，GitHub 登录后可直接新建/编辑笔记（commit → CI）。配置 OAuth、Nginx 与字段约定见 [docs/DECAP.md](docs/DECAP.md)。与 Draftly 推送互不替代：Decap 用于手写稿，勿填写 `source: ai-article`。
+
 ## 部署
 
 Push `master` / `main`，或 `repository_dispatch`（`blog-sync`）触发 **CI**：
@@ -78,6 +82,7 @@ canonical / sitemap / RSS / 百度推送始终指向主站。日报抓取与 LLM
 | `LLM_API_KEY` | AI 动态摘要（可选 `LLM_BASE_URL` / `LLM_MODEL`） |
 | `BAIDU_PUSH_TOKEN` | 百度 API 推送（可选） |
 | `UMAMI_URL` / `UMAMI_WEBSITE_ID` | Umami 统计（可选） |
+| `GITHUB_OAUTH_CLIENT_ID` / `GITHUB_OAUTH_CLIENT_SECRET` | Decap `/admin` 登录（配在宝塔助手进程 env，非 Actions） |
 
 ### 宝塔 Self-hosted Runner
 
