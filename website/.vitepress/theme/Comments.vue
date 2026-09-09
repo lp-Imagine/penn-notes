@@ -27,9 +27,14 @@ let scriptMounted = false;
 let giscusReady = false;
 
 function giscusThemeName() {
-  return document.documentElement.classList.contains("dark")
-    ? "dark_dimmed"
-    : "light";
+  const html = document.documentElement;
+  if (html.classList.contains("dark")) return "dark_dimmed";
+  // 专注模式：自托管暖色主题，避免评论框冷白跳出羊皮纸底
+  if (html.classList.contains("focus-mode")) {
+    const base = (import.meta.env.BASE_URL || "/").replace(/\/?$/, "/");
+    return new URL(`${base}giscus-focus.css`, window.location.origin).href;
+  }
+  return "light";
 }
 
 /** 与 data-mapping="pathname" 一致 */
@@ -207,5 +212,15 @@ onBeforeUnmount(() => {
   border-color: color-mix(in srgb, var(--border-strong) 82%, var(--border));
   background: var(--surface);
   box-shadow: none;
+}
+
+:global(html.focus-mode:not(.dark)) .comments-panel {
+  border-color: color-mix(in srgb, var(--border) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 82%, var(--bg));
+  box-shadow: none;
+}
+
+:global(html.focus-mode:not(.dark)) .giscus-host {
+  margin: 0;
 }
 </style>

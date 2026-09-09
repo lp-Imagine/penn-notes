@@ -502,6 +502,10 @@ html.penn-assistant-scroll-lock body {
   z-index: 2;
 }
 
+.penn-assistant-panel.is-expanded .penn-assistant-context + .penn-assistant-messages {
+  padding-top: 6px;
+}
+
 .penn-assistant-panel.is-expanded .penn-assistant-context-card {
   width: 100%;
 }
@@ -518,7 +522,7 @@ html.penn-assistant-scroll-lock body {
   width: var(--pa-col-w);
   max-width: 720px;
   margin: 0 auto;
-  padding: 12px 4px 12px;
+  padding: 8px 4px 12px;
   background: transparent;
   box-sizing: border-box;
 }
@@ -527,9 +531,21 @@ html.penn-assistant-scroll-lock body {
   padding-top: max(64px, env(safe-area-inset-top, 0px) + 52px);
 }
 
+/* 空态：提问贴在上下文下方，去掉刻意留白（中间透出正文会显得很空） */
 .penn-assistant-panel.is-expanded .penn-assistant-empty {
-  margin-top: min(12vh, 96px);
-  text-align: center;
+  margin-top: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.penn-assistant-panel.is-expanded .penn-assistant-empty-lead {
+  margin: 0 0 10px;
+  text-align: left;
+  font-size: 0.76rem;
+}
+
+.penn-assistant-panel.is-expanded:has(.penn-assistant-empty) .penn-assistant-messages {
+  justify-content: flex-start;
 }
 
 .penn-assistant-panel.is-expanded .penn-assistant-form {
@@ -3307,7 +3323,7 @@ html.penn-assistant-scroll-lock body {
   }
 
   .penn-assistant-panel.is-expanded .penn-assistant-empty {
-    margin-top: 8vh;
+    margin-top: 2px;
   }
 
   /* 兜底：万一仍进小窗，也避免标题被挤成「Pe / nn」 */

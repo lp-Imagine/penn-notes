@@ -1308,18 +1308,36 @@ html.focus-mode:not(.dark) {
   --text-3: #96907c;
   --border: #e3ddcb;
   --border-strong: #d2cbb5;
+  /* 冷蓝品牌色改暖棕，章节卡 / 链接 / 标签一起跟 */
+  --link: #7a5c28;
+  --link-hover: #5e461c;
+  --accent: #8f6b2e;
+  --accent-soft: rgba(143, 107, 46, 0.14);
   --vp-c-bg-alt: #eee9da;
   --vp-c-code-bg: #ebe6d6;
+  --vp-c-brand-1: var(--link);
+  --vp-c-brand-2: var(--accent);
+  --vp-c-brand-soft: var(--accent-soft);
   --vp-nav-bg-color: rgba(244, 240, 230, 0.85);
   --vp-sidebar-bg-color: var(--bg);
   --vp-code-block-bg: #ede8d8;
-  --accent-soft: rgba(59, 91, 219, 0.08);
 }
 
 /* 行内 code 在护眼底下跟随暖色（原来的冷灰底会突兀） */
 html.focus-mode:not(.dark) .vp-doc :not(pre) > code {
   background: #e9e3d0;
   color: #3a382c;
+}
+
+/* 专注模式：速览分割线跟暖边，避免冷灰硬线 */
+html.focus-mode:not(.dark) .article-summary {
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--border-strong) 70%, transparent) 18%,
+    color-mix(in srgb, var(--border-strong) 70%, transparent) 82%,
+    transparent
+  );
 }
 
 /* 进入/退出专注模式时底色平滑过渡 */
@@ -1815,11 +1833,8 @@ body,
     bottom: 176px;
   }
 
-  /* 专注模式：侧栏按钮隐藏，回顶下移补位 */
-  html.focus-mode body.has-vp-sidebar .back-to-top {
-    bottom: 124px;
-  }
-
+  /* 专注模式：侧栏按钮隐藏，回顶补位 */
+  html.focus-mode body.has-vp-sidebar .back-to-top,
   html.focus-mode body.has-vp-sidebar.has-readable-detail .back-to-top {
     bottom: 124px;
   }

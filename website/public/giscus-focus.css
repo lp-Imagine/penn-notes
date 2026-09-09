@@ -1,0 +1,97 @@
+/*! Penn Notes · 专注模式暖色 giscus 主题（基于 giscus light） */
+main {
+  --color-prettylights-syntax-comment: #8a8474;
+  --color-prettylights-syntax-constant: #7a5c28;
+  --color-prettylights-syntax-entity: #6b5540;
+  --color-prettylights-syntax-storage-modifier-import: #37352b;
+  --color-prettylights-syntax-entity-tag: #5a6b3a;
+  --color-prettylights-syntax-keyword: #a15c3e;
+  --color-prettylights-syntax-string: #5e461c;
+  --color-prettylights-syntax-variable: #8f6b2e;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #a15c3e;
+  --color-prettylights-syntax-invalid-illegal-text: #fbf8f0;
+  --color-prettylights-syntax-invalid-illegal-bg: #a15c3e;
+  --color-prettylights-syntax-carriage-return-text: #fbf8f0;
+  --color-prettylights-syntax-carriage-return-bg: #a15c3e;
+  --color-prettylights-syntax-string-regexp: #5a6b3a;
+  --color-prettylights-syntax-markup-list: #5e461c;
+  --color-prettylights-syntax-markup-heading: #7a5c28;
+  --color-prettylights-syntax-markup-italic: #37352b;
+  --color-prettylights-syntax-markup-bold: #37352b;
+  --color-prettylights-syntax-markup-deleted-text: #a15c3e;
+  --color-prettylights-syntax-markup-deleted-bg: #f3e6dc;
+  --color-prettylights-syntax-markup-inserted-text: #5a6b3a;
+  --color-prettylights-syntax-markup-inserted-bg: #e8efe0;
+  --color-prettylights-syntax-markup-changed-text: #8f6b2e;
+  --color-prettylights-syntax-markup-changed-bg: #f3ead0;
+  --color-prettylights-syntax-markup-ignored-text: #ebe6d6;
+  --color-prettylights-syntax-markup-ignored-bg: #7a5c28;
+  --color-prettylights-syntax-meta-diff-range: #6b5540;
+  --color-prettylights-syntax-brackethighlighter-angle: #6b6656;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #96907c;
+  --color-prettylights-syntax-constant-other-reference-link: #5e461c;
+
+  --color-btn-text: #37352b;
+  --color-btn-bg: #f4f0e6;
+  --color-btn-border: #d2cbb566;
+  --color-btn-shadow: 0 1px 0 #37352b0a;
+  --color-btn-inset-shadow: inset 0 1px 0 #ffffff50;
+  --color-btn-hover-bg: #ebe6d6;
+  --color-btn-hover-border: #d2cbb566;
+  --color-btn-active-bg: #e3ddcb;
+  --color-btn-active-border: #d2cbb566;
+  --color-btn-selected-bg: #ebe6d6;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #8f6b2e;
+  --color-btn-primary-border: #37352b26;
+  --color-btn-primary-shadow: 0 1px 0 #37352b1a;
+  --color-btn-primary-inset-shadow: inset 0 1px 0 #ffffff10;
+  --color-btn-primary-hover-bg: #7a5c28;
+  --color-btn-primary-hover-border: #37352b26;
+  --color-btn-primary-selected-bg: #6f5410;
+  --color-btn-primary-selected-shadow: inset 0 1px 0 #2a241833;
+  --color-btn-primary-disabled-text: #fffc;
+  --color-btn-primary-disabled-bg: #c4b48a;
+  --color-btn-primary-disabled-border: #37352b26;
+
+  --color-action-list-item-default-hover-bg: #e3ddcb66;
+  --color-segmented-control-bg: #ebe6d6;
+  --color-segmented-control-button-bg: #fbf8f0;
+  --color-segmented-control-button-selected-border: #c4b48a;
+
+  --color-fg-default: #37352b;
+  --color-fg-muted: #6b6656;
+  --color-fg-subtle: #96907c;
+  --color-canvas-default: #fbf8f0;
+  --color-canvas-overlay: #fbf8f0;
+  --color-canvas-inset: #f4f0e6;
+  --color-canvas-subtle: #f4f0e6;
+  --color-border-default: #e3ddcb;
+  --color-border-muted: #ebe6d6;
+  --color-neutral-muted: #c4b48a33;
+  --color-accent-fg: #7a5c28;
+  --color-accent-emphasis: #8f6b2e;
+  --color-accent-muted: #8f6b2e66;
+  --color-accent-subtle: #f3ead0;
+  --color-success-fg: #5a6b3a;
+  --color-attention-fg: #8f6b2e;
+  --color-attention-muted: #c4b48a66;
+  --color-attention-subtle: #f8f1d8;
+  --color-danger-fg: #a15c3e;
+  --color-danger-muted: #c48a7666;
+  --color-danger-subtle: #f3e6dc;
+  --color-primer-shadow-inset: inset 0 1px 0 #e3ddcb40;
+  --color-scale-gray-1: #ebe6d6;
+  --color-scale-blue-1: #f3ead0;
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}

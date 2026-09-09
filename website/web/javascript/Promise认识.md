@@ -286,8 +286,6 @@ Promise.all([promiseAsync1(), promiseAsync2(), promiseAsync3()])
 
 ![](https://img.penn-notes.draftly.cn/img/legacy/860b62bdc48d-p5.png)
 
-##
-
 有了 all，就可以并行执行多个异步操作，并且在一个回调中处理所有的返回数据。
 
 ## promise.race 类似于 Promise.all() ，区别在于它有任意一个完成就算完成
