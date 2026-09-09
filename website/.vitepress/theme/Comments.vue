@@ -3,7 +3,7 @@
  * giscus 评论（GitHub Discussions）
  * - 懒加载：滚到评论区附近再注入脚本
  * - SPA：首载后通过 postMessage 切换 term
- * - 主题：Giscus 内置 light / dark_dimmed（比自托管 CSS 更稳定）
+ * - 主题：dark → dark_dimmed；focus → 暖色 CSS（jsDelivr，需 CORS）；其余 light
  */
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
@@ -26,13 +26,17 @@ let loadObserver: IntersectionObserver | undefined;
 let scriptMounted = false;
 let giscusReady = false;
 
+/** 专注模式暖色主题 CSS（giscus iframe 跨域拉取，必须带 CORS） */
+const GISCUS_FOCUS_THEME_CDN =
+  "https://cdn.jsdelivr.net/gh/lp-Imagine/penn-notes@master/website/public/giscus-focus.css";
+
 function giscusThemeName() {
   const html = document.documentElement;
   if (html.classList.contains("dark")) return "dark_dimmed";
-  // 专注模式：自托管暖色主题，避免评论框冷白跳出羊皮纸底
+  // 专注模式：暖色羊皮纸主题。默认走 jsDelivr（自带 CORS）；
+  // 宝塔若给同源 /giscus-focus.css 加了 Access-Control-Allow-Origin，可改回同源 URL。
   if (html.classList.contains("focus-mode")) {
-    const base = (import.meta.env.BASE_URL || "/").replace(/\/?$/, "/");
-    return new URL(`${base}giscus-focus.css`, window.location.origin).href;
+    return GISCUS_FOCUS_THEME_CDN;
   }
   return "light";
 }
@@ -215,12 +219,17 @@ onBeforeUnmount(() => {
 }
 
 :global(html.focus-mode:not(.dark)) .comments-panel {
-  border-color: color-mix(in srgb, var(--border) 88%, transparent);
-  background: color-mix(in srgb, var(--surface) 82%, var(--bg));
-  box-shadow: none;
+  border-color: var(--border-strong);
+  background: var(--surface);
+  padding: 20px 20px 16px;
+  box-shadow: 0 2px 12px rgba(90, 70, 30, 0.07);
 }
 
 :global(html.focus-mode:not(.dark)) .giscus-host {
   margin: 0;
+}
+
+:global(html.focus-mode:not(.dark)) .giscus-host :deep(iframe.giscus-frame) {
+  color-scheme: light;
 }
 </style>
