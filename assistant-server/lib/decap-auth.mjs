@@ -73,7 +73,10 @@ export async function handleDecapAuth(req, res, url, cfg) {
 
   const callbackUri = `${publicOrigin.replace(/\/$/, "")}/api/decap-auth/callback`;
 
-  if (req.method === "GET" && url.pathname === "/api/decap-auth") {
+  if (
+    (req.method === "GET" || req.method === "HEAD") &&
+    url.pathname === "/api/decap-auth"
+  ) {
     const authorize = new URL("https://github.com/login/oauth/authorize");
     authorize.searchParams.set("client_id", clientId);
     authorize.searchParams.set("redirect_uri", callbackUri);

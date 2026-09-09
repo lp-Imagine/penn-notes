@@ -921,7 +921,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (
-    req.method === "GET" &&
+    (req.method === "GET" || req.method === "HEAD") &&
     (url.pathname === "/api/decap-auth" || url.pathname === "/api/decap-auth/callback")
   ) {
     await handleDecapAuth(req, res, url, {

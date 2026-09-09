@@ -17,6 +17,10 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
+# Decap schema 必填；封面仍优先用文章里的 cover URL 字段，此处仅占位
+media_folder: website/public/uploads
+public_folder: /uploads
+
 slug:
   encoding: unicode
   clean_accents: false
