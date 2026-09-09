@@ -28,7 +28,7 @@ website/collect/index.md
 website/books/index.md
 website/news/
 
-# i18n：栏目符号链接由 config 加载时创建，只保留各语言落地页
+# i18n：栏目镜像副本由 config 加载时创建，只保留各语言落地页
 website/en/*
 !website/en/index.md
 website/zh-TW/*

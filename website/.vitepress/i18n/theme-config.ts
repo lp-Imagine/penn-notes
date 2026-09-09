@@ -9,9 +9,85 @@ export type ThemeConfigExtras = {
   shared?: Partial<DefaultTheme.Config> & Record<string, unknown>;
 };
 
+/** themeConfig 链接用的 path 前缀：root 为空，en → /en，zh-TW → /zh-TW */
+export function localePathPrefix(locale: UiLocale): string {
+  if (locale === "en") return "/en";
+  if (locale === "zh-TW") return "/zh-TW";
+  return "";
+}
+
+/**
+ * 给站内绝对路径加上 locale 前缀。
+ * VitePress 不会自动给 themeConfig 里以 `/` 开头的 link 加 locale。
+ */
+export function localizeHref(href: string, prefix: string): string {
+  if (!prefix) return href;
+  if (!href.startsWith("/") || href.startsWith("//")) return href;
+  if (href === prefix || href.startsWith(`${prefix}/`)) return href;
+  if (href === "/en" || href.startsWith("/en/")) return href;
+  if (href === "/zh-TW" || href.startsWith("/zh-TW/")) return href;
+  return `${prefix}${href}`;
+}
+
+function localizeNavItem(
+  item: DefaultTheme.NavItem,
+  prefix: string,
+): DefaultTheme.NavItem {
+  if ("items" in item && item.items) {
+    const link =
+      "link" in item && typeof item.link === "string"
+        ? localizeHref(item.link, prefix)
+        : undefined;
+    return {
+      ...item,
+      ...(link ? { link } : {}),
+      items: item.items.map((child) => localizeNavItem(child, prefix)),
+    } as DefaultTheme.NavItem;
+  }
+  if ("link" in item && typeof item.link === "string") {
+    return { ...item, link: localizeHref(item.link, prefix) };
+  }
+  return item;
+}
+
+function localizeSidebarItem(
+  item: DefaultTheme.SidebarItem,
+  prefix: string,
+): DefaultTheme.SidebarItem {
+  const next: DefaultTheme.SidebarItem = { ...item };
+  if (typeof next.link === "string") {
+    next.link = localizeHref(next.link, prefix);
+  }
+  if (next.items?.length) {
+    next.items = next.items.map((child) => localizeSidebarItem(child, prefix));
+  }
+  return next;
+}
+
+export function localizeSidebar(
+  sidebar: DefaultTheme.Config["sidebar"],
+  prefix: string,
+): DefaultTheme.Config["sidebar"] {
+  if (!sidebar || !prefix) return sidebar;
+  if (Array.isArray(sidebar)) {
+    return sidebar.map((item) => localizeSidebarItem(item, prefix));
+  }
+  const out: DefaultTheme.SidebarMulti = {};
+  for (const [key, val] of Object.entries(sidebar)) {
+    const localizedKey = localizeHref(key, prefix);
+    if (Array.isArray(val)) {
+      out[localizedKey] = val.map((item) => localizeSidebarItem(item, prefix));
+    } else {
+      out[localizedKey] = localizeSidebarItem(val, prefix);
+    }
+  }
+  return out;
+}
+
 function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
   const n = getMessages(locale).nav;
-  return [
+  const prefix = localePathPrefix(locale);
+  const nav: DefaultTheme.NavItem[] = [
     { text: n.home, link: "/" },
     {
       text: n.catalog,
@@ -56,8 +132,11 @@ function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
         { text: "导航", link: "https://nav.draftly.cn" },
       ],
     },
+    // 无前缀；buildThemeConfig 里统一 localize（activeMatch 保持无前缀作 substring/regex）
     { text: n.about, link: "/about/", activeMatch: "/about/" },
   ];
+  if (!prefix) return nav;
+  return nav.map((item) => localizeNavItem(item, prefix));
 }
 
 function buildFooter(locale: UiLocale, base: string): DefaultTheme.Config["footer"] {
@@ -70,7 +149,7 @@ function buildFooter(locale: UiLocale, base: string): DefaultTheme.Config["foote
 
 /**
  * 按 locale 生成 themeConfig（nav / footer / search / notFound 等）。
- * sidebar 等 extras 由调用方传入；链接无 locale 前缀，由 VitePress 自动加。
+ * sidebar 等 extras 由调用方传入；非 root 的站内 link / sidebar key 会加 locale 前缀。
  */
 export function buildThemeConfig(
   localeInput: UiLocale | string,
@@ -81,6 +160,7 @@ export function buildThemeConfig(
   );
   const m = getMessages(locale);
   const s = m.search;
+  const prefix = localePathPrefix(locale);
 
   return {
     ...(extras.shared || {}),
@@ -92,7 +172,7 @@ export function buildThemeConfig(
     },
     notFound: { ...m.notFound },
     nav: buildNav(locale),
-    sidebar: extras.sidebar,
+    sidebar: localizeSidebar(extras.sidebar, prefix),
     search: {
       provider: "local",
       options: {

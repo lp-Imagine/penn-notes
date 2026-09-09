@@ -16,7 +16,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const WEBSITE_ROOT = join(__dirname, "..");
 
-// 为 en/、zh-TW/ 挂上栏目符号链接，复用简体 md
+// 为 en/、zh-TW/ 镜像栏目正文（副本而非 symlink，保证 pageData 带 locale 前缀）
 ensureLocaleContentAliases(WEBSITE_ROOT);
 
 const BASE = pennBase();

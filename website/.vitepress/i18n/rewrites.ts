@@ -3,22 +3,25 @@
  *
  * VitePress `rewrites` 是「源文件路径 → URL」一对一映射，无法把同一份
  * `web/foo.md` 同时挂到 `/web/foo`、`/en/web/foo`、`/zh-TW/web/foo`。
- * 因此栏目正文通过 locale 目录下的符号链接复用简体源文件；
- * `en/index.md` / `zh-TW/index.md` 为独立落地页，不链接首页。
+ * 因此在 locale 目录下**镜像复制**简体源文件（不用符号链接）：
+ * symlink 会被解析到同一 realpath，pageData.relativePath 丢失 `en/` / `zh-TW/`
+ * 前缀，导致除落地页外 UI 仍走简体 themeConfig——体感「只有首页能切语言」。
+ *
+ * `en/index.md` / `zh-TW/index.md` 为独立落地页，不复制首页。
  *
  * 若仅需落地页 + UI，可不调用 ensureLocaleContentAliases。
  */
 import {
+  cpSync,
   existsSync,
   lstatSync,
   mkdirSync,
-  readlinkSync,
-  symlinkSync,
+  rmSync,
   unlinkSync,
 } from "node:fs";
 import { join } from "node:path";
 
-/** 与仓库栏目目录对齐；生成物（books/collect/news）在存在时才会挂链 */
+/** 与仓库栏目目录对齐；生成物（books/collect/news）在存在时才会镜像 */
 export const CONTENT_SECTIONS = [
   "web",
   "ui",
@@ -59,37 +62,57 @@ export function buildContentRewrites(): Record<string, string> {
   return {};
 }
 
-/** 在 en/、zh-TW/ 下为各栏目创建指向简体源目录的相对符号链接 */
+/** 删除目标路径（符号链接 / 文件 / 目录），便于从旧 symlink 迁移到镜像副本 */
+function removePath(dest: string): void {
+  if (!existsSync(dest)) return;
+  const st = lstatSync(dest);
+  if (st.isSymbolicLink() || st.isFile()) {
+    unlinkSync(dest);
+    return;
+  }
+  rmSync(dest, { recursive: true, force: true });
+}
+
+/** 将 source（文件或目录）镜像到 dest */
+function mirrorContent(source: string, dest: string): void {
+  removePath(dest);
+  cpSync(source, dest, { recursive: true });
+}
+
+/**
+ * 在 en/、zh-TW/ 下为各栏目镜像简体源（目录或单文件 `section.md`）。
+ * 必须用副本而非 symlink，否则 pageData.relativePath 不含 locale 前缀。
+ */
 export function ensureLocaleContentAliases(srcDir: string): void {
   for (const locale of LOCALE_CONTENT_PREFIXES) {
     const localeDir = join(srcDir, locale);
     mkdirSync(localeDir, { recursive: true });
 
     for (const section of CONTENT_SECTIONS) {
-      const source = join(srcDir, section);
-      if (!existsSync(source)) continue;
+      const sourceDir = join(srcDir, section);
+      const sourceFile = join(srcDir, `${section}.md`);
 
-      const dest = join(localeDir, section);
-      const target = `../${section}`;
+      let source: string;
+      let dest: string;
 
-      try {
-        const st = lstatSync(dest);
-        if (st.isSymbolicLink()) {
-          if (readlinkSync(dest) === target) continue;
-          unlinkSync(dest);
-        } else {
-          // 已有真实文件/目录（例如独立 about），跳过以免覆盖
-          continue;
-        }
-      } catch {
-        // dest 不存在
+      if (existsSync(sourceDir)) {
+        source = sourceDir;
+        dest = join(localeDir, section);
+      } else if (existsSync(sourceFile)) {
+        // 单文件栏目：about.md → en/about.md（路由 /en/about）
+        source = sourceFile;
+        dest = join(localeDir, `${section}.md`);
+        // 若历史上误挂成 en/about 目录/链接，先清掉
+        removePath(join(localeDir, section));
+      } else {
+        continue;
       }
 
       try {
-        symlinkSync(target, dest);
+        mirrorContent(source, dest);
       } catch (err) {
         console.warn(
-          `[i18n] symlink ${locale}/${section} → ${target} failed:`,
+          `[i18n] mirror ${locale}/${section} ← ${source} failed:`,
           err,
         );
       }
