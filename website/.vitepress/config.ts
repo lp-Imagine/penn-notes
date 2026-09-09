@@ -5,6 +5,7 @@ import { pennCalloutsPlugin } from "./markdown-callouts";
 import { pennBase, pennCanonicalUrl, pennSiteUrl, pennRewriteRootUrlsInHtml } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
+import musicDefaults from "../data/music.json";
 
 const BASE = pennBase();
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
@@ -29,6 +30,25 @@ const ASSISTANT_ENABLED =
   process.env.ASSISTANT_ENABLED === "true" ||
   (!IS_PAGES_BACKUP && process.env.ASSISTANT_ENABLED !== "false");
 const ASSISTANT_DEV_TARGET = `http://${process.env.ASSISTANT_HOST || "127.0.0.1"}:${process.env.ASSISTANT_PORT || "8787"}`;
+
+/** 音乐胶囊：默认读 website/data/music.json，可用环境变量覆盖 */
+const MUSIC_ENABLED =
+  process.env.MUSIC_ENABLED === "true" ||
+  (process.env.MUSIC_ENABLED !== "false" && Boolean(musicDefaults.enabled));
+const MUSIC_METING_API = (process.env.METING_API || musicDefaults.metingApi || "").trim();
+const MUSIC_PLAYLIST_ID = (process.env.MUSIC_PLAYLIST_ID || musicDefaults.id || "").trim();
+const MUSIC_SERVER = (process.env.MUSIC_SERVER || musicDefaults.server || "netease").trim();
+const MUSIC_TYPE = (process.env.MUSIC_TYPE || musicDefaults.type || "playlist").trim();
+const MUSIC_PROVIDER = (
+  process.env.MUSIC_PROVIDER ||
+  (musicDefaults as { provider?: string }).provider ||
+  "meting"
+).trim();
+const MUSIC_MYHKW_PLAYER_ID = (
+  process.env.MUSIC_MYHKW_PLAYER_ID ||
+  (musicDefaults as { myhkwPlayerId?: string }).myhkwPlayerId ||
+  ""
+).trim();
 
 const faviconHeadSnippet = [
   `<link rel="icon" type="image/svg+xml" href="${ICON_SVG}">`,
@@ -119,6 +139,12 @@ export default defineConfig({
         "/api/assistant": {
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
+        },
+        // 本地开发：绕过浏览器直连公共 Meting 的超时/CORS 波动（injahow 对 QQ 歌单更稳）
+        "/api/meting": {
+          target: "https://api.injahow.cn",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/meting/, "/meting/"),
         },
       },
     },
@@ -351,6 +377,24 @@ export default defineConfig({
       enabled: ASSISTANT_ENABLED,
       // 空字符串 = 同域相对路径；Pages 若开启可设 https://penn-notes.draftly.cn
       apiBase: ASSISTANT_API_BASE,
+    },
+    // 音乐：provider=meting 优先自研胶囊；配了 myhkwPlayerId 时限流/失败兜底明月浩空
+    // provider=myhkw 则只用明月浩空。改配置：website/data/music.json 或 MUSIC_*
+    music: {
+      enabled: MUSIC_ENABLED,
+      provider: MUSIC_PROVIDER,
+      server: MUSIC_SERVER,
+      type: MUSIC_TYPE,
+      id: MUSIC_PLAYLIST_ID,
+      volume: musicDefaults.volume ?? 0.7,
+      order: musicDefaults.order ?? "random",
+      loop: musicDefaults.loop ?? "all",
+      metingApi: MUSIC_METING_API,
+      myhkwPlayerId: MUSIC_MYHKW_PLAYER_ID,
+      myhkwMobile: (musicDefaults as { myhkwMobile?: boolean }).myhkwMobile !== false,
+      myhkwAutoplay: Boolean((musicDefaults as { myhkwAutoplay?: boolean }).myhkwAutoplay),
+      myhkwPosition:
+        (musicDefaults as { myhkwPosition?: "l" | "r" }).myhkwPosition === "r" ? "r" : "l",
     },
     // 文章评论（giscus，基于 GitHub Discussions）
     // 启用步骤：仓库 Settings → Features → 开启 Discussions →

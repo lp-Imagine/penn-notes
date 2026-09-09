@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "provider": "meting",
+  "server": "tencent",
+  "type": "playlist",
+  "id": "1567517618",
+  "volume": 0.7,
+  "order": "random",
+  "loop": "all",
+  "metingApi": "/api/meting",
+  "myhkwPlayerId": "1618646380121",
+  "myhkwMobile": true,
+  "myhkwAutoplay": false,
+  "myhkwPosition": "l"
+}

@@ -1,5 +1,14 @@
 import mediumZoom, { type Zoom } from "medium-zoom";
-import { nextTick, onBeforeUnmount, onMounted, watch, defineComponent, h } from "vue";
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  watch,
+  defineComponent,
+  defineAsyncComponent,
+  h,
+  ref,
+} from "vue";
 import { getScrollOffset, useData, useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import AboutFriends from "./AboutFriends.vue";
@@ -27,6 +36,116 @@ import { setupFlyingFish } from "./flying-fish";
 import { ensureHeroParticles, teardownHeroParticles } from "./hero-particles";
 import { setupSearchEnhance, teardownSearchEnhance } from "./search-enhance";
 import { setupSiteRuntime } from "./site-runtime";
+
+/** 仅桌面加载音乐胶囊（移动端不拉歌单 / APlayer） */
+const MusicCapsuleAsync = defineAsyncComponent(async () => {
+  await import("./css/music.css");
+  return (await import("./MusicCapsule.vue")).default;
+});
+
+const MyhkwPlayerAsync = defineAsyncComponent(
+  () => import("./MyhkwPlayer.vue"),
+);
+
+const MusicCapsule = defineComponent({
+  name: "MusicCapsuleDesktopOnly",
+  props: {
+    allowFallback: { type: Boolean, default: false },
+  },
+  emits: ["fallback"],
+  setup(props, { emit }) {
+    const enabled = ref(false);
+    let mq: MediaQueryList | undefined;
+
+    const sync = () => {
+      enabled.value = Boolean(mq?.matches);
+    };
+
+    onMounted(() => {
+      mq = window.matchMedia("(min-width: 768px)");
+      sync();
+      mq.addEventListener("change", sync);
+    });
+
+    onBeforeUnmount(() => {
+      mq?.removeEventListener("change", sync);
+    });
+
+    return () =>
+      enabled.value
+        ? h(MusicCapsuleAsync, {
+            allowFallback: props.allowFallback,
+            onFallback: () => emit("fallback"),
+          })
+        : null;
+  },
+});
+
+/**
+ * 优先自研胶囊；provider=myhkw 时只用明月浩空。
+ * provider=meting/auto 且配置了 myhkwPlayerId 时，限流/拉歌失败后兜底明月浩空。
+ */
+const MusicWidget = defineComponent({
+  name: "MusicWidget",
+  setup() {
+    const { theme } = useData();
+    const FALLBACK_SESSION_KEY = "penn-music-myhkw-fallback";
+
+    const readSessionFallback = () => {
+      try {
+        const raw = sessionStorage.getItem(FALLBACK_SESSION_KEY);
+        if (!raw) return false;
+        const data = JSON.parse(raw) as { day?: string };
+        const today = new Date().toISOString().slice(0, 10);
+        return data?.day === today;
+      } catch {
+        return false;
+      }
+    };
+
+    const writeSessionFallback = () => {
+      try {
+        sessionStorage.setItem(
+          FALLBACK_SESSION_KEY,
+          JSON.stringify({ day: new Date().toISOString().slice(0, 10) }),
+        );
+      } catch {
+        /* ignore */
+      }
+    };
+
+    const useMyhkwFallback = ref(
+      typeof sessionStorage !== "undefined" ? readSessionFallback() : false,
+    );
+
+    return () => {
+      const music = (theme.value.music || {}) as {
+        enabled?: boolean;
+        provider?: string;
+        myhkwPlayerId?: string;
+      };
+      if (music.enabled === false) return null;
+      const provider = String(music.provider || "meting").toLowerCase();
+      const myhkwId = String(music.myhkwPlayerId || "").trim();
+
+      if (provider === "myhkw") {
+        return myhkwId ? h(MyhkwPlayerAsync) : null;
+      }
+
+      if (useMyhkwFallback.value && myhkwId) {
+        return h(MyhkwPlayerAsync);
+      }
+
+      return h(MusicCapsule, {
+        allowFallback: Boolean(myhkwId),
+        onFallback: () => {
+          writeSessionFallback();
+          useMyhkwFallback.value = true;
+        },
+      });
+    };
+  },
+});
 
 let zoom: Zoom | undefined;
 let debounceTimer: ReturnType<typeof setTimeout> | undefined;
@@ -995,6 +1114,7 @@ const Layout = defineComponent({
           ],
           "layout-bottom": () => [
             slots["layout-bottom"]?.(),
+            h(MusicWidget),
             h(AssistantWidget),
           ],
         },

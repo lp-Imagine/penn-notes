@@ -1,0 +1,995 @@
+/* 音乐胶囊：封面氛围光 + 毛玻璃 + 歌词扫光 */
+.penn-music {
+  --pm-w: min(440px, calc(100vw - 24px));
+  --pm-ink: #f7f4ef;
+  --pm-ink-dim: rgba(247, 244, 239, 0.46);
+  --pm-cap: #2a241c;
+  --pm-cap-border: rgba(255, 255, 255, 0.12);
+  --pm-karaoke: #ffe6c2;
+  position: fixed;
+  left: max(12px, env(safe-area-inset-left, 0px) + 10px);
+  bottom: max(16px, env(safe-area-inset-bottom, 0px) + 14px);
+  z-index: 36;
+  width: auto;
+  max-width: var(--pm-w);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+  transition: left 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.penn-music > * {
+  pointer-events: auto;
+}
+
+/* 未播放：贴左边，默认只露封面圆；悬停展开歌名 */
+.penn-music.is-docked {
+  left: 0;
+  bottom: max(22px, env(safe-area-inset-bottom, 0px) + 18px);
+}
+
+.penn-music-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.penn-music.is-docked .penn-music-shell {
+  filter: drop-shadow(2px 6px 14px color-mix(in srgb, var(--text) 14%, transparent));
+}
+
+.penn-music-aura {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 30%;
+  height: 140%;
+  z-index: 0;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px) saturate(1.5);
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.penn-music-aura.is-on {
+  opacity: 0.58;
+  transform: translateY(0) scale(1);
+}
+
+.penn-music-capsule {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  max-width: min(420px, calc(100vw - 24px));
+  padding: 5px 8px 5px 5px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 999px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--surface) 92%, transparent),
+      color-mix(in srgb, var(--bg) 28%, var(--surface))
+    );
+  color: var(--text-2);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 55%, transparent) inset,
+    0 10px 28px color-mix(in srgb, var(--text) 8%, transparent);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  transition:
+    background 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    border-radius 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.22s ease,
+    max-width 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    gap 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease;
+}
+
+/* 贴边收起：封面 + 列表入口；悬停再展开歌名 */
+.penn-music.is-docked .penn-music-capsule {
+  gap: 2px;
+  max-width: 66px;
+  padding: 3px 4px 3px 3px;
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  border-left-color: transparent;
+  border-radius: 0 999px 999px 0;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 55%, transparent) inset,
+    0 8px 22px color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.penn-music.is-docked:hover .penn-music-capsule,
+.penn-music.is-docked:focus-within .penn-music-capsule {
+  gap: 7px;
+  max-width: 230px;
+  padding: 3px 8px 3px 3px;
+  background: color-mix(in srgb, var(--surface) 98%, transparent);
+}
+
+.penn-music.is-docked .penn-music-capsule.is-on,
+.penn-music.is-docked:hover .penn-music-capsule.is-on,
+.penn-music.is-docked:focus-within .penn-music-capsule.is-on {
+  background: rgba(22, 18, 16, 0.58);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--pm-ink);
+}
+
+.penn-music-cap-bg {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(24px) saturate(1.35);
+  opacity: 0;
+  transform: scale(1.12);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.penn-music-cap-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, rgba(16, 12, 10, 0.42) 0%, rgba(12, 10, 14, 0.72) 55%, rgba(10, 10, 14, 0.8) 100%);
+}
+
+.penn-music-capsule > :not(.penn-music-cap-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.penn-music-capsule--idle {
+  max-width: 220px;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.penn-music.is-loading .penn-music-capsule--idle,
+.penn-music.is-failed .penn-music-capsule--idle {
+  margin-left: 0;
+  border-radius: 0 999px 999px 0;
+  border-left-color: transparent;
+}
+
+.penn-music-capsule--idle:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.penn-music-capsule--error {
+  color: color-mix(in srgb, #c2410c 70%, var(--text));
+  cursor: pointer;
+}
+
+.penn-music-capsule.is-on {
+  max-width: min(420px, calc(100vw - 24px));
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--pm-ink);
+  background: rgba(22, 18, 16, 0.42);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 14px 36px rgba(12, 8, 6, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.penn-music-capsule.is-on .penn-music-cap-bg {
+  opacity: 1;
+}
+
+.penn-music-cover-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface-2) 80%, #111);
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.penn-music.is-docked .penn-music-cover-btn {
+  width: 34px;
+  height: 34px;
+}
+
+.penn-music.is-docked .penn-music-cover-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+}
+
+.penn-music-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+}
+
+.penn-music-capsule.is-on .penn-music-cover {
+  animation: penn-music-spin 14s linear infinite;
+}
+
+.penn-music-cover-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.penn-music-capsule.is-on .penn-music-cover-ring {
+  opacity: 1;
+  animation: penn-music-ring 2.4s ease-in-out infinite;
+}
+
+.penn-music-cover-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.penn-music-cover-btn:hover .penn-music-cover-icon,
+.penn-music-capsule:not(.is-on) .penn-music-cover-icon {
+  opacity: 1;
+}
+
+.penn-music.is-docked:not(:hover):not(:focus-within) .penn-music-cover-icon {
+  opacity: 0.55;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.penn-music-capsule.is-on .penn-music-cover-btn:hover .penn-music-cover-icon {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.48);
+}
+
+.penn-music-meta {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding-right: 4px;
+}
+
+.penn-music.is-docked .penn-music-meta {
+  gap: 0;
+  max-width: 0;
+  opacity: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition:
+    max-width 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.22s ease,
+    padding 0.34s ease;
+}
+
+.penn-music.is-docked:hover .penn-music-meta,
+.penn-music.is-docked:focus-within .penn-music-meta {
+  max-width: 110px;
+  opacity: 1;
+  padding-right: 2px;
+  pointer-events: auto;
+}
+
+.penn-music-title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: inherit;
+  line-height: 1.25;
+}
+
+.penn-music-capsule:not(.is-on) .penn-music-title {
+  color: var(--text);
+}
+
+.penn-music.is-docked .penn-music-title {
+  max-width: 96px;
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.penn-music-sub {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.66rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-3);
+}
+
+.penn-music-capsule.is-on .penn-music-sub {
+  color: rgba(247, 244, 239, 0.42);
+}
+
+.penn-music.is-docked .penn-music-sub {
+  display: none;
+}
+
+/* 主行歌词：底色暗字 + 亮色宽度裁切扫光（Heo 风） */
+.penn-music-lrc {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.penn-music.is-docked .penn-music-lrc {
+  display: none;
+}
+
+/* 贴边时保留列表 + 展开/收起，隐藏切歌 */
+.penn-music.is-docked .penn-music-actions {
+  display: inline-flex;
+  padding-left: 0;
+}
+
+.penn-music.is-docked .penn-music-actions .penn-music-icon-btn:not(.penn-music-list-btn):not(.penn-music-dock-btn) {
+  display: none;
+}
+
+.penn-music.is-docked .penn-music-list-btn,
+.penn-music.is-docked .penn-music-dock-btn {
+  width: 26px;
+  height: 26px;
+  color: var(--text-3);
+}
+
+.penn-music.is-docked .penn-music-capsule.is-on .penn-music-list-btn,
+.penn-music.is-docked .penn-music-capsule.is-on .penn-music-dock-btn {
+  color: rgba(247, 244, 239, 0.72);
+}
+
+.penn-music.is-docked .penn-music-list-btn:hover,
+.penn-music.is-docked .penn-music-list-btn.is-open,
+.penn-music.is-docked .penn-music-dock-btn:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.penn-music.is-docked .penn-music-capsule.is-on .penn-music-list-btn:hover,
+.penn-music.is-docked .penn-music-capsule.is-on .penn-music-dock-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.penn-music-lrc-pair {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  height: 1.3em;
+  overflow: hidden;
+}
+
+.penn-music-lrc-base,
+.penn-music-lrc-wipe-text {
+  display: block;
+  white-space: nowrap;
+}
+
+.penn-music-lrc-base {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(247, 244, 239, 0.34);
+}
+
+.penn-music-lrc-wipe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: width;
+}
+
+.penn-music-lrc-wipe-text {
+  /* 必须按完整行宽绘制，由外层 width 裁切，否则 ellipsis 会跟错进度 */
+  width: max-content;
+  max-width: none;
+  overflow: visible;
+  color: #fff8ee;
+}
+
+.penn-music-lrc.is-karaoke .penn-music-lrc-wipe-text {
+  background: linear-gradient(90deg, #fff 0%, var(--pm-karaoke) 50%, #ffe2b0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 5px rgba(255, 214, 160, 0.3));
+}
+
+.penn-lrc-enter-active,
+.penn-lrc-leave-active {
+  transition:
+    opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.28s ease;
+}
+
+.penn-lrc-enter-from {
+  opacity: 0;
+  transform: translateY(7px);
+  filter: blur(2px);
+}
+
+.penn-lrc-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+  filter: blur(2px);
+}
+
+.penn-music-actions {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2px;
+  padding-left: 2px;
+}
+
+.penn-music-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.penn-music-icon-btn:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  transform: translateY(-0.5px);
+}
+
+.penn-music-capsule.is-on .penn-music-icon-btn {
+  color: rgba(247, 244, 239, 0.72);
+}
+
+.penn-music-capsule.is-on .penn-music-icon-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.penn-music-list-btn.is-open {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.penn-music-capsule.is-on .penn-music-list-btn.is-open {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.penn-music-host {
+  --pm-player-accent: #c4a06a;
+  width: var(--pm-w);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: none;
+  transform: translateY(8px) scale(0.98);
+  transform-origin: left bottom;
+  transition:
+    max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.24s ease,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+  pointer-events: none;
+}
+
+.penn-music.is-stretch .penn-music-host {
+  max-height: min(520px, calc(100vh - 120px));
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  border-color: color-mix(in srgb, var(--border) 72%, transparent);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--surface) 96%, #fff) 0%,
+      color-mix(in srgb, var(--surface) 90%, var(--bg)) 100%
+    );
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 55%, transparent) inset,
+    0 18px 48px color-mix(in srgb, var(--text) 12%, transparent);
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+/* APlayer 面板细节 */
+.penn-music .aplayer {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.penn-music .aplayer .aplayer-body {
+  position: relative;
+  display: block;
+}
+
+/* 封面保持 float，避免信息区叠到封面上 */
+.penn-music .aplayer.aplayer-withlrc .aplayer-pic,
+.penn-music .aplayer .aplayer-pic {
+  float: left;
+  width: 92px;
+  height: 92px;
+  margin: 10px 0 10px 10px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--text) 7%, transparent),
+    0 10px 22px color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+.penn-music .aplayer .aplayer-pic .aplayer-button {
+  opacity: 1;
+  background: rgba(18, 14, 12, 0.52) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.penn-music .aplayer .aplayer-pic .aplayer-play {
+  width: 30px;
+  height: 30px;
+  margin: 0 -16px -16px 0;
+  border-width: 0;
+}
+
+.penn-music .aplayer .aplayer-pic .aplayer-pause {
+  width: 24px;
+  height: 24px;
+  bottom: 8px;
+  right: 8px;
+  border-width: 0;
+}
+
+.penn-music .aplayer .aplayer-pic .aplayer-pause svg {
+  top: 5px;
+  left: 5px;
+  width: 14px;
+  height: 14px;
+}
+
+.penn-music .aplayer.aplayer-withlrc .aplayer-info,
+.penn-music .aplayer .aplayer-info {
+  margin-left: 112px;
+  margin-right: 0;
+  padding: 10px 14px 8px 8px;
+  height: auto;
+  min-height: 112px;
+  border: 0 !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.penn-music .aplayer .aplayer-info .aplayer-music {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.penn-music .aplayer .aplayer-title {
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.penn-music .aplayer .aplayer-author {
+  color: var(--text-3);
+  font-size: 0.74rem;
+  font-weight: 500;
+  opacity: 0.92;
+}
+
+/* 去掉 APlayer 自带白渐变条带 */
+.penn-music .aplayer .aplayer-lrc:before,
+.penn-music .aplayer .aplayer-lrc:after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+
+.penn-music .aplayer .aplayer-lrc {
+  display: block !important;
+  position: relative;
+  height: 34px;
+  margin: 4px 0 6px;
+  text-align: left;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, transparent, #000 24%, #000 76%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 24%, #000 76%, transparent);
+}
+
+.penn-music .aplayer .aplayer-lrc p {
+  font-size: 0.76rem !important;
+  line-height: 17px !important;
+  height: 17px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: color-mix(in srgb, var(--text) 42%, transparent) !important;
+  opacity: 1 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.28s ease, opacity 0.28s ease;
+}
+
+.penn-music .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  color: var(--text) !important;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  opacity: 1 !important;
+}
+
+.dark .penn-music .aplayer .aplayer-lrc p {
+  color: rgba(247, 244, 239, 0.34) !important;
+}
+
+.dark .penn-music .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  color: var(--pm-karaoke) !important;
+  text-shadow: 0 0 14px color-mix(in srgb, var(--pm-karaoke) 30%, transparent);
+}
+
+.penn-music .aplayer .aplayer-info .aplayer-controller {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.penn-music .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap {
+  margin: 0;
+  padding: 6px 0;
+  flex: 1;
+}
+
+.penn-music .aplayer .aplayer-bar-wrap .aplayer-bar {
+  height: 3px !important;
+  background: color-mix(in srgb, var(--text) 12%, transparent) !important;
+  border-radius: 999px;
+  overflow: visible;
+}
+
+.penn-music .aplayer .aplayer-bar-wrap .aplayer-loaded {
+  height: 3px !important;
+  background: color-mix(in srgb, var(--text) 18%, transparent) !important;
+  border-radius: 999px;
+}
+
+.penn-music .aplayer .aplayer-bar-wrap .aplayer-played {
+  height: 3px !important;
+  background: linear-gradient(90deg, #d8b480, var(--pm-player-accent)) !important;
+  border-radius: 999px;
+}
+
+.penn-music .aplayer .aplayer-bar-wrap .aplayer-played .aplayer-thumb {
+  width: 11px !important;
+  height: 11px !important;
+  margin-top: -4px !important;
+  background: #fff !important;
+  border: 2px solid var(--pm-player-accent) !important;
+  box-shadow: 0 1px 5px color-mix(in srgb, var(--text) 20%, transparent);
+  transform: scale(1);
+}
+
+.penn-music .aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  height: auto;
+  line-height: 1;
+  padding-left: 4px;
+  color: var(--text-3);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.penn-music .aplayer .aplayer-time .aplayer-icon {
+  opacity: 0.78;
+}
+
+.penn-music .aplayer .aplayer-time .aplayer-icon path,
+.penn-music .aplayer .aplayer-time .aplayer-icon-mode path {
+  fill: color-mix(in srgb, var(--text) 55%, transparent) !important;
+}
+
+.penn-music .aplayer .aplayer-time .aplayer-icon:hover {
+  opacity: 1;
+}
+
+.penn-music .aplayer .aplayer-time .aplayer-icon:hover path,
+.penn-music .aplayer .aplayer-volume-wrap:hover .aplayer-icon path {
+  fill: var(--pm-player-accent) !important;
+}
+
+.penn-music .aplayer .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
+  background: var(--pm-player-accent) !important;
+}
+
+.penn-music .aplayer .aplayer-list {
+  margin: 0;
+  clear: both;
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  overflow: hidden !important;
+}
+
+.penn-music .aplayer .aplayer-list ol {
+  max-height: inherit;
+  padding: 6px 0 8px;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text) 24%, transparent) transparent;
+}
+
+.penn-music .aplayer .aplayer-list ol::-webkit-scrollbar {
+  width: 5px;
+}
+
+.penn-music .aplayer .aplayer-list ol::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+
+.penn-music .aplayer .aplayer-list ol li {
+  margin: 0 8px;
+  padding: 0 12px 0 14px;
+  height: 34px;
+  line-height: 34px;
+  border: 0 !important;
+  border-radius: 10px;
+  color: var(--text-2);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.penn-music .aplayer .aplayer-list ol li:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  color: var(--text);
+}
+
+.penn-music .aplayer .aplayer-list ol li.aplayer-list-light {
+  background: color-mix(in srgb, var(--pm-player-accent) 14%, transparent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.penn-music .aplayer .aplayer-list ol li .aplayer-list-cur {
+  width: 3px;
+  height: 14px;
+  top: 10px;
+  left: 4px;
+  border-radius: 999px;
+  background: var(--pm-player-accent) !important;
+}
+
+.penn-music .aplayer .aplayer-list .aplayer-list-index {
+  color: var(--text-3);
+  margin-right: 10px;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+.penn-music .aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-index {
+  color: var(--pm-player-accent);
+  opacity: 1;
+}
+
+.penn-music .aplayer .aplayer-list .aplayer-list-author {
+  color: var(--text-3);
+  opacity: 0.85;
+}
+
+.penn-music .aplayer .aplayer-notice {
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--text) 78%, transparent);
+  color: #fff;
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.dark .penn-music.is-stretch .penn-music-host {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--surface) 92%, #000) 0%,
+      color-mix(in srgb, var(--surface) 86%, #111) 100%
+    );
+  border-color: color-mix(in srgb, var(--border) 65%, transparent);
+}
+
+.dark .penn-music .aplayer .aplayer-list {
+  background: color-mix(in srgb, #000 22%, transparent);
+}
+
+html.focus-mode:not(.dark) .penn-music.is-stretch .penn-music-host {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--surface) 94%, var(--bg));
+}
+
+.dark .penn-music {
+  --pm-cap: #1c1f27;
+  --pm-karaoke: #ffd9a8;
+}
+
+.dark .penn-music-capsule:not(.is-on),
+.dark .penn-music-host {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.penn-music.is-loading,
+.penn-music.is-failed {
+  left: 0;
+}
+
+.penn-music.is-loading .penn-music-capsule--idle {
+  width: auto;
+  max-width: 120px;
+  min-height: 40px;
+  padding: 8px 12px 8px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.penn-music.is-loading .penn-music-capsule--idle::before {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 2px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-top-color: var(--accent);
+  border-radius: 999px;
+  animation: penn-music-spin 0.7s linear infinite;
+}
+
+.dark .penn-music.is-docked .penn-music-capsule {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+}
+
+html.focus-mode:not(.dark) .penn-music {
+  --pm-cap: #3a3224;
+  --pm-karaoke: #f0d2a8;
+}
+
+html.focus-mode:not(.dark) .penn-music-capsule:not(.is-on),
+html.focus-mode:not(.dark) .penn-music-host {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg));
+}
+
+@keyframes penn-music-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes penn-music-ring {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+      0 0 0 0 rgba(255, 230, 194, 0);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+      0 0 0 3px rgba(255, 230, 194, 0.12);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .penn-music {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .penn-music,
+  .penn-music-capsule,
+  .penn-music.is-docked .penn-music-meta {
+    transition: none;
+  }
+
+  .penn-music-capsule.is-on .penn-music-cover,
+  .penn-music-capsule.is-on .penn-music-cover-ring {
+    animation: none;
+  }
+
+  .penn-lrc-enter-active,
+  .penn-lrc-leave-active {
+    transition: none;
+  }
+}
