@@ -8,6 +8,9 @@ import { withBase } from "vitepress";
 import rawManual from "../../recent/recent.json";
 // @ts-expect-error 构建时由 scripts/sync-news.mjs 生成
 import rawNews from "../news-recent.generated.json";
+import { useI18n } from "./i18n";
+
+const { t } = useI18n();
 
 type ManualItem = {
   date: string;
@@ -59,60 +62,63 @@ function rewriteInternalHrefs(html: string) {
 }
 
 function newsContent(item: NewsRecentItem) {
+  const recent = t("recent");
   const href = siteHref(item.link || "/news/");
   const headlines = (item.headlines || []).map(escapeHtml);
   if (headlines.length) {
     const extra =
-      item.count && item.count > headlines.length ? ` 等 ${item.count} 条` : "";
-    return `今日精选：${headlines.join("；")}${extra}。<a href="${href}">阅读日报</a>`;
+      item.count && item.count > headlines.length
+        ? recent.etcN(item.count)
+        : "";
+    return `${recent.newsPicks(headlines.join("；"), extra)}<a href="${href}">${recent.readDigest}</a>`;
   }
-  return `AI 动态日报已更新。<a href="${href}">${escapeHtml(item.title)}</a>`;
+  return `${recent.newsUpdated}<a href="${href}">${escapeHtml(item.title)}</a>`;
 }
 
 const newsPath = siteHref("/news/");
 const archivePath = siteHref("/archive/");
 
 const items = computed(() => {
+  const recent = t("recent");
   const manual: TimelineItem[] = (rawManual as ManualItem[]).map((item) => ({
     date: item.date,
-    tag: item.tag || "碎碎念",
+    tag: item.tag || recent.tagManual,
     content: rewriteInternalHrefs(item.content),
     kind: "manual",
   }));
   const news: TimelineItem[] = (rawNews as NewsRecentItem[]).map((item) => ({
     date: item.date,
-    tag: "AI 动态",
+    tag: recent.tagNews,
     content: newsContent(item),
     kind: "news",
   }));
   return [...manual, ...news].sort((a, b) => parseDate(b.date) - parseDate(a.date));
 });
 
-const countLabel = computed(() => `共 ${items.value.length} 条`);
+const countLabel = computed(() => t("recent").count(items.value.length));
 </script>
 
 <template>
   <div class="section-page talks-page">
     <header class="section-hero">
-      <p class="section-kicker">近况</p>
-      <h1 class="section-title">近况</h1>
-      <p class="section-lead">
-        站点碎碎念，以及每日自动同步的 AI 动态摘要。
-      </p>
+      <p class="section-kicker">{{ t("recent").title }}</p>
+      <h1 class="section-title">{{ t("recent").title }}</h1>
+      <p class="section-lead">{{ t("recent").lead }}</p>
       <p class="section-count">{{ countLabel }}</p>
       <div class="talks-hero-actions">
         <a class="talks-hero-btn talks-hero-btn--primary" :href="newsPath"
-          >去看 AI 动态</a
+          >{{ t("recent").goNews }}</a
         >
-        <a class="talks-hero-btn" :href="archivePath">浏览文章归档</a>
+        <a class="talks-hero-btn" :href="archivePath">{{ t("recent").goArchive }}</a>
       </div>
     </header>
 
     <div class="talks-banner" role="note">
       <span class="talks-banner-icon" aria-hidden="true">ℹ️</span>
       <p class="talks-banner-text">
-        <strong>AI 动态</strong>日报会自动出现在时间线里；站点碎碎念仍手写。全文请看
-        <a :href="newsPath">AI 动态</a>。
+        <strong>{{ t("recent").tagNews }}</strong>{{ t("recent").bannerBefore
+        }}<a :href="newsPath">{{ t("recent").tagNews }}</a
+        >{{ t("recent").bannerAfter }}
       </p>
     </div>
 
@@ -138,8 +144,11 @@ const countLabel = computed(() => `共 ${items.value.length} 条`);
     </div>
 
     <p class="talks-note">
-      追每日资讯 → <a :href="newsPath">AI 动态</a> · 读长文 →
-      <a :href="archivePath">归档</a>
+      {{ t("recent").footerBefore
+      }}<a :href="newsPath">{{ t("recent").tagNews }}</a
+      >{{ t("recent").footerMid
+      }}<a :href="archivePath">{{ t("nav").archive }}</a
+      >{{ t("recent").footerAfter }}
     </p>
   </div>
 </template>
@@ -157,6 +166,5 @@ const countLabel = computed(() => `共 ${items.value.length} 条`);
 .talk-item-tag--news {
   color: var(--link);
   background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface));
-  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
 }
 </style>

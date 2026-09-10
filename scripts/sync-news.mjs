@@ -102,10 +102,10 @@ function buildNewsIndex(months, monthFiles, itemCount = 0) {
     digestCount += monthFiles[month]?.length || 0;
   }
 
-  const metaBits = [];
-  if (itemCount > 0) metaBits.push(`${itemCount} 条动态`);
-  if (digestCount > 0) metaBits.push(`${digestCount} 期日报`);
-  metaBits.push("约 7:00 自动更新");
+  const metaLine =
+    itemCount > 0 || digestCount > 0
+      ? `    <p class="section-count news-hero-meta" data-i18n="pageHero.newsMeta" data-i18n-args="${itemCount},${digestCount}">${itemCount} 条动态 · ${digestCount} 期日报 · 约 7:00 自动更新</p>`
+      : `    <p class="section-count news-hero-meta" data-i18n="pageHero.newsMeta" data-i18n-args="0,0">约 7:00 自动更新</p>`;
 
   const lines = [
     "---",
@@ -120,23 +120,23 @@ function buildNewsIndex(months, monthFiles, itemCount = 0) {
     "",
     '<div class="section-page news-page">',
     '  <header class="section-hero news-hero">',
-    '    <p class="section-kicker">每日精选</p>',
-    '    <h1 class="section-title">AI 动态</h1>',
-    '    <p class="section-lead">业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文</p>',
-    `    <p class="section-count news-hero-meta">${escapeHtml(metaBits.join(" · "))}</p>`,
+    '    <p class="section-kicker" data-i18n="pageHero.newsKicker">每日精选</p>',
+    '    <h1 class="section-title" data-i18n="pageHero.newsTitle">AI 动态</h1>',
+    '    <p class="section-lead" data-i18n="pageHero.newsLead">业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文</p>',
+    metaLine,
     "  </header>",
     "",
-    '  <nav class="news-page-jump" aria-label="页内导航">',
-    '    <a class="news-page-jump-link" href="#digests">日报归档</a>',
-    '    <a class="news-page-jump-link" href="#feed">动态流</a>',
+    '  <nav class="news-page-jump" data-i18n-aria="pageHero.newsJumpAria" aria-label="页内导航">',
+    '    <a class="news-page-jump-link" href="#digests" data-i18n="pageHero.newsDigests">日报归档</a>',
+    '    <a class="news-page-jump-link" href="#feed" data-i18n="pageHero.newsFeed">动态流</a>',
     "  </nav>",
     "",
     "  <NewsDigestArchive />",
     "",
     '  <section id="feed" class="news-block news-feed-block">',
     '    <div class="news-block-head">',
-    '      <h2 class="news-block-title">动态流</h2>',
-    '      <p class="news-block-desc">单条要闻筛选浏览，向下滚动自动加载</p>',
+    '      <h2 class="news-block-title" data-i18n="pageHero.newsFeed">动态流</h2>',
+    '      <p class="news-block-desc" data-i18n="pageHero.newsFeedDesc">单条要闻筛选浏览，向下滚动自动加载</p>',
     "    </div>",
     "    <NewsArchive />",
     "  </section>",

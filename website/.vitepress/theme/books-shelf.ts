@@ -1,5 +1,8 @@
 /** 书单：状态筛选 + 3D 入场（仅对滚进视口的书播放） */
 
+import { getUiText } from "../i18n/messages";
+import { getUiLocalePreference } from "./ui-locale";
+
 let observer: IntersectionObserver | undefined;
 
 function teardownAnimation() {
@@ -34,12 +37,26 @@ function setupBooksFilter(page: HTMLElement) {
       btn.setAttribute("aria-pressed", active ? "true" : "false");
     });
     if (countEl) {
+      const books = getUiText(getUiLocalePreference()).books;
       if (!status) {
-        countEl.textContent = `共 ${totals[""]} 本 · ${totals.done} 本已读 · ${totals.reading} 本在读 · ${totals.plan} 本计划中`;
+        countEl.textContent = books.countAll(
+          totals[""],
+          totals.done,
+          totals.reading,
+          totals.plan,
+        );
+        countEl.removeAttribute("data-i18n");
+        countEl.removeAttribute("data-i18n-args");
       } else {
         const label =
-          status === "done" ? "已读" : status === "reading" ? "在读" : "计划中";
-        countEl.textContent = `当前 ${shown} 本${label}（共 ${totals[""]} 本）`;
+          status === "done"
+            ? books.done
+            : status === "reading"
+              ? books.reading
+              : books.plan;
+        countEl.textContent = books.countFiltered(shown, label, totals[""]);
+        countEl.removeAttribute("data-i18n");
+        countEl.removeAttribute("data-i18n-args");
       }
     }
   };

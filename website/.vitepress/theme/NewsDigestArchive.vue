@@ -2,7 +2,9 @@
 import { computed, ref } from "vue";
 import { withBase } from "vitepress";
 import digests from "../news-digests.generated.json";
+import { useI18n } from "./i18n";
 
+const { t } = useI18n();
 const RECENT_STRIP = 14;
 const expandedMonths = ref(new Set());
 
@@ -48,12 +50,12 @@ function dayLabel(date) {
 function formatFeaturedDate(date) {
   if (!date) return "";
   const [y, m, d] = date.split("-");
-  return `${y} 年 ${Number(m)} 月 ${Number(d)} 日`;
+  return t("news").dateFull(Number(y), Number(m), Number(d));
 }
 
 function monthLabel(ym) {
   const [y, m] = ym.split("-");
-  return `${y} 年 ${Number(m)} 月`;
+  return `${y} · ${t("archive").month(Number(m))}`;
 }
 
 function isExpanded(month) {
@@ -81,10 +83,10 @@ function onThumbError(e) {
   <section v-if="items.length" id="digests" class="news-digest-panel list-reveal">
     <div class="news-digest-panel-head">
       <div class="news-block-head">
-        <h2 class="news-block-title">日报归档</h2>
-        <p class="news-block-desc">按日期阅读完整日报，比动态流更适合通读回顾</p>
+        <h2 class="news-block-title">{{ t("news").digestTitle }}</h2>
+        <p class="news-block-desc">{{ t("news").digestDesc }}</p>
       </div>
-      <p class="news-digest-panel-meta">{{ items.length }} 期</p>
+      <p class="news-digest-panel-meta">{{ t("news").digestCount(items.length) }}</p>
     </div>
 
     <a
@@ -103,17 +105,17 @@ function onThumbError(e) {
         />
       </div>
       <div class="news-digest-featured-body">
-        <span class="news-digest-featured-kicker">最新一期</span>
+        <span class="news-digest-featured-kicker">{{ t("news").latestDigest }}</span>
         <time class="news-digest-featured-date" :datetime="latest.date">{{
           formatFeaturedDate(latest.date)
         }}</time>
         <span class="news-digest-featured-title">{{ latest.title }}</span>
-        <span class="news-digest-featured-cta">阅读完整日报 →</span>
+        <span class="news-digest-featured-cta">{{ t("news").readDigest }}</span>
       </div>
     </a>
 
     <div v-if="recentStrip.length" class="news-digest-recent">
-      <p class="news-digest-recent-label">近期</p>
+      <p class="news-digest-recent-label">{{ t("news").recent }}</p>
       <div class="news-digest-recent-scroll" tabindex="0" role="list">
         <a
           v-for="item in recentStrip"
@@ -128,7 +130,7 @@ function onThumbError(e) {
     </div>
 
     <div class="news-digest-months">
-      <p class="news-digest-recent-label">按月查阅</p>
+      <p class="news-digest-recent-label">{{ t("news").byMonth }}</p>
       <div
         v-for="group in monthGroups"
         :key="group.month"
@@ -142,7 +144,7 @@ function onThumbError(e) {
           @click="toggleMonth(group.month)"
         >
           <span class="news-digest-month-name">{{ monthLabel(group.month) }}</span>
-          <span class="news-digest-month-count">{{ group.items.length }} 期</span>
+          <span class="news-digest-month-count">{{ t("news").digestCount(group.items.length) }}</span>
           <span class="news-digest-month-chevron" aria-hidden="true" />
         </button>
         <div v-show="isExpanded(group.month)" class="news-digest-dates">

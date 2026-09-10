@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { useData, useRoute } from "vitepress";
 import AssistantBrandIcon from "./AssistantBrandIcon.vue";
 import AssistantCloseIcon from "./AssistantCloseIcon.vue";
+import { useI18n } from "./i18n";
 
 type AssistantConfig = {
   enabled?: boolean;
@@ -23,10 +24,11 @@ type ChatMsg = {
 
 const { theme, page, site } = useData();
 const route = useRoute();
+const { t } = useI18n();
 
 /** 面板展示名（与品牌一致，偏「导读」而非泛 AI 助手） */
-const ASSISTANT_NAME = "Penn 导读";
-const ASSISTANT_TAGLINE = "读懂本站 · 随时追问";
+const ASSISTANT_NAME = computed(() => t("assistant").name);
+const ASSISTANT_TAGLINE = computed(() => t("assistant").tagline);
 
 const open = ref(false);
 const input = ref("");
@@ -588,10 +590,10 @@ function clearChat(opts?: { skipConfirm?: boolean }) {
   if (loading.value) return;
   if (!opts?.skipConfirm && messages.value.length) {
     requestConfirm({
-      title: "清空当前对话？",
+      title: t("assistant").confirmClear,
       detail: "清空后不可恢复，可重新提问继续聊。",
-      confirmLabel: "清空",
-      cancelLabel: "取消",
+      confirmLabel: t("assistant").confirmOk,
+      cancelLabel: t("assistant").confirmCancel,
       danger: true,
       onConfirm: () => clearChat({ skipConfirm: true }),
     });
@@ -656,7 +658,7 @@ async function copyAnswer(idx: number) {
       if (copiedIdx.value === idx) copiedIdx.value = -1;
     }, 1600);
   } catch {
-    error.value = "复制失败，请手动选择文字";
+    error.value = t("assistant").copyFail;
   }
 }
 
@@ -709,12 +711,12 @@ async function exportAnswerCard(idx: number) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   if (!ctx) {
-    error.value = "当前浏览器不支持导出卡片";
+    error.value = t("assistant").exportUnsupported;
     return;
   }
 
   ctx.font = "600 28px system-ui, sans-serif";
-  const qLines = wrapCanvasText(ctx, q ? `问：${q}` : `${ASSISTANT_NAME}回答`, W - pad * 2);
+  const qLines = wrapCanvasText(ctx, q ? `${t("assistant").askPrefix}${q}` : `${ASSISTANT_NAME.value}${t("assistant").answerSuffix}`, W - pad * 2);
   ctx.font = "400 22px system-ui, sans-serif";
   const aLines = wrapCanvasText(ctx, a, W - pad * 2);
   const H = Math.min(
@@ -752,7 +754,7 @@ async function exportAnswerCard(idx: number) {
   let y = pad;
   ctx.fillStyle = muted;
   ctx.font = "600 16px system-ui, sans-serif";
-  ctx.fillText(`Penn Notes · ${ASSISTANT_NAME}`, pad + 8, y);
+  ctx.fillText(`Penn Notes · ${ASSISTANT_NAME.value}`, pad + 8, y);
   y += 28;
   ctx.fillStyle = fg;
   ctx.font = "600 18px system-ui, sans-serif";
@@ -780,7 +782,7 @@ async function exportAnswerCard(idx: number) {
     canvas.toBlob((b) => resolve(b), "image/png"),
   );
   if (!blob) {
-    error.value = "导出失败";
+    error.value = t("assistant").exportFail;
     return;
   }
 
@@ -832,7 +834,7 @@ function roundRect(
 }
 
 async function shareConversation() {
-  const lines: string[] = [`# Penn Notes ${ASSISTANT_NAME}会话`, ""];
+  const lines: string[] = [`# Penn Notes ${ASSISTANT_NAME.value}会话`, ""];
   const title = String(page.value?.title || "").trim();
   if (title) lines.push(`> 页面：《${title}》`, "");
   for (const m of messages.value) {
@@ -853,7 +855,7 @@ async function shareConversation() {
       sharedHint.value = false;
     }, 1800);
   } catch {
-    error.value = "复制失败，请手动选择文字";
+    error.value = t("assistant").copyFail;
   }
 }
 
@@ -991,7 +993,7 @@ function restoreSession() {
         pageSwitchHint.value =
           typeof parsed.pageSwitchHint === "string" && parsed.pageSwitchHint
             ? parsed.pageSwitchHint
-            : "已恢复上次对话（保留 7 天，可点清空）";
+            : t("assistant").restoredChat;
       }
     }
   } catch {
@@ -1050,7 +1052,7 @@ function toggleVoice() {
     });
   } catch {
     listening.value = false;
-    error.value = "无法启动语音识别";
+    error.value = t("assistant").voiceFail;
   }
 }
 
@@ -1238,38 +1240,23 @@ function renderAssistantHtml(
 }
 
 const pageTitleShort = computed(() => {
-  const t = String(page.value?.title || "").trim();
-  if (!t) return "";
-  return t.length > 22 ? `${t.slice(0, 22)}…` : t;
+  const title = String(page.value?.title || "").trim();
+  if (!title) return "";
+  return title.length > 22 ? `${title.slice(0, 22)}…` : title;
 });
 
-const SECTION_CHIP_LABEL: Record<string, string> = {
-  web: "JS & 框架",
-  ui: "样式",
-  engineering: "工程化",
-  backend: "后端",
-  tech: "工具备忘",
-  computer: "浏览器",
-  agent: "AI Agent",
-  misc: "杂项",
-  news: "AI 动态",
-  about: "关于",
-  archive: "归档",
-  tags: "标签",
-  recent: "最近",
-};
-
-/** 顶栏胶囊用：首页等无 frontmatter title 时给可读名，避免「新页面」 */
+/** 顶栏胶囊用：首页等无 frontmatter title 时给可读名 */
 const pageLabelShort = computed(() => {
   const path = (pathOnly.value || "/").replace(/\/$/, "") || "/";
-  if (path === "/") return "首页";
+  if (path === "/") return t("assistant").home;
 
   const titled = pageTitleShort.value;
   if (titled) return titled;
 
   const parts = path.split("/").filter(Boolean);
-  if (parts.length === 1 && SECTION_CHIP_LABEL[parts[0]]) {
-    return SECTION_CHIP_LABEL[parts[0]];
+  const nav = t("nav") as Record<string, string>;
+  if (parts.length === 1 && nav[parts[0]]) {
+    return nav[parts[0]];
   }
 
   if (typeof document !== "undefined") {
@@ -1284,7 +1271,7 @@ const pageLabelShort = computed(() => {
 
   const last = parts[parts.length - 1] || "";
   if (last) return decodeURIComponent(last).slice(0, 22);
-  return "当前页";
+  return t("assistant").currentPage;
 });
 
 function pageContext() {
@@ -1843,7 +1830,7 @@ async function ask(text: string, opts?: { fromChip?: boolean }) {
       if (prev && !prev.content.trim()) {
         messages.value[assistantIdx] = {
           ...prev,
-          content: "（已停止生成）",
+          content: t("assistant").stopped,
         };
       }
     } else {
@@ -2047,8 +2034,8 @@ watch(
       return;
     }
     void nextTick(() => {
-      const label = pageLabelShort.value || "当前页";
-      pageSwitchHint.value = `已切换到《${label}》，可继续问或清空`;
+      const label = pageLabelShort.value || t("assistant").currentPage;
+      pageSwitchHint.value = t("assistant").pageSwitchedTo(label);
       persistSession();
     });
   },
@@ -2133,7 +2120,7 @@ onBeforeUnmount(() => {
       v-if="open && panelExpanded"
       type="button"
       class="penn-assistant-scrim"
-      :aria-label="`关闭${ASSISTANT_NAME}`"
+      :aria-label="`${t('assistant').close} ${ASSISTANT_NAME}`"
       @click="closePanel"
       @wheel.prevent
       @touchmove.prevent
@@ -2157,12 +2144,12 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div class="penn-assistant-head-actions">
-          <div class="penn-assistant-font" role="group" aria-label="字号">
+          <div class="penn-assistant-font" role="group" :aria-label="t('assistant').fontSize">
             <button
               type="button"
               class="penn-assistant-font-btn"
-              aria-label="减小字号"
-              title="减小字号"
+              :aria-label="t('assistant').fontSmaller"
+              :title="t('assistant').fontSmaller"
               :disabled="fontScale <= FONT_STEPS[0]"
               @click="bumpFont(-1)"
             >
@@ -2171,8 +2158,8 @@ onBeforeUnmount(() => {
             <button
               type="button"
               class="penn-assistant-font-btn"
-              aria-label="增大字号"
-              title="增大字号"
+              :aria-label="t('assistant').fontLarger"
+              :title="t('assistant').fontLarger"
               :disabled="fontScale >= FONT_STEPS[FONT_STEPS.length - 1]"
               @click="bumpFont(1)"
             >
@@ -2186,7 +2173,7 @@ onBeforeUnmount(() => {
             :disabled="loading"
             @click="shareConversation"
           >
-            {{ sharedHint ? "已复制" : "分享" }}
+            {{ sharedHint ? t("assistant").copied : t("assistant").share }}
           </button>
           <button
             v-if="messages.length"
@@ -2195,13 +2182,13 @@ onBeforeUnmount(() => {
             :disabled="loading"
             @click="clearChat()"
           >
-            清空
+            {{ t("assistant").clear }}
           </button>
           <button
             type="button"
             class="penn-assistant-expand"
-            :aria-label="panelExpanded ? '退出全屏' : '全屏'"
-            :title="panelExpanded ? '退出全屏' : '全屏'"
+            :aria-label="panelExpanded ? t('assistant').shrink : t('assistant').expand"
+            :title="panelExpanded ? t('assistant').shrink : t('assistant').expand"
             @click="togglePanelExpanded"
           >
             <svg
@@ -2237,7 +2224,7 @@ onBeforeUnmount(() => {
               />
             </svg>
           </button>
-          <button type="button" class="penn-assistant-close" aria-label="关闭" @click="closePanel">
+          <button type="button" class="penn-assistant-close" :aria-label="t('assistant').close" @click="closePanel">
             ×
           </button>
         </div>
@@ -2259,8 +2246,8 @@ onBeforeUnmount(() => {
           >
             {{
               readingSection || selectionPreview
-                ? "已切换页面"
-                : `已切换 · ${pageLabelShort}`
+                ? t("assistant").pageSwitched
+                : `${t("assistant").pageSwitched} · ${pageLabelShort}`
             }}
           </p>
           <p
@@ -2268,7 +2255,7 @@ onBeforeUnmount(() => {
             class="penn-assistant-pagechip"
             :title="page.title || pageLabelShort"
           >
-            当前：{{ pageLabelShort }}
+            {{ t("assistant").currentPrefix }}{{ pageLabelShort }}
           </p>
           <p v-if="selectionPreview" class="penn-assistant-selchip">
             <span class="penn-assistant-selchip-label">{{ selectionChipLabel }}</span>
@@ -2286,12 +2273,12 @@ onBeforeUnmount(() => {
                 )
               "
             >
-              解释
+              {{ t("assistant").explain }}
             </button>
             <button
               type="button"
               class="penn-assistant-selchip-clear"
-              aria-label="清除选中"
+              :aria-label="t('assistant').clearSelection"
               @click="clearSelectionChip"
             >
               ×
@@ -2301,7 +2288,7 @@ onBeforeUnmount(() => {
             v-else-if="readingSection && open"
             class="penn-assistant-selchip penn-assistant-selchip--section"
           >
-            <span class="penn-assistant-selchip-label">在看</span>
+            <span class="penn-assistant-selchip-label">{{ t("assistant").reading }}</span>
             <span class="penn-assistant-selchip-text" :title="readingSection">{{
               readingSection.length > 24
                 ? `${readingSection.slice(0, 24)}…`
@@ -2313,7 +2300,7 @@ onBeforeUnmount(() => {
               :disabled="loading"
               @click="askSummarizeSection"
             >
-              总结这节
+              {{ t("assistant").summarize }}
             </button>
           </p>
         </div>
@@ -2324,8 +2311,8 @@ onBeforeUnmount(() => {
           <p class="penn-assistant-empty-lead">
             {{
               showOnboard
-                ? "第一次用？先从下面几问摸清本站。"
-                : "想快速摸清本站，或弄懂当前这篇？先试下面几问。"
+                ? t("assistant").firstUse
+                : t("assistant").emptyHint
             }}
           </p>
           <div class="penn-assistant-chips">
@@ -2389,7 +2376,7 @@ onBeforeUnmount(() => {
               <span class="penn-assistant-dots" aria-hidden="true"
                 ><i /><i /><i
               /></span>
-              读取文章
+              {{ t("assistant").waiting }}
             </span>
             <div
               v-else-if="loading && i === messages.length - 1"
@@ -2419,8 +2406,8 @@ onBeforeUnmount(() => {
               type="button"
               class="penn-assistant-act"
               :class="{ 'is-done': copiedIdx === i }"
-              aria-label="复制回答"
-              :title="copiedIdx === i ? '已复制' : '复制'"
+              :aria-label="t('assistant').copyAnswer"
+              :title="copiedIdx === i ? t('assistant').copied : t('common').copy"
               @click="copyAnswer(i)"
             >
               <svg v-if="copiedIdx !== i" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
@@ -2435,8 +2422,12 @@ onBeforeUnmount(() => {
               type="button"
               class="penn-assistant-act"
               :class="{ 'is-done': exportedIdx === i }"
-              aria-label="导出分享卡片"
-              :title="exportedIdx === i ? '已下载卡片图' : '导出卡片图（发群/周报）'"
+              :aria-label="t('assistant').exportTitle"
+              :title="
+                exportedIdx === i
+                  ? t('assistant').exported
+                  : t('assistant').exportCard
+              "
               @click="exportAnswerCard(i)"
             >
               <svg v-if="exportedIdx !== i" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
@@ -2451,8 +2442,8 @@ onBeforeUnmount(() => {
               v-if="!m.feedback"
               type="button"
               class="penn-assistant-act"
-              aria-label="有用"
-              title="有用"
+              :aria-label="t('assistant').useful"
+              :title="t('assistant').useful"
               @click="sendFeedback(i, 'up')"
             >
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
@@ -2463,15 +2454,23 @@ onBeforeUnmount(() => {
               v-if="!m.feedback"
               type="button"
               class="penn-assistant-act"
-              aria-label="不准"
-              title="不准"
+              :aria-label="t('assistant').inaccurate"
+              :title="t('assistant').inaccurate"
               @click="onFeedbackDown(i)"
             >
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
                 <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7.5 13V4.5H5A1.5 1.5 0 0 0 3.5 6v5.5A1.5 1.5 0 0 0 5 13h2.5Zm0 0 3 6.5a2 2 0 0 0 2 .8h.2a2.2 2.2 0 0 0 2.1-2.7L14.2 13H19a2 2 0 0 0 1.9-2.6l-1.2-4A2.5 2.5 0 0 0 17.3 4.5H7.5" />
               </svg>
             </button>
-            <span v-else class="penn-assistant-feedback-done" :title="m.feedback === 'up' ? '已标有用' : '已标不准'">
+            <span
+              v-else
+              class="penn-assistant-feedback-done"
+              :title="
+                m.feedback === 'up'
+                  ? t('assistant').feedbackUpDone
+                  : t('assistant').feedbackDownDone
+              "
+            >
               <svg v-if="m.feedback === 'up'" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
                 <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7.5 11v8.5H5A1.5 1.5 0 0 1 3.5 18v-5.5A1.5 1.5 0 0 1 5 11h2.5Zm0 0 3-6.5a2 2 0 0 1 2-.8h.2a2.2 2.2 0 0 1 2.1 2.7L14.2 11H19a2 2 0 0 1 1.9 2.6l-1.2 4A2.5 2.5 0 0 1 17.3 19.5H7.5" />
               </svg>
@@ -2489,7 +2488,7 @@ onBeforeUnmount(() => {
               class="penn-assistant-feedback-input"
               type="text"
               maxlength="80"
-              placeholder="哪里不准？（可选）"
+              :placeholder="t('assistant').feedbackPlaceholder"
               @keydown.enter.prevent="submitFeedbackDown(i)"
             />
             <button
@@ -2497,7 +2496,7 @@ onBeforeUnmount(() => {
               class="penn-assistant-feedback-submit"
               @click="submitFeedbackDown(i)"
             >
-              提交
+              {{ t("assistant").submit }}
             </button>
           </div>
           <div
@@ -2514,10 +2513,11 @@ onBeforeUnmount(() => {
               :key="h.id"
               type="button"
               class="penn-assistant-jump-chip"
-              :title="`滚到正文：${h.text}`"
+              :title="`${t('assistant').jump}：${h.text}`"
               @click="scrollToHeading(h)"
             >
-              滚到 {{ h.text.length > 12 ? `${h.text.slice(0, 12)}…` : h.text }}
+              {{ t("assistant").jump }}
+              {{ h.text.length > 12 ? `${h.text.slice(0, 12)}…` : h.text }}
             </button>
           </div>
           <details
@@ -2526,7 +2526,7 @@ onBeforeUnmount(() => {
             open
           >
             <summary class="penn-assistant-sources-summary">
-              参考 {{ Math.min(m.sources.length, 3) }} 篇
+              {{ t("assistant").sources(Math.min(m.sources.length, 3)) }}
             </summary>
             <ul class="penn-assistant-sources">
               <li
@@ -2546,8 +2546,8 @@ onBeforeUnmount(() => {
                   <button
                     type="button"
                     class="penn-assistant-source-open"
-                    aria-label="打开参考文章"
-                    title="打开"
+                    :aria-label="t('assistant').openSource"
+                    :title="t('assistant').open"
                     @click.prevent="openSource(s.link)"
                   >
                     <svg
@@ -2630,12 +2630,12 @@ onBeforeUnmount(() => {
           maxlength="500"
           :placeholder="
             listening
-              ? '正在听，再说一次或点停止…'
-              : '输入你想问的问题…'
+              ? t('assistant').listening
+              : t('assistant').placeholder
           "
           :disabled="loading"
           enterkeyhint="send"
-          title="Enter 发送，Shift+Enter 换行"
+          :title="t('assistant').sendHint"
           @keydown="onInputKeydown"
           @input="resizeInput"
         />
@@ -2645,8 +2645,8 @@ onBeforeUnmount(() => {
           class="penn-assistant-voice"
           :class="{ 'is-on': listening }"
           :disabled="loading"
-          :aria-label="listening ? '停止语音' : '语音输入'"
-          :title="listening ? '停止录音' : '语音输入'"
+          :aria-label="listening ? t('assistant').stop : t('assistant').voice"
+          :title="listening ? t('assistant').stop : t('assistant').voice"
           @click="toggleVoice"
         >
           <span v-if="listening" class="penn-assistant-voice-rings" aria-hidden="true">
@@ -2684,8 +2684,8 @@ onBeforeUnmount(() => {
           v-if="loading"
           class="penn-assistant-stop"
           type="button"
-          aria-label="停止生成"
-          title="停止"
+          :aria-label="t('assistant').stop"
+          :title="t('assistant').stop"
           @click="stopGenerate"
         >
           <svg
@@ -2703,8 +2703,8 @@ onBeforeUnmount(() => {
           v-else
           class="penn-assistant-send"
           type="submit"
-          aria-label="发送"
-          title="发送（Enter）"
+          :aria-label="t('assistant').send"
+          :title="t('assistant').send"
           :disabled="!input.trim()"
         >
           <svg
@@ -2722,7 +2722,7 @@ onBeforeUnmount(() => {
           </svg>
         </button>
       </form>
-      <p class="penn-assistant-foot">AI 生成可能有误，注意核实</p>
+      <p class="penn-assistant-foot">{{ t("assistant").disclaimer }}</p>
       <div
         v-if="confirmDialog"
         class="penn-assistant-confirm"
@@ -2733,7 +2733,7 @@ onBeforeUnmount(() => {
         <button
           type="button"
           class="penn-assistant-confirm-scrim"
-          aria-label="取消"
+          :aria-label="t('assistant').confirmCancel"
           @click="cancelConfirm"
         />
         <div class="penn-assistant-confirm-card">
@@ -2747,7 +2747,7 @@ onBeforeUnmount(() => {
               class="penn-assistant-confirm-btn"
               @click="cancelConfirm"
             >
-              {{ confirmDialog.cancelLabel || "取消" }}
+              {{ confirmDialog.cancelLabel || t("assistant").confirmCancel }}
             </button>
             <button
               type="button"
@@ -2755,7 +2755,7 @@ onBeforeUnmount(() => {
               :class="{ 'is-danger': confirmDialog.danger }"
               @click="runConfirm"
             >
-              {{ confirmDialog.confirmLabel || "确定" }}
+              {{ confirmDialog.confirmLabel || t("assistant").confirmOk }}
             </button>
           </div>
         </div>
@@ -2764,8 +2764,8 @@ onBeforeUnmount(() => {
         v-if="!panelExpanded"
         type="button"
         class="penn-assistant-resize"
-        aria-label="拖拽调整大小"
-        title="拖拽调整大小"
+        :aria-label="t('assistant').resize"
+        :title="t('assistant').resize"
         @pointerdown="onResizePointerDown"
       />
     </div>
@@ -2775,11 +2775,11 @@ onBeforeUnmount(() => {
       class="penn-assistant-fab"
       :class="{ 'is-dismiss': open }"
       :aria-expanded="open ? 'true' : 'false'"
-      :aria-label="open ? `关闭${ASSISTANT_NAME}` : `打开${ASSISTANT_NAME}`"
+      :aria-label="open ? `${t('assistant').close} ${ASSISTANT_NAME}` : t('assistant').fab"
       @click="toggle"
     >
       <span v-if="!open" class="penn-assistant-fab-tip" aria-hidden="true"
-        >站内导读</span
+        >{{ t("assistant").fab }}</span
       >
       <!-- 打开态：同家族收起标 -->
       <AssistantCloseIcon

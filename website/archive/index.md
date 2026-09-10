@@ -10,9 +10,9 @@ next: false
 
 <div class="section-page discover-page">
   <header class="section-hero">
-    <p class="section-kicker">Archive</p>
-    <h1 class="section-title">文章归档</h1>
-    <p class="section-lead">按年月查看全部文章，从新到旧排列</p>
+    <p class="section-kicker" data-i18n="pageHero.archiveKicker">Archive</p>
+    <h1 class="section-title" data-i18n="pageHero.archiveTitle">文章归档</h1>
+    <p class="section-lead" data-i18n="pageHero.archiveLead">按年月查看全部文章，从新到旧排列</p>
   </header>
 
   <NotesArchive />

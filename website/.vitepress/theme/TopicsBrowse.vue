@@ -2,7 +2,9 @@
 import { computed, ref, watch } from "vue";
 import { useRoute, useRouter, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
+import { useI18n } from "./i18n";
 
+const { t } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const activeSeries = ref("");
@@ -74,14 +76,14 @@ function href(path) {
 <template>
   <div class="discover-browse topics-browse">
     <div class="discover-toolbar">
-      <div class="discover-filter" role="list" aria-label="系列筛选">
+      <div class="discover-filter" role="list" :aria-label="t('topics').filterAria">
         <button
           type="button"
           class="discover-chip"
           :class="{ 'is-active': !activeSeries }"
           @click="selectSeries('')"
         >
-          全部
+          {{ t("common").all }}
           <span class="discover-chip-count">{{ seriesList.length }}</span>
         </button>
         <button
@@ -98,7 +100,7 @@ function href(path) {
         </button>
       </div>
       <p class="discover-count">
-        {{ seriesList.length }} 条阅读路径 · {{ totalArticles }} 篇文章
+        {{ t("topics").stats(seriesList.length, totalArticles) }}
       </p>
     </div>
 
@@ -112,7 +114,7 @@ function href(path) {
         <div class="topics-path-head">
           <h2 class="topics-path-title">{{ s.name }}</h2>
           <p class="topics-path-meta">
-            {{ s.count }} 篇
+            {{ t("common").articleCount(s.count) }}
             <template v-if="s.sectionLabel"> · {{ s.sectionLabel }}</template>
           </p>
         </div>

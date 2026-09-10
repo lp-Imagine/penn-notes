@@ -1,5 +1,7 @@
 /** 文章代码块：超过阈值默认收起，可展开 / 收起 */
 
+import { getUiText } from "./i18n";
+
 const COLLAPSE_AFTER = 14;
 const PREVIEW_LINES = 12;
 
@@ -17,10 +19,9 @@ function countCodeLines(block: HTMLElement): number {
 function setCollapsed(block: HTMLElement, btn: HTMLButtonElement, collapsed: boolean) {
   block.classList.toggle("is-collapsed", collapsed);
   const lines = Number(block.dataset.pennCodeLines || "0");
+  const code = getUiText().code;
   btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
-  btn.textContent = collapsed
-    ? `展开全部 · ${lines} 行`
-    : "收起代码";
+  btn.textContent = collapsed ? code.expandAll(lines) : code.collapse;
 }
 
 function enhanceBlock(block: HTMLElement) {
@@ -38,7 +39,7 @@ function enhanceBlock(block: HTMLElement) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "penn-code-toggle";
-  btn.setAttribute("aria-label", "展开或收起代码块");
+  btn.setAttribute("aria-label", getUiText().code.toggleAria);
   setCollapsed(block, btn, true);
 
   btn.addEventListener("click", () => {

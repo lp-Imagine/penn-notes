@@ -1857,6 +1857,11 @@ body,
   --vp-local-search-highlight-text: var(--link);
 }
 
+/* 本地搜索必须压过助手浮层（z-index: 220），否则弹层被挡住且像页面卡死 */
+.VPLocalSearchBox {
+  z-index: 300 !important;
+}
+
 .VPLocalSearchBox .backdrop {
   background: color-mix(in srgb, var(--text) 26%, transparent) !important;
 }

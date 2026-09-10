@@ -1,20 +1,27 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { withBase } from "vitepress";
+import { NEWS_SECTION_DATA } from "../i18n/page-messages";
 import items from "../news-items.generated.json";
+import { useI18n } from "./i18n";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
 import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
+const { t } = useI18n();
 const PAGE_SIZE = 24;
-const sections = ["全部", "业界", "产品", "模型", "开源", "开发者工具", "前端"];
-const active = ref("全部");
+const sections = NEWS_SECTION_DATA;
+const active = ref("all");
 const visible = ref(PAGE_SIZE);
 
 const hasItems = computed(() => items.length > 0);
 
+const activeData = computed(
+  () => sections.find((s) => s.id === active.value)?.data ?? null,
+);
+
 const filtered = computed(() => {
-  if (active.value === "全部") return items;
-  return items.filter((item) => item.section === active.value);
+  if (active.value === "all" || activeData.value == null) return items;
+  return items.filter((item) => item.section === activeData.value);
 });
 
 const shown = computed(() => filtered.value.slice(0, visible.value));
@@ -27,6 +34,15 @@ const allLoaded = computed(
 watch(active, () => {
   visible.value = PAGE_SIZE;
 });
+
+function sectionLabel(id) {
+  return t("news").sections[id];
+}
+
+function itemSectionLabel(section) {
+  const hit = sections.find((s) => s.data === section);
+  return hit ? t("news").sections[hit.id] : section;
+}
 
 function href(path) {
   const raw = String(path || "").trim();
@@ -75,24 +91,24 @@ function onThumbError(e) {
 <template>
   <div class="news-archive">
     <div class="news-toolbar">
-      <div class="news-filter" role="tablist" aria-label="栏目筛选">
+      <div class="news-filter" role="tablist" :aria-label="t('news').filterAria">
         <button
           v-for="sec in sections"
-          :key="sec"
+          :key="sec.id"
           type="button"
           class="news-filter-btn"
-          :class="{ 'is-active': active === sec }"
+          :class="{ 'is-active': active === sec.id }"
           role="tab"
-          :aria-selected="active === sec"
-          @click="active = sec"
+          :aria-selected="active === sec.id"
+          @click="active = sec.id"
         >
-          {{ sec }}
+          {{ sectionLabel(sec.id) }}
         </button>
       </div>
       <div v-if="hasItems" class="news-toolbar-aside">
         <span class="news-toolbar-count">
-          {{ filtered.length }} 条
-          <template v-if="active !== '全部'"> · {{ active }}</template>
+          {{ t("news").countItems(filtered.length) }}
+          <template v-if="active !== 'all'"> · {{ sectionLabel(active) }}</template>
         </span>
         <NewsRssSubscribe compact />
       </div>
@@ -122,14 +138,14 @@ function onThumbError(e) {
           />
         </svg>
       </div>
-      <p class="news-empty-title">暂无动态</p>
-      <p class="news-empty-desc">每天早上 7:00 左右自动更新，稍后再来看看。</p>
+      <p class="news-empty-title">{{ t("news").emptyTitle }}</p>
+      <p class="news-empty-desc">{{ t("news").emptyDesc }}</p>
       <NewsRssSubscribe />
     </div>
 
     <template v-else>
       <p v-if="!filtered.length" class="news-empty-filter">
-        「{{ active }}」栏目暂无内容，试试切换其他栏目。
+        {{ t("news").emptySection(sectionLabel(active)) }}
       </p>
 
       <template v-else>
@@ -159,7 +175,7 @@ function onThumbError(e) {
             </div>
             <div class="news-item-body">
               <div class="news-item-tags">
-                <span class="news-section-tag">{{ item.section }}</span>
+                <span class="news-section-tag">{{ itemSectionLabel(item.section) }}</span>
                 <span v-if="item.sourceName" class="news-source-tag">{{
                   item.sourceName
                 }}</span>
@@ -170,7 +186,7 @@ function onThumbError(e) {
               </p>
               <span class="news-item-meta">
                 <time :datetime="item.itemDate">{{ item.itemDate }}</time>
-                <span>阅读全文</span>
+                <span>{{ t("common").readMore }}</span>
               </span>
             </div>
           </a>
@@ -183,10 +199,10 @@ function onThumbError(e) {
           aria-live="polite"
         >
           <span class="news-feed-sentinel-dot" aria-hidden="true" />
-          <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
+          <span>{{ isLoading ? t("common").loading : t("common").loadMore }}</span>
         </div>
         <p v-else-if="allLoaded && filtered.length > PAGE_SIZE" class="news-feed-end">
-          已加载全部 {{ filtered.length }} 条
+          {{ t("news").loadedAllItems(filtered.length) }}
         </p>
       </template>
     </template>

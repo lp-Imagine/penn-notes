@@ -4,15 +4,14 @@ import { useData, useRoute } from "vitepress";
 import { daysSince, getArticleContentDate, parseArticleDate } from "./article-dates";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
-import { stripLocalePrefix, stripSiteBase } from "./i18n";
+import { stripLocalePrefix, stripSiteBase, useI18n } from "./i18n";
 
 const { page, theme, frontmatter, site } = useData();
 const route = useRoute();
+const { t } = useI18n();
 
 type OutdateCfg = {
   limitDays?: number;
-  messagePrev?: string;
-  messageNext?: string;
 };
 
 type NoteItem = { link?: string; date?: string; updated?: string };
@@ -49,6 +48,9 @@ const visible = computed(() => {
   const limit = cfg.value.limitDays ?? 1095;
   return staleDays.value >= limit;
 });
+
+const messagePrev = computed(() => t("outdateNotice").messagePrev);
+const messageNext = computed(() => t("outdateNotice").messageNext);
 </script>
 
 <template>
@@ -59,9 +61,9 @@ const visible = computed(() => {
   >
     <span class="post-outdate-icon" aria-hidden="true">!</span>
     <p class="post-outdate-text">
-      {{ cfg.messagePrev ?? "本文距上次更新已过" }}
+      {{ messagePrev }}
       <strong>{{ staleDays }}</strong>
-      {{ cfg.messageNext ?? "天，内容可能已过时，请以最新文档为准。" }}
+      {{ messageNext }}
     </p>
   </div>
 </template>

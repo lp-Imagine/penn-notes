@@ -34,13 +34,23 @@ import {
   stripLocalePrefix,
   stripSiteBase,
 } from "./i18n";
+import { applyThemeChrome } from "../i18n/theme-config";
+import { applyDomI18n } from "./dom-i18n";
+import {
+  getUiLocalePreference,
+  initUiLocaleFromStorage,
+  uiLocaleRef,
+} from "./ui-locale";
 import "./custom.css";
 import "./css/assistant.css";
 import { setupBooksShelf } from "./books-shelf";
 import { setupCodeCollapse } from "./code-collapse";
+
+/** 壳文案热更新后递增，迫使 Layout / 顶栏重读 themeConfig */
+const chromeNonce = ref(0);
 import { setupFlyingFish } from "./flying-fish";
 import { ensureHeroParticles, teardownHeroParticles } from "./hero-particles";
-import { setupSearchEnhance, teardownSearchEnhance } from "./search-enhance";
+import { setupSearchEnhance, teardownSearchEnhance, refreshSearchEnhanceLabels } from "./search-enhance";
 import { setupSiteRuntime } from "./site-runtime";
 
 /** 仅桌面加载音乐胶囊（移动端不拉歌单 / APlayer） */
@@ -161,12 +171,12 @@ let suppressDomRefresh = false;
 
 const NOTE_SECTIONS = ["web", "ui", "engineering", "backend", "tech", "computer", "agent", "misc"];
 
-/** 剥离 base 后的站点路径，如 /web/javascript/foo 或 /en/web/... */
+/** 剥离 base 后的站点路径 */
 function sitePath(routePath: string, base = "/") {
   return stripSiteBase(routePath, base);
 }
 
-/** 去掉 locale 前缀后的逻辑路径（用于判断栏目/详情） */
+/** 逻辑路径（兼容旧 /en、/zh-TW 书签前缀） */
 function logicalPath(path: string) {
   return stripLocalePrefix(path);
 }
@@ -207,12 +217,7 @@ function currentSitePath() {
 }
 
 function currentUiLang() {
-  if (typeof document !== "undefined" && document.documentElement.lang) {
-    return document.documentElement.lang;
-  }
-  const siteData = (globalThis as { __VP_SITE_DATA__?: { lang?: string } })
-    .__VP_SITE_DATA__;
-  return siteData?.lang || "zh-CN";
+  return getUiLocalePreference();
 }
 
 function isReadableDetail(path = currentSitePath()) {
@@ -1068,6 +1073,7 @@ function scheduleRefresh() {
         updateReadingTime();
         updateReadingProgress();
         updateOutlineActive();
+        applyDomI18n(uiLocaleRef.value || getUiLocalePreference());
       });
       // zoom 放在 suppress 外：它会给 img 加 class，不应再触发整页 refresh
       refreshZoom();
@@ -1080,6 +1086,7 @@ function scheduleRefresh() {
           }
           placeArticleSummary();
           updateReadingTime();
+          applyDomI18n(uiLocaleRef.value || getUiLocalePreference());
         });
         refreshZoom();
       }, 150);
@@ -1091,12 +1098,13 @@ const Layout = defineComponent({
   name: "PennLayout",
   setup(_props, { slots }) {
     const route = useRoute();
-    const { lang } = useData();
     return () => {
+      void chromeNonce.value;
+      void uiLocaleRef.value;
       const path = sitePath(route.path);
       const isHome = isHomePath(path);
       const showArticleExtras = isNoteArticleDetail(path);
-      const skipLabel = getUiText(lang.value).skipToContent;
+      const skipLabel = getUiText(uiLocaleRef.value).skipToContent;
       const layoutClass = [
         "site-layout",
         isHome ? "home-layout" : "",
@@ -1158,39 +1166,69 @@ export default {
   // VitePress theme-level setup (runs on client; official medium-zoom pattern)
   setup() {
     const route = useRoute();
-    const { theme, lang } = useData();
+    const { theme, site } = useData();
     let teardownSiteRuntime: (() => void) | undefined;
+
+    const chromeLang = () => uiLocaleRef.value || getUiLocalePreference();
+
+    /** 写入当前页 theme，并尽量写回站点原始 themeConfig（避免仅改到路由浅拷贝） */
+    function applyPreferredChrome() {
+      const locale = chromeLang();
+      const base = site.value.base || "/";
+      const current = theme.value as Record<string, unknown>;
+      applyThemeChrome(current, locale, base);
+      try {
+        const raw = (
+          globalThis as {
+            __VP_SITE_DATA__?: { themeConfig?: Record<string, unknown> };
+          }
+        ).__VP_SITE_DATA__;
+        if (raw?.themeConfig && raw.themeConfig !== current) {
+          applyThemeChrome(raw.themeConfig, locale, base);
+        }
+      } catch {
+        // dev 下 siteData 可能是 readonly，忽略
+      }
+      // themeConfig 是普通对象，原地改 nav 不会触发 computed；bump 迫使顶栏重绘
+      chromeNonce.value += 1;
+      applyDomI18n(locale);
+    }
 
     const refreshLocalizedChrome = () => {
       applyFocusToggleState();
       if (sidebarToggleBtn) {
         sidebarToggleBtn.setAttribute(
           "aria-label",
-          getUiText(lang.value).sidebarToggle,
+          getUiText(chromeLang()).sidebarToggle,
         );
       }
       if (backTopBtn) {
         backTopBtn.setAttribute(
           "aria-label",
-          getUiText(lang.value).backToTop,
+          getUiText(chromeLang()).backToTop,
         );
       }
       const badge = document.querySelector<HTMLElement>(".footer-runtime-badge");
-      if (badge) badge.textContent = getUiText(lang.value).siteRuntime.badge;
+      if (badge) badge.textContent = getUiText(chromeLang()).siteRuntime.badge;
       const runtimeEl = document.querySelector<HTMLElement>(".footer-runtime");
       if (runtimeEl) {
         runtimeEl.setAttribute(
           "aria-label",
-          getUiText(lang.value).siteRuntime.badge,
+          getUiText(chromeLang()).siteRuntime.badge,
         );
       }
     };
 
+    // 尽早按偏好覆盖壳文案（默认构建为简体）
+    initUiLocaleFromStorage();
+    applyPreferredChrome();
+
     onMounted(() => {
+      applyPreferredChrome();
       // 同步抢跑一次：CSS 叠层兜底后尽快换成真正的 .article-hero
       enhanceArticleChromeNow();
       scheduleRefresh();
-      setupSearchEnhance(() => getUiText(lang.value).searchFilter);
+      setupSearchEnhance(() => getUiText(chromeLang()).searchFilter);
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
         // 含 style：日报栏目筛选会改 display，需重算章节高亮
@@ -1288,7 +1326,7 @@ export default {
       const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
       teardownSiteRuntime = setupSiteRuntime(
         siteRuntime?.since ?? "2020-01-03",
-        (y, d) => getUiText(lang.value).siteRuntime.format(y, d),
+        (y, d) => getUiText(chromeLang()).siteRuntime.format(y, d),
       );
       refreshLocalizedChrome();
       updateReadingTime();
@@ -1302,8 +1340,12 @@ export default {
     watch(
       () => route.path,
       () => {
+        // SPA 换页会重新 resolve themeConfig（回到构建时简体），必须按偏好再刷一遍
+        applyPreferredChrome();
         void nextTick(() => {
+          applyPreferredChrome();
           enhanceArticleChromeNow();
+          refreshLocalizedChrome();
         });
         scheduleRefresh();
         updateSidebarToggleVisibility();
@@ -1331,23 +1373,24 @@ export default {
         }
         updateFocusToggleVisibility();
         applyFocusToggleState();
-        refreshLocalizedChrome();
       },
     );
 
     watch(
-      () => lang.value,
+      uiLocaleRef,
       () => {
+        applyPreferredChrome();
         refreshLocalizedChrome();
         updateReadingTime();
         teardownSiteRuntime?.();
         const siteRuntime = theme.value.siteRuntime as { since?: string } | undefined;
         teardownSiteRuntime = setupSiteRuntime(
           siteRuntime?.since ?? "2020-01-03",
-          (y, d) => getUiText(lang.value).siteRuntime.format(y, d),
+          (y, d) => getUiText(chromeLang()).siteRuntime.format(y, d),
         );
         teardownSearchEnhance();
-        setupSearchEnhance(() => getUiText(lang.value).searchFilter);
+        setupSearchEnhance(() => getUiText(chromeLang()).searchFilter);
+        refreshSearchEnhanceLabels();
       },
     );
 

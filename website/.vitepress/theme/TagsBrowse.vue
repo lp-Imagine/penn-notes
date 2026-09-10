@@ -3,8 +3,10 @@ import { computed, ref, watch } from "vue";
 import { useRoute, useRouter, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
 import tagStats from "../tags.generated.json";
+import { useI18n } from "./i18n";
 import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
+const { t } = useI18n();
 const PAGE_SIZE = 10;
 const TOP_TAG_LIMIT = 10;
 const route = useRoute();
@@ -43,7 +45,7 @@ watch(
     activeTag.value = raw ? decodeURIComponent(String(raw)) : "";
     visible.value = PAGE_SIZE;
     if (activeTag.value) {
-      const inRest = restTags.value.some((t) => t.name === activeTag.value);
+      const inRest = restTags.value.some((tag) => tag.name === activeTag.value);
       if (inRest) showAllTags.value = true;
     }
   },
@@ -82,26 +84,26 @@ function href(path) {
 <template>
   <div class="discover-browse">
     <div class="discover-toolbar">
-      <div class="discover-filter" role="list" aria-label="标签筛选">
+      <div class="discover-filter" role="list" :aria-label="t('tags').filterAria">
         <button
           type="button"
           class="discover-chip"
           :class="{ 'is-active': !activeTag }"
           @click="selectTag('')"
         >
-          全部
+          {{ t("common").all }}
         </button>
         <button
-          v-for="t in visibleTags"
-          :key="t.name"
+          v-for="tag in visibleTags"
+          :key="tag.name"
           type="button"
           class="discover-chip"
-          :class="{ 'is-active': activeTag === t.name }"
+          :class="{ 'is-active': activeTag === tag.name }"
           role="listitem"
-          @click="selectTag(t.name)"
+          @click="selectTag(tag.name)"
         >
-          {{ t.name }}
-          <span class="discover-chip-count">{{ t.count }}</span>
+          {{ tag.name }}
+          <span class="discover-chip-count">{{ tag.count }}</span>
         </button>
         <button
           v-if="hasHiddenTags"
@@ -110,18 +112,18 @@ function href(path) {
           :aria-expanded="showAllTags ? 'true' : 'false'"
           @click="toggleMoreTags"
         >
-          {{ showAllTags ? "收起标签" : `更多标签 ${restTags.length}` }}
+          {{ showAllTags ? t("tags").collapseTags : t("tags").moreTags(restTags.length) }}
         </button>
       </div>
       <p class="discover-count">
-        <template v-if="activeTag">{{ filtered.length }} 篇 · {{ activeTag }}</template>
-        <template v-else>{{ notes.length }} 篇 · {{ tagStats.length }} 标签 · {{ taggedCount }} 篇已标注</template>
+        <template v-if="activeTag">{{ t("common").articleCount(filtered.length) }} · {{ activeTag }}</template>
+        <template v-else>{{ t("tags").stats(notes.length, tagStats.length, taggedCount) }}</template>
       </p>
     </div>
 
     <div v-if="!filtered.length" class="discover-empty">
-      <p class="discover-empty-title">暂无匹配文章</p>
-      <p class="discover-empty-desc">试试切换其他标签</p>
+      <p class="discover-empty-title">{{ t("tags").emptyTitle }}</p>
+      <p class="discover-empty-desc">{{ t("tags").emptyDesc }}</p>
     </div>
     <div v-else class="discover-rows">
       <a
@@ -157,10 +159,10 @@ function href(path) {
       aria-live="polite"
     >
       <span class="news-feed-sentinel-dot" aria-hidden="true" />
-      <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
+      <span>{{ isLoading ? t("common").loading : t("common").loadMore }}</span>
     </div>
     <p v-else-if="allLoaded && filtered.length > PAGE_SIZE" class="news-feed-end">
-      已加载全部 {{ filtered.length }} 篇
+      {{ t("common").loadedAll(filtered.length) }}
     </p>
   </div>
 </template>

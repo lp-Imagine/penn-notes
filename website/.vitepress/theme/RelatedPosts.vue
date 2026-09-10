@@ -6,13 +6,7 @@ import { computed } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 // @ts-expect-error generated JSON
 import notes from "../notes-items.generated.json";
-import {
-  detectLocaleKey,
-  stripLocalePrefix,
-  stripSiteBase,
-  useI18n,
-  withLocalePrefix,
-} from "./i18n";
+import { stripLocalePrefix, stripSiteBase, useI18n } from "./i18n";
 
 const { theme, site } = useData();
 const route = useRoute();
@@ -30,10 +24,6 @@ type NoteItem = {
 function currentPath() {
   const stripped = stripSiteBase(route.path, site.value.base);
   return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
-}
-
-function localeKey() {
-  return detectLocaleKey(stripSiteBase(route.path, site.value.base));
 }
 
 function sidebarRelated(current: string): SidebarItem[] {
@@ -114,7 +104,7 @@ const related = computed<SidebarItem[]>(() => {
 
 function href(link?: string) {
   if (!link) return "#";
-  return withBase(withLocalePrefix(link, localeKey()));
+  return withBase(link);
 }
 </script>
 

@@ -2,24 +2,16 @@
 import { computed } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
-import {
-  detectLocaleKey,
-  stripLocalePrefix,
-  stripSiteBase,
-  withLocalePrefix,
-} from "./i18n";
+import { stripLocalePrefix, stripSiteBase, useI18n } from "./i18n";
 
 const { site } = useData();
 const route = useRoute();
+const { t } = useI18n();
 
 const currentPath = computed(() => {
   const stripped = stripSiteBase(route.path, site.value.base);
   return decodeURI(stripLocalePrefix(stripped)).replace(/\/$/, "");
 });
-
-const localeKey = computed(() =>
-  detectLocaleKey(stripSiteBase(route.path, site.value.base)),
-);
 
 const seriesBlock = computed(() => {
   const current = notes.find((n) => n.link === currentPath.value);
@@ -46,15 +38,15 @@ const seriesBlock = computed(() => {
 function href(path) {
   const p = String(path || "").replace(/^\/+/, "/");
   const abs = p.startsWith("/") ? p : `/${p}`;
-  return withBase(withLocalePrefix(abs, localeKey.value));
+  return withBase(abs);
 }
 </script>
 
 <template>
-  <nav v-if="seriesBlock" class="series-nav" aria-label="系列导航">
+  <nav v-if="seriesBlock" class="series-nav" :aria-label="t('series').aria">
     <div class="series-nav-head">
       <p class="series-nav-label">
-        系列 ·
+        {{ t("series").label }}
         <a
           class="series-nav-topics"
           :href="`${href('/topics/')}?series=${encodeURIComponent(seriesBlock.name)}`"
@@ -71,7 +63,7 @@ function href(path) {
         class="series-nav-link"
         :href="href(seriesBlock.prev.link)"
       >
-        <span class="series-nav-dir">上一篇</span>
+        <span class="series-nav-dir">{{ t("docFooter").prev }}</span>
         <span class="series-nav-title">{{ seriesBlock.prev.title }}</span>
       </a>
       <span v-else class="series-nav-placeholder" aria-hidden="true" />
@@ -80,7 +72,7 @@ function href(path) {
         class="series-nav-link series-nav-link--next"
         :href="href(seriesBlock.next.link)"
       >
-        <span class="series-nav-dir">下一篇</span>
+        <span class="series-nav-dir">{{ t("docFooter").next }}</span>
         <span class="series-nav-title">{{ seriesBlock.next.title }}</span>
       </a>
     </div>

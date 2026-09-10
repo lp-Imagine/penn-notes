@@ -5,6 +5,7 @@ import { withBase } from "vitepress";
 import rawMoments from "../friends-moments.generated.json";
 // @ts-expect-error 静态友链清单
 import rawFriends from "../../data/friends.json";
+import { useI18n } from "./i18n";
 
 type MomentItem = {
   title: string;
@@ -34,6 +35,7 @@ type Friend = {
   feed?: string;
 };
 
+const { t } = useI18n();
 const payload = rawMoments as MomentsPayload;
 const friends = rawFriends as Friend[];
 
@@ -46,11 +48,9 @@ const feedFriendCount = computed(
 );
 
 const aboutPath = withBase("/about/");
-const countLabel = computed(() => {
-  const n = items.value.length;
-  if (!n) return "暂无动态";
-  return `最近 ${n} 条 · ${feedFriendCount.value} 个订阅源`;
-});
+const countLabel = computed(() =>
+  t("friends").stats(items.value.length, feedFriendCount.value),
+);
 
 const updatedLabel = computed(() => {
   if (!payload.generatedAt) return "";
@@ -61,14 +61,13 @@ const updatedLabel = computed(() => {
   const day = String(d.getDate()).padStart(2, "0");
   const hh = String(d.getHours()).padStart(2, "0");
   const mm = String(d.getMinutes()).padStart(2, "0");
-  const stale = payload.stale ? "（缓存）" : "";
-  return `更新于 ${y}-${m}-${day} ${hh}:${mm}${stale}`;
+  return t("friends").updatedAt(`${y}-${m}-${day} ${hh}:${mm}`);
 });
 
 function formatDate(iso: string) {
-  const t = Date.parse(iso);
-  if (Number.isNaN(t)) return "";
-  const d = new Date(t);
+  const ms = Date.parse(iso);
+  if (Number.isNaN(ms)) return "";
+  const d = new Date(ms);
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
@@ -87,27 +86,21 @@ function onAvatarError(event: Event, name: string) {
 <template>
   <div class="section-page talks-page friends-moments-page">
     <header class="section-hero">
-      <p class="section-kicker">Friends</p>
-      <h1 class="section-title">友链动态</h1>
-      <p class="section-lead">
-        订阅友链 RSS/Atom，汇总近半年更新（每站最近几篇；半年未更的站不收录）。与 AI
-        动态同一条每日流水线自动刷新；无 feed 的友链不会出现在这里。
-      </p>
+      <p class="section-kicker">{{ t("friends").kicker }}</p>
+      <h1 class="section-title">{{ t("friends").title }}</h1>
+      <p class="section-lead">{{ t("friends").lead }}</p>
       <p class="section-count">{{ countLabel }}</p>
       <p v-if="updatedLabel" class="friends-moments-updated">{{ updatedLabel }}</p>
       <div class="talks-hero-actions">
         <a class="talks-hero-btn talks-hero-btn--primary" :href="aboutPath"
-          >查看全部友链</a
+          >{{ t("friends").viewAll }}</a
         >
       </div>
     </header>
 
     <div v-if="!items.length" class="friends-moments-empty" role="status">
-      <p>暂时还没有拉取到友链文章。</p>
-      <p class="friends-moments-empty-hint">
-        构建时会自动同步；也可本地运行
-        <code>npm run sync:friends</code>。
-      </p>
+      <p>{{ t("friends").empty }}</p>
+      <p class="friends-moments-empty-hint">{{ t("friends").emptyHint }}</p>
     </div>
 
     <ol v-else class="friends-moments-list">

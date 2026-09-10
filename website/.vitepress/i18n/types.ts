@@ -1,17 +1,27 @@
-/** UI 文案 locale（与 html lang / messages 键一致） */
+import type { PageMessages } from "./page-messages";
+
+/** UI 文案 locale（偏好存储 / messages 键；与正文 URL 无关） */
 export type UiLocale = "zh-CN" | "zh-TW" | "en";
 
-/** VitePress locales 配置键：root 对应简体 */
-export type LocaleKey = "root" | "zh-TW" | "en";
-
-export type MessageTree = {
+export type MessageTree = PageMessages & {
   skipToContent: string;
   readingTime: (minutes: number) => string;
   focusMode: { enter: string; exit: string };
   backToTop: string;
   sidebarToggle: string;
   navMore: string;
-  localeSwitcher: { label: string; zhCN: string; zhTW: string; en: string };
+  localeSwitcher: {
+    label: string;
+    zhCN: string;
+    zhTW: string;
+    en: string;
+    /** 面板总 aria / 标题 */
+    prefs: string;
+    language: string;
+    appearance: string;
+    light: string;
+    dark: string;
+  };
   comments: { title: string; hint: string; ariaLabel: string };
   summary: {
     label: string;
@@ -90,5 +100,7 @@ export type MessageTree = {
     misc: string;
     sites: string;
     about: string;
+    interview: string;
+    navSite: string;
   };
 };

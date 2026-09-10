@@ -5,7 +5,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, Transition, watch } from "vue";
 import { useData } from "vitepress";
 import musicDefaults from "../../data/music.json";
-
+import { getUiText, useI18n } from "./i18n";
 const props = withDefaults(
   defineProps<{
     /** 有明月浩空 ID 时，歌单拉取失败（尤其限流）可向上交给兜底 */
@@ -94,6 +94,7 @@ const DEAD_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const PLAYLIST_CACHE_TTL_MS = 12 * 60 * 60 * 1000;
 
 const { theme } = useData();
+const { t } = useI18n();
 const cfg = computed(() => {
   const fromTheme = (theme.value.music || {}) as MusicThemeCfg;
   return {
@@ -124,13 +125,12 @@ const player = shallowRef<APlayerInstance | null>(null);
 const ready = ref(false);
 const failed = ref(false);
 const loading = ref(false);
-const loadingHint = ref("加载中");
+const loadingHint = ref(getUiText().music.loading);
 const playing = ref(false);
 const stretched = ref(false);
 /** 播放中手动收起贴边 */
 const pinnedDock = ref(false);
-const errorHint = ref("暂不可用");
-
+const errorHint = ref(getUiText().music.unavailable);
 const trackName = ref("");
 const trackArtist = ref("");
 const trackCover = ref(DEFAULT_COVER);
@@ -172,7 +172,7 @@ function normalizeTracks(raw: MetingTrack[]): PlayerAudio[] {
   return raw
     .map((t) => {
       const name = String(t.name || t.title || "").trim();
-      const artist = String(t.artist || t.author || "未知艺人").trim();
+      const artist = String(t.artist || t.author || getUiText().music.unknownArtist).trim();
       const url = String(t.url || "").trim();
       if (!name || !url) return null;
       return {
@@ -250,7 +250,7 @@ function readPlaylistCache(opts?: { allowStale?: boolean }): PlayerAudio[] | nul
         if (!name || !url) return null;
         return {
           name,
-          artist: String(t?.artist || "未知艺人").trim(),
+          artist: String(t?.artist || getUiText().music.unknownArtist).trim(),
           url,
           cover: sanitizeCover(String(t?.cover || "")),
           key: String(t?.key || trackKey(url)),
@@ -317,7 +317,7 @@ async function fetchPlaylist(opts?: { force?: boolean }): Promise<PlayerAudio[]>
   if (!opts?.force) {
     const cached = readPlaylistCache();
     if (cached?.length) {
-      loadingHint.value = "加载中";
+      loadingHint.value = getUiText().music.loading;
       return cached;
     }
   }
@@ -325,8 +325,7 @@ async function fetchPlaylist(opts?: { force?: boolean }): Promise<PlayerAudio[]>
   let lastError = "empty";
   for (const api of apiCandidates()) {
     try {
-      loadingHint.value = "加载中";
-      const res = await fetch(buildMetingUrl(api), {
+      loadingHint.value = getUiText().music.loading;      const res = await fetch(buildMetingUrl(api), {
         credentials: "omit",
         signal: AbortSignal.timeout(12000),
       });
@@ -426,8 +425,7 @@ function onCoverError() {
 
 async function syncTrackMeta() {
   const cur = currentTrack();
-  trackName.value = cur?.name || "音乐胶囊";
-  trackArtist.value = cur?.artist || "";
+  trackName.value = cur?.name || getUiText().music.capsule;  trackArtist.value = cur?.artist || "";
   trackCover.value = cur?.cover || DEFAULT_COVER;
   await loadTrackLrc(cur);
   if (!lrcLines.length) {
@@ -493,7 +491,7 @@ function bindPlayerEvents(ap: APlayerInstance) {
     ap.notice = (text: string, time?: number, opacity?: number) => {
       const msg = String(text || "");
       if (/audio error/i.test(msg)) {
-        return rawNotice("该曲暂无法播放（版权/会员限制），已跳过", time ?? 2500, opacity);
+        return rawNotice(getUiText().music.skipNotice, time ?? 2500, opacity);
       }
       return rawNotice(text, time, opacity);
     };
@@ -518,13 +516,12 @@ function bindPlayerEvents(ap: APlayerInstance) {
     if (!list || audios.length <= 1 || typeof list.remove !== "function") return;
     const idx = list.index ?? 0;
     const cur = audios[idx];
-    const name = cur?.name || "该曲";
+    const name = cur?.name || getUiText().music.capsule;
     if (cur?.key) rememberDeadKey(cur.key);
     try {
       // remove 会触发 listswitch，从而取消 APlayer 默认的 2 秒后再 skip
       list.remove(idx);
-      ap.notice?.(`「${name}」暂无法播放，已从列表移除`, 2800);
-      if (!ap.paused) ap.play();
+      ap.notice?.(getUiText().music.removeNotice(name), 2800);      if (!ap.paused) ap.play();
     } catch {
       /* ignore */
     }
@@ -544,11 +541,10 @@ async function waitForHost(tries = 8) {
 async function mountPlayer(opts?: { force?: boolean }) {
   if (!enabled.value || loading.value) return;
   loading.value = true;
-  loadingHint.value = "加载中";
+  loadingHint.value = getUiText().music.loading;
   failed.value = false;
   ready.value = false;
-  errorHint.value = "暂不可用";
-
+  errorHint.value = getUiText().music.unavailable;
   try {
     if (!(await waitForHost())) throw new Error("player host missing");
 
@@ -601,11 +597,10 @@ async function mountPlayer(opts?: { force?: boolean }) {
     failed.value = true;
     ready.value = false;
     errorHint.value = isRateLimitMessage(msg)
-      ? "音源额度用尽"
+      ? getUiText().music.rateLimited
       : msg.includes("timeout") || msg.includes("Timeout")
-        ? "加载超时"
-        : "暂不可用";
-  } finally {
+        ? getUiText().music.timeout
+        : getUiText().music.unavailable;  } finally {
     loading.value = false;
   }
 }
@@ -667,9 +662,8 @@ const metaSubText = computed(() => {
       ? `${trackName.value} · ${trackArtist.value}`
       : trackName.value;
   }
-  return trackArtist.value || "点击封面播放";
+  return trackArtist.value || t("music").tapCover;
 });
-
 function toggleDock() {
   if (!ready.value || !playing.value) return;
   if (stretched.value) {
@@ -733,7 +727,7 @@ watch(enabled, (on) => {
       'is-failed': failed,
       'is-loading': loading,
     }"
-    aria-label="音乐胶囊"
+    :aria-label="t('music').aria"
   >
     <button
       v-if="loading || (!ready && !failed)"
@@ -770,7 +764,7 @@ watch(enabled, (on) => {
           type="button"
           class="penn-music-cover-btn"
           :aria-pressed="playing ? 'true' : 'false'"
-          :title="playing ? '暂停' : '播放'"
+          :title="playing ? t('music').pause : t('music').play"
           @click.stop="togglePlay"
         >
           <img
@@ -816,8 +810,8 @@ watch(enabled, (on) => {
           <button
             type="button"
             class="penn-music-icon-btn"
-            title="上一首"
-            aria-label="上一首"
+            :title="t('music').prev"
+            :aria-label="t('music').prev"
             @click.stop="playPrev"
           >
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
@@ -827,8 +821,8 @@ watch(enabled, (on) => {
           <button
             type="button"
             class="penn-music-icon-btn"
-            title="下一首"
-            aria-label="下一首"
+            :title="t('music').next"
+            :aria-label="t('music').next"
             @click.stop="playNext"
           >
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
@@ -839,8 +833,8 @@ watch(enabled, (on) => {
             v-if="playing"
             type="button"
             class="penn-music-icon-btn penn-music-dock-btn"
-            :title="pinnedDock ? '展开胶囊' : '收起贴边'"
-            :aria-label="pinnedDock ? '展开胶囊' : '收起贴边'"
+            :title="pinnedDock ? t('music').expand : t('music').dock"
+            :aria-label="pinnedDock ? t('music').expand : t('music').dock"
             @click.stop="toggleDock"
           >
             <svg
@@ -879,8 +873,8 @@ watch(enabled, (on) => {
             class="penn-music-icon-btn penn-music-list-btn"
             :class="{ 'is-open': stretched }"
             :aria-expanded="stretched ? 'true' : 'false'"
-            :title="stretched ? '收起列表' : '展开列表'"
-            aria-label="歌单列表"
+            :title="stretched ? t('music').collapseList : t('music').expandList"
+            :aria-label="stretched ? t('music').collapseList : t('music').expandList"
             @click.stop="toggleStretch"
           >
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">

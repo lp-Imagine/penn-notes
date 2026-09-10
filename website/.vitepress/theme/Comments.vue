@@ -7,11 +7,11 @@
  */
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
-import { resolveUiLocale, useI18n } from "./i18n";
+import { useI18n } from "./i18n";
 
-const { theme, lang } = useData();
+const { theme } = useData();
 const route = useRoute();
-const { t } = useI18n();
+const { t, uiLocale } = useI18n();
 const root = ref<HTMLElement | null>(null);
 const host = ref<HTMLElement | null>(null);
 
@@ -24,7 +24,7 @@ const enabled = Boolean(
 );
 
 const giscusLang = computed(() => {
-  const ui = resolveUiLocale(lang.value);
+  const ui = uiLocale.value;
   if (ui === "en") return "en";
   if (ui === "zh-TW") return "zh-TW";
   return "zh-CN";

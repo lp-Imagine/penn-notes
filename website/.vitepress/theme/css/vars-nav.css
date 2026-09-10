@@ -114,11 +114,15 @@ body {
   box-shadow: var(--divider-soft);
 }
 
-/* 只用自定义 LocaleSwitcher 下拉；彻底隐藏 VitePress 自带语言入口（顶栏 / Extra / 移动端屏） */
-.VPNavBarTranslations,
-.VPNavBarExtra .translations,
-.VPNavScreenTranslations,
-.VPNavScreen .translations {
+/* 语言+外观已合并到 LocaleSwitcher 面板，隐藏 VP 自带主题开关避免重复 */
+@media (min-width: 768px) {
+  .VPNavBarAppearance {
+    display: none !important;
+  }
+}
+
+.VPNavBarExtra .item.appearance,
+.VPNavScreen .appearance {
   display: none !important;
 }
 

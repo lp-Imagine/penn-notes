@@ -8,16 +8,8 @@ import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
 import musicDefaults from "../data/music.json";
 import { buildThemeConfig } from "./i18n/theme-config";
-import {
-  buildContentRewrites,
-  ensureLocaleContentAliases,
-} from "./i18n/rewrites";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const WEBSITE_ROOT = join(__dirname, "..");
-
-// 为 en/、zh-TW/ 镜像栏目正文（副本而非 symlink，保证 pageData 带 locale 前缀）
-ensureLocaleContentAliases(WEBSITE_ROOT);
 
 const BASE = pennBase();
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
@@ -137,7 +129,6 @@ export default defineConfig({
     /^https?:\/\//,
     /^mailto:/,
   ],
-  rewrites: buildContentRewrites(),
   markdown: {
     theme: {
       light: "github-light",
@@ -228,8 +219,17 @@ export default defineConfig({
     head.push(["script", { type: "application/ld+json" }, JSON.stringify(ld)]);
     return head;
   },
+  lang: "zh-CN",
+  description:
+    "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
+  themeConfig: buildThemeConfig("zh-CN", themeExtras),
   head: [
     ["meta", { name: "baidu-site-verification", content: "codeva-6kNoNaHFfB" }],
+    [
+      "script",
+      {},
+      `(function(){try{var k='penn-ui-locale';var v=localStorage.getItem(k)||'';if(!v){var m=document.cookie.match(/(?:^|; )penn-ui-locale=([^;]*)/);v=m?decodeURIComponent(m[1]):'';}if(v==='zh-TW'||v==='en'||v==='zh-CN'){document.documentElement.lang=v==='en'?'en':v;document.documentElement.setAttribute('data-ui-locale',v);}}catch(e){}})();`,
+    ],
     ["link", { rel: "icon", type: "image/svg+xml", href: ICON_SVG }],
     ["link", { rel: "icon", href: ICON_ICO, sizes: "any" }],
     [
@@ -291,29 +291,4 @@ export default defineConfig({
         ]
       : []),
   ],
-  locales: {
-    root: {
-      label: "简体",
-      lang: "zh-CN",
-      description:
-        "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
-      themeConfig: buildThemeConfig("zh-CN", themeExtras),
-    },
-    "zh-TW": {
-      label: "繁體",
-      lang: "zh-TW",
-      link: "/zh-TW/",
-      description:
-        "Penn 的技術部落格：前端、工程化、後端實踐，以及每日 AI 動態。",
-      themeConfig: buildThemeConfig("zh-TW", themeExtras),
-    },
-    en: {
-      label: "English",
-      lang: "en-US",
-      link: "/en/",
-      description:
-        "Penn's notes on frontend, engineering, backend, and daily AI news.",
-      themeConfig: buildThemeConfig("en", themeExtras),
-    },
-  },
 });

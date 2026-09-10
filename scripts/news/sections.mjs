@@ -86,7 +86,10 @@ export function renderDailyMarkdown(reportDate, bySection) {
     parts.push(`<div class="news-section" data-section="${name}">`, "");
     parts.push(`## ${name}`, "");
     if (!items.length) {
-      parts.push("（本日无新条目）", "");
+      parts.push(
+        `<p class="news-empty-day" data-i18n="news.emptyDay">（本日无新条目）</p>`,
+        "",
+      );
       parts.push("</div>", "");
       continue;
     }
@@ -104,7 +107,7 @@ export function renderDailyMarkdown(reportDate, bySection) {
       }
       parts.push(escapeMdHtml(String(item.summary || "").trim()), "");
       parts.push(
-        `<p class="news-entry-source"><a href="${item.url}" target="_blank" rel="noopener noreferrer">阅读原文</a></p>`,
+        `<p class="news-entry-source"><a href="${item.url}" target="_blank" rel="noopener noreferrer" data-i18n="news.readOriginal">阅读原文</a></p>`,
         "",
       );
     }

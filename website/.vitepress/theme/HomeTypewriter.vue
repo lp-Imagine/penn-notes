@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { useI18n } from "./i18n";
 
 const props = withDefaults(
   defineProps<{
-    text: string;
+    text?: string;
     /** ms per character while typing */
     speed?: number;
     /** ms per character while deleting */
@@ -24,6 +25,9 @@ const props = withDefaults(
   },
 );
 
+const { t } = useI18n();
+const lineText = computed(() => props.text ?? t("home").tagline);
+
 const displayed = ref("");
 const showCursor = ref(true);
 const timers: ReturnType<typeof setTimeout>[] = [];
@@ -37,18 +41,30 @@ function later(ms: number, fn: () => void) {
   timers.push(id);
 }
 
-onMounted(() => {
+function clearTimers() {
+  while (timers.length) {
+    const id = timers.pop();
+    if (id !== undefined) clearTimeout(id);
+  }
+}
+
+function startTyping() {
+  clearTimers();
+  cancelled = false;
+  displayed.value = "";
+  showCursor.value = true;
+
   const reduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reduced) {
-    displayed.value = props.text;
+    displayed.value = lineText.value;
     showCursor.value = false;
     return;
   }
 
-  const chars = Array.from(props.text);
+  const chars = Array.from(lineText.value);
   let i = 0;
 
   const typeNext = () => {
@@ -72,19 +88,25 @@ onMounted(() => {
   };
 
   later(props.startDelay, typeNext);
+}
+
+onMounted(() => {
+  startTyping();
+});
+
+watch(lineText, () => {
+  cancelled = true;
+  startTyping();
 });
 
 onBeforeUnmount(() => {
   cancelled = true;
-  while (timers.length) {
-    const id = timers.pop();
-    if (id !== undefined) clearTimeout(id);
-  }
+  clearTimers();
 });
 </script>
 
 <template>
-  <p class="home-tagline home-tagline--typewriter" :aria-label="text">
+  <p class="home-tagline home-tagline--typewriter" :aria-label="lineText">
     <span class="home-tagline-text">{{ displayed }}</span>
     <span
       v-if="showCursor"

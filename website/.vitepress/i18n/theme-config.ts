@@ -9,85 +9,9 @@ export type ThemeConfigExtras = {
   shared?: Partial<DefaultTheme.Config> & Record<string, unknown>;
 };
 
-/** themeConfig 链接用的 path 前缀：root 为空，en → /en，zh-TW → /zh-TW */
-export function localePathPrefix(locale: UiLocale): string {
-  if (locale === "en") return "/en";
-  if (locale === "zh-TW") return "/zh-TW";
-  return "";
-}
-
-/**
- * 给站内绝对路径加上 locale 前缀。
- * VitePress 不会自动给 themeConfig 里以 `/` 开头的 link 加 locale。
- */
-export function localizeHref(href: string, prefix: string): string {
-  if (!prefix) return href;
-  if (!href.startsWith("/") || href.startsWith("//")) return href;
-  if (href === prefix || href.startsWith(`${prefix}/`)) return href;
-  if (href === "/en" || href.startsWith("/en/")) return href;
-  if (href === "/zh-TW" || href.startsWith("/zh-TW/")) return href;
-  return `${prefix}${href}`;
-}
-
-function localizeNavItem(
-  item: DefaultTheme.NavItem,
-  prefix: string,
-): DefaultTheme.NavItem {
-  if ("items" in item && item.items) {
-    const link =
-      "link" in item && typeof item.link === "string"
-        ? localizeHref(item.link, prefix)
-        : undefined;
-    return {
-      ...item,
-      ...(link ? { link } : {}),
-      items: item.items.map((child) => localizeNavItem(child, prefix)),
-    } as DefaultTheme.NavItem;
-  }
-  if ("link" in item && typeof item.link === "string") {
-    return { ...item, link: localizeHref(item.link, prefix) };
-  }
-  return item;
-}
-
-function localizeSidebarItem(
-  item: DefaultTheme.SidebarItem,
-  prefix: string,
-): DefaultTheme.SidebarItem {
-  const next: DefaultTheme.SidebarItem = { ...item };
-  if (typeof next.link === "string") {
-    next.link = localizeHref(next.link, prefix);
-  }
-  if (next.items?.length) {
-    next.items = next.items.map((child) => localizeSidebarItem(child, prefix));
-  }
-  return next;
-}
-
-export function localizeSidebar(
-  sidebar: DefaultTheme.Config["sidebar"],
-  prefix: string,
-): DefaultTheme.Config["sidebar"] {
-  if (!sidebar || !prefix) return sidebar;
-  if (Array.isArray(sidebar)) {
-    return sidebar.map((item) => localizeSidebarItem(item, prefix));
-  }
-  const out: DefaultTheme.SidebarMulti = {};
-  for (const [key, val] of Object.entries(sidebar)) {
-    const localizedKey = localizeHref(key, prefix);
-    if (Array.isArray(val)) {
-      out[localizedKey] = val.map((item) => localizeSidebarItem(item, prefix));
-    } else {
-      out[localizedKey] = localizeSidebarItem(val, prefix);
-    }
-  }
-  return out;
-}
-
-function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
+export function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
   const n = getMessages(locale).nav;
-  const prefix = localePathPrefix(locale);
-  const nav: DefaultTheme.NavItem[] = [
+  return [
     { text: n.home, link: "/" },
     {
       text: n.catalog,
@@ -128,18 +52,18 @@ function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
       text: n.sites,
       items: [
         { text: "Draftly", link: "https://draftly.cn" },
-        { text: "面镜", link: "https://interview.draftly.cn" },
-        { text: "导航", link: "https://nav.draftly.cn" },
+        { text: n.interview, link: "https://interview.draftly.cn" },
+        { text: n.navSite, link: "https://nav.draftly.cn" },
       ],
     },
-    // 无前缀；buildThemeConfig 里统一 localize（activeMatch 保持无前缀作 substring/regex）
     { text: n.about, link: "/about/", activeMatch: "/about/" },
   ];
-  if (!prefix) return nav;
-  return nav.map((item) => localizeNavItem(item, prefix));
 }
 
-function buildFooter(locale: UiLocale, base: string): DefaultTheme.Config["footer"] {
+export function buildFooter(
+  locale: UiLocale,
+  base: string,
+): DefaultTheme.Config["footer"] {
   const m = getMessages(locale);
   return {
     message: `<span class="footer-brand">Penn Notes</span><span class="footer-tagline">${m.footer.tagline}</span>`,
@@ -147,9 +71,70 @@ function buildFooter(locale: UiLocale, base: string): DefaultTheme.Config["foote
   };
 }
 
+function searchTranslations(locale: UiLocale) {
+  const s = getMessages(locale).search;
+  return {
+    button: {
+      buttonText: s.buttonText,
+      buttonAriaLabel: s.buttonAriaLabel,
+    },
+    modal: {
+      displayDetails: s.displayDetails,
+      resetButtonTitle: s.resetButtonTitle,
+      backButtonTitle: s.backButtonTitle,
+      noResultsText: s.noResultsText,
+      footer: {
+        selectText: s.selectText,
+        selectKeyAriaLabel: s.selectKeyAriaLabel,
+        navigateText: s.navigateText,
+        navigateUpKeyAriaLabel: s.navigateUpKeyAriaLabel,
+        navigateDownKeyAriaLabel: s.navigateDownKeyAriaLabel,
+        closeText: s.closeText,
+        closeKeyAriaLabel: s.closeKeyAriaLabel,
+      },
+    },
+  };
+}
+
 /**
- * 按 locale 生成 themeConfig（nav / footer / search / notFound 等）。
- * sidebar 等 extras 由调用方传入；非 root 的站内 link / sidebar key 会加 locale 前缀。
+ * 按偏好热更新 themeConfig 中的壳文案（不改 sidebar 文章标题）。
+ * 构建期默认简体；客户端 init / 切语言后调用。
+ */
+export function applyThemeChrome(
+  theme: Record<string, unknown>,
+  localeInput: UiLocale | string,
+  base: string,
+): void {
+  const locale = resolveUiLocale(
+    localeInput === "en" ? "en-US" : String(localeInput),
+  );
+  const m = getMessages(locale);
+  theme.nav = buildNav(locale);
+  theme.footer = buildFooter(locale, base);
+  theme.notFound = { ...m.notFound };
+  theme.outline = { level: [2, 3], label: m.outline };
+  theme.sidebarMenuLabel = m.sidebarMenuLabel;
+  theme.lastUpdated = { text: m.lastUpdated };
+  theme.docFooter = { ...m.docFooter };
+  theme.returnToTopLabel = m.returnToTopLabel;
+  theme.darkModeSwitchLabel = m.darkModeSwitchLabel;
+  const notice = theme.outdateNotice as
+    | { messagePrev?: string; messageNext?: string }
+    | undefined;
+  if (notice) {
+    notice.messagePrev = m.outdateNotice.messagePrev;
+    notice.messageNext = m.outdateNotice.messageNext;
+  }
+  const search = theme.search as
+    | { options?: { translations?: unknown } }
+    | undefined;
+  if (search?.options) {
+    search.options.translations = searchTranslations(locale);
+  }
+}
+
+/**
+ * 构建期 themeConfig（默认简体；客户端再用 applyThemeChrome 按偏好覆盖壳文案）。
  */
 export function buildThemeConfig(
   localeInput: UiLocale | string,
@@ -159,8 +144,6 @@ export function buildThemeConfig(
     localeInput === "en" ? "en-US" : localeInput,
   );
   const m = getMessages(locale);
-  const s = m.search;
-  const prefix = localePathPrefix(locale);
 
   return {
     ...(extras.shared || {}),
@@ -172,7 +155,7 @@ export function buildThemeConfig(
     },
     notFound: { ...m.notFound },
     nav: buildNav(locale),
-    sidebar: localizeSidebar(extras.sidebar, prefix),
+    sidebar: extras.sidebar,
     search: {
       provider: "local",
       options: {
@@ -184,27 +167,7 @@ export function buildThemeConfig(
             boost: { title: 5, text: 2, titles: 3 },
           },
         },
-        translations: {
-          button: {
-            buttonText: s.buttonText,
-            buttonAriaLabel: s.buttonAriaLabel,
-          },
-          modal: {
-            displayDetails: s.displayDetails,
-            resetButtonTitle: s.resetButtonTitle,
-            backButtonTitle: s.backButtonTitle,
-            noResultsText: s.noResultsText,
-            footer: {
-              selectText: s.selectText,
-              selectKeyAriaLabel: s.selectKeyAriaLabel,
-              navigateText: s.navigateText,
-              navigateUpKeyAriaLabel: s.navigateUpKeyAriaLabel,
-              navigateDownKeyAriaLabel: s.navigateDownKeyAriaLabel,
-              closeText: s.closeText,
-              closeKeyAriaLabel: s.closeKeyAriaLabel,
-            },
-          },
-        },
+        translations: searchTranslations(locale),
       },
     },
     outline: { level: [2, 3], label: m.outline },

@@ -1,39 +1,33 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
-import { useData, useRouter } from "vitepress";
-import {
-  localeKeyToHome,
-  stripSiteBase,
-  switchLocalePath,
-  useI18n,
-  type LocaleKey,
-} from "./i18n";
+import { computed, inject, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
+import { useData } from "vitepress";
+import type { UiLocale } from "./i18n";
+import { useI18n } from "./i18n";
+import { setUiLocalePreference, uiLocaleRef } from "./ui-locale";
 
-const router = useRouter();
-const { page, site } = useData();
-const { t, currentLocaleKeyFromPath } = useI18n();
+const { t } = useI18n();
+const { isDark } = useData();
+
+const toggleAppearance = inject<() => void>("toggle-appearance", () => {
+  isDark.value = !isDark.value;
+});
 
 const open = ref(false);
 const rootEl = ref<HTMLElement | null>(null);
+const triggerEl = ref<HTMLButtonElement | null>(null);
 
-const options: { key: LocaleKey; label: () => string }[] = [
-  { key: "root", label: () => t("localeSwitcher").zhCN },
-  { key: "zh-TW", label: () => t("localeSwitcher").zhTW },
-  { key: "en", label: () => t("localeSwitcher").en },
+const options: { key: UiLocale; short: string; label: () => string }[] = [
+  { key: "zh-CN", short: "简", label: () => t("localeSwitcher").zhCN },
+  { key: "zh-TW", short: "繁", label: () => t("localeSwitcher").zhTW },
+  { key: "en", short: "EN", label: () => t("localeSwitcher").en },
 ];
 
-const currentKey = computed(() =>
-  currentLocaleKeyFromPath(router.route.path),
-);
+const currentKey = computed(() => uiLocaleRef.value);
 
-const currentLabel = computed(() => {
+const currentShort = computed(() => {
   const hit = options.find((o) => o.key === currentKey.value);
-  return hit ? hit.label() : t("localeSwitcher").zhCN;
+  return hit?.short ?? "简";
 });
-
-function optionLabel(key: LocaleKey) {
-  return options.find((o) => o.key === key)?.label() ?? key;
-}
 
 function toggle() {
   open.value = !open.value;
@@ -43,32 +37,18 @@ function close() {
   open.value = false;
 }
 
-async function goLocale(target: LocaleKey) {
-  close();
-  if (target === currentKey.value) return;
-  const sitePath = stripSiteBase(router.route.path, site.value.base);
-  const nextPath = switchLocalePath(sitePath, target);
-  const base = site.value.base || "/";
-  const withBase = (p: string) => {
-    const b = base.endsWith("/") ? base.slice(0, -1) : base;
-    if (!b || b === "/") return p;
-    return `${b}${p.startsWith("/") ? p : `/${p}`}`;
-  };
-
-  // router.go 在 loadPage 完成后才 resolve；此时 page 已是目标页数据
-  await router.go(withBase(nextPath));
-  await nextTick();
-
-  // 仅在「目标路径确实 404」时回首页。不要用短暂中间态误判——
-  // 否则 /about/ → /en/about/ 会被立刻打回 /en/，体感「只有首页能切」。
-  const landed = stripSiteBase(router.route.path, site.value.base).replace(
-    /\/$/,
-    "",
-  ) || "/";
-  const expected = nextPath.replace(/\/$/, "") || "/";
-  if (page.value.isNotFound && landed === expected) {
-    await router.go(withBase(localeKeyToHome(target)));
+function goLocale(target: UiLocale) {
+  if (target === currentKey.value) {
+    close();
+    return;
   }
+  setUiLocalePreference(target);
+  if (typeof location !== "undefined") location.reload();
+}
+
+function setDark(next: boolean) {
+  if (isDark.value === next) return;
+  toggleAppearance();
 }
 
 function onDocPointerDown(ev: PointerEvent) {
@@ -79,7 +59,10 @@ function onDocPointerDown(ev: PointerEvent) {
 }
 
 function onKeydown(ev: KeyboardEvent) {
-  if (ev.key === "Escape") close();
+  if (ev.key === "Escape" && open.value) {
+    close();
+    void nextTick(() => triggerEl.value?.focus());
+  }
 }
 
 onMounted(() => {
@@ -96,145 +79,392 @@ onBeforeUnmount(() => {
 <template>
   <div
     ref="rootEl"
-    class="locale-switcher"
+    class="nav-prefs"
     :class="{ 'is-open': open }"
   >
     <button
+      ref="triggerEl"
       type="button"
-      class="locale-switcher-trigger"
-      :aria-label="t('localeSwitcher').label"
+      class="nav-prefs-trigger"
+      :aria-label="t('localeSwitcher').prefs"
       :aria-expanded="open ? 'true' : 'false'"
-      aria-haspopup="listbox"
+      aria-haspopup="dialog"
       @click="toggle"
     >
-      <span class="locale-switcher-current">{{ currentLabel }}</span>
-      <span class="locale-switcher-caret" aria-hidden="true" />
+      <span class="nav-prefs-locale" aria-hidden="true">{{ currentShort }}</span>
+      <span class="nav-prefs-sep" aria-hidden="true" />
+      <span class="nav-prefs-theme-icon" aria-hidden="true">
+        <svg
+          v-if="!isDark"
+          class="nav-prefs-svg"
+          viewBox="0 0 24 24"
+          width="13"
+          height="13"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+        >
+          <circle cx="12" cy="12" r="3.6" />
+          <path
+            d="M12 2.8v1.7M12 19.5v1.7M4.7 4.7l1.2 1.2M18.1 18.1l1.2 1.2M2.8 12h1.7M19.5 12h1.7M4.7 19.3l1.2-1.2M18.1 5.9l1.2-1.2"
+          />
+        </svg>
+        <svg
+          v-else
+          class="nav-prefs-svg"
+          viewBox="0 0 24 24"
+          width="13"
+          height="13"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20.6 14.2A7.8 7.8 0 1 1 9.8 3.4a6.4 6.4 0 0 0 10.8 10.8z" />
+        </svg>
+      </span>
     </button>
 
-    <ul
-      v-show="open"
-      class="locale-switcher-menu"
-      role="listbox"
-      :aria-label="t('localeSwitcher').label"
-    >
-      <li v-for="opt in options" :key="opt.key" role="none">
-        <button
-          type="button"
-          class="locale-switcher-option"
-          role="option"
-          :aria-selected="currentKey === opt.key ? 'true' : 'false'"
-          :class="{ 'is-active': currentKey === opt.key }"
-          @click="goLocale(opt.key)"
-        >
-          {{ optionLabel(opt.key) }}
-        </button>
-      </li>
-    </ul>
+    <Transition name="nav-prefs-pop">
+      <div
+        v-if="open"
+        class="nav-prefs-panel"
+        role="dialog"
+        :aria-label="t('localeSwitcher').prefs"
+      >
+        <div class="nav-prefs-section">
+          <p class="nav-prefs-heading">{{ t("localeSwitcher").language }}</p>
+          <div
+            class="nav-prefs-seg"
+            role="listbox"
+            :aria-label="t('localeSwitcher').label"
+          >
+            <button
+              v-for="opt in options"
+              :key="opt.key"
+              type="button"
+              class="nav-prefs-seg-btn"
+              role="option"
+              :aria-selected="currentKey === opt.key ? 'true' : 'false'"
+              :class="{ 'is-active': currentKey === opt.key }"
+              @click="goLocale(opt.key)"
+            >
+              <span class="nav-prefs-seg-label">{{ opt.label() }}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="nav-prefs-section">
+          <p class="nav-prefs-heading">{{ t("localeSwitcher").appearance }}</p>
+          <div
+            class="nav-prefs-seg nav-prefs-seg--appearance"
+            role="group"
+            :aria-label="t('localeSwitcher').appearance"
+          >
+            <button
+              type="button"
+              class="nav-prefs-seg-btn"
+              :class="{ 'is-active': !isDark }"
+              :aria-pressed="!isDark ? 'true' : 'false'"
+              @click="setDark(false)"
+            >
+              <svg
+                class="nav-prefs-svg"
+                viewBox="0 0 24 24"
+                width="12"
+                height="12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="3.6" />
+                <path
+                  d="M12 2.8v1.7M12 19.5v1.7M4.7 4.7l1.2 1.2M18.1 18.1l1.2 1.2M2.8 12h1.7M19.5 12h1.7M4.7 19.3l1.2-1.2M18.1 5.9l1.2-1.2"
+                />
+              </svg>
+              <span class="nav-prefs-seg-label">{{ t("localeSwitcher").light }}</span>
+            </button>
+            <button
+              type="button"
+              class="nav-prefs-seg-btn"
+              :class="{ 'is-active': isDark }"
+              :aria-pressed="isDark ? 'true' : 'false'"
+              @click="setDark(true)"
+            >
+              <svg
+                class="nav-prefs-svg"
+                viewBox="0 0 24 24"
+                width="12"
+                height="12"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20.6 14.2A7.8 7.8 0 1 1 9.8 3.4a6.4 6.4 0 0 0 10.8 10.8z" />
+              </svg>
+              <span class="nav-prefs-seg-label">{{ t("localeSwitcher").dark }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style scoped>
-.locale-switcher {
+.nav-prefs {
   position: relative;
-  margin-left: 8px;
+  margin-left: 4px;
   flex-shrink: 0;
 }
 
-.locale-switcher-trigger {
+.nav-prefs-trigger {
   appearance: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 4px 10px;
-  border-radius: 8px;
-  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 88%, transparent);
-  background: color-mix(in srgb, var(--vp-c-bg-alt) 55%, transparent);
-  color: var(--vp-c-text-1);
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
+  height: 34px;
+  padding: 0 9px;
+  border-radius: 7px;
+  border: 1px solid color-mix(in srgb, var(--border, var(--vp-c-divider)) 72%, transparent);
+  background: color-mix(in srgb, var(--text, var(--vp-c-text-1)) 5%, transparent);
+  color: var(--text-2, var(--vp-c-text-2));
   cursor: pointer;
   transition:
-    color 0.15s ease,
-    background 0.15s ease,
-    border-color 0.15s ease;
+    color 0.16s ease,
+    background 0.16s ease,
+    border-color 0.16s ease,
+    transform 0.16s ease;
 }
 
-.locale-switcher-trigger:hover {
-  border-color: color-mix(in srgb, var(--vp-c-divider) 100%, transparent);
-  background: color-mix(in srgb, var(--vp-c-bg-alt) 80%, transparent);
+.nav-prefs-trigger:hover {
+  color: var(--text, var(--vp-c-text-1));
+  background: color-mix(in srgb, var(--text, var(--vp-c-text-1)) 8%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--border-strong, var(--vp-c-divider)) 70%,
+    transparent
+  );
 }
 
-.locale-switcher-caret {
-  width: 0;
-  height: 0;
-  border-left: 3.5px solid transparent;
-  border-right: 3.5px solid transparent;
-  border-top: 4px solid var(--vp-c-text-3);
-  transition: transform 0.15s ease;
+.nav-prefs-trigger:active {
+  transform: scale(0.97);
 }
 
-.locale-switcher.is-open .locale-switcher-caret {
-  transform: rotate(180deg);
+.nav-prefs-trigger:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--vp-c-brand-1) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--vp-c-brand-1) 18%, transparent);
 }
 
-.locale-switcher-menu {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  z-index: 70;
-  min-width: 108px;
-  margin: 0;
-  padding: 4px;
-  list-style: none;
-  border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 92%, transparent);
-  background: var(--vp-c-bg-elv, var(--vp-c-bg));
-  box-shadow:
-    0 1px 2px color-mix(in srgb, var(--vp-c-text-1) 6%, transparent),
-    0 12px 28px color-mix(in srgb, var(--vp-c-text-1) 10%, transparent);
+.nav-prefs.is-open .nav-prefs-trigger {
+  color: var(--text, var(--vp-c-text-1));
+  background: color-mix(in srgb, var(--vp-c-brand-1) 9%, transparent);
+  border-color: color-mix(in srgb, var(--vp-c-brand-1) 32%, var(--vp-c-divider));
 }
 
-.locale-switcher-option {
-  appearance: none;
+.nav-prefs-locale {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  min-width: 1.1em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav-prefs-sep {
+  width: 1px;
+  height: 11px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--border, var(--vp-c-divider)) 85%, transparent);
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.nav-prefs-theme-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--text-3, var(--vp-c-text-3));
+  transition: color 0.16s ease;
+}
+
+.nav-prefs-trigger:hover .nav-prefs-theme-icon,
+.nav-prefs.is-open .nav-prefs-theme-icon {
+  color: var(--text-2, var(--vp-c-text-2));
+}
+
+.nav-prefs-svg {
   display: block;
-  width: 100%;
+  flex-shrink: 0;
+}
+
+.nav-prefs-panel {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  z-index: 90;
+  width: min(236px, calc(100vw - 20px));
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border, var(--vp-c-divider)) 82%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--vp-c-bg-elv, var(--vp-c-bg)) 88%,
+    transparent
+  );
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 45%, transparent) inset,
+    0 1px 2px color-mix(in srgb, var(--vp-c-text-1) 4%, transparent),
+    0 18px 40px color-mix(in srgb, var(--vp-c-text-1) 11%, transparent);
+  transform-origin: top right;
+}
+
+:global(.dark) .nav-prefs-panel {
+  background: color-mix(in srgb, var(--vp-c-bg-elv, var(--vp-c-bg)) 92%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 6%, transparent) inset,
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 18px 40px rgba(0, 0, 0, 0.38);
+}
+
+.nav-prefs-section + .nav-prefs-section {
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid color-mix(in srgb, var(--border, var(--vp-c-divider)) 72%, transparent);
+}
+
+.nav-prefs-heading {
+  margin: 0 0 7px;
+  padding: 0 3px;
+  color: var(--text-3, var(--vp-c-text-3));
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.nav-prefs-seg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--text, var(--vp-c-text-1)) 5%, transparent);
+}
+
+.nav-prefs-seg-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   margin: 0;
-  padding: 7px 10px;
+  min-height: 30px;
+  padding: 5px 6px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 6px;
   background: transparent;
-  color: var(--vp-c-text-2);
+  color: var(--text-2, var(--vp-c-text-2));
   font-size: 12px;
   font-weight: 600;
-  text-align: left;
-  line-height: 1.35;
+  line-height: 1.2;
   cursor: pointer;
   transition:
-    color 0.12s ease,
-    background 0.12s ease;
+    color 0.14s ease,
+    background 0.14s ease,
+    box-shadow 0.14s ease,
+    transform 0.14s ease;
 }
 
-.locale-switcher-option:hover {
-  color: var(--vp-c-text-1);
-  background: color-mix(in srgb, var(--vp-c-text-1) 5%, transparent);
+.nav-prefs-seg-btn:hover {
+  color: var(--text, var(--vp-c-text-1));
 }
 
-.locale-switcher-option.is-active {
-  color: var(--vp-c-text-1);
-  background: color-mix(in srgb, var(--vp-c-brand-1) 10%, transparent);
+.nav-prefs-seg-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--vp-c-brand-1) 28%, transparent);
+}
+
+.nav-prefs-seg-btn.is-active {
+  color: var(--text, var(--vp-c-text-1));
+  background: var(--vp-c-bg-elv, var(--vp-c-bg));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--border, var(--vp-c-divider)) 65%, transparent),
+    0 1px 2px color-mix(in srgb, var(--vp-c-text-1) 7%, transparent);
+}
+
+.nav-prefs-seg-btn.is-active .nav-prefs-svg {
+  color: var(--vp-c-brand-1);
+}
+
+.nav-prefs-seg-label {
+  white-space: nowrap;
+}
+
+.nav-prefs-pop-enter-active,
+.nav-prefs-pop-leave-active {
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-prefs-pop-enter-from,
+.nav-prefs-pop-leave-to {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
 }
 
 @media (max-width: 767px) {
-  .locale-switcher {
-    margin-left: 4px;
+  .nav-prefs {
+    margin-left: 2px;
   }
 
-  .locale-switcher-trigger {
-    padding: 3px 8px;
+  .nav-prefs-trigger {
+    height: 32px;
+    padding: 0 8px;
+    gap: 5px;
+  }
+
+  .nav-prefs-locale {
     font-size: 11px;
+  }
+
+  .nav-prefs-panel {
+    width: min(220px, calc(100vw - 16px));
+  }
+
+  .nav-prefs-heading {
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-prefs-trigger,
+  .nav-prefs-seg-btn,
+  .nav-prefs-pop-enter-active,
+  .nav-prefs-pop-leave-active {
+    transition: none;
+  }
+
+  .nav-prefs-trigger:active {
+    transform: none;
   }
 }
 </style>

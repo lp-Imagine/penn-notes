@@ -2,8 +2,10 @@
 import { computed, ref } from "vue";
 import { withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
+import { useI18n } from "./i18n";
 import { revealDelay, useInfiniteScroll } from "./useInfiniteScroll.js";
 
+const { t } = useI18n();
 const PAGE_SIZE = 10;
 const visible = ref(PAGE_SIZE);
 
@@ -14,10 +16,11 @@ const allLoaded = computed(
 );
 
 const grouped = computed(() => {
+  const unknown = t("common").unknown;
   const years = new Map();
   for (const note of shownNotes.value) {
-    const year = note.date?.slice(0, 4) || "未知";
-    const month = note.date?.slice(0, 7) || "未知";
+    const year = note.date?.slice(0, 4) || unknown;
+    const month = note.date?.slice(0, 7) || unknown;
     if (!years.has(year)) years.set(year, new Map());
     const months = years.get(year);
     if (!months.has(month)) months.set(month, []);
@@ -52,9 +55,9 @@ const { sentinel, isLoading } = useInfiniteScroll({
 });
 
 function monthLabel(ym) {
-  if (ym === "未知") return ym;
+  if (ym === t("common").unknown) return ym;
   const m = Number(ym.split("-")[1]);
-  return `${m} 月`;
+  return t("archive").month(m);
 }
 
 function dayLabel(date) {
@@ -66,7 +69,7 @@ function dayLabel(date) {
 <template>
   <div class="discover-archive">
     <p class="discover-count discover-count--archive">
-      共 {{ notes.length }} 篇，已显示 {{ shownNotes.length }} 篇
+      {{ t("archive").shownCount(notes.length, shownNotes.length) }}
     </p>
 
     <section
@@ -76,7 +79,7 @@ function dayLabel(date) {
     >
       <header class="discover-year-head">
         <h2 class="discover-year-title">{{ y.year }}</h2>
-        <p class="discover-year-desc">{{ y.count }} 篇</p>
+        <p class="discover-year-desc">{{ t("common").articleCount(y.count) }}</p>
       </header>
 
       <div
@@ -84,7 +87,7 @@ function dayLabel(date) {
         :key="g.month"
         class="discover-month"
       >
-        <p class="discover-month-label">{{ monthLabel(g.month) }} · {{ g.items.length }} 篇</p>
+        <p class="discover-month-label">{{ monthLabel(g.month) }} · {{ t("common").articleCount(g.items.length) }}</p>
         <div class="discover-rows discover-rows--compact">
           <a
             v-for="(item, idx) in g.items"
@@ -108,10 +111,10 @@ function dayLabel(date) {
       aria-live="polite"
     >
       <span class="news-feed-sentinel-dot" aria-hidden="true" />
-      <span>{{ isLoading ? "加载中…" : "继续下滑加载更多" }}</span>
+      <span>{{ isLoading ? t("common").loading : t("common").loadMore }}</span>
     </div>
     <p v-else-if="allLoaded && notes.length > PAGE_SIZE" class="news-feed-end">
-      已加载全部 {{ notes.length }} 篇
+      {{ t("common").loadedAll(notes.length) }}
     </p>
   </div>
 </template>

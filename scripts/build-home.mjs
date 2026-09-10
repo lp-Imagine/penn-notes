@@ -278,13 +278,13 @@ function writeSectionIndex(section, items) {
                 const toneAttr = cover
                   ? ""
                   : ` data-tone="${escapeHtml(g.text)}"`;
-                return `    <a class="${cardClass}"${toneAttr} href="${link(item.link)}">${media}<span class="section-card-body"><span class="section-card-title">${escapeHtml(item.text)}</span><span class="section-card-meta"><time datetime="${date}">${date}</time><span>阅读全文</span></span></span></a>`;
+                return `    <a class="${cardClass}"${toneAttr} href="${link(item.link)}">${media}<span class="section-card-body"><span class="section-card-title">${escapeHtml(item.text)}</span><span class="section-card-meta"><time datetime="${date}">${date}</time><span data-i18n="common.readMore">阅读全文</span></span></span></a>`;
               })
               .join("\n");
             return `  <section class="section-group">
     <div class="section-group-head">
       <h2 class="section-group-title">${escapeHtml(g.text)}</h2>
-      <p class="section-group-desc">${g.items.length} 篇文章</p>
+      <p class="section-group-desc" data-i18n="section.groupCount" data-i18n-args="${g.items.length}">${g.items.length} 篇文章</p>
     </div>
     <div class="section-card-grid">
 ${cards}
@@ -303,10 +303,10 @@ aside: false
 
 <div class="section-page">
   <header class="section-hero">
-    <p class="section-kicker">栏目</p>
-    <h1 class="section-title">${section.title}</h1>
-    <p class="section-lead">${section.desc}</p>
-    <p class="section-count">共 ${n} 篇文章</p>
+    <p class="section-kicker" data-i18n="section.kicker">栏目</p>
+    <h1 class="section-title" data-i18n="nav.${section.id}">${section.title}</h1>
+    <p class="section-lead" data-i18n="sectionDescs.${section.id}">${section.desc}</p>
+    <p class="section-count" data-i18n="section.count" data-i18n-args="${n}">共 ${n} 篇文章</p>
   </header>
 
   <div class="section-index">
@@ -339,19 +339,13 @@ function buildHome(allBySection) {
   const pillars = SECTIONS.map((s, i) => {
     const items = allBySection[s.id] || [];
     const n = items.length;
-    const groups = groupSidebar(items, s.id)
-      .slice(0, 3)
-      .map((g) => g.text)
-      .join("、");
-    const desc =
-      groups && groups !== s.title && groups !== s.nav ? groups : s.desc;
     const idx = String(i + 1).padStart(2, "0");
-    return `  <a class="home-pillar home-pillar--${escapeHtml(s.id)}" href="${link(s.link)}"><span class="home-pillar-index" aria-hidden="true">${idx}</span><span class="home-pillar-main"><span class="home-pillar-title">${escapeHtml(s.title)}</span><span class="home-pillar-desc">${escapeHtml(desc)}</span></span><span class="home-pillar-foot"><span class="home-pillar-meta">${n} 篇</span><span class="home-pillar-go" aria-hidden="true">→</span></span></a>`;
+    return `  <a class="home-pillar home-pillar--${escapeHtml(s.id)}" href="${link(s.link)}"><span class="home-pillar-index" aria-hidden="true">${idx}</span><span class="home-pillar-main"><span class="home-pillar-title" data-i18n="nav.${s.id}">${escapeHtml(s.title)}</span><span class="home-pillar-desc" data-i18n="sectionDescs.${s.id}">${escapeHtml(s.desc)}</span></span><span class="home-pillar-foot"><span class="home-pillar-meta" data-i18n="common.articleCount" data-i18n-args="${n}">${n} 篇</span><span class="home-pillar-go" aria-hidden="true">→</span></span></a>`;
   }).join("\n");
 
   const noteItems =
     recent.length === 0
-      ? `<p class="home-empty">暂无文章</p>`
+      ? `<p class="home-empty" data-i18n="home.emptyNotes">暂无文章</p>`
       : `<div class="home-note-list">
 ${recent
   .map((r) => {
@@ -366,7 +360,7 @@ ${recent
   const newsHeadlines = loadRecentNewsHeadlines(6);
   const aiNewsItems =
     newsHeadlines.length === 0
-      ? `<p class="home-empty news-home-empty">AI 动态每天 7:00 左右更新 · <a href="${link("/news/")}">前往栏目</a></p>`
+      ? `<p class="home-empty news-home-empty"><span data-i18n="home.newsEmptyPrefix">AI 动态每天 7:00 左右更新 · </span><a href="${link("/news/")}" data-i18n="home.goSection">前往栏目</a></p>`
       : `<div class="section-card-grid home-news-grid">
 ${newsHeadlines
   .map((r) => {
@@ -375,7 +369,7 @@ ${newsHeadlines
       : "";
     const tags = [
       r.section
-        ? `<span class="news-section-tag">${escapeHtml(r.section)}</span>`
+        ? `<span class="news-section-tag" data-news-section="${escapeHtml(r.section)}">${escapeHtml(r.section)}</span>`
         : "",
       r.sourceName
         ? `<span class="news-source-tag">${escapeHtml(r.sourceName)}</span>`
@@ -394,7 +388,7 @@ ${newsHeadlines
       ? "section-card section-card--media"
       : "section-card section-card--text";
     const toneAttr = r.image ? "" : ` data-tone="${tone}"`;
-    return `  <a class="${cardClass}"${toneAttr} href="${link(r.link)}">${media}<span class="section-card-body">${tagsRow}<span class="section-card-title">${escapeHtml(r.title)}</span>${summary}<span class="section-card-meta"><time datetime="${r.date}">${r.date}</time><span>阅读全文</span></span></span></a>`;
+    return `  <a class="${cardClass}"${toneAttr} href="${link(r.link)}">${media}<span class="section-card-body">${tagsRow}<span class="section-card-title">${escapeHtml(r.title)}</span>${summary}<span class="section-card-meta"><time datetime="${r.date}">${r.date}</time><span data-i18n="common.readMore">阅读全文</span></span></span></a>`;
   })
   .join("\n")}
 </div>`;
@@ -409,15 +403,15 @@ layout: home
 <div class="home-wrap">
   <section class="home-hero">
     <h1 class="home-headline">Penn Notes</h1>
-    <HomeTypewriter text="认真生活，随便折腾" />
-    <p class="home-sub">积跬步以至千里 · 共 ${total} 篇文章</p>
+    <HomeTypewriter />
+    <p class="home-sub" data-i18n="home.sub" data-i18n-args="${total}">积跬步以至千里 · 共 ${total} 篇文章</p>
     <div class="home-actions">
-      <a class="home-btn home-btn--primary" href="${latestHref}">阅读最新文章</a>
-      <a class="home-btn home-btn--text" href="${link("/news/")}">今日 AI 动态</a>
+      <a class="home-btn home-btn--primary" href="${latestHref}" data-i18n="home.readLatest">阅读最新文章</a>
+      <a class="home-btn home-btn--text" href="${link("/news/")}" data-i18n="home.todayNews">今日 AI 动态</a>
     </div>
   </section>
 
-  <section class="home-section home-section--pillars" aria-label="浏览栏目">
+  <section class="home-section home-section--pillars" data-i18n-aria="home.browseAria" aria-label="浏览栏目">
     <div class="home-pillars">
 ${pillars}
     </div>
@@ -425,15 +419,15 @@ ${pillars}
 
   <section class="home-section">
     <div class="home-section-head">
-      <h2>最新文章</h2>
-      <a class="home-more" href="${notesMoreHref}">查看更多</a>
+      <h2 data-i18n="home.latestNotes">最新文章</h2>
+      <a class="home-more" href="${notesMoreHref}" data-i18n="home.viewMore">查看更多</a>
     </div>
 ${noteItems}</section>
 
   <section class="home-section">
     <div class="home-section-head">
-      <h2>最新动态</h2>
-      <a class="home-more" href="${link("/news/")}">全部动态</a>
+      <h2 data-i18n="home.latestNews">最新动态</h2>
+      <a class="home-more" href="${link("/news/")}" data-i18n="home.allNews">全部动态</a>
     </div>
 ${aiNewsItems}</section>
 </div>

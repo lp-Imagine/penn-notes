@@ -1,8 +1,10 @@
 import type { MessageTree, UiLocale } from "./types";
+import { pageMessages } from "./page-messages";
 
 export type { MessageTree, UiLocale };
 
 const zhCN: MessageTree = {
+  ...pageMessages["zh-CN"],
   skipToContent: "跳到正文",
   readingTime: (m) => `约 ${m} 分钟读完`,
   focusMode: { enter: "沉浸式阅读", exit: "退出沉浸式阅读" },
@@ -14,6 +16,11 @@ const zhCN: MessageTree = {
     zhCN: "简体",
     zhTW: "繁體",
     en: "EN",
+    prefs: "语言与外观",
+    language: "语言",
+    appearance: "外观",
+    light: "浅色",
+    dark: "深色",
   },
   comments: {
     title: "评论",
@@ -91,16 +98,19 @@ const zhCN: MessageTree = {
     ui: "样式",
     engineering: "工程化",
     backend: "后端",
-    tech: "工具",
+    tech: "工具备忘",
     agent: "AI Agent",
     computer: "浏览器",
     misc: "杂项",
     sites: "小站",
     about: "关于",
+    interview: "面镜",
+    navSite: "导航",
   },
 };
 
 const zhTW: MessageTree = {
+  ...pageMessages["zh-TW"],
   skipToContent: "跳到正文",
   readingTime: (m) => `約 ${m} 分鐘讀完`,
   focusMode: { enter: "沉浸式閱讀", exit: "退出沉浸式閱讀" },
@@ -112,6 +122,11 @@ const zhTW: MessageTree = {
     zhCN: "简体",
     zhTW: "繁體",
     en: "EN",
+    prefs: "語言與外觀",
+    language: "語言",
+    appearance: "外觀",
+    light: "淺色",
+    dark: "深色",
   },
   comments: {
     title: "評論",
@@ -189,16 +204,19 @@ const zhTW: MessageTree = {
     ui: "樣式",
     engineering: "工程化",
     backend: "後端",
-    tech: "工具",
+    tech: "工具備忘",
     agent: "AI Agent",
     computer: "瀏覽器",
     misc: "雜項",
     sites: "小站",
     about: "關於",
+    interview: "面鏡",
+    navSite: "導航",
   },
 };
 
 const en: MessageTree = {
+  ...pageMessages.en,
   skipToContent: "Skip to content",
   readingTime: (m) => `${m} min read`,
   focusMode: { enter: "Focus mode", exit: "Exit focus mode" },
@@ -210,6 +228,11 @@ const en: MessageTree = {
     zhCN: "简体",
     zhTW: "繁體",
     en: "EN",
+    prefs: "Language & appearance",
+    language: "Language",
+    appearance: "Appearance",
+    light: "Light",
+    dark: "Dark",
   },
   comments: {
     title: "Comments",
@@ -293,6 +316,8 @@ const en: MessageTree = {
     misc: "Misc",
     sites: "Sites",
     about: "About",
+    interview: "Interview",
+    navSite: "Nav",
   },
 };
 
