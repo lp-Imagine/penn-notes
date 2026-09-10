@@ -6,9 +6,10 @@
   --pm-cap: #2a241c;
   --pm-cap-border: rgba(255, 255, 255, 0.12);
   --pm-karaoke: #ffe6c2;
+  /* 与右下助手 FAB 同底边 */
   position: fixed;
   left: max(12px, env(safe-area-inset-left, 0px) + 10px);
-  bottom: max(16px, env(safe-area-inset-bottom, 0px) + 14px);
+  bottom: var(--penn-float-bottom, max(20px, env(safe-area-inset-bottom, 0px) + 16px));
   z-index: 36;
   width: auto;
   max-width: var(--pm-w);
@@ -24,10 +25,9 @@
   pointer-events: auto;
 }
 
-/* 未播放：贴左边，默认只露封面圆；悬停展开歌名 */
+/* 未播放：贴左边，默认只露封面圆；悬停展开歌名（底边与助手对齐，不再额外抬高） */
 .penn-music.is-docked {
   left: 0;
-  bottom: max(22px, env(safe-area-inset-bottom, 0px) + 18px);
 }
 
 .penn-music-shell {

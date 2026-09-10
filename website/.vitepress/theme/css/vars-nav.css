@@ -40,6 +40,25 @@
   --doc-content-max-wide: 52rem;
   --doc-page-inset: 20px;
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  /* 右下浮层：助手 FAB 在最底，工具钮自下而上堆叠（含间距，避免压住光晕） */
+  --penn-float-right: 20px;
+  --penn-float-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 16px);
+  --penn-float-fab-size: 52px;
+  --penn-float-btn-size: 40px;
+  --penn-float-gap: 12px;
+  --penn-float-stack-1: calc(
+    var(--penn-float-bottom) + var(--penn-float-fab-size) + var(--penn-float-gap)
+  );
+  --penn-float-stack-2: calc(
+    var(--penn-float-stack-1) + var(--penn-float-btn-size) + var(--penn-float-gap)
+  );
+  --penn-float-stack-3: calc(
+    var(--penn-float-stack-2) + var(--penn-float-btn-size) + var(--penn-float-gap)
+  );
+  /* 40px 工具钮相对 52px FAB 水平居中 */
+  --penn-float-btn-right: calc(
+    var(--penn-float-right) + (var(--penn-float-fab-size) - var(--penn-float-btn-size)) / 2
+  );
   --vp-font-family-base:
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC",
     "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
@@ -91,6 +110,12 @@
 
 body {
   -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --penn-float-right: max(16px, env(safe-area-inset-right, 0px));
+  }
 }
 
 /* 无侧栏页（首页 / 标签 / 归档 / 栏目 / 关于）：裁掉横向溢出。

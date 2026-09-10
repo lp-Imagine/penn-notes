@@ -1147,17 +1147,17 @@ html.focus-mode:not(.dark) .vp-doc [class*="language-"] > span.lang {
 }
 
 /* ===== 左侧菜单收起/展开（文章详情页） ===== */
-/* 桌面工具组：右下角堆叠；最底部留给站内助手，其它按钮上移一格 */
+/* 桌面工具组：右下角堆叠；最底部留给站内助手，其它按钮按 --penn-float-stack-* 上移 */
 .sidebar-toggle {
   position: fixed;
-  right: 20px;
-  bottom: 72px;
+  right: var(--penn-float-btn-right, 26px);
+  bottom: var(--penn-float-stack-1, 84px);
   z-index: 60;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--penn-float-btn-size, 40px);
+  height: var(--penn-float-btn-size, 40px);
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   border-radius: 999px;
@@ -1197,21 +1197,21 @@ html.focus-mode:not(.dark) .vp-doc [class*="language-"] > span.lang {
 
   /* 有专注按钮时，侧栏按钮再上移一格 */
   body.has-readable-detail.has-vp-sidebar .sidebar-toggle {
-    bottom: 124px;
+    bottom: var(--penn-float-stack-2, 136px);
   }
 }
 
 /* ===== 沉浸式阅读（专注模式）：隐藏侧栏 + 大纲，正文居中 ===== */
 .focus-toggle {
   position: fixed;
-  right: 20px;
-  bottom: 72px;
+  right: var(--penn-float-btn-right, 26px);
+  bottom: var(--penn-float-stack-1, 84px);
   z-index: 60;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--penn-float-btn-size, 40px);
+  height: var(--penn-float-btn-size, 40px);
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   border-radius: 999px;
@@ -1751,15 +1751,15 @@ body,
 /* ===== 回到顶部 ===== */
 .back-to-top {
   position: fixed;
-  right: 20px;
-  /* 最底部留给站内助手（52+tip），回顶上移一格 */
-  bottom: max(88px, env(safe-area-inset-bottom, 0px) + 84px);
+  right: var(--penn-float-btn-right, 26px);
+  /* 最底部留给站内助手（含间距），回顶在其上一格 */
+  bottom: var(--penn-float-stack-1, 84px);
   z-index: 60;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--penn-float-btn-size, 40px);
+  height: var(--penn-float-btn-size, 40px);
   padding: 0;
   border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   border-radius: 999px;
@@ -1815,28 +1815,28 @@ body,
 @media (min-width: 960px) {
   /* 自下而上：助手 → 专注 → 侧栏 → 回顶 */
   .back-to-top {
-    right: 20px;
-    bottom: 72px;
-    width: 40px;
-    height: 40px;
+    right: var(--penn-float-btn-right, 26px);
+    bottom: var(--penn-float-stack-1, 84px);
+    width: var(--penn-float-btn-size, 40px);
+    height: var(--penn-float-btn-size, 40px);
   }
 
   body.has-readable-detail .back-to-top {
-    bottom: 124px;
+    bottom: var(--penn-float-stack-2, 136px);
   }
 
   body.has-vp-sidebar .back-to-top {
-    bottom: 124px;
+    bottom: var(--penn-float-stack-2, 136px);
   }
 
   body.has-vp-sidebar.has-readable-detail .back-to-top {
-    bottom: 176px;
+    bottom: var(--penn-float-stack-3, 188px);
   }
 
   /* 专注模式：侧栏按钮隐藏，回顶补位 */
   html.focus-mode body.has-vp-sidebar .back-to-top,
   html.focus-mode body.has-vp-sidebar.has-readable-detail .back-to-top {
-    bottom: 124px;
+    bottom: var(--penn-float-stack-2, 136px);
   }
 }
 

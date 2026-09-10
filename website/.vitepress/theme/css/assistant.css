@@ -8,15 +8,16 @@ html.penn-assistant-scroll-lock body {
 }
 
 .penn-assistant {
+  /* 与左下音乐胶囊同底边：--penn-float-bottom */
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: var(--penn-float-right, 20px);
+  bottom: var(--penn-float-bottom, max(20px, env(safe-area-inset-bottom, 0px) + 16px));
   left: auto;
   top: auto;
   /* 高于顶栏 / 抽屉（约 80–210），保证遮罩能收到点击 */
   z-index: 220;
-  width: 48px;
-  height: 48px;
+  width: var(--penn-float-fab-size, 52px);
+  height: var(--penn-float-fab-size, 52px);
   pointer-events: none;
 }
 
@@ -3254,8 +3255,8 @@ html.penn-assistant-scroll-lock body {
 /* 移动端弹窗：全屏浮层 + 紧凑顶栏 / 底部安全区 */
 @media (max-width: 767px) {
   .penn-assistant {
-    right: max(16px, env(safe-area-inset-right, 0px));
-    bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    right: var(--penn-float-right, max(16px, env(safe-area-inset-right, 0px)));
+    bottom: var(--penn-float-bottom, max(20px, env(safe-area-inset-bottom, 0px) + 16px));
   }
 
   .penn-assistant-panel.is-expanded .penn-assistant-head {

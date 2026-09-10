@@ -1231,7 +1231,10 @@ export default {
       // 同步抢跑一次：CSS 叠层兜底后尽快换成真正的 .article-hero
       enhanceArticleChromeNow();
       scheduleRefresh();
-      setupSearchEnhance(() => getUiText(chromeLang()).searchFilter);
+      setupSearchEnhance(() => {
+        const t = getUiText(chromeLang());
+        return { filter: t.searchFilter, modal: t.search };
+      });
       const content = document.querySelector(".VPContent") || document.getElementById("app");
       if (content && !observer) {
         // 含 style：日报栏目筛选会改 display，需重算章节高亮
@@ -1392,7 +1395,10 @@ export default {
           (y, d) => getUiText(chromeLang()).siteRuntime.format(y, d),
         );
         teardownSearchEnhance();
-        setupSearchEnhance(() => getUiText(chromeLang()).searchFilter);
+        setupSearchEnhance(() => {
+          const t = getUiText(chromeLang());
+          return { filter: t.searchFilter, modal: t.search };
+        });
         refreshSearchEnhanceLabels();
       },
     );
