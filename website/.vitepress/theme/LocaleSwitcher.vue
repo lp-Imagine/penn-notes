@@ -92,6 +92,25 @@ onBeforeUnmount(() => {
       @click="toggle"
     >
       <span class="nav-prefs-locale" aria-hidden="true">{{ currentShort }}</span>
+      <span class="nav-prefs-locale-icon" aria-hidden="true">
+        <svg
+          class="nav-prefs-svg"
+          viewBox="0 0 24 24"
+          width="15"
+          height="15"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18" />
+          <path
+            d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"
+          />
+        </svg>
+      </span>
       <span class="nav-prefs-sep" aria-hidden="true" />
       <span class="nav-prefs-theme-icon" aria-hidden="true">
         <svg
@@ -221,7 +240,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .nav-prefs {
   position: relative;
-  margin-left: 4px;
+  margin-left: 0;
   flex-shrink: 0;
 }
 
@@ -281,6 +300,21 @@ onBeforeUnmount(() => {
   font-variant-numeric: tabular-nums;
 }
 
+.nav-prefs-locale-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  color: var(--text-2, var(--vp-c-text-2));
+  transition: color 0.16s ease;
+}
+
+.nav-prefs-trigger:hover .nav-prefs-locale-icon,
+.nav-prefs.is-open .nav-prefs-locale-icon {
+  color: var(--text, var(--vp-c-text-1));
+}
+
 .nav-prefs-sep {
   width: 1px;
   height: 11px;
@@ -313,7 +347,8 @@ onBeforeUnmount(() => {
 .nav-prefs-panel {
   position: absolute;
   top: calc(100% + 7px);
-  right: 0;
+  left: 0;
+  right: auto;
   z-index: 90;
   width: min(236px, calc(100vw - 20px));
   padding: 11px;
@@ -330,7 +365,7 @@ onBeforeUnmount(() => {
     0 1px 0 color-mix(in srgb, #fff 45%, transparent) inset,
     0 1px 2px color-mix(in srgb, var(--vp-c-text-1) 4%, transparent),
     0 18px 40px color-mix(in srgb, var(--vp-c-text-1) 11%, transparent);
-  transform-origin: top right;
+  transform-origin: top left;
 }
 
 :global(.dark) .nav-prefs-panel {
@@ -432,26 +467,67 @@ onBeforeUnmount(() => {
 
 @media (max-width: 767px) {
   .nav-prefs {
-    margin-left: 2px;
+    margin-left: 0;
   }
 
   .nav-prefs-trigger {
-    height: 32px;
-    padding: 0 8px;
-    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    gap: 0;
+    border-radius: 8px;
+    border-color: transparent;
+    background: transparent;
+    justify-content: center;
+    color: var(--text, var(--vp-c-text-1));
   }
 
-  .nav-prefs-locale {
-    font-size: 11px;
+  .nav-prefs-trigger:hover,
+  .nav-prefs.is-open .nav-prefs-trigger {
+    color: var(--text, var(--vp-c-text-1));
+    background: color-mix(in srgb, var(--text, var(--vp-c-text-1)) 7%, transparent);
+    border-color: transparent;
   }
 
+  .nav-prefs-locale,
+  .nav-prefs-sep,
+  .nav-prefs-theme-icon {
+    display: none;
+  }
+
+  .nav-prefs-locale-icon {
+    display: inline-flex;
+    color: inherit;
+  }
+
+  .nav-prefs-trigger:hover .nav-prefs-locale-icon,
+  .nav-prefs.is-open .nav-prefs-locale-icon {
+    color: inherit;
+  }
+
+  .nav-prefs-locale-icon .nav-prefs-svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+  }
+
+  /* 窄屏触发器在右侧，面板改向左展开，避免 EN / 深色被裁切 */
   .nav-prefs-panel {
-    width: min(220px, calc(100vw - 16px));
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+    width: min(236px, calc(100vw - 16px));
   }
 
   .nav-prefs-heading {
     text-transform: none;
     letter-spacing: 0.04em;
+  }
+
+  .nav-prefs-seg-btn {
+    padding: 5px 4px;
+    font-size: 11px;
+    gap: 3px;
   }
 }
 

@@ -1117,8 +1117,11 @@ const Layout = defineComponent({
         { class: layoutClass },
         {
           ...slots,
-          "nav-bar-content-after": () => [
+          "nav-bar-content-before": () => [
+            slots["nav-bar-content-before"]?.(),
             h(LocaleSwitcher),
+          ],
+          "nav-bar-content-after": () => [
             slots["nav-bar-content-after"]?.(),
           ],
           "doc-before": () => [

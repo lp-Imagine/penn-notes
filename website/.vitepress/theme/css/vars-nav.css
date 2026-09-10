@@ -126,9 +126,72 @@ body {
   display: none !important;
 }
 
-/* 语言切换紧挨搜索/外观区 */
+/* 语言切换紧挨搜索（content-before + order，视觉：搜索 → 偏好 → 导航） */
 .VPNavBar .content-body {
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .VPNavBarSearch {
+    order: 1;
+  }
+
+  .VPNavBar .nav-prefs {
+    order: 2;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .VPNavBarMenu {
+    order: 3;
+  }
+
+  .VPNavBarTranslations {
+    order: 4;
+  }
+
+  .VPNavBarAppearance {
+    order: 5;
+  }
+
+  .VPNavBarSocialLinks {
+    order: 6;
+  }
+
+  .VPNavBarExtra {
+    order: 7;
+  }
+
+  .VPNavBar .penn-nav-more {
+    order: 8;
+  }
+
+  .VPNavBarHamburger {
+    order: 9;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .VPNavBar .content-body {
+    gap: 4px;
+  }
+
+  .VPNavBarSearch {
+    order: 1;
+    flex: 0 0 auto;
+    margin-right: 0;
+  }
+
+  .VPNavBar .nav-prefs {
+    order: 2;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .VPNavBarHamburger {
+    order: 9;
+    margin-left: 2px;
+  }
 }
 
 /* 搜索按钮：跟随顶栏毛玻璃，略收紧尺寸 */
@@ -696,8 +759,8 @@ body {
     background: color-mix(in srgb, var(--accent-soft) 80%, var(--surface));
   }
 
-  /* 顶栏链接图标：首页 / 关于 */
-  .VPNavBarMenu > .VPNavBarMenuLink {
+  /* 顶栏链接图标：首页 / 关于（勿盖过 .is-nav-overflow 的隐藏） */
+  .VPNavBarMenu > .VPNavBarMenuLink:not(.is-nav-overflow) {
     display: inline-flex !important;
     align-items: center;
     gap: 6px;
