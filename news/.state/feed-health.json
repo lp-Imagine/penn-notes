@@ -1,6 +1,6 @@
 {
-  "at": "2026-09-10T00:55:34.001Z",
-  "targetDate": "2026-09-09",
+  "at": "2026-09-10T23:00:25.493Z",
+  "targetDate": "2026-09-10",
   "ok": 21,
   "failed": 0,
   "successes": [
@@ -11,27 +11,27 @@
       "items": 0
     },
     {
-      "id": "theverge-ai",
-      "name": "The Verge AI",
-      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-      "items": 5
-    },
-    {
       "id": "techcrunch-ai",
       "name": "TechCrunch AI",
       "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "items": 12
+    },
+    {
+      "id": "theverge-ai",
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
       "items": 9
     },
     {
       "id": "wired-ai",
       "name": "Wired AI",
       "url": "https://www.wired.com/feed/tag/ai/latest/rss",
-      "items": 3
+      "items": 5
     },
     {
-      "id": "devto-ai",
-      "name": "DEV AI",
-      "url": "https://dev.to/feed/tag/ai",
+      "id": "deepmind",
+      "name": "Google DeepMind",
+      "url": "https://deepmind.google/blog/rss.xml",
       "items": 0
     },
     {
@@ -44,19 +44,7 @@
       "id": "github-blog",
       "name": "GitHub Blog",
       "url": "https://github.blog/feed/",
-      "items": 0
-    },
-    {
-      "id": "ars-technica-ai",
-      "name": "Ars Technica AI",
-      "url": "https://arstechnica.com/ai/feed/",
-      "items": 4
-    },
-    {
-      "id": "javascript-weekly",
-      "name": "JavaScript Weekly",
-      "url": "https://javascriptweekly.com/rss",
-      "items": 0
+      "items": 1
     },
     {
       "id": "huggingface",
@@ -65,22 +53,34 @@
       "items": 1
     },
     {
-      "id": "hn-ai",
-      "name": "Hacker News AI",
-      "url": "https://hn.algolia.com/api/v1",
+      "id": "devto-ai",
+      "name": "DEV AI",
+      "url": "https://dev.to/feed/tag/ai",
       "items": 0
     },
     {
-      "id": "deepmind",
-      "name": "Google DeepMind",
-      "url": "https://deepmind.google/blog/rss.xml",
-      "items": 0
+      "id": "ars-technica-ai",
+      "name": "Ars Technica AI",
+      "url": "https://arstechnica.com/ai/feed/",
+      "items": 3
     },
     {
       "id": "arxiv-cs-ai",
       "name": "arXiv cs.AI",
       "url": "https://rss.arxiv.org/rss/cs.AI",
-      "items": 856
+      "items": 243
+    },
+    {
+      "id": "javascript-weekly",
+      "name": "JavaScript Weekly",
+      "url": "https://javascriptweekly.com/rss",
+      "items": 0
+    },
+    {
+      "id": "hn-ai",
+      "name": "Hacker News AI",
+      "url": "https://hn.algolia.com/api/v1",
+      "items": 0
     },
     {
       "id": "css-tricks",
@@ -98,37 +98,37 @@
       "id": "google-ai",
       "name": "Google AI Blog",
       "url": "https://blog.google/technology/ai/rss/",
-      "items": 0
+      "items": 2
     },
     {
       "id": "openai-blog",
       "name": "OpenAI Blog",
       "url": "https://openai.com/blog/rss.xml",
-      "items": 3
+      "items": 6
+    },
+    {
+      "id": "infoq-cn",
+      "name": "InfoQ 中文",
+      "url": "https://www.infoq.cn/feed",
+      "items": 12
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "36氪",
+      "url": "https://www.36kr.com/feed",
+      "items": 28
+    },
+    {
+      "id": "quantumbit",
+      "name": "量子位",
+      "url": "https://www.qbitai.com/feed",
+      "items": 10
     },
     {
       "id": "sspai",
       "name": "少数派",
       "url": "https://sspai.com/feed",
       "items": 4
-    },
-    {
-      "id": "infoq-cn",
-      "name": "InfoQ 中文",
-      "url": "https://www.infoq.cn/feed",
-      "items": 13
-    },
-    {
-      "id": "jiqizhixin",
-      "name": "36氪",
-      "url": "https://www.36kr.com/feed",
-      "items": 7
-    },
-    {
-      "id": "quantumbit",
-      "name": "量子位",
-      "url": "https://www.qbitai.com/feed",
-      "items": 6
     }
   ],
   "failures": []
