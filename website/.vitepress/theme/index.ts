@@ -924,6 +924,81 @@ function enhanceArticleImages() {
   });
 }
 
+/** 当前笔记页 frontmatter（Decap 稿可能只有 fm、正文无 h1） */
+let notePageMeta: {
+  title: string;
+  date: string;
+  tags: string[];
+  cover: string;
+} = { title: "", date: "", tags: [], cover: "" };
+
+function normalizeNoteCoverSrc(raw: string): string {
+  const s = String(raw || "").trim();
+  if (!s) return "";
+  if (/^https?:\/\//i.test(s)) return s;
+  const path = s.startsWith("/")
+    ? s
+    : `/uploads/${s.replace(/^\.?\//, "")}`;
+  const siteData = (globalThis as { __VP_SITE_DATA__?: { base?: string } })
+    .__VP_SITE_DATA__;
+  const base = (siteData?.base || "/").replace(/\/$/, "") || "";
+  return `${base}${path}`;
+}
+
+/**
+ * Decap 手写稿：正文常无 # 标题 / article-meta / article-cover。
+ * 用 frontmatter 补文头，再交给 enhanceArticleHero 合成。
+ */
+function ensureNoteHeaderFromPageMeta(root: HTMLElement) {
+  if (!isNoteArticleDetail(currentSitePath())) return;
+  const { title, date, tags, cover } = notePageMeta;
+  if (!title && !cover) return;
+
+  let h1 = root.querySelector<HTMLElement>(":scope > h1");
+  if (!h1 && title) {
+    h1 = document.createElement("h1");
+    h1.textContent = title;
+    h1.dataset.pennFm = "1";
+    root.prepend(h1);
+  }
+
+  let meta = root.querySelector<HTMLElement>(":scope > .article-meta");
+  if (!meta && (date || tags.length)) {
+    meta = document.createElement("p");
+    meta.className = "article-meta";
+    meta.dataset.pennFm = "1";
+    if (date) {
+      const time = document.createElement("time");
+      time.dateTime = date;
+      time.textContent = date;
+      meta.appendChild(time);
+    }
+    for (const tag of tags) {
+      const span = document.createElement("span");
+      span.className = "article-tag";
+      span.textContent = tag;
+      meta.appendChild(span);
+    }
+    if (h1) h1.insertAdjacentElement("afterend", meta);
+    else root.prepend(meta);
+  }
+
+  const hasCover =
+    root.querySelector(":scope > img.article-cover") ||
+    root.querySelector(":scope > p > img.article-cover");
+  const coverSrc = normalizeNoteCoverSrc(cover);
+  if (!hasCover && coverSrc) {
+    const img = document.createElement("img");
+    img.className = "article-cover";
+    img.src = coverSrc;
+    img.alt = title ? `「${title}」封面` : "封面";
+    img.dataset.pennFm = "1";
+    const after = meta || h1;
+    if (after) after.insertAdjacentElement("afterend", img);
+    else root.prepend(img);
+  }
+}
+
 /** 有封面时：把 h1 + meta + cover 合成一体文头 */
 function enhanceArticleHero() {
   if (!isNoteArticleDetail(currentSitePath())) {
@@ -944,6 +1019,8 @@ function enhanceArticleHero() {
     (doc.querySelector(":scope > div > h1")
       ? doc.querySelector<HTMLElement>(":scope > div")
       : doc) || doc;
+
+  ensureNoteHeaderFromPageMeta(root);
 
   const h1 = root.querySelector<HTMLElement>(":scope > h1");
   const meta = root.querySelector<HTMLElement>(":scope > .article-meta");
@@ -1169,10 +1246,36 @@ export default {
   // VitePress theme-level setup (runs on client; official medium-zoom pattern)
   setup() {
     const route = useRoute();
-    const { theme, site } = useData();
+    const { theme, site, frontmatter, page } = useData();
     let teardownSiteRuntime: (() => void) | undefined;
 
     const chromeLang = () => uiLocaleRef.value || getUiLocalePreference();
+
+    function syncNotePageMeta() {
+      const fm = (frontmatter.value || {}) as Record<string, unknown>;
+      const tagsRaw = fm.tags;
+      let tags: string[] = [];
+      if (Array.isArray(tagsRaw)) {
+        tags = tagsRaw.map((t) => String(t || "").trim()).filter(Boolean);
+      } else if (typeof tagsRaw === "string" && tagsRaw.trim()) {
+        tags = [tagsRaw.trim()];
+      }
+      const dateRaw = fm.updated ?? fm.date;
+      let date = "";
+      if (dateRaw != null) {
+        const s = String(dateRaw);
+        const m = s.match(/^(\d{4}-\d{2}-\d{2})/);
+        date = m ? m[1] : s.slice(0, 10);
+      }
+      notePageMeta = {
+        title: String(fm.title || page.value?.title || "").trim(),
+        date,
+        tags,
+        cover: String(fm.cover || "").trim(),
+      };
+    }
+
+    syncNotePageMeta();
 
     /** 写入当前页 theme，并尽量写回站点原始 themeConfig（避免仅改到路由浅拷贝） */
     function applyPreferredChrome() {
@@ -1262,7 +1365,8 @@ export default {
                     (n.classList.contains("medium-zoom-overlay") ||
                       n.classList.contains("medium-zoom-image--opened") ||
                       n.classList.contains("reading-time") ||
-                      n.classList.contains("article-hero-particles")),
+                      n.classList.contains("article-hero-particles") ||
+                      (n instanceof HTMLElement && n.dataset.pennFm === "1")),
                 )
               ) {
                 return false;
@@ -1346,6 +1450,7 @@ export default {
     watch(
       () => route.path,
       () => {
+        syncNotePageMeta();
         // SPA 换页会重新 resolve themeConfig（回到构建时简体），必须按偏好再刷一遍
         applyPreferredChrome();
         void nextTick(() => {
@@ -1379,6 +1484,16 @@ export default {
         }
         updateFocusToggleVisibility();
         applyFocusToggleState();
+      },
+    );
+    watch(
+      () => [frontmatter.value, page.value?.title] as const,
+      () => {
+        syncNotePageMeta();
+        if (isNoteArticleDetail(sitePath(route.path))) {
+          enhanceArticleChromeNow();
+          scheduleRefresh();
+        }
       },
     );
 

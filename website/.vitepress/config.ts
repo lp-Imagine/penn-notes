@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig, type HeadConfig } from "vitepress";
 import { pennCalloutsPlugin } from "./markdown-callouts";
+import { pennNoteHeaderInject } from "./note-header-inject";
 import { pennBase, pennCanonicalUrl, pennSiteUrl, pennRewriteRootUrlsInHtml } from "../../scripts/penn-base.mjs";
 import sidebar from "./sidebar.generated.mjs";
 import newsSidebar from "./sidebar.news.generated.mjs";
@@ -161,6 +162,7 @@ export default defineConfig({
     injectFaviconEarly(siteConfig.outDir);
   },
   vite: {
+    plugins: [pennNoteHeaderInject()],
     server: {
       proxy: {
         "/api/assistant": {
