@@ -64,6 +64,7 @@ location /api/decap-auth {
 ## 相关文件
 
 - [`website/public/admin/index.html`](../website/public/admin/index.html)
+- [`website/public/admin/admin.css`](../website/public/admin/admin.css)（仅美化，不改功能）
 - [`website/public/admin/config.yml`](../website/public/admin/config.yml)
 - [`assistant-server/lib/decap-auth.mjs`](../assistant-server/lib/decap-auth.mjs)
 - 笔记目录约定：[`docs/SYNC.md`](./SYNC.md)
