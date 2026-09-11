@@ -507,7 +507,9 @@ h2[class*="-CardHeading"] {
 
 [class*="-SettingsFieldLabel"] {
   color: var(--penn-admin-faint) !important;
-  letter-spacing: 0.06em !important;
+  /* 中文标签不必全大写；英文 MODE/THEME 会由 admin-i18n.js 替换 */
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
 }
 
 /* 仅下拉菜单面板，绝不要动 ToolbarDropdown（H / + 触发器） */
