@@ -37,7 +37,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: web }
@@ -85,7 +85,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: ui }
@@ -131,7 +131,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: engineering }
@@ -178,7 +178,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: backend }
@@ -224,7 +224,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: tech }
@@ -271,7 +271,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: computer }
@@ -316,7 +316,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: agent }
@@ -364,7 +364,7 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    summary: "{{title}} ({{group}})"
+    summary: "{{title}}"
     fields:
       - { label: 标题, name: title, widget: string }
       - { label: Section, name: section, widget: hidden, default: misc }

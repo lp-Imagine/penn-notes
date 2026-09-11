@@ -171,7 +171,53 @@ a[class*="-SidebarNavLink"][class*="active"] {
   background: var(--penn-admin-soft) !important;
 }
 
-[class*="-ListCard"],
+/* 条目列表：拉满宽度，收成紧凑行，避免短标题旁一大块空白「胶囊」 */
+[class*="-ListCard"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 8px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: 12px !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+[class*="-ListCardLink"] {
+  display: flex !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  padding: 13px 16px !important;
+  border-radius: 0 !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+[class*="-ListCardLink"]:hover {
+  background: color-mix(in srgb, var(--penn-admin-accent-soft) 70%, #fff) !important;
+}
+
+[class*="-ListCard"]:hover {
+  transform: none;
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 32%, var(--penn-admin-line)) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+[class*="-ListCardTitle"] {
+  margin: 0 !important;
+  color: var(--penn-admin-ink) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 [class*="-GridCard"],
 [class*="-WorkflowCardContainer"] {
   border: 1px solid var(--penn-admin-line) !important;
@@ -184,12 +230,10 @@ a[class*="-SidebarNavLink"][class*="active"] {
     border-color 0.16s ease;
 }
 
-[class*="-ListCardLink"],
 [class*="-GridCardLink"] {
   border-radius: var(--penn-admin-radius) !important;
 }
 
-[class*="-ListCard"]:hover,
 [class*="-GridCard"]:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--penn-admin-accent) 28%, var(--penn-admin-line)) !important;
@@ -198,7 +242,6 @@ a[class*="-SidebarNavLink"][class*="active"] {
     0 14px 32px rgba(15, 23, 42, 0.08) !important;
 }
 
-[class*="-ListCardTitle"],
 [class*="-CardTitle"],
 [class*="-CardHeading"] {
   color: var(--penn-admin-ink) !important;
@@ -351,7 +394,6 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
     transition: none !important;
   }
 
-  [class*="-ListCard"]:hover,
   [class*="-GridCard"]:hover {
     transform: none;
   }
