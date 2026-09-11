@@ -353,8 +353,9 @@ h2[class*="-CardHeading"] {
   color: var(--penn-admin-muted) !important;
 }
 
-/* ── 表单字段（不含编辑器工具栏） ── */
-[class*="-ControlContainer"] input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+/* ── 表单字段（不含编辑器工具栏 / react-select 内部 input） ── */
+[class*="-ControlContainer"]
+  input:not([type="file"]):not([type="checkbox"]):not([type="radio"]):not([aria-autocomplete]),
 [class*="-ControlContainer"] textarea,
 [class*="-ControlContainer"] select {
   border: 1px solid var(--penn-admin-line) !important;
@@ -364,7 +365,8 @@ h2[class*="-CardHeading"] {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-[class*="-ControlContainer"] input:focus,
+[class*="-ControlContainer"]
+  input:not([aria-autocomplete]):focus,
 [class*="-ControlContainer"] textarea:focus,
 [class*="-ControlContainer"] select:focus {
   border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
@@ -396,18 +398,29 @@ h2[class*="-CardHeading"] {
   line-height: 1.45 !important;
 }
 
-/* react-select（分组 / CodeMirror Field Settings 等）：
-   默认可搜索，空输入的闪烁光标会叠在已选项首字上 —— 只藏光标，保留可输入文字 */
+/* react-select（分组 / 多选 / CodeMirror 设置等） */
 #nc-root input[aria-autocomplete="list"],
 #nc-root input[aria-autocomplete="both"],
 #nc-root input[id*="-select-"] {
+  /* 空输入时闪烁光标别叠在已选项上；有字时仍靠文字本身可见 */
   caret-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+  min-height: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: var(--penn-admin-ink) !important;
 }
 
 /* react-select 控件外框与菜单 */
 #nc-root [class*="-control"] {
-  min-height: 40px !important;
-  border-color: var(--penn-admin-line) !important;
+  min-height: 42px !important;
+  border: 1px solid var(--penn-admin-line) !important;
   border-radius: var(--penn-admin-radius-sm) !important;
   box-shadow: none !important;
   background: #fff !important;
@@ -424,13 +437,72 @@ h2[class*="-CardHeading"] {
   box-shadow: 0 0 0 3px var(--penn-admin-accent-ring) !important;
 }
 
+#nc-root [class*="-ValueContainer"],
+#nc-root [class*="-valueContainer"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 10px !important;
+  min-height: 40px !important;
+}
+
 #nc-root [class*="-singleValue"] {
   color: var(--penn-admin-ink) !important;
-  margin-left: 2px !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
 }
 
 #nc-root [class*="-placeholder"] {
   color: var(--penn-admin-faint) !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+}
+
+#nc-root [class*="-Input"],
+#nc-root [class*="-input"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--penn-admin-ink) !important;
+  font-size: 14px !important;
+}
+
+#nc-root [class*="-multiValue"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border: 1px solid color-mix(in srgb, var(--penn-admin-accent) 18%, var(--penn-admin-line)) !important;
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent-soft) !important;
+  overflow: hidden !important;
+}
+
+#nc-root [class*="-multiValueLabel"] {
+  padding: 4px 10px !important;
+  color: var(--penn-admin-accent-2) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+#nc-root [class*="-multiValueRemove"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 4px 0 0 !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  color: var(--penn-admin-accent) !important;
+  background: transparent !important;
+}
+
+#nc-root [class*="-multiValueRemove"]:hover {
+  background: color-mix(in srgb, var(--penn-admin-accent) 16%, #fff) !important;
+  color: var(--penn-admin-accent-2) !important;
 }
 
 #nc-root [class*="-indicatorSeparator"] {
@@ -460,7 +532,7 @@ h2[class*="-CardHeading"] {
 
 #nc-root [class*="-menuList"] {
   padding: 6px !important;
-  max-height: 240px !important;
+  max-height: 280px !important;
   scrollbar-width: thin;
   scrollbar-color: var(--penn-admin-line-strong) transparent;
 }
@@ -477,7 +549,9 @@ h2[class*="-CardHeading"] {
 
 #nc-root [class*="-option"] {
   border-radius: 8px !important;
-  padding: 8px 10px !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
   cursor: pointer !important;
 }
 
