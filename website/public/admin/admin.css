@@ -372,6 +372,18 @@ h2[class*="-CardHeading"] {
   outline: none !important;
 }
 
+[class*="-ControlContainer"] select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  caret-color: transparent !important;
+  padding: 10px 36px 10px 12px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75L6 6.25L10.5 1.75' stroke='%236b6f7b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-color: #fff !important;
+  cursor: pointer;
+}
+
 [class*="-FieldLabel"] {
   border-radius: 8px 8px 0 0 !important;
   font-weight: 650 !important;
@@ -382,6 +394,120 @@ h2[class*="-CardHeading"] {
   color: var(--penn-admin-muted) !important;
   font-size: 12.5px !important;
   line-height: 1.45 !important;
+}
+
+/* react-select（分组 / CodeMirror Field Settings 等）：
+   默认可搜索，空输入的闪烁光标会叠在已选项首字上 —— 只藏光标，保留可输入文字 */
+#nc-root input[aria-autocomplete="list"],
+#nc-root input[aria-autocomplete="both"],
+#nc-root input[id*="-select-"] {
+  caret-color: transparent !important;
+}
+
+/* react-select 控件外框与菜单 */
+#nc-root [class*="-control"] {
+  min-height: 40px !important;
+  border-color: var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius-sm) !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#nc-root [class*="-control"]:hover {
+  border-color: var(--penn-admin-line-strong) !important;
+}
+
+#nc-root [class*="-control"][class*="-focused"],
+#nc-root [class*="-control"]:focus-within {
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
+  box-shadow: 0 0 0 3px var(--penn-admin-accent-ring) !important;
+}
+
+#nc-root [class*="-singleValue"] {
+  color: var(--penn-admin-ink) !important;
+  margin-left: 2px !important;
+}
+
+#nc-root [class*="-placeholder"] {
+  color: var(--penn-admin-faint) !important;
+}
+
+#nc-root [class*="-indicatorSeparator"] {
+  display: none !important;
+}
+
+#nc-root [class*="-dropdownIndicator"],
+#nc-root [class*="-clearIndicator"] {
+  color: var(--penn-admin-faint) !important;
+  padding: 6px 10px !important;
+}
+
+#nc-root [class*="-dropdownIndicator"]:hover,
+#nc-root [class*="-clearIndicator"]:hover {
+  color: var(--penn-admin-ink) !important;
+}
+
+#nc-root [class*="-menu"] {
+  margin-top: 6px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--penn-admin-shadow) !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  z-index: 20 !important;
+}
+
+#nc-root [class*="-menuList"] {
+  padding: 6px !important;
+  max-height: 240px !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--penn-admin-line-strong) transparent;
+}
+
+#nc-root [class*="-menuList"]::-webkit-scrollbar {
+  width: 8px;
+}
+
+#nc-root [class*="-menuList"]::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--penn-admin-line-strong);
+  border: 2px solid #fff;
+}
+
+#nc-root [class*="-option"] {
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  cursor: pointer !important;
+}
+
+#nc-root [class*="-option"][class*="-focused"],
+#nc-root [class*="-option"]:active {
+  background: var(--penn-admin-soft) !important;
+  color: var(--penn-admin-ink) !important;
+}
+
+#nc-root [class*="-option"][class*="-selected"] {
+  background: var(--penn-admin-accent-soft) !important;
+  color: var(--penn-admin-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* CodeMirror Field Settings 侧栏 */
+[class*="-SettingsPaneContainer"] {
+  border-left: 1px solid var(--penn-admin-line) !important;
+  background: #fff !important;
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.04) !important;
+}
+
+[class*="-SettingsSectionTitle"] {
+  color: var(--penn-admin-ink) !important;
+  font-weight: 700 !important;
+}
+
+[class*="-SettingsFieldLabel"] {
+  color: var(--penn-admin-faint) !important;
+  letter-spacing: 0.06em !important;
 }
 
 /* 仅下拉菜单面板，绝不要动 ToolbarDropdown（H / + 触发器） */

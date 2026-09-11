@@ -71,7 +71,7 @@ location /api/decap-auth {
 
 - [`website/public/admin/index.html`](../website/public/admin/index.html)
 - [`website/public/admin/admin.css`](../website/public/admin/admin.css)（仅美化，不改功能）
-- [`website/public/admin/admin-confirm.js`](../website/public/admin/admin-confirm.js)（离开页确认改为站内弹窗）
+- [`website/public/admin/admin-confirm.js`](../website/public/admin/admin-confirm.js)（`confirm` / `alert` 统一为站内弹窗）
 - [`website/public/admin/preview.js`](../website/public/admin/preview.js) / [`preview.css`](../website/public/admin/preview.css)（编辑页右侧预览）
 - [`website/public/admin/config.yml`](../website/public/admin/config.yml)
 - [`assistant-server/lib/decap-auth.mjs`](../assistant-server/lib/decap-auth.mjs)
