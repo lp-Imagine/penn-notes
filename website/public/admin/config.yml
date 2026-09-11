@@ -76,7 +76,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: ui
     label: 样式
@@ -123,7 +128,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: engineering
     label: 工程化
@@ -171,7 +181,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: backend
     label: 后端
@@ -218,7 +233,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: tech
     label: 工具备忘
@@ -266,7 +286,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: computer
     label: 浏览器
@@ -312,7 +337,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: agent
     label: AI Agent
@@ -361,7 +391,12 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }
 
   - name: misc
     label: 杂项
@@ -410,4 +445,9 @@ collections:
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
-      - { label: 正文, name: body, widget: markdown }
+      - {
+          label: 正文,
+          name: body,
+          widget: richtext,
+          hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
+        }

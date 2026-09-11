@@ -60,6 +60,7 @@ location /api/decap-auth {
 - **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`，值为 `/uploads/...`），或用「Insert from URL」贴外链 / 已有 COS 地址。正文配图用编辑器插图同样走媒体库。**发布构建**（`ingest`，需 `COS_*`）会自动上传到 COS 并改写成 `https://img.penn-notes.draftly.cn/sync/decap/...`；本地无 COS 密钥时保留原地址
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验
+- **正文编辑器**用 `richtext`（Decap ≥ 3.12），替代易在列表/换行时崩溃的旧 `markdown`（Slate）。复杂格式可点工具栏切到 Markdown 源码模式
 
 ## 编辑预览
 

@@ -479,6 +479,71 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
   padding: 0 22px !important;
 }
 
+/* ── 崩溃页：收敛成可读卡片，避免整屏 JSON 糊墙 ── */
+[class*="-ErrorBoundaryContainer"] {
+  max-width: 720px !important;
+  margin: 48px auto !important;
+  padding: 28px 28px 32px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: var(--penn-admin-shadow) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] h1 {
+  margin: 0 0 10px !important;
+  color: var(--penn-admin-danger) !important;
+  font-size: 22px !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em;
+}
+
+[class*="-ErrorBoundaryContainer"] h2 {
+  margin: 22px 0 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--penn-admin-ink) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] > p,
+[class*="-ErrorBoundaryContainer"] [class*="-PrivacyWarning"] {
+  color: var(--penn-admin-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+[class*="-ErrorBoundaryContainer"] hr {
+  width: 100% !important;
+  margin: 20px 0 !important;
+  background: var(--penn-admin-line) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] pre,
+[class*="-ErrorBoundaryContainer"] h2 + * {
+  display: block;
+  max-height: 280px;
+  overflow: auto;
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  border: 1px solid var(--penn-admin-line);
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+[class*="-ErrorBoundaryContainer"] [class*="-CopyButton"] {
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   li[class*="-ListCard"],
   a[class*="-ListCardLink"],

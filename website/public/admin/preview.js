@@ -184,7 +184,7 @@
     },
   });
 
-  CMS.registerPreviewStyle("/admin/preview.css?v=20260911b");
+  CMS.registerPreviewStyle("/admin/preview.css?v=20260911c");
   COLLECTIONS.forEach(function (name) {
     CMS.registerPreviewTemplate(name, NotePreview);
   });
