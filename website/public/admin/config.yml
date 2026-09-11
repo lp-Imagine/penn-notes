@@ -17,7 +17,7 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# Decap schema 必填；封面仍优先用文章里的 cover URL 字段，此处仅占位
+# 媒体库：本地选图会进 git（/uploads/...）；CI ingest 有 COS_* 时自动上传并改写成 CDN
 media_folder: website/public/uploads
 public_folder: /uploads
 
@@ -63,11 +63,11 @@ collections:
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
       - {
-          label: 封面 URL,
+          label: 封面,
           name: cover,
           widget: string,
           required: false,
-          hint: "填 COS/外链绝对地址，如 https://img.penn-notes.draftly.cn/...",
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -105,7 +105,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -143,7 +149,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -180,7 +192,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -218,7 +236,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -254,7 +278,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -293,7 +323,13 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
 
@@ -332,6 +368,12 @@ collections:
         }
       - { label: 标签, name: tags, widget: list, required: false, default: [] }
       - { label: 一句话摘要, name: summary, widget: text, required: false }
-      - { label: 封面 URL, name: cover, widget: string, required: false }
+      - {
+          label: 封面,
+          name: cover,
+          widget: string,
+          required: false,
+          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+        }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }

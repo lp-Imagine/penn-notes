@@ -57,7 +57,7 @@ location /api/decap-auth {
 
 - 按栏目选 Collection（Web / UI / …），再选 **分组**（决定目录 `website/<section>/<group>/<slug>.md`）
 - `draft: true` 的稿不会进侧栏/首页（构建脚本会跳过）
-- **封面**填绝对 URL（COS/外链）；首期无图床上传
+- **封面 / 配图**：可填外链、已有 COS 地址，或经媒体库上传得到 `/uploads/...`。**发布构建**（`ingest`，需 `COS_*`）会自动上传到 COS 并改写成 `https://img.penn-notes.draftly.cn/sync/decap/...`；本地无 COS 密钥时保留原地址
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验
 

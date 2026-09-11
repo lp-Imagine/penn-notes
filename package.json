@@ -33,6 +33,7 @@
     "cos:migrate": "node scripts/migrate-article-images-to-cos.mjs",
     "cos:health": "node scripts/cos-health.mjs",
     "cos:sync-assets": "node scripts/ensure-cos-sync-assets.mjs",
+    "cos:note-images": "node scripts/ensure-cos-note-images.mjs",
     "baidu:push": "node scripts/baidu-push.mjs",
     "assistant:server": "node assistant-server/server.mjs",
     "assistant:dev": "node scripts/assistant-dev.mjs",

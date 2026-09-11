@@ -26,7 +26,8 @@ npm run dev
 ```bash
 npm run dev           # 开发（含首页 / 侧栏 / 资讯同步）
 npm run build         # prebuild + VitePress 构建
-npm run ingest        # 校验 ai-article 同步契约；有 COS_* 时上传封面
+npm run ingest        # 校验 ai-article；有 COS_* 时上传 /sync 与笔记 cover/配图（/uploads、外链）
+npm run cos:note-images  # 仅跑笔记配图收口（可加 --dry-run）
 npm run sync:news     # news/ → website/news/
 npm run news:daily    # 生成昨日 AI 动态（需 LLM_API_KEY）
 npm run news:images   # 为日报补配图并上传 COS
@@ -36,7 +37,7 @@ npm run cos:health    # 抽查 CDN URL 是否可访问
 
 ## 文章配图（COS）
 
-新闻配图、笔记封面、旧插图已迁到 `https://img.penn-notes.draftly.cn`，仓库不再跟踪这些二进制（logo / favicon 仍留仓）。
+新闻配图、笔记封面、旧插图已迁到 `https://img.penn-notes.draftly.cn`，仓库不再跟踪这些二进制（logo / favicon 仍留仓）。Decap 手写稿可用外链或 `/uploads/...`，`npm run ingest`（含在 `prebuild`）有 `COS_*` 时会自动上传并改写。
 
 | 类型 | COS 对象键前缀 |
 |------|----------------|

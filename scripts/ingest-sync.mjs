@@ -2,12 +2,15 @@
 /**
  * Validate ai-article synced Markdown across both legacy website/sync/ and
  * current website/<section>/ paths (any file with `source: ai-article`).
- * When COS env is set, upload public/sync assets and rewrite /sync/ → CDN URLs.
+ * When COS env is set:
+ *   1) upload public/sync assets and rewrite /sync/ → CDN
+ *   2) note cover/body: /uploads|/sync|外链 → COS（Decap 手写稿收口）
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ensureCosSyncAssets } from "./ensure-cos-sync-assets.mjs";
+import { ensureCosNoteImages } from "./ensure-cos-note-images.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const websiteRoot = path.join(root, "website");
@@ -105,6 +108,13 @@ async function main() {
     await ensureCosSyncAssets();
   } catch (err) {
     console.error("ingest-sync: COS sync assets failed:", err.message || err);
+    process.exit(1);
+  }
+
+  try {
+    await ensureCosNoteImages();
+  } catch (err) {
+    console.error("ingest-sync: COS note images failed:", err.message || err);
     process.exit(1);
   }
 }
