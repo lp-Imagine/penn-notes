@@ -1,4 +1,4 @@
-/* Penn Notes · Decap /admin 界面美化（仅样式，不改功能） */
+/* Penn Notes · Decap /admin 界面美化（仅样式；避开 Markdown 工具栏） */
 
 :root {
   --penn-admin-ink: #1a1b1f;
@@ -39,10 +39,9 @@ body {
   min-height: 100vh;
 }
 
-/* ── 顶栏 ── */
+/* ── 顶栏（不含编辑器工具栏） ── */
 [class*="-AppHeaderContent"],
-[class*="-TopBarContainer"],
-header[class*="-TopBar"] {
+[class*="-TopBarContainer"] {
   background: color-mix(in srgb, #fff 88%, transparent) !important;
   backdrop-filter: saturate(1.2) blur(14px);
   -webkit-backdrop-filter: saturate(1.2) blur(14px);
@@ -51,8 +50,7 @@ header[class*="-TopBar"] {
 }
 
 [class*="-AppHeaderNavLink"],
-[class*="-AppHeaderButton"],
-[class*="-TopBarButton"] {
+[class*="-AppHeaderButton"] {
   border-radius: 999px !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em;
@@ -67,7 +65,6 @@ header[class*="-TopBar"] {
 
 [class*="-AppHeaderQuickNewButton"],
 [class*="-CollectionTopNewButton"],
-[class*="-PublishButton"],
 [class*="-LoginButton"] {
   border-radius: 999px !important;
   background: var(--penn-admin-accent) !important;
@@ -75,15 +72,24 @@ header[class*="-TopBar"] {
   color: #fff !important;
   font-weight: 600 !important;
   box-shadow: 0 6px 16px var(--penn-admin-accent-ring) !important;
-  transition: filter 0.15s ease, transform 0.15s ease;
+  transition: filter 0.15s ease;
 }
 
 [class*="-AppHeaderQuickNewButton"]:hover,
 [class*="-CollectionTopNewButton"]:hover,
-[class*="-PublishButton"]:hover,
 [class*="-LoginButton"]:hover {
   filter: brightness(1.05);
   background: var(--penn-admin-accent-2) !important;
+}
+
+/* 发布按钮：避免误伤其它 *Publish* 控件，尽量收窄 */
+button[class*="-PublishButton"] {
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 6px 16px var(--penn-admin-accent-ring) !important;
 }
 
 /* ── 主布局 / 侧栏 ── */
@@ -107,12 +113,8 @@ header[class*="-TopBar"] {
   text-transform: uppercase !important;
 }
 
-[class*="-SearchContainer"],
 [class*="-SearchInput"] {
   border-radius: 999px !important;
-}
-
-[class*="-SearchInput"] {
   border: 1px solid var(--penn-admin-line) !important;
   background: var(--penn-admin-surface) !important;
   box-shadow: none !important;
@@ -140,21 +142,14 @@ header[class*="-TopBar"] {
   color: var(--penn-admin-accent) !important;
 }
 
-/* 当前集合：左侧色条 + 浅蓝底 */
 [class*="-SidebarNavLink"][aria-current="page"],
-[class*="-SidebarNavLink"].active,
 a[class*="-SidebarNavLink"][class*="active"] {
   background: var(--penn-admin-accent-soft) !important;
   color: var(--penn-admin-accent) !important;
   box-shadow: inset 3px 0 0 var(--penn-admin-accent);
 }
 
-/* ── 集合顶栏 ── */
-[class*="-CollectionTopContainer"],
-[class*="-CollectionTopRow"] {
-  gap: 12px;
-}
-
+/* ── 集合顶栏 / 列表 ── */
 [class*="-CollectionTopHeading"],
 [class*="-CollectionLabel"] {
   color: var(--penn-admin-ink) !important;
@@ -166,27 +161,17 @@ a[class*="-SidebarNavLink"][class*="active"] {
   color: var(--penn-admin-muted) !important;
 }
 
-[class*="-CollectionControlsContainer"],
-[class*="-ViewControls"],
-[class*="-ViewControlsSection"] {
-  gap: 8px;
-}
-
 [class*="-ViewControlsButton"] {
   border-radius: 10px !important;
   border: 1px solid var(--penn-admin-line) !important;
   background: #fff !important;
-  transition: background 0.14s ease, border-color 0.14s ease;
 }
 
 [class*="-ViewControlsButton"]:hover {
   background: var(--penn-admin-soft) !important;
-  border-color: var(--penn-admin-line-strong) !important;
 }
 
-/* ── 条目列表卡片 ── */
 [class*="-ListCard"],
-[class*="-Card"],
 [class*="-GridCard"],
 [class*="-WorkflowCardContainer"] {
   border: 1px solid var(--penn-admin-line) !important;
@@ -200,14 +185,11 @@ a[class*="-SidebarNavLink"][class*="active"] {
 }
 
 [class*="-ListCardLink"],
-[class*="-GridCardLink"],
-a[class*="-ListCard"],
-a[class*="-Card"] {
+[class*="-GridCardLink"] {
   border-radius: var(--penn-admin-radius) !important;
 }
 
 [class*="-ListCard"]:hover,
-[class*="-Card"]:hover,
 [class*="-GridCard"]:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--penn-admin-accent) 28%, var(--penn-admin-line)) !important;
@@ -230,46 +212,16 @@ a[class*="-Card"] {
 }
 
 [class*="-CardsGrid"],
-[class*="-CardGrid"],
 [class*="-CardGridContainer"] {
   gap: 14px !important;
 }
 
-/* ── 编辑器壳 ── */
-[class*="-EditorContainer"],
-[class*="-ControlPaneContainer"],
-[class*="-Editor"] {
-  background: transparent !important;
-}
-
-[class*="-ToolbarContainer"],
-[class*="-EditorControlBar"],
-[class*="-StyledListItemTopBar"] {
-  background: color-mix(in srgb, #fff 90%, transparent) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--penn-admin-line) !important;
-}
-
-[class*="-ToolbarButton"],
-[class*="-StyledToolbarButton"],
-[class*="-TextButton"],
-[class*="-ActionButton"] {
-  border-radius: 10px !important;
-}
-
-/* 表单控件 */
-input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
-textarea,
-select,
-[class*="css-"][contenteditable="true"] {
-  border-radius: var(--penn-admin-radius-sm) !important;
-}
-
-[class*="-ControlContainer"] input,
+/* ── 表单字段（不含编辑器工具栏） ── */
+[class*="-ControlContainer"] input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
 [class*="-ControlContainer"] textarea,
 [class*="-ControlContainer"] select {
   border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius-sm) !important;
   background: #fff !important;
   box-shadow: none !important;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -295,9 +247,8 @@ select,
   line-height: 1.45 !important;
 }
 
-/* 下拉 */
-[class*="-DropdownList"],
-[class*="-ToolbarDropdown"] {
+/* 仅下拉菜单面板，绝不要动 ToolbarDropdown（H / + 触发器） */
+[class*="-DropdownList"] {
   border: 1px solid var(--penn-admin-line) !important;
   border-radius: 12px !important;
   box-shadow: var(--penn-admin-shadow) !important;
@@ -305,7 +256,9 @@ select,
   background: #fff !important;
 }
 
-/* ── 封面 / 媒体控件（延续） ── */
+/* Markdown 工具栏保持 Decap 默认：不对 Toolbar* / StyledToolbarButton 设背景、边框、圆角 */
+
+/* ── 封面 / 媒体控件 ── */
 div:has(> [class*="-FileWidgetButton"]):not(:has(img)):not(:has([class*="-StyledImage"])) {
   display: flex !important;
   flex-wrap: wrap;
@@ -355,7 +308,6 @@ label.nc-fileUploadButton {
   color: var(--penn-admin-accent) !important;
   font-size: 13px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.01em;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
   cursor: pointer;
   transition: background 0.16s ease, border-color 0.16s ease, filter 0.16s ease;
@@ -385,7 +337,6 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
   background: #fff !important;
 }
 
-/* 登录页略提气质 */
 [class*="-LoginButton"] {
   min-height: 44px;
   padding: 0 22px !important;
@@ -393,7 +344,6 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
 
 @media (prefers-reduced-motion: reduce) {
   [class*="-ListCard"],
-  [class*="-Card"],
   [class*="-GridCard"],
   [class*="-FileWidgetButton"],
   [class*="-AppHeaderQuickNewButton"],
@@ -402,7 +352,6 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
   }
 
   [class*="-ListCard"]:hover,
-  [class*="-Card"]:hover,
   [class*="-GridCard"]:hover {
     transform: none;
   }
