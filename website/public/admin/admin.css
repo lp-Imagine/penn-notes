@@ -1,0 +1,113 @@
+/* Penn Notes · Decap 后台微调（封面/媒体控件） */
+
+:root {
+  --penn-admin-ink: #1d1d1f;
+  --penn-admin-muted: #6e6e73;
+  --penn-admin-line: #d8dae3;
+  --penn-admin-soft: #eef1f8;
+  --penn-admin-surface: #f7f8fc;
+  --penn-admin-accent: #3b5bdb;
+  --penn-admin-accent-soft: rgba(59, 91, 219, 0.1);
+  --penn-admin-radius: 14px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 空封面：包着「选择图片 / 从 URL 插入」的区域做成上传卡片 */
+div:has(> [class*="-FileWidgetButton"]):not(:has(img)):not(:has([class*="-StyledImage"])) {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 148px;
+  margin: 0 0 10px;
+  padding: 22px 18px;
+  border: 1.5px dashed color-mix(in srgb, var(--penn-admin-accent) 34%, var(--penn-admin-line));
+  border-radius: var(--penn-admin-radius);
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--penn-admin-accent-soft), transparent 55%),
+    linear-gradient(180deg, #fff 0%, var(--penn-admin-surface) 100%);
+  box-sizing: border-box;
+}
+
+/* 已选封面缩略图外框 */
+[class*="-ImageWrapper"] {
+  flex-basis: min(280px, 100%) !important;
+  width: min(280px, 100%) !important;
+  height: 168px !important;
+  margin: 0 12px 12px 0 !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  overflow: hidden !important;
+  background: var(--penn-admin-soft) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+[class*="-StyledImage"],
+[class*="-ImageWrapper"] img {
+  object-fit: cover !important;
+}
+
+/* 选择 / URL / 移除按钮 */
+[class*="-FileWidgetButton"],
+[class*="-FileWidgetButtonRemove"],
+label.nc-fileUploadButton {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  border: 1px solid color-mix(in srgb, var(--penn-admin-accent) 22%, var(--penn-admin-line)) !important;
+  background: #fff !important;
+  color: var(--penn-admin-accent) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+[class*="-FileWidgetButton"]:hover,
+label.nc-fileUploadButton:hover {
+  background: var(--penn-admin-accent-soft) !important;
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
+}
+
+[class*="-FileWidgetButton"]:first-of-type,
+div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-child {
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+}
+
+[class*="-FileWidgetButton"]:first-of-type:hover,
+div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-child:hover {
+  filter: brightness(1.05);
+  background: var(--penn-admin-accent) !important;
+  color: #fff !important;
+}
+
+[class*="-FileWidgetButtonRemove"] {
+  border-color: color-mix(in srgb, #c0392b 30%, var(--penn-admin-line)) !important;
+  color: #b42318 !important;
+  background: #fff !important;
+}
+
+/* 字段说明 */
+[class*="-ControlHint"] {
+  margin-top: 2px !important;
+  color: var(--penn-admin-muted) !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+
+/* 字段标签稍柔和 */
+[class*="-FieldLabel"] {
+  border-radius: 8px 8px 0 0 !important;
+}

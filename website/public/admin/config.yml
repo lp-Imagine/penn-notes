@@ -1,6 +1,8 @@
 # Decap CMS — https://penn-notes.draftly.cn/admin/
 # 手写笔记（勿填 source: ai-article）；保存后 push master → CI 部署
 
+locale: zh_Hans
+
 backend:
   name: github
   repo: lp-Imagine/penn-notes
@@ -70,7 +72,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -116,7 +118,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -163,7 +165,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -209,7 +211,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -256,7 +258,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -301,7 +303,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -349,7 +351,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -397,7 +399,7 @@ collections:
           choose_url: true,
           allow_multiple: false,
           media_library: { config: { max_file_size: 2500000 } },
-          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
+          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
