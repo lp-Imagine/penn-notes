@@ -61,10 +61,15 @@ location /api/decap-auth {
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验
 
+## 编辑预览
+
+右侧预览通过 [`preview.js`](../website/public/admin/preview.js) + [`preview.css`](../website/public/admin/preview.css) 自定义，按博客笔记还原：封面一体文头、日期/标签、摘要、正文排版（含章节 h2 样式）。正文里若仍带文头副本（旧稿 / ai-article），预览会用 CSS 藏掉，避免双标题双封面。
+
 ## 相关文件
 
 - [`website/public/admin/index.html`](../website/public/admin/index.html)
 - [`website/public/admin/admin.css`](../website/public/admin/admin.css)（仅美化，不改功能）
+- [`website/public/admin/preview.js`](../website/public/admin/preview.js) / [`preview.css`](../website/public/admin/preview.css)（编辑页右侧预览）
 - [`website/public/admin/config.yml`](../website/public/admin/config.yml)
 - [`assistant-server/lib/decap-auth.mjs`](../assistant-server/lib/decap-auth.mjs)
 - 笔记目录约定：[`docs/SYNC.md`](./SYNC.md)
