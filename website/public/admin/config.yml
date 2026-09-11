@@ -65,9 +65,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -108,9 +111,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -152,9 +158,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -195,9 +204,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -239,9 +251,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -281,9 +296,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -326,9 +344,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
@@ -371,9 +392,12 @@ collections:
       - {
           label: 封面,
           name: cover,
-          widget: string,
+          widget: image,
           required: false,
-          hint: "外链、COS 地址，或媒体库路径 /uploads/...；发布构建会自动上传 COS 并改写",
+          choose_url: true,
+          allow_multiple: false,
+          media_library: { config: { max_file_size: 2500000 } },
+          hint: "可上传本地图，或「Insert from URL」贴外链/COS；发布构建会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - { label: 正文, name: body, widget: markdown }
