@@ -31,7 +31,7 @@ slug:
 collections:
   - name: web
     label: JS & 框架
-    label_singular: 笔记
+    label_singular: JS & 框架
     folder: website/web
     create: true
     extension: md
@@ -85,7 +85,7 @@ collections:
 
   - name: ui
     label: 样式
-    label_singular: 笔记
+    label_singular: 样式
     folder: website/ui
     create: true
     extension: md
@@ -137,7 +137,7 @@ collections:
 
   - name: engineering
     label: 工程化
-    label_singular: 笔记
+    label_singular: 工程化
     folder: website/engineering
     create: true
     extension: md
@@ -190,7 +190,7 @@ collections:
 
   - name: backend
     label: 后端
-    label_singular: 笔记
+    label_singular: 后端
     folder: website/backend
     create: true
     extension: md
@@ -242,7 +242,7 @@ collections:
 
   - name: tech
     label: 工具备忘
-    label_singular: 笔记
+    label_singular: 工具备忘
     folder: website/tech
     create: true
     extension: md
@@ -295,7 +295,7 @@ collections:
 
   - name: computer
     label: 浏览器
-    label_singular: 笔记
+    label_singular: 浏览器
     folder: website/computer
     create: true
     extension: md
@@ -346,7 +346,7 @@ collections:
 
   - name: agent
     label: AI Agent
-    label_singular: 笔记
+    label_singular: AI Agent
     folder: website/agent
     create: true
     extension: md
@@ -400,7 +400,7 @@ collections:
 
   - name: misc
     label: 杂项
-    label_singular: 笔记
+    label_singular: 杂项
     folder: website/misc
     create: true
     extension: md
