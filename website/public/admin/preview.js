@@ -158,7 +158,7 @@
         ? h(
             "aside",
             { className: "article-summary", key: "summary", "aria-label": "文章摘要" },
-            h("p", { className: "article-summary-label" }, "SUMMARY"),
+            h("p", { className: "article-summary-label" }, "速览"),
             h("p", { className: "article-summary-text" }, summary)
           )
         : null;
