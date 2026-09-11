@@ -149,65 +149,160 @@ a[class*="-SidebarNavLink"][class*="active"] {
   box-shadow: inset 3px 0 0 var(--penn-admin-accent);
 }
 
-/* ── 集合顶栏 / 列表 ── */
-[class*="-CollectionTopHeading"],
-[class*="-CollectionLabel"] {
+/* ── 集合顶栏 / 列表 ──
+   注意：Emotion 类名形如 xxx-ListCard / xxx-ListCardLink / xxx-ListCardTitle，
+   禁止用 [class*="-ListCard"]，否则会同时命中 Link/Title，叠出「双边框胶囊」。 */
+
+[class*="-CollectionTopContainer"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 14px !important;
+  padding: 16px 18px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: none !important;
+}
+
+[class*="-CollectionTopHeading"] {
   color: var(--penn-admin-ink) !important;
+  font-size: 20px !important;
   font-weight: 750 !important;
   letter-spacing: -0.02em;
+  line-height: 1.3 !important;
+}
+
+h2[class*="-CollectionLabel"] {
+  color: var(--penn-admin-muted) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.04em;
 }
 
 [class*="-CollectionTopDescription"] {
   color: var(--penn-admin-muted) !important;
 }
 
+[class*="-CollectionTopNewButton"] {
+  min-height: 40px;
+  padding: 0 18px !important;
+}
+
+[class*="-CollectionControlsContainer"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 2px;
+}
+
+[class*="-ViewControlsSection"] {
+  gap: 2px;
+}
+
 [class*="-ViewControlsButton"] {
-  border-radius: 10px !important;
-  border: 1px solid var(--penn-admin-line) !important;
-  background: #fff !important;
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
 }
 
 [class*="-ViewControlsButton"]:hover {
   background: var(--penn-admin-soft) !important;
+  border-color: var(--penn-admin-line) !important;
 }
 
-/* 条目列表：拉满宽度，收成紧凑行，避免短标题旁一大块空白「胶囊」 */
-[class*="-ListCard"] {
+/* 列表视图：整块面板 + 行分割，去掉单卡双边框 */
+ul[class*="-CardsGrid"]:has(> li[class*="-ListCard"]) {
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 12px 0 28px !important;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+li[class*="-ListCard"] {
   width: 100% !important;
   max-width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin-bottom: 8px !important;
-  border: 1px solid var(--penn-admin-line) !important;
-  border-radius: 12px !important;
-  background: var(--penn-admin-card) !important;
+  margin: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid var(--penn-admin-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
   box-shadow: none !important;
   overflow: hidden !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: background 0.14s ease;
 }
 
-[class*="-ListCardLink"] {
+li[class*="-ListCard"]:last-child {
+  border-bottom: none !important;
+}
+
+li[class*="-ListCard"]:hover {
+  background: color-mix(in srgb, var(--penn-admin-accent-soft) 55%, #fff) !important;
+  box-shadow: none !important;
+}
+
+a[class*="-ListCardLink"] {
   display: flex !important;
   align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100% !important;
   max-width: 100% !important;
-  padding: 13px 16px !important;
+  margin: 0 !important;
+  padding: 14px 18px 14px 16px !important;
+  border: none !important;
+  border-left: 3px solid transparent !important;
   border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
   color: inherit !important;
   text-decoration: none !important;
+  transition: border-color 0.14s ease;
 }
 
-[class*="-ListCardLink"]:hover {
-  background: color-mix(in srgb, var(--penn-admin-accent-soft) 70%, #fff) !important;
+a[class*="-ListCardLink"]:hover {
+  background: transparent !important;
+  border-left-color: var(--penn-admin-accent) !important;
 }
 
-[class*="-ListCard"]:hover {
-  transform: none;
-  border-color: color-mix(in srgb, var(--penn-admin-accent) 32%, var(--penn-admin-line)) !important;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06) !important;
+a[class*="-ListCardLink"]::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-right: 2px;
+  border-right: 1.5px solid var(--penn-admin-faint);
+  border-top: 1.5px solid var(--penn-admin-faint);
+  transform: rotate(45deg);
+  opacity: 0.55;
+  transition: border-color 0.14s ease, opacity 0.14s ease, transform 0.14s ease;
 }
 
-[class*="-ListCardTitle"] {
+a[class*="-ListCardLink"]:hover::after {
+  border-color: var(--penn-admin-accent);
+  opacity: 1;
+  transform: rotate(45deg) translate(1px, -1px);
+}
+
+h2[class*="-ListCardTitle"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+  max-width: none !important;
   margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
   color: var(--penn-admin-ink) !important;
   font-size: 14.5px !important;
   font-weight: 600 !important;
@@ -218,7 +313,12 @@ a[class*="-SidebarNavLink"][class*="active"] {
   white-space: nowrap;
 }
 
-[class*="-GridCard"],
+/* 网格视图 */
+ul[class*="-CardsGrid"]:has(> li[class*="-GridCard"]) {
+  gap: 14px !important;
+}
+
+li[class*="-GridCard"],
 [class*="-WorkflowCardContainer"] {
   border: 1px solid var(--penn-admin-line) !important;
   border-radius: var(--penn-admin-radius) !important;
@@ -230,11 +330,11 @@ a[class*="-SidebarNavLink"][class*="active"] {
     border-color 0.16s ease;
 }
 
-[class*="-GridCardLink"] {
+a[class*="-GridCardLink"] {
   border-radius: var(--penn-admin-radius) !important;
 }
 
-[class*="-GridCard"]:hover {
+li[class*="-GridCard"]:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--penn-admin-accent) 28%, var(--penn-admin-line)) !important;
   box-shadow:
@@ -242,8 +342,7 @@ a[class*="-SidebarNavLink"][class*="active"] {
     0 14px 32px rgba(15, 23, 42, 0.08) !important;
 }
 
-[class*="-CardTitle"],
-[class*="-CardHeading"] {
+h2[class*="-CardHeading"] {
   color: var(--penn-admin-ink) !important;
   font-weight: 650 !important;
   letter-spacing: -0.01em;
@@ -252,11 +351,6 @@ a[class*="-SidebarNavLink"][class*="active"] {
 [class*="-CardText"],
 [class*="-CardBody"] {
   color: var(--penn-admin-muted) !important;
-}
-
-[class*="-CardsGrid"],
-[class*="-CardGridContainer"] {
-  gap: 14px !important;
 }
 
 /* ── 表单字段（不含编辑器工具栏） ── */
@@ -386,15 +480,21 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [class*="-ListCard"],
-  [class*="-GridCard"],
+  li[class*="-ListCard"],
+  a[class*="-ListCardLink"],
+  a[class*="-ListCardLink"]::after,
+  li[class*="-GridCard"],
   [class*="-FileWidgetButton"],
   [class*="-AppHeaderQuickNewButton"],
   [class*="-CollectionTopNewButton"] {
     transition: none !important;
   }
 
-  [class*="-GridCard"]:hover {
+  li[class*="-GridCard"]:hover {
     transform: none;
+  }
+
+  a[class*="-ListCardLink"]:hover::after {
+    transform: rotate(45deg);
   }
 }
