@@ -108,14 +108,26 @@ function link(p) {
  * 公共资源路径（website/public 下）。
  * 必须写成 /sync/... 这种「不含 base」的根路径：Vite 构建时会按 base 改写；
  * 若写成 /penn-notes/sync/...，Rollup 会当成模块解析并失败。
+ *
+ * Decap 偶发把封面存成裸文件名（无 /uploads/ 前缀）时，归一到 /uploads/，
+ * 并拒绝其它会让 Vite 误解析的绝对路径（如 /中文截屏.png）。
  */
 function publicAssetSrc(p) {
   if (!p) return "";
-  if (/^https?:\/\//.test(p)) return p;
-  let s = String(p).trim();
+  if (/^https?:\/\//i.test(p)) return p;
+  let s = String(p).trim().replace(/^["']|["']$/g, "");
+  if (!s) return "";
   // 兼容误带 base 前缀的历史值
   s = s.replace(/^\/penn-notes(?=\/)/, "");
-  if (!s.startsWith("/")) s = `/${s}`;
+  // 裸文件名 / 相对路径 → 按媒体库约定落到 /uploads/
+  if (!s.startsWith("/")) {
+    s = `/uploads/${s.replace(/^\.?\//, "")}`;
+  }
+  // 只允许 public 下已知目录，避免 Vite 把 /xxx.png 当模块解析而炸构建
+  if (!/^\/(uploads|sync|img)\//.test(s)) {
+    console.warn(`build-home: skip unsafe asset path: ${s}`);
+    return "";
+  }
   return s;
 }
 

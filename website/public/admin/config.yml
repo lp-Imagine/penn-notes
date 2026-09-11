@@ -19,8 +19,8 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# 媒体库：本地选图会进 git（/uploads/...）；CI ingest 有 COS_* 时自动上传并改写成 CDN
-media_folder: website/public/uploads
+# 媒体库：绝对路径（仓库根）避免落到栏目目录旁；CI ingest 有 COS_* 时会收口到 CDN
+media_folder: /website/public/uploads
 public_folder: /uploads
 
 slug:
