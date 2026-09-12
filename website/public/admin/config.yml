@@ -19,9 +19,10 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# 媒体库：相对仓库根。
-# 带 path 的栏目会默认 media_folder: ''（存到条目旁）；必须在 collection 上
-# 用 {{media_folder}} 指回全局。勿写 website/...（会被当成相对栏目目录）。
+# 媒体库：相对仓库根（全局，无前导 /）。
+# 带 path 的栏目会默认 media_folder: ''；collection 上必须写「以 / 开头」的
+# 仓库根绝对路径。否则 Decap 会按条目目录拼接（如 essays/website/public/uploads），
+# 导致刚上传的草稿封面裂图。
 media_folder: website/public/uploads
 public_folder: /uploads
 
@@ -40,8 +41,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -76,6 +77,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -96,8 +99,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -130,6 +133,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -150,8 +155,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -185,6 +190,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -205,8 +212,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -239,6 +246,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -259,8 +268,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -294,6 +303,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -314,8 +325,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -347,6 +358,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -367,8 +380,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -403,6 +416,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
@@ -423,8 +438,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: "{{media_folder}}"
-    public_folder: "{{public_folder}}"
+    media_folder: /website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -459,6 +474,8 @@ collections:
           required: false,
           choose_url: true,
           allow_multiple: false,
+          media_folder: /website/public/uploads,
+          public_folder: /uploads,
           media_library: { config: { max_file_size: 2500000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
