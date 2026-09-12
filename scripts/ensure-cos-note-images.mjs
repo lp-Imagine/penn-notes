@@ -45,7 +45,7 @@ const NOTE_SECTIONS = [
   "misc",
 ];
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp|avif)$/i;
-const MAX_BYTES = 2_500_000;
+const MAX_BYTES = 20_000_000; // Decap 手写大图（微信原图）常见 5–15MB
 const MIN_BYTES = 200;
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";

@@ -80,7 +80,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -136,7 +136,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -193,7 +193,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -249,7 +249,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -306,7 +306,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -361,7 +361,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -419,7 +419,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
@@ -477,7 +477,7 @@ collections:
           allow_multiple: false,
           media_folder: /website/public/uploads,
           public_folder: uploads,
-          media_library: { config: { max_file_size: 2500000 } },
+          media_library: { config: { max_file_size: 20000000 } },
           hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
