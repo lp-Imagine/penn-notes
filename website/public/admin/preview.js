@@ -81,13 +81,27 @@
 
   function assetUrl(getAsset, path) {
     if (!path) return "";
+    var p = String(path);
     try {
       var asset = getAsset(path);
-      if (!asset) return String(path);
-      return typeof asset.toString === "function" ? asset.toString() : String(asset);
+      if (asset) {
+        var url =
+          typeof asset.toString === "function" ? asset.toString() : String(asset);
+        if (url && url !== "[object Object]") return url;
+      }
     } catch (_) {
-      return String(path);
+      /* fall through */
     }
+    // 已入库的站点根路径 / 外链：预览里直接用
+    if (
+      /^https?:\/\//i.test(p) ||
+      p.startsWith("/uploads/") ||
+      p.startsWith("/sync/") ||
+      p.startsWith("/img/")
+    ) {
+      return p;
+    }
+    return p;
   }
 
   function metaChildren(dateStr, tags, groupLabel, draft) {
@@ -184,7 +198,7 @@
     },
   });
 
-  CMS.registerPreviewStyle("/admin/preview.css?v=20260911c");
+  CMS.registerPreviewStyle("/admin/preview.css?v=20260912i");
   COLLECTIONS.forEach(function (name) {
     CMS.registerPreviewTemplate(name, NotePreview);
   });

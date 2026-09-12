@@ -19,8 +19,9 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# 媒体库：相对仓库根。嵌套 path 的栏目必须在 collection 上再写一遍，
-# 否则 Decap 会把图存到条目同目录并写出裸文件名（构建期会炸）。
+# 媒体库：相对仓库根。
+# 带 path 的栏目会默认 media_folder: ''（存到条目旁）；必须在 collection 上
+# 用 {{media_folder}} 指回全局。勿写 website/...（会被当成相对栏目目录）。
 media_folder: website/public/uploads
 public_folder: /uploads
 
@@ -39,8 +40,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -95,8 +96,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -149,8 +150,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -204,8 +205,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -258,8 +259,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -313,8 +314,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -366,8 +367,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -422,8 +423,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
-    media_folder: website/public/uploads
-    public_folder: /uploads
+    media_folder: "{{media_folder}}"
+    public_folder: "{{public_folder}}"
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
