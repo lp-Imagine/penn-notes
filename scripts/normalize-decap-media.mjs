@@ -1,10 +1,11 @@
 /**
- * 把 Decap 误存到「笔记同目录」的图片归一到 website/public/uploads，
+ * 把 Decap 误存的图片归一到 website/public/uploads，
  * 并改写 cover / 正文引用为 /uploads/...。
  *
- * 根因：collection 使用 path: "{{group}}/{{slug}}" 时，Decap 默认把媒体
- * 存到条目旁（忽略仅写在全局的 media_folder）。构建前收口，避免 Vite
- * 把不存在的 /uploads/xxx 当模块解析而失败。
+ * 两类误存：
+ * 1) 嵌套 path 默认 media_folder:'' → 图在条目同目录（裸文件名）
+ * 2) collection 误写 website/public/uploads（相对栏目）→ 图在
+ *    <entry>/website/public/uploads/，而字段已是 /uploads/...（预览裂图）
  *
  * Usage:
  *   node scripts/normalize-decap-media.mjs
@@ -51,6 +52,18 @@ function listNoteMarkdown() {
   return out;
 }
 
+function walkFiles(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const name of fs.readdirSync(dir)) {
+    if (name.startsWith(".")) continue;
+    const full = path.join(dir, name);
+    const st = fs.statSync(full);
+    if (st.isDirectory()) walkFiles(full, acc);
+    else acc.push(full);
+  }
+  return acc;
+}
+
 function splitFrontmatter(raw) {
   if (!raw.startsWith("---")) return null;
   const end = raw.indexOf("\n---", 3);
@@ -88,9 +101,8 @@ function isEntryRelative(src) {
 }
 
 function uniqueDestName(baseName) {
-  let name = baseName;
-  let dest = path.join(uploadsDir, name);
-  if (!fs.existsSync(dest)) return name;
+  const preferred = path.join(uploadsDir, baseName);
+  if (!fs.existsSync(preferred)) return baseName;
   const ext = path.extname(baseName);
   const stem = path.basename(baseName, ext);
   let i = 2;
@@ -131,39 +143,53 @@ function moveIntoUploads(srcFile) {
   return `/uploads/${destName}`;
 }
 
+/** 在笔记目录树里找误存的上传图 */
 function findLocalFile(mdFile, ref) {
   const dir = path.dirname(mdFile);
+  const base = path.basename(String(ref).split("?")[0]);
+
   if (isEntryRelative(ref)) {
     const candidate = path.join(dir, ref);
     if (fs.existsSync(candidate)) return candidate;
-    return null;
   }
+
   if (isPublicUpload(ref)) {
     const inPublic = path.join(websiteRoot, "public", ref.replace(/^\//, ""));
     if (fs.existsSync(inPublic)) return inPublic;
-    // 误写 /uploads/x 但文件其实在笔记旁
-    const sibling = path.join(dir, path.basename(ref));
-    if (fs.existsSync(sibling)) return sibling;
+  }
+
+  const candidates = [
+    path.join(dir, base),
+    path.join(dir, "website", "public", "uploads", base),
+    path.join(dir, "public", "uploads", base),
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
   }
   return null;
 }
 
-function collectBodyRelImages(body) {
+function collectImageRefs(raw) {
   const refs = new Set();
-  for (const m of body.matchAll(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)) {
-    const src = (m[1] || "").trim();
-    if (isEntryRelative(src)) refs.add(src);
+  const parts = splitFrontmatter(raw);
+  if (parts) {
+    const cover = fmGetCover(parts.fm);
+    if (cover) refs.add(cover);
+    raw = parts.fm + "\n" + parts.body;
   }
-  for (const m of body.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
-    const src = (m[1] || "").trim();
-    if (isEntryRelative(src)) refs.add(src);
+  for (const m of raw.matchAll(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)) {
+    if (m[1]) refs.add(m[1].trim());
   }
-  return [...refs];
+  for (const m of raw.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+    if (m[1]) refs.add(m[1].trim());
+  }
+  return [...refs].filter(
+    (src) => isEntryRelative(src) || isPublicUpload(src),
+  );
 }
 
 function rewriteAll(raw, from, to) {
   if (!from || from === to) return raw;
-  // 避免把已是 /uploads/foo 的引用再写成 /uploads//uploads/foo
   if (to.endsWith(from) && to.length > from.length) {
     const re = new RegExp(`(?<!\\/uploads\\/)${escapeRegExp(from)}`, "g");
     return raw.replace(re, to);
@@ -171,9 +197,49 @@ function rewriteAll(raw, from, to) {
   return raw.split(from).join(to);
 }
 
+function removeEmptyDirs(startDir, stopDir) {
+  let dir = startDir;
+  while (dir && dir.startsWith(stopDir) && dir !== stopDir) {
+    if (!fs.existsSync(dir)) {
+      dir = path.dirname(dir);
+      continue;
+    }
+    if (fs.readdirSync(dir).length) break;
+    if (!dryRun) fs.rmdirSync(dir);
+    dir = path.dirname(dir);
+  }
+}
+
+/** 扫掉栏目下误建的 website/public/uploads 树 */
+function sweepMisplacedUploadTrees({ quiet = false } = {}) {
+  let moved = 0;
+  for (const section of NOTE_SECTIONS) {
+    const sectionRoot = path.join(websiteRoot, section);
+    for (const file of walkFiles(sectionRoot)) {
+      const norm = file.split(path.sep).join("/");
+      if (!norm.includes("/website/public/uploads/")) continue;
+      if (!IMAGE_EXT.test(file)) continue;
+      if (path.resolve(file).startsWith(path.resolve(uploadsDir) + path.sep)) {
+        continue;
+      }
+      const pub = moveIntoUploads(file);
+      if (pub) {
+        moved++;
+        if (!quiet) {
+          console.log(
+            `normalize-decap-media: sweep ${path.relative(root, file)} → ${pub}`,
+          );
+        }
+        removeEmptyDirs(path.dirname(file), sectionRoot);
+      }
+    }
+  }
+  return moved;
+}
+
 export function normalizeDecapMedia({ quiet = false } = {}) {
   let files = 0;
-  let moved = 0;
+  let moved = sweepMisplacedUploadTrees({ quiet });
   let rewritten = 0;
 
   for (const mdFile of listNoteMarkdown()) {
@@ -181,42 +247,37 @@ export function normalizeDecapMedia({ quiet = false } = {}) {
     const parts = splitFrontmatter(raw);
     if (!parts) continue;
 
-    const rewrites = new Map(); // from → /uploads/...
-    const cover = fmGetCover(parts.fm);
+    const rewrites = new Map();
+    const refs = collectImageRefs(raw);
 
-    if (cover && (isEntryRelative(cover) || isPublicUpload(cover))) {
-      const local = findLocalFile(mdFile, cover);
-      if (local && path.dirname(local) !== uploadsDir) {
-        const pub = moveIntoUploads(local);
-        if (pub) {
-          moved++;
-          rewrites.set(cover, pub);
-          if (path.basename(local) !== path.basename(pub)) {
-            rewrites.set(path.basename(local), pub);
-          }
-        }
-      } else if (cover && isEntryRelative(cover) && !local) {
-        if (!quiet) {
+    for (const ref of refs) {
+      const local = findLocalFile(mdFile, ref);
+      if (!local) {
+        if (isEntryRelative(ref) && !quiet) {
           console.warn(
-            `normalize-decap-media: cover missing beside entry: ${path.relative(root, mdFile)} → ${cover}`,
+            `normalize-decap-media: missing ${path.relative(root, mdFile)} → ${ref}`,
           );
         }
-      }
-    }
-
-    for (const ref of collectBodyRelImages(parts.body)) {
-      if (rewrites.has(ref)) continue;
-      const local = findLocalFile(mdFile, ref);
-      if (!local) continue;
-      if (path.dirname(local) === uploadsDir) {
-        rewrites.set(ref, `/uploads/${path.basename(local)}`);
         continue;
       }
-      const pub = moveIntoUploads(local);
-      if (pub) {
-        moved++;
-        rewrites.set(ref, pub);
+
+      const alreadyInUploads =
+        path.resolve(path.dirname(local)) === path.resolve(uploadsDir);
+
+      if (alreadyInUploads) {
+        const pub = `/uploads/${path.basename(local)}`;
+        if (ref !== pub && isEntryRelative(ref)) rewrites.set(ref, pub);
+        continue;
       }
+
+      const pub = moveIntoUploads(local);
+      if (!pub) continue;
+      moved++;
+      rewrites.set(ref, pub);
+      if (isEntryRelative(ref) || path.basename(ref) !== path.basename(pub)) {
+        rewrites.set(path.basename(local), pub);
+      }
+      removeEmptyDirs(path.dirname(local), path.dirname(mdFile));
     }
 
     if (!rewrites.size) continue;
@@ -231,10 +292,9 @@ export function normalizeDecapMedia({ quiet = false } = {}) {
       }
     }
 
-    // cover 裸名：确保 frontmatter 写成 /uploads/...
     const coverNow = fmGetCover(splitFrontmatter(next)?.fm || "");
     if (coverNow && isEntryRelative(coverNow)) {
-      const mapped = rewrites.get(coverNow);
+      const mapped = rewrites.get(coverNow) || rewrites.get(path.basename(coverNow));
       if (mapped) {
         next = next.replace(
           new RegExp(`^(cover:\\s*)${escapeRegExp(coverNow)}\\s*$`, "m"),
