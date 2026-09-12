@@ -34,6 +34,7 @@
     "cos:health": "node scripts/cos-health.mjs",
     "cos:sync-assets": "node scripts/ensure-cos-sync-assets.mjs",
     "cos:note-images": "node scripts/ensure-cos-note-images.mjs",
+    "normalize:media": "node scripts/normalize-decap-media.mjs",
     "baidu:push": "node scripts/baidu-push.mjs",
     "assistant:server": "node assistant-server/server.mjs",
     "assistant:dev": "node scripts/assistant-dev.mjs",

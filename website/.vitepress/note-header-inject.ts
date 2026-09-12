@@ -3,10 +3,17 @@
  * 构建时把文头补进 Markdown，与 ai-article 稿一致，避免线上缺标题。
  */
 import type { Plugin } from "vite";
+import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const NOTE_DIR_RE =
   /[\\/]website[\\/](web|ui|engineering|backend|tech|computer|agent|misc)[\\/]/i;
+
+const websiteRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 
 function splitFrontmatter(raw: string): { fm: string; body: string } | null {
   if (!raw.startsWith("---")) return null;
@@ -57,8 +64,14 @@ function hasArticleCover(body: string): boolean {
 function normalizeCover(src: string): string {
   const s = src.trim();
   if (!s) return "";
-  if (/^https?:\/\//i.test(s) || s.startsWith("/")) return s;
-  return `/uploads/${s.replace(/^\.?\//, "")}`;
+  if (/^https?:\/\//i.test(s)) return s;
+  const url = s.startsWith("/") ? s : `/uploads/${s.replace(/^\.?\//, "")}`;
+  // 仅注入 public 下真实存在的本地图，避免 Vite 解析死链炸构建
+  if (/^\/(uploads|sync|img)\//.test(url)) {
+    const local = path.join(websiteRoot, "public", url.replace(/^\//, ""));
+    if (!fs.existsSync(local)) return "";
+  }
+  return url;
 }
 
 function escapeHtml(s: string): string {

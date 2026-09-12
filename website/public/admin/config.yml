@@ -19,8 +19,8 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# 媒体库：相对仓库根；勿加前导 /，否则 GitHub 后端易落到栏目目录旁。
-# CI ingest 有 COS_* 时会收口到 CDN。
+# 媒体库：相对仓库根。嵌套 path 的栏目必须在 collection 上再写一遍，
+# 否则 Decap 会把图存到条目同目录并写出裸文件名（构建期会炸）。
 media_folder: website/public/uploads
 public_folder: /uploads
 
@@ -39,6 +39,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -93,6 +95,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -145,6 +149,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -198,6 +204,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -250,6 +258,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -303,6 +313,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -354,6 +366,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }
@@ -408,6 +422,8 @@ collections:
     format: frontmatter
     slug: "{{slug}}"
     path: "{{group}}/{{slug}}"
+    media_folder: website/public/uploads
+    public_folder: /uploads
     summary: "{{title}} · {{date}}"
     fields:
       - { label: 标题, name: title, widget: string }

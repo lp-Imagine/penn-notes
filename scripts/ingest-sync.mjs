@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ensureCosSyncAssets } from "./ensure-cos-sync-assets.mjs";
 import { ensureCosNoteImages } from "./ensure-cos-note-images.mjs";
+import { normalizeDecapMedia } from "./normalize-decap-media.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const websiteRoot = path.join(root, "website");
@@ -103,6 +104,13 @@ async function main() {
   }
 
   console.log(`ingest-sync: ok (${candidates.length} file(s))`);
+
+  try {
+    normalizeDecapMedia();
+  } catch (err) {
+    console.error("ingest-sync: normalize decap media failed:", err.message || err);
+    process.exit(1);
+  }
 
   try {
     await ensureCosSyncAssets();

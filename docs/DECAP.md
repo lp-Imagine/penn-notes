@@ -58,7 +58,7 @@ location /api/decap-auth {
 - 按栏目选 Collection（Web / UI / …），再选 **分组**（决定目录 `website/<section>/<group>/<slug>.md`）
 - `draft: true` 的稿不会进侧栏/首页（构建脚本会跳过）
 - 正文不必再手写 `# 标题`：站点会从 frontmatter 的 `title` / `date` / `tags` / `cover` 自动补文头（与线上笔记一致）
-- **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`，值为 `/uploads/...`），或用「Insert from URL」贴外链 / 已有 COS 地址。正文配图用编辑器插图同样走媒体库。**不要**填裸文件名（如 `截屏.png`），否则栏目页生成卡片时可能写成 `/截屏.png` 导致 Vite 构建失败。**发布构建**（`ingest`，需 `COS_*`）会自动上传到 COS 并改写成 `https://img.penn-notes.draftly.cn/sync/decap/...`；本地无 COS 密钥时保留原地址
+- **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`，值为 `/uploads/...`），或用「Insert from URL」贴外链 / 已有 COS 地址。正文配图用编辑器插图同样走媒体库。栏目配置了嵌套 `path`，**必须在每个 collection 上写 `media_folder` / `public_folder`**，否则 Decap 会把图存到条目同目录并写出裸文件名。构建期 `normalize-decap-media` 会把误存旁路的图挪回 `public/uploads` 并改写引用；随后 **ingest**（需 `COS_*`）再收口到 `https://img.penn-notes.draftly.cn/sync/decap/...`；本地无 COS 密钥时保留 `/uploads/...`。
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验
 - **正文编辑器**用 `richtext`（Decap ≥ 3.12），替代易在列表/换行时崩溃的旧 `markdown`（Slate）。复杂格式可点工具栏切到 Markdown 源码模式
