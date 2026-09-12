@@ -58,7 +58,7 @@ location /api/decap-auth {
 - 按栏目选 Collection（Web / UI / …），再选 **分组**（决定目录 `website/<section>/<group>/<slug>.md`）
 - `draft: true` 的稿不会进侧栏/首页（构建脚本会跳过）
 - 正文不必再手写 `# 标题`：站点会从 frontmatter 的 `title` / `date` / `tags` / `cover` 自动补文头（与线上笔记一致）
-- **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`，值为 `/uploads/...`），或用「Insert from URL」贴外链 / 已有 COS 地址。正文配图用编辑器插图同样走媒体库。栏目若配置了嵌套 `path`，必须在 collection 上写 **`media_folder: /website/public/uploads`**（**以 `/` 开头**的仓库根绝对路径）与 `public_folder: /uploads`。写成无前导斜杠的 `website/public/uploads` 或 `{{media_folder}}` 时，Decap 会相对**条目目录**拼接，草稿图进错路径、封面裂图。构建期 `normalize-decap-media` 会把误存旁路的图挪回 `public/uploads`；随后 **ingest**（需 `COS_*`）再收口到 CDN。
+- **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`）。嵌套 `path` 栏目须写 **`media_folder: /website/public/uploads`**（仓库根绝对路径）与 **`public_folder: uploads`（不要前导 `/`）**。若写成 `/uploads`，Decap 会把字段值当已上线 URL，草稿图尚未发布时封面裂图。构建期 `normalize-decap-media` 会把 `uploads/...` 收成 `/uploads/...`，再由 ingest（需 `COS_*`）收口到 CDN。
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验
 - **正文编辑器**用 `richtext`（Decap ≥ 3.12），替代易在列表/换行时崩溃的旧 `markdown`（Slate）。复杂格式可点工具栏切到 Markdown 源码模式

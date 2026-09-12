@@ -96,10 +96,11 @@
     if (
       /^https?:\/\//i.test(p) ||
       p.startsWith("/uploads/") ||
+      p.startsWith("uploads/") ||
       p.startsWith("/sync/") ||
       p.startsWith("/img/")
     ) {
-      return p;
+      return p.startsWith("uploads/") ? "/" + p : p;
     }
     return p;
   }
@@ -198,7 +199,7 @@
     },
   });
 
-  CMS.registerPreviewStyle("/admin/preview.css?v=20260912i");
+  CMS.registerPreviewStyle("/admin/preview.css?v=20260912j");
   COLLECTIONS.forEach(function (name) {
     CMS.registerPreviewTemplate(name, NotePreview);
   });

@@ -90,7 +90,19 @@ function isHttp(src) {
 }
 
 function isPublicUpload(src) {
-  return src.startsWith("/uploads/");
+  return src.startsWith("/uploads/") || src.startsWith("uploads/");
+}
+
+/** 统一成站点根路径 /uploads/... */
+function toPublicUploadUrl(src) {
+  if (!src) return "";
+  let s = String(src).trim().replace(/^["']|["']$/g, "");
+  if (!s || isHttp(s) || s.startsWith("data:")) return s;
+  s = s.replace(/^\/penn-notes(?=\/)/, "");
+  if (s.startsWith("/uploads/")) return s;
+  if (s.startsWith("uploads/")) return `/${s}`;
+  if (s.startsWith("/")) return s;
+  return `/uploads/${s.replace(/^\.?\//, "")}`;
 }
 
 /** 裸文件名或同目录相对路径（非 /、非 http） */
@@ -154,7 +166,8 @@ function findLocalFile(mdFile, ref) {
   }
 
   if (isPublicUpload(ref)) {
-    const inPublic = path.join(websiteRoot, "public", ref.replace(/^\//, ""));
+    const pubUrl = toPublicUploadUrl(ref);
+    const inPublic = path.join(websiteRoot, "public", pubUrl.replace(/^\//, ""));
     if (fs.existsSync(inPublic)) return inPublic;
   }
 
@@ -195,6 +208,34 @@ function rewriteAll(raw, from, to) {
     return raw.replace(re, to);
   }
   return raw.split(from).join(to);
+}
+
+/** 把 uploads/xxx（无前导 /）写成 /uploads/xxx，避免线上相对路径错位 */
+function rewriteRelativeUploadPaths(raw) {
+  let text = raw;
+  let n = 0;
+  text = text.replace(
+    /^(cover:\s*)(?!\/)(uploads\/\S+)\s*$/gm,
+    (_, prefix, path) => {
+      n++;
+      return `${prefix}/${path}`;
+    },
+  );
+  text = text.replace(
+    /(!\[[^\]]*\]\()(?!\/)(uploads\/[^)\s]+)(\))/g,
+    (_, a, path, c) => {
+      n++;
+      return `${a}/${path}${c}`;
+    },
+  );
+  text = text.replace(
+    /(<img\b[^>]*\bsrc=["'])(?!\/)(uploads\/[^"']+)(["'])/gi,
+    (_, a, path, c) => {
+      n++;
+      return `${a}/${path}${c}`;
+    },
+  );
+  return { text, count: n };
 }
 
 function removeEmptyDirs(startDir, stopDir) {
@@ -280,12 +321,26 @@ export function normalizeDecapMedia({ quiet = false } = {}) {
       removeEmptyDirs(path.dirname(local), path.dirname(mdFile));
     }
 
-    if (!rewrites.size) continue;
+    if (!rewrites.size) {
+      const rel = rewriteRelativeUploadPaths(raw);
+      if (rel.count && rel.text !== raw) {
+        files++;
+        rewritten += rel.count;
+        if (!dryRun) fs.writeFileSync(mdFile, rel.text, "utf8");
+        if (!quiet) {
+          console.log(
+            `normalize-decap-media: ${path.relative(root, mdFile)} (uploads→/uploads)` +
+              (dryRun ? " (dry-run)" : ""),
+          );
+        }
+      }
+      continue;
+    }
 
     let next = raw;
     const ordered = [...rewrites.entries()].sort((a, b) => b[0].length - a[0].length);
     for (const [from, to] of ordered) {
-      const after = rewriteAll(next, from, to);
+      const after = rewriteAll(next, from, toPublicUploadUrl(to));
       if (after !== next) {
         next = after;
         rewritten++;
@@ -298,9 +353,15 @@ export function normalizeDecapMedia({ quiet = false } = {}) {
       if (mapped) {
         next = next.replace(
           new RegExp(`^(cover:\\s*)${escapeRegExp(coverNow)}\\s*$`, "m"),
-          `$1${mapped}`,
+          `$1${toPublicUploadUrl(mapped)}`,
         );
       }
+    }
+
+    const rel = rewriteRelativeUploadPaths(next);
+    if (rel.count) {
+      next = rel.text;
+      rewritten += rel.count;
     }
 
     if (next !== raw) {

@@ -958,9 +958,9 @@ function normalizeNoteCoverSrc(raw: string): string {
   const s = String(raw || "").trim();
   if (!s) return "";
   if (/^https?:\/\//i.test(s)) return s;
-  const path = s.startsWith("/")
-    ? s
-    : `/uploads/${s.replace(/^\.?\//, "")}`;
+  let path = s;
+  if (path.startsWith("uploads/")) path = `/${path}`;
+  else if (!path.startsWith("/")) path = `/uploads/${path.replace(/^\.?\//, "")}`;
   const siteData = (globalThis as { __VP_SITE_DATA__?: { base?: string } })
     .__VP_SITE_DATA__;
   const base = (siteData?.base || "/").replace(/\/$/, "") || "";

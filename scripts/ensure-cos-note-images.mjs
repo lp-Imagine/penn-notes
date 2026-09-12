@@ -105,6 +105,7 @@ function shouldConsider(src) {
   const base = cosConfig().cdnBase;
   if (base && src.startsWith(base + "/")) return false;
   if (src.startsWith("/uploads/") || src.startsWith("/sync/")) return true;
+  if (src.startsWith("uploads/")) return true;
   if (/^https?:\/\//i.test(src) && IMAGE_EXT.test(src.split("?")[0])) return true;
   // 外链无扩展名但可能是图片 CDN：仍尝试（下载时校验 content-type）
   if (/^https?:\/\//i.test(src) && !/\.(svg|html?|xml|json|js|css)(\?|$)/i.test(src)) {
@@ -154,6 +155,7 @@ function extFromPath(p, fallback = "jpg") {
 }
 
 function localPublicPath(src) {
+  if (src.startsWith("uploads/")) src = `/${src}`;
   if (src.startsWith("/uploads/") || src.startsWith("/sync/")) {
     return path.join(publicRoot, src.replace(/^\/+/, ""));
   }

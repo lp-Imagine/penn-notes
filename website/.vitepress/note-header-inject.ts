@@ -65,7 +65,9 @@ function normalizeCover(src: string): string {
   const s = src.trim();
   if (!s) return "";
   if (/^https?:\/\//i.test(s)) return s;
-  const url = s.startsWith("/") ? s : `/uploads/${s.replace(/^\.?\//, "")}`;
+  let url = s;
+  if (url.startsWith("uploads/")) url = `/${url}`;
+  else if (!url.startsWith("/")) url = `/uploads/${url.replace(/^\.?\//, "")}`;
   // 仅注入 public 下真实存在的本地图，避免 Vite 解析死链炸构建
   if (/^\/(uploads|sync|img)\//.test(url)) {
     const local = path.join(websiteRoot, "public", url.replace(/^\//, ""));

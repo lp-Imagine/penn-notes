@@ -361,9 +361,10 @@ a[class*="-GridCardLink"]:hover {
   background: transparent !important;
 }
 
-/* 封面提到最上（DOM 里本在标题后） */
-[class*="-StyledImage"],
-[data-testid="entry-card-image"] {
+/* 封面提到最上（仅网格卡片，勿伤编辑器 ImageWidget） */
+li[class*="-GridCard"] [class*="-StyledImage"],
+li[class*="-GridCard"] [data-testid="entry-card-image"],
+[class*="-WorkflowCardContainer"] [class*="-StyledImage"] {
   order: -1 !important;
   width: 100% !important;
   height: 132px !important;
@@ -456,8 +457,9 @@ li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
     gap: 12px !important;
   }
 
-  [class*="-StyledImage"],
-  [data-testid="entry-card-image"] {
+  li[class*="-GridCard"] [class*="-StyledImage"],
+  li[class*="-GridCard"] [data-testid="entry-card-image"],
+  [class*="-WorkflowCardContainer"] [class*="-StyledImage"] {
     height: 110px !important;
     flex-basis: 110px !important;
   }
@@ -737,7 +739,6 @@ div:has(> [class*="-FileWidgetButton"]):not(:has(img)):not(:has([class*="-Styled
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
 }
 
-[class*="-StyledImage"],
 [class*="-ImageWrapper"] img {
   object-fit: cover !important;
 }

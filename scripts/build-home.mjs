@@ -120,8 +120,10 @@ function publicAssetSrc(p) {
   if (!s) return "";
   // 兼容误带 base 前缀的历史值
   s = s.replace(/^\/penn-notes(?=\/)/, "");
+  // Decap 相对 public_folder「uploads」→ uploads/xxx
+  if (s.startsWith("uploads/")) s = `/${s}`;
   // 裸文件名 / 相对路径 → 按媒体库约定落到 /uploads/
-  if (!s.startsWith("/")) {
+  else if (!s.startsWith("/")) {
     s = `/uploads/${s.replace(/^\.?\//, "")}`;
   }
   // 只允许 public 下已知目录，避免 Vite 把 /xxx.png 当模块解析而炸构建
