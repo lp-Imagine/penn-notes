@@ -111,6 +111,7 @@ function link(p) {
  *
  * Decap 偶发把封面存成裸文件名（无 /uploads/ 前缀）时，归一到 /uploads/，
  * 并拒绝其它会让 Vite 误解析的绝对路径（如 /中文截屏.png）。
+ * 本地文件缺失时跳过，避免栏目页写入死链导致 Rollup 构建失败。
  */
 function publicAssetSrc(p) {
   if (!p) return "";
@@ -126,6 +127,11 @@ function publicAssetSrc(p) {
   // 只允许 public 下已知目录，避免 Vite 把 /xxx.png 当模块解析而炸构建
   if (!/^\/(uploads|sync|img)\//.test(s)) {
     console.warn(`build-home: skip unsafe asset path: ${s}`);
+    return "";
+  }
+  const local = path.join(siteRoot, "public", s.replace(/^\//, ""));
+  if (!fs.existsSync(local)) {
+    console.warn(`build-home: skip missing asset: ${s}`);
     return "";
   }
   return s;
