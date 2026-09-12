@@ -768,7 +768,7 @@ body.penn-admin-login #nc-root {
   box-sizing: border-box;
 }
 
-body.penn-admin-login [class*="-AuthenticationPage"] {
+body.penn-admin-login [class*="AuthenticationPage"] {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
@@ -792,12 +792,12 @@ body.penn-admin-login [class*="-AuthenticationPage"] {
 }
 
 /* 藏 Decap 默认粉标 / 品牌图 */
-body.penn-admin-login [class*="-AuthenticationPage"] > svg,
-body.penn-admin-login [class*="-AuthenticationPage"] > [class*="CustomIcon"],
-body.penn-admin-login [class*="-AuthenticationPage"] > [class*="Icon"],
-body.penn-admin-login [class*="-AuthenticationPage"] > img:not(.penn-login-logo),
-body.penn-admin-login [class*="-AuthenticationPage"] > span:has(> svg),
-body.penn-admin-login [class*="-AuthenticationPage"] > [data-penn-hidden-brand] {
+body.penn-admin-login [class*="AuthenticationPage"] > svg,
+body.penn-admin-login [class*="AuthenticationPage"] > [class*="CustomIcon"],
+body.penn-admin-login [class*="AuthenticationPage"] > [class*="Icon"],
+body.penn-admin-login [class*="AuthenticationPage"] > img:not(.penn-login-logo),
+body.penn-admin-login [class*="AuthenticationPage"] > span:has(> svg),
+body.penn-admin-login [class*="AuthenticationPage"] > [data-penn-hidden-brand] {
   display: none !important;
 }
 
@@ -934,7 +934,7 @@ body.penn-admin-login [class*="-LoginButton"]::before {
 }
 
 /* 登录错误信息 */
-body.penn-admin-login [class*="-AuthenticationPage"] p:not([class*="penn-"]) {
+body.penn-admin-login [class*="AuthenticationPage"] p:not([class*="penn-"]) {
   margin: 14px 0 0 !important;
   color: #ffb4a8 !important;
   font-size: 0.88rem !important;
@@ -942,7 +942,7 @@ body.penn-admin-login [class*="-AuthenticationPage"] p:not([class*="penn-"]) {
 }
 
 @media (max-width: 480px) {
-  body.penn-admin-login [class*="-AuthenticationPage"] {
+  body.penn-admin-login [class*="AuthenticationPage"] {
     padding: 28px 22px 22px !important;
     border-radius: 16px !important;
   }
@@ -955,7 +955,7 @@ body.penn-admin-login [class*="-AuthenticationPage"] p:not([class*="penn-"]) {
 @media (prefers-reduced-motion: reduce) {
   body.penn-admin-login::before,
   body.penn-admin-login::after,
-  body.penn-admin-login [class*="-AuthenticationPage"],
+  body.penn-admin-login [class*="AuthenticationPage"],
   .penn-login-brand,
   body.penn-admin-login [class*="-LoginButton"],
   .penn-login-foot {

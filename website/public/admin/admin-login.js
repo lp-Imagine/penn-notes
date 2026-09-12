@@ -26,7 +26,15 @@
   function findAuthPage(root) {
     if (isAuthPage(root)) return root;
     if (!root || !root.querySelector) return null;
-    return root.querySelector('[class*="-AuthenticationPage"]');
+    // Decap 3.x 类名是 StyledAuthenticationPage（前面没有 "-AuthenticationPage"）
+    return (
+      root.querySelector('[class*="StyledAuthenticationPage"]') ||
+      root.querySelector('[class*="AuthenticationPage"]') ||
+      (function () {
+        var btn = root.querySelector('[class*="LoginButton"]');
+        return btn ? btn.closest("section") : null;
+      })()
+    );
   }
 
   function translateLoginButton(page) {
