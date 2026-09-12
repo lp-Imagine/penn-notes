@@ -56,6 +56,11 @@ next: false
         <span class="about-link-desc" data-i18n="about.newsDesc">每天自动更新的科技 / AI 精选</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
+      <a class="about-link" href="/admin/" target="_blank" rel="noopener noreferrer">
+        <span class="about-link-title" data-i18n="nav.writeNotes">写笔记</span>
+        <span class="about-link-desc" data-i18n="about.writeNotesDesc">Decap CMS：登录 GitHub 后在线新建 / 编辑笔记</span>
+        <span class="about-link-go" aria-hidden="true">↗</span>
+      </a>
       <a class="about-link" href="https://draftly.cn" target="_blank" rel="noopener noreferrer">
         <span class="about-link-title">Draftly</span>
         <span class="about-link-desc" data-i18n="about.draftlyDesc">公众号内容工作台：选题到推送草稿箱</span>

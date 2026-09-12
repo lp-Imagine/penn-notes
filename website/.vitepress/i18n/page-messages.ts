@@ -244,6 +244,7 @@ export type PageMessages = {
     placesDesc: string;
     newsDesc: string;
     draftlyDesc: string;
+    writeNotesDesc: string;
     interviewDesc: string;
     navDesc: string;
     collectDesc: string;
@@ -537,6 +538,7 @@ const zhCN: PageMessages = {
     placesDesc: "栏目入口与订阅",
     newsDesc: "每天自动更新的科技 / AI 精选",
     draftlyDesc: "公众号内容工作台：选题到推送草稿箱",
+    writeNotesDesc: "Decap CMS：登录 GitHub 后在线新建 / 编辑笔记",
     interviewDesc: "AI 面试助手，按简历与 JD 练题",
     navDesc: "网址导航小站，常用站点速达",
     collectDesc: "外链精选，前端与工程化好文",
@@ -831,6 +833,7 @@ const zhTW: PageMessages = {
     placesDesc: "欄目入口與訂閱",
     newsDesc: "每天自動更新的科技 / AI 精選",
     draftlyDesc: "公眾號內容工作台：選題到推送草稿箱",
+    writeNotesDesc: "Decap CMS：登入 GitHub 後線上新建 / 編輯筆記",
     interviewDesc: "AI 面試助手，依履歷與 JD 練題",
     navDesc: "網址導航小站，常用站點速達",
     collectDesc: "外鏈精選，前端與工程化好文",
@@ -1162,6 +1165,7 @@ const en: PageMessages = {
     placesDesc: "Sections and feeds",
     newsDesc: "Daily tech / AI picks, auto-updated",
     draftlyDesc: "WeChat content desk: ideas to draft inbox",
+    writeNotesDesc: "Decap CMS: sign in with GitHub to write or edit notes",
     interviewDesc: "AI interview coach from resume + JD",
     navDesc: "Link portal for everyday sites",
     collectDesc: "Curated links on frontend & engineering",

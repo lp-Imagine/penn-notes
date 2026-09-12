@@ -100,6 +100,7 @@ export type MessageTree = PageMessages & {
     misc: string;
     sites: string;
     about: string;
+    writeNotes: string;
     interview: string;
     navSite: string;
   };

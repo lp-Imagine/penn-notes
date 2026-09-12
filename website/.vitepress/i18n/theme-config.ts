@@ -51,6 +51,12 @@ export function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
     {
       text: n.sites,
       items: [
+        {
+          text: n.writeNotes,
+          link: "/admin/",
+          target: "_blank",
+          rel: "noopener noreferrer",
+        },
         { text: "Draftly", link: "https://draftly.cn" },
         { text: n.interview, link: "https://interview.draftly.cn" },
         { text: n.navSite, link: "https://nav.draftly.cn" },
