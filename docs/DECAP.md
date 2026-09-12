@@ -67,6 +67,11 @@ location /api/decap-auth {
 
 右侧预览通过 [`preview.js`](../website/public/admin/preview.js) + [`preview.css`](../website/public/admin/preview.css) 自定义，按博客笔记还原：封面一体文头、日期/标签、摘要、正文排版（含章节 h2 样式）。正文里若仍带文头副本（旧稿 / ai-article），预览会用 CSS 藏掉，避免双标题双封面。
 
+## 排查
+
+- **登录总失败 / 出现 `fetch failed`**：多半是助手进程访问 `github.com` 换 token 时网络抖动（国内机房常见）。现已在 [`decap-auth.mjs`](../assistant-server/lib/decap-auth.mjs) 内自动重试；仍频繁失败时检查宝塔机到 GitHub 的出网，或给助手进程配置稳定代理后重启。改完 OAuth 环境变量后需**重启 assistant-server**（静态 `/admin/` 热更新不够）。
+- **弹窗一闪而过**：允许站点弹窗；关闭广告拦截对 `/api/decap-auth` 的拦截后再试。
+
 ## 相关文件
 
 - [`website/public/admin/index.html`](../website/public/admin/index.html)

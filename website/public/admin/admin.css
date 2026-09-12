@@ -1008,8 +1008,13 @@ body.penn-admin-login [class*="LoginButton"]::before {
 
 /* 登录错误信息 */
 body.penn-admin-login [class*="AuthenticationPage"] p:not([class*="penn-"]),
-.penn-login-panel > p:not([class*="penn-"]) {
+.penn-login-panel > p:not([class*="penn-"]),
+.penn-login-error {
   margin: 0 !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(255, 180, 168, 0.35) !important;
+  border-radius: 10px !important;
+  background: rgba(180, 35, 24, 0.16) !important;
   color: #ffb4a8 !important;
   font-size: 0.88rem !important;
   line-height: 1.5 !important;

@@ -47,6 +47,27 @@
 
   var normalizing = false;
 
+  function localizeAuthError(page) {
+    var nodes = page.querySelectorAll("p");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (el.hasAttribute("data-penn-login-foot")) continue;
+      if (el.closest("[data-penn-login-brand], [data-penn-login-panel-head]")) continue;
+      var text = (el.textContent || "").trim();
+      if (!text) continue;
+      if (
+        /^fetch failed$/i.test(text) ||
+        /failed to fetch/i.test(text) ||
+        /networkerror/i.test(text) ||
+        /load failed/i.test(text)
+      ) {
+        el.textContent =
+          "连接 GitHub 不稳定，请再点一次「使用 GitHub 登录」重试";
+        el.classList.add("penn-login-error");
+      }
+    }
+  }
+
   /** 清空 Decap 按钮内部图标/碎片节点，只保留一句文案（图标交给 CSS ::before） */
   function normalizeLoginButton(page) {
     if (normalizing) return;
@@ -152,6 +173,7 @@
     // Decap 可能反复重绘按钮，每次扫描都规范化并挂到右侧面板
     normalizeLoginButton(page);
     ensureActionPanel(page);
+    localizeAuthError(page);
   }
 
   function clearLoginClass() {
