@@ -176,4 +176,68 @@ export async function uploadFile(localPath, key, opts = {}) {
   });
 }
 
+/**
+ * List object keys under a prefix (paginated).
+ * @param {string} prefix
+ * @returns {Promise<string[]>}
+ */
+export async function listObjectKeys(prefix) {
+  const Prefix = String(prefix || "").replace(/^\/+/, "");
+  const keys = [];
+  let Marker = "";
+  for (;;) {
+    const data = await cosCall("getBucket", {
+      Prefix,
+      Marker: Marker || undefined,
+      MaxKeys: 1000,
+    });
+    const contents = data.Contents || [];
+    for (const item of contents) {
+      if (item?.Key) keys.push(item.Key);
+    }
+    const truncated = data.IsTruncated === true || data.IsTruncated === "true";
+    if (!truncated) break;
+    Marker =
+      data.NextMarker ||
+      (contents.length ? contents[contents.length - 1].Key : "");
+    if (!Marker) break;
+  }
+  return keys;
+}
+
+/** Delete one object (missing key is ok). */
+export async function deleteObject(key) {
+  const Key = String(key).replace(/^\/+/, "");
+  try {
+    await cosCall("deleteObject", { Key });
+  } catch (err) {
+    const status = err?.statusCode || err?.status;
+    if (status === 404 || err?.code === "NoSuchKey" || err?.error?.Code === "NoSuchKey") {
+      return false;
+    }
+    throw err;
+  }
+  return true;
+}
+
+/**
+ * Batch delete (chunks of 1000).
+ * @param {string[]} keys
+ * @returns {Promise<number>} deleted count (requested)
+ */
+export async function deleteObjects(keys) {
+  const list = [...new Set(keys.map((k) => String(k).replace(/^\/+/, "")).filter(Boolean))];
+  if (!list.length) return 0;
+  let deleted = 0;
+  for (let i = 0; i < list.length; i += 1000) {
+    const chunk = list.slice(i, i + 1000);
+    await cosCall("deleteMultipleObject", {
+      Objects: chunk.map((Key) => ({ Key })),
+      Quiet: true,
+    });
+    deleted += chunk.length;
+  }
+  return deleted;
+}
+
 export { ENV_KEYS, root as repoRoot };

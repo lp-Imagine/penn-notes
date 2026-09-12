@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { ensureCosSyncAssets } from "./ensure-cos-sync-assets.mjs";
 import { ensureCosNoteImages } from "./ensure-cos-note-images.mjs";
 import { normalizeDecapMedia } from "./normalize-decap-media.mjs";
+import { gcCosDecapImages } from "./gc-cos-decap-images.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const websiteRoot = path.join(root, "website");
@@ -124,6 +125,13 @@ async function main() {
   } catch (err) {
     console.error("ingest-sync: COS note images failed:", err.message || err);
     process.exit(1);
+  }
+
+  try {
+    await gcCosDecapImages();
+  } catch (err) {
+    // 回收失败不阻断发布（避免 COS API 抖动导致整站挂掉）
+    console.warn("ingest-sync: COS decap GC failed:", err.message || err);
   }
 }
 
