@@ -911,12 +911,34 @@ function bindNewsImageFallback(rootEl: ParentNode = document) {
   });
 }
 
+/** 过小 / 过扁封面：letterbox，避免 aspect-ratio + cover 放大局部文字 */
+const COVER_LETTERBOX_MIN_WIDTH = 640;
+const COVER_LETTERBOX_MAX_ASPECT = 2.6;
+
+function applyCoverLetterbox(img: HTMLImageElement) {
+  const mark = () => {
+    const w = img.naturalWidth;
+    const h = img.naturalHeight;
+    if (!w || !h) return;
+    const needsLetterbox = w < COVER_LETTERBOX_MIN_WIDTH || w / h > COVER_LETTERBOX_MAX_ASPECT;
+    img.classList.toggle("article-cover--letterbox", needsLetterbox);
+  };
+
+  if (img.complete && img.naturalWidth > 0) {
+    mark();
+    return;
+  }
+
+  img.addEventListener("load", mark, { once: true });
+}
+
 function enhanceArticleImages() {
   document.querySelectorAll<HTMLImageElement>(".vp-doc img").forEach((img) => {
     if (img.classList.contains("article-cover")) {
       img.loading = "eager";
       img.setAttribute("fetchpriority", "high");
       img.decoding = "async";
+      applyCoverLetterbox(img);
       return;
     }
     if (!img.getAttribute("loading")) img.loading = "lazy";
@@ -999,6 +1021,62 @@ function ensureNoteHeaderFromPageMeta(root: HTMLElement) {
   }
 }
 
+/** 正文根：优先 VitePress 内层 `.vp-doc > div`，否则 `.vp-doc` 本身 */
+function resolveArticleContentRoot(doc: HTMLElement): HTMLElement {
+  return doc.querySelector<HTMLElement>(":scope > div") || doc;
+}
+
+/** 仅包裹一张封面的空段落（构建期常见） */
+function isCoverOnlyParagraph(el: Element): boolean {
+  if (!(el instanceof HTMLElement) || el.tagName !== "P") return false;
+  const cover = el.querySelector(":scope > img.article-cover");
+  if (!cover) return false;
+  if (el.querySelectorAll("img").length !== 1) return false;
+  const text = (el.textContent || "").replace(/\s+/g, "");
+  return text.length === 0;
+}
+
+function isOrphanNoteHeaderNode(el: Element): boolean {
+  if (!(el instanceof HTMLElement)) return false;
+  if (el.classList.contains("article-hero")) return true;
+  if (el.tagName === "H1") return true;
+  if (el.classList.contains("article-meta")) return true;
+  if (el.tagName === "IMG" && el.classList.contains("article-cover")) return true;
+  return isCoverOnlyParagraph(el);
+}
+
+/**
+ * 抢跑注入挂在 `.vp-doc` 顶层、正文内层之外的文头节点清掉，
+ * 避免水合后顶层 hero + 内层 h1/meta/cover 叠成两张卡。
+ */
+function removeOrphanNoteHeaders(doc: HTMLElement, contentRoot: HTMLElement) {
+  if (contentRoot === doc) return;
+  for (const child of [...doc.children]) {
+    if (child === contentRoot) continue;
+    if (isOrphanNoteHeaderNode(child)) child.remove();
+  }
+}
+
+/** 已有 `.article-hero` 时，去掉其外的重复 h1 / meta / cover */
+function dedupeHeadersOutsideHero(root: HTMLElement, hero: HTMLElement) {
+  for (const child of [...root.children]) {
+    if (child === hero) continue;
+    if (
+      child.tagName === "H1" ||
+      child.classList.contains("article-meta") ||
+      (child.tagName === "IMG" && child.classList.contains("article-cover")) ||
+      isCoverOnlyParagraph(child)
+    ) {
+      child.remove();
+    }
+  }
+}
+
+function finishArticleHero(cover?: HTMLImageElement | null) {
+  if (cover) applyCoverLetterbox(cover);
+  ensureHeroParticles();
+}
+
 /** 有封面时：把 h1 + meta + cover 合成一体文头 */
 function enhanceArticleHero() {
   if (!isNoteArticleDetail(currentSitePath())) {
@@ -1009,16 +1087,27 @@ function enhanceArticleHero() {
   const doc = document.querySelector<HTMLElement>(".vp-doc");
   if (!doc) return;
 
-  if (doc.querySelector(".article-hero")) {
-    ensureHeroParticles();
+  const inner = doc.querySelector<HTMLElement>(":scope > div");
+  const root = resolveArticleContentRoot(doc);
+
+  // 内层已挂上：清掉顶层抢跑的 orphan 文头
+  removeOrphanNoteHeaders(doc, root);
+
+  const existingHero = root.querySelector<HTMLElement>(":scope > .article-hero");
+  if (existingHero) {
+    dedupeHeadersOutsideHero(root, existingHero);
+    finishArticleHero(
+      existingHero.querySelector<HTMLImageElement>(":scope > .article-cover"),
+    );
     return;
   }
 
-  // VitePress 常在 .vp-doc 内再包一层 <div>，不能只用 :scope > h1
-  const root =
-    (doc.querySelector(":scope > div > h1")
-      ? doc.querySelector<HTMLElement>(":scope > div")
-      : doc) || doc;
+  // 顶层曾抢跑合成 hero，内层已有完整文头：orphan 已删顶层，下面走正常合成
+  // 内层尚未挂上且顶层也没有 h1 时不要抢跑补文头，否则会挂到 `.vp-doc` 顶层
+  if (!inner && !doc.querySelector(":scope > h1")) {
+    ensureHeroParticles();
+    return;
+  }
 
   ensureNoteHeaderFromPageMeta(root);
 
@@ -1059,7 +1148,7 @@ function enhanceArticleHero() {
     coverParent.remove();
   }
 
-  ensureHeroParticles();
+  finishArticleHero(cover);
 }
 
 /** 速览挪到文头之后：封面文章贴 hero，无封面贴 meta/h1 */
@@ -1072,10 +1161,7 @@ function placeArticleSummary() {
   const doc = document.querySelector<HTMLElement>(".vp-doc");
   if (!doc) return;
 
-  const root =
-    (doc.querySelector(":scope > div > h1, :scope > div > .article-hero")
-      ? doc.querySelector<HTMLElement>(":scope > div")
-      : doc) || doc;
+  const root = resolveArticleContentRoot(doc);
 
   const anchor =
     root.querySelector<HTMLElement>(":scope > .article-hero") ||
@@ -1154,13 +1240,11 @@ function scheduleRefresh() {
       });
       // zoom 放在 suppress 外：它会给 img 加 class，不应再触发整页 refresh
       refreshZoom();
-      // 水合后再补一次文头（已有则跳过），避免首屏未挂上
+      // 水合后再跑一次：合成或清 orphan 抢跑文头
       clearTimeout(heroRetryTimer);
       heroRetryTimer = setTimeout(() => {
         withSuppressedDomRefresh(() => {
-          if (!document.querySelector(".vp-doc .article-hero")) {
-            enhanceArticleHero();
-          }
+          enhanceArticleHero();
           placeArticleSummary();
           updateReadingTime();
           applyDomI18n(uiLocaleRef.value || getUiLocalePreference());
