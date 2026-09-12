@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../news/feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · 文章更新</title>
+    <link>https://penn-notes.draftly.cn/</link>
+    <description>Penn Notes 技术博客订阅（前端、工程化、后端与 AI Agent）</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 12 Sep 2026 17:36:17 GMT</lastBuildDate>
+    <generator>Penn Notes notes feed</generator>
+    <item>
+      <title>测试3333</title>
+      <link>https://penn-notes.draftly.cn/misc/essays/测试3333</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/misc/essays/测试3333</guid>
+      <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+      <description>栏目：杂项 · 是打发舒服</description>
+      <category>杂项</category>
+    </item>
+    <item>
+      <title>测试文章888</title>
+      <link>https://penn-notes.draftly.cn/misc/essays/测试文章888</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/misc/essays/测试文章888</guid>
+      <pubDate>Sat, 12 Sep 2026 16:00:00 GMT</pubDate>
+      <description>栏目：杂项 · 测试文章888的正文内容为无意义字符堆砌，未提供任何可识别的主题、问题或结论，无法提炼有效信息。读者无法从中获取知识或操作要点，建议补充真实、连贯的内容后再进行摘要。</description>
+      <category>杂项</category>
+    </item>
+    <item>
+      <title>测试文章999</title>
+      <link>https://penn-notes.draftly.cn/misc/essays/测试文章999</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/misc/essays/测试文章999</guid>
+      <pubDate>Sat, 12 Sep 2026 16:00:00 GMT</pubDate>
+      <description>栏目：杂项 · 啊的粉丝撒地方iuiu发iiu地方i色副isufisufisafsdhfhsdfhisdisdfuiasf一撒u发i粉丝地方附近</description>
+      <category>杂项</category>
+    </item>
+    <item>
+      <title>App Router 缓存翻车：从数据不刷新说起</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/App-Router-缓存翻车从数据不刷新说起</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/App-Router-缓存翻车从数据不刷新说起</guid>
+      <pubDate>Wed, 26 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · App Router 页面数据不刷新，根因是服务端组件中未配置选项的 fetch 默认启用 force-cache，导致响应被长期缓存，即使重新部署也无法更新。排查时应优先确认 fetch 缓存，而非 Router Cache 或 Full Route Cache。解决思路是区分动态与静态数据，动态数据默认不缓存；明确组件边界，客户端组件不直接访问数据库，需自行 fetch 时显式设置 no-store。写代码前按数据性质、组件边界、失效时机三步自查，可避免此类问题。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Prompt Cache与上下文管理实践</title>
+      <link>https://penn-notes.draftly.cn/agent/prompts/Prompt-Cache与上下文管理实践</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/agent/prompts/Prompt-Cache与上下文管理实践</guid>
+      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：AI Agent · Prompt Cache 应从最小可运行切片起步，先实现字典缓存验证命中行为，再增量叠加 TTL 与 LRU 淘汰策略，避免一开始就设计完整方案导致代码膨胀。精确管理上下文窗口需用 tiktoken 按模型计数，淘汰旧消息并预留 10% 左右输出预算。生产化关键在于并发只填充一次、负缓存防穿透、超限截断回退、TTL 到期重建四类边界测试，命中率低时优先排查缓存键是否含易变字段。</description>
+      <category>AI Agent</category>
+    </item>
+    <item>
+      <title>TypeScript6装饰器迁移实战</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/TypeScript6装饰器迁移实战</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/TypeScript6装饰器迁移实战</guid>
+      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · TypeScript6升级后，旧装饰器因编译规则调整而报错，常见于属性装饰器类型校验失效。迁移需先修复基础类型错误，再调整tsconfig：启用decorators并关闭experimentalDecorators，必要时关闭useDefineForClassFields。按语法替换、编译修复、测试三步走，可覆盖多数场景。生产示例展示鉴权装饰器用法，并需注意第三方库兼容、元数据丢失及执行顺序变化。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>AI Agent幻觉缓解：验证与重试实践</title>
+      <link>https://penn-notes.draftly.cn/agent/practice/AI-Agent幻觉缓解验证与重试实践</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/agent/practice/AI-Agent幻觉缓解验证与重试实践</guid>
+      <pubDate>Mon, 17 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：AI Agent · AI Agent生成订单数据时因未接入业务校验规则，导致地址虚构、数量越界、金额为负等幻觉错误直接流入下游系统。通过验证层正则校验拦截格式类异常，结合重试机制区分格式错误与业务逻辑错误两类触发条件，可将幻觉率从12%-13%降至2%-3%。核心在于用业务系统真实反馈修正隐性幻觉，并限制重试次数避免死循环。</description>
+      <category>AI Agent</category>
+    </item>
+    <item>
+      <title>记忆翻车复盘：让Agent长任务不跑偏</title>
+      <link>https://penn-notes.draftly.cn/agent/practice/记忆翻车复盘让Agent长任务不跑偏</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/agent/practice/记忆翻车复盘让Agent长任务不跑偏</guid>
+      <pubDate>Wed, 12 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：AI Agent · 长任务Agent跑偏的根因在于记忆工程缺失，表现为工作记忆、短期记忆、长期记忆三类缺位及任务状态无持久化钩子。工程落地需区分三者的存储方案：工作记忆用滑动窗口加结构化TaskState，短期记忆用摘要加关键词检索，长期记忆按需引入向量库。状态防跑偏依赖检查点与事件溯源，崩溃后重放事件即可精确恢复。上下文膨胀时，滑动截断零延迟但易忘本，记忆压缩保留主线但引入延迟，可混合使用。最终以十项检查清单作为代码评审硬性门槛，逐项确认可大幅降低跑偏概率。</description>
+      <category>AI Agent</category>
+    </item>
+    <item>
+      <title>个人知识库+AI，怎么搭才不吃灰</title>
+      <link>https://penn-notes.draftly.cn/agent/misc/个人知识库+AI怎么搭才不吃灰</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/agent/misc/个人知识库+AI怎么搭才不吃灰</guid>
+      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
+      <description>栏目：AI Agent · 个人知识库搭配AI后常因入口过重而吃灰，核心解法是让AI成为主动入口而非搜索框。实践表明，砍掉分类仅留Inbox、绑定每日固定触发场景、建立周度清理机制，并聚焦“总结加追问”这一高频调用，可维持活跃。功能精简至丢内容、问问题、手动标记关联三步，反而能保证持续使用。</description>
+      <category>AI Agent</category>
+    </item>
+    <item>
+      <title>模型更快更贵，该怎么选</title>
+      <link>https://penn-notes.draftly.cn/misc/essays/模型更快更贵该怎么选</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/misc/essays/模型更快更贵该怎么选</guid>
+      <pubDate>Wed, 29 Jul 2026 16:00:00 GMT</pubDate>
+      <description>栏目：杂项 · 模型选型不能只看平均延迟和跑分，需同时关注延迟分位数、吞吐、错误率及真实成本。核心方法是先定义业务SLO，再用线上真实请求做基准测试，最后接入小流量跑完整周期验证。警惕长尾延迟劣化、隐性资源开销和工程优化机会，若端到端增益不足两成而成本增幅超两成，通常不值得切换。</description>
+      <category>杂项</category>
+    </item>
+    <item>
+      <title>Claude Code 实战手册开源：编码秘籍</title>
+      <link>https://penn-notes.draftly.cn/engineering/toolchain/Claude-Code实战手册开源</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/toolchain/Claude-Code实战手册开源</guid>
+      <pubDate>Tue, 28 Jul 2026 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · Claude Code 使用中环境配置报错、提示词低效、多文件修改遗漏是高频痛点，开源手册提供可复用解法：环境准备清单锁定 Node v18.17.1、密钥用环境变量、国内需配代理；10 个高频提示词模板覆盖测试、重构、优化等场景；多文件编辑先让模型生成“代码地图”再逐文件修改；避坑要点是验证生成结果、拆分大需求、监控上下文、给出可度量反馈。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>长文生成总超时？两报错定位五步提效</title>
+      <link>https://penn-notes.draftly.cn/misc/misc/长文生成总超时两报错定位五步提效</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/misc/misc/长文生成总超时两报错定位五步提效</guid>
+      <pubDate>Tue, 28 Jul 2026 16:00:00 GMT</pubDate>
+      <description>栏目：杂项 · 长文生成超时的根因是网关60秒固定超时与长任务流式输出的冲突，而非模型能力问题。通过按大纲章节分段生成、受限并发控制、单章失败降级、质量达标跳过精炼及封面并行生成五步组合，可将6600字文章生成耗时从425秒降至105秒。核心思路是将不可控长任务拆解为可控短任务，并配套重试与降级机制保障流程稳定。</description>
+      <category>杂项</category>
+    </item>
+    <item>
+      <title>Axios 封装</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/Axios封装</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/Axios封装</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 在 Vue 项目中封装 Axios 时，通过新建 request 文件夹下的 http.js 与 api.js 实现请求环境切换、超时设置、请求头配置、请求与响应拦截器，并封装 get 和 post 方法统一管理接口。优化方案包括创建 axios 实例替代方法封装、用 js 变量控制多域名、增加断网处理、模块化 api 管理并挂载至 vue.prototype，以提升灵活性与协作效率。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Element-UI问题清单</title>
+      <link>https://penn-notes.draftly.cn/web/ui-lib/Element-UI问题清单</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/ui-lib/Element-UI问题清单</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · Element-UI 使用中常见问题及解法汇总，覆盖表单回车刷新、动态表单重置、表格固定列遮挡、气泡确认框事件失效、正则输入绑定值不更新、中文输入 v-model 失效、数字输入框箭头去除、局部字段校验、移除校验结果、弹窗重置、表格行高亮、输入框聚焦、树组件展开、样式穿透、日期格式化及中文语言包配置等场景，并附版本兼容性提示与替代方案。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>el-form表单封装</title>
+      <link>https://penn-notes.draftly.cn/web/ui-lib/el-form表单封装</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/ui-lib/el-form表单封装</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 针对Element-UI表单在复杂系统中代码冗余、维护困难的问题，通过配置化JSON对象定义表单属性，将业务逻辑与界面分离，并利用slot插槽处理特殊场景，实现表单的灵活封装与复用，显著提升开发效率和可维护性。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>解决element表格数据量过大导致页面渲染缓慢、卡顿问题</title>
+      <link>https://penn-notes.draftly.cn/web/ui-lib/解决element表格数据量过大导致页面渲染缓慢、卡顿问题</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/ui-lib/解决element表格数据量过大导致页面渲染缓慢、卡顿问题</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 针对Element表格数据量过大导致的渲染卡顿，本文分析了根因在于DOM数量过多引发内存溢出。解决方案是采用两种表格插件：Vxe-table支持按需引入模块、表格类型丰富；pl-table通过开启use-virtual属性实现虚拟滚动。文中提供了各自的安装引入方式及官方文档链接，供开发者根据项目需求选用。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Git命令</title>
+      <link>https://penn-notes.draftly.cn/engineering/git/Git命令</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/git/Git命令</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · Git是分布式版本控制系统，与集中式SVN相比，无需中央服务器、可离线工作，但代码保密性较弱。文章涵盖基础配置、文件提交流程（add、commit、push）、版本回退、分支管理、远程仓库连接、SSH秘钥生成及git stash暂存操作，并介绍.gitignore忽略规则与子模块处理，适合新手快速上手。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>MySQL数据库常用操作</title>
+      <link>https://penn-notes.draftly.cn/backend/mysql/MySQL数据库常用操作</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/backend/mysql/MySQL数据库常用操作</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：后端 · MySQL数据库操作涵盖连接本地与远程主机、修改密码、权限管理及基础增删改查。通过grant命令可灵活控制用户访问范围，如指定主机或数据库。日常维护需掌握显示库表、建库建表、清空记录等命令，并注意字段属性设置如自增主键。备份数据库可在bin目录执行命令生成文本文件，文件名可自定义。</description>
+      <category>后端</category>
+    </item>
+    <item>
+      <title>GitHub精选资源</title>
+      <link>https://penn-notes.draftly.cn/tech/github/github精选资源</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/tech/github/github精选资源</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：工具备忘 · 这份GitHub资源清单按综合、面试、样式UI、构建工具、数据可视化、动画与插件等类别，汇总了前端开发高频使用的优质开源项目，涵盖JavaScript风格指南、微信小程序资源、掘金翻译计划、前端面试题库、主流CSS框架与预处理器、打包工具、图表库及动画库等，每项附Star数与仓库地址，便于开发者按需检索和选用。</description>
+      <category>工具备忘</category>
+    </item>
+    <item>
+      <title>Chrome Extension（扩展程序）开发</title>
+      <link>https://penn-notes.draftly.cn/computer/browser/Chrome-Extension（扩展程序）开发</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/computer/browser/Chrome-Extension（扩展程序）开发</guid>
+      <pubDate>Tue, 06 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：浏览器 · Chrome扩展本质是打包的Web文件集合，通过manifest.json配置核心结构。文章梳理了content-scripts、background、popup、inject-script等关键组件及其生命周期与权限差异，并对比五类JS文件的API访问、DOM操作和跨域能力。开发调试需开启开发者模式加载文件夹，改动后需重载插件。消息通信机制是扩展与页面交互的关键。</description>
+      <category>浏览器</category>
+    </item>
+    <item>
+      <title>ES6-ES12 特性</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/ES6-ES12特性</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/ES6-ES12特性</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · ES6至ES12各版本新增特性汇总，覆盖类、模块化、箭头函数、解构赋值等ES6基础，以及后续版本的异步处理、正则增强、数组与字符串新方法、空值合并、可选链、BigInt、Promise新API和逻辑赋值等实用功能，便于开发者按版本快速查阅与选用。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Promise(三)：拓展方法实现</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/Promise拓展方法实现</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/Promise拓展方法实现</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 本文基于已实现的基础Promise，逐步实现catch、finally、resolve、reject、all、race、any等拓展方法。catch通过then只传失败回调实现；finally无论成败均执行；all需全部成功才返回数组，任一失败即整体失败；race返回首个完成结果；any则返回首个成功，全部失败时汇总错误。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Promise(一)：Promise 认识</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/Promise认识</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/Promise认识</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · Promise 是 ES6 引入的构造函数，用于处理异步操作，通过维护 pending、fulfilled、rejected 三种状态，以 resolve 和 reject 传递结果。其核心价值在于将回调写法分离，支持链式调用和错误捕获，并能并行执行异步任务。all 方法等待全部完成，race 则以最先完成者为准，常用于超时控制等场景。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>async/await</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/async&amp;await</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/async&amp;await</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · async/await 是 JavaScript 处理异步操作的语法，async 函数返回 Promise 对象，await 等待表达式结果并阻塞后续代码，但仅在 async 函数内有效。其核心优势在于优化多层 Promise 的 then 链，使依赖前序结果的异步步骤代码接近同步写法，更清晰易读，且不阻塞外部调用。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>JS forEach踩坑</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/forEach踩坑</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/forEach踩坑</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · forEach遍历数组时存在三大常见坑点：不支持break跳出循环，使用return无法终止或返回值，删除自身元素时索引不会重置导致遍历提前结束。与for循环相比，forEach无法控制循环起点或修改索引，只能默认从头到尾完整遍历。若需在遍历时删除符合条件的数组项，建议使用for循环倒序遍历或filter方法，而非forEach。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>js if/else 语句优化策略</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/if-else语句优化策略</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/if-else语句优化策略</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 面对大量分支判断时，if/else 嵌套会降低代码可读性。本文提出优化策略：简单逻辑可用提前 return、三元表达式或按位异或；复杂逻辑应将最可能条件前置以减少判断次数，或用 switch/case 提升整洁度，也可利用 Object 或 Map 重构分支结构，使代码更清晰易维护。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>js笛卡尔积</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/js笛卡尔积</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/js笛卡尔积</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 在电商SKU组合、多表查询或坐标生成等场景中，笛卡尔积用于求多组数据的全排列组合。文中给出JavaScript实现代码，通过循环或递归方式遍历各数组，生成所有可能的有序组合，并附有结果示例，帮助理解如何将数学概念落地为可用的程序逻辑。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>前端路由实现</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/前端路由实现</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/前端路由实现</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 前端路由解决单页应用中URL与界面映射问题，核心在于改变URL不刷新页面并监听其变化。实现方式分hash和history两种：hash通过hashchange事件监听，兼容性好但URL带#且不美观；history利用pushState和replaceState修改路径，URL更规范，但popstate事件不覆盖所有变更，需额外拦截操作，且服务端需配合。实际框架如React-Router和Vue-Router均基于这两种原理封装，选择时需权衡兼容性、美观度和部署环境。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>js对象排序</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/对象排序</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/对象排序</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · JavaScript对象本身无序，即使后台返回排好序的对象，前端渲染时仍可能错乱。本文记录项目中的实际处理：无法直接对对象排序，需针对对象的键或属性值进行排序，再取出对应value，从而保证折线图按日期顺序正确展示。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Promise(二)：手动实现一个 Promise</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/手动实现一个Promise</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/手动实现一个Promise</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 手动实现简易Promise，核心在于状态管理、resolve与reject的异步执行，以及then方法对Promise值的处理。通过setTimeout保证执行顺序，并依据promise+规范优化，使传入then的值始终为Promise，从而正确处理等待、成功或失败状态，最终实现符合规范的完整功能。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>JavaScript 数组去重</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/数组去重</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/数组去重</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · JavaScript 数组去重方法汇总，覆盖 ES6 的 Set、Map，以及 includes、indexOf、reduce、filter、sort、双层循环、递归等实现，并说明各方法原理、适用场景及对空对象、空数组等特殊情况的处理限制，便于按需选用。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>正则表达式校验</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/正则表达式校验</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/正则表达式校验</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 正则表达式校验笔记汇总了数字、字符、特殊需求及Emoji过滤的常用正则写法，覆盖数字范围、正负小数、汉字与英文组合、邮箱域名、手机号身份证、账号密码强度、日期金额及IP等场景，并附有具体表达式示例，便于直接套用或参考。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>js深拷贝</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/深拷贝</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/深拷贝</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 利用JSON序列化实现深拷贝虽简单，但无法处理函数、正则、Symbol及循环引用，且相同引用会被重复复制导致结构失真。递归遍历可复制更多类型，但同样面临循环引用与共享引用问题，需借助闭包缓存已访问对象来终止递归并保持引用关系。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>NProgress为页面/接口添加加载进度条</title>
+      <link>https://penn-notes.draftly.cn/web/vue/使用-NProgress为页面或接口添加加载进度条</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/vue/使用-NProgress为页面或接口添加加载进度条</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · NProgress是轻量级进度条组件，用于提升页面加载体验。文章介绍三种实现方案：借助axios拦截器在请求前后控制进度条，但需注意多请求并发时需配合Vuex管理状态；使用组件内beforeRouteEnter守卫，确保数据获取后再渲染组件；推荐在路由配置中结合beforeEnter守卫与props传参，既能等待数据完成再渲染，又能减少组件对Vuex的依赖，提升可维护性。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>常用的一些CSS样式</title>
+      <link>https://penn-notes.draftly.cn/ui/css/常用的一些CSS样式</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/常用的一些CSS样式</guid>
+      <pubDate>Mon, 05 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 整理常用CSS样式技巧，覆盖文本溢出隐藏、中英文换行、文字阴影与立体效果、placeholder样式、滚动条定制、表格边框合并、nth-child精准选取、图片异常处理、渐变与描边文字、元素占屏、动画闪烁规避等场景，并附可直接套用的代码片段，便于日常开发速查复用。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>JS合并数组对象中key值相同的数据</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/JS合并数组对象中key值相同的数据</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/JS合并数组对象中key值相同的数据</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 针对数组中属性值相同的对象进行合并的需求，本文提供了两种实现方案，分别利用循环遍历和分组逻辑，将相同key的对象归并至同一数组，并给出可直接套用的代码示例，适用于前端数据处理场景。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>JS声明提升</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/JS声明提升</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/JS声明提升</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · JavaScript执行时先经历编译阶段，为变量和函数声明分配内存并初始化。var声明的变量仅提升声明部分，赋值留在原地，故初始值为undefined；let和const因块级作用域存在暂时性死区。函数声明整体提升至作用域顶部，且优先级高于变量声明，但会被变量赋值覆盖。局部变量与全局变量同名时，提升规则各自独立，需注意作用域区分。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>JS循环遍历方法</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/JS循环遍历方法</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/JS循环遍历方法</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 总结JavaScript各类循环遍历方法的适用场景与注意事项：for适合数组，for in宜遍历对象且需配合hasOwnProperty过滤原型属性，while与do/while用于条件循环，数组专属方法中forEach不可中断、map返回新数组、filter筛选、some与every返回布尔值、reduce及reduceRight做累加，ES6的for of可遍历可迭代数据结构。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>javascript 之 this 指向问题</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/this指向问题</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/this指向问题</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · JavaScript中this的指向在函数调用时确定，而非定义时。核心规则是：this指向最后调用它的对象，若无对象调用则指向window（非严格模式）。多层嵌套对象中，this仅指向直接上一级对象。构造函数中new会改变this指向新实例。call、apply、bind可手动指定this，其中call和apply立即执行，bind返回新函数可延迟调用，apply第二参数须为数组。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>前端常用公共方法工具类</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/前端常用公共方法工具类</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/前端常用公共方法工具类</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 整理了一份前端常用公共方法工具类清单，覆盖时间格式化与日期计算、字符串拆分与提取、数字千分位及中文大写转换、经纬度距离与坐标系转换、页面传参与UUID生成等场景。同时包含数组去重排序、对象深拷贝、事件绑定兼容、防抖节流、Ajax与fetch封装、Cookie管理、正则验证及文件处理等实用函数，便于日常开发直接调用。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>数组对象求和</title>
+      <link>https://penn-notes.draftly.cn/web/javascript/数组对象求和</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/javascript/数组对象求和</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · 使用reduce与Object.keys可对数组对象中指定字段求和，先通过Object.keys提取键名，再在reduce回调中累加对应值，适用于动态字段或全字段统计场景，代码简洁且避免手动遍历。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>React(一)：核心概念</title>
+      <link>https://penn-notes.draftly.cn/web/react/核心概念</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/react/核心概念</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · React作为Facebook开发的JavaScript UI库，以组件化、声明式编码和虚拟DOM为核心，通过diff算法最小化真实DOM操作。JSX语法将模板嵌入JS，组件分函数与类两种定义方式。props为外部只读数据，state为内部可变状态，需用setState更新。生命周期管理组件挂载、更新与卸载过程，状态提升用于多组件数据共享。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>Vue组件常用选项</title>
+      <link>https://penn-notes.draftly.cn/web/vue/Vue组件常用选项</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/web/vue/Vue组件常用选项</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：JS &amp; 框架 · Vue组件常用选项涵盖methods、watch、filters、props和computed五大核心配置。methods用于定义事件处理与请求方法，watch可监控数据变化并支持immediate与deep深度监听，filters实现文本格式化，props负责父组件向子组件传递数据并遵循单向数据流，computed则基于现有数据组合新值且具备缓存优势，避免重复计算。掌握这些选项能有效管理组件逻辑与数据交互。</description>
+      <category>JS &amp; 框架</category>
+    </item>
+    <item>
+      <title>浏览器渲染过程简介</title>
+      <link>https://penn-notes.draftly.cn/computer/browser/浏览器渲染过程简介</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/computer/browser/浏览器渲染过程简介</guid>
+      <pubDate>Fri, 02 Sep 2022 16:00:00 GMT</pubDate>
+      <description>栏目：浏览器 · 浏览器渲染涉及解析HTML、CSS和JavaScript，分别生成DOM树与CSS规则树，再合并构建渲染树，随后经历布局和绘制阶段。渲染树会剔除不可见节点，CSS匹配采用从右到左方式，性能受选择器写法影响。重排（Reflow）比重绘（Repaint）代价高得多，常见触发动作包括增删DOM、改样式、窗口缩放等，可通过批量修改类名、离线操作DOM、避免table布局等方式减少性能损耗。</description>
+      <category>浏览器</category>
+    </item>
+    <item>
+      <title>Git修改分支名</title>
+      <link>https://penn-notes.draftly.cn/engineering/git/Git修改分支名</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/git/Git修改分支名</guid>
+      <pubDate>Thu, 11 Aug 2022 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · 本地分支改名需先确保代码最新且不影响他人协作。操作分三步：先修改本地分支名，再删除原远程分支，最后将改名后的分支推送至远程，即可完成本地与远程分支名的同步更新。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>CSS给table的tbody添加滚动条</title>
+      <link>https://penn-notes.draftly.cn/ui/css/CSS给table的tbody添加滚动条</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/CSS给table的tbody添加滚动条</guid>
+      <pubDate>Wed, 29 Jun 2022 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · ```css table tbody { height: 200px; overflow-y: auto; display: block; }</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>npm常用命令</title>
+      <link>https://penn-notes.draftly.cn/engineering/npm/npm常用命令</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/npm/npm常用命令</guid>
+      <pubDate>Sat, 25 Dec 2021 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · npm是随Node安装的包管理器，支持下载第三方包、安装命令行工具及发布自有包。常用命令涵盖检测版本、生成package.json、安装查看更新卸载模块、清缓存及切换淘宝镜像。技巧包括缓存清理解决安装失败、用命令确认实际版本号。nrm作为镜像源管理工具，可快速切换npm源应对网络限制。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>yaml语言教程</title>
+      <link>https://penn-notes.draftly.cn/engineering/toolchain/yaml语言教程</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/toolchain/yaml语言教程</guid>
+      <pubDate>Sat, 25 Dec 2021 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · YAML是一种以缩进表达层级、适合配置文件的序列化语言，后缀为.yml，语法要求大小写敏感、禁用Tab缩进、用#注释。支持对象（键值对）、数组（-开头）和纯量（字符串、布尔、数字、时间等）三类数据类型，可组合成复合结构。多行字符串可用|保留换行或&gt;折叠，&amp;锚点与*别名实现内容复用，!!可强制类型转换。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>Git使用手册</title>
+      <link>https://penn-notes.draftly.cn/engineering/git/Git使用手册</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/git/Git使用手册</guid>
+      <pubDate>Fri, 25 Dec 2020 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · 介绍Git从安装、本地仓库创建到远程协作的完整流程，涵盖配置身份、提交修改、版本回退与撤销、SSH验证及关联远程库等核心操作。要点包括用git add与commit规范提交、利用HEAD回退版本、通过reflog找回记录、分支合并需先切换至目标分支，并建议清晰描述提交信息以提升版本管理效率。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>Markdown使用教程</title>
+      <link>https://penn-notes.draftly.cn/tech/docs/Markdown使用教程</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/tech/docs/Markdown使用教程</guid>
+      <pubDate>Fri, 25 Dec 2020 16:00:00 GMT</pubDate>
+      <description>栏目：工具备忘 · Markdown 是一种易读易写的轻量级标记语言，常用于 GitHub、简书、知乎等平台撰写文档。内容涵盖标题、文本样式、列表、区块引用、代码、链接、图片、表格、Emoji 及数学公式等语法，并介绍徽章、目录生成和转义等技巧，推荐使用 Typora 编辑，适合快速上手并系统掌握 Markdown 写作。</description>
+      <category>工具备忘</category>
+    </item>
+    <item>
+      <title>GitHub高级搜索技巧</title>
+      <link>https://penn-notes.draftly.cn/tech/github/GitHub高级搜索技巧</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/tech/github/GitHub高级搜索技巧</guid>
+      <pubDate>Fri, 25 Dec 2020 16:00:00 GMT</pubDate>
+      <description>栏目：工具备忘 · GitHub高级搜索可通过限定仓库名称、描述、README内容、星标与分支数、大小、更新或创建日期、许可证、语言及用户或组织等条件精准定位项目，各条件可组合使用，也可借助高级搜索页提升效率。</description>
+      <category>工具备忘</category>
+    </item>
+    <item>
+      <title>CSS教程和技巧收藏</title>
+      <link>https://penn-notes.draftly.cn/ui/css/CSS教程和技巧收藏</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/CSS教程和技巧收藏</guid>
+      <pubDate>Tue, 11 Aug 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 收藏了阮一峰关于CSS布局的系列教程，涵盖Flex语法、Grid网格及五种经典布局的实现方法。重点介绍只需一行代码即可完成空间居中、并列式、两栏式、三明治和圣杯布局，并说明各布局的适用场景，便于快速查阅和套用。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>「css技巧」使用hover和attr()定制悬浮提示</title>
+      <link>https://penn-notes.draftly.cn/ui/css/css技巧使用hover和attr()定制悬浮提示</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/css技巧使用hover和attr()定制悬浮提示</guid>
+      <pubDate>Sat, 18 Apr 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 利用CSS的:hover伪类与attr()函数，无需JavaScript即可为元素定制悬浮提示。通过将提示文本存入data属性，配合伪元素content:attr()动态读取，实现轻量级交互效果，提升页面可访问性与用户体验。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>npm packageJson属性详解</title>
+      <link>https://penn-notes.draftly.cn/engineering/npm/npm-packageJson属性详解</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/engineering/npm/npm-packageJson属性详解</guid>
+      <pubDate>Wed, 08 Apr 2020 16:00:00 GMT</pubDate>
+      <description>栏目：工程化 · package.json 是 npm 模块的核心配置文件，必须为严格 JSON 格式，其中 name 和 version 为必填项，共同构成模块唯一标识。name 需遵循长度、字符及大小写限制，version 须符合 semver 规范。</description>
+      <category>工程化</category>
+    </item>
+    <item>
+      <title>如何根据系统主题自动响应CSS深色模式</title>
+      <link>https://penn-notes.draftly.cn/ui/css/如何根据系统主题自动响应CSS深色模式</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/如何根据系统主题自动响应CSS深色模式</guid>
+      <pubDate>Tue, 31 Mar 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 通过CSS自定义属性定义两套主题变量，并借助prefers-color-scheme媒体查询，可让网站自动跟随访客系统主题切换深色或浅色模式。若需JS介入，可用matchMedia监听系统主题变化并动态响应。此方案简化了主题维护，提升了深色模式用户的访问体验。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>css水平垂直居中</title>
+      <link>https://penn-notes.draftly.cn/ui/css/水平垂直居中的几种方式</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/水平垂直居中的几种方式</guid>
+      <pubDate>Fri, 13 Mar 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 针对CSS水平垂直居中这一常见布局需求，本文梳理了固定宽高与不定宽高两类场景下的多种实现方案，包括absolute结合margin auto、负margin、calc、transform，以及lineheight、flex、grid和table-cell等方法。文中给出各方法适用场景与代码示例，并建议PC端兼容性优先时选用absolute加负margin或table-cell，否则直接用flex；移动端则首推flex方案。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>GitHub加速下载项目的方法</title>
+      <link>https://penn-notes.draftly.cn/tech/github/GitHub加速下载项目的方法</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/tech/github/GitHub加速下载项目的方法</guid>
+      <pubDate>Mon, 09 Mar 2020 16:00:00 GMT</pubDate>
+      <description>栏目：工具备忘 · 国内直接克隆GitHub大项目常因速度过慢（约20k/s）而难以忍受，本文介绍利用码云中转加速的方法：先在码云账号中通过“从GitHub/GitLab导入项目”粘贴仓库地址完成导入，再从码云克隆该项目，速度可提升至数兆每秒，适合大项目；小项目可忽略。注意克隆后关联的是码云仓库，如需关联GitHub需手动更改远程仓库地址。</description>
+      <category>工具备忘</category>
+    </item>
+    <item>
+      <title>从box-sizing属性入手，了解盒子模型</title>
+      <link>https://penn-notes.draftly.cn/ui/css/从box-sizing属性入手，了解盒子模型</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/从box-sizing属性入手，了解盒子模型</guid>
+      <pubDate>Thu, 27 Feb 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 在自适应布局中，若div宽度用百分比而边框和内边距用像素，会导致总宽度超出容器。通过设置box-sizing:border-box可将标准盒模型切换为IE盒模型，使总宽度保持为设定值。标准模型下width仅指内容区，需另加padding和border；而border-box则让width包含边框和内边距，内容区自动缩减，便于控制元素实际尺寸。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>文字在一行或多行时超出显示省略号</title>
+      <link>https://penn-notes.draftly.cn/ui/css/文字在一行或多行时超出显示省略号</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/文字在一行或多行时超出显示省略号</guid>
+      <pubDate>Sun, 23 Feb 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 介绍CSS实现单行与多行文本超出显示省略号的方法，多行行数由line-clamp控制，并讲解如何通过clientHeight与scrollHeight比较判断文本是否溢出，以便动态显示展开收缩按钮，同时补充scrollHeight、clientHeight与offsetHeight三者定义差异。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>「布局技巧」图片未加载前自动撑开元素高度</title>
+      <link>https://penn-notes.draftly.cn/ui/css/布局技巧图片未加载前自动撑开元素高度</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/布局技巧图片未加载前自动撑开元素高度</guid>
+      <pubDate>Sat, 22 Feb 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 移动端布局中，图片未加载时容器高度塌陷，影响轮播图等自适应元素。通过给容器设置padding-bottom，取值按图片高宽比计算（如高/宽），即可让高度随宽度百分比撑开，与图片加载后一致。也可用vw单位实现，但存在浏览器兼容风险。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>常用meta整理</title>
+      <link>https://penn-notes.draftly.cn/ui/html/常用meta整理</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/html/常用meta整理</guid>
+      <pubDate>Fri, 21 Feb 2020 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 整理HTML常用meta标签的元数据用法，涵盖必要与可选属性。内容分网页相关（编码、内核控制、缓存、转码）、SEO优化（关键词、描述、索引、重定向）、移动设备（viewport、全屏、主题色、数字识别）等场景，并给出各属性取值与注意事项，便于按需选用。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>nodejs递归读取所有文件</title>
+      <link>https://penn-notes.draftly.cn/backend/nodejs/nodejs递归读取所有文件</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/backend/nodejs/nodejs递归读取所有文件</guid>
+      <pubDate>Thu, 26 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：后端 · var fs = require(&apos;fs&apos;); var path = require(&apos;path&apos;);</description>
+      <category>后端</category>
+    </item>
+    <item>
+      <title>CSS3之animation动画</title>
+      <link>https://penn-notes.draftly.cn/ui/css/CSS3之animation动画</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/CSS3之animation动画</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · CSS3动画通过animation属性实现，核心在于用贝塞尔曲线cubic-bezier(x1,y1,x2,y2)控制运动节奏，X轴限定0到1，Y轴无硬性限制但不宜过大，可调出反弹等效果。直线linear即cubic-bezier(0,0,1,1)，可用F12或codepen调试，在线工具辅助设计曲线。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>CSS3之transition过渡</title>
+      <link>https://penn-notes.draftly.cn/ui/css/CSS3之transition过渡</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/CSS3之transition过渡</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 通过transition属性为元素设置过渡效果，可指定全部或单一属性及持续时间，实现宽度、背景色等变化的平滑动画。利用transition-timing-function配合cubic-bezier曲线可自定义运动节奏，实现反弹等效果，其中X轴范围0到1，Y轴取值不宜过大，直线对应cubic-bezier(0,0,1,1)。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局案例-圣杯布局</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局案例-圣杯布局</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局案例-圣杯布局</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 圣杯布局是经典三栏布局，要求左右固定宽度、中间自适应。利用flex布局可轻松实现：容器设为display:flex，左右栏固定宽度，中间栏flex:1自动填充剩余空间，再通过order属性调整三栏在移动端的显示顺序。本文用可运行示例演示了该布局的完整CSS写法，并附F12调试与在线编辑指引。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局案例-基础</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局案例-基础</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局案例-基础</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 本文通过实际案例演示flex布局的基础用法，帮助理解容器属性（如flex-direction、justify-content等）对子元素排列的影响。重点在于掌握主轴与交叉轴的对齐方式，以及如何利用flex实现常见的水平垂直居中效果。适合初学者快速上手，建议结合F12工具或CodePen动手调试。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局案例-网格布局</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局案例-网格布局</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局案例-网格布局</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 本文通过实际案例演示如何用flex实现网格布局，重点解决传统浮动布局中列对齐与间距控制难题。关键要点包括：利用flex-wrap实现多行排列，通过flex-basis或百分比设定列宽，并配合gap或margin管理间距，确保响应式下网格自适应。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局案例-输入框布局</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局案例-输入框布局</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局案例-输入框布局</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 通过flex布局实现输入框与按钮的紧凑排列，解决传统浮动或行内块元素对齐难的问题。核心要点是设置容器display:flex，利用flex属性控制输入框自适应宽度、按钮固定宽度，并配合align-items实现垂直居中，确保不同屏幕下布局稳定。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局案例-骰子</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局案例-骰子</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局案例-骰子</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · 通过骰子点阵布局案例，演示Flexbox在排列与对齐上的核心用法。正文涵盖不同点数（如1至6）的布局实现，利用主轴与交叉轴属性控制元素位置，并支持F12或CodePen实时调试。要点在于理解justify-content与align-items的组合应用，以灵活应对多样排列需求。</description>
+      <category>样式</category>
+    </item>
+    <item>
+      <title>flex布局语法</title>
+      <link>https://penn-notes.draftly.cn/ui/css/flex布局语法</link>
+      <guid isPermaLink="true">https://penn-notes.draftly.cn/ui/css/flex布局语法</guid>
+      <pubDate>Wed, 25 Dec 2019 16:00:00 GMT</pubDate>
+      <description>栏目：样式 · Flex布局通过容器与项目两套属性实现弹性排列，容器可设方向、换行、主轴与交叉轴对齐，项目可控制顺序、放大缩小比例及自身对齐。设置display:flex后子元素float等失效，默认主轴水平排列，常用flex简写属性管理空间分配。</description>
+      <category>样式</category>
+    </item>
+  </channel>
+</rss>

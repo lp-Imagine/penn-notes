@@ -1,0 +1,1324 @@
+/* Penn Notes · Decap /admin 界面美化（仅样式；避开 Markdown 工具栏） */
+
+:root {
+  --penn-admin-ink: #1a1b1f;
+  --penn-admin-muted: #6b6f7b;
+  --penn-admin-faint: #9aa0ad;
+  --penn-admin-line: #e2e5ee;
+  --penn-admin-line-strong: #cfd4e0;
+  --penn-admin-soft: #eef1f8;
+  --penn-admin-surface: #f4f6fb;
+  --penn-admin-card: #ffffff;
+  --penn-admin-accent: #3b5bdb;
+  --penn-admin-accent-2: #2f4fc4;
+  --penn-admin-accent-soft: rgba(59, 91, 219, 0.1);
+  --penn-admin-accent-ring: rgba(59, 91, 219, 0.18);
+  --penn-admin-danger: #b42318;
+  --penn-admin-radius: 14px;
+  --penn-admin-radius-sm: 10px;
+  --penn-admin-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+    0 10px 28px rgba(15, 23, 42, 0.05);
+  --penn-admin-font: "Outfit", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
+  --penn-admin-display: "Fraunces", "Songti SC", "Noto Serif SC", Georgia, serif;
+  --penn-login-ink: #e8ecf6;
+  --penn-login-muted: rgba(232, 236, 246, 0.68);
+  --penn-login-faint: rgba(232, 236, 246, 0.42);
+  --penn-login-panel: rgba(18, 24, 38, 0.55);
+  --penn-login-accent: #7ea0ff;
+}
+
+html,
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(59, 91, 219, 0.09), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(47, 79, 196, 0.06), transparent 50%),
+    var(--penn-admin-surface) !important;
+  color: var(--penn-admin-ink);
+  font-family: var(--penn-admin-font) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+#nc-root {
+  min-height: 100vh;
+}
+
+/* ── 顶栏（不含编辑器工具栏） ── */
+[class*="-AppHeaderContent"],
+[class*="-TopBarContainer"] {
+  background: color-mix(in srgb, #fff 88%, transparent) !important;
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--penn-admin-line) 90%, transparent) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+[class*="-AppHeaderNavLink"],
+[class*="-AppHeaderButton"] {
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+[class*="-AppHeaderNavLink"]:hover,
+[class*="-AppHeaderButton"]:hover {
+  background: var(--penn-admin-accent-soft) !important;
+  color: var(--penn-admin-accent) !important;
+}
+
+[class*="-AppHeaderQuickNewButton"],
+[class*="-CollectionTopNewButton"],
+[class*="-LoginButton"] {
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 6px 16px var(--penn-admin-accent-ring) !important;
+  transition: filter 0.15s ease;
+}
+
+[class*="-AppHeaderQuickNewButton"]:hover,
+[class*="-CollectionTopNewButton"]:hover,
+[class*="-LoginButton"]:hover {
+  filter: brightness(1.05);
+  background: var(--penn-admin-accent-2) !important;
+}
+
+/* 发布按钮：避免误伤其它 *Publish* 控件，尽量收窄 */
+button[class*="-PublishButton"] {
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 6px 16px var(--penn-admin-accent-ring) !important;
+}
+
+/* ── 主布局 / 侧栏 ── */
+[class*="-AppMainContainer"],
+[class*="-CollectionContainer"],
+[class*="-CollectionMain"] {
+  background: transparent !important;
+}
+
+[class*="-SidebarContainer"] {
+  background: color-mix(in srgb, #fff 92%, transparent) !important;
+  border-right: 1px solid var(--penn-admin-line) !important;
+  box-shadow: 4px 0 24px rgba(15, 23, 42, 0.03);
+}
+
+[class*="-SidebarHeading"] {
+  color: var(--penn-admin-faint) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+[class*="-SearchInput"] {
+  border-radius: 999px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  background: var(--penn-admin-surface) !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[class*="-SearchInput"]:focus {
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 50%, var(--penn-admin-line)) !important;
+  box-shadow: 0 0 0 3px var(--penn-admin-accent-ring) !important;
+  outline: none !important;
+}
+
+[class*="-SidebarNavLink"],
+[class*="-TreeNavLink"] {
+  border-radius: 10px !important;
+  margin: 2px 8px !important;
+  font-weight: 560 !important;
+  color: var(--penn-admin-ink) !important;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+[class*="-SidebarNavLink"]:hover,
+[class*="-TreeNavLink"]:hover {
+  background: var(--penn-admin-soft) !important;
+  color: var(--penn-admin-accent) !important;
+}
+
+[class*="-SidebarNavLink"][aria-current="page"],
+a[class*="-SidebarNavLink"][class*="active"] {
+  background: var(--penn-admin-accent-soft) !important;
+  color: var(--penn-admin-accent) !important;
+  box-shadow: inset 3px 0 0 var(--penn-admin-accent);
+}
+
+/* ── 集合顶栏 / 列表 ──
+   注意：Emotion 类名形如 xxx-ListCard / xxx-ListCardLink / xxx-ListCardTitle，
+   禁止用 [class*="-ListCard"]，否则会同时命中 Link/Title，叠出「双边框胶囊」。 */
+
+[class*="-CollectionTopContainer"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 14px !important;
+  padding: 16px 18px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: none !important;
+}
+
+[class*="-CollectionTopHeading"] {
+  color: var(--penn-admin-ink) !important;
+  font-size: 20px !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.3 !important;
+}
+
+h2[class*="-CollectionLabel"] {
+  color: var(--penn-admin-muted) !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.04em;
+}
+
+[class*="-CollectionTopDescription"] {
+  color: var(--penn-admin-muted) !important;
+}
+
+[class*="-CollectionTopNewButton"] {
+  min-height: 40px;
+  padding: 0 18px !important;
+}
+
+[class*="-CollectionControlsContainer"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 2px;
+}
+
+[class*="-ViewControlsSection"] {
+  gap: 2px;
+}
+
+[class*="-ViewControlsButton"] {
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+}
+
+[class*="-ViewControlsButton"]:hover {
+  background: var(--penn-admin-soft) !important;
+  border-color: var(--penn-admin-line) !important;
+}
+
+/* 列表视图：整块面板 + 行分割，去掉单卡双边框 */
+ul[class*="-CardsGrid"]:has(> li[class*="-ListCard"]) {
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 12px 0 28px !important;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+li[class*="-ListCard"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid var(--penn-admin-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition: background 0.14s ease;
+}
+
+li[class*="-ListCard"]:last-child {
+  border-bottom: none !important;
+}
+
+li[class*="-ListCard"]:hover {
+  background: color-mix(in srgb, var(--penn-admin-accent-soft) 55%, #fff) !important;
+  box-shadow: none !important;
+}
+
+a[class*="-ListCardLink"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 14px 18px 14px 16px !important;
+  border: none !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: border-color 0.14s ease;
+}
+
+a[class*="-ListCardLink"]:hover {
+  background: transparent !important;
+  border-left-color: var(--penn-admin-accent) !important;
+}
+
+a[class*="-ListCardLink"]::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-right: 2px;
+  border-right: 1.5px solid var(--penn-admin-faint);
+  border-top: 1.5px solid var(--penn-admin-faint);
+  transform: rotate(45deg);
+  opacity: 0.55;
+  transition: border-color 0.14s ease, opacity 0.14s ease, transform 0.14s ease;
+}
+
+a[class*="-ListCardLink"]:hover::after {
+  border-color: var(--penn-admin-accent);
+  opacity: 1;
+  transform: rotate(45deg) translate(1px, -1px);
+}
+
+h2[class*="-ListCardTitle"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--penn-admin-ink) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 网格视图：封面置顶、压空白、提高信息密度 */
+ul[class*="-CardsGrid"]:has(> li[class*="-GridCard"]) {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 16px !important;
+  margin: 12px 0 28px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+li[class*="-GridCard"],
+[class*="-WorkflowCardContainer"] {
+  flex: none !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: 12px !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+a[class*="-GridCardLink"] {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  border-radius: 12px !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  background: transparent !important;
+}
+
+a[class*="-GridCardLink"]:hover {
+  background: transparent !important;
+}
+
+/* 封面提到最上（仅网格卡片，勿伤编辑器 ImageWidget） */
+li[class*="-GridCard"] [class*="-StyledImage"],
+li[class*="-GridCard"] [data-testid="entry-card-image"],
+[class*="-WorkflowCardContainer"] [class*="-StyledImage"] {
+  order: -1 !important;
+  width: 100% !important;
+  height: 132px !important;
+  flex: 0 0 132px !important;
+  margin: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-color: var(--penn-admin-soft) !important;
+  border-bottom: 1px solid var(--penn-admin-line) !important;
+}
+
+div[class*="-CardBody"] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 6px;
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 72px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 12px 14px 14px !important;
+  position: relative !important;
+  color: var(--penn-admin-muted) !important;
+  background: transparent !important;
+}
+
+/* 去掉 Decap 默认底部白渐隐，避免大块空洞 */
+div[class*="-CardBody"]::after {
+  content: none !important;
+  display: none !important;
+}
+
+h2[class*="-CollectionLabel"] {
+  margin: 0 !important;
+  color: var(--penn-admin-faint) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  line-height: 1.2 !important;
+}
+
+h2[class*="-CardHeading"] {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin: 0 !important;
+  color: var(--penn-admin-ink) !important;
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.4 !important;
+  word-break: break-word;
+}
+
+p[class*="-CardText"] {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin: 0 !important;
+  color: var(--penn-admin-faint) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+li[class*="-GridCard"]:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 32%, var(--penn-admin-line)) !important;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+li[class*="-GridCard"]:hover [class*="-StyledImage"],
+li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
+  filter: brightness(1.02);
+}
+
+[class*="-CardText"],
+[class*="-CardBody"] {
+  color: var(--penn-admin-muted) !important;
+}
+
+@media (max-width: 720px) {
+  ul[class*="-CardsGrid"]:has(> li[class*="-GridCard"]) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  li[class*="-GridCard"] [class*="-StyledImage"],
+  li[class*="-GridCard"] [data-testid="entry-card-image"],
+  [class*="-WorkflowCardContainer"] [class*="-StyledImage"] {
+    height: 110px !important;
+    flex-basis: 110px !important;
+  }
+}
+
+/* ── 表单字段（不含编辑器工具栏 / react-select 内部 input） ── */
+[class*="-ControlContainer"]
+  input:not([type="file"]):not([type="checkbox"]):not([type="radio"]):not([aria-autocomplete]),
+[class*="-ControlContainer"] textarea,
+[class*="-ControlContainer"] select {
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius-sm) !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[class*="-ControlContainer"]
+  input:not([aria-autocomplete]):focus,
+[class*="-ControlContainer"] textarea:focus,
+[class*="-ControlContainer"] select:focus {
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
+  box-shadow: 0 0 0 3px var(--penn-admin-accent-ring) !important;
+  outline: none !important;
+}
+
+[class*="-ControlContainer"] select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  caret-color: transparent !important;
+  padding: 10px 36px 10px 12px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1.5 1.75L6 6.25L10.5 1.75' stroke='%236b6f7b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-color: #fff !important;
+  cursor: pointer;
+}
+
+[class*="-FieldLabel"] {
+  border-radius: 8px 8px 0 0 !important;
+  font-weight: 650 !important;
+}
+
+[class*="-ControlHint"] {
+  margin-top: 2px !important;
+  color: var(--penn-admin-muted) !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+
+/* react-select（分组 / 多选 / CodeMirror 设置等） */
+#nc-root input[aria-autocomplete="list"],
+#nc-root input[aria-autocomplete="both"],
+#nc-root input[id*="-select-"] {
+  /* 空输入时闪烁光标别叠在已选项上；有字时仍靠文字本身可见 */
+  caret-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+  min-height: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  color: var(--penn-admin-ink) !important;
+}
+
+/* react-select 控件外框与菜单 */
+#nc-root [class*="-control"] {
+  min-height: 42px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius-sm) !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#nc-root [class*="-control"]:hover {
+  border-color: var(--penn-admin-line-strong) !important;
+}
+
+#nc-root [class*="-control"][class*="-focused"],
+#nc-root [class*="-control"]:focus-within {
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
+  box-shadow: 0 0 0 3px var(--penn-admin-accent-ring) !important;
+}
+
+#nc-root [class*="-ValueContainer"],
+#nc-root [class*="-valueContainer"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 6px 10px !important;
+  min-height: 40px !important;
+}
+
+#nc-root [class*="-singleValue"] {
+  color: var(--penn-admin-ink) !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+#nc-root [class*="-placeholder"] {
+  color: var(--penn-admin-faint) !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+}
+
+#nc-root [class*="-Input"],
+#nc-root [class*="-input"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--penn-admin-ink) !important;
+  font-size: 14px !important;
+}
+
+#nc-root [class*="-multiValue"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border: 1px solid color-mix(in srgb, var(--penn-admin-accent) 18%, var(--penn-admin-line)) !important;
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent-soft) !important;
+  overflow: hidden !important;
+}
+
+#nc-root [class*="-multiValueLabel"] {
+  padding: 4px 10px !important;
+  color: var(--penn-admin-accent-2) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+#nc-root [class*="-multiValueRemove"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 4px 0 0 !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  color: var(--penn-admin-accent) !important;
+  background: transparent !important;
+}
+
+#nc-root [class*="-multiValueRemove"]:hover {
+  background: color-mix(in srgb, var(--penn-admin-accent) 16%, #fff) !important;
+  color: var(--penn-admin-accent-2) !important;
+}
+
+#nc-root [class*="-indicatorSeparator"] {
+  display: none !important;
+}
+
+#nc-root [class*="-dropdownIndicator"],
+#nc-root [class*="-clearIndicator"] {
+  color: var(--penn-admin-faint) !important;
+  padding: 6px 10px !important;
+}
+
+#nc-root [class*="-dropdownIndicator"]:hover,
+#nc-root [class*="-clearIndicator"]:hover {
+  color: var(--penn-admin-ink) !important;
+}
+
+#nc-root [class*="-menu"] {
+  margin-top: 6px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--penn-admin-shadow) !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  z-index: 20 !important;
+}
+
+#nc-root [class*="-menuList"] {
+  padding: 6px !important;
+  max-height: 280px !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--penn-admin-line-strong) transparent;
+}
+
+#nc-root [class*="-menuList"]::-webkit-scrollbar {
+  width: 8px;
+}
+
+#nc-root [class*="-menuList"]::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--penn-admin-line-strong);
+  border: 2px solid #fff;
+}
+
+#nc-root [class*="-option"] {
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  cursor: pointer !important;
+}
+
+#nc-root [class*="-option"][class*="-focused"],
+#nc-root [class*="-option"]:active {
+  background: var(--penn-admin-soft) !important;
+  color: var(--penn-admin-ink) !important;
+}
+
+#nc-root [class*="-option"][class*="-selected"] {
+  background: var(--penn-admin-accent-soft) !important;
+  color: var(--penn-admin-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* CodeMirror Field Settings 侧栏 */
+[class*="-SettingsPaneContainer"] {
+  border-left: 1px solid var(--penn-admin-line) !important;
+  background: #fff !important;
+  box-shadow: -8px 0 24px rgba(15, 23, 42, 0.04) !important;
+}
+
+[class*="-SettingsSectionTitle"] {
+  color: var(--penn-admin-ink) !important;
+  font-weight: 700 !important;
+}
+
+[class*="-SettingsFieldLabel"] {
+  color: var(--penn-admin-faint) !important;
+  /* 中文标签不必全大写；英文 MODE/THEME 会由 admin-i18n.js 替换 */
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+}
+
+/* 仅下拉菜单面板，绝不要动 ToolbarDropdown（H / + 触发器） */
+[class*="-DropdownList"] {
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--penn-admin-shadow) !important;
+  overflow: hidden;
+  background: #fff !important;
+}
+
+/* Markdown 工具栏保持 Decap 默认：不对 Toolbar* / StyledToolbarButton 设背景、边框、圆角 */
+
+/* ── 封面 / 媒体控件 ── */
+div:has(> [class*="-FileWidgetButton"]):not(:has(img)):not(:has([class*="-StyledImage"])) {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 148px;
+  margin: 0 0 10px;
+  padding: 22px 18px;
+  border: 1.5px dashed color-mix(in srgb, var(--penn-admin-accent) 34%, var(--penn-admin-line));
+  border-radius: var(--penn-admin-radius);
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--penn-admin-accent-soft), transparent 55%),
+    linear-gradient(180deg, #fff 0%, var(--penn-admin-surface) 100%);
+  box-sizing: border-box;
+}
+
+[class*="-ImageWrapper"] {
+  flex-basis: min(280px, 100%) !important;
+  width: min(280px, 100%) !important;
+  height: 168px !important;
+  margin: 0 12px 12px 0 !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  overflow: hidden !important;
+  background: var(--penn-admin-soft) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+}
+
+[class*="-ImageWrapper"] img {
+  object-fit: cover !important;
+}
+
+[class*="-FileWidgetButton"],
+[class*="-FileWidgetButtonRemove"],
+label.nc-fileUploadButton {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  border: 1px solid color-mix(in srgb, var(--penn-admin-accent) 22%, var(--penn-admin-line)) !important;
+  background: #fff !important;
+  color: var(--penn-admin-accent) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, filter 0.16s ease;
+}
+
+[class*="-FileWidgetButton"]:hover,
+label.nc-fileUploadButton:hover {
+  background: var(--penn-admin-accent-soft) !important;
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 45%, var(--penn-admin-line)) !important;
+}
+
+div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-child {
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+}
+
+div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-child:hover {
+  filter: brightness(1.05);
+  background: var(--penn-admin-accent-2) !important;
+  color: #fff !important;
+}
+
+[class*="-FileWidgetButtonRemove"] {
+  border-color: color-mix(in srgb, var(--penn-admin-danger) 30%, var(--penn-admin-line)) !important;
+  color: var(--penn-admin-danger) !important;
+  background: #fff !important;
+}
+
+[class*="-LoginButton"] {
+  min-height: 44px;
+  padding: 0 22px !important;
+}
+
+/* ── 会话恢复：挡住 Decap 短暂挂载的登录页，避免刷新跳闪 ── */
+html.penn-admin-booting,
+body.penn-admin-booting {
+  background: var(--penn-admin-surface) !important;
+}
+
+body.penn-admin-booting [class*="AuthenticationPage"] {
+  position: fixed !important;
+  left: -10000px !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.penn-admin-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(59, 91, 219, 0.09), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(47, 79, 196, 0.06), transparent 50%),
+    var(--penn-admin-surface);
+}
+
+.penn-admin-boot[hidden] {
+  display: none !important;
+}
+
+.penn-admin-boot-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 32px;
+  border: 1px solid var(--penn-admin-line);
+  border-radius: 16px;
+  background: var(--penn-admin-card);
+  box-shadow: var(--penn-admin-shadow);
+}
+
+.penn-admin-boot-logo {
+  display: block;
+  opacity: 0.92;
+  animation: penn-admin-boot-pulse 1.2s ease-in-out infinite;
+}
+
+.penn-admin-boot-text {
+  margin: 0;
+  color: var(--penn-admin-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@keyframes penn-admin-boot-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* ── 登录页：Penn Notes 品牌构图（藏 Decap 默认标志） ── */
+html.penn-admin-login,
+body.penn-admin-login {
+  background:
+    radial-gradient(900px 520px at 18% 12%, rgba(90, 120, 210, 0.28), transparent 58%),
+    radial-gradient(720px 480px at 88% 78%, rgba(42, 168, 156, 0.14), transparent 52%),
+    linear-gradient(165deg, #0c111c 0%, #151d2e 46%, #0a0e16 100%) !important;
+  color: var(--penn-login-ink);
+  overflow-x: hidden;
+}
+
+body.penn-admin-login::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(232, 236, 246, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 236, 246, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 42%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 42%, #000 20%, transparent 75%);
+  animation: penn-login-grid 28s linear infinite;
+}
+
+body.penn-admin-login::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 35%, rgba(126, 160, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 70% 60%, rgba(56, 189, 170, 0.1), transparent 32%);
+  animation: penn-login-glow 14s ease-in-out infinite alternate;
+}
+
+@keyframes penn-login-grid {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(48px);
+  }
+}
+
+@keyframes penn-login-glow {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    opacity: 0.85;
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes penn-login-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.penn-admin-login #nc-root {
+  position: relative;
+  z-index: 1;
+  /* Decap 登录页仍挂载（供 OAuth 按钮真实点击），视觉上藏到屏外 */
+  min-height: 100vh;
+}
+
+/* 外置登录壳：左右分栏，完全不碰 React DOM */
+.penn-login-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vh, 56px) clamp(20px, 4vw, 48px);
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.penn-login-shell[hidden] {
+  display: none !important;
+}
+
+.penn-login-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.85fr);
+  align-items: stretch;
+  width: min(1040px, 100%);
+  min-height: min(440px, calc(100vh - 80px));
+  border: 1px solid rgba(232, 236, 246, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 46%, rgba(255, 255, 255, 0.04) 100%),
+    var(--penn-login-panel);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 28px 80px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  overflow: hidden;
+  animation: penn-login-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 藏 Decap 自带登录 UI（保留可点击，避免 React 崩溃） */
+body.penn-admin-login [class*="AuthenticationPage"] {
+  position: fixed !important;
+  left: -10000px !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.penn-login-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(36px, 5vw, 56px) clamp(32px, 4vw, 52px);
+  border-right: 1px solid rgba(232, 236, 246, 0.1);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(126, 160, 255, 0.14), transparent 55%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.03), transparent 60%);
+}
+
+.penn-login-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 0 22px;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.penn-login-name {
+  margin: 0 0 14px !important;
+  color: var(--penn-login-ink) !important;
+  font-family: var(--penn-admin-display) !important;
+  font-size: clamp(2.4rem, 4.2vw, 3.35rem) !important;
+  font-weight: 700 !important;
+  font-optical-sizing: auto;
+  letter-spacing: -0.035em !important;
+  line-height: 1.02 !important;
+}
+
+.penn-login-title {
+  margin: 0 0 14px !important;
+  color: var(--penn-login-ink) !important;
+  font-family: var(--penn-admin-font) !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.35 !important;
+}
+
+.penn-login-lead {
+  margin: 0 !important;
+  max-width: 28em;
+  color: var(--penn-login-muted) !important;
+  font-family: var(--penn-admin-font) !important;
+  font-size: 0.98rem !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+}
+
+.penn-login-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 18px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: clamp(36px, 5vw, 52px) clamp(28px, 3.5vw, 44px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+}
+
+.penn-login-panel-head {
+  margin: 0 0 4px;
+}
+
+.penn-login-panel-kicker {
+  margin: 0 0 6px !important;
+  color: var(--penn-login-accent) !important;
+  font-family: var(--penn-admin-font) !important;
+  font-size: 0.78rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.penn-login-panel-desc {
+  margin: 0 !important;
+  color: var(--penn-login-ink) !important;
+  font-family: var(--penn-admin-font) !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.35 !important;
+}
+
+.penn-login-cta {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 52px;
+  height: 52px;
+  margin: 0;
+  padding: 0 20px;
+  border: 1px solid rgba(232, 236, 246, 0.14);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #3f63e0 0%, #2f4fc4 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 12px 28px rgba(47, 79, 196, 0.35);
+  color: #fff;
+  font-family: var(--penn-admin-font);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.penn-login-cta::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  background-color: #fff;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 .5C5.73.5.5 5.78.5 12.1c0 5.13 3.29 9.48 7.86 11.02.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.4-3.87-1.4-.53-1.36-1.3-1.72-1.3-1.72-1.06-.74.08-.72.08-.72 1.17.08 1.79 1.22 1.79 1.22 1.04 1.8 2.73 1.28 3.4.98.1-.77.41-1.28.74-1.57-2.55-.29-5.23-1.3-5.23-5.78 0-1.28.45-2.32 1.2-3.14-.12-.3-.52-1.5.11-3.12 0 0 .98-.32 3.2 1.2a10.9 10.9 0 0 1 5.82 0c2.22-1.52 3.2-1.2 3.2-1.2.63 1.62.23 2.82.11 3.12.75.82 1.2 1.86 1.2 3.14 0 4.49-2.69 5.48-5.25 5.77.42.37.79 1.1.79 2.22v3.29c0 .31.21.68.8.56A11.6 11.6 0 0 0 23.5 12.1C23.5 5.78 18.27.5 12 .5Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 .5C5.73.5.5 5.78.5 12.1c0 5.13 3.29 9.48 7.86 11.02.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.4-3.87-1.4-.53-1.36-1.3-1.72-1.3-1.72-1.06-.74.08-.72.08-.72 1.17.08 1.79 1.22 1.79 1.22 1.04 1.8 2.73 1.28 3.4.98.1-.77.41-1.28.74-1.57-2.55-.29-5.23-1.3-5.23-5.78 0-1.28.45-2.32 1.2-3.14-.12-.3-.52-1.5.11-3.12 0 0 .98-.32 3.2 1.2a10.9 10.9 0 0 1 5.82 0c2.22-1.52 3.2-1.2 3.2-1.2.63 1.62.23 2.82.11 3.12.75.82 1.2 1.86 1.2 3.14 0 4.49-2.69 5.48-5.25 5.77.42.37.79 1.1.79 2.22v3.29c0 .31.21.68.8.56A11.6 11.6 0 0 0 23.5 12.1C23.5 5.78 18.27.5 12 .5Z'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.penn-login-cta:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 16px 32px rgba(47, 79, 196, 0.42);
+}
+
+.penn-login-cta:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+.penn-login-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0 !important;
+  color: var(--penn-login-faint) !important;
+  font-family: var(--penn-admin-font) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+}
+
+.penn-login-home {
+  color: var(--penn-login-accent) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.penn-login-home:hover {
+  color: #fff !important;
+}
+
+.penn-login-sep {
+  opacity: 0.5;
+}
+
+.penn-login-hint {
+  color: var(--penn-login-faint) !important;
+}
+
+.penn-login-error {
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  border: 1px solid rgba(255, 180, 168, 0.35) !important;
+  border-radius: 10px !important;
+  background: rgba(180, 35, 24, 0.16) !important;
+  color: #ffb4a8 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+}
+
+.penn-login-error[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 820px) {
+  .penn-login-frame {
+    grid-template-columns: 1fr;
+    width: min(440px, 100%);
+    min-height: 0;
+  }
+
+  .penn-login-brand {
+    padding: 28px 24px 22px;
+    border-right: none;
+    border-bottom: 1px solid rgba(232, 236, 246, 0.1);
+  }
+
+  .penn-login-panel {
+    padding: 24px;
+  }
+
+  .penn-login-name {
+    font-size: clamp(2rem, 8vw, 2.4rem) !important;
+  }
+
+  .penn-login-logo {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.penn-admin-login::before,
+  body.penn-admin-login::after,
+  .penn-login-frame,
+  .penn-login-cta {
+    animation: none !important;
+  }
+
+  .penn-login-cta:hover {
+    transform: none;
+  }
+}
+
+/* ── 崩溃页：收敛成可读卡片，避免整屏 JSON 糊墙 ── */
+[class*="-ErrorBoundaryContainer"] {
+  max-width: 720px !important;
+  margin: 48px auto !important;
+  padding: 28px 28px 32px !important;
+  border: 1px solid var(--penn-admin-line) !important;
+  border-radius: var(--penn-admin-radius) !important;
+  background: var(--penn-admin-card) !important;
+  box-shadow: var(--penn-admin-shadow) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] h1 {
+  margin: 0 0 10px !important;
+  color: var(--penn-admin-danger) !important;
+  font-size: 22px !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em;
+}
+
+[class*="-ErrorBoundaryContainer"] h2 {
+  margin: 22px 0 10px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--penn-admin-ink) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] > p,
+[class*="-ErrorBoundaryContainer"] [class*="-PrivacyWarning"] {
+  color: var(--penn-admin-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+[class*="-ErrorBoundaryContainer"] hr {
+  width: 100% !important;
+  margin: 20px 0 !important;
+  background: var(--penn-admin-line) !important;
+}
+
+[class*="-ErrorBoundaryContainer"] pre,
+[class*="-ErrorBoundaryContainer"] h2 + * {
+  display: block;
+  max-height: 280px;
+  overflow: auto;
+  margin: 0 !important;
+  padding: 14px 16px !important;
+  border: 1px solid var(--penn-admin-line);
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+[class*="-ErrorBoundaryContainer"] [class*="-CopyButton"] {
+  border-radius: 999px !important;
+  background: var(--penn-admin-accent) !important;
+  border-color: var(--penn-admin-accent) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  li[class*="-ListCard"],
+  a[class*="-ListCardLink"],
+  a[class*="-ListCardLink"]::after,
+  li[class*="-GridCard"],
+  [class*="-FileWidgetButton"],
+  [class*="-AppHeaderQuickNewButton"],
+  [class*="-CollectionTopNewButton"],
+  .penn-admin-boot-logo {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  li[class*="-GridCard"]:hover {
+    transform: none;
+  }
+
+  a[class*="-ListCardLink"]:hover::after {
+    transform: rotate(45deg);
+  }
+}
