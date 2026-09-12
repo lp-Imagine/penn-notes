@@ -1,19 +1,29 @@
 {
   "lookbackDays": 3,
-  "maxCandidates": 64,
+  "maxCandidates": 96,
   "maxItemsPerSource": 6,
   "search": {
     "enabled": true,
-    "maxItems": 16,
+    "maxItems": 24,
     "hitsPerQuery": 15,
     "whenDays": 2,
     "queries": [
       "artificial intelligence",
       "OpenAI",
       "Anthropic Claude",
+      "Google Gemini",
+      "Meta Llama",
       "AI regulation",
       "AI model release",
-      "AI startup funding"
+      "AI startup funding",
+      "LLM open source",
+      "人工智能",
+      "大模型",
+      "生成式AI",
+      "React Next.js frontend",
+      "CSS Web Platform browser",
+      "TypeScript Vite",
+      "前端 框架"
     ]
   },
   "sources": [
@@ -24,9 +34,33 @@
       "section": "产品"
     },
     {
+      "id": "openai-developer",
+      "name": "OpenAI Developer",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_openai_developer.xml",
+      "section": "开发者工具"
+    },
+    {
       "id": "anthropic-news",
       "name": "Anthropic News",
       "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml",
+      "section": "产品"
+    },
+    {
+      "id": "anthropic-engineering",
+      "name": "Anthropic Engineering",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml",
+      "section": "开发者工具"
+    },
+    {
+      "id": "anthropic-research",
+      "name": "Anthropic Research",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml",
+      "section": "模型"
+    },
+    {
+      "id": "claude-blog",
+      "name": "Claude Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml",
       "section": "产品"
     },
     {
@@ -42,9 +76,51 @@
       "section": "模型"
     },
     {
+      "id": "meta-ai",
+      "name": "Meta AI Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_meta_ai.xml",
+      "section": "模型"
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI News",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_mistral.xml",
+      "section": "模型"
+    },
+    {
+      "id": "xai-news",
+      "name": "xAI News",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml",
+      "section": "产品"
+    },
+    {
+      "id": "cohere-blog",
+      "name": "Cohere Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml",
+      "section": "模型"
+    },
+    {
+      "id": "perplexity-hub",
+      "name": "Perplexity Hub",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_perplexity_hub.xml",
+      "section": "产品"
+    },
+    {
+      "id": "the-batch",
+      "name": "The Batch (DeepLearning.AI)",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml",
+      "section": "业界"
+    },
+    {
       "id": "hn-ai",
       "name": "Hacker News AI",
       "type": "hn-algolia",
+      "section": "业界"
+    },
+    {
+      "id": "lobsters-ai",
+      "name": "Lobsters AI",
+      "url": "https://lobste.rs/t/ai.rss",
       "section": "业界"
     },
     {
@@ -72,10 +148,46 @@
       "section": "业界"
     },
     {
+      "id": "venturebeat-ai",
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "section": "业界"
+    },
+    {
       "id": "mit-tr",
       "name": "MIT Tech Review",
       "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
       "section": "模型"
+    },
+    {
+      "id": "marktechpost",
+      "name": "MarkTechPost",
+      "url": "https://www.marktechpost.com/feed/",
+      "section": "模型"
+    },
+    {
+      "id": "simon-willison",
+      "name": "Simon Willison",
+      "url": "https://simonwillison.net/atom/everything/",
+      "section": "开发者工具"
+    },
+    {
+      "id": "latent-space",
+      "name": "Latent Space",
+      "url": "https://www.latent.space/feed",
+      "section": "业界"
+    },
+    {
+      "id": "cursor-blog",
+      "name": "Cursor Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml",
+      "section": "开发者工具"
+    },
+    {
+      "id": "ollama-blog",
+      "name": "Ollama Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_ollama.xml",
+      "section": "开源"
     },
     {
       "id": "github-blog",
@@ -90,6 +202,24 @@
       "section": "开源"
     },
     {
+      "id": "aws-ml",
+      "name": "AWS Machine Learning",
+      "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "section": "开发者工具"
+    },
+    {
+      "id": "cloudflare-blog",
+      "name": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/rss/",
+      "section": "开发者工具"
+    },
+    {
+      "id": "stackoverflow-blog",
+      "name": "Stack Overflow Blog",
+      "url": "https://stackoverflow.blog/feed/",
+      "section": "开发者工具"
+    },
+    {
       "id": "devto-ai",
       "name": "DEV AI",
       "url": "https://dev.to/feed/tag/ai",
@@ -102,6 +232,24 @@
       "section": "前端"
     },
     {
+      "id": "frontend-focus",
+      "name": "Frontend Focus",
+      "url": "https://frontendfoc.us/rss",
+      "section": "前端"
+    },
+    {
+      "id": "node-weekly",
+      "name": "Node Weekly",
+      "url": "https://nodeweekly.com/rss",
+      "section": "前端"
+    },
+    {
+      "id": "react-status",
+      "name": "React Status",
+      "url": "https://react.statuscode.com/rss",
+      "section": "前端"
+    },
+    {
       "id": "css-tricks",
       "name": "CSS-Tricks",
       "url": "https://css-tricks.com/feed/",
@@ -109,9 +257,125 @@
       "section": "前端"
     },
     {
+      "id": "smashing-magazine",
+      "name": "Smashing Magazine",
+      "url": "https://www.smashingmagazine.com/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "codrops",
+      "name": "Codrops",
+      "url": "https://tympanus.net/codrops/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "vue-blog",
+      "name": "Vue.js Blog",
+      "url": "https://blog.vuejs.org/feed.rss",
+      "section": "前端"
+    },
+    {
+      "id": "angular-blog",
+      "name": "Angular Blog",
+      "url": "https://blog.angular.dev/feed",
+      "section": "前端"
+    },
+    {
+      "id": "chromium-blog",
+      "name": "Chromium Blog",
+      "url": "https://blog.chromium.org/feeds/posts/default?alt=rss",
+      "section": "前端"
+    },
+    {
+      "id": "webkit-blog",
+      "name": "WebKit Blog",
+      "url": "https://webkit.org/blog/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "mozilla-hacks",
+      "name": "Mozilla Hacks",
+      "url": "https://hacks.mozilla.org/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "msedge-dev",
+      "name": "Microsoft Edge Dev",
+      "url": "https://blogs.windows.com/msedgedev/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "jake-archibald",
+      "name": "Jake Archibald",
+      "url": "https://jakearchibald.com/posts.rss",
+      "section": "前端"
+    },
+    {
+      "id": "devto-webdev",
+      "name": "DEV Web Dev",
+      "url": "https://dev.to/feed/tag/webdev",
+      "section": "前端"
+    },
+    {
+      "id": "devto-javascript",
+      "name": "DEV JavaScript",
+      "url": "https://dev.to/feed/tag/javascript",
+      "section": "前端"
+    },
+    {
+      "id": "zhangxinxu",
+      "name": "张鑫旭",
+      "url": "https://www.zhangxinxu.com/wordpress/feed/",
+      "section": "前端"
+    },
+    {
+      "id": "juejin-frontend",
+      "name": "掘金前端",
+      "type": "juejin",
+      "category": "frontend",
+      "section": "前端"
+    },
+    {
+      "id": "juejin-ai",
+      "name": "掘金人工智能",
+      "type": "juejin",
+      "category": "ai",
+      "section": "模型"
+    },
+    {
+      "id": "cnblogs-picked",
+      "name": "博客园精华",
+      "url": "https://feed.cnblogs.com/blog/picked/rss",
+      "section": "前端"
+    },
+    {
+      "id": "cnblogs-home",
+      "name": "博客园首页",
+      "url": "https://feed.cnblogs.com/blog/sitehome/rss",
+      "section": "前端"
+    },
+    {
+      "id": "martin-fowler",
+      "name": "Martin Fowler",
+      "url": "https://martinfowler.com/feed.atom",
+      "section": "开发者工具"
+    },
+    {
       "id": "arxiv-cs-ai",
       "name": "arXiv cs.AI",
       "url": "https://rss.arxiv.org/rss/cs.AI",
+      "section": "模型"
+    },
+    {
+      "id": "arxiv-cs-lg",
+      "name": "arXiv cs.LG",
+      "url": "https://rss.arxiv.org/rss/cs.LG",
+      "section": "模型"
+    },
+    {
+      "id": "arxiv-cs-cl",
+      "name": "arXiv cs.CL",
+      "url": "https://rss.arxiv.org/rss/cs.CL",
       "section": "模型"
     },
     {
@@ -121,7 +385,7 @@
       "section": "业界"
     },
     {
-      "id": "jiqizhixin",
+      "id": "36kr",
       "name": "36氪",
       "url": "https://www.36kr.com/feed",
       "fallbackUrls": ["https://36kr.com/feed"],
@@ -143,6 +407,12 @@
       "id": "quantumbit",
       "name": "量子位",
       "url": "https://www.qbitai.com/feed",
+      "section": "业界"
+    },
+    {
+      "id": "geekpark",
+      "name": "极客公园",
+      "url": "https://www.geekpark.net/rss",
       "section": "业界"
     }
   ]

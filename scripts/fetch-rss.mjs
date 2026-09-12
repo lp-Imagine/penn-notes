@@ -242,6 +242,87 @@ async function fetchHnAlgolia(src, window, seenSet, includeSeen) {
   return items;
 }
 
+/** 掘金分类 id 缓存（进程内） */
+let juejinCategoryCache = null;
+
+async function resolveJuejinCateId(categoryUrl) {
+  if (!juejinCategoryCache) {
+    const res = await fetch(
+      "https://api.juejin.cn/tag_api/v1/query_category_briefs",
+      {
+        headers: { "User-Agent": BROWSER_UA, Accept: "application/json" },
+        signal: AbortSignal.timeout(15000),
+      },
+    );
+    if (!res.ok) throw new Error(`Status code ${res.status}`);
+    const data = await res.json();
+    if (data.err_no !== 0) throw new Error(data.err_msg || "juejin category briefs failed");
+    juejinCategoryCache = data.data || [];
+  }
+  const cat = juejinCategoryCache.find((c) => c.category_url === categoryUrl);
+  if (!cat) throw new Error(`Unknown juejin category: ${categoryUrl}`);
+  return cat;
+}
+
+/**
+ * 掘金无稳定官方 RSS，走公开 API（与 RSSHub 同源）。
+ * sources.json: { "type": "juejin", "category": "frontend"|"ai"|… }
+ */
+async function fetchJuejin(src, window, seenSet, includeSeen) {
+  const category = src.category || "frontend";
+  const cat = await resolveJuejinCateId(category);
+  const res = await fetch(
+    "https://api.juejin.cn/recommend_api/v1/article/recommend_cate_feed",
+    {
+      method: "POST",
+      headers: {
+        "User-Agent": BROWSER_UA,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_type: 2,
+        sort_type: 300,
+        cate_id: cat.category_id,
+        cursor: "0",
+        limit: 20,
+      }),
+      signal: AbortSignal.timeout(20000),
+    },
+  );
+  if (!res.ok) throw new Error(`Status code ${res.status}`);
+  const data = await res.json();
+  if (data.err_no !== 0) throw new Error(data.err_msg || "juejin feed failed");
+
+  const items = [];
+  for (const row of data.data || []) {
+    const info = row.article_info;
+    if (!info) continue;
+    const title = String(info.title || "").trim();
+    const articleId = info.article_id || row.article_id;
+    if (!title || !articleId) continue;
+    const link = normalizeUrl(`https://juejin.cn/post/${articleId}`);
+    const date = itemDate({
+      isoDate: info.ctime
+        ? new Date(Number(info.ctime) * 1000).toISOString()
+        : "",
+    });
+    if (!date || !window.has(date)) continue;
+    if (!includeSeen && seenSet.has(link)) continue;
+    items.push({
+      title,
+      url: link,
+      sourceName: src.name,
+      sourceId: src.id,
+      section: src.section,
+      date,
+      snippet: String(info.brief_content || "").slice(0, 600),
+      excerpt: "",
+    });
+  }
+  return items;
+}
+
 /**
  * @param {string} targetDate YYYY-MM-DD
  * @param {{ includeSeen?: boolean, lookbackDays?: number, enrich?: boolean }} [opts]
@@ -283,6 +364,28 @@ export async function fetchNewsItems(targetDate, opts = {}) {
             name: src.name,
             url: "https://hn.algolia.com/api/v1",
             items: algoliaItems.length,
+          });
+          return;
+        }
+        if (src.type === "juejin") {
+          const juejinItems = await fetchJuejin(
+            src,
+            window,
+            seenSet,
+            opts.includeSeen,
+          );
+          juejinItems.forEach((it, idx) => {
+            collected.push({
+              ...it,
+              _order: srcIndex.get(src.id) ?? 999,
+              _seq: idx,
+            });
+          });
+          successes.push({
+            id: src.id,
+            name: src.name,
+            url: `https://juejin.cn/${src.category || "frontend"}`,
+            items: juejinItems.length,
           });
           return;
         }

@@ -8,7 +8,7 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 ## 生成流水线
 
-1. `scripts/fetch-rss.mjs` — 拉 [`scripts/news/sources.json`](../scripts/news/sources.json) 中的 RSS / GitHub Trending / Hacker News（Algolia API），按北京时间过滤目标日；排序后先做**每源配额**再全局截断，防止单源淹没
+1. `scripts/fetch-rss.mjs` — 拉 [`scripts/news/sources.json`](../scripts/news/sources.json) 中的 RSS / GitHub Trending / Hacker News（Algolia API）/ 掘金（官方 API），按北京时间过滤目标日；排序后先做**每源配额**再全局截断，防止单源淹没
 2. `scripts/search-news.mjs` — Google News 对 AI 关键词**联网检索**，逐条回源核验（抓不到 / 非文章页丢弃），补充国外一手新闻
 3. `scripts/summarize-news.mjs` — DeepSeek（或其它 OpenAI 兼容 API）去重 / 分类 / 中文摘要
 4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`
@@ -167,13 +167,15 @@ AI 动态提供 RSS，地址：
 | 模型 | Models / Research | 新模型、API、评测与能力变化 |
 | 开源 | Open Source | 仓库、协议、社区项目 |
 | 开发者工具 | DevTools（本站加重） | 编码助手、IDE、Agent、MCP |
-| 前端 | Web / Frontend（本站特色） | 框架、构建、样式、DX |
+| 前端 | Web / Frontend（本站特色） | 框架、构建、样式、浏览器/Web 平台、前端周刊与技术博客（不必是 AI 站） |
 
 提示词要求：**有价值的业界/产品/模型新闻都要收**，不再因为「不够前端」而丢掉。
 
 每条为中文标题 + 编辑向段落，结尾「对读者：」。需配置 `LLM_API_KEY`。
 
-改源：`scripts/news/sources.json`。候选控制：`maxCandidates`（全局上限，默认 64）、`maxItemsPerSource`（每源配额，默认 6）；`search` 块配置 Google News 检索的关键词、每查询条数与总量；`"type": "hn-algolia"` 的源走 Hacker News API（hnrss.org 不稳定）。另抓 GitHub Trending。
+改源：`scripts/news/sources.json`。候选控制：`maxCandidates`（全局上限，默认 96）、`maxItemsPerSource`（每源配额，默认 6）；`search` 块配置 Google News 检索的关键词、每查询条数与总量；`"type": "hn-algolia"` 的源走 Hacker News API（hnrss.org 不稳定）；`"type": "juejin"` + `"category"`（如 `frontend` / `ai`）走掘金公开 API。另抓 GitHub Trending。
+
+部分厂商博客无官方 RSS（如 Meta AI、Cursor、Ollama、xAI），使用 [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) 维护的镜像 feed。博客园用官方 `feed.cnblogs.com`。
 
 ## 排查
 
@@ -184,5 +186,5 @@ AI 动态提供 RSS，地址：
 - **LLM 限流**：workflow 失败不会空 commit，可用 Actions → Daily AI News → Run workflow 重跑
 - **已有日期跳过**：默认不覆盖；加 `--force`
 - **配图缺失**：部分站点无 og 图或拦截抓取，属正常；可事后 `npm run news:images`
-- **国外源偏少**：候选池已按源配额 + 联网检索补充；仍偏少可调大 `search.maxItems` 或加查询词
+- **源偏少 / 覆盖不够**：改 `scripts/news/sources.json` 加 RSS；或调大 `search.maxItems` / 增补 `search.queries`
 - **检索失败**：`search-news` 需要能访问 Google 的网络（GitHub Actions 正常；本地大陆网络会跳过，仅影响国外补充，不影响 RSS 日报）
