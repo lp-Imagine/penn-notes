@@ -1,12 +1,14 @@
 /**
- * 回收 Decap 手写稿已不再引用的 COS 图（前缀 sync/decap/）。
+ * 回收本站 Decap 手写稿已不再引用的 COS 图。
  *
- * 删文章不会立刻调 COS；下次构建 ingest 时：
- *   1) 扫剩余笔记里的 CDN URL + 仍引用的本地 uploads（按内容 hash 推算 key）
- *   2) 列出 COS sync/decap/*
- *   3) 删除未被引用的对象
+ * 安全边界（同桶其它项目不会误删）：
+ * - 只处理本站前缀：
+ *   - 新：penn-notes/decap/
+ *   - 旧：sync/decap/ + 严格「12 位 hex.hash.扩展名」（历史 Decap 收口）
+ * - 不碰 news/、sync/<sourceId>/、其它项目任意路径
+ * - 多文共用同一 content-hash 时，只要还有引用就保留
  *
- * 不碰 news/、sync/<sourceId>/ 等其它前缀（多文共享靠 content-hash，仍有引用则保留）。
+ * 删文章不会立刻调 COS；下次构建 ingest 时回收孤儿对象。
  *
  * Usage:
  *   node scripts/gc-cos-decap-images.mjs
@@ -30,7 +32,14 @@ import {
 
 const root = repoRoot;
 const websiteRoot = path.join(root, "website");
-const PREFIX = "sync/decap/";
+
+/** 本站专用前缀（新上传） */
+const PREFIX_NEW = "penn-notes/decap/";
+/** 历史 Decap 收口前缀（仅匹配固定命名，避免误伤同目录其它项目文件） */
+const PREFIX_LEGACY = "sync/decap/";
+const LEGACY_KEY_RE = /^sync\/decap\/[a-f0-9]{12}\.(jpe?g|png|gif|webp|avif)$/i;
+const NEW_KEY_RE = /^penn-notes\/decap\/[a-f0-9]{12}\.(jpe?g|png|gif|webp|avif)$/i;
+
 const NOTE_SECTIONS = [
   "web",
   "ui",
@@ -91,23 +100,28 @@ function extFromPath(p, fallback = "jpg") {
   return fallback;
 }
 
+function isManagedKey(key) {
+  return NEW_KEY_RE.test(key) || LEGACY_KEY_RE.test(key);
+}
+
 function keyFromCdnUrl(url) {
   const base = cosConfig().cdnBase;
   if (!base || !url.startsWith(base + "/")) return null;
   const key = url.slice(base.length + 1).split("?")[0];
-  return key.startsWith(PREFIX) ? key : null;
+  return isManagedKey(key) ? key : null;
 }
 
-function keyFromLocalUpload(ref) {
+/** 本地仍引用的 uploads → 新旧两套可能 key（兼容历史） */
+function keysFromLocalUpload(ref) {
   let rel = String(ref || "").trim();
   if (rel.startsWith("uploads/")) rel = "/" + rel;
-  if (!rel.startsWith("/uploads/")) return null;
+  if (!rel.startsWith("/uploads/")) return [];
   const local = path.join(websiteRoot, "public", rel.replace(/^\//, ""));
-  if (!fs.existsSync(local) || !IMAGE_EXT.test(local)) return null;
+  if (!fs.existsSync(local) || !IMAGE_EXT.test(local)) return [];
   const buf = fs.readFileSync(local);
   const ext = extFromPath(local);
   const hash = crypto.createHash("sha1").update(buf).digest("hex").slice(0, 12);
-  return `${PREFIX}${hash}.${ext}`;
+  return [`${PREFIX_NEW}${hash}.${ext}`, `${PREFIX_LEGACY}${hash}.${ext}`];
 }
 
 function collectLiveKeys() {
@@ -120,11 +134,18 @@ function collectLiveKeys() {
         if (k) keys.add(k);
         continue;
       }
-      const fromLocal = keyFromLocalUpload(ref);
-      if (fromLocal) keys.add(fromLocal);
+      for (const k of keysFromLocalUpload(ref)) keys.add(k);
     }
   }
   return keys;
+}
+
+async function listManagedRemoteKeys() {
+  const [newer, legacy] = await Promise.all([
+    listObjectKeys(PREFIX_NEW),
+    listObjectKeys(PREFIX_LEGACY),
+  ]);
+  return [...newer, ...legacy].filter(isManagedKey);
 }
 
 export async function gcCosDecapImages({ quiet = false } = {}) {
@@ -141,12 +162,12 @@ export async function gcCosDecapImages({ quiet = false } = {}) {
   }
 
   const live = collectLiveKeys();
-  const remote = await listObjectKeys(PREFIX);
+  const remote = await listManagedRemoteKeys();
   const orphans = remote.filter((k) => !live.has(k));
 
   if (!quiet) {
     console.log(
-      `gc-cos-decap: live ${live.size}, remote ${remote.length}, orphan ${orphans.length}` +
+      `gc-cos-decap: live ${live.size}, managed-remote ${remote.length}, orphan ${orphans.length}` +
         (dryRun ? " (dry-run)" : ""),
     );
     for (const k of orphans.slice(0, 20)) {

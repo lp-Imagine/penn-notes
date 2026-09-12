@@ -227,7 +227,7 @@ async function resolveOne(src, cache) {
       }
       const ext = extFromPath(local);
       const hash = crypto.createHash("sha1").update(buf).digest("hex").slice(0, 12);
-      const key = `sync/decap/${hash}.${ext}`;
+      const key = `penn-notes/decap/${hash}.${ext}`;
       if (dryRun) {
         const url = `${cosConfig().cdnBase}/${key}`;
         cache.set(src, url);
@@ -251,7 +251,7 @@ async function resolveOne(src, cache) {
         return null;
       }
       const hash = crypto.createHash("sha1").update(got.buf).digest("hex").slice(0, 12);
-      const key = `sync/decap/${hash}.${got.ext}`;
+      const key = `penn-notes/decap/${hash}.${got.ext}`;
       if (dryRun) {
         const url = `${cosConfig().cdnBase}/${key}`;
         cache.set(src, url);
