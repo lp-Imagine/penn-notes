@@ -1,28 +1,37 @@
 {
-  "at": "2026-09-11T23:00:43.088Z",
+  "at": "2026-09-12T23:01:23.190Z",
   "type": "daily",
-  "date": "2026-09-11",
-  "candidates": 70,
+  "date": "2026-09-12",
+  "candidates": 120,
   "search": {
     "ok": true,
-    "queries": 6,
-    "totalQueries": 6,
-    "items": 16,
+    "queries": 16,
+    "totalQueries": 16,
+    "items": 24,
     "failures": []
   },
-  "editorial": 11,
+  "editorial": 13,
   "sections": {
     "业界": 4,
-    "产品": 3,
-    "模型": 1,
+    "产品": 1,
+    "模型": 3,
     "开源": 0,
-    "开发者工具": 1,
+    "开发者工具": 3,
     "前端": 2
   },
   "rss": {
-    "ok": 21,
-    "failed": 0,
-    "failures": []
+    "ok": 62,
+    "failed": 2,
+    "failures": [
+      {
+        "name": "VentureBeat AI",
+        "error": "Status code 429"
+      },
+      {
+        "name": "博客园精华",
+        "error": "Status code 500"
+      }
+    ]
   },
-  "output": "news/2026-09/ai-news-2026-09-11.md"
+  "output": "news/2026-09/ai-news-2026-09-12.md"
 }
