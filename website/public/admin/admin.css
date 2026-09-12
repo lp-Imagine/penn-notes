@@ -319,17 +319,28 @@ h2[class*="-ListCardTitle"] {
   white-space: nowrap;
 }
 
-/* 网格视图 */
+/* 网格视图：封面置顶、压空白、提高信息密度 */
 ul[class*="-CardsGrid"]:has(> li[class*="-GridCard"]) {
-  gap: 14px !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+  gap: 16px !important;
+  margin: 12px 0 28px !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 
 li[class*="-GridCard"],
 [class*="-WorkflowCardContainer"] {
+  flex: none !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
   border: 1px solid var(--penn-admin-line) !important;
-  border-radius: var(--penn-admin-radius) !important;
+  border-radius: 12px !important;
   background: var(--penn-admin-card) !important;
-  box-shadow: var(--penn-admin-shadow) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
   transition:
     transform 0.16s ease,
     box-shadow 0.16s ease,
@@ -337,26 +348,119 @@ li[class*="-GridCard"],
 }
 
 a[class*="-GridCardLink"] {
-  border-radius: var(--penn-admin-radius) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  border-radius: 12px !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  background: transparent !important;
 }
 
-li[class*="-GridCard"]:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--penn-admin-accent) 28%, var(--penn-admin-line)) !important;
-  box-shadow:
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 14px 32px rgba(15, 23, 42, 0.08) !important;
+a[class*="-GridCardLink"]:hover {
+  background: transparent !important;
+}
+
+/* 封面提到最上（DOM 里本在标题后） */
+[class*="-StyledImage"],
+[data-testid="entry-card-image"] {
+  order: -1 !important;
+  width: 100% !important;
+  height: 132px !important;
+  flex: 0 0 132px !important;
+  margin: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-color: var(--penn-admin-soft) !important;
+  border-bottom: 1px solid var(--penn-admin-line) !important;
+}
+
+div[class*="-CardBody"] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 6px;
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 72px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 12px 14px 14px !important;
+  position: relative !important;
+  color: var(--penn-admin-muted) !important;
+  background: transparent !important;
+}
+
+/* 去掉 Decap 默认底部白渐隐，避免大块空洞 */
+div[class*="-CardBody"]::after {
+  content: none !important;
+  display: none !important;
+}
+
+h2[class*="-CollectionLabel"] {
+  margin: 0 !important;
+  color: var(--penn-admin-faint) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  line-height: 1.2 !important;
 }
 
 h2[class*="-CardHeading"] {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin: 0 !important;
   color: var(--penn-admin-ink) !important;
+  font-size: 14.5px !important;
   font-weight: 650 !important;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em !important;
+  line-height: 1.4 !important;
+  word-break: break-word;
+}
+
+p[class*="-CardText"] {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  margin: 0 !important;
+  color: var(--penn-admin-faint) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+li[class*="-GridCard"]:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--penn-admin-accent) 32%, var(--penn-admin-line)) !important;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+li[class*="-GridCard"]:hover [class*="-StyledImage"],
+li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
+  filter: brightness(1.02);
 }
 
 [class*="-CardText"],
 [class*="-CardBody"] {
   color: var(--penn-admin-muted) !important;
+}
+
+@media (max-width: 720px) {
+  ul[class*="-CardsGrid"]:has(> li[class*="-GridCard"]) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  [class*="-StyledImage"],
+  [data-testid="entry-card-image"] {
+    height: 110px !important;
+    flex-basis: 110px !important;
+  }
 }
 
 /* ── 表单字段（不含编辑器工具栏 / react-select 内部 input） ── */
@@ -685,6 +789,83 @@ div:has(> [class*="-FileWidgetButton"]) > [class*="-FileWidgetButton"]:first-chi
 [class*="-LoginButton"] {
   min-height: 44px;
   padding: 0 22px !important;
+}
+
+/* ── 会话恢复：挡住 Decap 短暂挂载的登录页，避免刷新跳闪 ── */
+html.penn-admin-booting,
+body.penn-admin-booting {
+  background: var(--penn-admin-surface) !important;
+}
+
+body.penn-admin-booting [class*="AuthenticationPage"] {
+  position: fixed !important;
+  left: -10000px !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.penn-admin-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(1200px 480px at 12% -10%, rgba(59, 91, 219, 0.09), transparent 55%),
+    radial-gradient(900px 420px at 100% 0%, rgba(47, 79, 196, 0.06), transparent 50%),
+    var(--penn-admin-surface);
+}
+
+.penn-admin-boot[hidden] {
+  display: none !important;
+}
+
+.penn-admin-boot-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 32px;
+  border: 1px solid var(--penn-admin-line);
+  border-radius: 16px;
+  background: var(--penn-admin-card);
+  box-shadow: var(--penn-admin-shadow);
+}
+
+.penn-admin-boot-logo {
+  display: block;
+  opacity: 0.92;
+  animation: penn-admin-boot-pulse 1.2s ease-in-out infinite;
+}
+
+.penn-admin-boot-text {
+  margin: 0;
+  color: var(--penn-admin-muted);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+@keyframes penn-admin-boot-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 /* ── 登录页：Penn Notes 品牌构图（藏 Decap 默认标志） ── */
@@ -1126,8 +1307,10 @@ body.penn-admin-login [class*="AuthenticationPage"] {
   li[class*="-GridCard"],
   [class*="-FileWidgetButton"],
   [class*="-AppHeaderQuickNewButton"],
-  [class*="-CollectionTopNewButton"] {
+  [class*="-CollectionTopNewButton"],
+  .penn-admin-boot-logo {
     transition: none !important;
+    animation: none !important;
   }
 
   li[class*="-GridCard"]:hover {
