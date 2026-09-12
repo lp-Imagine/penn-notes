@@ -7,7 +7,7 @@
 
   var BRAND_HTML =
     '<div class="penn-login-brand" data-penn-login-brand>' +
-    '<img class="penn-login-logo" src="/img/logo.svg" width="56" height="56" alt="" />' +
+    '<img class="penn-login-logo" src="/img/logo.svg" width="64" height="64" alt="" />' +
     '<p class="penn-login-name">Penn Notes</p>' +
     "<h1 class=\"penn-login-title\">写笔记</h1>" +
     '<p class="penn-login-lead">用 GitHub 登录后，即可在浏览器里新建与编辑站点笔记；保存会提交到仓库，并由 CI 构建发布。</p>' +
@@ -19,6 +19,12 @@
     '<span class="penn-login-sep" aria-hidden="true">·</span>' +
     '<span class="penn-login-hint">需要仓库写权限</span>' +
     "</p>";
+
+  var PANEL_HEAD_HTML =
+    '<div class="penn-login-panel-head" data-penn-login-panel-head>' +
+    '<p class="penn-login-panel-kicker">写作台</p>' +
+    '<p class="penn-login-panel-desc">登录后直接进入笔记编辑</p>' +
+    "</div>";
 
   function isAuthPage(el) {
     if (!el || el.nodeType !== 1) return false;
@@ -67,6 +73,40 @@
     }
   }
 
+  function ensureActionPanel(page) {
+    var btn =
+      page.querySelector('button[class*="LoginButton"]') ||
+      page.querySelector('[class*="LoginButton"]');
+    if (!btn) return;
+
+    var panel = page.querySelector("[data-penn-login-panel]");
+    if (!panel) {
+      panel = document.createElement("div");
+      panel.className = "penn-login-panel";
+      panel.setAttribute("data-penn-login-panel", "");
+      panel.insertAdjacentHTML("afterbegin", PANEL_HEAD_HTML);
+      btn.parentNode.insertBefore(panel, btn);
+    }
+
+    if (btn.parentNode !== panel) {
+      panel.appendChild(btn);
+    }
+
+    var foot = page.querySelector("[data-penn-login-foot]");
+    if (foot && foot.parentNode !== panel) {
+      panel.appendChild(foot);
+    }
+
+    // 错误信息也放进右侧栏，避免打乱左右构图
+    Array.prototype.forEach.call(page.children, function (child) {
+      if (child.nodeType !== 1) return;
+      if (child.hasAttribute("data-penn-login-brand")) return;
+      if (child.hasAttribute("data-penn-login-panel")) return;
+      if (child.hasAttribute("data-penn-hidden-brand")) return;
+      if (child.tagName === "P") panel.appendChild(child);
+    });
+  }
+
   function enhance(page) {
     document.documentElement.classList.add("penn-admin-login");
     document.body.classList.add("penn-admin-login");
@@ -79,6 +119,7 @@
         if (child.nodeType !== 1) return;
         if (child.hasAttribute("data-penn-login-brand")) return;
         if (child.hasAttribute("data-penn-login-foot")) return;
+        if (child.hasAttribute("data-penn-login-panel")) return;
         if (
           child.querySelector &&
           child.querySelector('button[class*="LoginButton"], [class*="LoginButton"]')
@@ -108,8 +149,9 @@
       }
     }
 
-    // Decap 可能反复重绘按钮，每次扫描都规范化
+    // Decap 可能反复重绘按钮，每次扫描都规范化并挂到右侧面板
     normalizeLoginButton(page);
+    ensureActionPanel(page);
   }
 
   function clearLoginClass() {
