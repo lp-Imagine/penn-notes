@@ -102,10 +102,16 @@
   }
 }
 
+/* 选择器需压过 .is-inview:not(.is-resting) 的入场动画，否则只有未播动画的书能合上 */
 .book-card:hover .book,
+.book-card.is-inview:hover .book,
+.book-card.is-inview:not(.is-resting):hover .book,
 .book-container:hover .book,
+.book-card.is-inview:not(.is-resting) .book-container:hover .book,
 .book-container:focus-visible .book,
-.book-card:active .book {
+.book-card.is-inview:not(.is-resting) .book-container:focus-visible .book,
+.book-card:active .book,
+.book-card.is-inview:not(.is-resting):active .book {
   animation: none;
   transform: rotateY(0deg);
 }

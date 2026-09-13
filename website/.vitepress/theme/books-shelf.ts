@@ -109,7 +109,17 @@ function setupBooksAnimation(page: HTMLElement) {
         const fromBelow = card.classList.contains("is-waiting");
         card.classList.remove("is-waiting");
         card.classList.add("is-inview");
-        if (!fromBelow) card.classList.add("is-resting");
+        if (!fromBelow) {
+          card.classList.add("is-resting");
+        } else {
+          // 入场动画结束后卸掉 fill，避免 hover 被 animation 盖住合不上
+          const book = card.querySelector<HTMLElement>(".book");
+          book?.addEventListener(
+            "animationend",
+            () => card.classList.add("is-resting"),
+            { once: true },
+          );
+        }
         observer?.unobserve(card);
       }
     },
