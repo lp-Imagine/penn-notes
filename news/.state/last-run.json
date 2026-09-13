@@ -1,8 +1,8 @@
 {
-  "at": "2026-09-12T23:01:23.190Z",
+  "at": "2026-09-13T23:01:05.303Z",
   "type": "daily",
-  "date": "2026-09-12",
-  "candidates": 120,
+  "date": "2026-09-13",
+  "candidates": 83,
   "search": {
     "ok": true,
     "queries": 16,
@@ -13,25 +13,37 @@
   "editorial": 13,
   "sections": {
     "业界": 4,
-    "产品": 1,
-    "模型": 3,
-    "开源": 0,
+    "产品": 3,
+    "模型": 0,
+    "开源": 1,
     "开发者工具": 3,
     "前端": 2
   },
   "rss": {
-    "ok": 62,
-    "failed": 2,
+    "ok": 60,
+    "failed": 4,
     "failures": [
       {
+        "id": "venturebeat-ai",
         "name": "VentureBeat AI",
         "error": "Status code 429"
       },
       {
+        "id": "marktechpost",
+        "name": "MarkTechPost",
+        "error": "Feed not recognized as RSS/Atom"
+      },
+      {
+        "id": "cnblogs-picked",
         "name": "博客园精华",
         "error": "Status code 500"
+      },
+      {
+        "id": "geekpark",
+        "name": "极客公园",
+        "error": "fetch failed"
       }
     ]
   },
-  "output": "news/2026-09/ai-news-2026-09-12.md"
+  "output": "news/2026-09/ai-news-2026-09-13.md"
 }
