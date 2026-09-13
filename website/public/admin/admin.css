@@ -639,7 +639,7 @@ li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
   box-shadow: var(--penn-admin-shadow) !important;
   overflow: hidden !important;
   background: #fff !important;
-  z-index: 20 !important;
+  z-index: 100 !important;
 }
 
 #nc-root [class*="-menuList"] {
@@ -679,11 +679,20 @@ li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
   font-weight: 600 !important;
 }
 
-/* CodeMirror Field Settings 侧栏 */
+/* CodeMirror Field Settings 侧栏
+   Decap 默认 overflow:hidden + overflow-y:scroll，会裁切 Mode 语言下拉 */
 [class*="-SettingsPaneContainer"] {
   border-left: 1px solid var(--penn-admin-line) !important;
   background: #fff !important;
   box-shadow: -8px 0 24px rgba(15, 23, 42, 0.04) !important;
+  overflow: visible !important;
+  z-index: 30 !important;
+}
+
+/* 宿主控件也要放行，否则侧栏 visible 仍被外层裁切 */
+div:has(> [class*="-SettingsPaneContainer"]),
+[class*="-ControlContainer"]:has([class*="-SettingsPaneContainer"]) {
+  overflow: visible !important;
 }
 
 [class*="-SettingsSectionTitle"] {
@@ -696,6 +705,19 @@ li[class*="-GridCard"]:hover [data-testid="entry-card-image"] {
   /* 中文标签不必全大写；英文 MODE/THEME 会由 admin-i18n.js 替换 */
   letter-spacing: 0.04em !important;
   text-transform: none !important;
+}
+
+/* Mode 在侧栏顶部：强制向下展开，避免 auto 向上被顶边裁掉 */
+[class*="-SettingsPaneContainer"] [class*="-menu"] {
+  top: calc(100% + 4px) !important;
+  bottom: auto !important;
+  margin-top: 0 !important;
+  z-index: 50 !important;
+}
+
+[class*="-SettingsPaneContainer"] [class*="-menuList"] {
+  max-height: min(320px, 50vh) !important;
+  overflow-y: auto !important;
 }
 
 /* 仅下拉菜单面板，绝不要动 ToolbarDropdown（H / + 触发器） */
