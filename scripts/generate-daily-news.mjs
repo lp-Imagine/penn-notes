@@ -141,7 +141,11 @@ async function main() {
     rss: {
       ok: successes?.length ?? 0,
       failed: failures?.length ?? 0,
-      failures: (failures || []).map((f) => ({ name: f.name, error: f.error })),
+      failures: (failures || []).map((f) => ({
+        id: f.id,
+        name: f.name,
+        error: f.error,
+      })),
     },
     output: path.relative(root, outFile),
   };

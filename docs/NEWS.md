@@ -181,7 +181,7 @@ AI 动态提供 RSS，地址：
 
 - **今天没更新 / schedule 没跑**：配置 [宝塔计划任务](#外部定时触发主方案--宝塔计划任务)；或 Actions → Daily AI News → Run workflow / `bash scripts/trigger-daily-news.sh` 补跑
 - **页面没更新**：多半是日报已 commit，但旧版 workflow 用 `GITHUB_TOKEN` 推送不会触发 CI。现在 daily-news 会自行部署；也可手动跑 CI → Run workflow
-- **RSS 失败**：日志里会列出失败源，详情见 `news/.state/feed-health.json`
+- **RSS 失败**：日志里会列出失败源，详情见 `news/.state/feed-health.json`。偶发 429/500 属源站限流或故障；`feed-health-summary` 在 prebuild 末尾统计**去重后**失败数，超过 3 个才会让 CI 失败（与 Decap/笔记改动无关）。
 - **质量差 / 英文标题**：多半没配 `LLM_API_KEY`，或用了 `--allow-heuristic`
 - **LLM 限流**：workflow 失败不会空 commit，可用 Actions → Daily AI News → Run workflow 重跑
 - **已有日期跳过**：默认不覆盖；加 `--force`

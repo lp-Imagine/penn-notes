@@ -24,17 +24,38 @@ function readJson(name) {
   return JSON.parse(fs.readFileSync(p, "utf8"));
 }
 
-/** Prefer named failures; fall back to max count (same run, never sum). */
+/**
+ * 同一次抓取会写入 feed-health（含 id）与 last-run.rss（历史仅 name）；
+ * 按 id / name 去重，避免 2 个失败被算成 4 个。
+ */
 function uniqueFailureCount(health, lastRun) {
-  const byKey = new Map();
-  for (const f of [...(health?.failures || []), ...(lastRun?.rss?.failures || [])]) {
-    const key = String(f.id || f.name || "")
+  const list = [...(health?.failures || []), ...(lastRun?.rss?.failures || [])];
+  const seenIds = new Set();
+  const seenNames = new Set();
+  let count = 0;
+
+  for (const f of list) {
+    const id = String(f.id || "")
       .trim()
       .toLowerCase();
-    if (!key) continue;
-    if (!byKey.has(key)) byKey.set(key, f);
+    const name = String(f.name || "")
+      .trim()
+      .toLowerCase();
+    if (!id && !name) continue;
+
+    if (id) {
+      if (seenIds.has(id)) continue;
+      seenIds.add(id);
+      if (name) seenNames.add(name);
+      count++;
+      continue;
+    }
+    if (seenNames.has(name)) continue;
+    seenNames.add(name);
+    count++;
   }
-  if (byKey.size > 0) return byKey.size;
+
+  if (count > 0) return count;
   return Math.max(health?.failed || 0, lastRun?.rss?.failed || 0);
 }
 

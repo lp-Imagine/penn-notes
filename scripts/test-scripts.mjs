@@ -267,10 +267,51 @@ test("prints summary without crashing", () => {
 });
 
 test("does not double-count the same RSS failures across state files", () => {
-  // Current state lists the same 2 failures in feed-health + last-run; unique count is 2.
-  const output = run("node scripts/feed-health-summary.mjs --warn-threshold 3");
-  assert.ok(output.includes("Feed Health Summary"), "should print summary");
-  assert.ok(!output.includes("exceed threshold"), "2 unique failures must not trip threshold 3");
+  const stateDir = path.join(root, "news", ".state");
+  const healthPath = path.join(stateDir, "feed-health.json");
+  const lastRunPath = path.join(stateDir, "last-run.json");
+  const healthBackup = fs.existsSync(healthPath)
+    ? fs.readFileSync(healthPath, "utf8")
+    : null;
+  const lastRunBackup = fs.existsSync(lastRunPath)
+    ? fs.readFileSync(lastRunPath, "utf8")
+    : null;
+
+  const fakeHealth = {
+    ok: 62,
+    failed: 2,
+    failures: [
+      { id: "venturebeat-ai", name: "VentureBeat AI", error: "Status code 429" },
+      { id: "cnblogs-picked", name: "博客园精华", error: "Status code 500" },
+    ],
+  };
+  const fakeLastRun = {
+    rss: {
+      ok: 62,
+      failed: 2,
+      failures: [
+        { name: "VentureBeat AI", error: "Status code 429" },
+        { name: "博客园精华", error: "Status code 500" },
+      ],
+    },
+  };
+  fs.mkdirSync(stateDir, { recursive: true });
+  fs.writeFileSync(healthPath, JSON.stringify(fakeHealth, null, 2) + "\n");
+  fs.writeFileSync(lastRunPath, JSON.stringify(fakeLastRun, null, 2) + "\n");
+
+  try {
+    const output = run("node scripts/feed-health-summary.mjs --warn-threshold 3");
+    assert.ok(output.includes("Feed Health Summary"), "should print summary");
+    assert.ok(
+      !output.includes("exceed threshold"),
+      "id+name duplicate entries must count as 2 failures, not 4",
+    );
+  } finally {
+    if (healthBackup != null) fs.writeFileSync(healthPath, healthBackup);
+    else fs.unlinkSync(healthPath);
+    if (lastRunBackup != null) fs.writeFileSync(lastRunPath, lastRunBackup);
+    else fs.unlinkSync(lastRunPath);
+  }
 });
 
 // ── Decap CMS admin ──
