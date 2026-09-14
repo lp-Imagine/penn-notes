@@ -151,6 +151,9 @@
       "id": "venturebeat-ai",
       "name": "VentureBeat AI",
       "url": "https://venturebeat.com/category/ai/feed/",
+      "fallbackUrls": [
+        "https://news.google.com/rss/search?q=site:venturebeat.com+AI+when:7d&hl=en-US&gl=US&ceid=US:en"
+      ],
       "section": "业界"
     },
     {
@@ -163,6 +166,9 @@
       "id": "marktechpost",
       "name": "MarkTechPost",
       "url": "https://www.marktechpost.com/feed/",
+      "fallbackUrls": [
+        "https://news.google.com/rss/search?q=site:marktechpost.com+when:7d&hl=en-US&gl=US&ceid=US:en"
+      ],
       "section": "模型"
     },
     {
@@ -343,12 +349,6 @@
       "section": "模型"
     },
     {
-      "id": "cnblogs-picked",
-      "name": "博客园精华",
-      "url": "https://feed.cnblogs.com/blog/picked/rss",
-      "section": "前端"
-    },
-    {
       "id": "cnblogs-home",
       "name": "博客园首页",
       "url": "https://feed.cnblogs.com/blog/sitehome/rss",
@@ -413,6 +413,10 @@
       "id": "geekpark",
       "name": "极客公园",
       "url": "https://www.geekpark.net/rss",
+      "fallbackUrls": [
+        "https://mainssl.geekpark.net/rss.rss",
+        "http://mainssl.geekpark.net/rss.rss"
+      ],
       "section": "业界"
     }
   ]

@@ -48,17 +48,31 @@ async function fetchFeedText(url, { softAccept = false } = {}) {
   return text;
 }
 
+function isRetryableFeedError(err) {
+  const msg = String(err?.message || err);
+  return /Status code (429|5\d\d)|fetch failed|network|timeout|ECONNRESET|AbortError|UND_ERR/i.test(
+    msg,
+  );
+}
+
 async function parseSourceFeed(src) {
   const urls = [src.url, ...(src.fallbackUrls || [])].filter(Boolean);
   let lastErr = null;
   for (const url of urls) {
     for (const softAccept of [false, true]) {
-      try {
-        const text = await fetchFeedText(url, { softAccept });
-        const feed = await parser.parseString(text);
-        return { feed, url };
-      } catch (err) {
-        lastErr = err;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const text = await fetchFeedText(url, { softAccept });
+          const feed = await parser.parseString(text);
+          return { feed, url };
+        } catch (err) {
+          lastErr = err;
+          if (attempt === 0 && isRetryableFeedError(err)) {
+            await new Promise((r) => setTimeout(r, 1200));
+            continue;
+          }
+          break;
+        }
       }
     }
   }

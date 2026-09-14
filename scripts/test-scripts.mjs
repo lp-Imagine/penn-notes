@@ -282,7 +282,7 @@ test("does not double-count the same RSS failures across state files", () => {
     failed: 2,
     failures: [
       { id: "venturebeat-ai", name: "VentureBeat AI", error: "Status code 429" },
-      { id: "cnblogs-picked", name: "博客园精华", error: "Status code 500" },
+      { id: "cnblogs-home", name: "博客园首页", error: "Status code 500" },
     ],
   };
   const fakeLastRun = {
@@ -291,7 +291,7 @@ test("does not double-count the same RSS failures across state files", () => {
       failed: 2,
       failures: [
         { name: "VentureBeat AI", error: "Status code 429" },
-        { name: "博客园精华", error: "Status code 500" },
+        { name: "博客园首页", error: "Status code 500" },
       ],
     },
   };

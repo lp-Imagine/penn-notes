@@ -24,7 +24,7 @@
     "build:assistant-index": "node scripts/build-assistant-index.mjs",
     "build:redirects": "node scripts/build-redirects.mjs",
     "feed-health": "node scripts/feed-health-summary.mjs",
-    "prebuild": "npm run stubs && npm run ingest && npm run sync:news && npm run sync:friends -- --soft && npm run build:home && npm run build:lists && npm run summarize:notes -- --soft && npm run build:discover && npm run build:notes-feed && npm run build:assistant-index && npm run feed-health",
+    "prebuild": "npm run stubs && npm run ingest && npm run sync:news && npm run sync:friends -- --soft && npm run build:home && npm run build:lists && npm run summarize:notes -- --soft && npm run build:discover && npm run build:notes-feed && npm run build:assistant-index && npm run feed-health -- --soft",
     "dev": "npm run stubs && npm run ingest && npm run sync:news && npm run sync:friends -- --soft && npm run build:home && npm run build:lists && npm run summarize:notes -- --soft && npm run build:discover && npm run build:notes-feed && npm run build:assistant-index && vitepress dev website",
     "build": "vitepress build website && npm run build:redirects && npm run build:sitemap",
     "preview": "vitepress preview website",

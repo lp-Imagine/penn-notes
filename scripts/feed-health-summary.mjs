@@ -4,7 +4,9 @@
  * and news/.state/last-run.json. Failures are de-duplicated across both files
  * (they describe the same fetch). Exits 1 when unique failures exceed threshold.
  *
- * Usage:  node scripts/feed-health-summary.mjs [--warn-threshold N]
+ * Usage:  node scripts/feed-health-summary.mjs [--warn-threshold N] [--soft]
+ *
+ * --soft：超过阈值只告警、不 exit 1（CI prebuild 用，避免偶发 RSS 卡住整站部署）
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -15,8 +17,9 @@ const stateDir = path.join(root, "news", ".state");
 
 const warnThreshold = (() => {
   const idx = process.argv.indexOf("--warn-threshold");
-  return idx >= 0 ? Number(process.argv[idx + 1]) || 3 : 3;
+  return idx >= 0 ? Number(process.argv[idx + 1]) || 5 : 5;
 })();
+const soft = process.argv.includes("--soft");
 
 function readJson(name) {
   const p = path.join(stateDir, name);
@@ -115,9 +118,13 @@ function main() {
   // feed-health.json and last-run.json describe the same fetch; never sum both.
   const totalFailed = uniqueFailureCount(health, lastRun);
   if (totalFailed > warnThreshold) {
-    console.error(
-      `\n⚠ ${totalFailed} feed failures exceed threshold (${warnThreshold}). Check sources!`,
-    );
+    const msg = `\n⚠ ${totalFailed} feed failures exceed threshold (${warnThreshold}). Check sources!`;
+    if (soft) {
+      console.warn(msg);
+      console.warn("  (soft mode: not failing the build)");
+      return;
+    }
+    console.error(msg);
     process.exit(1);
   }
 }
