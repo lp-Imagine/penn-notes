@@ -1,20 +1,20 @@
 {
-  "at": "2026-09-17T23:01:27.455Z",
-  "targetDate": "2026-09-17",
+  "at": "2026-09-18T23:01:49.239Z",
+  "targetDate": "2026-09-18",
   "ok": 62,
   "failed": 1,
   "successes": [
     {
+      "id": "anthropic-engineering",
+      "name": "Anthropic Engineering",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml",
+      "items": 0
+    },
+    {
       "id": "anthropic-research",
       "name": "Anthropic Research",
       "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_research.xml",
-      "items": 1
-    },
-    {
-      "id": "claude-blog",
-      "name": "Claude Blog",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml",
-      "items": 2
+      "items": 0
     },
     {
       "id": "anthropic-news",
@@ -23,10 +23,16 @@
       "items": 1
     },
     {
-      "id": "anthropic-engineering",
-      "name": "Anthropic Engineering",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_engineering.xml",
+      "id": "claude-blog",
+      "name": "Claude Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_claude.xml",
       "items": 0
+    },
+    {
+      "id": "techcrunch-ai",
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "items": 12
     },
     {
       "id": "openai-developer",
@@ -35,9 +41,27 @@
       "items": 0
     },
     {
-      "id": "cohere-blog",
-      "name": "Cohere Blog",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml",
+      "id": "theverge-ai",
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "items": 4
+    },
+    {
+      "id": "mistral-news",
+      "name": "Mistral AI News",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_mistral.xml",
+      "items": 0
+    },
+    {
+      "id": "the-batch",
+      "name": "The Batch (DeepLearning.AI)",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml",
+      "items": 0
+    },
+    {
+      "id": "xai-news",
+      "name": "xAI News",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml",
       "items": 0
     },
     {
@@ -53,34 +77,16 @@
       "items": 0
     },
     {
-      "id": "the-batch",
-      "name": "The Batch (DeepLearning.AI)",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_the_batch.xml",
-      "items": 0
+      "id": "wired-ai",
+      "name": "Wired AI",
+      "url": "https://www.wired.com/feed/tag/ai/latest/rss",
+      "items": 9
     },
     {
-      "id": "techcrunch-ai",
-      "name": "TechCrunch AI",
-      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
-      "items": 10
-    },
-    {
-      "id": "theverge-ai",
-      "name": "The Verge AI",
-      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-      "items": 8
-    },
-    {
-      "id": "xai-news",
-      "name": "xAI News",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_xainews.xml",
-      "items": 0
-    },
-    {
-      "id": "mistral-news",
-      "name": "Mistral AI News",
-      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_mistral.xml",
-      "items": 0
+      "id": "mit-tr",
+      "name": "MIT Tech Review",
+      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+      "items": 1
     },
     {
       "id": "deepmind",
@@ -89,22 +95,22 @@
       "items": 0
     },
     {
-      "id": "mit-tr",
-      "name": "MIT Tech Review",
-      "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+      "id": "cohere-blog",
+      "name": "Cohere Blog",
+      "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cohere.xml",
       "items": 0
     },
     {
-      "id": "wired-ai",
-      "name": "Wired AI",
-      "url": "https://www.wired.com/feed/tag/ai/latest/rss",
-      "items": 3
+      "id": "lobsters-ai",
+      "name": "Lobsters AI",
+      "url": "https://lobste.rs/t/ai.rss",
+      "items": 0
     },
     {
-      "id": "simon-willison",
-      "name": "Simon Willison",
-      "url": "https://simonwillison.net/atom/everything/",
-      "items": 4
+      "id": "github-blog",
+      "name": "GitHub Blog",
+      "url": "https://github.blog/feed/",
+      "items": 1
     },
     {
       "id": "ollama-blog",
@@ -113,39 +119,21 @@
       "items": 0
     },
     {
-      "id": "lobsters-ai",
-      "name": "Lobsters AI",
-      "url": "https://lobste.rs/t/ai.rss",
-      "items": 1
-    },
-    {
       "id": "cursor-blog",
       "name": "Cursor Blog",
       "url": "https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_cursor.xml",
-      "items": 1
+      "items": 0
+    },
+    {
+      "id": "simon-willison",
+      "name": "Simon Willison",
+      "url": "https://simonwillison.net/atom/everything/",
+      "items": 4
     },
     {
       "id": "latent-space",
       "name": "Latent Space",
       "url": "https://www.latent.space/feed",
-      "items": 2
-    },
-    {
-      "id": "stackoverflow-blog",
-      "name": "Stack Overflow Blog",
-      "url": "https://stackoverflow.blog/feed/",
-      "items": 0
-    },
-    {
-      "id": "ars-technica-ai",
-      "name": "Ars Technica AI",
-      "url": "https://arstechnica.com/ai/feed/",
-      "items": 1
-    },
-    {
-      "id": "cloudflare-blog",
-      "name": "Cloudflare Blog",
-      "url": "https://blog.cloudflare.com/rss/",
       "items": 1
     },
     {
@@ -155,16 +143,28 @@
       "items": 0
     },
     {
+      "id": "ars-technica-ai",
+      "name": "Ars Technica AI",
+      "url": "https://arstechnica.com/ai/feed/",
+      "items": 6
+    },
+    {
+      "id": "stackoverflow-blog",
+      "name": "Stack Overflow Blog",
+      "url": "https://stackoverflow.blog/feed/",
+      "items": 1
+    },
+    {
+      "id": "cloudflare-blog",
+      "name": "Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/rss/",
+      "items": 0
+    },
+    {
       "id": "devto-ai",
       "name": "DEV AI",
       "url": "https://dev.to/feed/tag/ai",
       "items": 0
-    },
-    {
-      "id": "github-blog",
-      "name": "GitHub Blog",
-      "url": "https://github.blog/feed/",
-      "items": 1
     },
     {
       "id": "javascript-weekly",
@@ -176,30 +176,18 @@
       "id": "node-weekly",
       "name": "Node Weekly",
       "url": "https://nodeweekly.com/rss",
-      "items": 1
-    },
-    {
-      "id": "hn-ai",
-      "name": "Hacker News AI",
-      "url": "https://hn.algolia.com/api/v1",
-      "items": 0
-    },
-    {
-      "id": "smashing-magazine",
-      "name": "Smashing Magazine",
-      "url": "https://www.smashingmagazine.com/feed/",
-      "items": 0
-    },
-    {
-      "id": "frontend-focus",
-      "name": "Frontend Focus",
-      "url": "https://frontendfoc.us/rss",
       "items": 0
     },
     {
       "id": "react-status",
       "name": "React Status",
       "url": "https://react.statuscode.com/rss",
+      "items": 1
+    },
+    {
+      "id": "smashing-magazine",
+      "name": "Smashing Magazine",
+      "url": "https://www.smashingmagazine.com/feed/",
       "items": 0
     },
     {
@@ -215,27 +203,9 @@
       "items": 0
     },
     {
-      "id": "css-tricks",
-      "name": "CSS-Tricks",
-      "url": "https://css-tricks.com/feed/",
-      "items": 0
-    },
-    {
       "id": "chromium-blog",
       "name": "Chromium Blog",
       "url": "https://blog.chromium.org/feeds/posts/default?alt=rss",
-      "items": 0
-    },
-    {
-      "id": "msedge-dev",
-      "name": "Microsoft Edge Dev",
-      "url": "https://blogs.windows.com/msedgedev/feed/",
-      "items": 0
-    },
-    {
-      "id": "devto-webdev",
-      "name": "DEV Web Dev",
-      "url": "https://dev.to/feed/tag/webdev",
       "items": 0
     },
     {
@@ -245,9 +215,45 @@
       "items": 0
     },
     {
+      "id": "devto-webdev",
+      "name": "DEV Web Dev",
+      "url": "https://dev.to/feed/tag/webdev",
+      "items": 0
+    },
+    {
+      "id": "frontend-focus",
+      "name": "Frontend Focus",
+      "url": "https://frontendfoc.us/rss",
+      "items": 0
+    },
+    {
       "id": "jake-archibald",
       "name": "Jake Archibald",
       "url": "https://jakearchibald.com/posts.rss",
+      "items": 0
+    },
+    {
+      "id": "msedge-dev",
+      "name": "Microsoft Edge Dev",
+      "url": "https://blogs.windows.com/msedgedev/feed/",
+      "items": 0
+    },
+    {
+      "id": "css-tricks",
+      "name": "CSS-Tricks",
+      "url": "https://css-tricks.com/feed/",
+      "items": 0
+    },
+    {
+      "id": "webkit-blog",
+      "name": "WebKit Blog",
+      "url": "https://webkit.org/blog/feed/",
+      "items": 1
+    },
+    {
+      "id": "hn-ai",
+      "name": "Hacker News AI",
+      "url": "https://hn.algolia.com/api/v1",
       "items": 0
     },
     {
@@ -257,51 +263,39 @@
       "items": 0
     },
     {
-      "id": "webkit-blog",
-      "name": "WebKit Blog",
-      "url": "https://webkit.org/blog/feed/",
+      "id": "martin-fowler",
+      "name": "Martin Fowler",
+      "url": "https://martinfowler.com/feed.atom",
       "items": 0
-    },
-    {
-      "id": "arxiv-cs-ai",
-      "name": "arXiv cs.AI",
-      "url": "https://rss.arxiv.org/rss/cs.AI",
-      "items": 303
     },
     {
       "id": "arxiv-cs-lg",
       "name": "arXiv cs.LG",
       "url": "https://rss.arxiv.org/rss/cs.LG",
-      "items": 325
+      "items": 303
     },
     {
       "id": "arxiv-cs-cl",
       "name": "arXiv cs.CL",
       "url": "https://rss.arxiv.org/rss/cs.CL",
-      "items": 171
+      "items": 163
     },
     {
-      "id": "martin-fowler",
-      "name": "Martin Fowler",
-      "url": "https://martinfowler.com/feed.atom",
-      "items": 2
-    },
-    {
-      "id": "ruanyifeng",
-      "name": "阮一峰的网络日志",
-      "url": "https://www.ruanyifeng.com/blog/atom.xml",
-      "items": 0
+      "id": "arxiv-cs-ai",
+      "name": "arXiv cs.AI",
+      "url": "https://rss.arxiv.org/rss/cs.AI",
+      "items": 328
     },
     {
       "id": "juejin-ai",
       "name": "掘金人工智能",
       "url": "https://juejin.cn/ai",
-      "items": 20
+      "items": 19
     },
     {
-      "id": "zhangxinxu",
-      "name": "张鑫旭",
-      "url": "https://www.zhangxinxu.com/wordpress/feed/",
+      "id": "ruanyifeng",
+      "name": "阮一峰的网络日志",
+      "url": "https://www.ruanyifeng.com/blog/atom.xml",
       "items": 1
     },
     {
@@ -311,40 +305,34 @@
       "items": 20
     },
     {
-      "id": "cnblogs-home",
-      "name": "博客园首页",
-      "url": "https://feed.cnblogs.com/blog/sitehome/rss",
-      "items": 18
-    },
-    {
-      "id": "aws-ml",
-      "name": "AWS Machine Learning",
-      "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
-      "items": 8
-    },
-    {
-      "id": "google-ai",
-      "name": "Google AI Blog",
-      "url": "https://blog.google/technology/ai/rss/",
+      "id": "zhangxinxu",
+      "name": "张鑫旭",
+      "url": "https://www.zhangxinxu.com/wordpress/feed/",
       "items": 0
     },
     {
-      "id": "openai-blog",
-      "name": "OpenAI Blog",
-      "url": "https://openai.com/blog/rss.xml",
-      "items": 3
+      "id": "cnblogs-home",
+      "name": "博客园首页",
+      "url": "https://feed.cnblogs.com/blog/sitehome/rss",
+      "items": 19
     },
     {
       "id": "sspai",
       "name": "少数派",
       "url": "https://sspai.com/feed",
-      "items": 4
+      "items": 5
     },
     {
-      "id": "marktechpost",
-      "name": "MarkTechPost",
-      "url": "https://news.google.com/rss/search?q=site:marktechpost.com+when:7d&hl=en-US&gl=US&ceid=US:en",
-      "items": 6
+      "id": "google-ai",
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "items": 3
+    },
+    {
+      "id": "aws-ml",
+      "name": "AWS Machine Learning",
+      "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "items": 7
     },
     {
       "id": "36kr",
@@ -353,10 +341,22 @@
       "items": 29
     },
     {
+      "id": "marktechpost",
+      "name": "MarkTechPost",
+      "url": "https://news.google.com/rss/search?q=site:marktechpost.com+when:7d&hl=en-US&gl=US&ceid=US:en",
+      "items": 7
+    },
+    {
+      "id": "openai-blog",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog/rss.xml",
+      "items": 2
+    },
+    {
       "id": "infoq-cn",
       "name": "InfoQ 中文",
       "url": "https://www.infoq.cn/feed",
-      "items": 15
+      "items": 17
     },
     {
       "id": "quantumbit",
@@ -368,13 +368,13 @@
       "id": "venturebeat-ai",
       "name": "VentureBeat AI",
       "url": "https://news.google.com/rss/search?q=site:venturebeat.com+AI+when:7d&hl=en-US&gl=US&ceid=US:en",
-      "items": 12
+      "items": 4
     },
     {
       "id": "geekpark",
       "name": "极客公园",
       "url": "https://www.geekpark.net/rss",
-      "items": 17
+      "items": 16
     }
   ],
   "failures": [
