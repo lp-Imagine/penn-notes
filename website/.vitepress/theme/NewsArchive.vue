@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { withBase } from "vitepress";
 import { NEWS_SECTION_DATA } from "../i18n/page-messages";
 import items from "../news-items.generated.json";
@@ -12,6 +12,19 @@ const PAGE_SIZE = 24;
 const sections = NEWS_SECTION_DATA;
 const active = ref("all");
 const visible = ref(PAGE_SIZE);
+
+function applySectionFromQuery() {
+  try {
+    const q = new URLSearchParams(window.location.search).get("section") || "";
+    if (sections.some((s) => s.id === q)) active.value = q;
+  } catch {
+    /* ignore */
+  }
+}
+
+onMounted(() => {
+  applySectionFromQuery();
+});
 
 const hasItems = computed(() => items.length > 0);
 

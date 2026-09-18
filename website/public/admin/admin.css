@@ -1344,3 +1344,52 @@ body.penn-admin-login [class*="AuthenticationPage"] {
     transform: rotate(45deg);
   }
 }
+
+/* 发布提示条：封面可选 / COS CI */
+.penn-admin-publish-tip {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid color-mix(in srgb, var(--penn-admin-accent) 22%, var(--penn-admin-line));
+  background: color-mix(in srgb, var(--penn-admin-accent-soft) 70%, #fff);
+  color: var(--penn-admin-ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.penn-admin-publish-tip p {
+  margin: 0;
+  flex: 1;
+}
+
+.penn-admin-publish-tip code {
+  font-size: 12px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.penn-admin-publish-tip-close {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--penn-admin-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.penn-admin-publish-tip-close:hover {
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--penn-admin-ink);
+}

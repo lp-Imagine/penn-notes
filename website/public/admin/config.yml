@@ -81,7 +81,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -137,7 +137,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -194,7 +194,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -250,7 +250,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -307,7 +307,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -362,7 +362,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -420,7 +420,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {
@@ -478,7 +478,7 @@ collections:
           media_folder: /website/public/uploads,
           public_folder: uploads,
           media_library: { config: { max_file_size: 20000000 } },
-          hint: "点「选择图片」上传本地图，或「从 URL 插入」贴外链；发布后会自动收口到 COS",
+          hint: "可选。点「选择图片」上传本地图，或「从 URL 插入」贴外链；无封面亦可发布。有图时发布构建会收口到 COS，失败见 CI 日志 ensure-cos-note-images / gc-cos-decap",
         }
       - { label: 草稿, name: draft, widget: boolean, default: false }
       - {

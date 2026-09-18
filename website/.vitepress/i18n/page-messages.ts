@@ -27,6 +27,13 @@ export type PageMessages = {
     emptyNotes: string;
     newsEmptyPrefix: string;
     goSection: string;
+    discoverAria: string;
+    discoverTitle: string;
+    discoverWeek: string;
+    discoverNewsKicker: string;
+    discoverNewsMore: string;
+    discoverRereadKicker: string;
+    discoverRereadGo: string;
   };
   section: {
     kicker: string;
@@ -72,8 +79,54 @@ export type PageMessages = {
     rssCopied: string;
     rssCopyAria: string;
     rssHint: string;
+    rssSectionsHint: string;
     readOriginal: string;
     emptyDay: string;
+    weekTitle: string;
+    weekLead: string;
+    weekEmpty: string;
+    weekPicks: string;
+    weekdays: {
+      sun: string;
+      mon: string;
+      tue: string;
+      wed: string;
+      thu: string;
+      fri: string;
+      sat: string;
+    };
+    sourcesTitle: string;
+    sourcesLead: string;
+    sourcesWhyKicker: string;
+    sourcesWhy: string;
+    sourcesSnapshot: string;
+    sourcesOk: string;
+    sourcesFailed: string;
+    sourcesRate: string;
+    sourcesTarget: string;
+    sourcesUpdated: (at: string) => string;
+    sourcesNone: string;
+    sourcesFailTitle: string;
+    sourcesFailHint: string;
+    sourcesAllOk: string;
+    sourcesOkTitle: string;
+    sourcesOkCount: (n: number) => string;
+    sourcesItems: (n: number) => string;
+    sourcesItemsUnit: string;
+    sourcesTop: string;
+    sourcesRest: string;
+    sourcesQuiet: string;
+    sourcesQuietCount: (n: number) => string;
+    sourcesErr400: string;
+    sourcesErr401: string;
+    sourcesErr403: string;
+    sourcesErr404: string;
+    sourcesErr410: string;
+    sourcesErr429: string;
+    sourcesErr5xx: string;
+    sourcesErrTimeout: string;
+    sourcesErrNetwork: string;
+    sourcesErrGeneric: string;
     sections: {
       all: string;
       industry: string;
@@ -276,6 +329,8 @@ export type PageMessages = {
     newsDigests: string;
     newsFeed: string;
     newsFeedDesc: string;
+    newsWeek: string;
+    newsSources: string;
   };
   sectionDescs: {
     web: string;
@@ -315,6 +370,13 @@ const zhCN: PageMessages = {
     emptyNotes: "暂无文章",
     newsEmptyPrefix: "AI 动态每天 7:00 左右更新 · ",
     goSection: "前往栏目",
+    discoverAria: "今日发现",
+    discoverTitle: "今日发现",
+    discoverWeek: "本周合集",
+    discoverNewsKicker: "今日 AI 要点",
+    discoverNewsMore: "阅读完整日报",
+    discoverRereadKicker: "旧文重读",
+    discoverRereadGo: "重读这篇 →",
   },
   section: {
     kicker: "栏目",
@@ -361,8 +423,55 @@ const zhCN: PageMessages = {
     rssCopied: "已复制订阅地址",
     rssCopyAria: "复制 RSS 地址",
     rssHint: "点击复制地址，粘贴到 Feedly 等阅读器",
+    rssSectionsHint: "也可按栏目订阅下方分源 RSS，或用动态流筛选",
     readOriginal: "阅读原文",
     emptyDay: "（本日无新条目）",
+    weekTitle: "本周合集",
+    weekLead: "最近 7 期日报与精选条目",
+    weekEmpty: "暂无本周内容",
+    weekPicks: "本周精选",
+    weekdays: {
+      sun: "周日",
+      mon: "周一",
+      tue: "周二",
+      wed: "周三",
+      thu: "周四",
+      fri: "周五",
+      sat: "周六",
+    },
+    sourcesTitle: "订阅源健康",
+    sourcesLead: "AI 动态从哪些 RSS 抓来，以及最近一次抓取是否正常",
+    sourcesWhyKicker: "这个页面做什么",
+    sourcesWhy:
+      "「AI 动态」不是人工一篇篇贴的，而是每天自动去几十个 RSS 订阅源拉候选，再筛选进日报。本页是那次抓取的体检报告：哪些源成功、哪些暂时挂了——方便排查「今天少了某家媒体」这类问题。失败多半是源站限流或临时故障，通常会自愈。",
+    sourcesSnapshot: "最近一次抓取",
+    sourcesOk: "正常",
+    sourcesFailed: "失败",
+    sourcesRate: "成功率",
+    sourcesTarget: "对应日期",
+    sourcesUpdated: (at) => `检查于 ${at}`,
+    sourcesNone: "暂无健康检查数据（构建后可见）",
+    sourcesFailTitle: "本次失败",
+    sourcesFailHint: "多为限流或临时故障，不必慌",
+    sourcesAllOk: "全部订阅源抓取正常",
+    sourcesOkTitle: "本次成功",
+    sourcesOkCount: (n) => `${n} 个源`,
+    sourcesItems: (n) => `${n} 条`,
+    sourcesItemsUnit: "条",
+    sourcesTop: "贡献最多",
+    sourcesRest: "其余有条目",
+    sourcesQuiet: "本轮无新条目",
+    sourcesQuietCount: (n) => `${n} 个`,
+    sourcesErr400: "请求不被接受",
+    sourcesErr401: "需要登录或鉴权",
+    sourcesErr403: "源站拒绝访问",
+    sourcesErr404: "订阅地址不存在",
+    sourcesErr410: "订阅已失效或下线",
+    sourcesErr429: "触发限流，稍后再试",
+    sourcesErr5xx: "源站服务异常",
+    sourcesErrTimeout: "请求超时",
+    sourcesErrNetwork: "网络或域名不可达",
+    sourcesErrGeneric: "抓取失败，详见原始错误",
     sections: {
       all: "全部",
       industry: "业界",
@@ -571,6 +680,8 @@ const zhCN: PageMessages = {
     newsDigests: "日报归档",
     newsFeed: "动态流",
     newsFeedDesc: "单条要闻筛选浏览，向下滚动自动加载",
+    newsWeek: "本周合集",
+    newsSources: "订阅源",
   },
   sectionDescs: {
     web: "JavaScript 基础、Vue / React、UI 组件实践",
@@ -610,6 +721,13 @@ const zhTW: PageMessages = {
     emptyNotes: "暫無文章",
     newsEmptyPrefix: "AI 動態每天 7:00 左右更新 · ",
     goSection: "前往欄目",
+    discoverAria: "今日發現",
+    discoverTitle: "今日發現",
+    discoverWeek: "本週合集",
+    discoverNewsKicker: "今日 AI 要點",
+    discoverNewsMore: "閱讀完整日報",
+    discoverRereadKicker: "舊文重讀",
+    discoverRereadGo: "重讀這篇 →",
   },
   section: {
     kicker: "欄目",
@@ -656,8 +774,55 @@ const zhTW: PageMessages = {
     rssCopied: "已複製訂閱地址",
     rssCopyAria: "複製 RSS 地址",
     rssHint: "點擊複製地址，貼到 Feedly 等閱讀器",
+    rssSectionsHint: "也可按欄目訂閱下方分源 RSS，或用動態流篩選",
     readOriginal: "閱讀原文",
     emptyDay: "（本日無新條目）",
+    weekTitle: "本週合集",
+    weekLead: "最近 7 期日報與精選條目",
+    weekEmpty: "暫無本週內容",
+    weekPicks: "本週精選",
+    weekdays: {
+      sun: "週日",
+      mon: "週一",
+      tue: "週二",
+      wed: "週三",
+      thu: "週四",
+      fri: "週五",
+      sat: "週六",
+    },
+    sourcesTitle: "訂閱源健康",
+    sourcesLead: "AI 動態從哪些 RSS 抓來，以及最近一次抓取是否正常",
+    sourcesWhyKicker: "這個頁面做什麼",
+    sourcesWhy:
+      "「AI 動態」不是人工一篇篇貼的，而是每天自動去數十個 RSS 訂閱源拉候選，再篩選進日報。本頁是那次抓取的體檢報告：哪些源成功、哪些暫時掛了——方便排查「今天少了某家媒體」這類問題。失敗多半是源站限流或臨時故障，通常會自癒。",
+    sourcesSnapshot: "最近一次抓取",
+    sourcesOk: "正常",
+    sourcesFailed: "失敗",
+    sourcesRate: "成功率",
+    sourcesTarget: "對應日期",
+    sourcesUpdated: (at) => `檢查於 ${at}`,
+    sourcesNone: "暫無健康檢查資料（構建後可見）",
+    sourcesFailTitle: "本次失敗",
+    sourcesFailHint: "多為限流或臨時故障，不必慌",
+    sourcesAllOk: "全部訂閱源抓取正常",
+    sourcesOkTitle: "本次成功",
+    sourcesOkCount: (n) => `${n} 個源`,
+    sourcesItems: (n) => `${n} 則`,
+    sourcesItemsUnit: "則",
+    sourcesTop: "貢獻最多",
+    sourcesRest: "其餘有條目",
+    sourcesQuiet: "本輪無新條目",
+    sourcesQuietCount: (n) => `${n} 個`,
+    sourcesErr400: "請求不被接受",
+    sourcesErr401: "需要登入或鑑權",
+    sourcesErr403: "源站拒絕存取",
+    sourcesErr404: "訂閱地址不存在",
+    sourcesErr410: "訂閱已失效或下線",
+    sourcesErr429: "觸發限流，稍後再試",
+    sourcesErr5xx: "源站服務異常",
+    sourcesErrTimeout: "請求逾時",
+    sourcesErrNetwork: "網路或域名不可達",
+    sourcesErrGeneric: "抓取失敗，詳見原始錯誤",
     sections: {
       all: "全部",
       industry: "業界",
@@ -866,6 +1031,8 @@ const zhTW: PageMessages = {
     newsDigests: "日報彙整",
     newsFeed: "動態流",
     newsFeedDesc: "單則要聞篩選瀏覽，向下捲動自動載入",
+    newsWeek: "本週合集",
+    newsSources: "訂閱源",
   },
   sectionDescs: {
     web: "JavaScript 基礎、Vue / React、UI 元件實作",
@@ -905,6 +1072,13 @@ const en: PageMessages = {
     emptyNotes: "No notes yet",
     newsEmptyPrefix: "AI news updates around 07:00 · ",
     goSection: "Open section",
+    discoverAria: "Today’s picks",
+    discoverTitle: "Today’s picks",
+    discoverWeek: "This week",
+    discoverNewsKicker: "AI highlights",
+    discoverNewsMore: "Full daily digest",
+    discoverRereadKicker: "Reread",
+    discoverRereadGo: "Read again →",
   },
   section: {
     kicker: "Section",
@@ -983,8 +1157,55 @@ const en: PageMessages = {
     rssCopied: "Feed URL copied",
     rssCopyAria: "Copy RSS URL",
     rssHint: "Copy and paste into Feedly or another reader",
+    rssSectionsHint: "Or subscribe to a section feed below / filter the stream",
     readOriginal: "Read original",
     emptyDay: "(No new items today)",
+    weekTitle: "This week",
+    weekLead: "Last 7 digests and selected items",
+    weekEmpty: "Nothing this week yet",
+    weekPicks: "Week’s picks",
+    weekdays: {
+      sun: "Sun",
+      mon: "Mon",
+      tue: "Tue",
+      wed: "Wed",
+      thu: "Thu",
+      fri: "Fri",
+      sat: "Sat",
+    },
+    sourcesTitle: "Feed health",
+    sourcesLead: "Which RSS feeds power AI news, and how the latest fetch went",
+    sourcesWhyKicker: "What this page is",
+    sourcesWhy:
+      "AI news isn’t hand-pasted. Each day we pull candidates from dozens of RSS feeds, then curate the digest. This page is the fetch report: which sources succeeded and which briefly failed—handy when a familiar outlet is missing. Failures are usually rate limits or blips and often clear on their own.",
+    sourcesSnapshot: "Latest fetch",
+    sourcesOk: "OK",
+    sourcesFailed: "Failed",
+    sourcesRate: "Success rate",
+    sourcesTarget: "For date",
+    sourcesUpdated: (at) => `Checked ${at}`,
+    sourcesNone: "No health data yet (appears after build)",
+    sourcesFailTitle: "Failed this run",
+    sourcesFailHint: "Usually rate limits or temporary outages",
+    sourcesAllOk: "All feeds fetched successfully",
+    sourcesOkTitle: "Succeeded this run",
+    sourcesOkCount: (n) => `${n} feeds`,
+    sourcesItems: (n) => `${n} items`,
+    sourcesItemsUnit: "items",
+    sourcesTop: "Top contributors",
+    sourcesRest: "Also returned items",
+    sourcesQuiet: "No new items this run",
+    sourcesQuietCount: (n) => `${n}`,
+    sourcesErr400: "Bad request",
+    sourcesErr401: "Auth required",
+    sourcesErr403: "Access denied",
+    sourcesErr404: "Feed URL not found",
+    sourcesErr410: "Feed gone / retired",
+    sourcesErr429: "Rate limited — try later",
+    sourcesErr5xx: "Upstream server error",
+    sourcesErrTimeout: "Request timed out",
+    sourcesErrNetwork: "Network or DNS unreachable",
+    sourcesErrGeneric: "Fetch failed — see raw error",
     sections: {
       all: "All",
       industry: "Industry",
@@ -1199,6 +1420,8 @@ const en: PageMessages = {
     newsDigests: "Digest archive",
     newsFeed: "Feed",
     newsFeedDesc: "Browse single items; scroll to load more",
+    newsWeek: "This week",
+    newsSources: "Feed health",
   },
   sectionDescs: {
     web: "JavaScript basics, Vue / React, UI components",

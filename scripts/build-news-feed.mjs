@@ -96,6 +96,35 @@ export function writeNewsFeed(items) {
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   const xml = buildNewsFeedXml(unique);
   fs.writeFileSync(OUT, xml, "utf8");
+
+  // 分栏目 RSS，方便关键词/栏目订阅
+  const bySection = new Map();
+  for (const item of unique) {
+    const sec = String(item.section || "").trim();
+    if (!sec) continue;
+    if (!bySection.has(sec)) bySection.set(sec, []);
+    bySection.get(sec).push(item);
+  }
+  const slugOf = (sec) =>
+    ({
+      业界: "industry",
+      产品: "product",
+      模型: "model",
+      开源: "opensource",
+      开发者工具: "tools",
+      前端: "frontend",
+    })[sec] || sec;
+
+  for (const [sec, list] of bySection) {
+    const slug = slugOf(sec);
+    const out = path.join(path.dirname(OUT), `feed-${slug}.xml`);
+    const body = buildNewsFeedXml(list, { limit: 40 }).replace(
+      "<title>Penn Notes · AI 动态</title>",
+      `<title>Penn Notes · AI 动态 · ${sec}</title>`,
+    );
+    fs.writeFileSync(out, body, "utf8");
+  }
+
   return OUT;
 }
 

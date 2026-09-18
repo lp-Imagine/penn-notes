@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { NEWS_SECTION_DATA } from "../i18n/page-messages";
 import { useI18n } from "./i18n";
 
 defineProps({
@@ -9,16 +10,28 @@ defineProps({
 const { t } = useI18n();
 const FEED_URL = "https://penn-notes.draftly.cn/news/feed.xml";
 const copied = ref(false);
+const copiedSection = ref("");
 
-async function copyFeed() {
+const sectionFeeds = computed(() =>
+  NEWS_SECTION_DATA.filter((s) => s.id !== "all").map((s) => ({
+    id: s.id,
+    label: t("news").sections[s.id],
+    url: `https://penn-notes.draftly.cn/news/feed-${s.id}.xml`,
+    filterHref: `/news/?section=${s.id}#feed`,
+  })),
+);
+
+async function copyFeed(url = FEED_URL, sectionId = "") {
   try {
-    await navigator.clipboard.writeText(FEED_URL);
-    copied.value = true;
+    await navigator.clipboard.writeText(url);
+    copied.value = url === FEED_URL;
+    copiedSection.value = sectionId;
     setTimeout(() => {
       copied.value = false;
+      copiedSection.value = "";
     }, 2000);
   } catch {
-    window.prompt(t("news").rssCopyAria, FEED_URL);
+    window.prompt(t("news").rssCopyAria, url);
   }
 }
 
@@ -31,7 +44,7 @@ const feedlyUrl = `https://feedly.com/i/subscription/feed/${encodeURIComponent(F
       type="button"
       class="news-rss-btn"
       :aria-label="t('news').rssCopyAria"
-      @click="copyFeed"
+      @click="copyFeed()"
     >
       <svg
         class="news-rss-icon"
@@ -54,6 +67,19 @@ const feedlyUrl = `https://feedly.com/i/subscription/feed/${encodeURIComponent(F
         <a :href="feedlyUrl" target="_blank" rel="noopener noreferrer">Feedly</a>
       </p>
       <code class="news-rss-url">{{ FEED_URL }}</code>
+      <p class="news-rss-sections-hint">{{ t("news").rssSectionsHint }}</p>
+      <div class="news-rss-sections" role="list">
+        <button
+          v-for="s in sectionFeeds"
+          :key="s.id"
+          type="button"
+          class="news-rss-section-chip"
+          role="listitem"
+          @click="copyFeed(s.url, s.id)"
+        >
+          {{ copiedSection === s.id ? t("news").rssCopied : s.label }}
+        </button>
+      </div>
     </template>
   </div>
 </template>

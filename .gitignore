@@ -13,6 +13,7 @@ website/.vitepress/.temp
 # 构建生成物：本地 npm run dev / CI prebuild 时重生，不进 git
 website/.vitepress/*.generated.*
 website/public/news/feed.xml
+website/public/news/feed-*.xml
 website/public/notes/feed.xml
 website/public/assistant/index.json
 website/index.md

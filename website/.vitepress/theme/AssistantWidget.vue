@@ -96,6 +96,7 @@ const enabled = computed(() => Boolean(cfg.value.enabled));
 const pathOnly = computed(() => sitePathOnly());
 
 const PATH_PROMPT = "按标签给我一条阅读路径";
+const PATH_15_PROMPT = "给我一条大约 15 分钟能读完的阅读路径";
 const COMPARE_PROMPT = "对比当前这篇和站内相关文";
 const TOC_PROMPT = "本页有哪些章节？";
 const CODE_PROMPT = "解释本页主要代码";
@@ -105,10 +106,11 @@ const PITFALL_PROMPT = "有哪些容易踩的坑？";
 const TAKEAWAY_PROMPT = "这篇的核心结论是什么？";
 const ONBOARD_PROMPTS = [
   "本站有哪些内容？",
+  PATH_15_PROMPT,
   PATH_PROMPT,
   "最近在写什么？",
-  "前端入门该从哪篇看？",
 ];
+const SCROLL_HINT_KEY = "penn-assistant-scroll-hint";
 
 const DOC_SECTIONS = [
   "/tech",
@@ -217,11 +219,11 @@ const quickPrompts = computed(() => {
   if (p === "/" || p === "") {
     return [
       "本站有哪些内容？",
+      PATH_15_PROMPT,
       "最近在写什么？",
       PATH_PROMPT,
       "前端入门该从哪篇看？",
       "工程化相关有哪些？",
-      "Agent 实践从哪开始？",
     ];
   }
   if (p === "/news" || p === "/news/") {
@@ -262,8 +264,8 @@ const quickPrompts = computed(() => {
   if (p.startsWith("/topics")) {
     return [
       "有哪些专题？",
+      PATH_15_PROMPT,
       "推荐一个适合现在看的专题",
-      "专题和单篇笔记有什么区别？",
       PATH_PROMPT,
     ];
   }
@@ -462,9 +464,10 @@ function matchedHeadingsInAnswer(content: string): PageHeading[] {
   return hits;
 }
 
-function openSource(link: string) {
+function openSource(link: string, hintTitle?: string) {
   const href = withSiteBase(link);
   const path = sitePathOnly();
+  const hint = String(hintTitle || "").trim();
   // 同源当前文：若带 hash 则滚过去，否则新开/跳转
   try {
     const u = new URL(href, window.location.origin);
@@ -487,12 +490,26 @@ function openSource(link: string) {
       }
     }
     if (uPath === path) {
+      if (hint && scrollToHeadingByText(hint)) {
+        trackAssistant("assistant_open_source", {
+          path: path.split("/").filter(Boolean)[0] || "home",
+          mode: "heading",
+        });
+        return;
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
       trackAssistant("assistant_open_source", {
         path: path.split("/").filter(Boolean)[0] || "home",
         mode: "same",
       });
       return;
+    }
+    if (hint) {
+      try {
+        sessionStorage.setItem(SCROLL_HINT_KEY, hint);
+      } catch {
+        /* ignore */
+      }
     }
   } catch {
     /* fall through */
@@ -502,6 +519,21 @@ function openSource(link: string) {
     path: pathOnly.value.split("/").filter(Boolean)[0] || "home",
     mode: "nav",
   });
+}
+
+function scrollToHeadingByText(text: string) {
+  const needle = String(text || "").trim();
+  if (!needle) return false;
+  const headings = listPageHeadings();
+  const hit =
+    headings.find((h) => h.text === needle) ||
+    headings.find(
+      (h) =>
+        h.text.includes(needle) ||
+        needle.includes(h.text) ||
+        (h.text.length >= 4 && needle.includes(h.text.slice(0, 12))),
+    );
+  return hit ? scrollToHeading(hit) : false;
 }
 
 function loadFontScale() {
@@ -560,7 +592,7 @@ function trackAssistant(
 }
 
 function isReadingPathQuestion(q: string) {
-  return /阅读路径|学习路线|从哪读|入门顺序|想学|按标签|阅读顺序|给我一条.*路径/.test(
+  return /阅读路径|学习路线|从哪读|入门顺序|想学|按标签|阅读顺序|给我一条.*路径|15\s*分钟|一刻钟/.test(
     q,
   );
 }
@@ -2548,7 +2580,7 @@ onBeforeUnmount(() => {
                     class="penn-assistant-source-open"
                     :aria-label="t('assistant').openSource"
                     :title="t('assistant').open"
-                    @click.prevent="openSource(s.link)"
+                    @click.prevent="openSource(s.link, s.title)"
                   >
                     <svg
                       viewBox="0 0 24 24"

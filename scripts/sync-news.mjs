@@ -129,6 +129,8 @@ function buildNewsIndex(months, monthFiles, itemCount = 0) {
     '  <nav class="news-page-jump" data-i18n-aria="pageHero.newsJumpAria" aria-label="页内导航">',
     '    <a class="news-page-jump-link" href="#digests" data-i18n="pageHero.newsDigests">日报归档</a>',
     '    <a class="news-page-jump-link" href="#feed" data-i18n="pageHero.newsFeed">动态流</a>',
+    '    <a class="news-page-jump-link" href="/news/week/" data-i18n="pageHero.newsWeek">本周合集</a>',
+    '    <a class="news-page-jump-link" href="/news/sources/" data-i18n="pageHero.newsSources">订阅源</a>',
     "  </nav>",
     "",
     "  <NewsDigestArchive />",
@@ -281,9 +283,91 @@ function main() {
 
   writeNewsFeed(allItems);
 
+  writeFeedHealthMirror();
+  writeNewsWeekPage();
+  writeNewsSourcesPage();
+
   const total = months.reduce((n, m) => n + monthFiles[m].length, 0);
   console.log(
     `sync-news: ${total} digest(s), ${allItems.length} item(s) from ${months.length} month folder(s)`,
+  );
+}
+
+function writeFeedHealthMirror() {
+  const src = path.join(srcNewsRoot, ".state", "feed-health.json");
+  const dest = path.join(vitepressDir, "feed-health.generated.json");
+  let payload = { ok: 0, failed: 0, failures: [], at: "" };
+  if (fs.existsSync(src)) {
+    try {
+      payload = JSON.parse(fs.readFileSync(src, "utf8"));
+    } catch {
+      /* keep empty */
+    }
+  }
+  fs.writeFileSync(dest, JSON.stringify(payload, null, 2) + "\n", "utf8");
+}
+
+function writeNewsWeekPage() {
+  const dir = path.join(newsRoot, "week");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(
+    path.join(dir, "index.md"),
+    `---
+title: 本周合集
+description: 最近 7 期 AI 动态日报与精选条目
+outline: false
+sidebar: false
+aside: false
+prev: false
+next: false
+---
+
+<div class="section-page news-page news-week-page">
+  <header class="section-hero news-hero">
+    <p class="section-kicker" data-i18n="pageHero.newsKicker">每日精选</p>
+    <h1 class="section-title" data-i18n="news.weekTitle">本周合集</h1>
+    <p class="section-lead" data-i18n="news.weekLead">最近 7 期日报与精选条目</p>
+    <div class="news-hero-actions">
+      <a class="home-btn home-btn--text" href="${link("/news/")}" data-i18n="pageHero.newsTitle">AI 动态</a>
+      <a class="home-btn home-btn--text" href="${link("/news/sources/")}" data-i18n="pageHero.newsSources">订阅源</a>
+    </div>
+  </header>
+  <NewsWeekly />
+</div>
+`,
+    "utf8",
+  );
+}
+
+function writeNewsSourcesPage() {
+  const dir = path.join(newsRoot, "sources");
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(
+    path.join(dir, "index.md"),
+    `---
+title: 订阅源健康
+description: AI 动态从哪些 RSS 抓来，以及最近一次抓取是否正常
+outline: false
+sidebar: false
+aside: false
+prev: false
+next: false
+---
+
+<div class="section-page news-page news-sources-page">
+  <header class="section-hero news-hero">
+    <p class="section-kicker" data-i18n="pageHero.newsKicker">每日精选</p>
+    <h1 class="section-title" data-i18n="news.sourcesTitle">订阅源健康</h1>
+    <p class="section-lead" data-i18n="news.sourcesLead">AI 动态从哪些 RSS 抓来，以及最近一次抓取是否正常</p>
+    <div class="news-hero-actions">
+      <a class="home-btn home-btn--text" href="${link("/news/")}" data-i18n="pageHero.newsTitle">AI 动态</a>
+      <a class="home-btn home-btn--text" href="${link("/news/week/")}" data-i18n="pageHero.newsWeek">本周合集</a>
+    </div>
+  </header>
+  <NewsSourcesStatus />
+</div>
+`,
+    "utf8",
   );
 }
 

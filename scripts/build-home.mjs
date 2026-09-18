@@ -370,7 +370,7 @@ function buildHome(allBySection) {
 ${recent
   .map((r) => {
     const thumb = r.cover
-      ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="${escapeHtml(r.title)}" loading="lazy" />`
+      ? `<img class="home-note-thumb" src="${escapeHtml(publicAssetSrc(r.cover))}" alt="${escapeHtml(r.title)}" loading="lazy" decoding="async" />`
       : `<span class="home-note-thumb home-note-thumb--empty" aria-hidden="true"></span>`;
     return `  <a class="home-note" href="${link(r.link)}">${thumb}<span class="home-note-body"><time datetime="${r.date}">${r.date}</time><span class="home-note-title">${escapeHtml(r.title)}</span></span></a>`;
   })
@@ -385,7 +385,7 @@ ${recent
 ${newsHeadlines
   .map((r) => {
     const media = r.image
-      ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(r.image))}" alt="${escapeHtml(r.title)}" loading="lazy" /></span>`
+      ? `<span class="section-card-media"><img class="section-card-thumb" src="${escapeHtml(publicAssetSrc(r.image))}" alt="${escapeHtml(r.title)}" loading="lazy" decoding="async" /></span>`
       : "";
     const tags = [
       r.section
@@ -415,6 +415,7 @@ ${newsHeadlines
 
   const latestHref = recent[0] ? link(recent[0].link) : link("/web/");
   const notesMoreHref = link("/archive/");
+  const discoverBlock = buildDiscoverSection(allBySection);
 
   return `---
 layout: home
@@ -431,6 +432,7 @@ layout: home
     </div>
   </section>
 
+${discoverBlock}
   <section class="home-section home-section--pillars" data-i18n-aria="home.browseAria" aria-label="浏览栏目">
     <div class="home-pillars">
 ${pillars}
@@ -465,22 +467,125 @@ function loadRecentAiNews() {
 
 /** 首页动态：用条目真实标题，比「AI 动态 · 日期」更可读 */
 function loadRecentNewsHeadlines(limit = 6) {
+  const items = loadAllNewsItems();
+  if (!items.length) return loadRecentAiNews();
+  return items.slice(0, limit).map(mapNewsHeadline);
+}
+
+function loadAllNewsItems() {
   const p = path.join(siteRoot, ".vitepress", "news-items.generated.json");
   try {
     const items = JSON.parse(fs.readFileSync(p, "utf8"));
-    if (!Array.isArray(items) || !items.length) return loadRecentAiNews();
-    return items.slice(0, limit).map((it) => ({
-      title: it.title || "AI 动态",
-      date: it.itemDate || it.digestDate || "",
-      link: it.digestLink || "/news/",
-      section: it.section || "",
-      sourceName: it.sourceName || "",
-      image: it.image || "",
-      summary: it.summary || "",
-    }));
+    return Array.isArray(items) ? items : [];
   } catch {
-    return loadRecentAiNews();
+    return [];
   }
+}
+
+function mapNewsHeadline(it) {
+  return {
+    title: it.title || "AI 动态",
+    date: it.itemDate || it.digestDate || "",
+    link: it.digestLink || "/news/",
+    section: it.section || "",
+    sourceName: it.sourceName || "",
+    image: it.image || "",
+    summary: it.summary || "",
+  };
+}
+
+/** 最新一期日报的前几条（首页「今日要点」） */
+function loadTodayNewsHighlights(limit = 3) {
+  const items = loadAllNewsItems();
+  if (!items.length) return { date: "", digestLink: "/news/", items: [] };
+  const digestDate = String(items[0].digestDate || items[0].itemDate || "");
+  const digestLink = items[0].digestLink || "/news/";
+  const dayItems = items
+    .filter((it) => String(it.digestDate || it.itemDate || "") === digestDate)
+    .slice(0, limit)
+    .map(mapNewsHeadline);
+  return { date: digestDate, digestLink, items: dayItems };
+}
+
+/** 选一篇至少 60 天前的旧文作「重读」；按日期稳定哈希，同日结果一致 */
+function pickRereadNote(allBySection) {
+  const all = Object.values(allBySection)
+    .flat()
+    .filter((a) => a?.date && a?.link && a?.title);
+  if (!all.length) return null;
+
+  const today = new Date();
+  const dayStart = Date.UTC(
+    today.getUTCFullYear(),
+    today.getUTCMonth(),
+    today.getUTCDate(),
+  );
+  const olderThan = (days) =>
+    all.filter((a) => {
+      const t = Date.parse(`${a.date}T00:00:00Z`);
+      return Number.isFinite(t) && t <= dayStart - days * 86400000;
+    });
+
+  const dayKey = `${today.getUTCFullYear()}-${today.getUTCMonth()}-${today.getUTCDate()}`;
+  let hash = 0;
+  for (let i = 0; i < dayKey.length; i++) hash = (hash * 31 + dayKey.charCodeAt(i)) >>> 0;
+  const pick = (pool) => pool[hash % pool.length];
+
+  const old60 = olderThan(60);
+  if (old60.length) return pick(old60);
+  const old30 = olderThan(30);
+  if (old30.length) return pick(old30);
+  return pick(all);
+}
+
+function buildDiscoverSection(allBySection) {
+  const highlights = loadTodayNewsHighlights(3);
+  const reread = pickRereadNote(allBySection);
+  if (!highlights.items.length && !reread) return "";
+
+  const newsPart = highlights.items.length
+    ? `    <div class="home-discover-news">
+      <div class="home-discover-label"><span data-i18n="home.discoverNewsKicker">今日 AI 要点</span>${
+        highlights.date
+          ? `<time datetime="${escapeHtml(highlights.date)}">${escapeHtml(highlights.date)}</time>`
+          : ""
+      }</div>
+      <ul class="home-discover-rail">${highlights.items
+        .map(
+          (r, i) =>
+            `<li><a class="home-discover-row" href="${link(r.link)}"><span class="home-discover-dot" aria-hidden="true"><span>${String(i + 1).padStart(2, "0")}</span></span><span class="home-discover-copy">${
+              r.section
+                ? `<span class="home-discover-meta" data-news-section="${escapeHtml(r.section)}">${escapeHtml(r.section)}</span>`
+                : ""
+            }<span class="home-discover-title">${escapeHtml(r.title)}</span></span></a></li>`,
+        )
+        .join("")}</ul>
+      <a class="home-discover-cta" href="${link(highlights.digestLink)}" data-i18n="home.discoverNewsMore">阅读完整日报</a>
+    </div>`
+    : "";
+
+  let rereadPart = "";
+  if (reread) {
+    const year = String(reread.date || "").slice(0, 4);
+    // Markdown 会在 HTML 块空行处截断，故内部不要插入空行
+    rereadPart = `    <aside class="home-discover-reread">
+      <div class="home-discover-label"><span data-i18n="home.discoverRereadKicker">旧文重读</span></div>
+      <a class="home-discover-feature" href="${link(reread.link)}"><span class="home-discover-feature-top"><span class="home-discover-feature-badge">${year ? escapeHtml(year) : "Archive"}</span><time datetime="${escapeHtml(reread.date)}">${escapeHtml(reread.date)}</time></span><span class="home-discover-feature-title">${escapeHtml(reread.title)}</span><span class="home-discover-feature-go" data-i18n="home.discoverRereadGo">重读这篇 →</span></a>
+    </aside>`;
+  }
+
+  return `  <section class="home-section home-section--discover" data-i18n-aria="home.discoverAria" aria-label="今日发现">
+    <div class="home-discover">
+      <header class="home-discover-head">
+        <h2 data-i18n="home.discoverTitle">今日发现</h2>
+        <a class="home-more" href="${link("/news/week/")}" data-i18n="home.discoverWeek">本周合集</a>
+      </header>
+      <div class="home-discover-body">
+${[newsPart, rereadPart].filter(Boolean).join("\n")}
+      </div>
+    </div>
+  </section>
+`;
 }
 
 function main() {

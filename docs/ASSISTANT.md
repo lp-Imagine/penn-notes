@@ -32,7 +32,8 @@ Penn Notes 左下角助手浮窗（聊天气泡 + 星标图标，可拖拽贴左
 ### 二期
 
 - **切块 RAG**：笔记按标题 / 摘要 / 正文（约 500 字重叠切块）建索引；检索按 chunk 加权，再按文章去重；LLM 吃命中 chunk 原文。
-- **标签阅读路径**：问「阅读路径 / 想学 / 按标签…」时，按标签匹配笔记并按日期升序给出建议顺序。
+- **标签阅读路径**：问「阅读路径 / 想学 / 按标签…」或「大约 15 分钟能读完的路径」时，按标签匹配笔记并按日期升序给出建议顺序。
+- **打开参考并滚到章节**：点参考来源「打开」时，会尽量滚到与标题匹配的章节；跨页时用 `sessionStorage` 提示落地页滚动。
 - **Umami 打点**（若已配置 `UMAMI_*`）：`assistant_open` / `assistant_ask` / `assistant_followup` / `assistant_path` / `assistant_feedback` / `assistant_share` / `assistant_jump`（问题文本截断至 80 字）。
 
 ## 架构

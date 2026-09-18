@@ -23,6 +23,8 @@ import NewsArchive from "./NewsArchive.vue";
 import NewsDigestArchive from "./NewsDigestArchive.vue";
 import NewsDigestEnhance from "./NewsDigestEnhance.vue";
 import NewsRssSubscribe from "./NewsRssSubscribe.vue";
+import NewsSourcesStatus from "./NewsSourcesStatus.vue";
+import NewsWeekly from "./NewsWeekly.vue";
 import NotesArchive from "./NotesArchive.vue";
 import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
@@ -1222,6 +1224,7 @@ function scheduleRefresh() {
   // 先下一帧合成文头（不等 80ms debounce）
   requestAnimationFrame(() => {
     enhanceArticleChromeNow();
+    consumeAssistantScrollHint();
   });
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
@@ -1240,6 +1243,7 @@ function scheduleRefresh() {
       });
       // zoom 放在 suppress 外：它会给 img 加 class，不应再触发整页 refresh
       refreshZoom();
+      consumeAssistantScrollHint();
       // 水合后再跑一次：合成或清 orphan 抢跑文头
       clearTimeout(heroRetryTimer);
       heroRetryTimer = setTimeout(() => {
@@ -1250,9 +1254,46 @@ function scheduleRefresh() {
           applyDomI18n(uiLocaleRef.value || getUiLocalePreference());
         });
         refreshZoom();
+        consumeAssistantScrollHint();
       }, 150);
     });
   }, 80);
+}
+
+/** 助手「打开」参考文后：按标题滚到对应章节（跨页用 sessionStorage） */
+function consumeAssistantScrollHint() {
+  let hint = "";
+  try {
+    hint = sessionStorage.getItem("penn-assistant-scroll-hint") || "";
+  } catch {
+    return;
+  }
+  if (!hint.trim()) return;
+  const doc = document.querySelector(".vp-doc");
+  if (!doc) return;
+  const headings = [
+    ...doc.querySelectorAll<HTMLElement>("h1, h2, h3, h4"),
+  ];
+  const needle = hint.trim();
+  const hit =
+    headings.find((h) => (h.textContent || "").trim() === needle) ||
+    headings.find((h) => {
+      const t = (h.textContent || "").trim();
+      return (
+        t.includes(needle) ||
+        needle.includes(t) ||
+        (t.length >= 4 && needle.includes(t.slice(0, 12)))
+      );
+    });
+  if (!hit) return;
+  try {
+    sessionStorage.removeItem("penn-assistant-scroll-hint");
+  } catch {
+    /* ignore */
+  }
+  requestAnimationFrame(() => {
+    hit.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 }
 
 const Layout = defineComponent({
@@ -1616,6 +1657,8 @@ export default {
     app.component("NewsArchive", NewsArchive);
     app.component("NewsDigestArchive", NewsDigestArchive);
     app.component("NewsRssSubscribe", NewsRssSubscribe);
+    app.component("NewsWeekly", NewsWeekly);
+    app.component("NewsSourcesStatus", NewsSourcesStatus);
     app.component("TagsBrowse", TagsBrowse);
     app.component("TopicsBrowse", TopicsBrowse);
     app.component("NotesArchive", NotesArchive);

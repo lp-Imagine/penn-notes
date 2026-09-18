@@ -293,6 +293,7 @@ function bindBox(box: HTMLElement) {
   resultsObserver?.disconnect();
   boundBox = box;
   paintBox(box);
+  bindKeyboardSkipHidden(box);
 
   const results = box.querySelector(".results");
   if (results) {
@@ -304,6 +305,51 @@ function bindBox(box: HTMLElement) {
     });
     resultsObserver.observe(results, { childList: true, subtree: true });
   }
+}
+
+/** 筛选隐藏后，方向键尽量落到可见结果 */
+function bindKeyboardSkipHidden(box: HTMLElement) {
+  if (box.dataset.pennKeyBound === "1") return;
+  box.dataset.pennKeyBound = "1";
+  box.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      requestAnimationFrame(() => {
+        const focused = box.querySelector<HTMLElement>(
+          ".results > li .result.focus, .results > li [aria-selected='true']",
+        );
+        const li = focused?.closest("li");
+        if (li && !li.hidden) return;
+
+        const visible = [
+          ...box.querySelectorAll<HTMLElement>(
+            ".results > li:not([hidden]):not(.no-results)",
+          ),
+        ];
+        if (!visible.length) return;
+
+        const all = [...box.querySelectorAll<HTMLElement>(".results > li")];
+        const curIdx = li ? all.indexOf(li) : -1;
+        let next: HTMLElement | undefined;
+        if (e.key === "ArrowDown") {
+          next = visible.find((el) => all.indexOf(el) > curIdx) || visible[0];
+        } else {
+          const before = visible.filter((el) => all.indexOf(el) < curIdx);
+          next = before[before.length - 1] || visible[visible.length - 1];
+        }
+        const link = next?.querySelector<HTMLElement>("a.result");
+        if (!link) return;
+        box
+          .querySelectorAll(".result.focus")
+          .forEach((n) => n.classList.remove("focus"));
+        link.classList.add("focus");
+        link.focus({ preventScroll: true });
+        link.scrollIntoView({ block: "nearest" });
+      });
+    },
+    true,
+  );
 }
 
 function clearBoundBox() {
