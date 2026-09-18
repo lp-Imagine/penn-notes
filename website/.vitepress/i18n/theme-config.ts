@@ -15,20 +15,23 @@ export function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
     { text: n.home, link: "/" },
     {
       text: n.catalog,
-      activeMatch: "/news/|/tags/|/archive/|/topics/",
+      activeMatch: "/news/|/tags/|/archive/|/topics/|/changelog/",
       items: [
         { text: n.news, link: "/news/", activeMatch: "/news/" },
         { text: n.tags, link: "/tags/", activeMatch: "/tags/" },
         { text: n.topics, link: "/topics/", activeMatch: "/topics/" },
+        { text: n.changelog, link: "/changelog/", activeMatch: "/changelog/" },
         { text: n.archive, link: "/archive/", activeMatch: "/archive/" },
       ],
     },
     {
       text: n.lists,
-      activeMatch: "/collect/|/books/|/recent/|/friends/",
+      activeMatch: "/collect/|/books/|/recent/|/friends/|/scraps/|/lab/",
       items: [
         { text: n.collect, link: "/collect/", activeMatch: "/collect/" },
+        { text: n.scraps, link: "/scraps/", activeMatch: "/scraps/" },
         { text: n.books, link: "/books/", activeMatch: "/books/" },
+        { text: n.lab, link: "/lab/", activeMatch: "/lab/" },
         { text: n.recent, link: "/recent/", activeMatch: "/recent/" },
         { text: n.friends, link: "/friends/", activeMatch: "/friends/" },
       ],

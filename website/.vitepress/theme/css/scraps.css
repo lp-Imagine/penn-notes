@@ -1,0 +1,557 @@
+/* ── 短笔记列表 ── */
+.vp-doc .scraps-page {
+  max-width: min(760px, 100%);
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.scraps-page .section-hero {
+  margin-bottom: 8px;
+}
+
+.scraps-page .scraps-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.scraps-page .scraps-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 9px;
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.scraps-page .scraps-hero-btn:hover {
+  color: var(--link);
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  transform: translateY(-1px);
+}
+
+.scraps-page .scraps-hero-btn--primary {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--text);
+}
+
+.scraps-browse {
+  margin-top: 10px;
+}
+
+.scraps-empty {
+  margin: 20px 0 0;
+  padding: 28px 18px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 14px;
+  border-radius: 16px;
+  border: 1px dashed color-mix(in srgb, var(--border) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.vp-doc .scraps-feed {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vp-doc .scraps-feed-item {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 0 14px;
+}
+
+.vp-doc .scraps-feed-item::marker {
+  content: none;
+}
+
+.scraps-feed-rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+}
+
+.scraps-feed-rail::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 42%, transparent),
+    color-mix(in srgb, var(--border) 70%, transparent)
+  );
+}
+
+.scraps-feed-item:last-child .scraps-feed-rail::before {
+  bottom: 28px;
+}
+
+.scraps-feed-dot {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  background: var(--surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--surface) 88%, transparent);
+  font-size: 11px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--link);
+}
+
+.scraps-feed-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 18px 18px 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      90% 80% at 0% 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 94%, #fff) 0%,
+      var(--surface) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 45%, transparent),
+    0 10px 28px -24px color-mix(in srgb, var(--text) 16%, transparent);
+  text-decoration: none !important;
+  color: inherit;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.dark .scraps-feed-card {
+  background:
+    radial-gradient(
+      90% 80% at 0% 0%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 55%
+    ),
+    var(--surface);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 5%, transparent);
+}
+
+.scraps-feed-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  transform: translateY(-1px);
+}
+
+.scraps-feed-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.scraps-feed-date {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.scraps-feed-md {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.scraps-feed-y {
+  font-size: 12px;
+  font-weight: 550;
+  color: var(--text-3);
+}
+
+.vp-doc .scraps-feed-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.vp-doc .scraps-feed-tags > li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 40%, var(--surface));
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--text-3);
+}
+
+.vp-doc .scraps-feed-tags > li::marker {
+  content: none;
+}
+
+.vp-doc .scraps-feed-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.scraps-feed-card:hover .scraps-feed-title {
+  color: var(--link);
+}
+
+.scraps-feed-excerpt {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.scraps-feed-go {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--link);
+}
+
+@media (max-width: 559.98px) {
+  .scraps-feed-item {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 0 10px;
+  }
+
+  .scraps-feed-dot {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+  .scraps-feed-card {
+    padding: 14px 14px 13px;
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scraps-feed-card,
+  .scraps-page .scraps-hero-btn {
+    transition: none;
+  }
+
+  .scraps-feed-card:hover,
+  .scraps-page .scraps-hero-btn:hover {
+    transform: none;
+  }
+}
+
+/* ── 短笔记详情：一体便签 ── */
+.scrap-article .VPDoc .aside,
+.scrap-article .VPDoc .aside-container,
+.scrap-article .VPLocalNav,
+.scrap-article .VPDocFooter {
+  display: none !important;
+}
+
+.scrap-article .VPDoc:not(:has(.section-page)) {
+  padding-top: 12px !important;
+}
+
+.scrap-article .VPDoc:not(:has(.section-page)) .content-container {
+  max-width: min(680px, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.scrap-article .VPDoc .content {
+  padding-top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scrap-sheet-head,
+.scrap-article .VPDoc .content-container,
+.scrap-sheet-nav {
+  width: 100%;
+  max-width: min(680px, 100%);
+}
+
+.scrap-article .VPDoc .content-container {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.scrap-article .VPDoc .content-container .main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.scrap-sheet-head {
+  max-width: min(680px, 100%);
+  margin: 0 auto 0;
+}
+
+.scrap-back {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--link) !important;
+  text-decoration: none !important;
+}
+
+.scrap-back:hover {
+  text-decoration: underline !important;
+}
+
+/* 文头 + 正文拼成一张纸 */
+.scrap-sheet {
+  margin: 0;
+  padding: 22px 24px 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-bottom: none;
+  border-radius: 18px 18px 0 0;
+  background:
+    radial-gradient(
+      90% 80% at 0% 0%,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 55%
+    ),
+    var(--surface);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 48%, transparent);
+}
+
+.dark .scrap-sheet {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 5%, transparent);
+}
+
+.scrap-sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.scrap-sheet-date {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+}
+
+.scrap-sheet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.scrap-sheet-tags > li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+}
+
+.scrap-sheet-tags > li::marker {
+  content: none;
+}
+
+.scrap-sheet-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.28;
+  color: var(--text);
+}
+
+/* 隐藏 VitePress 自动插入的重复 h1 */
+.scrap-article .vp-doc > h1:first-of-type {
+  display: none !important;
+}
+
+.scrap-article .vp-doc {
+  max-width: min(680px, 100%);
+  margin: 0 auto 18px !important;
+  padding: 6px 24px 24px !important;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  background: var(--surface);
+  box-shadow: 0 14px 36px -28px color-mix(in srgb, var(--text) 18%, transparent);
+  font-size: 16.5px;
+  line-height: 1.8;
+}
+
+.dark .scrap-article .vp-doc {
+  box-shadow: none;
+}
+
+.scrap-article .vp-doc > p {
+  margin: 0 0 1.05em;
+}
+
+.scrap-article .vp-doc > p:last-child {
+  margin-bottom: 0;
+}
+
+.scrap-article .vp-doc :is(code) {
+  font-size: 0.88em;
+}
+
+.scrap-sheet-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: min(680px, 100%);
+  margin: 0 auto 28px;
+}
+
+@media (max-width: 559.98px) {
+  .scrap-sheet {
+    padding: 16px 16px 8px;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .scrap-article .vp-doc {
+    padding: 4px 16px 18px !important;
+    border-radius: 0 0 14px 14px;
+  }
+
+  .scrap-sheet-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scrap-sheet-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 92%, var(--bg));
+  text-decoration: none !important;
+  color: inherit;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.scrap-sheet-nav-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 48%, var(--surface));
+  transform: translateY(-1px);
+}
+
+.scrap-sheet-nav-link--next {
+  text-align: right;
+}
+
+.scrap-sheet-nav-dir {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.scrap-sheet-nav-title {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scrap-sheet-nav-link:hover .scrap-sheet-nav-title {
+  color: var(--link);
+}
+
+.scrap-sheet-nav-spacer {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .scrap-sheet-nav-spacer {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrap-sheet-nav-link {
+    transition: none;
+  }
+
+  .scrap-sheet-nav-link:hover {
+    transform: none;
+  }
+}

@@ -38,6 +38,7 @@ const stubs = [
   [path.join(vp, "feed-health.generated.json"), '{"ok":0,"failed":0,"failures":[],"at":""}\n'],
   [path.join(vp, "friends-moments.generated.json"), '{"generatedAt":"","total":0,"items":[]}\n'],
   [path.join(vp, "notes-items.generated.json"), "[]\n"],
+  [path.join(vp, "scraps-items.generated.json"), "[]\n"],
   [path.join(vp, "tags.generated.json"), "{}\n"],
   [
     path.join(publicNews, "feed.xml"),

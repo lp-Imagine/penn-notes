@@ -1,5 +1,6 @@
-import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { defineConfig, type HeadConfig } from "vitepress";
 import { pennCalloutsPlugin } from "./markdown-callouts";
@@ -12,10 +13,34 @@ import { buildThemeConfig } from "./i18n/theme-config";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+function ogHashForRelativePath(relativePath: string) {
+  let p = String(relativePath || "")
+    .replace(/\\/g, "/")
+    .replace(/\.md$/, "");
+  if (p.endsWith("/index")) p = p.slice(0, -"/index".length);
+  const link = "/" + p.replace(/^\/+/, "");
+  return createHash("sha1").update(link).digest("hex").slice(0, 16);
+}
+
 const BASE = pennBase();
 const GITHUB_PROFILE = "https://github.com/lp-Imagine";
 
 const SITE_URL = pennSiteUrl();
+
+function resolveOgImage(fm: Record<string, unknown>, relativePath: string) {
+  const cover = fm.cover ? String(fm.cover) : "";
+  if (cover) {
+    if (/^https?:\/\//i.test(cover)) return cover;
+    return SITE_URL + (cover.startsWith("/") ? cover : `/${cover}`);
+  }
+  const hash = ogHashForRelativePath(relativePath);
+  const cardFile = join(__dirname, "../public/og/cards", `${hash}.svg`);
+  if (existsSync(cardFile)) {
+    return `${SITE_URL}/og/cards/${hash}.svg`;
+  }
+  return `${SITE_URL}/og/default.svg`;
+}
+
 const ICON_VER = "20260908";
 const ICON_SVG = `${SITE_URL}/img/logo.svg?v=${ICON_VER}`;
 const ICON_PNG = `${SITE_URL}/pn-favicon-32.png?v=${ICON_VER}`;
@@ -161,6 +186,17 @@ export default defineConfig({
   async buildEnd(siteConfig) {
     injectFaviconEarly(siteConfig.outDir);
   },
+  transformPageData(pageData) {
+    const rel = String(pageData.relativePath || "").replace(/\\/g, "/");
+    if (rel.startsWith("scraps/") && rel !== "scraps/index.md") {
+      pageData.frontmatter ||= {};
+      pageData.frontmatter.outline = false;
+      pageData.frontmatter.aside = false;
+      pageData.frontmatter.sidebar = false;
+      pageData.frontmatter.prev = false;
+      pageData.frontmatter.next = false;
+    }
+  },
   vite: {
     plugins: [pennNoteHeaderInject()],
     server: {
@@ -190,7 +226,7 @@ export default defineConfig({
       pageData.description ||
       siteData.description;
     const pageUrl = pennCanonicalUrl(pageData.relativePath);
-    const image = (fm.cover ? SITE_URL + fm.cover : null) || ICON_PNG;
+    const image = resolveOgImage(fm as Record<string, unknown>, pageData.relativePath);
     const head: HeadConfig[] = [
       ["meta", { property: "og:type", content: "article" }],
       ["meta", { property: "og:site_name", content: "Penn Notes" }],

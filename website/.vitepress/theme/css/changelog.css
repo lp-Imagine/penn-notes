@@ -1,0 +1,163 @@
+/* 更新日志 */
+.changelog-page-inner {
+  margin-top: 4px;
+}
+
+.changelog-lead {
+  margin: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+
+.changelog-empty {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.vp-doc .changelog-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc .changelog-timeline > li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc .changelog-timeline > li::marker {
+  content: none;
+}
+
+.changelog-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 0 14px;
+}
+
+.changelog-rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.changelog-rail::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 45%, transparent),
+    color-mix(in srgb, var(--border) 70%, transparent)
+  );
+}
+
+.changelog-item:last-child .changelog-rail::before {
+  bottom: 18px;
+}
+
+.changelog-dot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-top: 8px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  background: var(--surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--surface) 90%, transparent);
+}
+
+.changelog-card {
+  margin: 0 0 18px;
+  padding: 16px 18px 15px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      80% 70% at 0% 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 55%
+    ),
+    var(--surface);
+}
+
+.changelog-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.changelog-date {
+  font-size: 12px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+
+.vp-doc .changelog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc .changelog-tags > li {
+  margin: 0;
+  padding: 2px 8px;
+  list-style: none;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 40%, var(--surface));
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--text-3);
+}
+
+.vp-doc .changelog-tags > li::marker {
+  content: none;
+}
+
+.vp-doc .changelog-title {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  border: none;
+}
+
+.changelog-summary {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.changelog-more {
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.changelog-more a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.changelog-more a:hover {
+  text-decoration: underline;
+}

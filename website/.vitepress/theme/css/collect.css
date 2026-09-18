@@ -166,6 +166,31 @@
   color: var(--link);
 }
 
+.collect-card-note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-3);
+}
+
+.collect-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.collect-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--accent-soft) 50%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+}
+
 .collect-card-foot {
   display: flex;
   align-items: center;
@@ -176,6 +201,7 @@
 
 .collect-card-domain {
   min-width: 0;
+  flex: 1 1 auto;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -183,6 +209,34 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.collect-status {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.collect-status--ok {
+  color: color-mix(in srgb, #2f9e62 80%, var(--text));
+  background: color-mix(in srgb, #2f9e62 12%, var(--surface));
+  border-color: color-mix(in srgb, #2f9e62 28%, var(--border));
+}
+
+.collect-status--dead {
+  color: color-mix(in srgb, #c44 85%, var(--text));
+  background: color-mix(in srgb, #c44 12%, var(--surface));
+  border-color: color-mix(in srgb, #c44 30%, var(--border));
+}
+
+.collect-status--unknown {
+  color: var(--text-3);
+  background: color-mix(in srgb, var(--surface-2) 55%, var(--surface));
+  border-color: color-mix(in srgb, var(--border) 90%, transparent);
 }
 
 .collect-card-go {
@@ -207,6 +261,42 @@
   color: var(--link);
   border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
   background: color-mix(in srgb, var(--accent-soft) 65%, var(--surface));
+}
+
+.collect-enhance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 20px;
+}
+
+.collect-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.collect-filter-chip:hover {
+  color: var(--link);
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+}
+
+.collect-filter-chip.is-active {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
 }
 
 .collect-page .collect-note {

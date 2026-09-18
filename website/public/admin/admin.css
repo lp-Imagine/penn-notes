@@ -968,6 +968,11 @@ body.penn-admin-login #nc-root {
   min-height: 100vh;
 }
 
+body.penn-admin-login .penn-admin-publish-tip,
+html.penn-admin-login .penn-admin-publish-tip {
+  display: none !important;
+}
+
 /* 外置登录壳：左右分栏，完全不碰 React DOM */
 .penn-login-shell {
   position: fixed;

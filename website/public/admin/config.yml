@@ -487,3 +487,30 @@ collections:
           widget: richtext,
           hint: "可视化编辑；若遇到格式异常可切到「Markdown」源码模式",
         }
+
+  - name: scraps
+    label: 短笔记
+    label_singular: 短笔记
+    folder: website/scraps
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date}}"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - {
+          label: 日期,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD,
+          date_format: YYYY-MM-DD,
+          time_format: false,
+        }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - {
+          label: 正文,
+          name: body,
+          widget: markdown,
+          hint: "短笔记正文；列表页会取首段作摘要",
+        }

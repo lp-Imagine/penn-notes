@@ -34,17 +34,47 @@ function starsHtml(n) {
 }
 
 const BOOK_STATUS = new Set(["done", "reading", "plan"]);
+const COLLECT_STATUS = new Set(["ok", "dead", "unknown"]);
 
-function buildCollect(data) {
+function statusLabel(status) {
+  if (status === "dead") return "失效";
+  if (status === "unknown") return "未知";
+  if (status === "ok") return "正常";
+  return "";
+}
+
+function resolveCollectStatus(item, statusMap) {
+  const fromMap = statusMap?.[item.url]?.status;
+  if (COLLECT_STATUS.has(fromMap)) return fromMap;
+  if (COLLECT_STATUS.has(item.status)) return item.status;
+  return "";
+}
+
+function buildCollectCard(item, statusMap) {
+  const tags = Array.isArray(item.tags)
+    ? item.tags.map((t) => String(t).trim()).filter(Boolean)
+    : [];
+  const dataTags = escapeHtml(tags.join(","));
+  const status = resolveCollectStatus(item, statusMap);
+  const note = item.note
+    ? `<span class="collect-card-note">${escapeHtml(item.note)}</span>`
+    : "";
+  const tagsHtml = tags.length
+    ? `<span class="collect-card-tags">${tags
+        .map((t) => `<span class="collect-tag">${escapeHtml(t)}</span>`)
+        .join("")}</span>`
+    : "";
+  const statusHtml = status
+    ? `<span class="collect-status collect-status--${escapeHtml(status)}">${statusLabel(status)}</span>`
+    : "";
+  return `      <a class="collect-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" data-tags="${dataTags}"${status ? ` data-status="${escapeHtml(status)}"` : ""}><span class="collect-card-title">${escapeHtml(item.title)}</span>${note}${tagsHtml}<span class="collect-card-foot"><span class="collect-card-domain">${escapeHtml(item.domain)}</span>${statusHtml}<span class="collect-card-go" aria-hidden="true">↗</span></span></a>`;
+}
+
+function buildCollect(data, statusMap = {}) {
   const totalLinks = data.groups.reduce((n, g) => n + g.links.length, 0);
   const groupsHtml = data.groups
     .map((g) => {
-      const cards = g.links
-        .map(
-          (item) =>
-            `      <a class="collect-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer"><span class="collect-card-title">${escapeHtml(item.title)}</span><span class="collect-card-foot"><span class="collect-card-domain">${escapeHtml(item.domain)}</span><span class="collect-card-go" aria-hidden="true">↗</span></span></a>`,
-        )
-        .join("\n");
+      const cards = g.links.map((item) => buildCollectCard(item, statusMap)).join("\n");
       return `  <section class="collect-group">
     <div class="collect-group-head">
       <h2 class="collect-group-title">${escapeHtml(g.title)}</h2>
@@ -78,6 +108,8 @@ next: false
       <a class="collect-hero-btn" href="${link("/about/")}" data-i18n="collect.aboutFeedback">关于 &amp; 反馈</a>
     </div>
   </header>
+
+  <CollectEnhance />
 
   <div class="collect-index">
 
@@ -144,11 +176,20 @@ ${cards}
 function main() {
   const collect = readJson("collect.json");
   const books = readJson("books.json");
+  let statusMap = {};
+  const statusFile = path.join(dataDir, "collect-status.json");
+  if (fs.existsSync(statusFile)) {
+    try {
+      statusMap = JSON.parse(fs.readFileSync(statusFile, "utf8"));
+    } catch {
+      statusMap = {};
+    }
+  }
   fs.mkdirSync(path.join(siteRoot, "collect"), { recursive: true });
   fs.mkdirSync(path.join(siteRoot, "books"), { recursive: true });
   fs.writeFileSync(
     path.join(siteRoot, "collect", "index.md"),
-    buildCollect(collect),
+    buildCollect(collect, statusMap),
     "utf8",
   );
   fs.writeFileSync(

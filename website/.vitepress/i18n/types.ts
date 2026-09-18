@@ -83,6 +83,9 @@ export type MessageTree = PageMessages & {
     news: string;
     tags: string;
     topics: string;
+    changelog: string;
+    scraps: string;
+    lab: string;
     archive: string;
     lists: string;
     collect: string;

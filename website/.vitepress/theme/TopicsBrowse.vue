@@ -1,15 +1,22 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
 import { useI18n } from "./i18n";
+import {
+  isTopicDone,
+  setTopicDone,
+  topicProgress,
+} from "./topic-progress";
 
 const { t } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const activeSeries = ref("");
+const tick = ref(0);
 
 const seriesList = computed(() => {
+  tick.value;
   const map = new Map();
   for (const n of notes) {
     if (!n.series) continue;
@@ -24,12 +31,17 @@ const seriesList = computed(() => {
         if (oa !== ob) return oa - ob;
         return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
       });
+      const progress = topicProgress(sorted.map((it) => it.link));
       return {
         name,
         slug: name,
         count: sorted.length,
-        items: sorted,
+        items: sorted.map((it) => ({
+          ...it,
+          done: isTopicDone(it.link),
+        })),
         sectionLabel: sorted[0]?.sectionLabel || "",
+        progress,
       };
     })
     .filter((s) => s.count >= 2)
@@ -60,6 +72,10 @@ watch(
   { immediate: true },
 );
 
+onMounted(() => {
+  tick.value += 1;
+});
+
 function selectSeries(name) {
   activeSeries.value = activeSeries.value === name ? "" : name;
   router.replace({
@@ -70,6 +86,13 @@ function selectSeries(name) {
 function href(path) {
   const p = String(path || "").replace(/^\/+/, "/");
   return withBase(p.startsWith("/") ? p : `/${p}`);
+}
+
+function toggleDone(item, event) {
+  event.preventDefault();
+  event.stopPropagation();
+  setTopicDone(item.link, !isTopicDone(item.link));
+  tick.value += 1;
 }
 </script>
 
@@ -104,6 +127,8 @@ function href(path) {
       </p>
     </div>
 
+    <p class="topics-progress-hint">{{ t("topics").progressHint }}</p>
+
     <div class="topics-paths">
       <section
         v-for="s in shown"
@@ -116,11 +141,35 @@ function href(path) {
           <p class="topics-path-meta">
             {{ t("common").articleCount(s.count) }}
             <template v-if="s.sectionLabel"> · {{ s.sectionLabel }}</template>
+            · {{ t("topics").progressOf(s.progress.done, s.progress.total) }}
           </p>
+          <div class="topics-path-bar" aria-hidden="true">
+            <span
+              class="topics-path-bar-fill"
+              :style="{ width: `${s.progress.percent}%` }"
+            ></span>
+          </div>
         </div>
         <ol class="topics-path-steps">
-          <li v-for="(item, i) in s.items" :key="item.link" class="topics-step">
-            <span class="topics-step-index" aria-hidden="true">{{ i + 1 }}</span>
+          <li
+            v-for="(item, i) in s.items"
+            :key="item.link"
+            class="topics-step"
+            :class="{ 'is-done': item.done }"
+          >
+            <button
+              type="button"
+              class="topics-step-check"
+              :aria-pressed="item.done ? 'true' : 'false'"
+              :aria-label="
+                item.done
+                  ? t('topics').unmarkDone
+                  : t('topics').markDone
+              "
+              @click="toggleDone(item, $event)"
+            >
+              <span aria-hidden="true">{{ item.done ? "✓" : i + 1 }}</span>
+            </button>
             <a class="topics-step-link" :href="href(item.link)">
               <span class="topics-step-title">{{ item.title }}</span>
               <time class="topics-step-date" :datetime="item.date">{{

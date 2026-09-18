@@ -1,8 +1,9 @@
 <script setup>
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 import notes from "../notes-items.generated.json";
 import { stripLocalePrefix, stripSiteBase, useI18n } from "./i18n";
+import { isTopicDone, markTopicRead, topicProgress } from "./topic-progress";
 
 const { site } = useData();
 const route = useRoute();
@@ -26,14 +27,27 @@ const seriesBlock = computed(() => {
     });
   const idx = siblings.findIndex((n) => n.link === currentPath.value);
   if (idx < 0 || siblings.length < 2) return null;
+  const progress = topicProgress(siblings.map((s) => s.link));
   return {
     name: current.series,
     prev: idx > 0 ? siblings[idx - 1] : null,
     next: idx < siblings.length - 1 ? siblings[idx + 1] : null,
     index: idx + 1,
     total: siblings.length,
+    progress,
+    currentDone: isTopicDone(currentPath.value),
   };
 });
+
+watch(
+  currentPath,
+  (path) => {
+    if (typeof window === "undefined") return;
+    const current = notes.find((n) => n.link === path);
+    if (current?.series) markTopicRead(path);
+  },
+  { immediate: true },
+);
 
 function href(path) {
   const p = String(path || "").replace(/^\/+/, "/");
@@ -53,9 +67,12 @@ function href(path) {
           >{{ seriesBlock.name }}</a
         >
       </p>
-      <span class="series-nav-progress"
-        >{{ seriesBlock.index }} / {{ seriesBlock.total }}</span
-      >
+      <span class="series-nav-progress">
+        {{ seriesBlock.index }} / {{ seriesBlock.total }}
+        <template v-if="seriesBlock.progress.done">
+          · {{ t("topics").progressOf(seriesBlock.progress.done, seriesBlock.progress.total) }}
+        </template>
+      </span>
     </div>
     <div class="series-nav-links">
       <a

@@ -55,6 +55,23 @@ export type PageMessages = {
   topics: {
     filterAria: string;
     stats: (paths: number, articles: number) => string;
+    progressHint: string;
+    progressOf: (done: number, total: number) => string;
+    markDone: string;
+    unmarkDone: string;
+  };
+  changelog: {
+    lead: string;
+    empty: string;
+    more: string;
+  };
+  scraps: {
+    empty: string;
+    readMore: string;
+    back: string;
+    navAria: string;
+    older: string;
+    newer: string;
   };
   series: {
     aria: string;
@@ -281,6 +298,7 @@ export type PageMessages = {
     count: (links: number, groups: number) => string;
     browseNotes: string;
     aboutFeedback: string;
+    filterAria: string;
   };
   about: {
     role: string;
@@ -321,6 +339,15 @@ export type PageMessages = {
     topicsKicker: string;
     topicsTitle: string;
     topicsLead: string;
+    changelogKicker: string;
+    changelogTitle: string;
+    changelogLead: string;
+    scrapsKicker: string;
+    scrapsTitle: string;
+    scrapsLead: string;
+    labKicker: string;
+    labTitle: string;
+    labLead: string;
     newsKicker: string;
     newsTitle: string;
     newsLead: string;
@@ -399,6 +426,23 @@ const zhCN: PageMessages = {
   topics: {
     filterAria: "系列筛选",
     stats: (paths, articles) => `${paths} 条阅读路径 · ${articles} 篇文章`,
+    progressHint: "进度保存在本机浏览器，点左侧可打勾 / 取消；打开文章也会自动记为已读。",
+    progressOf: (done, total) => `已读 ${done}/${total}`,
+    markDone: "标记为已读",
+    unmarkDone: "取消已读",
+  },
+  changelog: {
+    lead: "站内产品与体验更新，不是文章列表。改了什么、为什么改，记在这里。",
+    empty: "暂无更新记录",
+    more: "了解更多 →",
+  },
+  scraps: {
+    empty: "还没有短笔记，写一条试试。",
+    readMore: "读完整条 →",
+    back: "← 全部短笔记",
+    navAria: "相邻短笔记",
+    older: "更早",
+    newer: "更新",
   },
   series: {
     aria: "系列导航",
@@ -630,6 +674,7 @@ const zhCN: PageMessages = {
     count: (links, groups) => `共 ${links} 篇外链 · ${groups} 个分类`,
     browseNotes: "浏览本站文章",
     aboutFeedback: "关于 & 反馈",
+    filterAria: "按标签筛选",
   },
   about: {
     role: "Penn · Web 前端工程师",
@@ -671,6 +716,15 @@ const zhCN: PageMessages = {
     topicsKicker: "Learning Paths",
     topicsTitle: "阅读路径",
     topicsLead: "把同一系列的笔记排成路径，按顺序读完一整块主题",
+    changelogKicker: "Changelog",
+    changelogTitle: "更新日志",
+    changelogLead: "站内产品与体验更新，不是文章列表",
+    scrapsKicker: "Scraps",
+    scrapsTitle: "短笔记",
+    scrapsLead: "独立于长文的碎片记录，随时记下想法",
+    labKicker: "Lab",
+    labTitle: "实验页",
+    labLead: "一篇一文的小 demo，动手看看效果",
     newsKicker: "每日精选",
     newsTitle: "AI 动态",
     newsLead: "业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文",
@@ -750,6 +804,23 @@ const zhTW: PageMessages = {
   topics: {
     filterAria: "系列篩選",
     stats: (paths, articles) => `${paths} 條閱讀路徑 · ${articles} 篇文章`,
+    progressHint: "進度保存在本機瀏覽器，點左側可打勾 / 取消；打開文章也會自動記為已讀。",
+    progressOf: (done, total) => `已讀 ${done}/${total}`,
+    markDone: "標記為已讀",
+    unmarkDone: "取消已讀",
+  },
+  changelog: {
+    lead: "站內產品與體驗更新，不是文章列表。改了什麼、為什麼改，記在這裡。",
+    empty: "暫無更新記錄",
+    more: "了解更多 →",
+  },
+  scraps: {
+    empty: "還沒有短筆記，寫一條試試。",
+    readMore: "讀完整條 →",
+    back: "← 全部短筆記",
+    navAria: "相鄰短筆記",
+    older: "更早",
+    newer: "更新",
   },
   series: {
     aria: "系列導覽",
@@ -981,6 +1052,7 @@ const zhTW: PageMessages = {
     count: (links, groups) => `共 ${links} 篇外鏈 · ${groups} 個分類`,
     browseNotes: "瀏覽本站文章",
     aboutFeedback: "關於 & 回饋",
+    filterAria: "按標籤篩選",
   },
   about: {
     role: "Penn · Web 前端工程師",
@@ -1022,6 +1094,15 @@ const zhTW: PageMessages = {
     topicsKicker: "Learning Paths",
     topicsTitle: "閱讀路徑",
     topicsLead: "把同一系列的筆記排成路徑，按順序讀完一整塊主題",
+    changelogKicker: "Changelog",
+    changelogTitle: "更新日誌",
+    changelogLead: "站內產品與體驗更新，不是文章列表",
+    scrapsKicker: "Scraps",
+    scrapsTitle: "短筆記",
+    scrapsLead: "獨立於長文的碎片記錄，隨時記下想法",
+    labKicker: "Lab",
+    labTitle: "實驗頁",
+    labLead: "一篇一文的小 demo，動手看看效果",
     newsKicker: "每日精選",
     newsTitle: "AI 動態",
     newsLead: "業界、產品、模型、開源與開發者工具 — 按日整理，點進日報可讀全文",
@@ -1117,6 +1198,24 @@ const en: PageMessages = {
   topics: {
     filterAria: "Filter by series",
     stats: (paths, articles) => `${paths} paths · ${articles} articles`,
+    progressHint:
+      "Progress is saved in this browser. Tap the left control to toggle; opening an article also marks it read.",
+    progressOf: (done, total) => `${done}/${total} read`,
+    markDone: "Mark as read",
+    unmarkDone: "Unmark read",
+  },
+  changelog: {
+    lead: "Product and UX updates for this site — not an article feed.",
+    empty: "No changelog entries yet",
+    more: "Learn more →",
+  },
+  scraps: {
+    empty: "No scraps yet — write one.",
+    readMore: "Read scrap →",
+    back: "← All scraps",
+    navAria: "Nearby scraps",
+    older: "Older",
+    newer: "Newer",
   },
   series: {
     aria: "Series navigation",
@@ -1367,6 +1466,7 @@ const en: PageMessages = {
     count: (links, groups) => `${links} links · ${groups} groups`,
     browseNotes: "Browse site notes",
     aboutFeedback: "About & feedback",
+    filterAria: "Filter by tag",
   },
   about: {
     role: "Penn · Web frontend engineer",
@@ -1410,6 +1510,15 @@ const en: PageMessages = {
     topicsKicker: "Learning Paths",
     topicsTitle: "Learning paths",
     topicsLead: "Series notes lined up so you can finish one theme in order",
+    changelogKicker: "Changelog",
+    changelogTitle: "Changelog",
+    changelogLead: "Product and UX updates — not an article list",
+    scrapsKicker: "Scraps",
+    scrapsTitle: "Short notes",
+    scrapsLead: "Bite-sized notes outside long-form posts",
+    labKicker: "Lab",
+    labTitle: "Lab",
+    labLead: "Small demos — one experiment per page",
     newsKicker: "Daily picks",
     newsTitle: "AI news",
     newsLead:

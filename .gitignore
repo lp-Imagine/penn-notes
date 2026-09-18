@@ -27,7 +27,9 @@ website/agent/index.md
 website/misc/index.md
 website/collect/index.md
 website/books/index.md
+website/scraps/index.md
 website/news/
+website/public/og/cards/
 
 # 文章配图已迁 COS（logo / favicon 等站点图标仍保留）
 website/public/news/**/*.jpg

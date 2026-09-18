@@ -29,8 +29,13 @@ import NotesArchive from "./NotesArchive.vue";
 import RelatedPosts from "./RelatedPosts.vue";
 import SeriesNav from "./SeriesNav.vue";
 import RecentPage from "./RecentPage.vue";
+import ChangelogPage from "./ChangelogPage.vue";
 import TagsBrowse from "./TagsBrowse.vue";
 import TopicsBrowse from "./TopicsBrowse.vue";
+import ScrapsBrowse from "./ScrapsBrowse.vue";
+import ScrapChrome from "./ScrapChrome.vue";
+import LabDemos from "./LabDemos.vue";
+import CollectEnhance from "./CollectEnhance.vue";
 import {
   getUiText,
   stripLocalePrefix,
@@ -192,6 +197,7 @@ function isHomePath(path: string) {
 function isNoteArticleDetail(path: string) {
   const p = logicalPath(path);
   if (p.startsWith("/news")) return false;
+  if (p.startsWith("/scraps")) return false;
   if (p === "/about" || p === "/about/") return false;
   if (p === "/" || p.endsWith("/index.html")) return false;
 
@@ -204,6 +210,13 @@ function isNoteArticleDetail(path: string) {
     if (p === `/${section}` || p === `/${section}/`) return false;
   }
   return false;
+}
+
+/** 短笔记详情（不含 /scraps/ 列表） */
+function isScrapDetail(path: string) {
+  const p = logicalPath(path).replace(/\/$/, "");
+  if (p === "/scraps") return false;
+  return p.startsWith("/scraps/");
 }
 
 /** AI 动态日报详情（不含 /news/ 归档首页） */
@@ -1306,11 +1319,13 @@ const Layout = defineComponent({
       const path = sitePath(route.path);
       const isHome = isHomePath(path);
       const showArticleExtras = isNoteArticleDetail(path);
+      const showScrapChrome = isScrapDetail(path);
       const skipLabel = getUiText(uiLocaleRef.value).skipToContent;
       const layoutClass = [
         "site-layout",
         isHome ? "home-layout" : "",
         showArticleExtras ? "note-article" : "",
+        showScrapChrome ? "scrap-article" : "",
       ]
         .filter(Boolean)
         .join(" ");
@@ -1336,9 +1351,18 @@ const Layout = defineComponent({
             showArticleExtras
               ? h(ArticleOutdateNotice, { key: `outdate-${path}` })
               : null,
+            showScrapChrome
+              ? h(ScrapChrome, { key: `scrap-top-${path}`, placement: "top" })
+              : null,
           ],
           "doc-after": () => [
             slots["doc-after"]?.(),
+            showScrapChrome
+              ? h(ScrapChrome, {
+                  key: `scrap-bottom-${path}`,
+                  placement: "bottom",
+                })
+              : null,
             showArticleExtras
               ? h(RelatedPosts, { key: `related-${path}` })
               : null,
@@ -1663,5 +1687,10 @@ export default {
     app.component("TopicsBrowse", TopicsBrowse);
     app.component("NotesArchive", NotesArchive);
     app.component("RecentPage", RecentPage);
+    app.component("ChangelogPage", ChangelogPage);
+    app.component("ScrapsBrowse", ScrapsBrowse);
+    app.component("ScrapChrome", ScrapChrome);
+    app.component("LabDemos", LabDemos);
+    app.component("CollectEnhance", CollectEnhance);
   },
 };
