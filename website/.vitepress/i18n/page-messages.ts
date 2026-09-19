@@ -73,6 +73,108 @@ export type PageMessages = {
     older: string;
     newer: string;
   };
+  lab: {
+    stageKicker: string;
+    stageTitle: string;
+    stageDesc: string;
+    stageSample: string;
+    themeAria: string;
+    currentTheme: string;
+    spring: string;
+    catalogTitle: string;
+    catalogCount: (n: number) => string;
+    kindLive: string;
+    kindPage: string;
+    back: string;
+    groupFx: string;
+    groupFeat: string;
+    groupCss: string;
+    flexTitle: string;
+    flexLead: string;
+    gapLabel: string;
+    gapWay: string;
+    marginWay: string;
+    catalogThemeDesc: string;
+    catalogFlexDesc: string;
+    catalogClampDesc: string;
+    catalogGridDesc: string;
+    catalogSnapDesc: string;
+    catalogEaseDesc: string;
+    catalogMixDesc: string;
+    catalogSpotDesc: string;
+    catalogTiltDesc: string;
+    catalogScrambleDesc: string;
+    catalogParticleDesc: string;
+    catalogMagDesc: string;
+    catalogCmdDesc: string;
+    clampTitle: string;
+    clampLead: string;
+    clampMin: string;
+    clampPref: string;
+    clampMax: string;
+    clampWidth: string;
+    clampSample: string;
+    clampHint: string;
+    gridTitle: string;
+    gridLead: string;
+    gridMin: string;
+    snapTitle: string;
+    snapLead: string;
+    snapHint: string;
+    snapSlide: string;
+    easeTitle: string;
+    easeLead: string;
+    easeReplay: string;
+    mixTitle: string;
+    mixLead: string;
+    mixAmount: string;
+    spotTitle: string;
+    spotLead: string;
+    spotHidden: string;
+    spotBody: string;
+    spotHint: string;
+    tiltTitle: string;
+    tiltLead: string;
+    tiltCardTitle: string;
+    tiltCardDesc: string;
+    scrambleTitle: string;
+    scrambleLead: string;
+    scrambleReplay: string;
+    scrambleLine1: string;
+    scrambleLine2: string;
+    scrambleLine3: string;
+    particleTitle: string;
+    particleLead: string;
+    particleHint: string;
+    magTitle: string;
+    magLead: string;
+    magHint: string;
+    magPrimary: string;
+    magSecondary: string;
+    magGhost: string;
+    cmdTitle: string;
+    cmdLead: string;
+    cmdOpen: string;
+    cmdClose: string;
+    cmdTip: string;
+    cmdPlaceholder: string;
+    cmdEmpty: string;
+    cmdPreviewTitle: string;
+    cmdPreviewBody: string;
+    cmdToast: string;
+    cmdToastHint: string;
+    cmdToastDone: string;
+    cmdFocus: string;
+    cmdFocusHint: string;
+    cmdFocusOn: string;
+    cmdFocusOff: string;
+    cmdShake: string;
+    cmdShakeHint: string;
+    cmdShakeDone: string;
+    cmdTheme: string;
+    cmdThemeHint: string;
+    cmdThemeDone: string;
+  };
   series: {
     aria: string;
     label: string;
@@ -444,6 +546,108 @@ const zhCN: PageMessages = {
     older: "更早",
     newer: "更新",
   },
+  lab: {
+    stageKicker: "Live playground",
+    stageTitle: "主题变量切换",
+    stageDesc: "改 CSS 变量即时换肤，不依赖整站暗色开关。点色板，看右侧预览跟着变。",
+    stageSample: "这块面板吃的是本实验注入的变量：背景、文字、强调色。",
+    themeAria: "选择主题",
+    currentTheme: "当前主题",
+    spring: "点一下",
+    catalogTitle: "实验目录",
+    catalogCount: (n) => `${n} 个`,
+    kindLive: "页内",
+    kindPage: "独立页",
+    back: "← 返回实验页",
+    groupFx: "特效实验",
+    groupFeat: "功能实验",
+    groupCss: "CSS 基础",
+    flexTitle: "Flex Gap 实验",
+    flexLead: "拖滑块对比 gap 与负 margin 两种间距写法。",
+    gapLabel: "间距",
+    gapWay: "用 gap",
+    marginWay: "用负 margin",
+    catalogThemeDesc: "用 CSS 变量即时换肤，不依赖整站暗色开关。",
+    catalogFlexDesc: "对比 gap 与旧式负 margin，拖滑块看间距变化。",
+    catalogClampDesc: "拖 min / preferred / max，看流体字号怎么卡边界。",
+    catalogGridDesc: "auto-fit + minmax，改最小列宽看列数自动变。",
+    catalogSnapDesc: "横向滚动卡片，体验 scroll-snap 吸附。",
+    catalogEaseDesc: "并排对比 linear / ease / 自定义贝塞尔。",
+    catalogMixDesc: "拖比例，看 color-mix 把两色掺在一起。",
+    catalogSpotDesc: "黑暗遮罩 + 径向高光，指针划过才露出内容。",
+    catalogTiltDesc: "3D 透视跟随指针，带一层 glare 高光。",
+    catalogScrambleDesc: "乱码逐字解码，黑客电影感文字特效。",
+    catalogParticleDesc: "Canvas 粒子拖尾，跟着指针散开。",
+    catalogMagDesc: "靠近按钮会被「吸」过去的 magnetic UI。",
+    catalogCmdDesc: "迷你 ⌘K 命令面板：搜索、键盘导航、执行动作。",
+    clampTitle: "clamp 流体字号",
+    clampLead: "模拟容器宽度，观察 clamp(min, preferred, max) 的实际字号。",
+    clampMin: "最小值",
+    clampPref: "首选",
+    clampMax: "最大值",
+    clampWidth: "容器宽",
+    clampSample: "流体排版 · Fluid type",
+    clampHint: "按当前容器宽估算",
+    gridTitle: "Grid auto-fit",
+    gridLead: "改最小列宽，看 auto-fit 如何自动增减列数。",
+    gridMin: "最小列宽",
+    snapTitle: "Scroll Snap",
+    snapLead: "横向滑动卡片，停靠点由 scroll-snap 决定。",
+    snapHint: "在轨道上左右滑动，或用触控板横滑。",
+    snapSlide: "吸附卡片",
+    easeTitle: "缓动曲线",
+    easeLead: "同一路程、不同 timing-function，看球怎么「赶路」。",
+    easeReplay: "重播",
+    mixTitle: "color-mix",
+    mixLead: "按比例混合两色，现代浏览器原生支持。",
+    mixAmount: "A 的占比",
+    spotTitle: "聚光灯揭示",
+    spotLead: "用径向遮罩做 spotlight：指针到哪，内容亮到哪。",
+    spotHidden: "藏在暗处的标题",
+    spotBody: "这层文字一直在，只是被暗幕盖住。移动指针，像拿手电扫墙一样把它照出来。",
+    spotHint: "在区域内移动指针",
+    tiltTitle: "3D 倾斜卡片",
+    tiltLead: "根据指针位置做 rotateX / rotateY，并叠一层跟随高光。",
+    tiltCardTitle: "可倾斜的面板",
+    tiltCardDesc: "把鼠标或手指在卡片上挪动，感受轻微的立体跟随。",
+    scrambleTitle: "文字乱码解码",
+    scrambleLead: "先刷一串乱码，再逐字落成目标文案。",
+    scrambleReplay: "再解一次",
+    scrambleLine1: "PENN NOTES LAB",
+    scrambleLine2: "解码完成 · Decode complete",
+    scrambleLine3: "scramble → plaintext",
+    particleTitle: "粒子拖尾",
+    particleLead: "Canvas 画一层淡发光粒子，跟着指针飘散。",
+    particleHint: "在暗区里移动指针",
+    magTitle: "磁力按钮",
+    magLead: "指针靠近时，按钮会朝你轻微位移，像被吸过去。",
+    magHint: "在按钮附近慢慢移动",
+    magPrimary: "主按钮",
+    magSecondary: "次按钮",
+    magGhost: "幽灵按钮",
+    cmdTitle: "命令面板",
+    cmdLead: "一个可运行的迷你 ⌘K：过滤命令、键盘选择、执行副作用。",
+    cmdOpen: "打开面板",
+    cmdClose: "关闭",
+    cmdTip: "或按 ⌘/Ctrl + K",
+    cmdPlaceholder: "输入命令…",
+    cmdEmpty: "没有匹配的命令",
+    cmdPreviewTitle: "预览区域",
+    cmdPreviewBody: "执行命令后，这里和整页会有可见反馈。",
+    cmdToast: "弹出提示",
+    cmdToastHint: "在面板里闪一条 toast",
+    cmdToastDone: "命令已执行",
+    cmdFocus: "切换专注模式",
+    cmdFocusHint: "弱化导航，突出内容区",
+    cmdFocusOn: "已进入实验专注",
+    cmdFocusOff: "已退出实验专注",
+    cmdShake: "抖动面板",
+    cmdShakeHint: "给预览区来一段 shake",
+    cmdShakeDone: "抖完了",
+    cmdTheme: "切换面板主题",
+    cmdThemeHint: "给命令实验区换一套底色",
+    cmdThemeDone: "面板主题已切换",
+  },
   series: {
     aria: "系列导航",
     label: "系列 ·",
@@ -724,7 +928,7 @@ const zhCN: PageMessages = {
     scrapsLead: "独立于长文的碎片记录，随时记下想法",
     labKicker: "Lab",
     labTitle: "实验页",
-    labLead: "一篇一文的小 demo，动手看看效果",
+    labLead: "特效、功能原型与 CSS 小实验，动手试",
     newsKicker: "每日精选",
     newsTitle: "AI 动态",
     newsLead: "业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文",
@@ -821,6 +1025,108 @@ const zhTW: PageMessages = {
     navAria: "相鄰短筆記",
     older: "更早",
     newer: "更新",
+  },
+  lab: {
+    stageKicker: "Live playground",
+    stageTitle: "主題變數切換",
+    stageDesc: "改 CSS 變數即時換膚，不依賴整站暗色開關。點色板，看右側預覽跟著變。",
+    stageSample: "這塊面板吃的是本實驗注入的變數：背景、文字、強調色。",
+    themeAria: "選擇主題",
+    currentTheme: "目前主題",
+    spring: "點一下",
+    catalogTitle: "實驗目錄",
+    catalogCount: (n) => `${n} 個`,
+    kindLive: "頁內",
+    kindPage: "獨立頁",
+    back: "← 返回實驗頁",
+    groupFx: "特效實驗",
+    groupFeat: "功能實驗",
+    groupCss: "CSS 基礎",
+    flexTitle: "Flex Gap 實驗",
+    flexLead: "拖滑桿對比 gap 與負 margin 兩種間距寫法。",
+    gapLabel: "間距",
+    gapWay: "用 gap",
+    marginWay: "用負 margin",
+    catalogThemeDesc: "用 CSS 變數即時換膚，不依賴整站暗色開關。",
+    catalogFlexDesc: "對比 gap 與舊式負 margin，拖滑桿看間距變化。",
+    catalogClampDesc: "拖 min / preferred / max，看流體字級怎麼卡邊界。",
+    catalogGridDesc: "auto-fit + minmax，改最小欄寬看欄數自動變。",
+    catalogSnapDesc: "橫向滾動卡片，體驗 scroll-snap 吸附。",
+    catalogEaseDesc: "並排對比 linear / ease / 自訂貝茲曲線。",
+    catalogMixDesc: "拖比例，看 color-mix 把兩色掺在一起。",
+    catalogSpotDesc: "黑暗遮罩 + 徑向高光，指針劃過才露出內容。",
+    catalogTiltDesc: "3D 透視跟隨指針，帶一層 glare 高光。",
+    catalogScrambleDesc: "亂碼逐字解碼，駭客電影感文字特效。",
+    catalogParticleDesc: "Canvas 粒子拖尾，跟著指針散開。",
+    catalogMagDesc: "靠近按鈕會被「吸」過去的 magnetic UI。",
+    catalogCmdDesc: "迷你 ⌘K 命令面板：搜尋、鍵盤導覽、執行動作。",
+    clampTitle: "clamp 流體字級",
+    clampLead: "模擬容器寬度，觀察 clamp(min, preferred, max) 的實際字級。",
+    clampMin: "最小值",
+    clampPref: "首選",
+    clampMax: "最大值",
+    clampWidth: "容器寬",
+    clampSample: "流體排版 · Fluid type",
+    clampHint: "依目前容器寬估算",
+    gridTitle: "Grid auto-fit",
+    gridLead: "改最小欄寬，看 auto-fit 如何自動增減欄數。",
+    gridMin: "最小欄寬",
+    snapTitle: "Scroll Snap",
+    snapLead: "橫向滑動卡片，停靠點由 scroll-snap 決定。",
+    snapHint: "在軌道上左右滑動，或用觸控板橫滑。",
+    snapSlide: "吸附卡片",
+    easeTitle: "緩動曲線",
+    easeLead: "同一路程、不同 timing-function，看球怎麼「趕路」。",
+    easeReplay: "重播",
+    mixTitle: "color-mix",
+    mixLead: "按比例混合兩色，現代瀏覽器原生支援。",
+    mixAmount: "A 的占比",
+    spotTitle: "聚光燈揭示",
+    spotLead: "用徑向遮罩做 spotlight：指針到哪，內容亮到哪。",
+    spotHidden: "藏在暗處的標題",
+    spotBody: "這層文字一直在，只是被暗幕蓋住。移動指針，像拿手電掃牆一樣把它照出來。",
+    spotHint: "在區域內移動指針",
+    tiltTitle: "3D 傾斜卡片",
+    tiltLead: "根據指針位置做 rotateX / rotateY，並疊一層跟隨高光。",
+    tiltCardTitle: "可傾斜的面板",
+    tiltCardDesc: "把滑鼠或手指在卡片上挪動，感受輕微的立體跟隨。",
+    scrambleTitle: "文字亂碼解碼",
+    scrambleLead: "先刷一串亂碼，再逐字落成目標文案。",
+    scrambleReplay: "再解一次",
+    scrambleLine1: "PENN NOTES LAB",
+    scrambleLine2: "解碼完成 · Decode complete",
+    scrambleLine3: "scramble → plaintext",
+    particleTitle: "粒子拖尾",
+    particleLead: "Canvas 畫一層淡發光粒子，跟著指針飄散。",
+    particleHint: "在暗區裡移動指針",
+    magTitle: "磁力按鈕",
+    magLead: "指針靠近時，按鈕會朝你輕微位移，像被吸過去。",
+    magHint: "在按鈕附近慢慢移動",
+    magPrimary: "主按鈕",
+    magSecondary: "次按鈕",
+    magGhost: "幽靈按鈕",
+    cmdTitle: "命令面板",
+    cmdLead: "一個可運行的迷你 ⌘K：過濾命令、鍵盤選擇、執行副作用。",
+    cmdOpen: "打開面板",
+    cmdClose: "關閉",
+    cmdTip: "或按 ⌘/Ctrl + K",
+    cmdPlaceholder: "輸入命令…",
+    cmdEmpty: "沒有符合的命令",
+    cmdPreviewTitle: "預覽區域",
+    cmdPreviewBody: "執行命令後，這裡和整頁會有可見回饋。",
+    cmdToast: "彈出提示",
+    cmdToastHint: "在面板裡閃一條 toast",
+    cmdToastDone: "命令已執行",
+    cmdFocus: "切換專注模式",
+    cmdFocusHint: "弱化導覽，突出內容區",
+    cmdFocusOn: "已進入實驗專注",
+    cmdFocusOff: "已退出實驗專注",
+    cmdShake: "抖動面板",
+    cmdShakeHint: "給預覽區來一段 shake",
+    cmdShakeDone: "抖完了",
+    cmdTheme: "切換面板主題",
+    cmdThemeHint: "給命令實驗區換一套底色",
+    cmdThemeDone: "面板主題已切換",
   },
   series: {
     aria: "系列導覽",
@@ -1102,7 +1408,7 @@ const zhTW: PageMessages = {
     scrapsLead: "獨立於長文的碎片記錄，隨時記下想法",
     labKicker: "Lab",
     labTitle: "實驗頁",
-    labLead: "一篇一文的小 demo，動手看看效果",
+    labLead: "特效、功能原型與 CSS 小實驗，動手試",
     newsKicker: "每日精選",
     newsTitle: "AI 動態",
     newsLead: "業界、產品、模型、開源與開發者工具 — 按日整理，點進日報可讀全文",
@@ -1216,6 +1522,111 @@ const en: PageMessages = {
     navAria: "Nearby scraps",
     older: "Older",
     newer: "Newer",
+  },
+  lab: {
+    stageKicker: "Live playground",
+    stageTitle: "Theme variables",
+    stageDesc:
+      "Swap CSS variables live — independent of the site dark mode. Pick a swatch and watch the preview update.",
+    stageSample:
+      "This panel is driven by the demo’s injected variables: background, text, and accent.",
+    themeAria: "Choose theme",
+    currentTheme: "Theme",
+    spring: "Tap",
+    catalogTitle: "Experiments",
+    catalogCount: (n) => `${n}`,
+    kindLive: "Inline",
+    kindPage: "Page",
+    back: "← Back to Lab",
+    groupFx: "Effects",
+    groupFeat: "Feature experiments",
+    groupCss: "CSS basics",
+    flexTitle: "Flex Gap",
+    flexLead: "Drag the slider to compare gap vs negative-margin spacing.",
+    gapLabel: "Gap",
+    gapWay: "With gap",
+    marginWay: "With negative margin",
+    catalogThemeDesc: "Swap CSS variables live — independent of site dark mode.",
+    catalogFlexDesc: "Compare gap vs negative margin with a slider.",
+    catalogClampDesc: "Tweak min / preferred / max and watch fluid type clamp.",
+    catalogGridDesc: "auto-fit + minmax — change min column width and columns reflow.",
+    catalogSnapDesc: "Swipe a horizontal card strip with scroll-snap.",
+    catalogEaseDesc: "Side-by-side linear / ease / custom cubic-bezier.",
+    catalogMixDesc: "Drag the mix ratio for color-mix(in srgb, …).",
+    catalogSpotDesc: "Dark veil + radial spotlight that reveals content under the cursor.",
+    catalogTiltDesc: "Perspective tilt with a glare that follows the pointer.",
+    catalogScrambleDesc: "Hacker-movie scramble that resolves into plaintext.",
+    catalogParticleDesc: "Canvas particle trail that follows the pointer.",
+    catalogMagDesc: "Buttons that drift toward the cursor when nearby.",
+    catalogCmdDesc: "Mini ⌘K palette: filter, arrow keys, run actions.",
+    clampTitle: "clamp() fluid type",
+    clampLead: "Simulate container width and see clamp(min, preferred, max) resolve.",
+    clampMin: "Min",
+    clampPref: "Preferred",
+    clampMax: "Max",
+    clampWidth: "Width",
+    clampSample: "Fluid type sample",
+    clampHint: "Estimated for this width",
+    gridTitle: "Grid auto-fit",
+    gridLead: "Change the min column size and watch auto-fit add or drop columns.",
+    gridMin: "Min column",
+    snapTitle: "Scroll Snap",
+    snapLead: "Swipe cards sideways — snap points come from scroll-snap.",
+    snapHint: "Swipe the track, or use a trackpad horizontal scroll.",
+    snapSlide: "Snap card",
+    easeTitle: "Easing curves",
+    easeLead: "Same distance, different timing-functions — watch the dots travel.",
+    easeReplay: "Replay",
+    mixTitle: "color-mix",
+    mixLead: "Blend two colors by percentage — native in modern browsers.",
+    mixAmount: "Share of A",
+    spotTitle: "Spotlight reveal",
+    spotLead: "A radial mask spotlight — where the pointer goes, content lights up.",
+    spotHidden: "Title in the dark",
+    spotBody:
+      "The copy is always there, just covered. Move the pointer like a flashlight across a wall.",
+    spotHint: "Move the pointer inside this area",
+    tiltTitle: "3D tilt card",
+    tiltLead: "rotateX / rotateY from pointer position, plus a following glare.",
+    tiltCardTitle: "A tiltable panel",
+    tiltCardDesc: "Move your pointer across the card for a slight 3D follow.",
+    scrambleTitle: "Text scramble",
+    scrambleLead: "Spray glyphs, then resolve them into the target line.",
+    scrambleReplay: "Decode again",
+    scrambleLine1: "PENN NOTES LAB",
+    scrambleLine2: "Decode complete",
+    scrambleLine3: "scramble → plaintext",
+    particleTitle: "Particle trail",
+    particleLead: "Soft glowing particles on a canvas, trailing the pointer.",
+    particleHint: "Move inside the dark stage",
+    magTitle: "Magnetic buttons",
+    magLead: "Nearby buttons ease toward the cursor — a magnetic UI pull.",
+    magHint: "Move slowly near the buttons",
+    magPrimary: "Primary",
+    magSecondary: "Secondary",
+    magGhost: "Ghost",
+    cmdTitle: "Command palette",
+    cmdLead: "A working mini ⌘K: filter commands, keyboard select, run side effects.",
+    cmdOpen: "Open palette",
+    cmdClose: "Close",
+    cmdTip: "Or press ⌘/Ctrl + K",
+    cmdPlaceholder: "Type a command…",
+    cmdEmpty: "No matching commands",
+    cmdPreviewTitle: "Preview",
+    cmdPreviewBody: "Running a command leaves visible feedback here and on the page.",
+    cmdToast: "Show toast",
+    cmdToastHint: "Flash a toast in the board",
+    cmdToastDone: "Command ran",
+    cmdFocus: "Toggle focus mode",
+    cmdFocusHint: "Dim chrome and emphasize content",
+    cmdFocusOn: "Lab focus on",
+    cmdFocusOff: "Lab focus off",
+    cmdShake: "Shake board",
+    cmdShakeHint: "Give the preview a quick shake",
+    cmdShakeDone: "Shake done",
+    cmdTheme: "Toggle board theme",
+    cmdThemeHint: "Swap the command experiment surface",
+    cmdThemeDone: "Board theme toggled",
   },
   series: {
     aria: "Series navigation",
@@ -1518,7 +1929,7 @@ const en: PageMessages = {
     scrapsLead: "Bite-sized notes outside long-form posts",
     labKicker: "Lab",
     labTitle: "Lab",
-    labLead: "Small demos — one experiment per page",
+    labLead: "Effects, feature prototypes, and CSS playgrounds",
     newsKicker: "Daily picks",
     newsTitle: "AI news",
     newsLead:

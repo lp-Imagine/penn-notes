@@ -1,6 +1,6 @@
 ---
-title: Flex Gap 实验
-description: gap 与负 margin 布局对比
+title: color-mix
+description: 用 color-mix 混合两色
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabFlexGap />
+  <LabColorMix />
 </div>

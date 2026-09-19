@@ -1,6 +1,6 @@
 ---
-title: Flex Gap 实验
-description: gap 与负 margin 布局对比
+title: 3D 倾斜卡片
+description: 透视跟随指针的 tilt + glare
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabFlexGap />
+  <LabTilt />
 </div>

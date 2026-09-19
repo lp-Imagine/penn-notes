@@ -35,6 +35,18 @@ import TopicsBrowse from "./TopicsBrowse.vue";
 import ScrapsBrowse from "./ScrapsBrowse.vue";
 import ScrapChrome from "./ScrapChrome.vue";
 import LabDemos from "./LabDemos.vue";
+import LabFlexGap from "./LabFlexGap.vue";
+import LabClamp from "./LabClamp.vue";
+import LabGrid from "./LabGrid.vue";
+import LabScrollSnap from "./LabScrollSnap.vue";
+import LabEasing from "./LabEasing.vue";
+import LabColorMix from "./LabColorMix.vue";
+import LabSpotlight from "./LabSpotlight.vue";
+import LabTilt from "./LabTilt.vue";
+import LabScramble from "./LabScramble.vue";
+import LabParticles from "./LabParticles.vue";
+import LabMagnetic from "./LabMagnetic.vue";
+import LabCommand from "./LabCommand.vue";
 import CollectEnhance from "./CollectEnhance.vue";
 import {
   getUiText,
@@ -1691,6 +1703,18 @@ export default {
     app.component("ScrapsBrowse", ScrapsBrowse);
     app.component("ScrapChrome", ScrapChrome);
     app.component("LabDemos", LabDemos);
+    app.component("LabFlexGap", LabFlexGap);
+    app.component("LabClamp", LabClamp);
+    app.component("LabGrid", LabGrid);
+    app.component("LabScrollSnap", LabScrollSnap);
+    app.component("LabEasing", LabEasing);
+    app.component("LabColorMix", LabColorMix);
+    app.component("LabSpotlight", LabSpotlight);
+    app.component("LabTilt", LabTilt);
+    app.component("LabScramble", LabScramble);
+    app.component("LabParticles", LabParticles);
+    app.component("LabMagnetic", LabMagnetic);
+    app.component("LabCommand", LabCommand);
     app.component("CollectEnhance", CollectEnhance);
   },
 };

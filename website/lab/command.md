@@ -1,6 +1,6 @@
 ---
-title: Flex Gap 实验
-description: gap 与负 margin 布局对比
+title: 命令面板
+description: ⌘K 命令面板功能实验
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabFlexGap />
+  <LabCommand />
 </div>
