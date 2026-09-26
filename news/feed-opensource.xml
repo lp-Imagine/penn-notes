@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 开源</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 26 Sep 2026 05:15:39 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Black Forest Labs 发布 FLUX 3 Action 开源权重机器人模型，以一半体量登顶榜单</title>
+      <link>https://news.google.com/rss/articles/CBMigwJBVV95cUxNanNlRFkxQTIzdGxhUHJqc0JmMjc1MDljWDlnd19OVVA3LVdjWG9KaUttOEVaSHJUTzlqUU5yRkhhR1o3QzN0MnZRczZYYl93Ul83SDNOUFFwdVBVQkpmUlhrNklFTzdMSG5ieXlVYzhWX1RKQVFLQ3BqQUZYQllUVkFvRVhtdUFSbE1sQW9JUHlkUDRrZ3VoM2t3NlFZUkZTOTZ0bUZUcWlaQWpJWldXRUg3Ri1sWmVoNF9Sc3l5RWJoNFhfYW03TjBMY012anRCTW02VXdMWEVRQXRuMXAyMEhqSnlyR1NFT2ZqNGx3bGtqWHY1ZVBZc3NOMTU3aUlvQVhF?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMigwJBVV95cUxNanNlRFkxQTIzdGxhUHJqc0JmMjc1MDljWDlnd19OVVA3LVdjWG9KaUttOEVaSHJUTzlqUU5yRkhhR1o3QzN0MnZRczZYYl93Ul83SDNOUFFwdVBVQkpmUlhrNklFTzdMSG5ieXlVYzhWX1RKQVFLQ3BqQUZYQllUVkFvRVhtdUFSbE1sQW9JUHlkUDRrZ3VoM2t3NlFZUkZTOTZ0bUZUcWlaQWpJWldXRUg3Ri1sWmVoNF9Sc3l5RWJoNFhfYW03TjBMY012anRCTW02VXdMWEVRQXRuMXAyMEhqSnlyR1NFT2ZqNGx3bGtqWHY1ZVBZc3NOMTU3aUlvQVhF?oc=5</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VentureBeat AI · Black Forest Labs 推出 FLUX 3 Action，一款开放权重的机器人模型，据称以竞争对手一半的参数量在相关榜单上排名第一。开源权重加小体量的组合，正在把机器人策略模型的门槛拉低到更多团队可参与的程度。对读者：做具身智能或机器人策略的团队，可优先复现该模型并对比自家方案的数据效率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5-VL-DSpark，加速视觉语言模型</title>
+      <link>https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 发布 LFM2.5-VL-DSpark，聚焦视觉语言模型的推理加速。在 VLM 广泛用于文档理解与多模态 Agent 的当下，推理效率直接决定单位成本与可部署场景。对读者：若你的多模态流水线受限于延迟或显存，可把该模型纳入基准测试，比较同等精度下的吞吐差异。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Transformers 现在可以直接运行 llama.cpp 量化模型</title>
+      <link>https://huggingface.co/blog/transformers-llama-cpp-quants</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/transformers-llama-cpp-quants</guid>
+      <pubDate>Tue, 22 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 宣布 Transformers 支持运行 llama.cpp 的量化格式，意味着社区常用的 GGUF 类量化权重可以在 Transformers 生态内直接加载推理，减少格式转换与工具链割裂。对读者：本地部署与评测流程可简化，建议先验证目标量化格式与算子兼容性，再决定是否替换现有推理栈。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>AWS Strands 团队开源 Strands Harness：token 成本降 28%</title>
+      <link>https://news.google.com/rss/articles/CBMikwFBVV95cUxPRThpV2FoNkNhQWxVbmV0bWNFTVFlVk93YzRYWkFCQW55SG8xdjhGZWJmQ296RUVFczloQTJNZnM2X2Nia2JZZi1xY3NEYXJDLVlzeUdjLTJobnNPRUYtQjZGNl9sTkcyeW12YVEtNU5nRTZYc24zcjg3NnFBOWxiSjhoQ1QweWNfMk9tNDMzU1E5eWPSAZgBQVVfeXFMTWNCc29qUWlpdERSMjAzSHFVQk9rY0pycWkwVzAwNl80YTJ3UGkxS3ZxQzBQSkU4SXYtODM2Qi1jNWFLeEtmR3pJVEFZbE9fZWxVV1lXMnlGZUpVQ0UxZUtzY3MyVzNyX0JJZWhzejJ3SHdjTXlFRmhVeFFvNnBrR2IzWmpxc0tWUzZKa2s1OVJrMmdSNzRIbUw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMikwFBVV95cUxPRThpV2FoNkNhQWxVbmV0bWNFTVFlVk93YzRYWkFCQW55SG8xdjhGZWJmQ296RUVFczloQTJNZnM2X2Nia2JZZi1xY3NEYXJDLVlzeUdjLTJobnNPRUYtQjZGNl9sTkcyeW12YVEtNU5nRTZYc24zcjg3NnFBOWxiSjhoQ1QweWNfMk9tNDMzU1E5eWPSAZgBQVVfeXFMTWNCc29qUWlpdERSMjAzSHFVQk9rY0pycWkwVzAwNl80YTJ3UGkxS3ZxQzBQSkU4SXYtODM2Qi1jNWFLeEtmR3pJVEFZbE9fZWxVV1lXMnlGZUpVQ0UxZUtzY3MyVzNyX0JJZWhzejJ3SHdjTXlFRmhVeFFvNnBrR2IzWmpxc0tWUzZKa2s1OVJrMmdSNzRIbUw?oc=5</guid>
+      <pubDate>Tue, 22 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · AWS Strands Agents 团队发布开源 Agent Harness——Strands Harness，在准确率相当的前提下把 token 成本降低约 28%。这延续了近期「不改模型、改 Harness」的降本思路。对读者：Agent 成本优化可先从编排层与工具调用策略入手，这类开源 Harness 值得对照自家实现做基准测试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>APUS 开源国内首批 Jev 跨平台复现，打包为 Agent Skill 支持纯本地离线</title>
+      <link>https://www.qbitai.com/2026/09/492939.html</link>
+      <guid isPermaLink="true">https://www.qbitai.com/2026/09/492939.html</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：量子位 · APUS AI 实验室公布全球最早一批针对 Jev 的独立开源复现，封装成开箱即用的 Agent Skill fast-browser-use，支持 macOS、Linux、Windows，可在无 GPU 的 Mac 与 PC 上运行，代码以 MIT 协议开放。对读者：想在本地低成本验证决策模型效果的团队，可直接拉取复现项目做基准测试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>BuilderIO 开源 agent-native：构建 Agent 应用的框架</title>
+      <link>https://github.com/BuilderIO/agent-native</link>
+      <guid isPermaLink="true">https://github.com/BuilderIO/agent-native</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：BuilderIO/agent-native · BuilderIO 发布 agent-native，定位为构建 agentic 应用的开发框架，帮助开发者把 Agent 能力直接嵌入应用而非外挂聊天窗口。项目在 GitHub 开源，面向需要自建 Agent 交互与编排的团队。对读者：选型时可对比其与现有 Agent 框架在状态管理、工具调用上的抽象差异，先跑官方示例评估迁移成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Cloudflare 开源 security-audit-skill：面向编码 Agent 的多阶段安全审计技能</title>
+      <link>https://github.com/cloudflare/security-audit-skill</link>
+      <guid isPermaLink="true">https://github.com/cloudflare/security-audit-skill</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：cloudflare/security-audit-skill · Cloudflare 发布 security-audit-skill，是一个给编码 Agent 使用的技能包，支持多阶段安全审计，并输出可独立验证、机器可读的发现结果。它把安全审计流程标准化，便于接入 CI 或 Agent 工作流。对读者：团队若用 Agent 做代码审查，可把该技能纳入流水线，重点验证其发现的可复现性与误报率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>微软开源 TauGrid：面向 GPU AI 负载的 Kubernetes 原生技术栈</title>
+      <link>https://news.google.com/rss/articles/CBMiugFBVV95cUxNVmNoMFF5MEdyZGJWeE1mcEdzRkxOYzRITFlveC1UOGl2Q3ZHOTVybUtNcW40aTdCV2R0UTlBVEwyUHdldVJuWHpTYmg1VmlzWDN5QlYycEVWLXNfUEZkeE1PR2ZJUVlOd2ItS0hLWWwxU1JHNkEtUm9YQThhQnduZGR5Z2VwcEx6bGFlTjBVNkVSTUhqeWhpSlNyWlBUc3d6N3JsWkZPWWlKejA1aDNmd3hMMVZwaXRLSEHSAb8BQVVfeXFMTWFwQXNSQ2NhR2hWdEh5OFphYWZHemlnYzl4QUVNRjJDcDBvRnFNN1RxUWFKU1dKd3R5Qkg2aXQwUjdXM2U2dkszZ1RlSFltM3AtRmxNbVFFXzVJQUxoRVZYeTVTbm1KTGlGU2JtM1RObnQyNTY5Z2tsdjZzcWVsQWFsMDdWYmd2b1Y0eVdmVnVUN0ZDeC1xR05MajgwVFp6dVpxNWkyR0NLLV9FV1hhdWNGd0dTUEthYWtKb05rQzA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiugFBVV95cUxNVmNoMFF5MEdyZGJWeE1mcEdzRkxOYzRITFlveC1UOGl2Q3ZHOTVybUtNcW40aTdCV2R0UTlBVEwyUHdldVJuWHpTYmg1VmlzWDN5QlYycEVWLXNfUEZkeE1PR2ZJUVlOd2ItS0hLWWwxU1JHNkEtUm9YQThhQnduZGR5Z2VwcEx6bGFlTjBVNkVSTUhqeWhpSlNyWlBUc3d6N3JsWkZPWWlKejA1aDNmd3hMMVZwaXRLSEHSAb8BQVVfeXFMTWFwQXNSQ2NhR2hWdEh5OFphYWZHemlnYzl4QUVNRjJDcDBvRnFNN1RxUWFKU1dKd3R5Qkg2aXQwUjdXM2U2dkszZ1RlSFltM3AtRmxNbVFFXzVJQUxoRVZYeTVTbm1KTGlGU2JtM1RObnQyNTY5Z2tsdjZzcWVsQWFsMDdWYmd2b1Y0eVdmVnVUN0ZDeC1xR05MajgwVFp6dVpxNWkyR0NLLV9FV1hhdWNGd0dTUEthYWtKb05rQzA?oc=5</guid>
+      <pubDate>Fri, 18 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · 微软开源 TauGrid，一套 Kubernetes 原生的 GPU AI 工作负载栈，用于在集群中调度与管理 GPU 训练和推理任务。这为自建算力平台提供了新的开源编排选项。对读者：已有 K8s 基础设施的团队可评估 TauGrid 与现有 GPU 调度方案的兼容性，降低自研调度层成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>agent-skills：面向专业编码智能体的安全技能注册表</title>
+      <link>https://github.com/tech-leads-club/agent-skills</link>
+      <guid isPermaLink="true">https://github.com/tech-leads-club/agent-skills</guid>
+      <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：tech-leads-club/agent-skills · tech-leads-club/agent-skills 定位为经过验证的安全技能注册表，可为 Antigravity、Claude Code、Cursor、Copilot 等编码智能体扩展能力，强调可信与可校验。对读者：Agent 技能生态开始出现“注册表+校验”模式，接入第三方技能前应核查来源与权限范围。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>pascalorg/editor：开源 3D 建筑编辑器，内置 CLI 与 MCP 工具</title>
+      <link>https://github.com/pascalorg/editor</link>
+      <guid isPermaLink="true">https://github.com/pascalorg/editor</guid>
+      <pubDate>Wed, 09 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：pascalorg/editor · 这是一个开源 3D 建筑编辑器，提供本地 CLI、MCP 工具，并针对人类与 AI Agent 设计了实用工作流，适合把建筑建模能力接入 Agent 链路。对读者：若在做设计类 Agent 或 MCP 集成，可参考其工具接口设计，评估能否复用到自有编辑器。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>HeyGen 开源 Hyperframes：让 Agent 用 HTML 直接渲染视频</title>
+      <link>https://github.com/heygen-com/hyperframes</link>
+      <guid isPermaLink="true">https://github.com/heygen-com/hyperframes</guid>
+      <pubDate>Tue, 08 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：heygen-com/hyperframes · HeyGen 在 GitHub 上开源了 Hyperframes 项目，其核心理念是“Write HTML. Render video. Built for agents.”。该项目旨在让 AI Agent 能够通过编写 HTML 来直接生成和渲染视频，为视频生成领域提供了一种全新的、面向 Agent 的编程范式。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>微软开源MarkItDown：文件转Markdown工具</title>
+      <link>https://github.com/microsoft/markitdown</link>
+      <guid isPermaLink="true">https://github.com/microsoft/markitdown</guid>
+      <pubDate>Mon, 07 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：microsoft/markitdown · 微软开源MarkItDown，一个Python工具，可将多种文件和Office文档转换为Markdown格式，便于AI处理。该工具支持多种文件类型，有助于数据预处理和文档管理。对读者：开发者可集成此工具，简化文档转换流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>伯克利与 MIT 开源 FreeToken，消费级 GPU 可跑 MoE 模型</title>
+      <link>https://www.infoq.cn/article/tij5T0vJ1Yk0s7Uov7SE?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/tij5T0vJ1Yk0s7Uov7SE?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 06 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 加州大学伯克利分校和 MIT 的研究人员开源了推理引擎 FreeToken，旨在弥合前沿 MoE 模型与消费级硬件之间的差距。它采用 q* 动态协同调度策略，在 GPU 与 CPU 间弹性分配 Token 计算任务，并通过权重预取与缓存优化，在 RTX 4060 上实现了 35B 模型每秒 39 Token 的解码速度。对读者：该引擎为在本地运行大型 MoE 模型提供了新方案，适合关注边缘 AI 与隐私计算的开发者评估。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenAI 开源 Codex Skills 目录仓库</title>
+      <link>https://github.com/openai/skills</link>
+      <guid isPermaLink="true">https://github.com/openai/skills</guid>
+      <pubDate>Sun, 06 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：openai/skills · OpenAI 在 GitHub 上发布了 openai/skills 仓库，这是一个面向 Codex 的 Skills 目录。该仓库旨在收集和整理可用于 Codex 的技能定义，以扩展其能力边界。对读者：开发者可关注该仓库，了解如何为 Codex 定义和贡献技能，以增强编码 Agent 的定制化能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>magnitudedev/magnitude：为你的硬件运行最佳本地模型的开源推理服务器</title>
+      <link>https://github.com/magnitudedev/magnitude</link>
+      <guid isPermaLink="true">https://github.com/magnitudedev/magnitude</guid>
+      <pubDate>Fri, 04 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：magnitudedev/magnitude · Magnitude 是一个开源推理服务器，旨在根据用户硬件自动运行最适合的本地模型，并可直接接入 Pi、OpenCode、Hermes、OpenClaw、Codex、Claude Code、Cline 等主流 AI 代理工具。对读者：自托管本地模型与现有 Agent 工作流集成更简单，值得尝试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>radixark/miles：面向企业的 LLM/VLM 后训练强化学习框架</title>
+      <link>https://github.com/radixark/miles</link>
+      <guid isPermaLink="true">https://github.com/radixark/miles</guid>
+      <pubDate>Fri, 04 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：radixark/miles · Miles 是一个面向企业的强化学习框架，用于 LLM 和 VLM 的后训练，从 slime 项目 fork 而来并与之共同演进。它旨在为企业提供更可控、可扩展的模型后训练能力。对读者：企业若需定制模型行为，可关注该框架与 slime 的生态协同。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 博文：为你的编程智能体提供自主掌控的记忆</title>
+      <link>https://huggingface.co/blog/funes</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/funes</guid>
+      <pubDate>Thu, 03 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布博文，探讨如何为编程智能体（Coding Agents）赋予用户自主掌控的记忆能力。文章可能介绍了一种新的方法或工具，让开发者能够管理智能体在编码任务中的上下文和状态信息，从而提升效率和个性化。对读者：关注 AI 编程智能体的开发者，可研究如何通过可控的记忆机制来优化其工作流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源项目 caveman：用“原始人”对话风格削减 65% Token 消耗</title>
+      <link>https://github.com/JuliusBrussee/caveman</link>
+      <guid isPermaLink="true">https://github.com/JuliusBrussee/caveman</guid>
+      <pubDate>Thu, 03 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：JuliusBrussee/caveman · GitHub 上一个名为“caveman”的开源项目引发关注，它是一个 Claude Code 技能（Skill），通过让 AI 以“原始人”式的简短语言进行交流，声称可以削减高达 65% 的 Token 消耗。该项目以幽默的方式回应了 AI 使用成本问题。对读者：对于高频使用 Claude Code 的开发者，可尝试此类技巧以降低 API 费用，但需注意输出质量可能受影响。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 发布 200+ WebGPU 内核，加速本地 AI</title>
+      <link>https://huggingface.co/blog/webgpu-kernels</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/webgpu-kernels</guid>
+      <pubDate>Tue, 01 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 推出 @huggingface/kernels 仓库，包含 200 多个 WebGPU 内核，用于本地 AI 推理。这些内核可从 Hub 加载，支持多设备部署，旨在为 WebAI 建立共享基础。对读者：前端开发者可探索 WebGPU 内核，提升浏览器端 AI 性能，降低对云端的依赖。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Lakr233/vphone-cli：开源虚拟手机命令行工具，今日获 341 星</title>
+      <link>https://github.com/Lakr233/vphone-cli</link>
+      <guid isPermaLink="true">https://github.com/Lakr233/vphone-cli</guid>
+      <pubDate>Sun, 30 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Lakr233/vphone-cli · vphone-cli 是一个开源命令行工具，用于管理虚拟手机环境，今日在 GitHub 获得 341 颗新星，总星标近万。该工具为开发者在命令行中创建、配置和操作虚拟设备提供了轻量方案，适合自动化测试与多环境模拟场景。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Crawl4AI：面向 LLM 的开源网页爬虫与抓取工具</title>
+      <link>https://github.com/unclecode/crawl4ai</link>
+      <guid isPermaLink="true">https://github.com/unclecode/crawl4ai</guid>
+      <pubDate>Sun, 30 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：unclecode/crawl4ai · Crawl4AI 是一个专为 LLM 应用设计的开源网页爬虫与抓取库，提供对 AI 友好的结构化输出，方便将网页内容直接用于模型训练或 RAG 流程。项目在 GitHub 上持续活跃，并设有 Discord 社区供开发者交流。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>awesome-mcp-servers：MCP 服务器资源合集持续更新</title>
+      <link>https://github.com/punkpeye/awesome-mcp-servers</link>
+      <guid isPermaLink="true">https://github.com/punkpeye/awesome-mcp-servers</guid>
+      <pubDate>Sun, 30 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：punkpeye/awesome-mcp-servers · punkpeye/awesome-mcp-servers 维护了一份精选的 MCP（Model Context Protocol）服务器列表，涵盖各类工具与数据源的接入实现。该仓库是开发者寻找现成 MCP 集成方案的重要参考入口，随生态发展持续更新。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Anthropic 发布新硬件标准，让 AI 智能体控制物理世界</title>
+      <link>https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/</guid>
+      <pubDate>Fri, 28 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Ars Technica AI · Anthropic 推出标准化驱动接口，旨在让设备与 AI 及彼此通信，使 AI 智能体能够控制物理设备。该标准有望推动智能体在物联网和自动化领域的应用。对读者：关注该标准，可能影响未来智能硬件开发。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 发布多向量嵌入模型训练与微调指南</title>
+      <link>https://huggingface.co/blog/train-multi-vector-encoder</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/train-multi-vector-encoder</guid>
+      <pubDate>Wed, 26 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布一篇详细指南，介绍如何使用 Sentence Transformers 库训练和微调多向量嵌入模型。文章涵盖了多向量模型的概念、微调原因、训练组件、数据集准备、损失函数选择等关键内容，并提供了从现有模型微调或从基础 Transformer 构建的完整路径。对读者：开发者可参考该指南，利用 Sentence Transformers 构建或微调多向量嵌入模型，以提升检索、RAG 等场景的语义理解能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>browser-use 开源项目：让网站对 AI 代理可访问</title>
+      <link>https://github.com/browser-use/browser-use</link>
+      <guid isPermaLink="true">https://github.com/browser-use/browser-use</guid>
+      <pubDate>Wed, 26 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：browser-use/browser-use · browser-use 是一个开源项目，旨在让网站对 AI 代理可访问，使 AI 能够轻松地自动化在线任务。该项目提供工具和接口，帮助开发者构建能够与网页交互的 AI 代理，实现表单填写、数据提取等自动化操作。对读者：开发者可探索 browser-use，将其集成到 AI 代理工作流中，实现更复杂的网页自动化任务，提升 Agent 的实用性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>IBM 发布 Granite 4.2 LLM 技术详解</title>
+      <link>https://huggingface.co/blog/ibm-granite/granite-4-2</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ibm-granite/granite-4-2</guid>
+      <pubDate>Tue, 25 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · IBM Granite 团队在 Hugging Face 发布博客文章，详细介绍了 Granite 4.2 系列大语言模型的构建过程。文章涵盖了模型架构、预训练方法、监督微调（SFT）的数据准备与质量控制、训练细节以及第二阶段 SFT 等内容，为开源社区提供了关于企业级 LLM 开发流程的深度技术参考。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenAI 开源终端编码智能体 Codex</title>
+      <link>https://github.com/openai/codex</link>
+      <guid isPermaLink="true">https://github.com/openai/codex</guid>
+      <pubDate>Mon, 24 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：openai/codex · OpenAI 在 GitHub 上开源了 Codex，一个运行在终端中的轻量级编码智能体。该项目旨在为开发者提供直接在命令行环境中进行 AI 辅助编程的工具，延续了 OpenAI 在开发者工具领域的布局。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Netflix 开源用于因果推理的智能代理工作流</title>
+      <link>https://www.infoq.cn/article/4h2jb2eOcBrP5AG5hLYt?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/4h2jb2eOcBrP5AG5hLYt?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Mon, 24 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · Netflix 开源了一个用于观察性因果推断（OCI）的智能代理工作流，可减轻因果分析中的繁琐工作。该工作流基于行为者-批评者循环，能评估因果关系、撰写报告并提出后续步骤建议，将高层次任务留给人类用户。Netflix 已发布轻量级独立版本供社区使用。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>VoltAgent/awesome-agent-skills：收录 1000+ 个 Agent 技能，兼容 Claude Code、Codex 等</title>
+      <link>https://github.com/VoltAgent/awesome-agent-skills</link>
+      <guid isPermaLink="true">https://github.com/VoltAgent/awesome-agent-skills</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VoltAgent/awesome-agent-skills · 开源项目 awesome-agent-skills 收录了来自官方开发团队和社区的 1000 多个 Agent 技能，兼容 Claude Code、Codex、Gemini CLI、Cursor 等多种工具。对读者：可从中寻找现成的 Agent 技能，快速增强你的 AI 助手能力，避免重复造轮子。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude 插件社区市场 claude-plugins-community</title>
+      <link>https://github.com/anthropics/claude-plugins-community</link>
+      <guid isPermaLink="true">https://github.com/anthropics/claude-plugins-community</guid>
+      <pubDate>Sun, 23 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：anthropics/claude-plugins-community · Anthropic 推出 claude-plugins-community，这是一个面向 Claude Cowork 和 Claude Code 的社区插件市场（只读镜像），开发者可通过指定链接提交插件。对读者：可关注该插件市场，扩展 Claude Code 的功能，提升开发效率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Sub2API：开源中转服务统一接入多模型订阅</title>
+      <link>https://github.com/Wei-Shaw/sub2api</link>
+      <guid isPermaLink="true">https://github.com/Wei-Shaw/sub2api</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Wei-Shaw/sub2api · Sub2API 是一个一站式开源中转服务，让 Claude、OpenAI、Gemini、Grok 等订阅统一接入，支持拼车共享以分摊成本，可在原生工具中无缝使用。该项目在 GitHub 上开源，为开发者提供多模型统一 API 入口。对读者：多模型订阅用户可考虑自建中转层，降低 API 调用成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>腾讯开源 AI 红队平台 AI-Infra-Guard</title>
+      <link>https://github.com/Tencent/AI-Infra-Guard</link>
+      <guid isPermaLink="true">https://github.com/Tencent/AI-Infra-Guard</guid>
+      <pubDate>Sat, 22 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Tencent/AI-Infra-Guard · 腾讯发布 AI-Infra-Guard，一个全栈 AI 红队测试平台，通过 Agent 扫描、技能扫描、MCP 扫描、AI 基础设施扫描和 LLM 越狱评估来保障 AI 生态系统安全。该项目在 GitHub 上开源，为 AI 安全测试提供系统化工具。对读者：AI 应用安全测试可引入该平台，覆盖 Agent 与 MCP 等新兴攻击面。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5-DSpark 草稿模型，推理速度提升高达 3.2 倍</title>
+      <link>https://huggingface.co/blog/LiquidAI/lfm25-dspark</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/LiquidAI/lfm25-dspark</guid>
+      <pubDate>Fri, 21 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 上发布了 LFM2.5 系列三个模型的 DSpark 草稿模型检查点。DSpark 是一种投机解码技术，通过增加少量内存开销换取显著的解码速度提升，在 CPU 和 GPU 上均可实现高达 3.2 倍的推理加速，同时保持模型输出质量不变。该系列包括 1.2B、2.6B 和 8B 等尺寸。对读者：需要低成本部署 LLM 的开发者可尝试此方案，以显著降低推理延迟。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenLogi：用 Rust 编写的 Logitech Options+ 本地替代品</title>
+      <link>https://github.com/AprilNEA/OpenLogi</link>
+      <guid isPermaLink="true">https://github.com/AprilNEA/OpenLogi</guid>
+      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：AprilNEA/OpenLogi · OpenLogi 是一个用 Rust 编写的原生、本地优先的 Logitech Options+ 替代品，支持通过 HID++ 重新映射按钮、调整 DPI 和 SmartShift。无需账户，无遥测，注重隐私。对于希望自定义罗技设备的用户来说，这是一个开源的选择。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>MoneyPrinterTurbo：一键生成高清短视频的 AI 工具</title>
+      <link>https://github.com/harry0703/MoneyPrinterTurbo</link>
+      <guid isPermaLink="true">https://github.com/harry0703/MoneyPrinterTurbo</guid>
+      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：harry0703/MoneyPrinterTurbo · MoneyPrinterTurbo 是一个开源项目，利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。它简化了视频制作流程，适合内容创作者和营销人员快速生成视频内容。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Agent Substrate：核心系统开源</title>
+      <link>https://github.com/agent-substrate/substrate</link>
+      <guid isPermaLink="true">https://github.com/agent-substrate/substrate</guid>
+      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：agent-substrate/substrate · Agent Substrate 的核心系统已在 GitHub 上开源。该项目旨在提供 AI 智能体的基础设施，可能包括调度、身份和生命周期管理等功能。对于构建复杂 AI 代理系统的开发者来说，这是一个值得关注的资源。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>PostHog：面向自驱产品的开发者工具平台</title>
+      <link>https://github.com/PostHog/posthog</link>
+      <guid isPermaLink="true">https://github.com/PostHog/posthog</guid>
+      <pubDate>Thu, 20 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：PostHog/posthog · PostHog 是一个开源平台，提供 AI 可观测性、分析、会话回放、功能开关、实验、错误跟踪和日志等工具，旨在捕获代理诊断问题所需的所有上下文。它帮助团队构建“自动驾驶”产品，通过数据驱动决策。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5 Q4_0 量化检查点，采用量化感知蒸馏</title>
+      <link>https://huggingface.co/blog/LiquidAI/qad</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/LiquidAI/qad</guid>
+      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 上发布了 LFM2.5 系列模型的 Q4_0 量化检查点，涵盖 230M 至 2.6B 参数版本。这些检查点通过量化感知蒸馏（QAD）技术训练，在保持 Q4_0 内存和速度的同时，显著降低了质量损失，使开发者能够在边缘设备上更高效地运行模型。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>IBM 研究：Agent 需要多少内存？能力决定剂量</title>
+      <link>https://huggingface.co/blog/ibm-research/altk-evolve-hmm</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ibm-research/altk-evolve-hmm</guid>
+      <pubDate>Wed, 19 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · IBM Research 发布文章探讨 AI Agent 的内存需求，核心观点是「剂量取决于能力」。文章指出学习发生在模型周围而非内部，并对比了三种不同配置。研究为 Agent 开发者在设计记忆系统时提供了参考，强调根据任务复杂度和所需能力来配置内存，而非一味追求大容量。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Sentence Transformers 支持多向量（后期交互）嵌入模型</title>
+      <link>https://huggingface.co/blog/multi-vector-encoder</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/multi-vector-encoder</guid>
+      <pubDate>Tue, 18 Aug 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布了关于在 Sentence Transformers 库中实现多向量（后期交互）嵌入模型的博客，该技术通过更精细的 token 级交互，有望提升检索与重排序任务的精度。这一更新为开发者提供了更强大的工具来构建高质量的语义搜索系统。对读者：若你的 RAG 或搜索系统对精度要求高，可尝试基于后期交互的嵌入模型，以权衡性能与效果。</description>
+      <category>开源</category>
+    </item>
+  </channel>
+</rss>
