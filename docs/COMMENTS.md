@@ -80,6 +80,8 @@ location ^~ /artalk/ {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
+    # 管理员登录后的 status / sites 靠这个头判断 is_login。不转发的话，密码校验成功也会立刻再弹出验证框。
+    proxy_set_header Authorization $http_authorization;
 }
 
 location = /api/comment-images {
