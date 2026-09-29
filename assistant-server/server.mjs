@@ -36,6 +36,7 @@ import {
 } from "./lib/retrieve.mjs";
 import { handleDecapAuth } from "./lib/decap-auth.mjs";
 import { handleCommentImage } from "./lib/comment-image.mjs";
+import { handleDecapImage } from "./lib/decap-image.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -937,6 +938,11 @@ const server = http.createServer(async (req, res) => {
       clientSecret: GITHUB_OAUTH_CLIENT_SECRET,
       publicOrigin: DECAP_PUBLIC_ORIGIN,
     });
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/decap-images") {
+    await handleDecapImage(req, res, { cors, clientIp: clientIp(req), send });
     return;
   }
 

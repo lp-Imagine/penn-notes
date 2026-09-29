@@ -49,16 +49,27 @@ location /api/decap-auth {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
 }
+
+location = /api/decap-images {
+    client_max_body_size 8m;
+    proxy_pass http://127.0.0.1:8787;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Authorization $http_authorization;
+}
 ```
 
-本地 `npm run dev` 已在 Vite 里把 `/api/decap-auth` 指到助手；需同时 `npm run assistant:dev`。本地登录时若仍用生产 `base_url`，弹窗会走线上 OAuth（线上助手配好即可）；纯本地 OAuth 则把 [`website/public/admin/config.yml`](../website/public/admin/config.yml) 的 `base_url` 临时改成 `http://localhost:5173`，并设 `DECAP_PUBLIC_ORIGIN=http://localhost:5173`。
+本地 `npm run dev` 已在 Vite 里把 `/api/decap-auth` 和 `/api/decap-images` 指到助手；需同时 `npm run assistant:dev`。本地登录时若仍用生产 `base_url`，弹窗会走线上 OAuth（线上助手配好即可）；纯本地 OAuth 则把 [`website/public/admin/config.yml`](../website/public/admin/config.yml) 的 `base_url` 临时改成 `http://localhost:5173`，并设 `DECAP_PUBLIC_ORIGIN=http://localhost:5173`。
 
 ## 写稿约定
 
 - 按栏目选 Collection（Web / UI / …），再选 **分组**（决定目录 `website/<section>/<group>/<slug>.md`）
 - `draft: true` 的稿不会进侧栏/首页（构建脚本会跳过）
 - 正文不必再手写 `# 标题`：站点会从 frontmatter 的 `title` / `date` / `tags` / `cover` 自动补文头（与线上笔记一致）
-- **封面 / 配图**：封面字段可直接**上传本地图**（进 `website/public/uploads/`）。嵌套 `path` 栏目须写 **`media_folder: /website/public/uploads`**（仓库根绝对路径）与 **`public_folder: uploads`（不要前导 `/`）**。若写成 `/uploads`，Decap 会把字段值当已上线 URL，草稿图尚未发布时封面裂图。构建期 `normalize-decap-media` 会把 `uploads/...` 收成 `/uploads/...`，再由 ingest（需 `COS_*`）收口到 CDN。
+- **封面 / 配图**：在封面或正文里选图。浏览器把原图交给 `/api/decap-images`，助手确认当前 GitHub 登录有仓库写权限后写入 COS `penn-notes/decap/`，字段里只留下 CDN 地址。原文件不会出现在 git。侧栏不再提供会把文件提交进仓库的媒体库。`media_folder` 仍留在配置里供 Decap 校验，上传不再使用它。
 - **删文章与 COS**：Decap 删稿不会立刻删 COS。下次构建的 `gc-cos-decap-images` 会扫描剩余笔记引用，只回收本站前缀下的孤儿对象：`penn-notes/decap/`（新）以及历史 `sync/decap/<12位hash>.ext`（严格命名）。**不会**动 `news/`、`sync/<sourceId>/` 或同桶其它项目路径。多文共用同一张图时会保留。可用 `COS_GC_DECAP=0` 关闭；本地可 `npm run cos:gc-decap -- --dry-run` 预览。
 - Commit 前缀为 `content:`，便于与 `blog-sync:` 区分
 - 不要手填 `source: ai-article`，否则会进 ingest 契约校验

@@ -62,8 +62,7 @@
     tip.className = "penn-admin-publish-tip";
     tip.setAttribute("role", "status");
     tip.innerHTML =
-      "<p><strong>发布提示</strong>：封面可选。本地图由 CI 收口到 COS；裂图时查 Actions 日志 " +
-      "<code>ensure-cos-note-images</code>。</p>" +
+      "<p><strong>发布提示</strong>：封面可选。配图直接上传到 COS，文章里写入 CDN 地址，不会进 Git。</p>" +
       '<button type="button" class="penn-admin-publish-tip-close" aria-label="关闭提示">×</button>';
     tip.querySelector("button").addEventListener("click", dismiss);
 

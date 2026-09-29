@@ -19,13 +19,13 @@ backend:
 # 本地联调可临时打开（需 npx decap-server）：
 # local_backend: true
 
-# 媒体库：相对仓库根（全局，无前导 /）。
-# 带 path 的栏目必须用「以 / 开头」的仓库根绝对 media_folder，否则会拼到条目目录下。
-# public_folder 不要写成 /uploads：Decap 会把字段值当「已上线绝对 URL」，
-# 草稿图尚未发布时 getAsset 不再走 blob，封面直接裂图。用相对 uploads，
-# 构建期 normalize-decap-media 再写成 /uploads/...。
+# 选图走自定义媒体库 penn-cos：浏览器把原图交给助手，助手写入 COS，
+# 字段里只留下 CDN 地址，原文件不会提交进 git。
+# media_folder / public_folder 仍要留着，Decap 配置校验需要；外部库不会再用它们存文件。
 media_folder: website/public/uploads
 public_folder: uploads
+media_library:
+  name: penn-cos
 
 slug:
   encoding: unicode

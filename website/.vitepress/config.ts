@@ -207,6 +207,10 @@ export default defineConfig({
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
         },
+        "/api/decap-images": {
+          target: ASSISTANT_DEV_TARGET,
+          changeOrigin: true,
+        },
         "/api/comment-images": {
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,

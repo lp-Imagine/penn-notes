@@ -420,6 +420,62 @@ await testAsync("small png stays original bytes", async () => {
   assert.ok(out.buf.equals(raw));
 });
 
+await testAsync("decap image upload rejects anonymous requests", async () => {
+  const { handleDecapImage } = await import("../assistant-server/lib/decap-image.mjs");
+  let status = 0;
+  let body = null;
+  await handleDecapImage(
+    { headers: {}, on() {} },
+    {},
+    {
+      cors: {},
+      clientIp: "decap-image-test",
+      send(_res, code, payload) {
+        status = code;
+        body = payload;
+      },
+    },
+  );
+  assert.equal(status, 401);
+  assert.equal(body.error, "unauthorized");
+});
+
+await testAsync("decap image key matches COS gc pattern", async () => {
+  const { decapImageObjectKey, assertRepoPush, clearDecapImageAuthCache } = await import(
+    "../assistant-server/lib/decap-image.mjs"
+  );
+  const key = decapImageObjectKey(Buffer.from("penn-notes-decap"), "webp");
+  assert.match(key, /^penn-notes\/decap\/[a-f0-9]{12}\.webp$/);
+
+  clearDecapImageAuthCache();
+  let calls = 0;
+  const fetchImpl = async () => {
+    calls += 1;
+    return {
+      ok: true,
+      status: 200,
+      json: async () => ({ permissions: { push: true } }),
+    };
+  };
+  await assertRepoPush("token-a", { fetchImpl, repo: "lp-Imagine/penn-notes" });
+  await assertRepoPush("token-a", { fetchImpl, repo: "lp-Imagine/penn-notes" });
+  assert.equal(calls, 1, "push check should be cached");
+
+  clearDecapImageAuthCache();
+  await assert.rejects(
+    () =>
+      assertRepoPush("token-b", {
+        fetchImpl: async () => ({
+          ok: true,
+          status: 200,
+          json: async () => ({ permissions: { push: false } }),
+        }),
+        repo: "lp-Imagine/penn-notes",
+      }),
+    (err) => err.status === 403,
+  );
+});
+
 await testAsync("wide jpeg is resized to webp", async () => {
   const sharp = (await import("sharp")).default;
   const raw = await sharp({
