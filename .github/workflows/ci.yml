@@ -121,7 +121,7 @@ jobs:
           cd /tmp
           rm -rf "$WORK"
           mkdir -p "$WORK"
-          # 浅克隆当前提交；含 public/news 配图时可能要数分钟～十几分钟，看进度别急着杀
+          # 浅克隆当前提交。镜像在国内有时只有几十 KiB/s，看进度别急着杀
           git clone --progress --depth 1 --branch "${GITHUB_REF_NAME}" \
             "$REPO_URL" "$WORK" \
             || git clone --progress --depth 50 "$REPO_URL" "$WORK"
