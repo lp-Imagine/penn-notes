@@ -11,10 +11,11 @@ import { fileURLToPath } from "node:url";
 import {
   cosConfigured,
   loadDotEnv,
-  uploadFile,
+  uploadBuffer,
   repoRoot,
 } from "./cos-upload.mjs";
 import { rewriteLocalImagePaths } from "./cos-rewrite.mjs";
+import { prepareImage } from "./prepare-image.mjs";
 
 const root = repoRoot;
 const publicSync = path.join(root, "website/public/sync");
@@ -62,7 +63,11 @@ export async function ensureCosSyncAssets({ quiet = false } = {}) {
   for (const full of images) {
     const key = path.relative(path.join(root, "website/public"), full).split(path.sep).join("/");
     try {
-      const url = await uploadFile(full, key);
+      const raw = fs.readFileSync(full);
+      const prepared = await prepareImage(raw, { filename: full, allowWebp: false });
+      const url = await uploadBuffer(key, prepared.buf, {
+        contentType: prepared.contentType,
+      });
       uploaded++;
       if (!quiet) console.log(`sync upload: ${key} → ${url}`);
     } catch (err) {

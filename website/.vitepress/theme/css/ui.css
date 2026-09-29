@@ -1105,7 +1105,7 @@ html.focus-mode:not(.dark) .vp-doc [class*="language-"] > span.lang {
   .reading-progress,
   .related-posts,
   .comments-section,
-  .giscus-host,
+  .artalk-host,
   .series-nav,
   .post-copyright,
   .post-outdate-notice {

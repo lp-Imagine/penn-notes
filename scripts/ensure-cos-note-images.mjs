@@ -16,11 +16,11 @@ import {
   cosConfigured,
   loadDotEnv,
   uploadBuffer,
-  uploadFile,
   isCdnUrl,
   cosConfig,
   repoRoot,
 } from "./cos-upload.mjs";
+import { prepareImage } from "./prepare-image.mjs";
 
 if (typeof globalThis.fetch !== "function") {
   globalThis.fetch = undiciFetch;
@@ -225,15 +225,17 @@ async function resolveOne(src, cache) {
         cache.set(src, null);
         return null;
       }
-      const ext = extFromPath(local);
-      const hash = crypto.createHash("sha1").update(buf).digest("hex").slice(0, 12);
-      const key = `penn-notes/decap/${hash}.${ext}`;
+      const prepared = await prepareImage(buf, { filename: local, allowWebp: true });
+      const hash = crypto.createHash("sha1").update(prepared.buf).digest("hex").slice(0, 12);
+      const key = `penn-notes/decap/${hash}.${prepared.ext}`;
       if (dryRun) {
         const url = `${cosConfig().cdnBase}/${key}`;
         cache.set(src, url);
         return url;
       }
-      const url = await uploadFile(local, key);
+      const url = await uploadBuffer(key, prepared.buf, {
+        contentType: prepared.contentType,
+      });
       cache.set(src, url);
       return url;
     } catch (err) {
@@ -250,15 +252,19 @@ async function resolveOne(src, cache) {
         cache.set(src, null);
         return null;
       }
-      const hash = crypto.createHash("sha1").update(got.buf).digest("hex").slice(0, 12);
-      const key = `penn-notes/decap/${hash}.${got.ext}`;
+      const prepared = await prepareImage(got.buf, {
+        filename: `remote.${got.ext}`,
+        allowWebp: true,
+      });
+      const hash = crypto.createHash("sha1").update(prepared.buf).digest("hex").slice(0, 12);
+      const key = `penn-notes/decap/${hash}.${prepared.ext}`;
       if (dryRun) {
         const url = `${cosConfig().cdnBase}/${key}`;
         cache.set(src, url);
         return url;
       }
-      const url = await uploadBuffer(key, got.buf, {
-        contentType: got.contentType,
+      const url = await uploadBuffer(key, prepared.buf, {
+        contentType: prepared.contentType,
       });
       cache.set(src, url);
       return url;

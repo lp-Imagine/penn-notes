@@ -246,3 +246,9 @@ website/public/img/legacy/**
 - （新建）`scripts/cos-upload.mjs`、`scripts/migrate-article-images-to-cos.mjs`、可选 `cos-health.mjs`  
 
 本文档：[`CDN-IMAGES-PLAN.md`](CDN-IMAGES-PLAN.md)。
+
+---
+
+## 10. 后续：评论改为 Artalk（已定，尚未开工）
+
+方案见 [`docs/COMMENTS.md`](docs/COMMENTS.md)。评论图用现有桶的 `penn-notes/comments/`。特别大的图在上传前压缩，和评论一起做，现在不单独实现。

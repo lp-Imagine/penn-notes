@@ -20,6 +20,7 @@ import {
   isCdnUrl,
   cosConfig,
 } from "./cos-upload.mjs";
+import { prepareImage } from "./prepare-image.mjs";
 
 if (typeof globalThis.fetch !== "function") {
   globalThis.fetch = undiciFetch;
@@ -288,10 +289,14 @@ async function downloadImage(url, month, cache) {
     if (ct.includes("png")) ext = "png";
     else if (ct.includes("webp")) ext = "webp";
     else if (ct.includes("gif")) ext = "gif";
+    const prepared = await prepareImage(buf, {
+      filename: `og.${ext}`,
+      allowWebp: true,
+    });
     const hash = crypto.createHash("sha1").update(url).digest("hex").slice(0, 12);
-    const objectKey = `news/${month}/${hash}.${ext}`;
-    const cdn = await uploadBuffer(objectKey, buf, {
-      contentType: ct.split(";")[0].trim() || undefined,
+    const objectKey = `news/${month}/${hash}.${prepared.ext}`;
+    const cdn = await uploadBuffer(objectKey, prepared.buf, {
+      contentType: prepared.contentType,
     });
     cache.set(key, cdn);
     return cdn;
@@ -321,8 +326,11 @@ async function migrateLocalNewsRef(src, cache) {
       cache.set(key, null);
       return null;
     }
+    const prepared = await prepareImage(buf, { filename: full, allowWebp: false });
     const objectKey = `news/${rel.split(path.sep).join("/")}`;
-    const cdn = await uploadBuffer(objectKey, buf);
+    const cdn = await uploadBuffer(objectKey, prepared.buf, {
+      contentType: prepared.contentType,
+    });
     cache.set(key, cdn);
     return cdn;
   } catch (err) {

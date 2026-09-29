@@ -1,133 +1,150 @@
 <script setup lang="ts">
 /**
- * giscus 评论（GitHub Discussions）
- * - 懒加载：滚到评论区附近再注入脚本
- * - SPA：首载后通过 postMessage 切换 term
- * - 主题：dark → dark_dimmed；focus → 暖色 CSS（jsDelivr，需 CORS）；其余 light
+ * Artalk 评论
+ * - 懒加载：滚到评论区附近再初始化
+ * - SPA：换页后 update pageKey 并 reload
+ * - 配色跟站点 CSS 变量（浅色 / 深色 / 专注模式）
+ * - 图片经 /api/comment-images 压缩后进 COS，不直传桶
  */
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import { useData, useRoute } from "vitepress";
+import { onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { useData, useRoute, withBase } from "vitepress";
 import { useI18n } from "./i18n";
 
-const { theme } = useData();
+const MAIN_ORIGIN = "https://penn-notes.draftly.cn";
+
+const { theme, site } = useData();
 const route = useRoute();
 const { t, uiLocale } = useI18n();
 const root = ref<HTMLElement | null>(null);
 const host = ref<HTMLElement | null>(null);
 
-const giscus = theme.value.giscus as
-  | { repo?: string; repoId?: string; category?: string; categoryId?: string }
-  | undefined;
+const artalkConf = theme.value.artalk as { server?: string; site?: string } | undefined;
+const enabled = Boolean(artalkConf?.server && artalkConf?.site);
 
-const enabled = Boolean(
-  giscus && giscus.repo && giscus.repoId && giscus.category && giscus.categoryId,
-);
+const ARTALK_VARS: Record<string, string> = {
+  "--at-color-font": "var(--text)",
+  "--at-color-deep": "var(--text)",
+  "--at-color-sub": "var(--text-3)",
+  "--at-color-grey": "var(--text-3)",
+  "--at-color-meta": "var(--text-3)",
+  "--at-color-border": "var(--border)",
+  "--at-color-light": "var(--accent)",
+  "--at-color-bg": "var(--surface)",
+  "--at-color-bg-transl": "var(--surface)",
+  "--at-color-bg-grey": "var(--bg)",
+  "--at-color-bg-grey-transl": "var(--bg)",
+  "--at-color-main": "var(--accent)",
+  "--at-color-gradient": "linear-gradient(180deg, transparent, var(--surface))",
+};
 
-const giscusLang = computed(() => {
+function paintArtalk(el: HTMLElement) {
+  for (const [key, value] of Object.entries(ARTALK_VARS)) {
+    el.style.setProperty(key, value);
+  }
+}
+
+type ArtalkInstance = {
+  update: (conf: Record<string, unknown>) => void;
+  reload: () => void;
+  destroy: () => void;
+};
+
+let artalk: ArtalkInstance | undefined;
+let loadObserver: IntersectionObserver | undefined;
+let zhTWLocale: unknown;
+
+function pageKey() {
+  const base = site.value.base || "/";
+  let path = decodeURI(window.location.pathname);
+  if (base !== "/" && path.startsWith(base)) {
+    path = "/" + path.slice(base.length).replace(/^\/+/, "");
+  }
+  path = path.replace(/\/$/, "") || "/";
+  return path;
+}
+
+function commentImageEndpoint() {
+  const hostName = window.location.hostname;
+  if (
+    hostName === "penn-notes.draftly.cn" ||
+    hostName === "localhost" ||
+    hostName === "127.0.0.1"
+  ) {
+    return "/api/comment-images";
+  }
+  return `${MAIN_ORIGIN}/api/comment-images`;
+}
+
+async function artalkLocale() {
   const ui = uiLocale.value;
   if (ui === "en") return "en";
-  if (ui === "zh-TW") return "zh-TW";
-  return "zh-CN";
-});
-
-let themeObserver: MutationObserver | undefined;
-let loadObserver: IntersectionObserver | undefined;
-let scriptMounted = false;
-let giscusReady = false;
-
-/** 专注模式暖色主题 CSS（giscus iframe 跨域拉取，必须带 CORS） */
-const GISCUS_FOCUS_THEME_CDN =
-  "https://cdn.jsdelivr.net/gh/lp-Imagine/penn-notes@master/website/public/giscus-focus.css";
-
-function giscusThemeName() {
-  const html = document.documentElement;
-  if (html.classList.contains("dark")) return "dark_dimmed";
-  // 专注模式：暖色羊皮纸主题。默认走 jsDelivr（自带 CORS）；
-  // 宝塔若给同源 /giscus-focus.css 加了 Access-Control-Allow-Origin，可改回同源 URL。
-  if (html.classList.contains("focus-mode")) {
-    return GISCUS_FOCUS_THEME_CDN;
+  if (ui === "zh-TW") {
+    if (!zhTWLocale) {
+      const mod = await import("artalk/i18n/zh-TW");
+      zhTWLocale = (mod as { default?: unknown }).default ?? mod;
+    }
+    return zhTWLocale;
   }
-  return "light";
+  return "zh-CN";
 }
 
-/** 与 data-mapping="pathname" 一致 */
-function discussionTerm() {
-  const path = decodeURI(window.location.pathname).replace(/\/$/, "");
-  return path || "/";
+async function uploadCommentImage(file: File) {
+  const res = await fetch(commentImageEndpoint(), {
+    method: "POST",
+    headers: { "Content-Type": file.type || "application/octet-stream" },
+    body: file,
+  });
+  let data: { url?: string; message?: string } = {};
+  try {
+    data = await res.json();
+  } catch {
+    data = {};
+  }
+  if (!res.ok || !data.url) {
+    throw new Error(data.message || "图片上传失败");
+  }
+  return data.url;
 }
 
-function getIframe() {
-  return host.value?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
-}
-
-function sendGiscusMessage(message: Record<string, unknown>) {
-  getIframe()?.contentWindow?.postMessage({ giscus: message }, "https://giscus.app");
-}
-
-function clearHost() {
-  const el = host.value;
-  if (!el) return;
-  el.innerHTML = "";
-  const mount = document.createElement("div");
-  mount.className = "giscus";
-  el.appendChild(mount);
-}
-
-function mountGiscusScript() {
-  if (!enabled || !host.value || scriptMounted) return;
-  scriptMounted = true;
-  giscusReady = false;
-  clearHost();
-
-  const script = document.createElement("script");
-  script.src = "https://giscus.app/client.js";
-  script.setAttribute("data-repo", giscus!.repo!);
-  script.setAttribute("data-repo-id", giscus!.repoId!);
-  script.setAttribute("data-category", giscus!.category!);
-  script.setAttribute("data-category-id", giscus!.categoryId!);
-  script.setAttribute("data-mapping", "pathname");
-  script.setAttribute("data-strict", "0");
-  script.setAttribute("data-reactions-enabled", "1");
-  script.setAttribute("data-emit-metadata", "0");
-  script.setAttribute("data-input-position", "bottom");
-  script.setAttribute("data-theme", giscusThemeName());
-  script.setAttribute("data-lang", giscusLang.value);
-  script.setAttribute("crossorigin", "anonymous");
-  script.async = true;
-  host.value.appendChild(script);
-}
-
-function syncGiscusTheme() {
-  if (!giscusReady) return;
-  sendGiscusMessage({ setConfig: { theme: giscusThemeName() } });
-}
-
-function syncGiscusTerm() {
-  if (!giscusReady) return;
-  sendGiscusMessage({ setConfig: { term: discussionTerm() } });
-}
-
-function syncGiscusLang() {
-  if (!giscusReady) return;
-  sendGiscusMessage({ setConfig: { lang: giscusLang.value } });
-}
-
-function onGiscusMessage(event: MessageEvent) {
-  if (event.origin !== "https://giscus.app" || !event.data?.giscus) return;
-  giscusReady = true;
-  // 首载已由 script data-* 带好 term/theme，勿再 setConfig，避免重复打 /api/discussions
+async function mountArtalk() {
+  if (!enabled || !host.value || artalk) return;
+  const [{ default: Artalk }] = await Promise.all([
+    import("artalk"),
+    import("artalk/Artalk.css"),
+  ]);
+  const locale = await artalkLocale();
+  artalk = Artalk.init({
+    el: host.value,
+    pageKey: pageKey(),
+    pageTitle: document.title,
+    server: artalkConf!.server!,
+    site: artalkConf!.site!,
+    locale: locale as string,
+    darkMode: false,
+    preferRemoteConf: false,
+    versionCheck: false,
+    uaBadge: true,
+    imgUpload: true,
+    imgUploader: uploadCommentImage,
+    emoticons: withBase("/vendor/artalk/emoticons.json"),
+    gravatar: {
+      mirror: "https://weavatar.com/avatar/",
+      params: "sha256=1&d=mp&s=240",
+    },
+  });
+  paintArtalk(host.value);
 }
 
 function setupLazyLoad() {
   if (!enabled || !root.value || typeof IntersectionObserver === "undefined") {
-    mountGiscusScript();
+    void mountArtalk();
     return;
   }
   loadObserver?.disconnect();
   loadObserver = new IntersectionObserver(
     (entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
-      mountGiscusScript();
+      void mountArtalk();
       loadObserver?.disconnect();
       loadObserver = undefined;
     },
@@ -138,35 +155,34 @@ function setupLazyLoad() {
 
 onMounted(() => {
   if (!enabled) return;
-  window.addEventListener("message", onGiscusMessage);
   setupLazyLoad();
-  themeObserver = new MutationObserver(() => syncGiscusTheme());
-  themeObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
 });
 
 watch(
   () => route.path,
   () => {
-    syncGiscusTerm();
+    if (!artalk) return;
+    artalk.update({
+      pageKey: pageKey(),
+      pageTitle: document.title,
+    });
+    artalk.reload();
   },
 );
 
 watch(
-  () => giscusLang.value,
-  () => {
-    syncGiscusLang();
+  () => uiLocale.value,
+  async () => {
+    if (!artalk) return;
+    artalk.update({ locale: await artalkLocale() });
   },
 );
 
 onBeforeUnmount(() => {
-  window.removeEventListener("message", onGiscusMessage);
-  themeObserver?.disconnect();
-  themeObserver = undefined;
   loadObserver?.disconnect();
   loadObserver = undefined;
+  artalk?.destroy();
+  artalk = undefined;
 });
 </script>
 
@@ -175,13 +191,9 @@ onBeforeUnmount(() => {
     <div class="comments-panel">
       <header class="comments-head">
         <h2 class="comments-title">{{ t('comments').title }}</h2>
-        <p class="comments-hint">
-          {{ t('comments').hint }}
-        </p>
+        <p class="comments-hint">{{ t('comments').hint }}</p>
       </header>
-      <div ref="host" class="giscus-host">
-        <div class="giscus" />
-      </div>
+      <div ref="host" class="artalk-host" />
     </div>
   </section>
 </template>
@@ -220,17 +232,8 @@ onBeforeUnmount(() => {
   color: var(--text-3);
 }
 
-.giscus-host {
+.artalk-host {
   min-height: 80px;
-  margin: 0 -4px;
-}
-
-.giscus-host :deep(iframe.giscus-frame) {
-  display: block;
-  width: 100%;
-  min-height: 132px;
-  border: 0;
-  color-scheme: light dark;
 }
 
 .dark .comments-panel {
@@ -246,11 +249,34 @@ onBeforeUnmount(() => {
   box-shadow: 0 2px 12px rgba(90, 70, 30, 0.07);
 }
 
-:global(html.focus-mode:not(.dark)) .giscus-host {
-  margin: 0;
+:global(.atk-layer-wrap) {
+  --at-color-font: var(--text);
+  --at-color-deep: var(--text);
+  --at-color-sub: var(--text-3);
+  --at-color-meta: var(--text-3);
+  --at-color-border: var(--border);
+  --at-color-bg: var(--surface);
+  --at-color-bg-transl: var(--surface);
+  --at-color-bg-grey: var(--bg);
+  --at-color-main: var(--accent);
 }
+</style>
 
-:global(html.focus-mode:not(.dark)) .giscus-host :deep(iframe.giscus-frame) {
-  color-scheme: light;
+<style>
+/* Artalk 把 .artalk 加在挂载节点上，变量必须打在这个节点，且压过组件自带的浅色默认值 */
+.comments-section .artalk {
+  --at-color-font: var(--text);
+  --at-color-deep: var(--text);
+  --at-color-sub: var(--text-3);
+  --at-color-grey: var(--text-3);
+  --at-color-meta: var(--text-3);
+  --at-color-border: var(--border);
+  --at-color-light: var(--accent);
+  --at-color-bg: var(--surface);
+  --at-color-bg-transl: var(--surface);
+  --at-color-bg-grey: var(--bg);
+  --at-color-bg-grey-transl: var(--bg);
+  --at-color-main: var(--accent);
+  --at-color-gradient: linear-gradient(180deg, transparent, var(--surface));
 }
 </style>

@@ -24,7 +24,7 @@ const zhCN: MessageTree = {
   },
   comments: {
     title: "评论",
-    hint: "使用 GitHub 账号登录后即可留言；需能正常访问 GitHub。",
+    hint: "填写昵称和邮箱即可留言，无需登录。",
     ariaLabel: "评论",
   },
   summary: {
@@ -134,7 +134,7 @@ const zhTW: MessageTree = {
   },
   comments: {
     title: "評論",
-    hint: "使用 GitHub 帳號登入後即可留言；需能正常存取 GitHub。",
+    hint: "填寫暱稱和郵箱即可留言，無需登入。",
     ariaLabel: "評論",
   },
   summary: {
@@ -244,7 +244,7 @@ const en: MessageTree = {
   },
   comments: {
     title: "Comments",
-    hint: "Sign in with GitHub to leave a comment. GitHub access is required.",
+    hint: "Leave a comment with a nickname and email. No sign-in required.",
     ariaLabel: "Comments",
   },
   summary: {

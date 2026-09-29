@@ -101,14 +101,7 @@ sudo ./svc.sh install && sudo ./svc.sh start
 
 DNS：`penn-notes.draftly.cn` A → 轻量云；Pages 不要绑自定义域名。Pages Source：`gh-pages` / `/ (root)`。
 
-**评论（giscus）专注模式主题**：giscus iframe 会跨域拉取自定义 CSS，同源 `/giscus-focus.css` 必须带 CORS，否则变量全空、文字几乎看不见。当前默认走 jsDelivr CDN；若改回同源，宝塔 Nginx 建议加：
-
-```nginx
-location = /giscus-focus.css {
-    add_header Access-Control-Allow-Origin "*" always;
-    add_header Access-Control-Allow-Methods "GET, OPTIONS" always;
-}
-```
+**评论（Artalk）**：文章页使用自建 Artalk，方案与宝塔上要加的进程、反代见 [docs/COMMENTS.md](docs/COMMENTS.md)。Artalk 进程和 `/api/comment-images` 反代配好之前，评论区会加载失败。
 
 > Self-hosted runner 权限大：仓库宜私有，或只信任可推送协作者。
 

@@ -390,6 +390,56 @@ test("site hub list includes topics/collect/books", () => {
   assert.ok(out.includes("/books/"), "should push books hub");
 });
 
+// ── image prepare ──
+console.log("\nimage prepare:");
+
+const { prepareImage, PREPARE_MAX_EDGE } = await import("./prepare-image.mjs");
+
+async function testAsync(name, fn) {
+  try {
+    await fn();
+    passed++;
+    console.log(`  ✓ ${name}`);
+  } catch (err) {
+    failed++;
+    console.error(`  ✗ ${name}`);
+    console.error(`    ${err.message}`);
+  }
+}
+
+await testAsync("small png stays original bytes", async () => {
+  const sharp = (await import("sharp")).default;
+  const raw = await sharp({
+    create: { width: 32, height: 24, channels: 3, background: { r: 20, g: 40, b: 80 } },
+  })
+    .png()
+    .toBuffer();
+  const out = await prepareImage(raw, { filename: "tiny.png", allowWebp: true });
+  assert.equal(out.changed, false);
+  assert.equal(out.ext, "png");
+  assert.ok(out.buf.equals(raw));
+});
+
+await testAsync("wide jpeg is resized to webp", async () => {
+  const sharp = (await import("sharp")).default;
+  const raw = await sharp({
+    create: {
+      width: PREPARE_MAX_EDGE + 400,
+      height: 200,
+      channels: 3,
+      background: { r: 180, g: 20, b: 20 },
+    },
+  })
+    .jpeg()
+    .toBuffer();
+  const out = await prepareImage(raw, { filename: "wide.jpg", allowWebp: true });
+  assert.equal(out.changed, true);
+  assert.equal(out.ext, "webp");
+  const meta = await sharp(out.buf).metadata();
+  assert.ok((meta.width || 0) <= PREPARE_MAX_EDGE);
+  assert.ok((meta.height || 0) <= PREPARE_MAX_EDGE);
+});
+
 // ── Summary ──
 console.log(`\n${passed} passed, ${failed} failed\n`);
 if (failed > 0) process.exit(1);

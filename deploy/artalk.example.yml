@@ -1,0 +1,48 @@
+# 复制到服务器 /opt/artalk/artalk.yml 后填写密钥，不要提交真实密钥。
+# 前端静态资源由站点构建带上；这里只跑 API（Nginx 把 /artalk/ 转到本进程）。
+
+host: 127.0.0.1
+port: 23366
+locale: zh-CN
+timezone: Asia/Shanghai
+site_default: Penn Notes
+# 自行生成随机字符串
+app_key: ""
+
+trusted_domains:
+  - https://penn-notes.draftly.cn
+  - https://lp-Imagine.github.io
+
+http:
+  proxy_header: X-Real-IP
+
+db:
+  type: sqlite
+  file: ./data/artalk.db
+
+ip_region:
+  enabled: true
+  db_path: ./data/ip2region.xdb
+  precision: province
+
+auth:
+  enabled: false
+
+moderator:
+  pending_default: false
+  tencent:
+    enabled: true
+    secret_id: ""
+    secret_key: ""
+    region: ap-guangzhou
+
+img_upload:
+  enabled: true
+  max_size: 8
+
+frontend:
+  uaBadge: true
+  emoticons: https://penn-notes.draftly.cn/vendor/artalk/emoticons.json
+  gravatar:
+    mirror: https://weavatar.com/avatar/
+    params: sha256=1&d=mp&s=240

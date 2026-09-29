@@ -20,9 +20,10 @@ import { fileURLToPath } from "node:url";
 import {
   loadDotEnv,
   requireCosConfig,
-  uploadFile,
+  uploadBuffer,
   repoRoot,
 } from "./cos-upload.mjs";
+import { prepareImage } from "./prepare-image.mjs";
 import { rewriteLocalImagePaths } from "./cos-rewrite.mjs";
 
 const root = repoRoot;
@@ -80,7 +81,11 @@ async function uploadTree(absRoot) {
       continue;
     }
     try {
-      const url = await uploadFile(full, key);
+      const raw = fs.readFileSync(full);
+      const prepared = await prepareImage(raw, { filename: full, allowWebp: false });
+      const url = await uploadBuffer(key, prepared.buf, {
+        contentType: prepared.contentType,
+      });
       ok++;
       if (ok % 20 === 0) console.log(`uploaded ${ok}/${files.length}…`);
       else if (process.env.COS_MIGRATE_VERBOSE) {

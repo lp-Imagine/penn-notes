@@ -131,11 +131,9 @@ const sharedThemeExtras = {
     myhkwPosition:
       (musicDefaults as { myhkwPosition?: "l" | "r" }).myhkwPosition === "r" ? "r" : "l",
   },
-  giscus: {
-    repo: "lp-Imagine/penn-notes",
-    repoId: "R_kgDOH7Mqqg",
-    category: "Comments",
-    categoryId: "DIC_kwDOH7Mqqs4DDyOt",
+  artalk: {
+    server: "https://penn-notes.draftly.cn/artalk",
+    site: "Penn Notes",
   },
 };
 
@@ -206,6 +204,10 @@ export default defineConfig({
           changeOrigin: true,
         },
         "/api/decap-auth": {
+          target: ASSISTANT_DEV_TARGET,
+          changeOrigin: true,
+        },
+        "/api/comment-images": {
           target: ASSISTANT_DEV_TARGET,
           changeOrigin: true,
         },
