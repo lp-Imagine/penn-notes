@@ -56,6 +56,8 @@ const ASSISTANT_ENABLED =
   process.env.ASSISTANT_ENABLED === "true" ||
   (!IS_PAGES_BACKUP && process.env.ASSISTANT_ENABLED !== "false");
 const ASSISTANT_DEV_TARGET = `http://${process.env.ASSISTANT_HOST || "127.0.0.1"}:${process.env.ASSISTANT_PORT || "8787"}`;
+const ARTALK_ORIGIN = "https://penn-notes.draftly.cn";
+const isVitePressDev = process.argv.includes("dev");
 
 const MUSIC_ENABLED =
   process.env.MUSIC_ENABLED === "true" ||
@@ -132,7 +134,8 @@ const sharedThemeExtras = {
       (musicDefaults as { myhkwPosition?: "l" | "r" }).myhkwPosition === "r" ? "r" : "l",
   },
   artalk: {
-    server: "https://penn-notes.draftly.cn/artalk",
+    // 本地走 Vite 反代，避免浏览器跨域拦截 https://penn-notes.draftly.cn/artalk
+    server: isVitePressDev ? "/artalk" : `${ARTALK_ORIGIN}/artalk`,
     site: "Penn Notes",
   },
 };
@@ -213,6 +216,10 @@ export default defineConfig({
         },
         "/api/comment-images": {
           target: ASSISTANT_DEV_TARGET,
+          changeOrigin: true,
+        },
+        "/artalk": {
+          target: ARTALK_ORIGIN,
           changeOrigin: true,
         },
         "/api/meting": {
