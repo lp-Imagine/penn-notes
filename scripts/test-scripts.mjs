@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
+import { artalkApiUrlWithToken } from "../website/.vitepress/theme/artalk-auth.mjs";
 import {
   pennBase,
   pennCanonicalPath,
@@ -494,6 +495,27 @@ await testAsync("wide jpeg is resized to webp", async () => {
   const meta = await sharp(out.buf).metadata();
   assert.ok((meta.width || 0) <= PREPARE_MAX_EDGE);
   assert.ok((meta.height || 0) <= PREPARE_MAX_EDGE);
+});
+
+test("artalk admin token is copied onto same-origin api urls", () => {
+  const page = "https://penn-notes.draftly.cn/notes/a";
+  const next = artalkApiUrlWithToken(
+    "https://penn-notes.draftly.cn/artalk/api/v2/user/status?name=penn&email=a%40b.c",
+    "Bearer eyJ.token.sig",
+    page,
+  );
+  assert.ok(next);
+  const url = new URL(next);
+  assert.equal(url.searchParams.get("token"), "eyJ.token.sig");
+  assert.equal(url.searchParams.get("name"), "penn");
+  assert.equal(
+    artalkApiUrlWithToken("https://penn-notes.draftly.cn/artalk/api/v2/conf", "", page),
+    null,
+  );
+  assert.equal(
+    artalkApiUrlWithToken("https://example.com/artalk/api/v2/sites", "Bearer eyJ.token.sig", page),
+    null,
+  );
 });
 
 // ── Summary ──

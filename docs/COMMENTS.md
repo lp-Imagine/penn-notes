@@ -80,7 +80,6 @@ location ^~ /artalk/ {
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
-    # 管理员登录后的 status / sites 靠这个头判断 is_login。不转发的话，密码校验成功也会立刻再弹出验证框。
     proxy_set_header Authorization $http_authorization;
 }
 
@@ -95,6 +94,8 @@ location = /api/comment-images {
 ```
 
 `http.proxy_header: X-Real-IP` 必须配上，否则属地和审核会把访客看成本机。改完 Nginx 后重启助手进程，让评论图接口生效。
+
+`/artalk/` 里的 `Authorization` 如果到不了 Artalk，密码校验成功后管理接口仍会返回「需要管理员权限」，验证框会马上再弹出来。站点会把这个 Bearer 抄进 `/artalk/api/` 的 `token` 查询参数（Artalk 同样认），控制中心的 iframe 由 `artalk-auth-sw.js` 补上。
 
 ### 3. 腾讯云
 

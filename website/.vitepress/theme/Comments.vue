@@ -9,6 +9,7 @@
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useData, useRoute, withBase } from "vitepress";
 import { useI18n } from "./i18n";
+import { artalkApiUrlWithToken } from "./artalk-auth.mjs";
 
 const MAIN_ORIGIN = "https://penn-notes.draftly.cn";
 
@@ -106,8 +107,57 @@ async function uploadCommentImage(file: File) {
   return data.url;
 }
 
+function installArtalkTokenQuery() {
+  const hostName = window.location.hostname;
+  if (hostName !== "penn-notes.draftly.cn") return;
+  const marked = window as Window & { __pennArtalkTokenQuery?: boolean };
+  if (marked.__pennArtalkTokenQuery) return;
+  marked.__pennArtalkTokenQuery = true;
+  const orig = window.fetch.bind(window);
+  window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+    try {
+      const raw = input instanceof Request ? input.url : String(input);
+      const headers = new Headers(init?.headers || (input instanceof Request ? input.headers : undefined));
+      const next = artalkApiUrlWithToken(raw, headers.get("Authorization") || "", window.location.href);
+      if (next) {
+        if (typeof input === "string" || input instanceof URL) return orig(next, init);
+        return orig(new Request(next, input), init);
+      }
+    } catch {
+      /* 补丁失败就走原来的请求 */
+    }
+    return orig(input as RequestInfo, init);
+  };
+}
+
+async function ensureArtalkAuthBridge() {
+  installArtalkTokenQuery();
+  if (window.location.hostname !== "penn-notes.draftly.cn") return;
+  if (!("serviceWorker" in navigator)) return;
+  try {
+    await navigator.serviceWorker.register(withBase("/artalk-auth-sw.js"));
+    await navigator.serviceWorker.ready;
+    if (navigator.serviceWorker.controller) return;
+    await new Promise<void>((resolve) => {
+      const timer = window.setTimeout(resolve, 1500);
+      navigator.serviceWorker.addEventListener(
+        "controllerchange",
+        () => {
+          window.clearTimeout(timer);
+          resolve();
+        },
+        { once: true },
+      );
+    });
+  } catch {
+    /* 控制中心 iframe 仍依赖 service worker；页面上的 fetch 补丁已经盖住密码框 */
+  }
+}
+
 async function mountArtalk() {
   if (!enabled || !host.value || artalk) return;
+  await ensureArtalkAuthBridge();
+  if (!host.value || artalk) return;
   const [{ default: Artalk }] = await Promise.all([
     import("artalk"),
     import("artalk/Artalk.css"),
