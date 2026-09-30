@@ -58,7 +58,7 @@ CDN：`https://img.penn-notes.draftly.cn`。文章回收脚本不扫这个前缀
 
 ### 1. 进程
 
-单独跑 Artalk，工作目录例如 `/opt/artalk`，不要放进会随 rsync 覆盖的 wwwroot。把 [`deploy/artalk.example.yml`](../deploy/artalk.example.yml) 复制为 `artalk.yml`，填上 `app_key` 和文本内容安全密钥。
+单独跑 Artalk，工作目录例如 `/opt/artalk`，不要放进会随 rsync 覆盖的 wwwroot。把 [`deploy/artalk.example.yml`](../deploy/artalk.example.yml) 复制为 `artalk.yml`，填上 `app_key` 和文本内容安全密钥。`login_timeout` 必须是正数（示例为 3 天）；缺了这项时 token 有效期是 0，登录接口会成功，紧接着的 `sites` 仍返回「需要管理员权限」。
 
 `ip2region.xdb` 放到 `/opt/artalk/data/`，不进 git。第一次启动创建管理员账号：
 
