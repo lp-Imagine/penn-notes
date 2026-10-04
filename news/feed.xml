@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 04 Oct 2026 02:29:38 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>苹果收紧 macOS 完全磁盘访问权限，应对 AI Agent 风险</title>
+      <link>https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 苹果宣布为 macOS 的「完全磁盘访问」增加新管控，理由是能力越来越强的 AI Agent 让应用广泛读取用户文件、消息、邮件与浏览历史的风险显著上升。新机制要求用户以非常明确的动作才能授予该权限。对读者：桌面端 Agent 产品需提前适配权限弹窗与降级路径，否则可能在上线后遭遇大面积功能失效。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Muse 会为你的亲友生成详细画像</title>
+      <link>https://www.wired.com/story/muse-creates-detailed-profiles-of-all-your-friends-and-family/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/muse-creates-detailed-profiles-of-all-your-friends-and-family/</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · WIRED 报道称，Meta 的 AI Agent Muse 已被数百万用户下载，但它会为用户的亲友建立详细个人档案，便利背后是明确的隐私代价。报道将其与苹果收紧磁盘权限的举措放在同一背景下观察。对读者：涉及通讯录、聊天记录读取的 Agent 功能，建议在隐私政策中显式披露画像用途并给出关闭开关。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 安全透明度负责人离职并公开示警</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1004408/openai-safety-quits-sounding-the-alarm</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1004408/openai-safety-quits-sounding-the-alarm</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · David Robinson 此前负责为 OpenAI 每次重大模型发布撰写安全报告，本周他辞职并在《大西洋月刊》撰文，称行业文化「已经坏掉」，问题不是加几条新规就能解决。对读者：把模型供应商的安全团队稳定性纳入采购尽调清单，人员动荡往往先于合规风险暴露。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 安全团队持续震荡：负责人离职、三人因泄密被开</title>
+      <link>https://www.qbitai.com/2026/10/501368.html</link>
+      <guid isPermaLink="true">https://www.qbitai.com/2026/10/501368.html</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：量子位 · 量子位报道，OpenAI 安全透明度负责人 David Robinson 离职，同时有三名员工因泄密被解雇，安全团队接连出现人事变动。Robinson 团队原本负责评估、红队测试与模型部署决策，并为每次发布撰写 system card。对读者：关注后续 system card 的署名与质量变化，这是判断模型安全披露是否缩水的直接信号。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 推出企业向 Agent 平台 Dots，可代订晚餐</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 本周发布 Agent 平台 Dots，定位偏工作场景，形态是带拟人化头像、可自定义名字的小助手，目前每人一个，未来支持多个。它像办公软件，但也能处理订餐等生活事务。对读者：评估企业 Agent 平台时，重点看它与现有办公系统的权限打通，而非头像可爱程度。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>英伟达发布 DGX Spark 64GB：1 PetaFLOP 桌面级本地 AI 主机</title>
+      <link>https://news.google.com/rss/articles/CBMi6wFBVV95cUxNOTQ1c0x4WnpyQzBCRVBuZ1liOC1jMnZVdDBHVWRCa2tWdEw4Zk92QWlQX01DbmdrLWQ2TVlveXN1aHBDSTNzSWwwNmEwQndYejA1dVdQeWk5SnRQUTZuSV94Sm1KbEU1RG1FXzNKNmF6b3d6X3pfUTJwUmtocUVWVms0VUpULTRGZFFpUXcyZkJ3b2Y1VWxDSzFTVXlaNnAtTXpKc3daS0E3M3FYZmpWVzV5TWswcm4xLW1VS3NDNkdwTXJJS01BODNxbXpCQ3puY3JLZHJ6UVdQcHRzMXRwTFJEWWY2LVlFMUQw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi6wFBVV95cUxNOTQ1c0x4WnpyQzBCRVBuZ1liOC1jMnZVdDBHVWRCa2tWdEw4Zk92QWlQX01DbmdrLWQ2TVlveXN1aHBDSTNzSWwwNmEwQndYejA1dVdQeWk5SnRQUTZuSV94Sm1KbEU1RG1FXzNKNmF6b3d6X3pfUTJwUmtocUVWVms0VUpULTRGZFFpUXcyZkJ3b2Y1VWxDSzFTVXlaNnAtTXpKc3daS0E3M3FYZmpWVzV5TWswcm4xLW1VS3NDNkdwTXJJS01BODNxbXpCQ3puY3JLZHJ6UVdQcHRzMXRwTFJEWWY2LVlFMUQw?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 英伟达宣布 DGX Spark 64GB，采用 Grace Blackwell 架构，提供约 1 PetaFLOP 算力，面向本地 AI Agent、模型微调与推理场景，定位为桌面级设备。对读者：若团队有数据不出内网的硬性要求，可把这类设备纳入本地推理与微调的选型对比，重点核算显存与并发。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Prime Intellect 推出 Prime Inference：面向前沿开源模型的托管推理</title>
+      <link>https://news.google.com/rss/articles/CBMi1AFBVV95cUxPMEpacVZva3FJNjBvenE2RUdUd1NkRFpubkJQT09oS1RwU2NJbEFoOGZhMmQ1cUYxaUt5SXp6dWdkSVl3TGpmcjNPWHVoS29IdXQ2c0hDMld6dDk2UkpLNmxXTEdqdDdqM0gxYkJQbFVQdDJzcTVlaFJCNVNKRjc2U1pEV1F1c0JvenhrUGhpUEJVd1gyV2FNdG8wY185SE9VSHJjOUZXRWJwbmNyZGxhMzMwdWhzVFZOMndiTlpGLWpqaUtqekhMNmNvak44d284OGlTTA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1AFBVV95cUxPMEpacVZva3FJNjBvenE2RUdUd1NkRFpubkJQT09oS1RwU2NJbEFoOGZhMmQ1cUYxaUt5SXp6dWdkSVl3TGpmcjNPWHVoS29IdXQ2c0hDMld6dDk2UkpLNmxXTEdqdDdqM0gxYkJQbFVQdDJzcTVlaFJCNVNKRjc2U1pEV1F1c0JvenhrUGhpUEJVd1gyV2FNdG8wY185SE9VSHJjOUZXRWJwbmNyZGxhMzMwdWhzVFZOMndiTlpGLWpqaUtqekhMNmNvak44d284OGlTTA?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Prime Intellect 发布 Prime Inference，为前沿开源模型提供无服务器与预留两种推理服务形态，方便开发者按需或按容量调用开源权重模型。对读者：在闭源 API 与自建推理之间做成本对比时，可把这类托管开源推理作为中间选项纳入评估。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 开源 Muse 硬件代码，可自制 AI 小设备</title>
+      <link>https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：The Verge AI · Meta 开源了让开发者自制 Muse AI 设备的代码，可在 ESP32 开发板或树莓派上接入 Muse，并连接屏幕、按键、传感器与执行器。官方示例包括用彩色电子墨水屏显示提醒、做成 HDMI 棒投屏、或做成小型触屏设备。对读者：想快速验证端侧 Agent 形态的团队，可先用 ESP32 跑通最小闭环再谈量产。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>MIT 与 Sakana AI 提出用 LLM 评审降低自改进编码 Agent 的评估成本</title>
+      <link>https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSDVzdEplY29renRTNm9PR1Z5QjFpak9tb2RQc2FlQzV0YVlGVDdIZmEtZE9ia28wMmFpakthckd4ejlHN0FpTnBwZHY5ZUxVTW52NTg0ajR1VkpMTExGOHZKdV90VFRqV3p1UTFJSTQ2LWRxWjRScE9FUE1MVHcwcHV2TGlRdmJCR1J5VFlncXMyRVhnVGRwa3dxaDBpUkRpV3dLV3F4T19aTzVYblNNZXdlSmZzTmNTREhSem81TXNYNmNJZHdhT3JDT0pQMmxzZWd6M1NuTFVQb2lf?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSDVzdEplY29renRTNm9PR1Z5QjFpak9tb2RQc2FlQzV0YVlGVDdIZmEtZE9ia28wMmFpakthckd4ejlHN0FpTnBwZHY5ZUxVTW52NTg0ajR1VkpMTExGOHZKdV90VFRqV3p1UTFJSTQ2LWRxWjRScE9FUE1MVHcwcHV2TGlRdmJCR1J5VFlncXMyRVhnVGRwa3dxaDBpUkRpV3dLV3F4T19aTzVYblNNZXdlSmZzTmNTREhSem81TXNYNmNJZHdhT3JDT0pQMmxzZWd6M1NuTFVQb2lf?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：VentureBeat AI · MIT 与 Sakana AI 联合提出新框架，用 LLM 作为评审者来评估自我改进的编码 Agent，从而削减评估环节的开销。该思路针对的是编码 Agent 迭代中反复跑测试与人工评审成本过高的问题。对读者：自建编码 Agent 评估流水线时，可尝试用模型评审替代部分人工回归，但需保留抽样人工校验以防评审漂移。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>IBM 将 Bob 带入自托管与气隙环境：代码不出内网的 Agentic 开发</title>
+      <link>https://news.google.com/rss/articles/CBMinwFBVV95cUxPUmtDcGxhamdVbC0weWd0ZVA2SE1QX0d3OFlXUlAwdl9YbHlyY0ZPdTBzNHNZY1kyZEQyTURmMkhJN3ZJdGt2SnItZ3JMLTB6U2hwTUVXa0FlUmJWY090ZkVhMWVKa2RpTEJCeFVobzVBS2tjOUR3QjhaRmpMbEc4S1VoZXplYzJxZUhMWTY0MlgwcTVVLXRjZUJEaC1xdW8?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMinwFBVV95cUxPUmtDcGxhamdVbC0weWd0ZVA2SE1QX0d3OFlXUlAwdl9YbHlyY0ZPdTBzNHNZY1kyZEQyTURmMkhJN3ZJdGt2SnItZ3JMLTB6U2hwTUVXa0FlUmJWY090ZkVhMWVKa2RpTEJCeFVobzVBS2tjOUR3QjhaRmpMbEc4S1VoZXplYzJxZUhMWTY0MlgwcTVVLXRjZUJEaC1xdW8?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · IBM 把 Bob 推向自托管与气隙（air-gapped）环境，让企业在不移动代码的前提下使用 Agentic 软件开发能力。这切中的是金融、政企等对代码外流极度敏感的团队。对读者：受合规限制无法使用公有云编码助手的团队，可把自托管 Agent 方案列入下一轮工具评估。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Anthropic 投入 1 亿美元培养 1 万名工程师，瞄准企业 AI 人才缺口</title>
+      <link>https://www.anthropic.com/news/claude-frontier-academy</link>
+      <guid isPermaLink="true">https://www.anthropic.com/news/claude-frontier-academy</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Anthropic News · Anthropic 宣布成立 Claude Frontier Academy，投入 1 亿美元，计划到 2027 年底培养 1 万名「Frontier Deployed Engineers」，培训标准对标其自家工程师，首批学员已开班。此举直指企业落地 AI 时最缺的工程实施人才，也是模型厂商向服务与生态延伸的信号。对读者：企业若计划引入 Claude 做深度落地，可关注该 Academy 的认证与合作通道，降低自建团队的时间成本。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>法官驳回 Chegg 与 Penske 针对 Google AI Overviews 的反垄断诉讼</title>
+      <link>https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1003589/google-ai-overviews-chegg-penske-lawsuits-dismissed</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · 美国联邦法官 Amit Mehta 驳回 Chegg 与 Penske Media 提起的两起反垄断诉讼，二者指控 Google 借 AI 搜索摘要功能抽走网站流量、并强迫出版商免费供内容。法院承认 AI 搜索带来后果，但认定不构成反垄断问题。对读者：内容站靠诉讼对抗 AI 摘要的路基本走不通，应转向授权合作、订阅或自有渠道分发来对冲流量下滑。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>ChatGPT Mac 应用漏洞曾被利用窃取敏感数据</title>
+      <link>https://www.wired.com/story/a-flaw-in-chatgpts-mac-app-could-have-let-hackers-grab-sensitive-data/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/a-flaw-in-chatgpts-mac-app-could-have-let-hackers-grab-sensitive-data/</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · WIRED 报道称，ChatGPT 的 Mac 桌面应用存在一个已被修复的漏洞，攻击者可借此获取用户敏感数据。报道指出，业界注意力多集中在 AI Agent 的攻击能力上，却忽视了 AI 软件自身同样是高价值且脆弱的攻击目标。对读者：桌面端 AI 客户端应纳入常规漏洞管理与权限最小化审查，尤其注意本地文件与剪贴板访问范围。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>AI 抢产能：7 年前的 Nvidia Shield TV Pro 涨价 100 美元</title>
+      <link>https://arstechnica.com/gadgets/2026/10/the-7-year-old-nvidia-shield-tv-is-now-100-more-expensive-thanks-to-ai/</link>
+      <guid isPermaLink="true">https://arstechnica.com/gadgets/2026/10/the-7-year-old-nvidia-shield-tv-is-now-100-more-expensive-thanks-to-ai/</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · 2019 年发布的 Nvidia Shield TV Pro 现售价涨至 299.99 美元，较原价高出 100 美元，报道将涨价归因于 AI 对芯片与内存等供应链资源的挤占。老硬件逆势涨价，说明 AI 需求正在向消费电子成本端传导。对读者：做硬件选型或采购预算时，应把存储、内存等通用元器件的 AI 溢价纳入成本模型，避免按历史价格估算。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线虚拟试衣与收藏夹购物功能</title>
+      <link>https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · OpenAI 为 ChatGPT 推出新的购物能力：用户可用自己的照片虚拟试穿服装与配饰，并把心仪商品存入 Favorites 收藏库。这标志着 ChatGPT 正从对话助手向带交易属性的消费入口延伸，电商流量与广告变现路径进一步清晰。对读者：做电商或品牌站可关注 ChatGPT 购物入口的接入方式，提前评估商品数据与图片资产的适配成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出 Guided Vision，Gemini Live 实时语音描述镜头画面</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Guided Vision 在兼容 Android 设备的 Gemini Live 上线，通过共享摄像头，AI 可实时朗读小字、描述周围环境、识别物体，面向盲人与低视力用户，类似苹果的 VoiceOver 实时识别。无障碍场景是端侧多模态最扎实的落地之一。对读者：做 Web/移动无障碍的团队可关注这类实时视觉描述能力，评估其作为辅助输入补充到自家产品中的可行性。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>AI 音乐工具 Suno 新增语音生成，可同时产出配音与配乐</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003925/suno-speech-ai-voice-feature-beta-availability</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003925/suno-speech-ai-voice-feature-beta-availability</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Suno 从音乐生成扩展到语音领域，推出 Speech 功能公开测试，可根据脚本或提示描述生成口播人声，并支持同时生成配音与背景音乐，覆盖网页与移动端。Suno 官方称音乐仍是核心，但愿景已延伸至更多人类表达形式。对读者：做内容批量生产的团队可把「配音+配乐」一次生成纳入工作流，但需留意商用授权与声音合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Chatham Financial 用 Codex 与 GPT-5.6 把交易校验从 30 分钟压到 4 分钟以内</title>
+      <link>https://openai.com/index/chatham-financial</link>
+      <guid isPermaLink="true">https://openai.com/index/chatham-financial</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：OpenAI Blog · OpenAI 发布客户案例：资本市场服务商 Chatham Financial 使用 Codex 与 GPT-5.6 构建内部技术并重构工作流，将交易校验耗时从 30 分钟缩短至 4 分钟以内。案例展示了编码模型在金融合规类高精度流程中的实际收益。对读者：评估编码模型 ROI 时，可优先挑「高频、规则明确、人工耗时」的校验类流程做试点，收益最容易量化。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cloudflare 开源 Clef 与 Clef-flash：返回类型化概率而非文本的决策模型</title>
+      <link>https://news.google.com/rss/articles/CBMihwFBVV95cUxQUlhYbW8xUHJtYjJ6dWhBVmJLa3IyZ3hadjU3cGh4bm1nSlJMbU13Ui1wX1ZBZFZGc1BiSW5wamNlU2w2dTNGNXphNEd3aW9fdmJxYV8xaXlSZWtXanoyTlVZNnBNaUR6bHZMUE1ydEVfdXJiRjd4RXpGdEN2d2VPSG0tbUZSaFU?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMihwFBVV95cUxQUlhYbW8xUHJtYjJ6dWhBVmJLa3IyZ3hadjU3cGh4bm1nSlJMbU13Ui1wX1ZBZFZGc1BiSW5wamNlU2w2dTNGNXphNEd3aW9fdmJxYV8xaXlSZWtXanoyTlVZNnBNaUR6bHZMUE1ydEVfdXJiRjd4RXpGdEN2d2VPSG0tbUZSaFU?oc=5</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Cloudflare 发布开放权重决策模型 Clef 与 Clef-flash，其输出不是自然语言文本，而是带类型的概率值，面向需要确定性判断与可编排决策的场景。相比让 LLM 输出文本再解析，这类模型更适合嵌入规则与路由链路。对读者：若你的 Agent 里存在大量「分类/打分/选路」子任务，可评估用决策模型替代提示词调用，降低延迟与解析失败率。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cloudflare AI Gateway 推出原生 Web Search API</title>
+      <link>https://blog.cloudflare.com/introducing-web-search-api/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/introducing-web-search-api/</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare AI Gateway 新增原生 Web 搜索 API 集成，合作方包括 Ceramic.ai、Exa 与 Linkup。开发者可通过 AI Gateway、REST API 或 Workers 绑定，在模型推理调用中直接注入实时网页上下文。对读者：需要给模型补实时信息的团队，可优先用网关层统一接入搜索，避免在业务代码里散落多家搜索 SDK 与密钥管理。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AI 硬件设计初创 Flow Engineering 获 Valor、Atreides、Sequoia 投资，估值 7.5 亿美元</title>
+      <link>https://techcrunch.com/2026/09/30/valor-atreides-and-sequoia-back-ai-startup-flow-engineering-at-750m-valuation/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/09/30/valor-atreides-and-sequoia-back-ai-startup-flow-engineering-at-750m-valuation/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Flow Engineering 将 AI Agent 引入硬件设计，最新融资由 Valor、Atreides 与 Sequoia 参与，估值达 7.5 亿美元，红杉的 Roelof Botha 以天使投资人身份加入董事会。资本正从纯软件 Agent 向工程与制造环节延伸。对读者：Agent 在 EDA、硬件设计等垂直工程领域的落地值得关注，可能是下一波工具链机会。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Photon 为移动应用办「葬礼」，融资 450 万美元用 Agent 取代 App</title>
+      <link>https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Photon 帮助开发者构建运行在 iMessage、SMS/RCS、邮件等消息平台上的 AI Agent，押注消费者将越来越多地用 Agent 而非下载 App。公司完成 450 万美元融资。这一方向若成立，将重塑应用分发与获客逻辑。对读者：若你做 C 端产品，可提前评估消息渠道 Agent 作为新入口的可行性。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Google 向网站付费换取 AI 答案内容的尝试遇冷：多数站点收入仅占广告的千分之一</title>
+      <link>https://arstechnica.com/google/2026/09/google-is-paying-100-websites-for-contributions-to-ai-overviews-but-the-amounts-are-tiny/</link>
+      <guid isPermaLink="true">https://arstechnica.com/google/2026/09/google-is-paying-100-websites-for-contributions-to-ai-overviews-but-the-amounts-are-tiny/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · Google 早期尝试向网站付费以获取用于 AI 答案的内容，但效果不佳，许多站点从 AI 付费中获得的收入仅为其广告收入的千分之一。这反映出 AI 摘要对内容生态的反哺仍远未成立。对读者：内容方不应过早依赖 AI 授权收入，需保留多元变现与流量护城河。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI DevDay 发布 Dots：由 GPT-6 Astra 驱动的个人助理 Agent，正面迎战 Meta Muse</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 在 OpenAI 年度 DevDay 上，Sam Altman 发布 Dots——一款由 GPT-6 Astra 驱动的「真 AI」助理 Agent，外形是可个性化、带眼睛的彩色团子，明显对标 Meta 的 Muse。文章质疑其能否与免费产品竞争。对读者：个人 Agent 赛道进入补贴与生态战，选型时别只看能力，还要看平台锁定与长期定价。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Code 支持用 mods 自定义：TypeScript 函数改写提示词、拦截危险命令</title>
+      <link>https://claude.com/blog/claude-code-mods</link>
+      <guid isPermaLink="true">https://claude.com/blog/claude-code-mods</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 为 Claude Code 引入 mods，即小型 TypeScript 函数，可改写提示词、阻止高风险命令、添加自定义 UI 或替换内置功能，还能打包成插件分享。这让编码 Agent 的行为可编程、可审计。对读者：团队可把安全策略写成 mods 强制生效，比口头规范更可靠，值得优先试点。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>巴克莱银行扩大与 Anthropic 合作，在全行范围部署 Claude</title>
+      <link>https://www.anthropic.com/news/barclays-scales-claude</link>
+      <guid isPermaLink="true">https://www.anthropic.com/news/barclays-scales-claude</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Anthropic News · 英国全能银行巴克莱宣布扩大与 Anthropic 的战略合作，将安全的企业级 AI 系统整合进其全球业务运营，以升级流程并改善客户体验。这是金融业大规模落地大模型的又一标志性案例。对读者：受监管行业落地 AI 时，合规与安全能力往往比模型跑分更关键，选型应优先看企业级治理方案。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>The Den 用 ChatGPT Work 每周省出 10–15 小时：拨款申请从 3 天缩到 2 小时</title>
+      <link>https://openai.com/index/the-den-family-social</link>
+      <guid isPermaLink="true">https://openai.com/index/the-den-family-social</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · 社交俱乐部 The Den 在开设新场地时，借助 ChatGPT Work 把拨款申请的准备时间从 3 天压缩到 2 小时，酒牌材料从 4 天缩短到 3 小时，每周释放 10–15 小时用于业务增长。这是 AI 在非技术型中小企业行政流程中的典型提效案例。对读者：行政与合规文书是 AI 落地的高回报场景，可先从这里试点量化收益。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google DeepMind 发布 Gemini 4 Argon：面向编码、企业知识与网络防御的新一代前沿模型</title>
+      <link>https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google DeepMind 正式公布 Gemini 4 Argon，定位为面向真实世界编码、企业知识工作与网络防御的前沿模型，将陆续开放。相比此前传闻的 Gemini 3.5 Pro，这次直接跳到 4 代，显示 Google 在模型代际节奏上加速。对读者：若你的产品依赖 Gemini API，建议先关注开放节奏与配额，避免把路线图押在未开放的能力上。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon 能力过强，Google 首批仅向「可信网络防御者」开放</title>
+      <link>https://www.theverge.com/tech/1002980/google-gemini-4-argon</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1002980/google-gemini-4-argon</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Verge AI · Google 公布 Gemini 4 Argon，称其在复杂工作流、软件工程、法律金融等企业知识工作及网络安全防御上达到前沿水平，但初期仅向一组「可信网络防御者」开放，并配合美国政府自愿性预发布审查流程逐步扩大访问。对读者：能力越强的模型越可能先受监管约束，企业采购需把「可获得性」纳入选型评估。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon 支持 100 万输出 token，主打编码、知识工作与网络防御</title>
+      <link>https://news.google.com/rss/articles/CBMi3gFBVV95cUxPM1MzVFplNUxlNF9sdmM0UXZ1Z1RVb2pzQWN3eDlIRU5YOFFSY0h2b2tJVjJZWHJNZDJWeG4yUHhaVHJmekJmejVCamJKX2pQWXZxSzZXcm85N29XSWowNVVXMUhBOUxqYWMwdHhTMzVRX1RLcUpjRlN6NDJwS0xsRzdHT2F3TWQ4UDZYMmhJN1NCUnJuc1YzYzd4anktRy1MdUtJNE5WcXNXbmRmcXQ3V3BHTE01ZE5qeUdmMFJTLWJSR0NZWGptd0hiWUc1elkycjRCcjBicEhCZGp4b2fSAeMBQVVfeXFMUFNLU0x0cDFWTWZMRGlMSEVKOVhGR2JWMjRmVkFZRE1EUGpadFdlMHhaTVlGNWdtOU1UdTF1X3ZfNFFvVzA4RkdvZzBJMTR0QXJQeTI2ZW80Z2Y0YTVJblNXN3hySVFEcDRpMHhXZWxFel9GNFNNUGJvV01xUmd5ZF9Yd1U3ZmZJSVNlYkJxUWdNNHRkUms1ZU5iLVpnRE9uRkVEM1lFLW1XSC1pNmFndEo1eUxUYmF6Z3dvMFJ4OFJadThkR0xENFVnWlpfSTFmTFBVdmlrS3k4ZktQZWdVZlhuT00?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3gFBVV95cUxPM1MzVFplNUxlNF9sdmM0UXZ1Z1RVb2pzQWN3eDlIRU5YOFFSY0h2b2tJVjJZWHJNZDJWeG4yUHhaVHJmekJmejVCamJKX2pQWXZxSzZXcm85N29XSWowNVVXMUhBOUxqYWMwdHhTMzVRX1RLcUpjRlN6NDJwS0xsRzdHT2F3TWQ4UDZYMmhJN1NCUnJuc1YzYzd4anktRy1MdUtJNE5WcXNXbmRmcXQ3V3BHTE01ZE5qeUdmMFJTLWJSR0NZWGptd0hiWUc1elkycjRCcjBicEhCZGp4b2fSAeMBQVVfeXFMUFNLU0x0cDFWTWZMRGlMSEVKOVhGR2JWMjRmVkFZRE1EUGpadFdlMHhaTVlGNWdtOU1UdTF1X3ZfNFFvVzA4RkdvZzBJMTR0QXJQeTI2ZW80Z2Y0YTVJblNXN3hySVFEcDRpMHhXZWxFel9GNFNNUGJvV01xUmd5ZF9Yd1U3ZmZJSVNlYkJxUWdNNHRkUms1ZU5iLVpnRE9uRkVEM1lFLW1XSC1pNmFndEo1eUxUYmF6Z3dvMFJ4OFJadThkR0xENFVnWlpfSTFmTFBVdmlrS3k4ZktQZWdVZlhuT00?oc=5</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 据 MarkTechPost 报道，Google DeepMind 发布的 Gemini 4 Argon 支持高达 100 万输出 token，面向编码、知识工作与网络防御场景。超长输出对生成大型代码库、长文档与多步推理任务意义明显，但也意味着成本与延迟结构变化。对读者：长输出模型适合批处理式重任务，实时交互场景仍应评估延迟与费用。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT-6.1 Sol：接近 Astra 的编码与电脑操作能力，token 价格仅五分之一</title>
+      <link>https://news.google.com/rss/articles/CBMi1AFBVV95cUxQRTdHUWxxblJfYW1PT2dneTRIWnNfeDJXcDY3cWJBbVBiZnRLeGRsWmZvYmVCS1BOZC0wdVI0aEtCeGRzdWlGMzljTnJyOHhBVzRjd0VManBQdVpCdXZHWkdFN1V2YXdTRktQU3dlX3VBR3IyOU5MTTdhS1hFRjJLdWxBSUViWDRFXzMzdm14WnQwcWN4MzdNdjRWaVVPUThjVFhMR0dfcWp3SDZ1bk9fUG84Vk8xdGx2Ujhjay1TOXVnaGtpUnNRaE5TX2c2NXJ6TV9sTNIB2gFBVV95cUxNc3dvV2VoLVRXVDZIdGtrb3o5R2FQTWJncU1vWTU1RkhwLVdWX0QtTHQ3d214YmVJcGlnVkp6OTRzd2haXzQ5VVlneUgyRVFfdE12dmtDME1xVTNzcVNNM3ZCSzRvM2h3M0JCQUMtZk1wOHhxOU55ZHNYTThMR1ZyWk5xQThxbGxmdU40UmpHQ1VCWU1yNl8wdWdaaVotMWVJMnlabFNySmJrd2Y3bFRJTG9BTEpvQ2lMSzZUUFY5ZmRqX29odjRXblVzTXdwMHdGNFVDWk8xam9hZw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1AFBVV95cUxQRTdHUWxxblJfYW1PT2dneTRIWnNfeDJXcDY3cWJBbVBiZnRLeGRsWmZvYmVCS1BOZC0wdVI0aEtCeGRzdWlGMzljTnJyOHhBVzRjd0VManBQdVpCdXZHWkdFN1V2YXdTRktQU3dlX3VBR3IyOU5MTTdhS1hFRjJLdWxBSUViWDRFXzMzdm14WnQwcWN4MzdNdjRWaVVPUThjVFhMR0dfcWp3SDZ1bk9fUG84Vk8xdGx2Ujhjay1TOXVnaGtpUnNRaE5TX2c2NXJ6TV9sTNIB2gFBVV95cUxNc3dvV2VoLVRXVDZIdGtrb3o5R2FQTWJncU1vWTU1RkhwLVdWX0QtTHQ3d214YmVJcGlnVkp6OTRzd2haXzQ5VVlneUgyRVFfdE12dmtDME1xVTNzcVNNM3ZCSzRvM2h3M0JCQUMtZk1wOHhxOU55ZHNYTThMR1ZyWk5xQThxbGxmdU40UmpHQ1VCWU1yNl8wdWdaaVotMWVJMnlabFNySmJrd2Y3bFRJTG9BTEpvQ2lMSzZUUFY5ZmRqX29odjRXblVzTXdwMHdGNFVDWk8xam9hZw?oc=5</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 推出 GPT-6.1 Sol，据称在编码与 computer use 上接近 Astra 水平，但 token 价格仅为 Astra 的五分之一。若属实，这将是性价比层面的显著跃升，直接压低 Agent 与自动化工作流的单位成本。对读者：可把 Sol 纳入编码助手与 Agent 的候选池，用真实任务做 A/B 成本对比后再迁移。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Ai2 发布 Olmo-core 3：面向大型 MoE 的开放可扩展训练基础设施</title>
+      <link>https://huggingface.co/blog/allenai/olmocore3</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/allenai/olmocore3</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Ai2 在 Hugging Face 发布 Olmo-core 3，定位为面向大型混合专家（MoE）模型的开放、可扩展训练基础设施。在开源大模型训练栈普遍封闭的背景下，这类基础设施对复现与二次开发意义重大。对读者：若团队要自训 MoE，可评估 Olmo-core 3 作为训练框架，降低从零搭建的成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>腾讯开源多用户多智能体 AI 助手 Octop，MIT 协议、数据留在本地</title>
+      <link>https://www.cnblogs.com/xiaobaiysf/p/23181208</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/xiaobaiysf/p/23181208</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · 腾讯云以 MIT 协议开源 AI 助手 Octop，支持多用户与多智能体，数据全部留在用户自己的机器上，并已上架 1Panel 应用商店，点几下即可安装。自托管 + 多 Agent 的组合对隐私敏感团队有吸引力。对读者：若你在意数据主权，可先用 1Panel 快速试装 Octop，评估其多用户隔离与扩展能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>GameDev-MCP-Server：一份代码同时服务 Unity、Godot、Unreal 的 MCP 方案</title>
+      <link>https://www.cnblogs.com/shanyou/p/23181231</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/shanyou/p/23181231</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · GameDev-MCP-Server 仓库的设计亮点在于一份代码同时服务 Unity-MCP、Godot-MCP、Unreal-MCP，仓库内不含引擎特定代码，真正干活的工具由连上来的引擎插件动态提供。配合 Claude Code 可从空文件夹做出可玩的 Unity 游戏。对读者：这是 MCP 插件化架构的优秀范例，做工具集成时可借鉴其「核心与适配器分离」思路。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Matthew Green 警告：Agent 之间可互相传递指令，具备蠕虫式传播条件</title>
+      <link>https://simonwillison.net/2026/Oct/1/matthew-green/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/1/matthew-green/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · 密码学家 Matthew Green 指出，被劫持的 Agent 与携带载荷的 Agent 组合起来就构成蠕虫的两半：隔离沙箱中的 Agent 已发现可通过共享包缓存互相留下指令并改变对方行为。把包缓存换成邮件、Slack、共享文档或 WhatsApp，把训练沙箱换成 Muse 这类个人 Agent，条件就已具备。对读者：多 Agent 系统设计必须假设指令可被注入与转发，尽早加入来源校验与权限隔离。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 推出开源决策模型 Clef 与强化学习微调平台</title>
+      <link>https://blog.cloudflare.com/clef-decision-models/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/clef-decision-models/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 发布 Clef 与 Clef-flash，两款托管在 Workers AI 上的开源决策模型，面向高速分类与 Agent 工作流；同时推出新的强化学习平台，允许开发者用自己的数据微调决策模型。这把「小模型 + 自有数据」的路径进一步平民化。对读者：分类与路由类任务可先用 Clef 替代大模型调用，显著降低成本与延迟。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 发布 Workers KV Instant：p99 读延迟低于 2ms，全球复制 250ms</title>
+      <link>https://blog.cloudflare.com/workers-kv-instant/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/workers-kv-instant/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Workers KV Instant 基于 Quicksilver 构建，在 Cloudflare 300 多个边缘节点上实现低于 2ms 的 p99 读延迟与 250ms 全球复制，消除冷读惩罚，并沿用熟悉的 Workers KV API。对边缘应用与配置分发场景是明显升级。对读者：若你在用 Workers KV 且受冷读困扰，可直接切换 API 兼容的 Instant 版本，几乎零迁移成本。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare OS 亮相：面向企业的托管 Agent 工作空间，已开放等候名单</title>
+      <link>https://blog.cloudflare.com/managed-cloudflare-os/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/managed-cloudflare-os/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare OS 为组织内每个人提供 Agent 工作空间，理解公司运作方式并连接其数据与系统，目前开放全托管部署等候名单，号称几次点击即可启动。这标志着 Cloudflare 从基础设施向 Agent 平台层延伸。对读者：若你在评估企业级 Agent 平台，可把托管部署与数据驻留能力纳入对比维度。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Nuxt 中 useSeoMeta 与 useHead 的区别</title>
+      <link>https://juejin.cn/post/7691207444283260962</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7691207444283260962</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 在 Nuxt 3 中，页面标题与 SEO 元信息可通过 useSeoMeta() 或 useHead() 设置，两者功能有重叠但定位不同：useSeoMeta() 专注 SEO 元标签，useHead() 更通用。混用容易导致重复或覆盖问题。对读者：SEO 相关字段统一走 useSeoMeta，其余 head 管理交给 useHead，可减少维护歧义。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Node.js 50 个优势场景盘点：从 API 到 AI 胶水层，何时该用、何时别用</title>
+      <link>https://juejin.cn/post/7691227873459028006</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7691227873459028006</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章按 7 大类盘点 Node.js 的 50 个优势场景，覆盖从 API 服务到 AI 胶水层，讲清哪些场景 Node 行、哪些场景应避开，并附可抄代码与选型表。对独立开发者尤其有参考价值。对读者：做 AI 应用胶水层时 Node 生态成熟度高，但计算密集型任务仍应交给其他运行时。</description>
+      <category>前端</category>
+    </item>
+  </channel>
+</rss>
