@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-04T23:01:14.742Z",
+  "at": "2026-10-05T23:00:56.178Z",
   "type": "daily",
-  "date": "2026-10-04",
-  "candidates": 82,
+  "date": "2026-10-05",
+  "candidates": 118,
   "search": {
     "ok": true,
     "queries": 16,
@@ -10,13 +10,13 @@
     "items": 24,
     "failures": []
   },
-  "editorial": 9,
+  "editorial": 11,
   "sections": {
     "业界": 2,
-    "产品": 1,
+    "产品": 0,
     "模型": 3,
-    "开源": 1,
-    "开发者工具": 1,
+    "开源": 2,
+    "开发者工具": 3,
     "前端": 1
   },
   "rss": {
@@ -26,7 +26,7 @@
       {
         "id": "codrops",
         "name": "Codrops",
-        "error": "Status code 403"
+        "error": "Feed not recognized as RSS/Atom"
       },
       {
         "id": "ruanyifeng",
@@ -35,5 +35,5 @@
       }
     ]
   },
-  "output": "news/2026-10/ai-news-2026-10-04.md"
+  "output": "news/2026-10/ai-news-2026-10-05.md"
 }
