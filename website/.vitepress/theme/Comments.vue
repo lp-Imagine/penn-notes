@@ -174,10 +174,8 @@ function paintReplyQuotes() {
     if (!data?.rid || !el) continue;
     const body = el.querySelector<HTMLElement>(":scope > .atk-comment > .atk-main > .atk-body");
     if (!body) continue;
-    const parentId = node.getParent?.()?.getData?.()?.id;
-    const hostId = el.parentElement?.closest<HTMLElement>("[id^='atk-comment-']")?.id.replace("atk-comment-", "");
-    const containerId = parentId != null ? String(parentId) : hostId;
-    if (containerId != null && containerId === String(data.rid)) {
+    const hostId = el.parentElement?.closest<HTMLElement>("[id^='atk-comment-']")?.id.replace(/^atk-comment-/, "");
+    if (hostId && hostId === String(data.rid)) {
       body.querySelector(":scope > .atk-reply-to.penn-quote")?.remove();
       continue;
     }
@@ -1337,6 +1335,7 @@ type ArtalkInstance = {
   update: (conf: Record<string, unknown>) => void;
   reload: () => void;
   destroy: () => void;
+  on?: (name: string, handler: () => void) => void;
   getCommentNodes?: () => ArtalkCommentNode[];
   ctx?: {
     inject?: (name: string) => ArtalkChecker;
@@ -1552,6 +1551,9 @@ async function mountArtalk() {
     },
   });
   paintArtalk(host.value);
+  artalk.on?.("comment-inserted", () => {
+    if (host.value) paintCommentLayout(host.value);
+  });
   stopAvatarWatch?.();
   stopAvatarWatch = watchCommentAvatars(host.value);
   stopAdminNameWatch?.();
