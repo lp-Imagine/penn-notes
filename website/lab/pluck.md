@@ -1,6 +1,6 @@
 ---
-title: 聚光灯揭示
-description: 指针跟随的 spotlight 遮罩特效
+title: 拨弦合成
+description: Karplus–Strong 拨弦合成
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabSpotlight />
+  <LabPluck />
 </div>

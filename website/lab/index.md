@@ -12,7 +12,7 @@ next: false
   <header class="section-hero">
     <p class="section-kicker" data-i18n="pageHero.labKicker">Lab</p>
     <h1 class="section-title" data-i18n="pageHero.labTitle">实验页</h1>
-    <p class="section-lead" data-i18n="pageHero.labLead">特效、功能原型与 CSS 小实验，动手试</p>
+    <p class="section-lead" data-i18n="pageHero.labLead">图像、声音、镜头、语言和信号，方向分开，都能动手试</p>
   </header>
 
   <LabDemos />

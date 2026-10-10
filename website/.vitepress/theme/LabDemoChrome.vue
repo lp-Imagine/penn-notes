@@ -1,5 +1,5 @@
 <script setup>
-import { withBase } from "vitepress";
+import { useRouter, withBase } from "vitepress";
 import { useI18n } from "./i18n";
 
 defineProps({
@@ -8,16 +8,36 @@ defineProps({
 });
 
 const { t } = useI18n();
+const router = useRouter();
 
-function href(path) {
-  const p = String(path || "").replace(/^\/+/, "/");
-  return withBase(p.startsWith("/") ? p : `/${p}`);
+function samePath(a, b) {
+  const trim = (p) => p.replace(/\/+$/, "") || "/";
+  return trim(a) === trim(b);
+}
+
+function back() {
+  const target = withBase("/lab/");
+  const next = new URL(target, location.origin).pathname;
+  const landed = () =>
+    samePath(location.pathname, next) && document.querySelector(".lab-demos");
+  if (samePath(location.pathname, next)) {
+    if (!landed()) location.assign(next);
+    return;
+  }
+  router.go(target);
+  window.setTimeout(() => {
+    if (samePath(location.pathname, next) && !document.querySelector(".lab-demos")) {
+      location.assign(next);
+    }
+  }, 600);
 }
 </script>
 
 <template>
   <div class="lab-demo">
-    <a class="lab-demo-back" :href="href('/lab/')">{{ t("lab").back }}</a>
+    <button type="button" class="lab-demo-back" @click="back">
+      {{ t("lab").back }}
+    </button>
     <header class="lab-demo-hero">
       <p class="lab-demo-kicker">Lab</p>
       <h1 class="lab-demo-title">{{ title }}</h1>

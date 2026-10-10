@@ -1,6 +1,6 @@
 ---
-title: 3D 倾斜卡片
-description: 透视跟随指针的 tilt + glare
+title: 短语重写
+description: 看得见步骤的短语结构推导
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabTilt />
+  <LabRewrite />
 </div>

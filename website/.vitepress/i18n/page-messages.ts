@@ -174,6 +174,76 @@ export type PageMessages = {
     cmdTheme: string;
     cmdThemeHint: string;
     cmdThemeDone: string;
+    heroKicker: string;
+    heroDesc: string;
+    fieldTitle: string;
+    fieldLead: string;
+    fieldWarp: string;
+    fieldSpeed: string;
+    fieldHint: string;
+    fieldFallback: string;
+    catalogFieldDesc: string;
+    diffTitle: string;
+    diffLead: string;
+    diffFeed: string;
+    diffKill: string;
+    diffReset: string;
+    diffHint: string;
+    catalogDiffDesc: string;
+    diffCoral: string;
+    diffWorms: string;
+    diffMaze: string;
+    diffSpots: string;
+    diffMitosis: string;
+    kineticTitle: string;
+    kineticLead: string;
+    kineticHint: string;
+    kineticLine: string;
+    catalogKineticDesc: string;
+    morphTitle: string;
+    morphLead: string;
+    morphBack: string;
+    morphUnsupported: string;
+    catalogMorphDesc: string;
+    morphIris: string;
+    morphIrisBody: string;
+    morphFault: string;
+    morphFaultBody: string;
+    morphLattice: string;
+    morphLatticeBody: string;
+    morphGhost: string;
+    morphGhostBody: string;
+    groupSound: string;
+    groupLens: string;
+    groupLang: string;
+    groupSignal: string;
+    pluckTitle: string;
+    pluckLead: string;
+    pluckHint: string;
+    pluckFallback: string;
+    catalogPluckDesc: string;
+    motionTitle: string;
+    motionLead: string;
+    motionStart: string;
+    motionStop: string;
+    motionHint: string;
+    motionDenied: string;
+    motionMissing: string;
+    motionThreshold: string;
+    catalogMotionDesc: string;
+    rewriteTitle: string;
+    rewriteLead: string;
+    rewriteAgain: string;
+    rewriteRule: string;
+    rewriteHint: string;
+    catalogRewriteDesc: string;
+    fourierTitle: string;
+    fourierLead: string;
+    fourierHarmonics: string;
+    fourierClear: string;
+    fourierPreset: string;
+    fourierHint: string;
+    catalogFourierDesc: string;
   };
   series: {
     aria: string;
@@ -647,6 +717,76 @@ const zhCN: PageMessages = {
     cmdTheme: "切换面板主题",
     cmdThemeHint: "给命令实验区换一套底色",
     cmdThemeDone: "面板主题已切换",
+    heroKicker: "Live shader",
+    heroDesc: "指针会拧动噪声场。点进去可以改扭曲和流速。",
+    fieldTitle: "域扭曲色场",
+    fieldLead: "一块片元着色器：分形噪声互相取样，指针改变扭曲中心。",
+    fieldWarp: "扭曲",
+    fieldSpeed: "流速",
+    fieldHint: "在色场里移动指针",
+    fieldFallback: "当前环境没有可用的 WebGL，色场停在这里。",
+    catalogFieldDesc: "片元着色器里的域扭曲，指针拧动整片色场。",
+    diffTitle: "反应扩散",
+    diffLead: "Gray–Scott 两组分反应。换 feed / kill，看斑图从珊瑚变成迷宫。",
+    diffFeed: "feed",
+    diffKill: "kill",
+    diffReset: "重新接种",
+    diffHint: "按住拖动，往场里补原料",
+    catalogDiffDesc: "同一套方程，五组参数长出五种斑图，指针可以接种。",
+    diffCoral: "珊瑚",
+    diffWorms: "蠕虫",
+    diffMaze: "迷宫",
+    diffSpots: "斑点",
+    diffMitosis: "分裂",
+    kineticTitle: "滚动驱动字形",
+    kineticLead: "滚动进度写进每个字的位移、旋转和色散，速度越快色差越大。",
+    kineticHint: "在这块区域里上下滚动",
+    kineticLine: "滚动正在改写每一个字",
+    catalogKineticDesc: "滚动速度进到字形里：位移、旋转，还有一层色差。",
+    morphTitle: "视图过渡",
+    morphLead: "用 View Transitions 把卡片变形进详情，共享的是同一块色块，而不是淡入淡出。",
+    morphBack: "← 返回",
+    morphUnsupported: "这个浏览器没有 View Transitions，已经直接切换。",
+    catalogMorphDesc: "View Transitions API：卡片和详情共用一个过渡名，几何会变形过去。",
+    morphIris: "虹膜",
+    morphIrisBody: "这块色膜会带着过渡名离开网格，在详情里摊开。旧画面和新画面对的是同一个元素。",
+    morphFault: "断层",
+    morphFaultBody: "点击之后几何被拉伸进详情。页面其余部分停在原处，只有这块在动。",
+    morphLattice: "晶格",
+    morphLatticeBody: "过渡名决定谁和谁对接。名字对上，浏览器才把两帧当成同一个东西来补间。",
+    morphGhost: "残影",
+    morphGhostBody: "没有这个 API 的浏览器会直接换内容。动效是增强，信息还在。",
+    groupSound: "声音",
+    groupLens: "镜头",
+    groupLang: "语言",
+    groupSignal: "信号",
+    pluckTitle: "拨弦合成",
+    pluckLead: "Karplus–Strong：一段噪声灌进延迟线，听感和一根弦接近。点在弦的不同位置，亮度会变。",
+    pluckHint: "点一根弦。声音在这台机器上合成，不会离开浏览器。",
+    pluckFallback: "当前环境没有可用的音频，弦停在这里。",
+    catalogPluckDesc: "本机合成的六根弦。点的位置改变音色，下面留下这一声的波形。",
+    motionTitle: "运动残影",
+    motionLead: "镜头只在本地比较前后两帧。动过的地方留下残影，静止的地方暗下去。画面不上传。",
+    motionStart: "打开镜头",
+    motionStop: "关闭镜头",
+    motionHint: "先允许镜头。阈值越高，越不容易被微小晃动点亮。",
+    motionDenied: "镜头权限被拒绝了，残影停在这里。",
+    motionMissing: "这个环境没有可用的镜头。",
+    motionThreshold: "阈值",
+    catalogMotionDesc: "用前后帧的差当成墨。动，才留下痕迹。",
+    rewriteTitle: "短语重写",
+    rewriteLead: "一条短语规则，三个词类。每次推导只替换一个符号，过程留在纸上。",
+    rewriteAgain: "再推导一次",
+    rewriteRule: "句 → 人在处动",
+    rewriteHint: "竖线分开可选项。改词表之后再推导，句子会换一批。",
+    catalogRewriteDesc: "看得见的短语结构推导。词表能改，每一步替换都留着。",
+    fourierTitle: "圆周转写",
+    fourierLead: "把一笔拆成一串旋转的圆。谐波越少，形状越粗；加回去，笔迹会自己长出来。",
+    fourierHarmonics: "谐波",
+    fourierClear: "清空",
+    fourierPreset: "载入心形",
+    fourierHint: "按住画出一笔，松手后用圆周转写。滑杆决定留下几圈。",
+    catalogFourierDesc: "手写的一笔变成傅里叶级数，圆一圈圈把它转写回来。",
   },
   series: {
     aria: "系列导航",
@@ -928,7 +1068,7 @@ const zhCN: PageMessages = {
     scrapsLead: "独立于长文的碎片记录，随时记下想法",
     labKicker: "Lab",
     labTitle: "实验页",
-    labLead: "特效、功能原型与 CSS 小实验，动手试",
+    labLead: "图像、声音、镜头、语言和信号，方向分开，都能动手试",
     newsKicker: "每日精选",
     newsTitle: "AI 动态",
     newsLead: "业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文",
@@ -1127,6 +1267,76 @@ const zhTW: PageMessages = {
     cmdTheme: "切換面板主題",
     cmdThemeHint: "給命令實驗區換一套底色",
     cmdThemeDone: "面板主題已切換",
+    heroKicker: "Live shader",
+    heroDesc: "指標會擰動噪聲場。點進去可以改扭曲和流速。",
+    fieldTitle: "域扭曲色場",
+    fieldLead: "一塊片元著色器：分形噪聲互相取樣，指標改變扭曲中心。",
+    fieldWarp: "扭曲",
+    fieldSpeed: "流速",
+    fieldHint: "在色場裡移動指標",
+    fieldFallback: "目前環境沒有可用的 WebGL，色場停在這裡。",
+    catalogFieldDesc: "片元著色器裡的域扭曲，指標擰動整片色場。",
+    diffTitle: "反應擴散",
+    diffLead: "Gray–Scott 兩組分反應。換 feed / kill，看斑圖從珊瑚變成迷宮。",
+    diffFeed: "feed",
+    diffKill: "kill",
+    diffReset: "重新接種",
+    diffHint: "按住拖動，往場裡補原料",
+    catalogDiffDesc: "同一套方程，五組參數長出五種斑圖，指標可以接種。",
+    diffCoral: "珊瑚",
+    diffWorms: "蠕蟲",
+    diffMaze: "迷宮",
+    diffSpots: "斑點",
+    diffMitosis: "分裂",
+    kineticTitle: "滾動驅動字形",
+    kineticLead: "滾動進度寫進每個字的位移、旋轉和色散，速度越快色差越大。",
+    kineticHint: "在這塊區域裡上下滾動",
+    kineticLine: "滾動正在改寫每一個字",
+    catalogKineticDesc: "滾動速度進到字形裡：位移、旋轉，還有一層色差。",
+    morphTitle: "視圖過渡",
+    morphLead: "用 View Transitions 把卡片變形進詳情，共享的是同一塊色塊，而不是淡入淡出。",
+    morphBack: "← 返回",
+    morphUnsupported: "這個瀏覽器沒有 View Transitions，已經直接切換。",
+    catalogMorphDesc: "View Transitions API：卡片和詳情共用一個過渡名，幾何會變形過去。",
+    morphIris: "虹膜",
+    morphIrisBody: "這塊色膜會帶著過渡名離開網格，在詳情裡攤開。舊畫面和新畫面對的是同一個元素。",
+    morphFault: "斷層",
+    morphFaultBody: "點擊之後幾何被拉伸進詳情。頁面其餘部分停在原處，只有這塊在動。",
+    morphLattice: "晶格",
+    morphLatticeBody: "過渡名決定誰和誰對接。名字對上，瀏覽器才把兩幀當成同一個東西來補間。",
+    morphGhost: "殘影",
+    morphGhostBody: "沒有這個 API 的瀏覽器會直接換內容。動效是增強，資訊還在。",
+    groupSound: "聲音",
+    groupLens: "鏡頭",
+    groupLang: "語言",
+    groupSignal: "信號",
+    pluckTitle: "撥弦合成",
+    pluckLead: "Karplus–Strong：一段噪聲灌進延遲線，聽感和一根弦接近。點在弦的不同位置，亮度會變。",
+    pluckHint: "點一根弦。聲音在這台機器上合成，不會離開瀏覽器。",
+    pluckFallback: "目前環境沒有可用的音訊，弦停在這裡。",
+    catalogPluckDesc: "本機合成的六根弦。點的位置改變音色，下面留下這一聲的波形。",
+    motionTitle: "運動殘影",
+    motionLead: "鏡頭只在本地比較前後兩幀。動過的地方留下殘影，靜止的地方暗下去。畫面不上傳。",
+    motionStart: "打開鏡頭",
+    motionStop: "關閉鏡頭",
+    motionHint: "先允許鏡頭。閾值越高，越不容易被微小晃動點亮。",
+    motionDenied: "鏡頭權限被拒絕了，殘影停在這裡。",
+    motionMissing: "這個環境沒有可用的鏡頭。",
+    motionThreshold: "閾值",
+    catalogMotionDesc: "用前後幀的差當成墨。動，才留下痕跡。",
+    rewriteTitle: "短語重寫",
+    rewriteLead: "一條短語規則，三個詞類。每次推導只替換一個符號，過程留在紙上。",
+    rewriteAgain: "再推導一次",
+    rewriteRule: "句 → 人在處動",
+    rewriteHint: "豎線分開可選項。改詞表之後再推導，句子會換一批。",
+    catalogRewriteDesc: "看得見的短語結構推導。詞表能改，每一步替換都留著。",
+    fourierTitle: "圓周轉寫",
+    fourierLead: "把一筆拆成一串旋轉的圓。諧波越少，形狀越粗；加回去，筆跡會自己長出來。",
+    fourierHarmonics: "諧波",
+    fourierClear: "清空",
+    fourierPreset: "載入心形",
+    fourierHint: "按住畫出一筆，鬆手後用圓周轉寫。滑桿決定留下幾圈。",
+    catalogFourierDesc: "手寫的一筆變成傅里葉級數，圓一圈圈把它轉寫回來。",
   },
   series: {
     aria: "系列導覽",
@@ -1408,7 +1618,7 @@ const zhTW: PageMessages = {
     scrapsLead: "獨立於長文的碎片記錄，隨時記下想法",
     labKicker: "Lab",
     labTitle: "實驗頁",
-    labLead: "特效、功能原型與 CSS 小實驗，動手試",
+    labLead: "圖像、聲音、鏡頭、語言和信號，方向分開，都能動手試",
     newsKicker: "每日精選",
     newsTitle: "AI 動態",
     newsLead: "業界、產品、模型、開源與開發者工具 — 按日整理，點進日報可讀全文",
@@ -1627,6 +1837,76 @@ const en: PageMessages = {
     cmdTheme: "Toggle board theme",
     cmdThemeHint: "Swap the command experiment surface",
     cmdThemeDone: "Board theme toggled",
+    heroKicker: "Live shader",
+    heroDesc: "The pointer twists the noise field. Open it to change warp and speed.",
+    fieldTitle: "Domain-warp field",
+    fieldLead: "A fragment shader: fractal noise samples itself, and the pointer moves the warp center.",
+    fieldWarp: "Warp",
+    fieldSpeed: "Speed",
+    fieldHint: "Move the pointer across the field",
+    fieldFallback: "WebGL isn’t available here, so the field stays still.",
+    catalogFieldDesc: "Domain warping in a fragment shader. The pointer twists the whole field.",
+    diffTitle: "Reaction–diffusion",
+    diffLead: "Gray–Scott with two chemicals. Change feed / kill and watch coral turn into a maze.",
+    diffFeed: "feed",
+    diffKill: "kill",
+    diffReset: "Reseed",
+    diffHint: "Press and drag to seed the field",
+    catalogDiffDesc: "One equation, five parameter sets, five patterns. The pointer can seed it.",
+    diffCoral: "Coral",
+    diffWorms: "Worms",
+    diffMaze: "Maze",
+    diffSpots: "Spots",
+    diffMitosis: "Mitosis",
+    kineticTitle: "Scroll-driven type",
+    kineticLead: "Scroll progress drives each glyph’s offset, rotation, and chromatic split.",
+    kineticHint: "Scroll inside this panel",
+    kineticLine: "Scroll is rewriting every glyph",
+    catalogKineticDesc: "Scroll velocity enters the type: offset, rotation, and a chromatic split.",
+    morphTitle: "View transitions",
+    morphLead: "View Transitions morph a card into its detail. The shared piece is the color block, not a fade.",
+    morphBack: "← Back",
+    morphUnsupported: "This browser has no View Transitions API, so the switch is instant.",
+    catalogMorphDesc: "The View Transitions API: card and detail share one name, and the geometry morphs.",
+    morphIris: "Iris",
+    morphIrisBody: "This membrane leaves the grid under a transition name and spreads open in the detail. Both frames name the same element.",
+    morphFault: "Fault",
+    morphFaultBody: "The geometry stretches into the detail. The rest of the page stays put.",
+    morphLattice: "Lattice",
+    morphLatticeBody: "The transition name decides what matches. When the names line up, the browser tweens them as one object.",
+    morphGhost: "Afterimage",
+    morphGhostBody: "Browsers without the API swap the content directly. Motion is an enhancement; the information stays.",
+    groupSound: "Sound",
+    groupLens: "Camera",
+    groupLang: "Language",
+    groupSignal: "Signal",
+    pluckTitle: "Plucked string",
+    pluckLead: "Karplus–Strong: noise in a delay line, close to a plucked string. Where you click changes the brightness.",
+    pluckHint: "Pluck a string. The sound is synthesized on this machine and stays in the browser.",
+    pluckFallback: "Audio isn’t available here, so the strings stay still.",
+    catalogPluckDesc: "Six locally synthesized strings. Click position changes timbre, and the waveform stays below.",
+    motionTitle: "Motion afterimage",
+    motionLead: "The camera compares frames locally. What moves leaves a trail; what stays goes dark. Nothing is uploaded.",
+    motionStart: "Open camera",
+    motionStop: "Close camera",
+    motionHint: "Allow the camera first. A higher threshold ignores small shakes.",
+    motionDenied: "Camera permission was denied, so the afterimage stays off.",
+    motionMissing: "No camera is available here.",
+    motionThreshold: "Threshold",
+    catalogMotionDesc: "The difference between frames is the ink. Only motion leaves a mark.",
+    rewriteTitle: "Phrase rewrite",
+    rewriteLead: "One phrase rule, three word classes. Each derivation replaces a single symbol and keeps every step.",
+    rewriteAgain: "Derive again",
+    rewriteRule: "句 → 人在处动",
+    rewriteHint: "Separate options with a vertical bar. Edit the lexicon, then derive again.",
+    catalogRewriteDesc: "A visible phrase-structure derivation. Edit the lexicon; every replacement stays on the page.",
+    fourierTitle: "Epicycle trace",
+    fourierLead: "A stroke becomes a chain of spinning circles. Fewer harmonics, a coarser shape; add them back and the line returns.",
+    fourierHarmonics: "Harmonics",
+    fourierClear: "Clear",
+    fourierPreset: "Load a heart",
+    fourierHint: "Draw a stroke, then let the circles retrace it. The slider sets how many circles remain.",
+    catalogFourierDesc: "A hand-drawn stroke becomes a Fourier series, retraced by a chain of circles.",
   },
   series: {
     aria: "Series navigation",
@@ -1929,7 +2209,7 @@ const en: PageMessages = {
     scrapsLead: "Bite-sized notes outside long-form posts",
     labKicker: "Lab",
     labTitle: "Lab",
-    labLead: "Effects, feature prototypes, and CSS playgrounds",
+    labLead: "Image, sound, camera, language, and signal — separate directions you can try",
     newsKicker: "Daily picks",
     newsTitle: "AI news",
     newsLead:

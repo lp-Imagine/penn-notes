@@ -1,6 +1,6 @@
 ---
-title: 命令面板
-description: ⌘K 命令面板功能实验
+title: 域扭曲色场
+description: 片元着色器里的域扭曲色场
 outline: false
 sidebar: false
 aside: false
@@ -9,5 +9,5 @@ next: false
 ---
 
 <div class="section-page lab-page lab-demo-page">
-  <LabCommand />
+  <LabField />
 </div>
