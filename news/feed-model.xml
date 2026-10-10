@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 模型</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 10 Oct 2026 09:05:31 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>JetBrains 发布 Mellum2.1：面向编码 Agent 的 12B MoE 开源模型</title>
+      <link>https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · JetBrains 发布 Apache 2.0 许可的 Mellum2.1，12B 混合专家模型、激活参数 2.5B，通过在真实仓库中做强化学习，SWE-bench Verified 分数从 2.0 提升到 47.0。这显示编码 Agent 的专用小模型在真实工程任务上仍有可观提升空间。对读者：自建编码助手的团队可评估该模型在私有仓库上的微调潜力，注意 47.0 的分数仍与头部闭源模型有差距。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Saluki 27B：2-bit 量化的 Qwen3.8-27B，工具调用反超原版</title>
+      <link>https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Saluki 27B 是 Qwen3.8-27B 的 2-bit GGUF 量化版本，体积仅 7.89 GB、Apache 2.0 许可，在工具调用上超过 54 GB 的原版，但在竞赛数学与推理上有所退步。量化在特定能力上「越压越强」的现象值得注意。对读者：若本地部署主要用于工具调用与 Agent 编排，可优先测试该量化版本；涉及复杂推理的任务仍建议保留全精度模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google Cloud 推出 Gemini Agent，一个通用企业 Agent</title>
+      <link>https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google Cloud 发布 Gemini Agent，定位为面向企业工作的单一 Agent：通过一个提示框和一个 API，完成问答、知识工作、媒体生成以及代码编写与运行。这是云厂商把 Agent 能力收敛为统一入口的又一动作。对读者：企业选型时可对比其与 Bedrock AgentCore 等方案的集成成本，重点验证权限边界与数据驻留是否满足合规要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：1M 上下文，输入每百万 token 仅 0.10 美元</title>
+      <link>https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Anthropic 推出小模型 Claude Haiku 5.5，保留 1M 上下文，输入价格低至每百万 token 0.10 美元，在 OSWorld 上得分 72.4%。相比 Haiku 4.5 的 1 美元输入价，降幅约九成，直接对标 OpenAI GPT-6 Luna 的定价。对读者：高频、成本敏感的批处理与子 Agent 场景可优先切换到 Haiku 5.5 做成本压测。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity 发布 pplx-embed-v2-late：0.6B 端侧与 9B 索引双版本</title>
+      <link>https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity 推出 pplx-embed-v2-late 嵌入模型，包含面向边缘设备的 0.6B 版本和用于高质量索引构建的 9B 版本，MADQA 最高得分 92.4%，ViDoRe v3 Markdown 最低 61.2%。两个版本均为 MIT 许可，可自行部署。对读者：自建 RAG 的团队可将其纳入嵌入模型候选，注意不同任务上的分数差异较大。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 开源 d1-3B 与 d1-omni-600M 多模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 Open d1 系列两个开放权重多模态模型：d1-3B 可读文本与图像，d1-omni-600M 支持文本配图像或音频。两者均不输出文本，而是在单次前向传播中返回校准后的类型化答案，输出 token 为零，面向实时决策场景。对读者：分类、判定类任务可尝试用决策模型替代生成式模型以降低延迟与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：最快最便宜的小模型</title>
+      <link>https://www.anthropic.com/claude-haiku-5-5</link>
+      <guid isPermaLink="true">https://www.anthropic.com/claude-haiku-5-5</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Claude Blog · Anthropic 推出 Claude Haiku 5.5，官方称其为迄今最快、最强的小模型，主打高并发场景，如摘要、子智能体（subagents）与浏览器操作。模型 ID 为 claude-haiku-5-5，定位在成本敏感、调用量大的任务上替代更大模型。对读者：如果你的 Agent 流水线里大量调用的是「廉价小模型」，值得把 Haiku 5.5 纳入成本与延迟的对比测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Mistral Large 4（Le Chonk）：1.05 万亿参数 MoE</title>
+      <link>https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Mistral AI 以公开预览形式发布 Mistral Large 4，代号 Le Chonk：1.05 万亿参数混合专家模型，激活参数 490 亿，原生支持图像输入，上下文窗口达 100 万 token，在 Mistral 自有的欧洲数据中心用 3800 块 NVIDIA Grace Blackwell GPU 训练。API 已上线，开放权重预计 2026 年 10 月底发布。对读者：欧洲主权算力 + 开放权重路线值得关注，若你受数据合规约束，可提前评估其 API 与后续权重。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Mistral Large 4</title>
+      <link>https://mistral.ai/news/mistral-large-4</link>
+      <guid isPermaLink="true">https://mistral.ai/news/mistral-large-4</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Mistral AI News · Mistral AI 正式发布 Mistral Large 4，官方将其定位为企业级最强 AI 平台能力的一部分，支持定制、微调与部署 AI 助手、自主智能体及多模态应用。该发布与万亿参数、开源权重等关键词共同构成 Mistral 本轮的前沿叙事。对读者：企业选型时可关注其微调与私有化部署路径，而不只看榜单分数。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Reflection AI 推出 Beam：501B 开源权重 MoE 模型</title>
+      <link>https://www.marktechpost.com/2026/10/05/reflection-ai-introduces-beam-a-501b-open-weight-moe-model-with-23b-active-parameters-for-coding-and-agentic-workloads/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/05/reflection-ai-introduces-beam-a-501b-open-weight-moe-model-with-23b-active-parameters-for-coding-and-agentic-workloads/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Reflection AI 发布首个开源权重模型 Beam，采用 501B 稀疏混合专家架构、23B 激活参数，面向编码与智能体工作负载。官方称其在推理上可对标 GLM-5.2，且推理算力消耗低 3 至 4 倍，Apache 2.0 权重将于 2026 年 10 月晚些时候放出。对读者：若关注低成本 Agent 推理，可等权重放出后实测其编码与工具调用表现。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 发布 North 2：不妥协的企业级 AI</title>
+      <link>https://cohere.com/blog/introducing-north-2</link>
+      <guid isPermaLink="true">https://cohere.com/blog/introducing-north-2</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 推出 North 2，称其为迄今最大升级，把企业级安全、智能、成本治理与全栈控制统一到一个 Agentic AI 平台，并可在数据所在之处运行。企业 AI 竞争正从模型能力转向部署与治理。对读者：评估企业 Agent 平台时，把成本治理与数据驻留能力列为硬指标，而非只看模型分数。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 与普华永道结盟，加速企业 AI 落地</title>
+      <link>https://cohere.com/blog/cohere-and-pwc-partner-to-accelerate-secure-enterprise-ai-adoption</link>
+      <guid isPermaLink="true">https://cohere.com/blog/cohere-and-pwc-partner-to-accelerate-secure-enterprise-ai-adoption</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 与 PwC 宣布全球联盟，首站落地加拿大，结合安全主权 AI 与转型咨询能力，帮企业从试点走向生产并量化 AI 投资回报。模型厂商借咨询渠道切入大客户，是当前企业 AI 商业化的典型路径。对读者：选型时可借咨询伙伴的交付经验降低集成风险，但需明确数据主权归属。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>前沿模型横评：GPT-6 Astra、Sol、Gemini 4 Argon 与 Claude Fable 5.1 各适合什么活</title>
+      <link>https://www.marktechpost.com/2026/10/04/gpt-6-astra-vs-gpt-6-1-sol-vs-gemini-4-argon-vs-claude-fable-5-1-which-frontier-model-fits-which-job/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/04/gpt-6-astra-vs-gpt-6-1-sol-vs-gemini-4-argon-vs-claude-fable-5-1-which-frontier-model-fits-which-job/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 一篇对比指出：Astra 在计算机操作上领先，Argon 擅长法律与金融任务，Sol 在编码 Agent 场景以价格取胜。前沿模型的能力分化正从「谁更强」转向「谁更适合某类工作」。对读者：按任务类型做模型路由，比押注单一模型更能兼顾效果与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Aleph Alpha发布Kolibri：78.1B英德MoE，仅激活3.46B参数</title>
+      <link>https://www.marktechpost.com/2026/10/04/aleph-alpha-releases-kolibri-a-78-1b-open-weight-english-german-moe-model-with-only-3-46b-active-parameters/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/04/aleph-alpha-releases-kolibri-a-78-1b-open-weight-english-german-moe-model-with-only-3-46b-active-parameters/</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Aleph Alpha开源Kolibri，一个78.1B参数的英德双语混合专家模型，每token仅激活3.46B参数，支持100万token上下文与按请求调节的推理强度。其Apache 2.0许可的FP8权重可跑在单张B200或H200上。稀疏MoE加长上下文，正在把“大模型单卡可跑”变成现实选项。对读者：若做多语言或长文档场景，可把Kolibri列入本地部署候选，重点验证英德之外的语言表现。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>谷歌把联邦学习搬进TEE：Gboard实现可外部验证的差分隐私</title>
+      <link>https://www.marktechpost.com/2026/10/04/google-research-moves-federated-learning-into-tees-gboard-now-trains-with-externally-verifiable-differential-privacy/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/04/google-research-moves-federated-learning-into-tees-gboard-now-trains-with-externally-verifiable-differential-privacy/</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google Research公布新联邦学习系统，把梯度计算从手机移到经过认证的服务端TEE中。访问策略发布到Sigstore的Rekor日志，二进制可复现构建，因此中心化差分隐私可被外部核查。Gboard已用其训练英语和日语的下一个词预测。这为“既要集中训练又要隐私可验证”提供了工程范式。对读者：涉及用户数据的模型训练，可参考TEE+可复现构建+公开日志的组合来设计审计链路。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>DeepSeek Harness v0.2发布官方桌面应用</title>
+      <link>https://www.marktechpost.com/2026/10/03/deepseek-harness-v0-2-brings-official-desktop-apps-to-its-open-source-agent-harness/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/03/deepseek-harness-v0-2-brings-official-desktop-apps-to-its-open-source-agent-harness/</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · DeepSeek为其MIT许可的Agent框架Harness发布v0.2，新增macOS与Windows官方桌面应用。预览版加入插件管理器、文件与代码变更审查、定时自动化任务，并可通过OpenAI兼容端点接入非DeepSeek模型。开源Agent框架正从命令行走向桌面产品化。对读者：想搭内部Agent平台，可先评估Harness的插件与审查机制，注意其模型兼容层的稳定性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>英伟达发布 DGX Spark 64GB：1 PetaFLOP 桌面级本地 AI 主机</title>
+      <link>https://news.google.com/rss/articles/CBMi6wFBVV95cUxNOTQ1c0x4WnpyQzBCRVBuZ1liOC1jMnZVdDBHVWRCa2tWdEw4Zk92QWlQX01DbmdrLWQ2TVlveXN1aHBDSTNzSWwwNmEwQndYejA1dVdQeWk5SnRQUTZuSV94Sm1KbEU1RG1FXzNKNmF6b3d6X3pfUTJwUmtocUVWVms0VUpULTRGZFFpUXcyZkJ3b2Y1VWxDSzFTVXlaNnAtTXpKc3daS0E3M3FYZmpWVzV5TWswcm4xLW1VS3NDNkdwTXJJS01BODNxbXpCQ3puY3JLZHJ6UVdQcHRzMXRwTFJEWWY2LVlFMUQw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi6wFBVV95cUxNOTQ1c0x4WnpyQzBCRVBuZ1liOC1jMnZVdDBHVWRCa2tWdEw4Zk92QWlQX01DbmdrLWQ2TVlveXN1aHBDSTNzSWwwNmEwQndYejA1dVdQeWk5SnRQUTZuSV94Sm1KbEU1RG1FXzNKNmF6b3d6X3pfUTJwUmtocUVWVms0VUpULTRGZFFpUXcyZkJ3b2Y1VWxDSzFTVXlaNnAtTXpKc3daS0E3M3FYZmpWVzV5TWswcm4xLW1VS3NDNkdwTXJJS01BODNxbXpCQ3puY3JLZHJ6UVdQcHRzMXRwTFJEWWY2LVlFMUQw?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 英伟达宣布 DGX Spark 64GB，采用 Grace Blackwell 架构，提供约 1 PetaFLOP 算力，面向本地 AI Agent、模型微调与推理场景，定位为桌面级设备。对读者：若团队有数据不出内网的硬性要求，可把这类设备纳入本地推理与微调的选型对比，重点核算显存与并发。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Prime Intellect 推出 Prime Inference：面向前沿开源模型的托管推理</title>
+      <link>https://news.google.com/rss/articles/CBMi1AFBVV95cUxPMEpacVZva3FJNjBvenE2RUdUd1NkRFpubkJQT09oS1RwU2NJbEFoOGZhMmQ1cUYxaUt5SXp6dWdkSVl3TGpmcjNPWHVoS29IdXQ2c0hDMld6dDk2UkpLNmxXTEdqdDdqM0gxYkJQbFVQdDJzcTVlaFJCNVNKRjc2U1pEV1F1c0JvenhrUGhpUEJVd1gyV2FNdG8wY185SE9VSHJjOUZXRWJwbmNyZGxhMzMwdWhzVFZOMndiTlpGLWpqaUtqekhMNmNvak44d284OGlTTA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1AFBVV95cUxPMEpacVZva3FJNjBvenE2RUdUd1NkRFpubkJQT09oS1RwU2NJbEFoOGZhMmQ1cUYxaUt5SXp6dWdkSVl3TGpmcjNPWHVoS29IdXQ2c0hDMld6dDk2UkpLNmxXTEdqdDdqM0gxYkJQbFVQdDJzcTVlaFJCNVNKRjc2U1pEV1F1c0JvenhrUGhpUEJVd1gyV2FNdG8wY185SE9VSHJjOUZXRWJwbmNyZGxhMzMwdWhzVFZOMndiTlpGLWpqaUtqekhMNmNvak44d284OGlTTA?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Prime Intellect 发布 Prime Inference，为前沿开源模型提供无服务器与预留两种推理服务形态，方便开发者按需或按容量调用开源权重模型。对读者：在闭源 API 与自建推理之间做成本对比时，可把这类托管开源推理作为中间选项纳入评估。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Chatham Financial 用 Codex 与 GPT-5.6 把交易校验从 30 分钟压到 4 分钟以内</title>
+      <link>https://openai.com/index/chatham-financial</link>
+      <guid isPermaLink="true">https://openai.com/index/chatham-financial</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：OpenAI Blog · OpenAI 发布客户案例：资本市场服务商 Chatham Financial 使用 Codex 与 GPT-5.6 构建内部技术并重构工作流，将交易校验耗时从 30 分钟缩短至 4 分钟以内。案例展示了编码模型在金融合规类高精度流程中的实际收益。对读者：评估编码模型 ROI 时，可优先挑「高频、规则明确、人工耗时」的校验类流程做试点，收益最容易量化。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cloudflare 开源 Clef 与 Clef-flash：返回类型化概率而非文本的决策模型</title>
+      <link>https://news.google.com/rss/articles/CBMihwFBVV95cUxQUlhYbW8xUHJtYjJ6dWhBVmJLa3IyZ3hadjU3cGh4bm1nSlJMbU13Ui1wX1ZBZFZGc1BiSW5wamNlU2w2dTNGNXphNEd3aW9fdmJxYV8xaXlSZWtXanoyTlVZNnBNaUR6bHZMUE1ydEVfdXJiRjd4RXpGdEN2d2VPSG0tbUZSaFU?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMihwFBVV95cUxQUlhYbW8xUHJtYjJ6dWhBVmJLa3IyZ3hadjU3cGh4bm1nSlJMbU13Ui1wX1ZBZFZGc1BiSW5wamNlU2w2dTNGNXphNEd3aW9fdmJxYV8xaXlSZWtXanoyTlVZNnBNaUR6bHZMUE1ydEVfdXJiRjd4RXpGdEN2d2VPSG0tbUZSaFU?oc=5</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Cloudflare 发布开放权重决策模型 Clef 与 Clef-flash，其输出不是自然语言文本，而是带类型的概率值，面向需要确定性判断与可编排决策的场景。相比让 LLM 输出文本再解析，这类模型更适合嵌入规则与路由链路。对读者：若你的 Agent 里存在大量「分类/打分/选路」子任务，可评估用决策模型替代提示词调用，降低延迟与解析失败率。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google DeepMind 发布 Gemini 4 Argon：面向编码、企业知识与网络防御的新一代前沿模型</title>
+      <link>https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google DeepMind 正式公布 Gemini 4 Argon，定位为面向真实世界编码、企业知识工作与网络防御的前沿模型，将陆续开放。相比此前传闻的 Gemini 3.5 Pro，这次直接跳到 4 代，显示 Google 在模型代际节奏上加速。对读者：若你的产品依赖 Gemini API，建议先关注开放节奏与配额，避免把路线图押在未开放的能力上。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon 能力过强，Google 首批仅向「可信网络防御者」开放</title>
+      <link>https://www.theverge.com/tech/1002980/google-gemini-4-argon</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1002980/google-gemini-4-argon</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Verge AI · Google 公布 Gemini 4 Argon，称其在复杂工作流、软件工程、法律金融等企业知识工作及网络安全防御上达到前沿水平，但初期仅向一组「可信网络防御者」开放，并配合美国政府自愿性预发布审查流程逐步扩大访问。对读者：能力越强的模型越可能先受监管约束，企业采购需把「可获得性」纳入选型评估。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon 支持 100 万输出 token，主打编码、知识工作与网络防御</title>
+      <link>https://news.google.com/rss/articles/CBMi3gFBVV95cUxPM1MzVFplNUxlNF9sdmM0UXZ1Z1RVb2pzQWN3eDlIRU5YOFFSY0h2b2tJVjJZWHJNZDJWeG4yUHhaVHJmekJmejVCamJKX2pQWXZxSzZXcm85N29XSWowNVVXMUhBOUxqYWMwdHhTMzVRX1RLcUpjRlN6NDJwS0xsRzdHT2F3TWQ4UDZYMmhJN1NCUnJuc1YzYzd4anktRy1MdUtJNE5WcXNXbmRmcXQ3V3BHTE01ZE5qeUdmMFJTLWJSR0NZWGptd0hiWUc1elkycjRCcjBicEhCZGp4b2fSAeMBQVVfeXFMUFNLU0x0cDFWTWZMRGlMSEVKOVhGR2JWMjRmVkFZRE1EUGpadFdlMHhaTVlGNWdtOU1UdTF1X3ZfNFFvVzA4RkdvZzBJMTR0QXJQeTI2ZW80Z2Y0YTVJblNXN3hySVFEcDRpMHhXZWxFel9GNFNNUGJvV01xUmd5ZF9Yd1U3ZmZJSVNlYkJxUWdNNHRkUms1ZU5iLVpnRE9uRkVEM1lFLW1XSC1pNmFndEo1eUxUYmF6Z3dvMFJ4OFJadThkR0xENFVnWlpfSTFmTFBVdmlrS3k4ZktQZWdVZlhuT00?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3gFBVV95cUxPM1MzVFplNUxlNF9sdmM0UXZ1Z1RVb2pzQWN3eDlIRU5YOFFSY0h2b2tJVjJZWHJNZDJWeG4yUHhaVHJmekJmejVCamJKX2pQWXZxSzZXcm85N29XSWowNVVXMUhBOUxqYWMwdHhTMzVRX1RLcUpjRlN6NDJwS0xsRzdHT2F3TWQ4UDZYMmhJN1NCUnJuc1YzYzd4anktRy1MdUtJNE5WcXNXbmRmcXQ3V3BHTE01ZE5qeUdmMFJTLWJSR0NZWGptd0hiWUc1elkycjRCcjBicEhCZGp4b2fSAeMBQVVfeXFMUFNLU0x0cDFWTWZMRGlMSEVKOVhGR2JWMjRmVkFZRE1EUGpadFdlMHhaTVlGNWdtOU1UdTF1X3ZfNFFvVzA4RkdvZzBJMTR0QXJQeTI2ZW80Z2Y0YTVJblNXN3hySVFEcDRpMHhXZWxFel9GNFNNUGJvV01xUmd5ZF9Yd1U3ZmZJSVNlYkJxUWdNNHRkUms1ZU5iLVpnRE9uRkVEM1lFLW1XSC1pNmFndEo1eUxUYmF6Z3dvMFJ4OFJadThkR0xENFVnWlpfSTFmTFBVdmlrS3k4ZktQZWdVZlhuT00?oc=5</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 据 MarkTechPost 报道，Google DeepMind 发布的 Gemini 4 Argon 支持高达 100 万输出 token，面向编码、知识工作与网络防御场景。超长输出对生成大型代码库、长文档与多步推理任务意义明显，但也意味着成本与延迟结构变化。对读者：长输出模型适合批处理式重任务，实时交互场景仍应评估延迟与费用。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT-6.1 Sol：接近 Astra 的编码与电脑操作能力，token 价格仅五分之一</title>
+      <link>https://news.google.com/rss/articles/CBMi1AFBVV95cUxQRTdHUWxxblJfYW1PT2dneTRIWnNfeDJXcDY3cWJBbVBiZnRLeGRsWmZvYmVCS1BOZC0wdVI0aEtCeGRzdWlGMzljTnJyOHhBVzRjd0VManBQdVpCdXZHWkdFN1V2YXdTRktQU3dlX3VBR3IyOU5MTTdhS1hFRjJLdWxBSUViWDRFXzMzdm14WnQwcWN4MzdNdjRWaVVPUThjVFhMR0dfcWp3SDZ1bk9fUG84Vk8xdGx2Ujhjay1TOXVnaGtpUnNRaE5TX2c2NXJ6TV9sTNIB2gFBVV95cUxNc3dvV2VoLVRXVDZIdGtrb3o5R2FQTWJncU1vWTU1RkhwLVdWX0QtTHQ3d214YmVJcGlnVkp6OTRzd2haXzQ5VVlneUgyRVFfdE12dmtDME1xVTNzcVNNM3ZCSzRvM2h3M0JCQUMtZk1wOHhxOU55ZHNYTThMR1ZyWk5xQThxbGxmdU40UmpHQ1VCWU1yNl8wdWdaaVotMWVJMnlabFNySmJrd2Y3bFRJTG9BTEpvQ2lMSzZUUFY5ZmRqX29odjRXblVzTXdwMHdGNFVDWk8xam9hZw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1AFBVV95cUxQRTdHUWxxblJfYW1PT2dneTRIWnNfeDJXcDY3cWJBbVBiZnRLeGRsWmZvYmVCS1BOZC0wdVI0aEtCeGRzdWlGMzljTnJyOHhBVzRjd0VManBQdVpCdXZHWkdFN1V2YXdTRktQU3dlX3VBR3IyOU5MTTdhS1hFRjJLdWxBSUViWDRFXzMzdm14WnQwcWN4MzdNdjRWaVVPUThjVFhMR0dfcWp3SDZ1bk9fUG84Vk8xdGx2Ujhjay1TOXVnaGtpUnNRaE5TX2c2NXJ6TV9sTNIB2gFBVV95cUxNc3dvV2VoLVRXVDZIdGtrb3o5R2FQTWJncU1vWTU1RkhwLVdWX0QtTHQ3d214YmVJcGlnVkp6OTRzd2haXzQ5VVlneUgyRVFfdE12dmtDME1xVTNzcVNNM3ZCSzRvM2h3M0JCQUMtZk1wOHhxOU55ZHNYTThMR1ZyWk5xQThxbGxmdU40UmpHQ1VCWU1yNl8wdWdaaVotMWVJMnlabFNySmJrd2Y3bFRJTG9BTEpvQ2lMSzZUUFY5ZmRqX29odjRXblVzTXdwMHdGNFVDWk8xam9hZw?oc=5</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 推出 GPT-6.1 Sol，据称在编码与 computer use 上接近 Astra 水平，但 token 价格仅为 Astra 的五分之一。若属实，这将是性价比层面的显著跃升，直接压低 Agent 与自动化工作流的单位成本。对读者：可把 Sol 纳入编码助手与 Agent 的候选池，用真实任务做 A/B 成本对比后再迁移。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT-6.1 Sol 以约五分之一价格提供接近 Astra 的能力，新增 300 tokens/s 超高速档</title>
+      <link>https://news.google.com/rss/articles/CBMi5wFBVV95cUxPYkE5VU9HNktoV0tZWnpVYVNIN3oybHk2ZDVxelV1Q1lFRWJiNW9aS1RoVmNwYkRsai1KcVR4NzJXMGhpRWJhU196OHNDWEljc0xoaVNKVTNncUU3elFiYVZJLUFjQTZ6TUxNMkRRckNTLUxCdWgzT1FoRVNvbTBOYmFzczBBNmhJTUs2U1h0WENMLUx3OVd3UUFySmR0MUIzVUR1VTVuUUp3S0UtNkRld3BVbUNwcjhDUGt6N0doVzM0cWRjbTlESXFHaTRqS1hFZWp3RU51cXNPRmJYbzcxUlh3LVdUbmc?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi5wFBVV95cUxPYkE5VU9HNktoV0tZWnpVYVNIN3oybHk2ZDVxelV1Q1lFRWJiNW9aS1RoVmNwYkRsai1KcVR4NzJXMGhpRWJhU196OHNDWEljc0xoaVNKVTNncUU3elFiYVZJLUFjQTZ6TUxNMkRRckNTLUxCdWgzT1FoRVNvbTBOYmFzczBBNmhJTUs2U1h0WENMLUx3OVd3UUFySmR0MUIzVUR1VTVuUUp3S0UtNkRld3BVbUNwcjhDUGt6N0doVzM0cWRjbTlESXFHaTRqS1hFZWp3RU51cXNPRmJYbzcxUlh3LVdUbmc?oc=5</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · OpenAI 发布 GPT-6.1 Sol，官方定位为「接近 Astra 的智能、五分之一的价格」，并推出 Ultrafast 档，速度达 300 tokens/秒。性价比与吞吐同时提升，直接压缩了中端模型的生存空间。对读者：高频调用场景可重新做一次成本/质量基准测试，很可能值得迁移。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google DeepMind 推出 SynthID Bio，为 AI 设计的蛋白质加水印</title>
+      <link>https://deepmind.google/blog/introducing-synthid-bio/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/introducing-synthid-bio/</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · DeepMind 发布 SynthID Bio，这是为 AI 生成蛋白质添加水印的概念验证，且能在加水印的同时保留生物功能。它面向生物安全场景，可与主流 AI 蛋白质设计工具配合。对读者：做合成生物学或生物安全相关产品，可提前关注这类溯源标准的落地节奏。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Sonnet 5.5：Terminal-Bench 4.0 达 70.6%，价格维持 2/10 美元</title>
+      <link>https://news.google.com/rss/articles/CBMixgFBVV95cUxOWUFEQXc5TEIyYjRvWFlaWXU0M0dFTElWejFZZ2VacnlqTVd0SzJreXZ0bFVKWU9XMl9Pa0lkQVdRSVo3em1wM2ppQ1ZMR0xEUDdieGIyUFZWb3JPUjdTZThjS0lYS3V3OTR4SnJTQ044aFVBeVYtczQ2MkFfTk9oVUM4UW9uemRYekVhNkZYUGd1SXdyXzBvUDhWb0JURTJ3eTFGRk0yMWhVRnA5c1g1VkhwMFA2a2VEbjR2ZUFtNldack51QlHSAcsBQVVfeXFMTXhzVVZsYlNPSk9LM0lJbFpIc1FaNHpCN0JVR2tPSUdNb0RicDQtX0tEekptVG85TEZUN2J6dVVhN01OU1pwZTFQLU5Da3lKOWxlX2V2RlVTc2lvajBfTkEtbGRUUmNyVm1CVk45UzFndWhFaW1razdGUEZ5WUFiTUxnTFJHeGJHTXJqUUpGNVl5Ty1aejJOa19JeU1PTS1ZM1BUUmpMWm5SYkNwRDZFWXRDVlA1elpnS1NNdVJaeHZ5X1VRX3Z0TWRwMDA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMixgFBVV95cUxOWUFEQXc5TEIyYjRvWFlaWXU0M0dFTElWejFZZ2VacnlqTVd0SzJreXZ0bFVKWU9XMl9Pa0lkQVdRSVo3em1wM2ppQ1ZMR0xEUDdieGIyUFZWb3JPUjdTZThjS0lYS3V3OTR4SnJTQ044aFVBeVYtczQ2MkFfTk9oVUM4UW9uemRYekVhNkZYUGd1SXdyXzBvUDhWb0JURTJ3eTFGRk0yMWhVRnA5c1g1VkhwMFA2a2VEbjR2ZUFtNldack51QlHSAcsBQVVfeXFMTXhzVVZsYlNPSk9LM0lJbFpIc1FaNHpCN0JVR2tPSUdNb0RicDQtX0tEekptVG85TEZUN2J6dVVhN01OU1pwZTFQLU5Da3lKOWxlX2V2RlVTc2lvajBfTkEtbGRUUmNyVm1CVk45UzFndWhFaW1razdGUEZ5WUFiTUxnTFJHeGJHTXJqUUpGNVl5Ty1aejJOa19JeU1PTS1ZM1BUUmpMWm5SYkNwRDZFWXRDVlA1elpnS1NNdVJaeHZ5X1VRX3Z0TWRwMDA?oc=5</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Anthropic 推出 Claude Sonnet 5.5，在 Terminal-Bench 4.0 上取得 70.6% 的成绩，输入输出价格仍为每百万 token 2 美元与 10 美元。相比前代，它在速度与单任务成本上均有改善，属于「同价更强」的迭代。对读者：正在用 Sonnet 系列做编码代理的团队可直接替换测试，重点验证长任务下的稳定性与工具调用次数。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Claude Sonnet 5.5 单任务成本下降约 30%，源于更快速度与更少工具调用</title>
+      <link>https://news.google.com/rss/articles/CBMi3gFBVV95cUxObWtGY0Q3OEZkcHlLU0w0clBFNzJuN0dpakxXQllCVUw0NXZDMklhb2ppUDViQUViNjBzUE1LY2R1anNTaW82TzBxQTQ0RHFyaUJzbVFoUS0zWV9sdVdhWFIzQjRCdXFTanVCVkgyVHhpVDk3eTh3Xy1peTBzWVZjQk5JckxIMW1SRGNLOGI5dkFLX2s5SVA1a0NWalNfVm10R1B4dEhkdkFhN2VBa1FvY0p3cmNFd0tsX2xTcFUxZGRELW5TeVR2Zkl1cFE2RjhrUmlKNXBmUG9kQ0N1N1E?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3gFBVV95cUxObWtGY0Q3OEZkcHlLU0w0clBFNzJuN0dpakxXQllCVUw0NXZDMklhb2ppUDViQUViNjBzUE1LY2R1anNTaW82TzBxQTQ0RHFyaUJzbVFoUS0zWV9sdVdhWFIzQjRCdXFTanVCVkgyVHhpVDk3eTh3Xy1peTBzWVZjQk5JckxIMW1SRGNLOGI5dkFLX2s5SVA1a0NWalNfVm10R1B4dEhkdkFhN2VBa1FvY0p3cmNFd0tsX2xTcFUxZGRELW5TeVR2Zkl1cFE2RjhrUmlKNXBmUG9kQ0N1N1E?oc=5</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · 报道指出，Anthropic 的 Claude Sonnet 5.5 通过更快的推理速度和更少的工具调用次数，使多数任务的单次成本下降约 30%。这说明模型竞争正从单纯跑分转向「每任务成本」这一更贴近生产的指标。对读者：做 Agent 成本预算时，应把工具调用轮数纳入测算，而不只是比较 token 单价。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT-6 Astra 让税务工作簿处理速度翻倍</title>
+      <link>https://openai.com/index/basis-tax-workbook-with-astra</link>
+      <guid isPermaLink="true">https://openai.com/index/basis-tax-workbook-with-astra</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：OpenAI Blog · OpenAI 公布案例：Basis 使用 GPT-6 Astra 完成一份 50 个标签页的税务工作簿，速度是 GPT-5.6 Sol 的两倍。报道称 Astra 对用户意图的理解更强，让 Basis 在真实业务场景中更有信心。这是新模型在专业文档处理场景的一次具体性能对比。对读者：若你的业务涉及复杂表格与文档处理，可关注 Astra 在结构化任务上的实际吞吐提升。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Fireworks AI 发布 Ember-1：基于 Kimi K3 后训练，token 用量减少约 40%</title>
+      <link>https://news.google.com/rss/articles/CBMiwwFBVV95cUxORWJRNnpVa0RCeUNkVkdpclBjZGM0NFRJcHpwd3d1M2xJS1c5YmdFRV9jRGNCd1pKWk15azZXNUtUd3VyZjJHZjFZZ1pnQy02ZTRjQ3RSRzU5UUR6aWcybno1OVBWRURHdWV4aHhoendOc0FtOHhVY2lHRVJockI2SThGdjRfWWpTLVVSWnpRQnMxYnhQekFyQ1Z2WWRTSTBocWRNQmdJVi1nTURwQXJCN1RuQVFmTC1jbHFOcFBpNkdNalXSAcgBQVVfeXFMTTFQU2ctWVNfaERWUW40THRuVjE2ZUN3Z1h1elBBMVR5dTFPYU9FVVpXbWUySG0tRGplMFRLeThHbXJXd2QxbzdBNzdhNllObUVEX1R1LUN2N0k3a0JYbkROZC1teEI0YzBqLVFfc21FV21DVWlmMl9hR0o4OWtKVUp4V3N5WlYtaFFTd3BFYXNoVWhyOXE4SlNRekxkWW9uRl9WczhwSWJsaEg5dFpLTy1VakZEQWJkeTlNNTFBSl9JWUhheFVheDY?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiwwFBVV95cUxORWJRNnpVa0RCeUNkVkdpclBjZGM0NFRJcHpwd3d1M2xJS1c5YmdFRV9jRGNCd1pKWk15azZXNUtUd3VyZjJHZjFZZ1pnQy02ZTRjQ3RSRzU5UUR6aWcybno1OVBWRURHdWV4aHhoendOc0FtOHhVY2lHRVJockI2SThGdjRfWWpTLVVSWnpRQnMxYnhQekFyQ1Z2WWRTSTBocWRNQmdJVi1nTURwQXJCN1RuQVFmTC1jbHFOcFBpNkdNalXSAcgBQVVfeXFMTTFQU2ctWVNfaERWUW40THRuVjE2ZUN3Z1h1elBBMVR5dTFPYU9FVVpXbWUySG0tRGplMFRLeThHbXJXd2QxbzdBNzdhNllObUVEX1R1LUN2N0k3a0JYbkROZC1teEI0YzBqLVFfc21FV21DVWlmMl9hR0o4OWtKVUp4V3N5WlYtaFFTd3BFYXNoVWhyOXE4SlNRekxkWW9uRl9WczhwSWJsaEg5dFpLTy1VakZEQWJkeTlNNTFBSl9JWUhheFVheDY?oc=5</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Fireworks AI 推出 Ember-1，这是基于 Kimi K3 后训练得到的模型，据称可减少约 40% 的 token 消耗。在推理成本仍是规模化部署主要瓶颈的当下，token 效率的提升直接转化为成本下降。对读者：如果你的推理账单偏高，可评估这类后训练模型在保持质量的同时降低 token 用量的可行性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>谷歌研究推出 AI 视频联合导演：4 个智能体框架生成连贯长视频</title>
+      <link>https://news.google.com/rss/articles/CBMi6wFBVV95cUxOUEctSWl4M20wZV9BdVdDRjlrRjBLdVc1MDhGSVVqenltY2VQd1ZiMDBBT2VEMlFOQ2llek1uVlpfUk5yWkVqSVNVZ3Y3LUlvZFg4RjdHcTdYN3g5NV81QkRvRkJwVk1hYVJJOFlRdExfbFpvbmtVQ0hMYXhYQUEyNklTaUNfRm1LTk9PZHR1YkEyV0JVZ1J3SG5YUkZrQ2ZZU1FaQWlGcVFzQk1JQl9HZ0xjNVRyQ2NHeERRMlc5bVZBNHV0eG5VQnQxb2sxaEV1Q3F4STJxSGptRXVUX1RBQ2N5VFgyZmtibGdr0gHwAUFVX3lxTE16TXJ5djVUV2dYZUJJc3UyOGJ1dFhybjZVRTU5RWtJdFpMdGhJVVJmSFQtLWNBYnFHcTFhLWJEUmhmaHgyM0cwYXBvZGRnMDczaXRmeFBoNUMwRzFWQml4WGtjaVVRb0FsNUR2NmR4MVVPMTdUSURDOGUzUDZjd0w1RGwxN1JIZ09yRHR2VUNJNU1xN05lWGxxd1JoMFpHbXowOERuZ1N6cUpzZmR4YS1vU0dUQ1FwaG1QdTJ1SWVBbDZiNURrRUIwUmNyV0h3N0thbFhxY04wS3RORlpaeHdZRUdnYnkwVmZ4YlFUWHgzUw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi6wFBVV95cUxOUEctSWl4M20wZV9BdVdDRjlrRjBLdVc1MDhGSVVqenltY2VQd1ZiMDBBT2VEMlFOQ2llek1uVlpfUk5yWkVqSVNVZ3Y3LUlvZFg4RjdHcTdYN3g5NV81QkRvRkJwVk1hYVJJOFlRdExfbFpvbmtVQ0hMYXhYQUEyNklTaUNfRm1LTk9PZHR1YkEyV0JVZ1J3SG5YUkZrQ2ZZU1FaQWlGcVFzQk1JQl9HZ0xjNVRyQ2NHeERRMlc5bVZBNHV0eG5VQnQxb2sxaEV1Q3F4STJxSGptRXVUX1RBQ2N5VFgyZmtibGdr0gHwAUFVX3lxTE16TXJ5djVUV2dYZUJJc3UyOGJ1dFhybjZVRTU5RWtJdFpMdGhJVVJmSFQtLWNBYnFHcTFhLWJEUmhmaHgyM0cwYXBvZGRnMDczaXRmeFBoNUMwRzFWQml4WGtjaVVRb0FsNUR2NmR4MVVPMTdUSURDOGUzUDZjd0w1RGwxN1JIZ09yRHR2VUNJNU1xN05lWGxxd1JoMFpHbXowOERuZ1N6cUpzZmR4YS1vU0dUQ1FwaG1QdTJ1SWVBbDZiNURrRUIwUmNyV0h3N0thbFhxY04wS3RORlpaeHdZRUdnYnkwVmZ4YlFUWHgzUw?oc=5</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google Research 发布一套 AI 视频「联合导演」方案，包含 4 个智能体框架，用于生成连贯的、长达数分钟的视频。这针对的是当前视频生成模型在长时序一致性上的短板。对读者：长视频生成的一致性仍是难点，可关注该框架是否开源，以评估接入自建视频管线的可能。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Supersonic Labs 发布 Julia 1：1.443 亿参数开源决策模型，可在 CPU 运行</title>
+      <link>https://news.google.com/rss/articles/CBMiywFBVV95cUxNN0FZMTl2N0FURnpwb0U5czRRT1F3S0dkQ3pSaFZaX3NUbm5icTNVWkxZbXlEUlNFVjRZS3p3SjZJV2xuV0JuNllZeU80ZXk2dlRQWHhkQzVYdVozbW5BbkVLOXI4aDN3TEVtQ0ZtUjQ0MmlZY1RGNU9sSkJMQ20yMGJWcWo2cHJ0R2tSTWl3S2x3ZXRqMTZhUWFRRDJvSkcxa2taUC1hZXVBVjF2T1ZPQXNmUWQ5THAxQzU5MmNrWkZaeGVyTUw1Z2pqZ9IB0AFBVV95cUxNWDJmQUF6NHpjalYxS1pneGF3YUstR0lRYk1RcnJOQzhENkZmVnd6ZHk0MERwLU44WTJ2ZU1FOGxMS19rU1BuWTVab3FYSG5jWXdRdjZiMWdSQ19QbTBsY3NkUlNpbXFMY09WZm1qcXZZYmpTQl8tZkhJMWNLSTNIZ0toYzdiWTUzNXQ5SG1PQWQ5TWU1eFpOYVhxeTdacFM0cUdXd2NnYXZpM2xkaVR1dnp2dlFxd1lxTTBQV1FxVTlyVzVNSXo5ZmFKcERBZm1o?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiywFBVV95cUxNN0FZMTl2N0FURnpwb0U5czRRT1F3S0dkQ3pSaFZaX3NUbm5icTNVWkxZbXlEUlNFVjRZS3p3SjZJV2xuV0JuNllZeU80ZXk2dlRQWHhkQzVYdVozbW5BbkVLOXI4aDN3TEVtQ0ZtUjQ0MmlZY1RGNU9sSkJMQ20yMGJWcWo2cHJ0R2tSTWl3S2x3ZXRqMTZhUWFRRDJvSkcxa2taUC1hZXVBVjF2T1ZPQXNmUWQ5THAxQzU5MmNrWkZaeGVyTUw1Z2pqZ9IB0AFBVV95cUxNWDJmQUF6NHpjalYxS1pneGF3YUstR0lRYk1RcnJOQzhENkZmVnd6ZHk0MERwLU44WTJ2ZU1FOGxMS19rU1BuWTVab3FYSG5jWXdRdjZiMWdSQ19QbTBsY3NkUlNpbXFMY09WZm1qcXZZYmpTQl8tZkhJMWNLSTNIZ0toYzdiWTUzNXQ5SG1PQWQ5TWU1eFpOYVhxeTdacFM0cUdXd2NnYXZpM2xkaVR1dnp2dlFxd1lxTTBQV1FxVTlyVzVNSXo5ZmFKcERBZm1o?oc=5</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Supersonic Labs 发布 Julia 1，一个 1.443 亿参数的开源决策模型，主打无需 GPU、在 CPU 上即可运行。这类小参数专用模型为边缘与低成本部署提供了新选项。对读者：若你的场景是结构化决策而非通用对话，可先在小模型上验证效果，避免为通用大模型支付不必要的推理成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Sarvam AI 发布 Saaras V4：覆盖 22 种印度语言与全球英语的语音转文字模型</title>
+      <link>https://news.google.com/rss/articles/CBMi1gFBVV95cUxNR293dUQxS01SUE1QcG0xTHJtM2hnMmt6UmdXaUpJblpKeXp0VW1RSjFueHlKSG5CZVBrYm9hMG5DWVB6Vm5oUm1yTWhRWmUzTnZBZmtmNC1MNklFYXZWRlZuYWJ6Vk5DakJ4YUkwUUxNbVZ3N0tpaUUyYndsYzRhSFYtLUJPQ2VOdkd6Q2FMck5KWTVaM1VSMzlKNzNyZ3BlQVM0aHFNNGh2NlRvSk9iZmFZUmxhZnhKLUtyNWlRR0x5Wk1Wc19qb3ZoLXI2RENzVmFYYjZB0gHbAUFVX3lxTFBWNUJ1cHJMYW1TX1g3bXBpRFVwVUFjd2ttcUhsUXE1c2FtWnVlOUZ2YkNVb1ZKdHpaLU5CbFBaLUYtTV9UXzR4aTBuZWdrNDc2M1VwWDJJblYybTdWcm83UV9DNFktdmZrY25fUERrZTF1ajJNT3lhSUppb3JKWXZrVHRCWjlCZENsSmRKdGc4LVp0RVBQNTQtSHpjN2RlUUZYUXNUR2ZBb0laNDlWcmtXUWZqV3JmdjBKV3Y4NUc1R1RHTFg2OFZybWJYRDQwV2JkUy13cTVkM09xbw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1gFBVV95cUxNR293dUQxS01SUE1QcG0xTHJtM2hnMmt6UmdXaUpJblpKeXp0VW1RSjFueHlKSG5CZVBrYm9hMG5DWVB6Vm5oUm1yTWhRWmUzTnZBZmtmNC1MNklFYXZWRlZuYWJ6Vk5DakJ4YUkwUUxNbVZ3N0tpaUUyYndsYzRhSFYtLUJPQ2VOdkd6Q2FMck5KWTVaM1VSMzlKNzNyZ3BlQVM0aHFNNGh2NlRvSk9iZmFZUmxhZnhKLUtyNWlRR0x5Wk1Wc19qb3ZoLXI2RENzVmFYYjZB0gHbAUFVX3lxTFBWNUJ1cHJMYW1TX1g3bXBpRFVwVUFjd2ttcUhsUXE1c2FtWnVlOUZ2YkNVb1ZKdHpaLU5CbFBaLUYtTV9UXzR4aTBuZWdrNDc2M1VwWDJJblYybTdWcm83UV9DNFktdmZrY25fUERrZTF1ajJNT3lhSUppb3JKWXZrVHRCWjlCZENsSmRKdGc4LVp0RVBQNTQtSHpjN2RlUUZYUXNUR2ZBb0laNDlWcmtXUWZqV3JmdjBKV3Y4NUc1R1RHTFg2OFZybWJYRDQwV2JkUy13cTVkM09xbw?oc=5</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sarvam AI 推出 Saaras V4 语音转文字模型，支持全部 22 种印度语言及全球英语。多语言 ASR 能力对印度等 multilingual 市场的语音应用意义重大。对读者：做多语言语音产品时，可把印度语系覆盖度纳入 ASR 选型评估，减少自建多语言模型的成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5-VL-3B-DSpark，视觉语言模型解码最高提速 3.13 倍</title>
+      <link>https://news.google.com/rss/articles/CBMi8gFBVV95cUxPeWJ2NkhYc2NXNkFON1BrR014akM5Mnk0RHZqM1IyNFFRNXdpdXB3TDVTNmZRNHNyMWVBd0tvaVFrVlNnakY4VmlZb1oyTU9HM2dYbEx5eXFiMkVnMXhZXzU0V21pSlRIQzhhbUozQy1tbXdpNXFTV0YyREFSNTRrUmozeWRQOFlqVlR5MkVBMVpYQzRReDhSN0prbXhJVmdLN05jVDFkTlExclllZmVwWGwyVmlrN0hRSlZtMmk3WlhsZmhlbnM3VHRldVJNdGwyZG52V00tMm4xLWE1WGZjbW5nMHpjemM3RHNFd1ZkNHlLd9IB9wFBVV95cUxPak1BYVp6cENXWWI4Y1A2bmJpMmtnQXZDRC1vTUU5blVldUtUUU5lYVZqTGRyeEhEUV9TQTE2R0xiNGZmRHg2V1BRUFZTQkdvSHRyblVuMEJGd3U2SWVyT05iYjMtbXFfTEljdEhwZXBkRFBVeWg0TWVsMVQzYnFzZ0NfcUw4dUVnLTlELWNQc3ZKVjhnUXBFMnVjX29LN3lfbTRTTjZtaVp5WURwUE5JQlVCbEg2TURKYjdqa3VLejY4YTdOUGVKSWZzOXNDa0Vic19GT1hfS0VycV96ZkhPUDd2dUNVSmNvR1ZqeWdEeEQtYmRQOVdr?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi8gFBVV95cUxPeWJ2NkhYc2NXNkFON1BrR014akM5Mnk0RHZqM1IyNFFRNXdpdXB3TDVTNmZRNHNyMWVBd0tvaVFrVlNnakY4VmlZb1oyTU9HM2dYbEx5eXFiMkVnMXhZXzU0V21pSlRIQzhhbUozQy1tbXdpNXFTV0YyREFSNTRrUmozeWRQOFlqVlR5MkVBMVpYQzRReDhSN0prbXhJVmdLN05jVDFkTlExclllZmVwWGwyVmlrN0hRSlZtMmk3WlhsZmhlbnM3VHRldVJNdGwyZG52V00tMm4xLWE1WGZjbW5nMHpjemM3RHNFd1ZkNHlLd9IB9wFBVV95cUxPak1BYVp6cENXWWI4Y1A2bmJpMmtnQXZDRC1vTUU5blVldUtUUU5lYVZqTGRyeEhEUV9TQTE2R0xiNGZmRHg2V1BRUFZTQkdvSHRyblVuMEJGd3U2SWVyT05iYjMtbXFfTEljdEhwZXBkRFBVeWg0TWVsMVQzYnFzZ0NfcUw4dUVnLTlELWNQc3ZKVjhnUXBFMnVjX29LN3lfbTRTTjZtaVp5WURwUE5JQlVCbEg2TURKYjdqa3VLejY4YTdOUGVKSWZzOXNDa0Vic19GT1hfS0VycV96ZkhPUDd2dUNVSmNvR1ZqeWdEeEQtYmRQOVdr?oc=5</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 推出 LFM2.5-VL-3B-DSpark，把投机解码用于视觉语言模型，官方称解码速度最高提升 3.13 倍。小参数 VLM 加上解码加速，指向端侧与高并发多模态场景。对读者：若线上有图像理解请求，值得用投机解码方案做一轮吞吐与延迟对比测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Exa 推出 Agent Ultra：面向穷举式清单构建的子 Agent 集群深度研究 API</title>
+      <link>https://news.google.com/rss/articles/CBMi0AFBVV95cUxNbGlOOERzbnVyanVKeGlldlJxNE5jY19vdXdmNGtQZGVCVU83Tm1rRTlPUXRwYkpybkFxdDM3VEtJRm1tbWU1M0lpU2dkNmhLcHZWbWhzR1RUQ3hRQklHeDI1bHlnZHBrbGhWRnJXaE9DSHhjY0d2bzJCMXBDeTBMNWVRZ0wzdGZSdU15amtkUXl4WDFINGF6WG5qaUVoRUE5eVdKTzczNS1qSlktWnQyNkotZVF1bk9KZUhsZDgyU3ZPX3dXRTZJZC03TXlWS19z0gHWAUFVX3lxTFBuOFhtQnRzMGFYLUZiSVhtX3JNdEgtRUtZSzNfWnl4TjZUclVOLXJEREczcFlmWUprNTZIWVJFWDl4cDNmLVZ4ZC1DTVBoakg5bFc0eXkwcVRWbFBpeHhmUnlvN0ZuM3BnUkc5VzItRnV1TnNTUlNITlV3MWo5eGFEcEpkc2RWX0RNVjhGNDNqeGpwTGFVLVpPMWVKTU5sSFRvZW9PYmVMMXZ1bVRzbjVEcms4a1ZYYkU2d0IwdGN5VldabGIzSHcwNllfQkJnR1l1U2JKemc?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi0AFBVV95cUxNbGlOOERzbnVyanVKeGlldlJxNE5jY19vdXdmNGtQZGVCVU83Tm1rRTlPUXRwYkpybkFxdDM3VEtJRm1tbWU1M0lpU2dkNmhLcHZWbWhzR1RUQ3hRQklHeDI1bHlnZHBrbGhWRnJXaE9DSHhjY0d2bzJCMXBDeTBMNWVRZ0wzdGZSdU15amtkUXl4WDFINGF6WG5qaUVoRUE5eVdKTzczNS1qSlktWnQyNkotZVF1bk9KZUhsZDgyU3ZPX3dXRTZJZC03TXlWS19z0gHWAUFVX3lxTFBuOFhtQnRzMGFYLUZiSVhtX3JNdEgtRUtZSzNfWnl4TjZUclVOLXJEREczcFlmWUprNTZIWVJFWDl4cDNmLVZ4ZC1DTVBoakg5bFc0eXkwcVRWbFBpeHhmUnlvN0ZuM3BnUkc5VzItRnV1TnNTUlNITlV3MWo5eGFEcEpkc2RWX0RNVjhGNDNqeGpwTGFVLVpPMWVKTU5sSFRvZW9PYmVMMXZ1bVRzbjVEcms4a1ZYYkU2d0IwdGN5VldabGIzSHcwNllfQkJnR1l1U2JKemc?oc=5</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Exa 发布 Agent Ultra，用子 Agent 集群做深度研究，主打穷举式清单构建场景。相比单 Agent 串行检索，集群式分工更适合需要覆盖大量实体的调研任务。对读者：做线索挖掘、竞品盘点类功能时，可对比集群式检索 API 与自建多 Agent 编排的成本与召回率。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic：Claude 完成九圈振幅计算，AI 挑战理论物理难题</title>
+      <link>https://www.anthropic.com/research/yes-claude-can-do-nine-loops</link>
+      <guid isPermaLink="true">https://www.anthropic.com/research/yes-claude-can-do-nine-loops</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Anthropic Research · Anthropic 研究博客刊出物理学者 Matt von Hippel 的客座文章，讲述他向 AI 公司抛出理论物理难题后，Claude 在 N=4 超对称杨-米尔斯理论中算出了九圈振幅。作者坦言没想到挑战一个月内就被攻克。对读者：前沿模型在符号推理与数学推导上的边界值得持续跟踪，可把这类硬核任务纳入自家模型评测集。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 3.8 Live，新增实时数字人 Live Avatar</title>
+      <link>https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Gemini 3.8 Live 引入 Live Avatar，让对话式 AI 具备近乎实时的视觉形象：口型同步、表情随对话变化，并可在 97 种语言间切换而不损失视频保真度或出现视觉漂移。该功能目前仅面向 Gemini Enterprise 客户开放。对读者：实时数字人已进入企业级 API 视野，做客服、培训类产品的团队可提前评估接入成本与合规要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT-6 Astra 成 OpenAI 首个网络安全能力「严重级」模型</title>
+      <link>https://www.infoq.cn/article/b5oxzJyafr0lkZexoo8E?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/b5oxzJyafr0lkZexoo8E?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：InfoQ 中文 · GPT-6 Astra 被 OpenAI Preparedness Framework 评定为首个网络安全能力「严重级」模型，测试显示其可在数十小时内构建沙箱逃逸与本地提权漏洞利用链，29 小时攻破浏览器。该模型已通过 ChatGPT、API 及 AWS 分发。对读者：使用高能力模型时需重新评估其自主执行权限，对可写系统的 Agent 强制加沙箱与人工确认。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 3.8 Flash TTS 与 Flash-Lite TTS，支持提示词定制音色</title>
+      <link>https://news.google.com/rss/articles/CBMixgFBVV95cUxOZWdaM19nci0wb0hYZkMyazNqYzctaHRERjFGOHJqSzJxcnN1c0dUMEplM0NOb1ZQMFpUNG5WUjBFOElCQTVQQTNtR0hXcTBXZjhOTk5TalQ5UGppSWpxTjBTZFZDaS14SDJ4bEZ6YTJnZ3FPYXFsLXN2SURhUzVwZDF1UGFvMG9DZ2NUS1BWZEJQVms1RFFNdUpEa3NxYVY2R3VNOUU5dWhaYTFVNDQ0bmxpT3BLcVduajJTNDFsci0wUFA5Z1HSAcsBQVVfeXFMTk1FdFVpX3dPTjBMSC1yOVhERFNSZEhIQnFCbDZEX3BQb0tuenBsak5tbnNlYWNGUEJaelNsbDhYeU1pYy1uMDREb2pZcHo3X281aG4wWWlEQm1qMlN6T19WdGxzR1dEWW1GRjVlTS1OWTZackRGX29BN2lDdXpmMmFXTENvMDVnWk12SzdKR2Z1WkRzVG1HTE1vMWh6WXVOOTRXUjhaUk13X3prNHFjOXBLYkM1bUphUGJ0NXg0S2xBaTJQMU5QNDdIWkk?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMixgFBVV95cUxOZWdaM19nci0wb0hYZkMyazNqYzctaHRERjFGOHJqSzJxcnN1c0dUMEplM0NOb1ZQMFpUNG5WUjBFOElCQTVQQTNtR0hXcTBXZjhOTk5TalQ5UGppSWpxTjBTZFZDaS14SDJ4bEZ6YTJnZ3FPYXFsLXN2SURhUzVwZDF1UGFvMG9DZ2NUS1BWZEJQVms1RFFNdUpEa3NxYVY2R3VNOUU5dWhaYTFVNDQ0bmxpT3BLcVduajJTNDFsci0wUFA5Z1HSAcsBQVVfeXFMTk1FdFVpX3dPTjBMSC1yOVhERFNSZEhIQnFCbDZEX3BQb0tuenBsak5tbnNlYWNGUEJaelNsbDhYeU1pYy1uMDREb2pZcHo3X281aG4wWWlEQm1qMlN6T19WdGxzR1dEWW1GRjVlTS1OWTZackRGX29BN2lDdXpmMmFXTENvMDVnWk12SzdKR2Z1WkRzVG1HTE1vMWh6WXVOOTRXUjhaUk13X3prNHFjOXBLYkM1bUphUGJ0NXg0S2xBaTJQMU5QNDdIWkk?oc=5</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google 推出两款 Gemini 文本转语音模型，提供超过 2000 种音色，并支持用约 30 秒音频样本创建自定义声音。语音合成正从「选音色」走向「描述即生成」，且轻量版进一步压低成本。对读者：做语音交互产品时，可先用 Flash-Lite 验证成本上限，再按质量需求升级到 Flash。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 用「Claude 迷你市场」研究 Agent 代我们交易会发生什么</title>
+      <link>https://www.anthropic.com/research/project-swap</link>
+      <guid isPermaLink="true">https://www.anthropic.com/research/project-swap</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Anthropic Research · Anthropic 发布 Project Swap，构建了一个由 Claude 组成的微型市场，观察 Agent 在代表人类交易时的有效行为与失效点，是此前 Project Deal 的受控续作。这类实验为多 Agent 经济系统的风险与机制设计提供了可复现的观察窗口。对读者：若计划让 Agent 参与定价、竞价或交易，先在小规模沙盒中验证其策略是否会引发连锁反应。</description>
+      <category>模型</category>
+    </item>
+  </channel>
+</rss>

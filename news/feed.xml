@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 10 Oct 2026 09:05:31 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Deno 团队加入 Cloudflare，将简化 Workers 自托管</title>
+      <link>https://blog.cloudflare.com/deno-joins-cloudflare/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/deno-joins-cloudflare/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Cloudflare Blog · Cloudflare 宣布 Deno 团队整体加入，目标是让 Workers 与 Durable Objects 的自托管变得极其简单，开发者能在更多环境复用同一套原语。这意味着 Deno 的运行时路线将与 Cloudflare 边缘平台深度绑定，长期独立发展路径存在不确定性。对读者：若项目重度依赖 Deno 运行时或 Deploy 服务，建议关注后续许可与托管政策变化，评估迁移与锁定风险。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>LMArena 母公司融资 2 亿美元，估值 10 个月翻倍至 31 亿美元</title>
+      <link>https://techcrunch.com/2026/10/08/popular-ai-leaderboard-arena-nearly-doubles-valuation-to-3-1b-valuation-in-10-months/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/08/popular-ai-leaderboard-arena-nearly-doubles-valuation-to-3-1b-valuation-in-10-months/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 运营热门 AI 排行榜 LMArena 的公司完成 2 亿美元融资，由 Lightspeed 与 Khosla 领投，估值在 10 个月内接近翻倍至 31 亿美元，并开始把「说谎」等对齐问题纳入模型评测维度。评测榜单正从社区工具变成有商业价值的行业基础设施。对读者：选模型时可把 LMArena 的对齐类指标纳入参考，但需注意榜单背后的商业动机与评测方法透明度。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>被解雇的 OpenAI 安全研究员反驳指控，警告寒蝉效应</title>
+      <link>https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 三名被 OpenAI 解雇的安全研究员否认不当处理敏感信息的指控，并发表公开信称解雇正在公司内部对 AI 安全文化造成寒蝉效应。OpenAI 随后回应称解雇源于「严重违反信任」，与安全议题无关。安全团队与商业路线之间的张力再次公开化。对读者：关注 AI 安全治理的团队可跟踪此事后续，评估供应商在安全投入与透明度上的实际承诺。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>USA Today 起诉 OpenAI，索赔超 2.5 亿美元</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1008198/usa-today-openai-copyright-lawsuit</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1008198/usa-today-openai-copyright-lawsuit</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · USA Today 公司及其旗下多家地方报纸起诉 OpenAI，称其未经授权复制「数十万篇」文章用于训练模型，索赔金额超过 2.5 亿美元。这是继《纽约时报》等之后又一起针对 OpenAI 的版权诉讼，媒体与 AI 训练数据的冲突持续升级。对读者：使用大模型生成内容时需留意训练数据版权风险，企业应保留内容来源与合规审查记录。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic 推出 OSS Scanner，为开源项目免费做 AI 安全扫描</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Anthropic 发布 OSS Scanner，开源项目可选择加入，由最强模型定期免费做安全漏洞扫描。代价是报告完全由模型生成、没有人工复核与分诊，可能带来误报，但换来更高频的扫描覆盖。对读者：维护开源项目的团队可将其作为早期预警补充，但不要把模型输出直接当作已确认漏洞，仍需人工验证后再修复。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>曾经最火的 AI Agent Instinct，能扛住 Muse 的冲击吗</title>
+      <link>https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Instinct 以邀请制、无营销、极简短信式界面切入 AI Agent 市场，能代订 DMV 预约、发跟进邮件，一度成为最受关注的 Agent 产品。随后 Muse 与 Dots 相继出现，功能相近但背靠更大公司，竞争格局迅速恶化。对读者：评估 Agent 产品时应关注其差异化护城河与资金续航，避免把关键流程押注在可能被巨头功能覆盖的小团队上。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Sophos 用 OpenAI Daybreak 把威胁调查时间缩短 96%</title>
+      <link>https://openai.com/index/sophos</link>
+      <guid isPermaLink="true">https://openai.com/index/sophos</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Sophos 借助 OpenAI 的 Daybreak 将网络威胁调查时间削减 96%，并自动化了 52% 的 MDR 工单，同时保留人工监督环节。这是安全运营场景中 AI 提效的量化案例，说明模型在告警分诊与调查流程中已能承担相当比例的工作量。对读者：安全团队可参考其「自动化 + 人工复核」的分工模式，先在高频低风险工单上试点，再逐步扩大自动化比例。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Asana 浏览器测试中把模型成本降低 76 倍</title>
+      <link>https://openai.com/index/asana-browser-agent</link>
+      <guid isPermaLink="true">https://openai.com/index/asana-browser-agent</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Asana 在 Codex 中使用 GPT-6 Astra 重构浏览器 Agent，测试中成本降低 76 倍、速度提升 5 倍，从而能向客户开放更强的模型能力。这说明模型选型与调用方式优化对 Agent 单位经济模型的影响，可能比单纯降价更大。对读者：构建浏览器 Agent 时应把模型路由与成本压测纳入常规流程，优先验证「更小模型 + 更好编排」能否达到同等效果。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>JetBrains 发布 Mellum2.1：面向编码 Agent 的 12B MoE 开源模型</title>
+      <link>https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · JetBrains 发布 Apache 2.0 许可的 Mellum2.1，12B 混合专家模型、激活参数 2.5B，通过在真实仓库中做强化学习，SWE-bench Verified 分数从 2.0 提升到 47.0。这显示编码 Agent 的专用小模型在真实工程任务上仍有可观提升空间。对读者：自建编码助手的团队可评估该模型在私有仓库上的微调潜力，注意 47.0 的分数仍与头部闭源模型有差距。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Saluki 27B：2-bit 量化的 Qwen3.8-27B，工具调用反超原版</title>
+      <link>https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Saluki 27B 是 Qwen3.8-27B 的 2-bit GGUF 量化版本，体积仅 7.89 GB、Apache 2.0 许可，在工具调用上超过 54 GB 的原版，但在竞赛数学与推理上有所退步。量化在特定能力上「越压越强」的现象值得注意。对读者：若本地部署主要用于工具调用与 Agent 编排，可优先测试该量化版本；涉及复杂推理的任务仍建议保留全精度模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google Cloud 推出 Gemini Agent，一个通用企业 Agent</title>
+      <link>https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google Cloud 发布 Gemini Agent，定位为面向企业工作的单一 Agent：通过一个提示框和一个 API，完成问答、知识工作、媒体生成以及代码编写与运行。这是云厂商把 Agent 能力收敛为统一入口的又一动作。对读者：企业选型时可对比其与 Bedrock AgentCore 等方案的集成成本，重点验证权限边界与数据驻留是否满足合规要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cloudflare Workers 与 Durable Objects 支持按需 CPU/内存火焰图分析</title>
+      <link>https://blog.cloudflare.com/workers-on-demand-profiling/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/workers-on-demand-profiling/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 为 Workers 和 Durable Objects 推出按需 CPU 与内存性能分析，可直接在生产环境生成交互式火焰图，用于定位内存泄漏与性能瓶颈。Serverless 运行时长期缺乏生产级 profiling 手段，这一补齐对排查线上问题意义明显。对读者：建议在灰度环境先开启 profiling 采样，确认额外开销可接受后再用于生产排障。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Next.js 16.4 发布，React 应用可视化有了新方式</title>
+      <link>https://react.statuscode.com/issues/493</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/493</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status 第 493 期汇总：Next.js 16.4 发布，同时出现一种可视化 React 父子树与所有者树关系的图示记法，可标注 context、Suspense、memo、错误边界与 RSC，并提供粘贴代码生成树的演练场。此外 TanStack Charts 1.0、Redux Toolkit 2.13 等也有更新。对读者：升级 Next.js 前先核对 RSC 与缓存相关变更，新的树可视化工具可用于排查组件归属与渲染边界问题。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Manus 与 Meta 分拆后首轮融资超 5 亿美元</title>
+      <link>https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/08/chinas-manus-raises-over-500m-in-first-funding-round-since-split-with-meta/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Manus 完成与 Meta 分拆后的首轮融资，金额超过 5 亿美元，由博裕资本与 IDG 资本领投，腾讯、HSG（原红杉中国）、真格基金等老股东跟投。这轮融资显示中国 AI Agent 赛道在资本层面依然活跃，也意味着 Manus 将独立推进产品与商业化。对读者：关注其后续 Agent 产品定价与开放策略，判断是否值得纳入团队工具链评估。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Nous Research 确认 15 亿美元估值，推出面向企业的 AI Agent</title>
+      <link>https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Hermes Agent 开发商 Nous Research 完成 9000 万美元 B 轮融资，估值达 15 亿美元，并同步推出面向企业用户的 AI Agent 产品。开源模型背景的团队转向企业级 Agent 商业化，是今年开源与商业边界模糊化的又一案例。对读者：若团队已在用 Hermes 系列模型，可跟进其企业版能力与许可条款变化。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Tristan Harris 的科技非营利组织大幅裁员，转向“创始人主导”</title>
+      <link>https://www.wired.com/story/tristan-harris-tech-nonprofit-is-laying-off-most-staff-and-going-founder-led/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/tristan-harris-tech-nonprofit-is-laying-off-most-staff-and-going-founder-led/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · 曾推动“反过度屏幕时间”运动的 Center for Humane Technology 将裁撤大部分员工，转为创始人主导模式。报道称内部在方向与策略上的张力已持续多年。科技伦理倡导组织在 AI 高速扩张期面临定位与资金双重压力。对读者：关注 AI 伦理与监管议题时，需留意倡导机构本身的影响力变化。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Claude 上线 Dashboards 与 Motion，Docs/Slides/Design 转正全量开放</title>
+      <link>https://claude.com/resources/articles/dashboards-and-motion</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/dashboards-and-motion</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 为 Claude 推出两项 beta 功能：Claude Dashboards 用于构建实时数据看板，Claude Motion 用于生成动画讲解内容。同时 Docs、Slides、Design 结束 beta，向包括免费版在内的所有 Claude 套餐开放。这意味着 Claude 正从对话助手向办公与可视化生产工具延伸。对读者：若团队已订阅 Claude，可先试用 Dashboards 替代部分轻量 BI 场景。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出跨应用“通用”Gemini Agent</title>
+      <link>https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 在 Gemini at Work 活动上发布通用 Gemini Agent，可在后台跨应用与设备执行任务，入口位于 Gemini Enterprise，支持 Gmail、Drive、Docs、Sheets、Calendar 以及 Slack、Microsoft 365 等第三方应用，并可从移动端、桌面与网页调用。云端运行意味着任务可持续执行。对读者：企业评估 Agent 平台时，可把跨应用权限与审计能力作为核心对比项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线“Intelligent UI”，回答中直接嵌入图表与按钮</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 随 GPT-6 向所有用户推送 Intelligent UI，ChatGPT 可在文本回答中生成图表、示意图、表单与可点击按钮等交互元素。官方称已训练 GPT-6 判断何时用可视化替代纯文本。聊天界面正从纯文本输出转向可交互的轻应用形态。对读者：做前端集成时需提前考虑这类富交互输出的渲染与可访问性适配。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出完全离线的 AI 会议记录应用 AI Edge Foresight</title>
+      <link>https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 发布实验性笔记应用 AI Edge Foresight，可在完全离线状态下转写会议与音频文件，基于端侧 EmbeddingGemma 2 模型运行于 macOS，免费使用。用户记录要点后，应用会结合转写内容整理成“润色后的笔记”，对标 Granola、Wispr Flow。对读者：对数据敏感的场景可优先评估端侧方案，但需确认离线模型的准确率是否达标。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：1M 上下文，输入每百万 token 仅 0.10 美元</title>
+      <link>https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Anthropic 推出小模型 Claude Haiku 5.5，保留 1M 上下文，输入价格低至每百万 token 0.10 美元，在 OSWorld 上得分 72.4%。相比 Haiku 4.5 的 1 美元输入价，降幅约九成，直接对标 OpenAI GPT-6 Luna 的定价。对读者：高频、成本敏感的批处理与子 Agent 场景可优先切换到 Haiku 5.5 做成本压测。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity 发布 pplx-embed-v2-late：0.6B 端侧与 9B 索引双版本</title>
+      <link>https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity 推出 pplx-embed-v2-late 嵌入模型，包含面向边缘设备的 0.6B 版本和用于高质量索引构建的 9B 版本，MADQA 最高得分 92.4%，ViDoRe v3 Markdown 最低 61.2%。两个版本均为 MIT 许可，可自行部署。对读者：自建 RAG 的团队可将其纳入嵌入模型候选，注意不同任务上的分数差异较大。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 开源 d1-3B 与 d1-omni-600M 多模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 Open d1 系列两个开放权重多模态模型：d1-3B 可读文本与图像，d1-omni-600M 支持文本配图像或音频。两者均不输出文本，而是在单次前向传播中返回校准后的类型化答案，输出 token 为零，面向实时决策场景。对读者：分类、判定类任务可尝试用决策模型替代生成式模型以降低延迟与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Unsloth Studio 在运行前重新校验模型仓库变更</title>
+      <link>https://www.marktechpost.com/2026/10/07/what-happens-when-a-trusted-model-repo-changes-unsloth-studio-re-checks-before-it-runs/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/what-happens-when-a-trusted-model-repo-changes-unsloth-studio-re-checks-before-it-runs/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Unsloth 发布 10 月 6 日安全说明，介绍 Studio 在运行前如何检查代码、权重、依赖包与工具：自定义模型代码会被扫描且审批绑定到指纹，被标记的权重文件在加载路径中被拦截，包内容问题会导致 CI 失败，工具运行在探测过的操作系统沙箱中。对读者：本地跑第三方模型权重时，可参考这套校验点设计自己的加载前检查流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Stack Overflow：给编码 Agent 一套“操作系统”式的纪律化构建方法</title>
+      <link>https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/</link>
+      <guid isPermaLink="true">https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Stack Overflow Blog · Stack Overflow 博客 Part 6 讨论编码 Agent 的长期质量问题：Agent 适合干一下午，却难以稳定支撑一个季度。文章给出少量文件与规则配置，用于在数月、上千次编辑中防止质量衰减，适用于单 Agent 或同仓库多 Agent 并行。对读者：若团队已把编码 Agent 纳入日常流程，可先落地这套配置模板再谈规模化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Mistral 称 Le Chonk 可挑战顶级闭源模型，且保持开放权重</title>
+      <link>https://arstechnica.com/ai/2026/10/mistral-says-le-chonk-can-challenge-the-best-ai-models/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/10/mistral-says-le-chonk-can-challenge-the-best-ai-models/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · Ars Technica 报道，Mistral 表示其新模型 Le Chonk（即 Mistral Large 4）能够与顶级闭源模型竞争，同时仍保持开放权重路线。这与 Mistral 一贯的「开放 + 欧洲主权」定位一致，也让它成为少数同时押注前沿能力与开放生态的厂商。对读者：若你在评估「闭源 API 还是可自托管权重」，Le Chonk 的权重发布节奏值得列入观察清单。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Healthleap 融资 3800 万美元，用 AI 标记需重点关注的住院患者</title>
+      <link>https://techcrunch.com/2026/10/07/healthleap-raises-38m-for-its-ai-that-flags-hospital-patients-who-may-need-a-closer-look/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/07/healthleap-raises-38m-for-its-ai-that-flags-hospital-patients-who-may-need-a-closer-look/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Healthleap 完成 3800 万美元融资，包括由 Sequoia Capital 与 First Round Capital 联合领投的 800 万美元种子轮，以及由 Hummingbird Ventures 领投的 3000 万美元 A 轮。其 AI 用于识别医院中可能需要更密切观察的患者，属于临床辅助决策方向。对读者：医疗 AI 的融资热度仍在，但落地关键在于与临床流程和合规的咬合，关注其后续临床验证数据。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Google、Meta、Isomorphic Labs 共同投资 3 亿美元建「虚拟细胞」</title>
+      <link>https://www.theverge.com/tech/1006766/google-meta-biohub-investment-virtual-cell</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1006766/google-meta-biohub-investment-virtual-cell</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · Google DeepMind、Meta 与 AI 药物发现公司 Isomorphic Labs 联合向 Biohub 投资 3 亿美元，用于创建可供研究人员对抗疾病的「虚拟细胞」。该项目由扎克伯格夫妇创立的非营利生物医学研究组织 Biohub 牵头，属于 18 亿美元「虚拟生物学」计划的一部分，目标是构建可让研究者数字化提问、预测和回答生物学问题的 AI 数据集。对读者：AI for Science 正从论文走向重资产基础设施，关注其数据集开放程度。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Google 全球上线改进版 SynthID AI 内容检测器</title>
+      <link>https://arstechnica.com/ai/2026/10/google-rolls-out-improved-synthid-ai-content-detector-now-available-globally/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/10/google-rolls-out-improved-synthid-ai-content-detector-now-available-globally/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · Google 推出新版 SynthID 网站，可识别来自 Google、OpenAI 等多家厂商的 AI 生成内容，并面向全球开放。这使 AI 内容溯源从单一厂商工具走向跨平台检测，但检测可靠性仍是行业共同难题。对读者：若你的产品涉及 UGC 或内容审核，可把 SynthID 作为辅助信号接入，但不要把它当作唯一判定依据。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>GPT-6 全球上线 ChatGPT，带来 Intelligent UI</title>
+      <link>https://openai.com/index/gpt-6-for-everyone</link>
+      <guid isPermaLink="true">https://openai.com/index/gpt-6-for-everyone</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 GPT-6 在全球范围内向 ChatGPT 用户推送，并同步引入 Intelligent UI：响应更快，回答中直接嵌入可视化与可交互内容，用户可在对话里探索和使用。这标志着 ChatGPT 从纯文本问答进一步转向「可操作界面」，模型能力与前端交互形态被捆绑发布。对读者：若你在做 AI 产品，需重新评估「聊天框」是否还是唯一入口，交互层可能成为新的差异化战场。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Common Sense Media：ChatGPT for Teens 是「不可接受的风险」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 青少年安全评测机构 Common Sense Media 称 OpenAI 的 ChatGPT for Teens 是「不可接受的风险」。该功能 8 月推出，主打面向青少年的护栏与学习辅助，但评估认为其保护措施「未达到公司承诺」：该提醒家长时未提醒、危机情境下未提供正确帮助，且仍会替孩子做作业。对读者：做面向未成年人的 AI 产品，护栏不能只写在宣传里，家长通知与危机干预是必须可验证的能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 为 ChatGPT for Teens 加入 College Planner 等功能</title>
+      <link>https://openai.com/index/teens-learn-and-plan</link>
+      <guid isPermaLink="true">https://openai.com/index/teens-learn-and-plan</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 College Planner 即将登陆 ChatGPT for Teens，帮助学生管理大学申请，同时新增闪卡、测验功能，并成立青少年 AI 委员会。这与同日 Common Sense Media 的批评形成对照：一边扩展青少年学习场景，一边面临安全性质疑。对读者：教育类 AI 功能扩张时，安全与家长可见性会成为监管和舆论的焦点，产品设计需前置考虑。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：最快最便宜的小模型</title>
+      <link>https://www.anthropic.com/claude-haiku-5-5</link>
+      <guid isPermaLink="true">https://www.anthropic.com/claude-haiku-5-5</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Claude Blog · Anthropic 推出 Claude Haiku 5.5，官方称其为迄今最快、最强的小模型，主打高并发场景，如摘要、子智能体（subagents）与浏览器操作。模型 ID 为 claude-haiku-5-5，定位在成本敏感、调用量大的任务上替代更大模型。对读者：如果你的 Agent 流水线里大量调用的是「廉价小模型」，值得把 Haiku 5.5 纳入成本与延迟的对比测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Mistral Large 4（Le Chonk）：1.05 万亿参数 MoE</title>
+      <link>https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Mistral AI 以公开预览形式发布 Mistral Large 4，代号 Le Chonk：1.05 万亿参数混合专家模型，激活参数 490 亿，原生支持图像输入，上下文窗口达 100 万 token，在 Mistral 自有的欧洲数据中心用 3800 块 NVIDIA Grace Blackwell GPU 训练。API 已上线，开放权重预计 2026 年 10 月底发布。对读者：欧洲主权算力 + 开放权重路线值得关注，若你受数据合规约束，可提前评估其 API 与后续权重。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google DeepMind 开源 EmbeddingGemma 2：740M 多模态嵌入模型</title>
+      <link>https://www.marktechpost.com/2026/10/06/google-deepmind-releases-embeddinggemma-2-a-740m-open-multimodal-embedding-model-built-on-gemma-4/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/google-deepmind-releases-embeddinggemma-2-a-740m-open-multimodal-embedding-model-built-on-gemma-4/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Google DeepMind 发布 EmbeddingGemma 2，一个 740M 参数的开源多模态嵌入模型，基于 Gemma 4 构建，可将 5 种输入类型映射到统一的 768 维空间，以 Apache 2.0 协议发布。它面向隐私优先的本地部署场景，主打「原生多模态嵌入」能力。对读者：做 RAG 或跨模态检索时，可把它作为本地嵌入层的候选，重点验证多模态召回质量与显存占用。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Meta 开源 Rebalancer：每天处理约 4000 万次分配问题的 C++ 求解器</title>
+      <link>https://www.marktechpost.com/2026/10/06/meta-ai-open-sources-rebalancer-a-c-assignment-solver-that-runs-about-40-million-placement-problems-a-day/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/meta-ai-open-sources-rebalancer-a-c-assignment-solver-that-runs-about-40-million-placement-problems-a-day/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Meta 开源了内部使用超过 9 年的 Rebalancer，一个 C++ 与 Python 库，用于分片、服务器与流量分配，每天处理约 4000 万个分配问题，支持局部搜索以及 Gurobi、FICO Xpress、HiGHS 等 MIP 求解器，以 Apache 2.0 协议发布并可通过 pip 安装。对读者：调度、容量规划、分片均衡这类「组合优化」问题，可先看它能否直接复用，避免自研求解器。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>GitHub 重建 Git 基础设施，为 Agent 规模开发做准备</title>
+      <link>https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 正在不停机重建其 Git 基础设施，以应对写入量加速增长带来的压力，并为「Agent 规模」的软件开发打基础。官方称这一架构调整面向的是仓库所依赖系统的可扩展性，而非单点功能更新。对读者：当编码 Agent 大量并发提交时，代码托管平台的底层能力会直接影响你的 CI 与协作体验，值得关注其后续性能与限流策略变化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>JPEG XL 终于在 Chrome 中落地</title>
+      <link>https://frontendfoc.us/issues/761</link>
+      <guid isPermaLink="true">https://frontendfoc.us/issues/761</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Frontend Focus · Frontend Focus 第 761 期报道 JPEG XL 终于在 Chrome 中发布，同时收录 Cloudflare 基于 10000 个大型站点真实用户 Core Web Vitals 的 BigQuery 公开数据集（覆盖 Safari/WebKit 与 Chrome），以及 Nolan Lawson 关于「使用平台能力」的观点和着色器开源等内容。对读者：图片格式与真实性能数据的更新会直接影响前端加载优化策略，可先在小流量场景验证 JPEG XL 的收益。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Mistral 发布 1T 参数 Mistral Large 4，剑指闭源与开源对手</title>
+      <link>https://techcrunch.com/2026/10/06/mistrals-new-1t-model-aims-to-leapfrog-closed-and-open-rivals/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/06/mistrals-new-1t-model-aims-to-leapfrog-closed-and-open-rivals/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 法国 AI 实验室 Mistral AI 发布 Mistral Large 4，一款万亿参数级多模态大模型，官方称目标是同时超越美国与中国的竞争对手。此举被视为 Mistral 在开源与闭源夹击下证明自己仍处前沿的关键一役。对读者：若你在评估欧洲合规模型供应商，可把 Mistral Large 4 纳入对比清单，但需等实测基准再定论。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Mistral 称新模型 Le Chonk 是中国之外最强开源权重模型</title>
+      <link>https://www.wired.com/story/mistral-new-model-le-chonk-open-source-china-us-frontier/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/mistral-new-model-le-chonk-open-source-china-us-frontier/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · Wired 报道，Mistral 借万亿参数新模型 Le Chonk 的发布，希望证明自己「仍在竞赛中」，有能力构建前沿级人工智能。该模型被定位为中国以外最强的开源权重产品，凸显欧洲厂商在开源路线上的存在感。对读者：开源权重意味着可自托管与微调，但需关注其许可证条款与真实推理成本。</description>
+      <category>业界</category>
+    </item>
+  </channel>
+</rss>

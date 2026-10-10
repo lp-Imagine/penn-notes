@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 开源</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 10 Oct 2026 09:05:31 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Unsloth Studio 在运行前重新校验模型仓库变更</title>
+      <link>https://www.marktechpost.com/2026/10/07/what-happens-when-a-trusted-model-repo-changes-unsloth-studio-re-checks-before-it-runs/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/what-happens-when-a-trusted-model-repo-changes-unsloth-studio-re-checks-before-it-runs/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Unsloth 发布 10 月 6 日安全说明，介绍 Studio 在运行前如何检查代码、权重、依赖包与工具：自定义模型代码会被扫描且审批绑定到指纹，被标记的权重文件在加载路径中被拦截，包内容问题会导致 CI 失败，工具运行在探测过的操作系统沙箱中。对读者：本地跑第三方模型权重时，可参考这套校验点设计自己的加载前检查流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Google DeepMind 开源 EmbeddingGemma 2：740M 多模态嵌入模型</title>
+      <link>https://www.marktechpost.com/2026/10/06/google-deepmind-releases-embeddinggemma-2-a-740m-open-multimodal-embedding-model-built-on-gemma-4/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/google-deepmind-releases-embeddinggemma-2-a-740m-open-multimodal-embedding-model-built-on-gemma-4/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Google DeepMind 发布 EmbeddingGemma 2，一个 740M 参数的开源多模态嵌入模型，基于 Gemma 4 构建，可将 5 种输入类型映射到统一的 768 维空间，以 Apache 2.0 协议发布。它面向隐私优先的本地部署场景，主打「原生多模态嵌入」能力。对读者：做 RAG 或跨模态检索时，可把它作为本地嵌入层的候选，重点验证多模态召回质量与显存占用。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Meta 开源 Rebalancer：每天处理约 4000 万次分配问题的 C++ 求解器</title>
+      <link>https://www.marktechpost.com/2026/10/06/meta-ai-open-sources-rebalancer-a-c-assignment-solver-that-runs-about-40-million-placement-problems-a-day/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/meta-ai-open-sources-rebalancer-a-c-assignment-solver-that-runs-about-40-million-placement-problems-a-day/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Meta 开源了内部使用超过 9 年的 Rebalancer，一个 C++ 与 Python 库，用于分片、服务器与流量分配，每天处理约 4000 万个分配问题，支持局部搜索以及 Gurobi、FICO Xpress、HiGHS 等 MIP 求解器，以 Apache 2.0 协议发布并可通过 pip 安装。对读者：调度、容量规划、分片均衡这类「组合优化」问题，可先看它能否直接复用，避免自研求解器。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>MCP 用于 Agent 间通信，可能是你没听过的最危险协议</title>
+      <link>https://arstechnica.com/security/2026/10/vulnerability-in-agents-from-google-and-others-exposes-structural-flaw-in-mcp/</link>
+      <guid isPermaLink="true">https://arstechnica.com/security/2026/10/vulnerability-in-agents-from-google-and-others-exposes-structural-flaw-in-mcp/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Ars Technica AI · Ars Technica 指出，用于智能体间通信的 MCP 协议存在信任缺口，恶意提示可在 Agent 之间传播。由于 Agent 常默认信任来自其他 Agent 的消息，攻击面被显著放大。对读者：在 Agent 编排中引入 MCP 时，务必对跨 Agent 消息做来源校验与内容过滤，别默认可信。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源模型能做安全研究吗？Cantina 的 apex-flash-1 解出 60 道留出漏洞题中的 40 道</title>
+      <link>https://www.marktechpost.com/2026/10/04/can-an-open-model-do-security-research-cantinas-apex-flash-1-solves-40-of-60-held-out-bug-tasks/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/04/can-an-open-model-do-security-research-cantinas-apex-flash-1-solves-40-of-60-held-out-bug-tasks/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Cantina Security 与 Yeta Labs 发布专为漏洞研究训练的开源权重模型 apex-flash-1，基于 GLM-5.3-Flash 强化学习微调，以 MIT 协议在 Hugging Face 发布，可跑在 vLLM、SGLang 或 Transformers，但 BF16 约需 640GB 显存。对读者：安全自动化可先小规模验证其误报率，再决定是否投入大显存部署。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源工具可删除 macOS 上 12GB 的 Apple Intelligence 数据</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1004672/mac-delete-apple-intelligence-ai-tool</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1004672/mac-delete-apple-intelligence-ai-tool</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：The Verge AI · 名为 RemoveMacAI 的开源命令行工具可关闭 Apple Intelligence 并删除本地 AI 模型，最多释放 12GB 存储。macOS 27 移除了单一开关后，模型仍留在磁盘、功能分散在多个设置面板。对读者：存储紧张的 Mac 用户可关注该工具，但删除前确认不影响依赖本地模型的功能。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>微软：Agent说它做完了，数据库不同意</title>
+      <link>https://huggingface.co/blog/microsoft/thinkingbox</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/microsoft/thinkingbox</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face上微软发布的文章讨论Agent任务完成度与真实系统状态不一致的问题：Agent声称已完成，但数据库校验失败。这类“自报成功”是Agent落地生产环境的高频故障，根源在于缺少可验证的副作用确认与事务边界。对读者：设计Agent写操作时，务必以数据库或外部系统的最终状态为准，加入幂等与回滚，别信Agent的完成声明。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Meta 开源 Muse 硬件代码，可自制 AI 小设备</title>
+      <link>https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：The Verge AI · Meta 开源了让开发者自制 Muse AI 设备的代码，可在 ESP32 开发板或树莓派上接入 Muse，并连接屏幕、按键、传感器与执行器。官方示例包括用彩色电子墨水屏显示提醒、做成 HDMI 棒投屏、或做成小型触屏设备。对读者：想快速验证端侧 Agent 形态的团队，可先用 ESP32 跑通最小闭环再谈量产。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Ai2 发布 Olmo-core 3：面向大型 MoE 的开放可扩展训练基础设施</title>
+      <link>https://huggingface.co/blog/allenai/olmocore3</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/allenai/olmocore3</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Ai2 在 Hugging Face 发布 Olmo-core 3，定位为面向大型混合专家（MoE）模型的开放、可扩展训练基础设施。在开源大模型训练栈普遍封闭的背景下，这类基础设施对复现与二次开发意义重大。对读者：若团队要自训 MoE，可评估 Olmo-core 3 作为训练框架，降低从零搭建的成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>腾讯开源多用户多智能体 AI 助手 Octop，MIT 协议、数据留在本地</title>
+      <link>https://www.cnblogs.com/xiaobaiysf/p/23181208</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/xiaobaiysf/p/23181208</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · 腾讯云以 MIT 协议开源 AI 助手 Octop，支持多用户与多智能体，数据全部留在用户自己的机器上，并已上架 1Panel 应用商店，点几下即可安装。自托管 + 多 Agent 的组合对隐私敏感团队有吸引力。对读者：若你在意数据主权，可先用 1Panel 快速试装 Octop，评估其多用户隔离与扩展能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>GameDev-MCP-Server：一份代码同时服务 Unity、Godot、Unreal 的 MCP 方案</title>
+      <link>https://www.cnblogs.com/shanyou/p/23181231</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/shanyou/p/23181231</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · GameDev-MCP-Server 仓库的设计亮点在于一份代码同时服务 Unity-MCP、Godot-MCP、Unreal-MCP，仓库内不含引擎特定代码，真正干活的工具由连上来的引擎插件动态提供。配合 Claude Code 可从空文件夹做出可玩的 Unity 游戏。对读者：这是 MCP 插件化架构的优秀范例，做工具集成时可借鉴其「核心与适配器分离」思路。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Google Research 开源 RRSI：让 AI Agent 自我改进执行框架且不过拟合</title>
+      <link>https://news.google.com/rss/articles/CBMi0AFBVV95cUxQbUJzcDVlb1Rsa1pSLUV2V2szWG80Z0NMTGpkcGVjeS1KbXQ1ZUpzR0s5VTg5S0NsOTJYYzBpX2tIdWoxOE0zdmtsWVYyX3FnVTdLQ3d6bmJpTDdJUUt6R3BoWnVRdk4zU09SZTc0aUdmVklENnFNWWRDNXRWYVVpM2hPVEJ0X0FrMUs2RmlHM080UzVHdTdXR1dSUHVDNm5tY1daanF6dmVLM0pEajI0NE43akotZkQ1T1dwRTNJUTZpTFprRVJuQVhRZ01TVUpG0gHWAUFVX3lxTE9FZFpfb3JBeHAzLVlfRjI5Z3FkU0w2UnZ1eHRad00wVTZKc3djSU9SM3BXQnhCWFhQNTlxTzVrRnZnXzQ5MVBFNFE2ZFpaRy05anJqaXZpSFhxS192V3BsMTlhUmJxLTU3alE0MWZOblNSb1B2VHFYMXFsQTgtME1BNTN1ZmxZNGlnTEtKWGpDRkpiblREeUNvbWRkZnNKbFpUS2hPanVDNEQ0WmZiMlRQYTBlRE5YTWF3SjdjTWk4dDlOS1JJUW5DbDgyd1hLSmp6S3ZlRWc?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi0AFBVV95cUxQbUJzcDVlb1Rsa1pSLUV2V2szWG80Z0NMTGpkcGVjeS1KbXQ1ZUpzR0s5VTg5S0NsOTJYYzBpX2tIdWoxOE0zdmtsWVYyX3FnVTdLQ3d6bmJpTDdJUUt6R3BoWnVRdk4zU09SZTc0aUdmVklENnFNWWRDNXRWYVVpM2hPVEJ0X0FrMUs2RmlHM080UzVHdTdXR1dSUHVDNm5tY1daanF6dmVLM0pEajI0NE43akotZkQ1T1dwRTNJUTZpTFprRVJuQVhRZ01TVUpG0gHWAUFVX3lxTE9FZFpfb3JBeHAzLVlfRjI5Z3FkU0w2UnZ1eHRad00wVTZKc3djSU9SM3BXQnhCWFhQNTlxTzVrRnZnXzQ5MVBFNFE2ZFpaRy05anJqaXZpSFhxS192V3BsMTlhUmJxLTU3alE0MWZOblNSb1B2VHFYMXFsQTgtME1BNTN1ZmxZNGlnTEtKWGpDRkpiblREeUNvbWRkZnNKbFpUS2hPanVDNEQ0WmZiMlRQYTBlRE5YTWF3SjdjTWk4dDlOS1JJUW5DbDgyd1hLSmp6S3ZlRWc?oc=5</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Google Research 开源了 RRSI，使 AI Agent 能够改进自身的执行框架（harness），同时避免过拟合。这类「自我改进但不跑偏」的方法对构建可长期演进的 Agent 系统有直接参考价值。对读者：可跟进其防止过拟合的评测设计，用于校准自家 Agent 的迭代节奏。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>H Company 发布 Holo4：开放权重计算机操作模型，覆盖桌面、Web、Android 与 API</title>
+      <link>https://news.google.com/rss/articles/CBMi9wFBVV95cUxPRTQ5eEZNRnVZeFJ0ZGZXX3J4aDhvcDlETzVLMk1ONTFKZ2tvV3hMY1MwTEZHWkltOVBTWjJpaDY3c0d6ejBCNWtHaGdYdnh5d3NGWFAwRkRRTndpZkNTMG8tMVgxZ1ZtUDNLd1ZDdmUzVTY3LWtuQXNYNmxJSkFqbnJ2dS1FMFdZdUZTZjIzRW5LcUhqalhXRXhtN2x2MTBjVDNLeGJIZEpDZVRLeTRIaVhtTHFST3d3VTl0OGtZN3RRZXJIaE5vclJmZ1pOMjJFZUM2Ul9nTUhtZnhUeG1xZmh4dW5NYVg5aFpvbGoxLWFJSnZLYkxN0gH8AUFVX3lxTE0waDhJd1lLRzRSY1NKdzYwX1lwMmZORTlBS2xRcXp6anZnNERCLTJlM1M4RVF6RWxTYnk3NjFZdVgwOWhaTEc2cWhZWW5JeTdlOERKNWVwYkxnNTR3R3AxR3VZVG1VVDBjdkxlS0lhV2FDLXZBYW12dkNYeWZPZFdfX1BwWjhkTjRtRjlJYWJMOW45U0plN0xCLTBaTzhoVkdwOXoyb0ExbmN3Z01YVG1mbVNDXzRMRDlpRE5CZUdkTmRkbXJFUDFrOEp2LUQ2VlQwV1JZMFM1aUpZVTNqSjkwTzRtYjQ2UW1hZjlNRlJVSVdjQ0Y1d2Q2UUl6YQ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi9wFBVV95cUxPRTQ5eEZNRnVZeFJ0ZGZXX3J4aDhvcDlETzVLMk1ONTFKZ2tvV3hMY1MwTEZHWkltOVBTWjJpaDY3c0d6ejBCNWtHaGdYdnh5d3NGWFAwRkRRTndpZkNTMG8tMVgxZ1ZtUDNLd1ZDdmUzVTY3LWtuQXNYNmxJSkFqbnJ2dS1FMFdZdUZTZjIzRW5LcUhqalhXRXhtN2x2MTBjVDNLeGJIZEpDZVRLeTRIaVhtTHFST3d3VTl0OGtZN3RRZXJIaE5vclJmZ1pOMjJFZUM2Ul9nTUhtZnhUeG1xZmh4dW5NYVg5aFpvbGoxLWFJSnZLYkxN0gH8AUFVX3lxTE0waDhJd1lLRzRSY1NKdzYwX1lwMmZORTlBS2xRcXp6anZnNERCLTJlM1M4RVF6RWxTYnk3NjFZdVgwOWhaTEc2cWhZWW5JeTdlOERKNWVwYkxnNTR3R3AxR3VZVG1VVDBjdkxlS0lhV2FDLXZBYW12dkNYeWZPZFdfX1BwWjhkTjRtRjlJYWJMOW45U0plN0xCLTBaTzhoVkdwOXoyb0ExbmN3Z01YVG1mbVNDXzRMRDlpRE5CZUdkTmRkbXJFUDFrOEp2LUQ2VlQwV1JZMFM1aUpZVTNqSjkwTzRtYjQ2UW1hZjlNRlJVSVdjQ0Y1d2Q2UUl6YQ?oc=5</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · H Company 发布 Holo4 系列开放权重模型，可执行点击、写代码与调用工具等操作，覆盖桌面、Web、Android 及 API 多种环境。开放权重的计算机操作模型增多，意味着 GUI Agent 的选型不再局限于闭源方案。对读者：若在做跨端自动化，可先在小范围任务上对比 Holo4 与闭源模型的成功率与延迟。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA 推出开放 Agent 安全平台：OpenShell 沙箱与 Sentry 毫秒级隔离</title>
+      <link>https://news.google.com/rss/articles/CBMiiwFBVV95cUxNZ1ZhS0ZadFNPRzVJNTZFdDd0a1pZdE5KNzhnNHExNWlWZzd0SFJSOFNMT0xPck9QNXg4cG9QaDhJTEFVUVlEVE0yZklacDd1TTJ6b2M3SF81T3ZBa3VXekpkeE1ZLUdPd1dQVV96Y0RNMElUOTRCVlBwVXR0Q1FrSXkxMXFlOWZsWnp30gGQAUFVX3lxTE8wem52ZnJUeThUb1Y3ZlZhS1o4M2c0bzVUU1hzMXBjcmtqZnNfVlpkdlh6cnhUcEpSN01pZHRVcHZua1NRM2xNRG5uNzl0c0JLUVo0SWk4ZnpkVDFjYlVwWFcyV3NzeTNwX2dVWTZfQmZiRWY2dE9JNVBBUnBKaGtpdmZjM1oyaEdJM2VrQV9mag?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiiwFBVV95cUxNZ1ZhS0ZadFNPRzVJNTZFdDd0a1pZdE5KNzhnNHExNWlWZzd0SFJSOFNMT0xPck9QNXg4cG9QaDhJTEFVUVlEVE0yZklacDd1TTJ6b2M3SF81T3ZBa3VXekpkeE1ZLUdPd1dQVV96Y0RNMElUOTRCVlBwVXR0Q1FrSXkxMXFlOWZsWnp30gGQAUFVX3lxTE8wem52ZnJUeThUb1Y3ZlZhS1o4M2c0bzVUU1hzMXBjcmtqZnNfVlpkdlh6cnhUcEpSN01pZHRVcHZua1NRM2xNRG5uNzl0c0JLUVo0SWk4ZnpkVDFjYlVwWFcyV3NzeTNwX2dVWTZfQmZiRWY2dE9JNVBBUnBKaGtpdmZjM1oyaEdJM2VrQV9mag?oc=5</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · NVIDIA 发布开放 Agent 安全平台，其中 OpenShell 在 Vera CPU 上为 Agent 提供沙箱，Sentry 则依托 BlueField-4 在毫秒级对 Agent 进行隔离。随着 Agent 获得更多系统权限，运行时隔离正成为基础设施层的必备能力。对读者：部署高权限 Agent 前，应把沙箱与隔离方案列入架构评审，而非事后补救。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Holo4 开源：面向通用计算机操作智能体</title>
+      <link>https://huggingface.co/blog/Hcompany/holo4</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/Hcompany/holo4</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · H 公司在 Hugging Face 发布 Holo4，定位为驱动通用计算机操作（computer-use）智能体的模型。这类模型让智能体直接操作图形界面完成任务，是 Agent 落地的重要方向。对读者：若你在做 RPA 或浏览器自动化，可关注 Holo4 的权重与许可，评估替代传统脚本式自动化的可行性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Cloudflare 开源 Forge：从 API 定义自动生成 SDK、CLI 与文档</title>
+      <link>https://blog.cloudflare.com/forge-open-source-generation-pipeline/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/forge-open-source-generation-pipeline/</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Cloudflare Blog · Cloudflare 开源 Forge，这是一个可插拔的流水线，在 CI 中运行，直接从 API 定义生成 SDK、CLI 和文档。通过把生成环节前移到各团队仓库，Forge 让开发者工具持续保持同步。对读者：维护多语言 SDK 的团队可评估 Forge，减少手写绑定与文档漂移的维护成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>阿里巴巴开源 AI 代码评审工具 OpenCodeReview</title>
+      <link>https://www.infoq.cn/article/jJIXCaLHUvPgswTOZ1uQ?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/jJIXCaLHUvPgswTOZ1uQ?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 阿里开源 AI 代码评审 CLI 工具 OpenCodeReview，采用「确定性流水线 + LLM 智能体」分阶段架构：文件选取、diff 验证等确定性任务与语义分析分离，降低 AI 故障面，并公开基准与召回率数据，已在内部规模化验证两年。对读者：引入 AI 代码评审时，可参考这种把确定性逻辑与模型判断解耦的设计，降低误报与不可控风险。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>openrig：把 Claude Code 与 Codex 当作一个系统运行的多智能体框架</title>
+      <link>https://github.com/mvschwarz/openrig</link>
+      <guid isPermaLink="true">https://github.com/mvschwarz/openrig</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：mvschwarz/openrig · 开源项目 openrig 提供多智能体 harness，可将 Claude Code 与 Codex 组合为同一系统协同工作。这类「多编码 Agent 编排」项目正成为开发者工具的新方向。对读者：若已同时使用多个编码助手，可关注此类编排框架，把不同模型的强项组合进同一工作流。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>阿里开源 AI 沙箱平台 OpenSandbox 1.1.0：伞版本、签名 BOM 与 Firecracker 集成</title>
+      <link>https://www.cnblogs.com/shanyou/p/23130792</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/shanyou/p/23130792</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · OpenSandbox 1.1.0 引入伞版本加签名 BOM 统一管理所有产物版本，集成 Firecracker 微虚拟机，并建立 OSEP 提案机制走向规范化社区治理。随着 Coding Agent 深入落地，模型输出作为不可信输入需要沙箱隔离。对读者：若在生产环境运行 AI 生成的代码，应优先评估沙箱方案的隔离强度与版本可追溯性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>斯坦福与英伟达开源 CLM-8B：缓存可复用 Agent 动作，测试中比 Jev 快至多 9 倍</title>
+      <link>https://news.google.com/rss/articles/CBMi1wFBVV95cUxQQlNIdjNkOHBld1pudGdrTUhlNjh6WEpFSXE4RFRpZjJ0bW4tcFNkdE9VdGoxcXFsTTZVVERaeERWS3R3d0RLR2dJSjh4bk03d0ctZnBreldFeTBNQkpsdUNSczE5RnQxOGhrVjhoS2lkWWRsa0xCakVfZ2pmV2dIdGNwd0dqdERJc2tUWkh0dDZHZGE4VVBrelJ4d0pPRkZqXzlpdVRGamM3d3BqdVZ0SWxEODBIUjFfYVFXMy1CNnk5eElvbjdENXhTTUdoTkNWWW82bU11TQ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi1wFBVV95cUxQQlNIdjNkOHBld1pudGdrTUhlNjh6WEpFSXE4RFRpZjJ0bW4tcFNkdE9VdGoxcXFsTTZVVERaeERWS3R3d0RLR2dJSjh4bk03d0ctZnBreldFeTBNQkpsdUNSczE5RnQxOGhrVjhoS2lkWWRsa0xCakVfZ2pmV2dIdGNwd0dqdERJc2tUWkh0dDZHZGE4VVBrelJ4d0pPRkZqXzlpdVRGamM3d3BqdVZ0SWxEODBIUjFfYVFXMy1CNnk5eElvbjdENXhTTUdoTkNWWW82bU11TQ?oc=5</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VentureBeat AI · 斯坦福与英伟达联合开源 CLM-8B，通过缓存可复用的 Agent 动作，在测试中比 Jev 快至多 9 倍。思路是把重复决策沉淀为可复用缓存，而非每次重新推理。对读者：Agent 工作流中大量重复步骤可先做动作缓存层，往往比换更大模型更省成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>vectorize-io/hindsight：会学习的 Agent 记忆层开源项目</title>
+      <link>https://github.com/vectorize-io/hindsight</link>
+      <guid isPermaLink="true">https://github.com/vectorize-io/hindsight</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：vectorize-io/hindsight · vectorize-io 开源 hindsight，定位为「会学习的 Agent 记忆」，为 Agent 提供可积累、可检索的长期记忆能力。记忆层正从各家自研走向独立开源组件。对读者：自建 Agent 时优先评估成熟记忆库，避免重复造轮子，同时注意记忆数据的隐私与清理策略。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Black Forest Labs 发布 FLUX 3 Action 开源权重机器人模型，以一半体量登顶榜单</title>
+      <link>https://news.google.com/rss/articles/CBMigwJBVV95cUxNanNlRFkxQTIzdGxhUHJqc0JmMjc1MDljWDlnd19OVVA3LVdjWG9KaUttOEVaSHJUTzlqUU5yRkhhR1o3QzN0MnZRczZYYl93Ul83SDNOUFFwdVBVQkpmUlhrNklFTzdMSG5ieXlVYzhWX1RKQVFLQ3BqQUZYQllUVkFvRVhtdUFSbE1sQW9JUHlkUDRrZ3VoM2t3NlFZUkZTOTZ0bUZUcWlaQWpJWldXRUg3Ri1sWmVoNF9Sc3l5RWJoNFhfYW03TjBMY012anRCTW02VXdMWEVRQXRuMXAyMEhqSnlyR1NFT2ZqNGx3bGtqWHY1ZVBZc3NOMTU3aUlvQVhF?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMigwJBVV95cUxNanNlRFkxQTIzdGxhUHJqc0JmMjc1MDljWDlnd19OVVA3LVdjWG9KaUttOEVaSHJUTzlqUU5yRkhhR1o3QzN0MnZRczZYYl93Ul83SDNOUFFwdVBVQkpmUlhrNklFTzdMSG5ieXlVYzhWX1RKQVFLQ3BqQUZYQllUVkFvRVhtdUFSbE1sQW9JUHlkUDRrZ3VoM2t3NlFZUkZTOTZ0bUZUcWlaQWpJWldXRUg3Ri1sWmVoNF9Sc3l5RWJoNFhfYW03TjBMY012anRCTW02VXdMWEVRQXRuMXAyMEhqSnlyR1NFT2ZqNGx3bGtqWHY1ZVBZc3NOMTU3aUlvQVhF?oc=5</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VentureBeat AI · Black Forest Labs 推出 FLUX 3 Action，一款开放权重的机器人模型，据称以竞争对手一半的参数量在相关榜单上排名第一。开源权重加小体量的组合，正在把机器人策略模型的门槛拉低到更多团队可参与的程度。对读者：做具身智能或机器人策略的团队，可优先复现该模型并对比自家方案的数据效率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 LFM2.5-VL-DSpark，加速视觉语言模型</title>
+      <link>https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Liquid AI 在 Hugging Face 发布 LFM2.5-VL-DSpark，聚焦视觉语言模型的推理加速。在 VLM 广泛用于文档理解与多模态 Agent 的当下，推理效率直接决定单位成本与可部署场景。对读者：若你的多模态流水线受限于延迟或显存，可把该模型纳入基准测试，比较同等精度下的吞吐差异。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Transformers 现在可以直接运行 llama.cpp 量化模型</title>
+      <link>https://huggingface.co/blog/transformers-llama-cpp-quants</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/transformers-llama-cpp-quants</guid>
+      <pubDate>Tue, 22 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 宣布 Transformers 支持运行 llama.cpp 的量化格式，意味着社区常用的 GGUF 类量化权重可以在 Transformers 生态内直接加载推理，减少格式转换与工具链割裂。对读者：本地部署与评测流程可简化，建议先验证目标量化格式与算子兼容性，再决定是否替换现有推理栈。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>AWS Strands 团队开源 Strands Harness：token 成本降 28%</title>
+      <link>https://news.google.com/rss/articles/CBMikwFBVV95cUxPRThpV2FoNkNhQWxVbmV0bWNFTVFlVk93YzRYWkFCQW55SG8xdjhGZWJmQ296RUVFczloQTJNZnM2X2Nia2JZZi1xY3NEYXJDLVlzeUdjLTJobnNPRUYtQjZGNl9sTkcyeW12YVEtNU5nRTZYc24zcjg3NnFBOWxiSjhoQ1QweWNfMk9tNDMzU1E5eWPSAZgBQVVfeXFMTWNCc29qUWlpdERSMjAzSHFVQk9rY0pycWkwVzAwNl80YTJ3UGkxS3ZxQzBQSkU4SXYtODM2Qi1jNWFLeEtmR3pJVEFZbE9fZWxVV1lXMnlGZUpVQ0UxZUtzY3MyVzNyX0JJZWhzejJ3SHdjTXlFRmhVeFFvNnBrR2IzWmpxc0tWUzZKa2s1OVJrMmdSNzRIbUw?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMikwFBVV95cUxPRThpV2FoNkNhQWxVbmV0bWNFTVFlVk93YzRYWkFCQW55SG8xdjhGZWJmQ296RUVFczloQTJNZnM2X2Nia2JZZi1xY3NEYXJDLVlzeUdjLTJobnNPRUYtQjZGNl9sTkcyeW12YVEtNU5nRTZYc24zcjg3NnFBOWxiSjhoQ1QweWNfMk9tNDMzU1E5eWPSAZgBQVVfeXFMTWNCc29qUWlpdERSMjAzSHFVQk9rY0pycWkwVzAwNl80YTJ3UGkxS3ZxQzBQSkU4SXYtODM2Qi1jNWFLeEtmR3pJVEFZbE9fZWxVV1lXMnlGZUpVQ0UxZUtzY3MyVzNyX0JJZWhzejJ3SHdjTXlFRmhVeFFvNnBrR2IzWmpxc0tWUzZKa2s1OVJrMmdSNzRIbUw?oc=5</guid>
+      <pubDate>Tue, 22 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · AWS Strands Agents 团队发布开源 Agent Harness——Strands Harness，在准确率相当的前提下把 token 成本降低约 28%。这延续了近期「不改模型、改 Harness」的降本思路。对读者：Agent 成本优化可先从编排层与工具调用策略入手，这类开源 Harness 值得对照自家实现做基准测试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>APUS 开源国内首批 Jev 跨平台复现，打包为 Agent Skill 支持纯本地离线</title>
+      <link>https://www.qbitai.com/2026/09/492939.html</link>
+      <guid isPermaLink="true">https://www.qbitai.com/2026/09/492939.html</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：量子位 · APUS AI 实验室公布全球最早一批针对 Jev 的独立开源复现，封装成开箱即用的 Agent Skill fast-browser-use，支持 macOS、Linux、Windows，可在无 GPU 的 Mac 与 PC 上运行，代码以 MIT 协议开放。对读者：想在本地低成本验证决策模型效果的团队，可直接拉取复现项目做基准测试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>BuilderIO 开源 agent-native：构建 Agent 应用的框架</title>
+      <link>https://github.com/BuilderIO/agent-native</link>
+      <guid isPermaLink="true">https://github.com/BuilderIO/agent-native</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：BuilderIO/agent-native · BuilderIO 发布 agent-native，定位为构建 agentic 应用的开发框架，帮助开发者把 Agent 能力直接嵌入应用而非外挂聊天窗口。项目在 GitHub 开源，面向需要自建 Agent 交互与编排的团队。对读者：选型时可对比其与现有 Agent 框架在状态管理、工具调用上的抽象差异，先跑官方示例评估迁移成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Cloudflare 开源 security-audit-skill：面向编码 Agent 的多阶段安全审计技能</title>
+      <link>https://github.com/cloudflare/security-audit-skill</link>
+      <guid isPermaLink="true">https://github.com/cloudflare/security-audit-skill</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：cloudflare/security-audit-skill · Cloudflare 发布 security-audit-skill，是一个给编码 Agent 使用的技能包，支持多阶段安全审计，并输出可独立验证、机器可读的发现结果。它把安全审计流程标准化，便于接入 CI 或 Agent 工作流。对读者：团队若用 Agent 做代码审查，可把该技能纳入流水线，重点验证其发现的可复现性与误报率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>微软开源 TauGrid：面向 GPU AI 负载的 Kubernetes 原生技术栈</title>
+      <link>https://news.google.com/rss/articles/CBMiugFBVV95cUxNVmNoMFF5MEdyZGJWeE1mcEdzRkxOYzRITFlveC1UOGl2Q3ZHOTVybUtNcW40aTdCV2R0UTlBVEwyUHdldVJuWHpTYmg1VmlzWDN5QlYycEVWLXNfUEZkeE1PR2ZJUVlOd2ItS0hLWWwxU1JHNkEtUm9YQThhQnduZGR5Z2VwcEx6bGFlTjBVNkVSTUhqeWhpSlNyWlBUc3d6N3JsWkZPWWlKejA1aDNmd3hMMVZwaXRLSEHSAb8BQVVfeXFMTWFwQXNSQ2NhR2hWdEh5OFphYWZHemlnYzl4QUVNRjJDcDBvRnFNN1RxUWFKU1dKd3R5Qkg2aXQwUjdXM2U2dkszZ1RlSFltM3AtRmxNbVFFXzVJQUxoRVZYeTVTbm1KTGlGU2JtM1RObnQyNTY5Z2tsdjZzcWVsQWFsMDdWYmd2b1Y0eVdmVnVUN0ZDeC1xR05MajgwVFp6dVpxNWkyR0NLLV9FV1hhdWNGd0dTUEthYWtKb05rQzA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiugFBVV95cUxNVmNoMFF5MEdyZGJWeE1mcEdzRkxOYzRITFlveC1UOGl2Q3ZHOTVybUtNcW40aTdCV2R0UTlBVEwyUHdldVJuWHpTYmg1VmlzWDN5QlYycEVWLXNfUEZkeE1PR2ZJUVlOd2ItS0hLWWwxU1JHNkEtUm9YQThhQnduZGR5Z2VwcEx6bGFlTjBVNkVSTUhqeWhpSlNyWlBUc3d6N3JsWkZPWWlKejA1aDNmd3hMMVZwaXRLSEHSAb8BQVVfeXFMTWFwQXNSQ2NhR2hWdEh5OFphYWZHemlnYzl4QUVNRjJDcDBvRnFNN1RxUWFKU1dKd3R5Qkg2aXQwUjdXM2U2dkszZ1RlSFltM3AtRmxNbVFFXzVJQUxoRVZYeTVTbm1KTGlGU2JtM1RObnQyNTY5Z2tsdjZzcWVsQWFsMDdWYmd2b1Y0eVdmVnVUN0ZDeC1xR05MajgwVFp6dVpxNWkyR0NLLV9FV1hhdWNGd0dTUEthYWtKb05rQzA?oc=5</guid>
+      <pubDate>Fri, 18 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · 微软开源 TauGrid，一套 Kubernetes 原生的 GPU AI 工作负载栈，用于在集群中调度与管理 GPU 训练和推理任务。这为自建算力平台提供了新的开源编排选项。对读者：已有 K8s 基础设施的团队可评估 TauGrid 与现有 GPU 调度方案的兼容性，降低自研调度层成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>agent-skills：面向专业编码智能体的安全技能注册表</title>
+      <link>https://github.com/tech-leads-club/agent-skills</link>
+      <guid isPermaLink="true">https://github.com/tech-leads-club/agent-skills</guid>
+      <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：tech-leads-club/agent-skills · tech-leads-club/agent-skills 定位为经过验证的安全技能注册表，可为 Antigravity、Claude Code、Cursor、Copilot 等编码智能体扩展能力，强调可信与可校验。对读者：Agent 技能生态开始出现“注册表+校验”模式，接入第三方技能前应核查来源与权限范围。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>pascalorg/editor：开源 3D 建筑编辑器，内置 CLI 与 MCP 工具</title>
+      <link>https://github.com/pascalorg/editor</link>
+      <guid isPermaLink="true">https://github.com/pascalorg/editor</guid>
+      <pubDate>Wed, 09 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：pascalorg/editor · 这是一个开源 3D 建筑编辑器，提供本地 CLI、MCP 工具，并针对人类与 AI Agent 设计了实用工作流，适合把建筑建模能力接入 Agent 链路。对读者：若在做设计类 Agent 或 MCP 集成，可参考其工具接口设计，评估能否复用到自有编辑器。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>HeyGen 开源 Hyperframes：让 Agent 用 HTML 直接渲染视频</title>
+      <link>https://github.com/heygen-com/hyperframes</link>
+      <guid isPermaLink="true">https://github.com/heygen-com/hyperframes</guid>
+      <pubDate>Tue, 08 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：heygen-com/hyperframes · HeyGen 在 GitHub 上开源了 Hyperframes 项目，其核心理念是“Write HTML. Render video. Built for agents.”。该项目旨在让 AI Agent 能够通过编写 HTML 来直接生成和渲染视频，为视频生成领域提供了一种全新的、面向 Agent 的编程范式。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>微软开源MarkItDown：文件转Markdown工具</title>
+      <link>https://github.com/microsoft/markitdown</link>
+      <guid isPermaLink="true">https://github.com/microsoft/markitdown</guid>
+      <pubDate>Mon, 07 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：microsoft/markitdown · 微软开源MarkItDown，一个Python工具，可将多种文件和Office文档转换为Markdown格式，便于AI处理。该工具支持多种文件类型，有助于数据预处理和文档管理。对读者：开发者可集成此工具，简化文档转换流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>伯克利与 MIT 开源 FreeToken，消费级 GPU 可跑 MoE 模型</title>
+      <link>https://www.infoq.cn/article/tij5T0vJ1Yk0s7Uov7SE?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/tij5T0vJ1Yk0s7Uov7SE?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 06 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 加州大学伯克利分校和 MIT 的研究人员开源了推理引擎 FreeToken，旨在弥合前沿 MoE 模型与消费级硬件之间的差距。它采用 q* 动态协同调度策略，在 GPU 与 CPU 间弹性分配 Token 计算任务，并通过权重预取与缓存优化，在 RTX 4060 上实现了 35B 模型每秒 39 Token 的解码速度。对读者：该引擎为在本地运行大型 MoE 模型提供了新方案，适合关注边缘 AI 与隐私计算的开发者评估。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenAI 开源 Codex Skills 目录仓库</title>
+      <link>https://github.com/openai/skills</link>
+      <guid isPermaLink="true">https://github.com/openai/skills</guid>
+      <pubDate>Sun, 06 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：openai/skills · OpenAI 在 GitHub 上发布了 openai/skills 仓库，这是一个面向 Codex 的 Skills 目录。该仓库旨在收集和整理可用于 Codex 的技能定义，以扩展其能力边界。对读者：开发者可关注该仓库，了解如何为 Codex 定义和贡献技能，以增强编码 Agent 的定制化能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>magnitudedev/magnitude：为你的硬件运行最佳本地模型的开源推理服务器</title>
+      <link>https://github.com/magnitudedev/magnitude</link>
+      <guid isPermaLink="true">https://github.com/magnitudedev/magnitude</guid>
+      <pubDate>Fri, 04 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：magnitudedev/magnitude · Magnitude 是一个开源推理服务器，旨在根据用户硬件自动运行最适合的本地模型，并可直接接入 Pi、OpenCode、Hermes、OpenClaw、Codex、Claude Code、Cline 等主流 AI 代理工具。对读者：自托管本地模型与现有 Agent 工作流集成更简单，值得尝试。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>radixark/miles：面向企业的 LLM/VLM 后训练强化学习框架</title>
+      <link>https://github.com/radixark/miles</link>
+      <guid isPermaLink="true">https://github.com/radixark/miles</guid>
+      <pubDate>Fri, 04 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：radixark/miles · Miles 是一个面向企业的强化学习框架，用于 LLM 和 VLM 的后训练，从 slime 项目 fork 而来并与之共同演进。它旨在为企业提供更可控、可扩展的模型后训练能力。对读者：企业若需定制模型行为，可关注该框架与 slime 的生态协同。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 博文：为你的编程智能体提供自主掌控的记忆</title>
+      <link>https://huggingface.co/blog/funes</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/funes</guid>
+      <pubDate>Thu, 03 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 发布博文，探讨如何为编程智能体（Coding Agents）赋予用户自主掌控的记忆能力。文章可能介绍了一种新的方法或工具，让开发者能够管理智能体在编码任务中的上下文和状态信息，从而提升效率和个性化。对读者：关注 AI 编程智能体的开发者，可研究如何通过可控的记忆机制来优化其工作流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源项目 caveman：用“原始人”对话风格削减 65% Token 消耗</title>
+      <link>https://github.com/JuliusBrussee/caveman</link>
+      <guid isPermaLink="true">https://github.com/JuliusBrussee/caveman</guid>
+      <pubDate>Thu, 03 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：JuliusBrussee/caveman · GitHub 上一个名为“caveman”的开源项目引发关注，它是一个 Claude Code 技能（Skill），通过让 AI 以“原始人”式的简短语言进行交流，声称可以削减高达 65% 的 Token 消耗。该项目以幽默的方式回应了 AI 使用成本问题。对读者：对于高频使用 Claude Code 的开发者，可尝试此类技巧以降低 API 费用，但需注意输出质量可能受影响。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 发布 200+ WebGPU 内核，加速本地 AI</title>
+      <link>https://huggingface.co/blog/webgpu-kernels</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/webgpu-kernels</guid>
+      <pubDate>Tue, 01 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 推出 @huggingface/kernels 仓库，包含 200 多个 WebGPU 内核，用于本地 AI 推理。这些内核可从 Hub 加载，支持多设备部署，旨在为 WebAI 建立共享基础。对读者：前端开发者可探索 WebGPU 内核，提升浏览器端 AI 性能，降低对云端的依赖。</description>
+      <category>开源</category>
+    </item>
+  </channel>
+</rss>

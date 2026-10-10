@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 产品</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 10 Oct 2026 09:05:31 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Anthropic 推出 OSS Scanner，为开源项目免费做 AI 安全扫描</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Anthropic 发布 OSS Scanner，开源项目可选择加入，由最强模型定期免费做安全漏洞扫描。代价是报告完全由模型生成、没有人工复核与分诊，可能带来误报，但换来更高频的扫描覆盖。对读者：维护开源项目的团队可将其作为早期预警补充，但不要把模型输出直接当作已确认漏洞，仍需人工验证后再修复。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>曾经最火的 AI Agent Instinct，能扛住 Muse 的冲击吗</title>
+      <link>https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Instinct 以邀请制、无营销、极简短信式界面切入 AI Agent 市场，能代订 DMV 预约、发跟进邮件，一度成为最受关注的 Agent 产品。随后 Muse 与 Dots 相继出现，功能相近但背靠更大公司，竞争格局迅速恶化。对读者：评估 Agent 产品时应关注其差异化护城河与资金续航，避免把关键流程押注在可能被巨头功能覆盖的小团队上。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Sophos 用 OpenAI Daybreak 把威胁调查时间缩短 96%</title>
+      <link>https://openai.com/index/sophos</link>
+      <guid isPermaLink="true">https://openai.com/index/sophos</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Sophos 借助 OpenAI 的 Daybreak 将网络威胁调查时间削减 96%，并自动化了 52% 的 MDR 工单，同时保留人工监督环节。这是安全运营场景中 AI 提效的量化案例，说明模型在告警分诊与调查流程中已能承担相当比例的工作量。对读者：安全团队可参考其「自动化 + 人工复核」的分工模式，先在高频低风险工单上试点，再逐步扩大自动化比例。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Asana 浏览器测试中把模型成本降低 76 倍</title>
+      <link>https://openai.com/index/asana-browser-agent</link>
+      <guid isPermaLink="true">https://openai.com/index/asana-browser-agent</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Asana 在 Codex 中使用 GPT-6 Astra 重构浏览器 Agent，测试中成本降低 76 倍、速度提升 5 倍，从而能向客户开放更强的模型能力。这说明模型选型与调用方式优化对 Agent 单位经济模型的影响，可能比单纯降价更大。对读者：构建浏览器 Agent 时应把模型路由与成本压测纳入常规流程，优先验证「更小模型 + 更好编排」能否达到同等效果。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 上线 Dashboards 与 Motion，Docs/Slides/Design 转正全量开放</title>
+      <link>https://claude.com/resources/articles/dashboards-and-motion</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/dashboards-and-motion</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 为 Claude 推出两项 beta 功能：Claude Dashboards 用于构建实时数据看板，Claude Motion 用于生成动画讲解内容。同时 Docs、Slides、Design 结束 beta，向包括免费版在内的所有 Claude 套餐开放。这意味着 Claude 正从对话助手向办公与可视化生产工具延伸。对读者：若团队已订阅 Claude，可先试用 Dashboards 替代部分轻量 BI 场景。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出跨应用“通用”Gemini Agent</title>
+      <link>https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 在 Gemini at Work 活动上发布通用 Gemini Agent，可在后台跨应用与设备执行任务，入口位于 Gemini Enterprise，支持 Gmail、Drive、Docs、Sheets、Calendar 以及 Slack、Microsoft 365 等第三方应用，并可从移动端、桌面与网页调用。云端运行意味着任务可持续执行。对读者：企业评估 Agent 平台时，可把跨应用权限与审计能力作为核心对比项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线“Intelligent UI”，回答中直接嵌入图表与按钮</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 随 GPT-6 向所有用户推送 Intelligent UI，ChatGPT 可在文本回答中生成图表、示意图、表单与可点击按钮等交互元素。官方称已训练 GPT-6 判断何时用可视化替代纯文本。聊天界面正从纯文本输出转向可交互的轻应用形态。对读者：做前端集成时需提前考虑这类富交互输出的渲染与可访问性适配。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出完全离线的 AI 会议记录应用 AI Edge Foresight</title>
+      <link>https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 发布实验性笔记应用 AI Edge Foresight，可在完全离线状态下转写会议与音频文件，基于端侧 EmbeddingGemma 2 模型运行于 macOS，免费使用。用户记录要点后，应用会结合转写内容整理成“润色后的笔记”，对标 Granola、Wispr Flow。对读者：对数据敏感的场景可优先评估端侧方案，但需确认离线模型的准确率是否达标。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>GPT-6 全球上线 ChatGPT，带来 Intelligent UI</title>
+      <link>https://openai.com/index/gpt-6-for-everyone</link>
+      <guid isPermaLink="true">https://openai.com/index/gpt-6-for-everyone</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 GPT-6 在全球范围内向 ChatGPT 用户推送，并同步引入 Intelligent UI：响应更快，回答中直接嵌入可视化与可交互内容，用户可在对话里探索和使用。这标志着 ChatGPT 从纯文本问答进一步转向「可操作界面」，模型能力与前端交互形态被捆绑发布。对读者：若你在做 AI 产品，需重新评估「聊天框」是否还是唯一入口，交互层可能成为新的差异化战场。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Common Sense Media：ChatGPT for Teens 是「不可接受的风险」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 青少年安全评测机构 Common Sense Media 称 OpenAI 的 ChatGPT for Teens 是「不可接受的风险」。该功能 8 月推出，主打面向青少年的护栏与学习辅助，但评估认为其保护措施「未达到公司承诺」：该提醒家长时未提醒、危机情境下未提供正确帮助，且仍会替孩子做作业。对读者：做面向未成年人的 AI 产品，护栏不能只写在宣传里，家长通知与危机干预是必须可验证的能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 为 ChatGPT for Teens 加入 College Planner 等功能</title>
+      <link>https://openai.com/index/teens-learn-and-plan</link>
+      <guid isPermaLink="true">https://openai.com/index/teens-learn-and-plan</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 College Planner 即将登陆 ChatGPT for Teens，帮助学生管理大学申请，同时新增闪卡、测验功能，并成立青少年 AI 委员会。这与同日 Common Sense Media 的批评形成对照：一边扩展青少年学习场景，一边面临安全性质疑。对读者：教育类 AI 功能扩张时，安全与家长可见性会成为监管和舆论的焦点，产品设计需前置考虑。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 将取消 Gemini Flash 与 Pro 的免费访问</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1005451/google-gemini-free-flash-lite-only</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1005451/google-gemini-free-flash-lite-only</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 自 10 月 9 日起，Google Gemini 免费用户将被限制只能使用 Flash Lite 模型，标准 Flash 需订阅每月 4.99 美元的 Google AI Plus。同时该订阅也将被降级，不再包含 Gemini Pro，顶级 Pro 模型与 Deep Think 高级推理将仅向更高档位开放。对读者：依赖免费 Gemini 做原型或轻量产品的团队，需尽快评估迁移成本或预算。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 与 Ironclad 合作推进专业场景的计算机操作能力</title>
+      <link>https://openai.com/index/advancing-computer-use-with-ironclad</link>
+      <guid isPermaLink="true">https://openai.com/index/advancing-computer-use-with-ironclad</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 与合同管理平台 Ironclad 展开研究合作，在复杂合同工作流中训练与评估 AI 智能体，以推进面向专业工作的 computer use 能力。该合作聚焦真实业务流程中的操作准确性与可靠性，而非通用演示。对读者：做垂直 Agent 的团队可参考其「真实工作流 + 评估闭环」的思路，而非只堆模型能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 扩展 Cyber Verification Program</title>
+      <link>https://www.anthropic.com/news/cyber-verification-program</link>
+      <guid isPermaLink="true">https://www.anthropic.com/news/cyber-verification-program</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Anthropic News · Anthropic 推出扩展版网络安全验证计划（CVP），向符合条件的安防专业人员开放更高级的网络能力，并降低拦截分类器的触发。此举意在让合法的安全研究与攻防测试不被过度拦截。对读者：安全团队若需用 Claude 做授权测试，可关注该计划的准入条件与合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Gemini「Call for Me」或可代你给家人打电话</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1005177/google-gemini-call-for-me-expansion-rumors</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1005177/google-gemini-call-for-me-expansion-rumors</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据 Android Authority 在 APK 拆解中发现的「Gemini Calling」引导页，Google 可能将 Call for Me 功能从商务通话扩展到亲友场景，示例包括「打电话告诉妈妈我会晚到 15 分钟」。从示例看，Gemini 仍限于类似短信的简短传达，而非完整对话。对读者：语音 Agent 正从客服走向个人助理，产品设计需重点处理误拨与身份确认。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>卡普空：为“与AI共同制作游戏”的未来做准备</title>
+      <link>https://www.theverge.com/games/1004418/capcom-ai-game-development</link>
+      <guid isPermaLink="true">https://www.theverge.com/games/1004418/capcom-ai-game-development</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 在Capcom Open Conference RE 2026上，程序员Satoshi Ishida介绍REX项目与RE Engine的下一代演进，指出《生化危机》量级的项目让简单任务也极其耗时，解决方案是把AI技术整合进开发工作流。有趣的是，其新作Pragmata主题恰是AI的恐怖，现实策略却相当拥抱AI。对读者：游戏与内容团队可关注AI在资产、流程自动化上的落地路径，但需同步建立版权与质量把关机制。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 推出企业向 Agent 平台 Dots，可代订晚餐</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 本周发布 Agent 平台 Dots，定位偏工作场景，形态是带拟人化头像、可自定义名字的小助手，目前每人一个，未来支持多个。它像办公软件，但也能处理订餐等生活事务。对读者：评估企业 Agent 平台时，重点看它与现有办公系统的权限打通，而非头像可爱程度。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线虚拟试衣与收藏夹购物功能</title>
+      <link>https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · OpenAI 为 ChatGPT 推出新的购物能力：用户可用自己的照片虚拟试穿服装与配饰，并把心仪商品存入 Favorites 收藏库。这标志着 ChatGPT 正从对话助手向带交易属性的消费入口延伸，电商流量与广告变现路径进一步清晰。对读者：做电商或品牌站可关注 ChatGPT 购物入口的接入方式，提前评估商品数据与图片资产的适配成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出 Guided Vision，Gemini Live 实时语音描述镜头画面</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003756/google-gemini-live-guided-vision</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Guided Vision 在兼容 Android 设备的 Gemini Live 上线，通过共享摄像头，AI 可实时朗读小字、描述周围环境、识别物体，面向盲人与低视力用户，类似苹果的 VoiceOver 实时识别。无障碍场景是端侧多模态最扎实的落地之一。对读者：做 Web/移动无障碍的团队可关注这类实时视觉描述能力，评估其作为辅助输入补充到自家产品中的可行性。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>AI 音乐工具 Suno 新增语音生成，可同时产出配音与配乐</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003925/suno-speech-ai-voice-feature-beta-availability</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003925/suno-speech-ai-voice-feature-beta-availability</guid>
+      <pubDate>Fri, 02 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Suno 从音乐生成扩展到语音领域，推出 Speech 功能公开测试，可根据脚本或提示描述生成口播人声，并支持同时生成配音与背景音乐，覆盖网页与移动端。Suno 官方称音乐仍是核心，但愿景已延伸至更多人类表达形式。对读者：做内容批量生产的团队可把「配音+配乐」一次生成纳入工作流，但需留意商用授权与声音合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI DevDay 发布 Dots：由 GPT-6 Astra 驱动的个人助理 Agent，正面迎战 Meta Muse</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1003399/meta-openai-ai-agents-muse-dots-battle</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 在 OpenAI 年度 DevDay 上，Sam Altman 发布 Dots——一款由 GPT-6 Astra 驱动的「真 AI」助理 Agent，外形是可个性化、带眼睛的彩色团子，明显对标 Meta 的 Muse。文章质疑其能否与免费产品竞争。对读者：个人 Agent 赛道进入补贴与生态战，选型时别只看能力，还要看平台锁定与长期定价。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Code 支持用 mods 自定义：TypeScript 函数改写提示词、拦截危险命令</title>
+      <link>https://claude.com/blog/claude-code-mods</link>
+      <guid isPermaLink="true">https://claude.com/blog/claude-code-mods</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 为 Claude Code 引入 mods，即小型 TypeScript 函数，可改写提示词、阻止高风险命令、添加自定义 UI 或替换内置功能，还能打包成插件分享。这让编码 Agent 的行为可编程、可审计。对读者：团队可把安全策略写成 mods 强制生效，比口头规范更可靠，值得优先试点。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>巴克莱银行扩大与 Anthropic 合作，在全行范围部署 Claude</title>
+      <link>https://www.anthropic.com/news/barclays-scales-claude</link>
+      <guid isPermaLink="true">https://www.anthropic.com/news/barclays-scales-claude</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Anthropic News · 英国全能银行巴克莱宣布扩大与 Anthropic 的战略合作，将安全的企业级 AI 系统整合进其全球业务运营，以升级流程并改善客户体验。这是金融业大规模落地大模型的又一标志性案例。对读者：受监管行业落地 AI 时，合规与安全能力往往比模型跑分更关键，选型应优先看企业级治理方案。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>The Den 用 ChatGPT Work 每周省出 10–15 小时：拨款申请从 3 天缩到 2 小时</title>
+      <link>https://openai.com/index/the-den-family-social</link>
+      <guid isPermaLink="true">https://openai.com/index/the-den-family-social</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · 社交俱乐部 The Den 在开设新场地时，借助 ChatGPT Work 把拨款申请的准备时间从 3 天压缩到 2 小时，酒牌材料从 4 天缩短到 3 小时，每周释放 10–15 小时用于业务增长。这是 AI 在非技术型中小企业行政流程中的典型提效案例。对读者：行政与合规文书是 AI 落地的高回报场景，可先从这里试点量化收益。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 Dots 常驻 Agent 同事与 ChatGPT Space 协作空间</title>
+      <link>https://news.google.com/rss/articles/CBMi3wFBVV95cUxQYW5hdWZ6c01sdklUTTk0SzJtZHJnMGFNNWFvdy1pSGVjRU1aQ2hjRTNZazRJN01rSlFHNDN2dlVPQXprRHIwaW9YY0lBbTdTbnhWMlpxS2Ryejl6MG4zaVVxLWh0b19mbEUxWFFlaUpISG1Uc2k3YTNlUjRvYjV3MEx3NDZxMGcwT0M0U3RqYTE4X0cyVUFWOXVaMWxiYlM0blg5Q0M5c3VhdmI3bEcxQ0hlQnk4N0JTUGttSG5xZTdONTItNGRBMHp6eXVKdmc5VDhwQ21sYnloZE1YVUlZ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3wFBVV95cUxQYW5hdWZ6c01sdklUTTk0SzJtZHJnMGFNNWFvdy1pSGVjRU1aQ2hjRTNZazRJN01rSlFHNDN2dlVPQXprRHIwaW9YY0lBbTdTbnhWMlpxS2Ryejl6MG4zaVVxLWh0b19mbEUxWFFlaUpISG1Uc2k3YTNlUjRvYjV3MEx3NDZxMGcwT0M0U3RqYTE4X0cyVUFWOXVaMWxiYlM0blg5Q0M5c3VhdmI3bEcxQ0hlQnk4N0JTUGttSG5xZTdONTItNGRBMHp6eXVKdmc5VDhwQ21sYnloZE1YVUlZ?oc=5</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：VentureBeat AI · OpenAI 推出 Dots——可长期在线的 AI Agent「同事」，并配套 ChatGPT Space，让人与 Agent 在同一空间协作。结合 DevDay 发布，OpenAI 正把 ChatGPT 从对话工具推向「Agent 工作台」。对读者：如果你的团队还在用单轮对话式 AI，可以开始试点把多步任务交给常驻 Agent，但要先定义好权限与验收标准。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude for Government 正式可用，Claude Code CLI 与 M365 进入早期访问</title>
+      <link>https://claude.com/blog/claude-for-government-is-now-generally-available</link>
+      <guid isPermaLink="true">https://claude.com/blog/claude-for-government-is-now-generally-available</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 宣布 Claude for Government 正式 GA，同时 Claude Code CLI 和 Claude for Microsoft 365 开放早期访问。这意味着 Claude 正从通用助手切入受监管的政府与办公场景，合规与本地化部署成为卖点。对读者：若你服务政企客户，可关注其合规资质与部署形态，作为选型对比项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Instagram 为创作者加入 AI「创意助手」</title>
+      <link>https://www.theverge.com/tech/1002402/instagram-ai-edits-assistant-creators-analytics-youtube</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1002402/instagram-ai-edits-assistant-creators-analytics-youtube</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Instagram 在独立应用 Edits 中上线 AI 创意助手，可读取账号数据与点赞、播放、留存等指标，回答「什么在流行」「为什么这条视频火了」并给出修改建议。社交平台正把 AI 从内容生成延伸到内容诊断。对读者：做内容运营可把这类工具当作数据解读入口，但别把建议当结论，仍需自己验证。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 据报试点向出版商付费购买 AI 搜索结果内容</title>
+      <link>https://www.theverge.com/tech/1002665/google-paying-publishers-ai-search-features</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1002665/google-paying-publishers-ai-search-features</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据 The Information 报道，Google 启动试点，向约 100 家出版商付费，依据其内容对 AI Overviews、AI Mode 及 Gemini 的贡献度结算。这发生在 Google 因 AI 功能冲击网站流量而受审视之际。对读者：内容站可关注这类分成机制，提前梳理内容授权与抓取策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI DevDay 2026 回顾：20 多项发布，涵盖 GPT-6 Astra、Codex 与 API</title>
+      <link>https://openai.com/index/devday-2026-recap</link>
+      <guid isPermaLink="true">https://openai.com/index/devday-2026-recap</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 汇总了 DevDay 2026 的 20 多项公告，涉及 GPT-6 Astra、ChatGPT、Codex、API、安全能力以及面向构建者的新工具。这场发布会勾勒出 OpenAI 在模型、编码代理与平台工具上的整体布局，是判断其产品路线的重要参考。对读者：建议按自身技术栈挑出与 API 和 Codex 相关的条目精读，避免被发布数量淹没。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 推出 dots：可跨项目持续推进的主动式助手</title>
+      <link>https://openai.com/index/introducing-dots</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-dots</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · dots 是 OpenAI 推出的主动式助手，能够在复杂项目与日常任务中持续工作，官方强调用户仍可保持控制权。它代表助手形态从「问答」向「持续执行」演进，与 Agent 化趋势一致。对读者：可关注其权限边界与任务中断机制，评估是否适合接入需要长期跟踪的工作流。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>英伟达发布 AI 安全平台，称可在毫秒级隔离失控智能体</title>
+      <link>https://www.theverge.com/tech/1001287/nvidia-ai-safety-platform-rogue-agents</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1001287/nvidia-ai-safety-platform-rogue-agents</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 英伟达推出 Open Agent Safety Platform，宣称可在「毫秒级」隔离试图越界的 AI 智能体。平台基于其开源软件 OpenShell，运行在 Vera AI CPU 上，用户可限定智能体可访问的信息，OpenShell 会在任务前后校验这些限制。此举是对近期多起智能体失控事件的直接回应。对读者：部署自主智能体前，应优先评估是否具备运行时隔离与权限校验能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>阿里整合 AI 办公力量，千问办公主打企业上下文与协作</title>
+      <link>http://www.geekpark.net/news/371040</link>
+      <guid isPermaLink="true">http://www.geekpark.net/news/371040</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：极客公园 · 阿里将 QoderWork、钉钉悟空、Mulerun 等团队整合为千问办公，发布企业上下文、协作功能、QwenNote A2 硬件及自定义行业工作台，核心主张是 Context is all you need。企业 Agent 竞争焦点转向数据接入与权限审计。对读者：选型企业 AI 办公平台时，优先验证其对企业私有数据的连接能力与权限审计机制。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta 让 Muse 文件系统更易访问，官方称「这就是预期行为」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1000784/meta-muse-filesystem</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1000784/meta-muse-filesystem</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 此前用户发现 Muse 会暴露自身文件系统，Meta 一度表示不该展示；如今 Muse 会直接按要求打包整个文件系统，Meta Superintelligence Labs 的 David Singleton 称这是「intended behavior」。每个用户拥有独立持久 Linux VM，能力与风险同步放大。对读者：把 Agent 的文件系统当生产环境对待，敏感数据不要放进其可读目录。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Proaction 用 Codex 与 GPT-6 Astra 把销售提升 60%、节省 75+ 小时</title>
+      <link>https://openai.com/index/proaction</link>
+      <guid isPermaLink="true">https://openai.com/index/proaction</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 客户案例显示，车队管理公司 Proaction 借助 Codex、GPT-Live-1 与 GPT-6 Astra 构建并运营业务系统，销售提升 60%，节省 75 小时以上工时。案例的价值在于展示编码 Agent 从写代码延伸到业务流程自动化的路径。对读者：评估 Agent 落地时，先挑重复度高、可量化收益的流程做试点，再谈全面铺开。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta 个人 AI 智能体 Muse 抢走 OpenAI 与 Anthropic 风头</title>
+      <link>https://techcrunch.com/podcast/metas-muse-just-stole-the-ai-spotlight-from-openai-and-anthropic/</link>
+      <guid isPermaLink="true">https://techcrunch.com/podcast/metas-muse-just-stole-the-ai-spotlight-from-openai-and-anthropic/</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · 在 Anthropic 发布 Opus 5.5、OpenAI 90 分钟后更新 GPT-6 的同一周，Meta 的个人 AI 智能体 Muse 据称早期增速超过 ChatGPT，并计划进入智能眼镜。AI 助手竞争正从模型能力转向个人场景与硬件入口。对读者：若做 C 端 AI 产品，可重点研究 Muse 的个性化记忆与硬件联动设计，而非只盯模型榜单。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>微软 Edge 更新为 Web 开发者带来新 API 与无障碍工具</title>
+      <link>https://news.google.com/rss/articles/CBMitAFBVV95cUxQN0E4RndlTXhxUjZEZk96a29fZllhZ3FYaDhRS2xJN0VyLUZtUk4yWVl2cUs2Vm9QOXhvTGVqZFpKMDNfQy10M0F5QVN2ekJfQlZNZU9vdDltX29HbncwNEY1ZkNaMVNzN2xycEo1SWpTcnoyZTIwa2daLVAyaDE5M3BRX2VHVGNxMi1kUVVha1RCMVF4SlFRdzlhWi1TanBnRHNUUlpsb3oyNlFBdHpiYWVoNG_SAboBQVVfeXFMTWxtNEhqMVFhaWJKeGU3b0tvN1FsZzZGSjBTQUlieXBjSUNfZzhmeFFKNkp5Zk5ETk5GWndBRGhodnhmRVZXQ2N6ZFdZWGk0Z2NwQzRqMGx2MmpiMEdqR1NBTXF4Mng5ZkhpcTBNZ3lCYVA2ZE5YN3hQLWZkLWtPdlBMU1NkNGo0N29JbDhYNkx0VFJFSDcyZ3JiYXNpbGt1ZjFidy1LTVRmdWgyU3Mxdl9MV2RJZS1kNXBB?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMitAFBVV95cUxQN0E4RndlTXhxUjZEZk96a29fZllhZ3FYaDhRS2xJN0VyLUZtUk4yWVl2cUs2Vm9QOXhvTGVqZFpKMDNfQy10M0F5QVN2ekJfQlZNZU9vdDltX29HbncwNEY1ZkNaMVNzN2xycEo1SWpTcnoyZTIwa2daLVAyaDE5M3BRX2VHVGNxMi1kUVVha1RCMVF4SlFRdzlhWi1TanBnRHNUUlpsb3oyNlFBdHpiYWVoNG_SAboBQVVfeXFMTWxtNEhqMVFhaWJKeGU3b0tvN1FsZzZGSjBTQUlieXBjSUNfZzhmeFFKNkp5Zk5ETk5GWndBRGhodnhmRVZXQ2N6ZFdZWGk0Z2NwQzRqMGx2MmpiMEdqR1NBTXF4Mng5ZkhpcTBNZ3lCYVA2ZE5YN3hQLWZkLWtPdlBMU1NkNGo0N29JbDhYNkx0VFJFSDcyZ3JiYXNpbGt1ZjFidy1LTVRmdWgyU3Mxdl9MV2RJZS1kNXBB?oc=5</guid>
+      <pubDate>Sat, 26 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechGig · 微软 Edge 发布面向 Web 开发者的更新，新增多项 API 与无障碍辅助工具，帮助开发者更高效地构建可访问的网页应用。浏览器厂商在开发者体验与无障碍标准上的投入持续加码。对读者：可关注这些新 API 的跨浏览器支持情况，在无障碍改造中优先采用标准化方案而非私有补丁。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Gemini Live Avatar 给 Google AI 一张脸，但仅限企业客户</title>
+      <link>https://www.theverge.com/tech/1000328/google-gemini-ai-live-avatar-face</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1000328/google-gemini-ai-live-avatar-face</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道，Gemini 3.8 Live 的 Live Avatar 让用户与模型对话时看到实时响应的动画形象，支持口型同步与多种面部表情，并能在 97 种语言间切换而不降低视频质量。目前该能力只对 Gemini Enterprise 客户开放。对读者：面向 C 端的团队暂时用不上，但可关注其后续下放节奏，提前设计语音+形象的产品形态。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 开放插件目录提交，MCP 连接器与 Agent Skills 可打包上架</title>
+      <link>https://claude.com/blog/build-plugins-for-claude</link>
+      <guid isPermaLink="true">https://claude.com/blog/build-plugins-for-claude</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 上线插件目录提交门户，开发者可将 MCP 连接器与 Agent Skills 打包成插件提交审核，并跟踪审核进度、上线后的使用与发现数据。这意味着 Claude 生态开始形成类似应用商店的分发机制。对读者：做 MCP 工具或 Agent 能力的团队应尽早占位，插件目录可能成为新的流量入口。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>微软发布 Copilot「超级应用」，聊天、编码、Agent 三合一</title>
+      <link>https://www.theverge.com/news/1000532/microsoft-copilot-super-app-chat-coding-autopilot</link>
+      <guid isPermaLink="true">https://www.theverge.com/news/1000532/microsoft-copilot-super-app-chat-coding-autopilot</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 微软正式推出重构后的 Copilot 超级应用，将聊天、编码与 Agent 能力整合进单一界面，设 Home、Code、Autopilot 三个标签页，Home 融合 Copilot Chat 与 Cowork。同时把此前 Build 发布的个人助理 Scout 更名为 Autopilot。微软称其影响力将比肩 Office。对读者：Copilot 正从助手转向平台，企业采购时需重新评估与现有工具链的重叠与锁定风险。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>微软 Copilot 改版：常驻 Autopilot Agent 与 AI 生成应用托管</title>
+      <link>https://news.google.com/rss/articles/CBMi0AFBVV95cUxPbXltN1FUMFM3NTk1Zlp4TXFjRGt6SzBEdjI1Uk5EVE1NRnpHRTFMZGNqaFY3ZXRKajZnVUtWNG5ablJjS1NleUdzMm9oX2o2NEFRUjFPZk9hdWFpd1Zxa003VHdoNXB6ZC1fYmpUcXcxNTVOYVdSQVdyNlNHRUlLbDN4UDBDdlA5RF9kMFVGbHpvOW1FV2hIcmNvUjFCazlMY2c0amtONndWWEhsRTdIaE1Ya05EaF9QV3ZnS3ZWZERVSll5SUZZT2ZZd081UFl2?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi0AFBVV95cUxPbXltN1FUMFM3NTk1Zlp4TXFjRGt6SzBEdjI1Uk5EVE1NRnpHRTFMZGNqaFY3ZXRKajZnVUtWNG5ablJjS1NleUdzMm9oX2o2NEFRUjFPZk9hdWFpd1Zxa003VHdoNXB6ZC1fYmpUcXcxNTVOYVdSQVdyNlNHRUlLbDN4UDBDdlA5RF9kMFVGbHpvOW1FV2hIcmNvUjFCazlMY2c0amtONndWWEhsRTdIaE1Ya05EaF9QV3ZnS3ZWZERVSll5SUZZT2ZZd081UFl2?oc=5</guid>
+      <pubDate>Fri, 25 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：VentureBeat AI · VentureBeat 报道，微软对 Copilot 进行大幅改版，引入常驻的 Autopilot Agent，并为 AI 生成的应用提供托管能力。这与 The Verge 披露的三标签页超级应用设计相互印证，显示微软正把 Copilot 打造成承载 Agent 与生成式应用的运行底座。对读者：若团队在用 Copilot 做内部工具，可关注其托管能力是否支持私有部署与权限隔离。</description>
+      <category>产品</category>
+    </item>
+  </channel>
+</rss>
