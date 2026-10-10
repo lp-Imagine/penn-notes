@@ -144,15 +144,16 @@ function paintCommentCopy(root: ParentNode) {
 
 function paintEditorAvatar(root: ParentNode) {
   const editor = root.querySelector<HTMLElement>(".atk-main-editor");
-  const nameInput = editor?.querySelector<HTMLInputElement>('input[name="name"]');
-  if (!editor || !nameInput) return;
+  const header = editor?.querySelector<HTMLElement>(":scope > .atk-header");
+  const nameInput = header?.querySelector<HTMLInputElement>('input[name="name"]');
+  if (!editor || !header || !nameInput) return;
   let avatar = editor.querySelector<HTMLImageElement>(".penn-editor-avatar");
   if (!avatar) {
     avatar = document.createElement("img");
     avatar.className = "penn-editor-avatar";
     avatar.alt = "";
-    editor.prepend(avatar);
   }
+  if (avatar.parentElement !== header) header.prepend(avatar);
   const name = nameInput.value.trim() || "访客";
   const mark = `tile:${name}`;
   if (avatar.dataset.pennAvatar === mark && avatar.src.startsWith("data:image/svg+xml")) return;
@@ -1656,7 +1657,11 @@ onBeforeUnmount(() => {
 .comments-section {
   margin-top: 48px;
   padding-top: 28px;
-  border-top: 1px solid var(--border);
+  border-top: 0;
+  background-image: var(--divider-fade);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 1px;
 }
 
 .comments-panel {
@@ -1734,11 +1739,7 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk .atk-main-editor {
-  --penn-editor-line: var(--border);
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
-  column-gap: 12px;
-  align-items: start;
+  --penn-editor-line: color-mix(in srgb, var(--border) 82%, transparent);
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -1746,28 +1747,25 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk .atk-main-editor:focus-within {
-  --penn-editor-line: color-mix(in srgb, var(--accent) 45%, var(--border));
+  --penn-editor-line: color-mix(in srgb, var(--accent) 32%, var(--border));
 }
 
-.comments-section .artalk .atk-main-editor > .penn-editor-avatar {
-  grid-column: 1;
-  grid-row: 1 / span 3;
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-}
-
-.comments-section .artalk .atk-main-editor > :not(.penn-editor-avatar) {
-  grid-column: 2;
+.comments-section .artalk .atk-main-editor > .atk-header > .penn-editor-avatar {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin: 0 6px 0 2px;
+  border-radius: 11px;
 }
 
 .comments-section .artalk .atk-main-editor > .atk-header {
+  align-items: center;
   gap: 0;
   margin: 0;
-  padding: 10px 12px 0;
+  padding: 8px 8px 8px 10px;
   border: 1px solid var(--penn-editor-line);
-  border-bottom: 0;
-  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 62%, transparent);
+  border-radius: 16px 16px 0 0;
   background: var(--surface);
 }
 
@@ -1775,57 +1773,71 @@ onBeforeUnmount(() => {
   min-width: 0;
   margin: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   outline: none;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
-  padding: 8px 12px;
+  padding: 8px 10px;
   font-size: 13px;
   line-height: 1.4;
+  letter-spacing: -0.01em;
   box-shadow: none;
-}
-
-.comments-section .artalk .atk-main-editor > .atk-header input:first-of-type {
-  border-radius: 8px 0 0 8px;
-}
-
-.comments-section .artalk .atk-main-editor > .atk-header input:last-of-type {
-  border-radius: 0 8px 8px 0;
+  transition: background 0.15s ease;
 }
 
 .comments-section .artalk .atk-main-editor > .atk-header input + input {
-  box-shadow: inset 1px 0 0 var(--border);
+  box-shadow: inset 1px 0 0 color-mix(in srgb, var(--border) 70%, transparent);
 }
 
 .comments-section .artalk .atk-main-editor > .atk-header input::placeholder {
   color: var(--text-3);
 }
 
+.comments-section .artalk .atk-main-editor > .atk-header input:hover {
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+
 .comments-section .artalk .atk-main-editor > .atk-header input:focus {
   position: relative;
   z-index: 1;
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1.5px var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  box-shadow: none;
 }
 
 @media (max-width: 768px) {
   .comments-section .artalk .atk-main-editor > .atk-header {
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .comments-section .artalk .atk-main-editor > .atk-header > .penn-editor-avatar {
+    align-self: flex-start;
+    margin: 0;
   }
 
   .comments-section .artalk .atk-main-editor > .atk-header input,
   .comments-section .artalk .atk-main-editor > .atk-header input:first-of-type,
-  .comments-section .artalk .atk-main-editor > .atk-header input:last-of-type {
-    flex: 1 1 140px;
+  .comments-section .artalk .atk-main-editor > .atk-header input:last-of-type,
+  .comments-section .artalk .atk-main-editor > .atk-header input[name="link"] {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 36px;
     border-radius: 8px;
+    background: color-mix(in srgb, var(--text) 4%, var(--surface));
+    font-size: 16px;
     box-shadow: none;
+  }
+
+  .comments-section .artalk .atk-main-editor > .atk-header input:focus {
+    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
   }
 }
 
 .comments-section .artalk .atk-main-editor > .atk-textarea-wrap {
   margin-top: 0;
-  padding: 8px 14px 0;
+  padding: 4px 16px 0;
   border: 0;
   border-right: 1px solid var(--penn-editor-line);
   border-left: 1px solid var(--penn-editor-line);
@@ -1834,16 +1846,17 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk .atk-main-editor > .atk-textarea-wrap > .atk-textarea {
-  min-height: 88px;
+  min-height: 96px;
   margin: 0;
-  padding: 4px 0 8px;
+  padding: 10px 0 12px;
   border: 0;
   border-radius: 0;
   outline: none;
   background: transparent;
   color: var(--text);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.75;
+  letter-spacing: -0.011em;
 }
 
 .comments-section .artalk .atk-main-editor > .atk-textarea-wrap > .atk-textarea::placeholder {
@@ -1860,32 +1873,68 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk .atk-main-editor > .atk-bottom .atk-plug-btn:hover {
-  background: var(--surface);
-  color: var(--text);
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  color: var(--text-2);
 }
 
 .comments-section .artalk .atk-main-editor > .atk-bottom .atk-send-btn {
-  height: 34px;
-  min-width: 5.5em;
-  border-radius: 8px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  margin-left: 4px;
+  padding: 0;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+
+.comments-section .artalk .atk-main-editor > .atk-bottom .atk-send-btn::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' transform='translate(-0.4 0.6)'%3E%3Cpath d='m22 2-7 20-4-9-9-4Z'/%3E%3Cpath d='M22 2 11 13'/%3E%3C/g%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' transform='translate(-0.4 0.6)'%3E%3Cpath d='m22 2-7 20-4-9-9-4Z'/%3E%3Cpath d='M22 2 11 13'/%3E%3C/g%3E%3C/svg%3E") center / 16px 16px no-repeat;
 }
 
 .comments-section .artalk .atk-main-editor > .atk-bottom .atk-send-btn:hover {
-  filter: brightness(1.06);
+  filter: none;
+  background: var(--accent);
+}
+
+.comments-section .artalk .atk-main-editor > .atk-bottom .atk-send-btn:hover::after {
+  background: #fff;
 }
 
 .comments-section .artalk .atk-plug-panel-wrap {
-  border-top: 1px solid var(--border);
+  height: 228px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
   background: var(--surface);
 }
 
+.comments-section .artalk .atk-editor-plug-emoticons {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.comments-section .artalk .atk-editor-plug-emoticons > .atk-grp-wrap {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+
 .comments-section .artalk .atk-editor-plug-emoticons > .atk-grp-wrap > .atk-grp {
-  padding: 8px 8px 52px;
+  padding: 6px 8px 8px;
 }
 
 .comments-section .artalk .atk-editor-plug-emoticons > .atk-grp-wrap > .atk-grp > .atk-item {
+  min-width: 36px;
   border-radius: 8px;
 }
 
@@ -1894,13 +1943,16 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk .atk-editor-plug-emoticons > .atk-grp-switcher {
+  position: static;
   display: flex;
+  flex: none;
   align-items: center;
   gap: 4px;
   height: auto;
   padding: 8px 12px;
   border: 0;
-  background: color-mix(in srgb, var(--bg) 65%, var(--surface));
+  border-top: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  background: var(--surface);
 }
 
 .comments-section .artalk .atk-editor-plug-emoticons > .atk-grp-switcher > span {
@@ -1927,18 +1979,18 @@ onBeforeUnmount(() => {
 
 .comments-section .artalk .atk-main-editor > .atk-bottom {
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-top: 0;
-  padding: 2px 10px 10px;
+  padding: 6px 10px 10px;
   border: 1px solid var(--penn-editor-line);
   border-top: 0;
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 16px 16px;
   background: var(--surface);
 }
 
 .comments-section .artalk .atk-main-editor > .atk-bottom .atk-plug-btn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border-radius: 8px;
 }
@@ -1970,8 +2022,19 @@ onBeforeUnmount(() => {
   background: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
-.comments-section .artalk .atk-main-editor > .atk-bottom .atk-send-btn {
-  height: 32px;
+@media (max-width: 768px) {
+  .comments-section .artalk .atk-main-editor > .atk-textarea-wrap {
+    padding: 2px 12px 0;
+  }
+
+  .comments-section .artalk .atk-main-editor > .atk-textarea-wrap > .atk-textarea {
+    min-height: 84px;
+    font-size: 16px;
+  }
+
+  .comments-section .artalk .atk-main-editor > .atk-bottom {
+    padding: 4px 8px 8px;
+  }
 }
 
 .comments-section .artalk > .atk-list > .atk-list-header {
@@ -2015,8 +2078,8 @@ onBeforeUnmount(() => {
 }
 
 .comments-section .artalk > .atk-list > .atk-list-body > .atk-list-comments-wrap > .atk-comment-wrap + .atk-comment-wrap {
-  margin-top: 4px;
-  border-top: 1px solid var(--border);
+  margin-top: 2px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
 }
 
 .comments-section .artalk .atk-comment {
@@ -2390,14 +2453,15 @@ onBeforeUnmount(() => {
 .comments-section .artalk .atk-comment > .atk-main > .atk-body > .atk-reply-to > .atk-content {
   display: block;
   box-sizing: border-box;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   margin: 6px 0 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border: 0;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--text) 10%, var(--bg));
+  background: var(--surface-2);
   color: var(--text-2);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -2591,17 +2655,4 @@ onBeforeUnmount(() => {
   background-color: var(--text);
 }
 
-@media (max-width: 640px) {
-  .comments-section .artalk .atk-main-editor > .atk-header {
-    flex-wrap: wrap;
-  }
-
-  .comments-section .artalk .atk-main-editor > .atk-header input {
-    flex: 1 1 calc(50% - 8px);
-  }
-
-  .comments-section .artalk .atk-main-editor > .atk-header input[name="link"] {
-    flex-basis: 100%;
-  }
-}
 </style>
