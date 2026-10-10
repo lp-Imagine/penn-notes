@@ -1304,10 +1304,31 @@ function watchSidebarSkin() {
     attributes: true,
     attributeFilter: ["class", "style"],
   });
+  let watchedWrap: Element | undefined;
+  let layerObs: MutationObserver | undefined;
+  const watchLayer = () => {
+    const wrap = document.querySelector(".atk-layer-wrap");
+    if (!wrap || wrap === watchedWrap) {
+      if (wrap?.querySelector(".atk-sidebar-iframe-wrap iframe")) pump();
+      return;
+    }
+    layerObs?.disconnect();
+    watchedWrap = wrap;
+    layerObs = new MutationObserver(() => {
+      if (wrap.querySelector(".atk-sidebar-iframe-wrap iframe")) pump();
+    });
+    layerObs.observe(wrap, { childList: true, subtree: true });
+    if (wrap.querySelector(".atk-sidebar-iframe-wrap iframe")) pump();
+  };
+  const bodyObs = new MutationObserver(watchLayer);
+  bodyObs.observe(document.body, { childList: true });
+  watchLayer();
   return () => {
     window.clearInterval(retry);
     document.removeEventListener("click", onClick, true);
     themeObs.disconnect();
+    bodyObs.disconnect();
+    layerObs?.disconnect();
   };
 }
 
