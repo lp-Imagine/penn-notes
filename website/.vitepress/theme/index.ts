@@ -115,7 +115,15 @@ const MusicCapsule = defineComponent({
 /**
  * 优先自研胶囊；provider=myhkw 时只用明月浩空。
  * provider=meting/auto 且配置了 myhkwPlayerId 时，限流/拉歌失败后兜底明月浩空。
+ * 搜索引擎渲染时不挂播放器，整段歌词会被当成摘要。
  */
+function isSearchCrawler() {
+  if (typeof navigator === "undefined") return false;
+  return /baiduspider|googlebot|bingbot|bytespider|sogou|360spider|yandexbot|duckduckbot|slurp|petalbot/i.test(
+    navigator.userAgent || "",
+  );
+}
+
 const MusicWidget = defineComponent({
   name: "MusicWidget",
   setup() {
@@ -150,6 +158,7 @@ const MusicWidget = defineComponent({
     );
 
     return () => {
+      if (isSearchCrawler()) return null;
       const music = (theme.value.music || {}) as {
         enabled?: boolean;
         provider?: string;

@@ -238,10 +238,12 @@ export default defineConfig({
       fm.summary ||
       pageData.description ||
       siteData.description;
+    const rel = String(pageData.relativePath || "").replace(/\\/g, "/");
+    const isHome = rel === "index.md" || rel === "";
     const pageUrl = pennCanonicalUrl(pageData.relativePath);
     const image = resolveOgImage(fm as Record<string, unknown>, pageData.relativePath);
     const head: HeadConfig[] = [
-      ["meta", { property: "og:type", content: "article" }],
+      ["meta", { property: "og:type", content: isHome ? "website" : "article" }],
       ["meta", { property: "og:site_name", content: "Penn Notes" }],
       ["meta", { property: "og:title", content: title }],
       ["meta", { property: "og:description", content: description }],
@@ -253,17 +255,26 @@ export default defineConfig({
       ["meta", { name: "twitter:image", content: image }],
       ["link", { rel: "canonical", href: pageUrl }],
     ];
-    const ld: Record<string, unknown> = {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: title,
-      description,
-      mainEntityOfPage: pageUrl,
-      author: { "@type": "Person", name: "Penn", url: GITHUB_PROFILE },
-      publisher: { "@type": "Organization", name: "Penn Notes" },
-      image,
-    };
-    if (fm.date) {
+    const ld: Record<string, unknown> = isHome
+      ? {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Penn Notes",
+          url: pageUrl,
+          description,
+          publisher: { "@type": "Organization", name: "Penn Notes" },
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: title,
+          description,
+          mainEntityOfPage: pageUrl,
+          author: { "@type": "Person", name: "Penn", url: GITHUB_PROFILE },
+          publisher: { "@type": "Organization", name: "Penn Notes" },
+          image,
+        };
+    if (!isHome && fm.date) {
       ld.datePublished = String(fm.date);
       ld.dateModified = String(fm.date);
     }
@@ -272,7 +283,7 @@ export default defineConfig({
   },
   lang: "zh-CN",
   description:
-    "Penn 的技术博客：前端、工程化、后端实践，以及每日 AI 动态。",
+    "Penn Notes：前端、工程化、后端实践，以及每日 AI 动态。",
   themeConfig: buildThemeConfig("zh-CN", themeExtras),
   head: [
     ["meta", { name: "baidu-site-verification", content: "codeva-6kNoNaHFfB" }],

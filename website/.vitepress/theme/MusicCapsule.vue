@@ -719,6 +719,7 @@ watch(enabled, (on) => {
     v-if="enabled"
     ref="root"
     class="penn-music"
+    data-nosnippet
     :class="{
       'is-ready': ready,
       'is-playing': playing,
@@ -887,6 +888,6 @@ watch(enabled, (on) => {
       </div>
     </div>
 
-    <div ref="host" class="penn-music-host" />
+    <div ref="host" class="penn-music-host" data-nosnippet />
   </div>
 </template>
