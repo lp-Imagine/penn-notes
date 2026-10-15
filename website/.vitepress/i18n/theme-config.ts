@@ -26,11 +26,12 @@ export function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
     },
     {
       text: n.lists,
-      activeMatch: "/collect/|/books/|/recent/|/friends/|/scraps/|/lab/",
+      activeMatch: "/collect/|/books/|/projects/|/recent/|/friends/|/scraps/|/lab/",
       items: [
         { text: n.collect, link: "/collect/", activeMatch: "/collect/" },
         { text: n.scraps, link: "/scraps/", activeMatch: "/scraps/" },
         { text: n.books, link: "/books/", activeMatch: "/books/" },
+        { text: n.projects, link: "/projects/", activeMatch: "/projects/" },
         { text: n.lab, link: "/lab/", activeMatch: "/lab/" },
         { text: n.recent, link: "/recent/", activeMatch: "/recent/" },
         { text: n.friends, link: "/friends/", activeMatch: "/friends/" },

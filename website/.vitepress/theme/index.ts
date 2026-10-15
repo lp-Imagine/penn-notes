@@ -44,6 +44,7 @@ import LabMotion from "./LabMotion.vue";
 import LabRewrite from "./LabRewrite.vue";
 import LabFourier from "./LabFourier.vue";
 import CollectEnhance from "./CollectEnhance.vue";
+import ProjectsPage from "./ProjectsPage.vue";
 import {
   getUiText,
   stripLocalePrefix,
@@ -1717,5 +1718,6 @@ export default {
     app.component("LabRewrite", LabRewrite);
     app.component("LabFourier", LabFourier);
     app.component("CollectEnhance", CollectEnhance);
+    app.component("ProjectsPage", ProjectsPage);
   },
 };

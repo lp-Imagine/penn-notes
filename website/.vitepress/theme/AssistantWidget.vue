@@ -253,6 +253,14 @@ const quickPrompts = computed(() => {
       PATH_PROMPT,
     ];
   }
+  if (p.startsWith("/projects")) {
+    return [
+      "做过哪些项目？",
+      "哪些是可以点进去看的？",
+      "个人项目和技术栈是什么？",
+      PATH_PROMPT,
+    ];
+  }
   if (p.startsWith("/collect")) {
     return [
       "收藏夹里有什么？",

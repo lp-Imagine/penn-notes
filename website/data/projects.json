@@ -1,0 +1,116 @@
+{
+  "projects": [
+    {
+      "id": "mianjing",
+      "kind": "personal",
+      "order": 1,
+      "name": "面镜",
+      "period": "2026 — 至今",
+      "summary": "对着真实岗位练面试。上传简历、职位描述和面经，自动解析后出针对性题目，流式给出答案和解题思路，题目可以收藏。",
+      "stack": ["Vue 3", "NestJS", "RAG"],
+      "cover": "/img/projects/mianjing.webp",
+      "url": "https://interview.draftly.cn",
+      "repo": "https://github.com/lp-Imagine/interview-assistant"
+    },
+    {
+      "id": "draftly",
+      "kind": "personal",
+      "order": 2,
+      "name": "Draftly",
+      "period": "2026 — 至今",
+      "summary": "公众号内容工作台。选题、大纲、正文、配图、预览和风险检测串成一条线，写完推进草稿箱，也可以同步到博客。",
+      "stack": ["Next.js", "React", "Prisma"],
+      "cover": "/img/projects/draftly.webp",
+      "url": "https://draftly.cn",
+      "repo": "https://github.com/lp-Imagine/ai-article"
+    },
+    {
+      "id": "nav",
+      "kind": "personal",
+      "order": 3,
+      "name": "导航",
+      "period": "2026 — 至今",
+      "summary": "常用网站导航。按分类把日常会打开的地址收在一页里，少在书签栏里翻。",
+      "stack": ["TypeScript"],
+      "cover": "/img/projects/nav.webp",
+      "url": "https://nav.draftly.cn",
+      "repo": "https://github.com/lp-Imagine/nav"
+    },
+    {
+      "id": "custom-components",
+      "kind": "personal",
+      "order": 4,
+      "name": "lp-custom-components",
+      "period": "2024",
+      "summary": "可按需引入的 Vue 3 组件库。表格、分页、远程搜索下拉、搜索表单和 loading 按钮，业务后台里常用的那一套。",
+      "stack": ["Vue 3", "Element Plus", "TypeScript"],
+      "cover": "/img/projects/lp-custom-components.webp",
+      "npm": "https://www.npmjs.com/package/lp-custom-components",
+      "repo": "https://github.com/lp-Imagine/custom-components"
+    },
+    {
+      "id": "g-csc",
+      "kind": "work",
+      "order": 5,
+      "name": "G-CSC 代理渠道管理系统",
+      "period": "2025.04 — 2026.01",
+      "summary": "OPPO 代理渠道数字化平台。运营、商家后台、工厂对接和商城多端打通，带 CSC AI 运营助手（流式对话），PC / H5 都有。后台不对外。",
+      "stack": ["Vue2/Vue3", "qiankun", "SSE", "PWA"]
+    },
+    {
+      "id": "jkqhr",
+      "kind": "work",
+      "order": 6,
+      "name": "人力资源服务平台",
+      "period": "2024.10 — 2025.03",
+      "summary": "人力资源从招聘做到离职。运营后台、企业服务门户和数据大屏在同一套系统里，支持短信登录和 PDF 导出。",
+      "stack": ["Vue2/Vue3", "Element UI", "ECharts"],
+      "cover": "/img/projects/jkqhr.webp",
+      "url": "https://www.jkqhr.com/test/company/#/login"
+    },
+    {
+      "id": "banksteel-saas",
+      "kind": "work",
+      "order": 7,
+      "name": "钢银云贸易",
+      "period": "2021.09 — 2024.09",
+      "summary": "钢铁贸易 SaaS。采购、库存、销售、财务走一套后台，十几个子应用拼在一起，另有报表、审批和下单的移动端。",
+      "stack": ["Vue2", "qiankun", "AG-Grid", "uni-app"],
+      "cover": "/img/projects/banksteel-saas.webp",
+      "url": "https://mgt.banksteel.com/console/auth/#/login"
+    },
+    {
+      "id": "banksteel-web",
+      "kind": "work",
+      "order": 8,
+      "name": "钢银电商",
+      "period": "2021.09 — 2024.09",
+      "summary": "钢银对外交易网站。现货、点价和供应链入口都在这一站，买家卖家从这里进场下单。",
+      "stack": ["Vue", "电商前台"],
+      "cover": "/img/projects/banksteel.webp",
+      "url": "https://www.banksteel.com/"
+    },
+    {
+      "id": "sxcig",
+      "kind": "work",
+      "order": 9,
+      "name": "山西建投数智交易",
+      "period": "2023.05 — 2023.07",
+      "summary": "面向钢铁贸易的定制交易平台。采购商和供应商各有一套门户，供应商管理、系统管理和审批流配置都在里面。",
+      "stack": ["Vue3", "Element Plus", "TypeScript"],
+      "cover": "/img/projects/sxcig.webp",
+      "url": "https://www.sxcigtrade.com/#/home"
+    },
+    {
+      "id": "kuaxun",
+      "kind": "work",
+      "order": 10,
+      "name": "跨迅 ERP",
+      "period": "2020.06 — 2021.08",
+      "summary": "跨境电商 ERP。管刊登、订单和财务，在线产品与订单对接 Amazon、Shopify 等平台。",
+      "stack": ["Vue2", "Element UI", "ECharts"],
+      "cover": "/img/projects/kuaxun.webp",
+      "url": "https://www.kuaxun.net/"
+    }
+  ]
+}

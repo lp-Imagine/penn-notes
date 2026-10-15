@@ -103,6 +103,7 @@ function hubUrls() {
     siteUrl("archive/"),
     siteUrl("collect/"),
     siteUrl("books/"),
+    siteUrl("projects/"),
     siteUrl("about/"),
   ];
 }

@@ -2,6 +2,7 @@
 
 .vp-doc .collect-page,
 .vp-doc .books-page,
+.vp-doc .projects-page,
 .vp-doc .talks-page {
   max-width: min(920px, 100%);
   margin: 0 auto;
@@ -14,6 +15,9 @@
 .vp-doc .books-page ul,
 .vp-doc .books-page ol,
 .vp-doc .books-page li,
+.vp-doc .projects-page ul,
+.vp-doc .projects-page ol,
+.vp-doc .projects-page li,
 .vp-doc .talks-page ul,
 .vp-doc .talks-page ol,
 .vp-doc .talks-page li {
@@ -24,6 +28,7 @@
 
 .collect-page .collect-hero-actions,
 .books-page .books-hero-actions,
+.projects-page .projects-hero-actions,
 .talks-page .talks-hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -33,6 +38,7 @@
 
 .collect-page .collect-hero-btn,
 .books-page .books-hero-btn,
+.projects-page .projects-hero-btn,
 .talks-page .talks-hero-btn {
   display: inline-flex;
   align-items: center;
@@ -54,6 +60,7 @@
 
 .collect-page .collect-hero-btn:hover,
 .books-page .books-hero-btn:hover,
+.projects-page .projects-hero-btn:hover,
 .talks-page .talks-hero-btn:hover {
   color: var(--link);
   border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
@@ -63,6 +70,7 @@
 
 .collect-page .collect-hero-btn--primary,
 .books-page .books-hero-btn--primary,
+.projects-page .projects-hero-btn--primary,
 .talks-page .talks-hero-btn--primary {
   border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
   background: color-mix(in srgb, var(--accent) 10%, var(--surface));

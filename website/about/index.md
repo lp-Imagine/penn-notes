@@ -86,6 +86,11 @@ next: false
         <span class="about-link-desc" data-i18n="about.booksDesc">在读与计划中的技术书</span>
         <span class="about-link-go" aria-hidden="true">→</span>
       </a>
+      <a class="about-link" href="/projects/">
+        <span class="about-link-title" data-i18n="nav.projects">项目</span>
+        <span class="about-link-desc" data-i18n="about.projectsDesc">做过的产品与项目经历</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
       <a class="about-link" href="/recent/">
         <span class="about-link-title" data-i18n="nav.recent">近况</span>
         <span class="about-link-desc" data-i18n="about.recentDesc">站点与个人的零碎更新；资讯见 AI 动态</span>

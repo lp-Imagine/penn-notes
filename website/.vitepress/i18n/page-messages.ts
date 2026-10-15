@@ -464,6 +464,22 @@ export type PageMessages = {
     leaveComment: string;
     noteAfter: string;
   };
+  projects: {
+    kicker: string;
+    lead: string;
+    countAll: (total: number, personal: number, work: number) => string;
+    countFiltered: (shown: number, kindLabel: string, total: number) => string;
+    filterAria: string;
+    personal: string;
+    work: string;
+    live: string;
+    repo: string;
+    npm: string;
+    internal: string;
+    related: string;
+    toAbout: string;
+    empty: string;
+  };
   collect: {
     kicker: string;
     lead: string;
@@ -492,6 +508,7 @@ export type PageMessages = {
     navDesc: string;
     collectDesc: string;
     booksDesc: string;
+    projectsDesc: string;
     recentDesc: string;
     notesRssDesc: string;
     newsRssDesc: string;
@@ -1012,6 +1029,26 @@ const zhCN: PageMessages = {
     leaveComment: "留言",
     noteAfter: "。",
   },
+  projects: {
+    kicker: "Work",
+    lead: "个人产品和业务系统。有线上、npm 或仓库的，点进去就能看。",
+    countAll: (total, personal, work) =>
+      work > 0
+        ? `共 ${total} 项 · ${personal} 项个人 · ${work} 项公司`
+        : `共 ${total} 项 · ${personal} 项个人`,
+    countFiltered: (shown, kindLabel, total) =>
+      `当前 ${shown} 项${kindLabel}（共 ${total} 项）`,
+    filterAria: "按项目来源筛选",
+    personal: "个人",
+    work: "公司",
+    live: "线上",
+    repo: "仓库",
+    npm: "npm",
+    internal: "内网 · 无公开界面",
+    related: "相关",
+    toAbout: "关于",
+    empty: "这一类还没有项目。",
+  },
   collect: {
     kicker: "Reading List",
     lead: "外链精选，不定期更新；偏前端与工程化，方便以后重读。",
@@ -1041,6 +1078,7 @@ const zhCN: PageMessages = {
     navDesc: "网址导航小站，常用站点速达",
     collectDesc: "外链精选，前端与工程化好文",
     booksDesc: "在读与计划中的技术书",
+    projectsDesc: "做过的产品",
     recentDesc: "站点与个人的零碎更新；资讯见 AI 动态",
     notesRssDesc: "订阅博客更新",
     newsRssDesc: "订阅每日精选，Feedly / Follow 可用",
@@ -1562,6 +1600,26 @@ const zhTW: PageMessages = {
     leaveComment: "留言",
     noteAfter: "。",
   },
+  projects: {
+    kicker: "Work",
+    lead: "個人產品和業務系統。有線上、npm 或倉庫的，點進去就能看。",
+    countAll: (total, personal, work) =>
+      work > 0
+        ? `共 ${total} 項 · ${personal} 項個人 · ${work} 項公司`
+        : `共 ${total} 項 · ${personal} 項個人`,
+    countFiltered: (shown, kindLabel, total) =>
+      `目前 ${shown} 項${kindLabel}（共 ${total} 項）`,
+    filterAria: "按項目來源篩選",
+    personal: "個人",
+    work: "公司",
+    live: "線上",
+    repo: "倉庫",
+    npm: "npm",
+    internal: "內網 · 無公開界面",
+    related: "相關",
+    toAbout: "關於",
+    empty: "這一類還沒有項目。",
+  },
   collect: {
     kicker: "Reading List",
     lead: "外鏈精選，不定期更新；偏前端與工程化，方便以後重讀。",
@@ -1591,6 +1649,7 @@ const zhTW: PageMessages = {
     navDesc: "網址導航小站，常用站點速達",
     collectDesc: "外鏈精選，前端與工程化好文",
     booksDesc: "在讀與計劃中的技術書",
+    projectsDesc: "做過的產品",
     recentDesc: "站點與個人的零碎更新；資訊見 AI 動態",
     notesRssDesc: "訂閱部落格更新",
     newsRssDesc: "訂閱每日精選，Feedly / Follow 可用",
@@ -2151,6 +2210,26 @@ const en: PageMessages = {
     leaveComment: "Leave a comment",
     noteAfter: ".",
   },
+  projects: {
+    kicker: "Work",
+    lead: "Personal products and business systems. Open live, npm, or the repo when a link is there.",
+    countAll: (total, personal, work) =>
+      work > 0
+        ? `${total} projects · ${personal} personal · ${work} work`
+        : `${total} projects · ${personal} personal`,
+    countFiltered: (shown, kindLabel, total) =>
+      `${shown} ${kindLabel} (of ${total})`,
+    filterAria: "Filter by project source",
+    personal: "Personal",
+    work: "Work",
+    live: "Live",
+    repo: "Repo",
+    npm: "npm",
+    internal: "Internal · no public UI",
+    related: "Related",
+    toAbout: "About",
+    empty: "Nothing in this group yet.",
+  },
   collect: {
     kicker: "Reading List",
     lead: "Curated external links, updated now and then — mostly frontend & engineering, for rereading later.",
@@ -2182,6 +2261,7 @@ const en: PageMessages = {
     navDesc: "Link portal for everyday sites",
     collectDesc: "Curated links on frontend & engineering",
     booksDesc: "Tech books reading and planned",
+    projectsDesc: "Products I've shipped",
     recentDesc: "Site & personal scraps; news lives under AI news",
     notesRssDesc: "Subscribe to blog updates",
     newsRssDesc: "Daily picks — Feedly / Follow ready",

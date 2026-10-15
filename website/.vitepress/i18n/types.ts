@@ -90,6 +90,7 @@ export type MessageTree = PageMessages & {
     lists: string;
     collect: string;
     books: string;
+    projects: string;
     recent: string;
     friends: string;
     categories: string;

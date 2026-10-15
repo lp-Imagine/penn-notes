@@ -2000,6 +2000,7 @@ body,
 
 .VPLocalSearchBox .result[href*="/collect/"] .titles::before,
 .VPLocalSearchBox .result[href*="/books/"] .titles::before,
+.VPLocalSearchBox .result[href*="/projects/"] .titles::before,
 .VPLocalSearchBox .result[href*="/recent/"] .titles::before {
   content: "清单";
 }
