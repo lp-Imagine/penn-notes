@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-16T23:02:05.155Z",
+  "at": "2026-10-17T23:02:06.137Z",
   "type": "daily",
-  "date": "2026-10-16",
-  "candidates": 120,
+  "date": "2026-10-17",
+  "candidates": 106,
   "search": {
     "ok": true,
     "queries": 16,
@@ -10,18 +10,18 @@
     "items": 24,
     "failures": []
   },
-  "editorial": 13,
+  "editorial": 11,
   "sections": {
-    "业界": 3,
-    "产品": 4,
-    "模型": 4,
-    "开源": 1,
-    "开发者工具": 1,
+    "业界": 2,
+    "产品": 1,
+    "模型": 3,
+    "开源": 3,
+    "开发者工具": 2,
     "前端": 0
   },
   "rss": {
-    "ok": 61,
-    "failed": 2,
+    "ok": 60,
+    "failed": 3,
     "failures": [
       {
         "id": "codrops",
@@ -32,8 +32,13 @@
         "id": "ruanyifeng",
         "name": "阮一峰的网络日志",
         "error": "Status code 403"
+      },
+      {
+        "id": "lobsters-ai",
+        "name": "Lobsters AI",
+        "error": "Status code 500"
       }
     ]
   },
-  "output": "news/2026-10/ai-news-2026-10-16.md"
+  "output": "news/2026-10/ai-news-2026-10-17.md"
 }
