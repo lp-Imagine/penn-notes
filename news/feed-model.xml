@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 模型</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 18 Oct 2026 00:45:55 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>DeepSeek 发布 V4.1-Flash-1017：DeepSWE 得分 77.0，同步开放搜索 API</title>
+      <link>https://www.marktechpost.com/2026/10/17/deepseek-just-released-v4-1-flash-1017-scores-77-0-on-deepswe-opens-search-api/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/17/deepseek-just-released-v4-1-flash-1017-scores-77-0-on-deepswe-opens-search-api/</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · DeepSeek 上线 V4.1-Flash 新检查点 V4.1-Flash-1017，网页、App 与 API 同步切换，官方称在性能与成本上实现帕累托改进，任务完成更快、输出更短，DeepSWE 得分 77.0，并开放自研搜索 API。对读者：若在用 DeepSeek 做 Agent 或检索类应用，可先小流量对比旧版输出长度与费用，再决定是否全量切换。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>StepFun 开源 Step 5 Preview：600B MoE、27B 激活、1M 上下文</title>
+      <link>https://www.marktechpost.com/2026/10/16/stepfun-releases-step-5-preview-open-weights-600b-moe-27b-active-1m-context/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/16/stepfun-releases-step-5-preview-open-weights-600b-moe-27b-active-1m-context/</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · StepFun 以开放权重形式发布 Step 5 Preview，FP8 与 BF16 检查点已上架 Hugging Face 和 ModelScope。该模型为稀疏 MoE 架构，总参数 600B、每 token 激活 27B，支持最高 100 万 token 上下文，面向长程 Agent 任务设计。对读者：需要超长上下文又希望自托管的团队可评估其显存与推理成本，注意 MoE 部署对并行策略要求较高。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Elorian 首个模型 Glimpse：用图像做推理，而非只描述图像</title>
+      <link>https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：TechCrunch AI · Elorian 发布首个 AI 模型 Glimpse，主打「用图像推理」而非仅对图像做描述。按其自评，Glimpse 在科学图表推理和短视频字幕任务上超过 GPT-6 Astra，其他视觉推理任务也具竞争力。对读者：图表理解、视频摘要类产品可将其列入候选，但自评成绩需用自有数据复测后再做选型决策。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 发布 Muse Spark Open：816B 开源权重 MoE，1M 上下文</title>
+      <link>https://www.marktechpost.com/2026/10/15/meta-muse-spark-open-816b-open-weight-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/15/meta-muse-spark-open-816b-open-weight-model/</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta 推出 Muse Spark Open，816B 参数 MoE、激活 42B、支持 1M token 上下文，在 MCP-Atlas 上领先开源模型，可跑在两台 M5 Ultra Mac Studio 上。同期 AWS 已将其上架 SageMaker JumpStart。对读者：若在评估自托管编码模型，可先测其长上下文与 MCP 工具调用表现，再决定是否替换现有方案。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 d1-ultra：单次前向输出校准概率的多模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/15/liquid-ai-d1-ultra-decision-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/15/liquid-ai-d1-ultra-decision-model/</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 d1-ultra，支持文本与图像输入，一次前向即可返回校准概率，在 Artificial Analysis Decision Index 上得 65 分，输入价格约每百万 token 0.042 美元。对读者：做风控、路由等需要概率输出的场景，可把它当作低成本基线，但需自行验证校准度是否匹配业务阈值。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>NVIDIA 发布 Nemotron 3.5 Super VL：120B 开源多模态 Agent 模型</title>
+      <link>https://www.marktechpost.com/2026/10/15/nvidia-nemotron-3-5-super-vl-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/15/nvidia-nemotron-3-5-super-vl-release/</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · NVIDIA 推出 Nemotron 3.5 Super VL，120B 参数多模态 MoE、激活 12B、1M token 上下文，NVFP4 权重可单台 DGX Spark 运行，另附两个 Bolt 边缘模型。对读者：想在边缘或单机部署多模态 Agent 的团队，可优先评估其显存占用与工具调用链路。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Claude 独立设计出更高效的量子电路</title>
+      <link>https://www.anthropic.com/research/designing-efficient-quantum-circuits</link>
+      <guid isPermaLink="true">https://www.anthropic.com/research/designing-efficient-quantum-circuits</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Anthropic Research · Anthropic 给 Claude 八条来自化学、优化、物理等领域的自然语言电路规格，Claude 基本自主完成设计，部分结果比已发表最优版本提升一个数量级。对读者：这说明模型在结构化科学设计任务上已可作初筛工具，但落地前仍需领域专家复核与仿真验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Timestral 时间序列基础模型，四种规模 5M–209M</title>
+      <link>https://mistral.ai/news/timestral</link>
+      <guid isPermaLink="true">https://mistral.ai/news/timestral</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Mistral AI News · Mistral 推出 Timestral 时间序列基础模型，提供 5M 到 209M 四种参数规模，主打 CPU 高效推理与零样本可用，声称达到概率预测的领先水平。这填补了 Mistral 在非语言模型方向的空白。对读者：若业务涉及销量、流量等预测，可先用小规模版本做零样本基线，再决定是否自训。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Grok Voice 3.0 发布，登顶 Artificial Analysis 语音对话榜</title>
+      <link>https://www.marktechpost.com/2026/10/14/meet-grok-voice-3-0-spacexai-voice-agent-model-ranks-1-on-artificial-analysis/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/14/meet-grok-voice-3-0-spacexai-voice-agent-model-ranks-1-on-artificial-analysis/</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · SpaceXAI 发布 Grok Voice 3.0 语音到语音模型，可听、推理、调用工具并说话，以 86.9 分位列 Artificial Analysis Speech-to-Speech 指数第一。开发者端接口、事件与每分钟 0.08 美元价格与 2.0 版本保持一致。对读者：语音 Agent 成本未涨而能力提升，可趁此把现有语音链路做一次 A/B 替换测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>TypeSafe AI 发布 Jev 1.14：支持图像、Box 类型与 262k 上下文</title>
+      <link>https://www.marktechpost.com/2026/10/14/typesafe-ai-jev-1-14-images-box-long-context/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/14/typesafe-ai-jev-1-14-images-box-long-context/</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · TypeSafe AI 以 jev-preview 别名发布 Jev 1.14，新增实验性图像输入、Box 边界框类型和可选的 262k token 上下文，输入价格低至每百万 token 0.042 美元。超长上下文与低价组合对文档类任务有吸引力。对读者：可把 262k 上下文用于长文档抽取场景，但需实测其在超长输入下的召回衰减。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布前沿模型 Gemini 4 Argon，面向开发者、企业与消费者开放</title>
+      <link>https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google 宣布最新前沿模型 Gemini 4 Argon 面向开发者、企业、科研人员和普通用户开放，主打解决最困难的问题。结合同日多篇配套文章，Argon 同时覆盖 API、Gemini 应用与机器人场景。对读者：若你正在评估前沿模型选型，可把 Argon 列入短期对比清单，重点看长上下文与推理成本是否匹配你的负载。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon API 上线：单次输出上限达 100 万 token</title>
+      <link>https://www.marktechpost.com/2026/10/13/google-gemini-4-argon-api-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/13/google-gemini-4-argon-api-release/</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google 将 Gemini 4 Argon 在 Gemini API、AI Studio 与 Gemini 应用中正式开放。该稀疏 MoE 模型单次可写出最多 100 万输出 token，并在 Vals Index 上以 68.90% 领先。对读者：超长输出对报告生成、代码批量改写类任务意义大，但需实测长输出的稳定性与截断行为再决定是否迁移。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Argon 全面开放，限时 API 定价 2 美元/10 美元每百万 token</title>
+      <link>https://news.google.com/rss/articles/CBMi0AFBVV95cUxQMWVpd2JZRXp6eS1fYlUyeWFPZjlCaDVzR3RQa3lUMHFKUmduUGlrOVZHTjJxUGRGakpYWk1qUFpkS1FpcmZDSlozMjM1STFVcGE1NmFsNjZLLW4xU09UUk9UNmY5MEs2Mk9RN0ZRbndtbzJUZDRidkVzU3l1aGZPVEhzb2N1MFlpeF9JZGtxbkU1U1BIWTd2eG1fM19JdjNXSm94Y0VjYWt5Nll3U1VDUS15RzJjWE5Bdm1kSm9oN0VCc3lPajIxZS1MQ2JXZkl1?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi0AFBVV95cUxQMWVpd2JZRXp6eS1fYlUyeWFPZjlCaDVzR3RQa3lUMHFKUmduUGlrOVZHTjJxUGRGakpYWk1qUFpkS1FpcmZDSlozMjM1STFVcGE1NmFsNjZLLW4xU09UUk9UNmY5MEs2Mk9RN0ZRbndtbzJUZDRidkVzU3l1aGZPVEhzb2N1MFlpeF9JZGtxbkU1U1BIWTd2eG1fM19JdjNXSm94Y0VjYWt5Nll3U1VDUS15RzJjWE5Bdm1kSm9oN0VCc3lPajIxZS1MQ2JXZkl1?oc=5</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · Google 将 Gemini 4 Argon 大范围开放，并给出限时低价：输入 2 美元、输出 10 美元每百万 token。这一价格明显低于同级前沿模型的常见区间，意在抢占开发者调用量。对读者：限时价是迁移窗口，建议先用真实流量压测成本与延迟，并确认优惠到期后的续费价格再签长期方案。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 发布 Muse Wonder 与 Muse Wonder Full：百万上下文 Agent 模型</title>
+      <link>https://www.marktechpost.com/2026/10/13/meta-muse-wonder-muse-wonder-full-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/13/meta-muse-wonder-muse-wonder-full-release/</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta 推出 Muse Wonder 与 Muse Wonder Full 两款百万上下文 Agent 模型。Muse Wonder 在 Meta Model API 上定价 4 美元/20 美元每百万 token；Wonder Full 面向 Muse Code 套餐，在 DeepSWE 与 SWE-Marathon 上领先。对读者：做长上下文代码 Agent 的团队可对比其与 Gemini、Claude 的每任务总成本，而非只看单价。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 发布首个前沿模型 Muse Wonder，主打复杂编码任务</title>
+      <link>https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：TechCrunch AI · Meta 推出首个前沿级模型 Muse Wonder，相比此前偏轻量低延迟的 Muse Spark，Wonder 体量更大、能力更强，基准分数更高，在编码等复杂任务上表现更好。这标志着 Meta 正式补齐前沿模型梯队，与 OpenAI、Anthropic 形成正面竞争。对读者：选型时可把 Muse Wonder 纳入编码类任务对比清单，但需先确认 API 可用性与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Muse Wonder 与 Wonder Full 达到前沿水平，但 API 只开放较弱版本</title>
+      <link>https://news.google.com/rss/articles/CBMi7wFBVV95cUxOMUwyWl9PSVZmUHlCamxZRU80cnlBcjNUUkc1SFRTVVYybEI0Y0ZWZzNpbkdqSHU5a2ZyUGlDUlIwd0QyeDN1MGRRamx5YU41WF9WMTdJZ05nUDZGakt1LWkwQVhOS0ZPc2RCcXFEMFNPSmRiOXlsUmstdmsxcDVRLXg0TjhNVzZIeU91aEdFcDVhT1lJeXZicktoRm5UTWFFRXg5b1ZKaC1TSHFRTVVBY1Y0aWdBM1ROdHYtLU93OTl6V3RrM0UxdXUxODJhVnVqd3lXZ1NIMm1yeTlEYnNXamdHU0VwcDdNQ3VRbDlONA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi7wFBVV95cUxOMUwyWl9PSVZmUHlCamxZRU80cnlBcjNUUkc1SFRTVVYybEI0Y0ZWZzNpbkdqSHU5a2ZyUGlDUlIwd0QyeDN1MGRRamx5YU41WF9WMTdJZ05nUDZGakt1LWkwQVhOS0ZPc2RCcXFEMFNPSmRiOXlsUmstdmsxcDVRLXg0TjhNVzZIeU91aEdFcDVhT1lJeXZicktoRm5UTWFFRXg5b1ZKaC1TSHFRTVVBY1Y0aWdBM1ROdHYtLU93OTl6V3RrM0UxdXUxODJhVnVqd3lXZ1NIMm1yeTlEYnNXamdHU0VwcDdNQ3VRbDlONA?oc=5</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · VentureBeat 报道称，Meta 的 Muse Wonder 与 Muse Wonder Full 均达到前沿性能，但通过 API 对外提供的只有其中较弱的版本。这意味着开发者在 API 侧拿到的能力与官方宣称的旗舰水平存在落差，评测结论不能直接套用到线上调用。对读者：接入前务必用自有任务实测 API 版本，别按发布会分数做容量与效果规划。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Z.ai GLM-Legal 在 Harvey LAB 上超过 Claude Fable 5 与 Kimi K3</title>
+      <link>https://www.marktechpost.com/2026/10/13/zai-glm-legal-harvey-lab-legal-ai-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/13/zai-glm-legal-harvey-lab-legal-ai-model/</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Z.ai 基于 GLM-5.3-Flash 推出法律垂类模型 GLM-Legal，在 Harvey 法律 Agent 基准上全通过率 19.2%，接近基座模型的三倍，单次测试成本约 0.15 美元，需申请使用。垂类小模型以极低成本在专业基准上反超通用旗舰，说明领域数据与后训练仍有明显红利。对读者：法律、合规类场景可关注其申请通道，评估是否值得替换通用模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>阿里 Qwen 推出 QwenGyre：面向超长程 Agent 的弹性强化学习框架</title>
+      <link>https://www.marktechpost.com/2026/10/12/alibaba-qwen-introduces-qwengyre-elastic-reinforcement-learning-rl-for-xlong-horizon-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/12/alibaba-qwen-introduces-qwengyre-elastic-reinforcement-learning-rl-for-xlong-horizon-agents/</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 阿里 Qwen 团队发布 QwenGyre，一个面向极长程 Agent 训练的弹性强化学习框架。它通过未经修改的黑盒 harness 训练编码 Agent，支持持续数小时、处理近百万 token 的 rollout。长程任务训练一直是 Agent 能力提升的难点，该框架把训练与真实工具链解耦。对读者：做 Agent 训练的团队可研究其 harness 设计思路，降低对工具链改造的依赖。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cloudflare 发布 Clef-omni：30B-A3B 多模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/11/cloudflare-clef-omni-multimodal-decision-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/11/cloudflare-clef-omni-multimodal-decision-model/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Cloudflare 推出 Clef-omni，基于 Qwen3-Omni-30B-A3B 构建，采用 Apache-2.0 协议，可在一次调用中对文本、图像、音频、视频打分，输入定价每百万 token 0.15 美元，轻量版 Clef-flash 低至 0.038 美元。对读者：若你的产品需要多模态内容审核或路由判断，这类「决策模型」比通用大模型更省成本，值得做一轮 A/B 验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>vLLM Semantic Router 发布 Decision 3.0 开源决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/11/what-is-decision-3-0-vllm-semantic-routers-new-open-decision-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/11/what-is-decision-3-0-vllm-semantic-routers-new-open-decision-models/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · vLLM Semantic Router 发布 Decision 3.0，包含 5 个 Apache-2.0 多模态决策模型，参数从 0.8B 到 27B。它们不生成文本，而是对文本与图像直接回答选择题、是非题和打分题，适合做路由、过滤与判定环节。对读者：把「生成」与「决策」拆成两类模型调用，是当前压低推理成本的有效手段，可先在日志分级场景试点。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>TII 发布 Falcon-ASR：1.6B 阿拉伯语语音模型，平均 WER 20.92%</title>
+      <link>https://www.marktechpost.com/2026/10/11/tii-falcon-asr-arabic-speech-recognition/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/11/tii-falcon-asr-arabic-speech-recognition/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · TII 发布 Falcon-ASR，这是一个 1.6B 的阿拉伯语语音识别模型，侧重阿联酋口音，在 6 个阿拉伯语测试集上平均 WER 为 20.92%。目前权重与 API 尚未开放。对读者：阿拉伯语语音场景此前可选方案有限，可先关注其开源进度；若近期有中东业务需求，暂时仍需依赖商业 API 兜底。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OrcaRouter 发布 OrcaCyber Zero 1.5 安全模型，支持 100 万上下文</title>
+      <link>https://www.marktechpost.com/2026/10/10/orcarouter-releases-orcacyber-zero-1-5-cybersecurity-model-with-1m-context/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/10/orcarouter-releases-orcacyber-zero-1-5-cybersecurity-model-with-1m-context/</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OrcaRouter 推出 OrcaCyber Zero 1.5，一款需申请访问的网络安全专用模型，上下文窗口达 100 万 token。官方称其在 Cybench 上达到 100%，在可评估的 CVE-Bench 子集上为 95.8%，定价为每百万 token 输入 3 美元、输出 7.5 美元。对读者：安全垂类模型开始出现可量化的基准与明确报价，做漏洞分析类工具时可将其纳入对比测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Sakana AI 的 LLM 同行评审系统捕获 73% 核心论断错误</title>
+      <link>https://www.marktechpost.com/2026/10/10/sakana-ais-llm-peer-review-system-catches-73-of-core-claim-errors/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/10/sakana-ais-llm-peer-review-system-catches-73-of-core-claim-errors/</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sakana AI 在 TMLR 论文中提出 Multi-Layered Review，一套基于 Claude 的三智能体评审系统，并构建了含 1164 个错误的 Contradiction Benchmark。MLR 能捕获 73.43% 的核心论断错误，而此前最佳系统仅为 14.81%。对读者：若团队用 LLM 做文档或论文审校，可参考其多智能体分层评审思路，比单次提问更可靠。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>小米披露 MiMo-V2.6 规模化强化学习路线，单次 RL 后训练耗资 260 万美元</title>
+      <link>https://www.infoq.cn/article/gNdWoDM8ygkAjXfsLaBK?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/gNdWoDM8ygkAjXfsLaBK?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：InfoQ 中文 · 小米 MiMo 团队发布 V2.6 系列，首次系统性实现 Agentic RL 在 Rollout、环境与 Grader 三个维度的同步规模化。Pro 与 Flash 均采用 MoE 架构，融合滑动窗口与全局注意力，支持百万级上下文训练，单 RL 步生成 2.5 万条轨迹、总 token 达 27–37 亿，Pro 单次后训练成本约 260 万美元。对读者：Agentic RL 的算力门槛已被公开量化，中小团队应优先考虑蒸馏或复用而非自建全流程。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI Decisions API 公测：基于 GPT-6 Luna，返回类型化答案快 10 倍</title>
+      <link>https://www.marktechpost.com/2026/10/09/openai-decisions-api-hits-public-beta-with-10x-faster-typed-answers/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/openai-decisions-api-hits-public-beta-with-10x-faster-typed-answers/</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 的 Decisions API 进入公测，基于 GPT-6 Luna，返回类型化概率、选项与分数，速度约为 Responses API 的 10 倍，计费为每百万输入 token 0.10 美元且不收输出费用。它面向路由、分类、判定类任务。对读者：如果你的调用只是“选一个答案”，用决策 API 替代通用对话 API 可显著降本提速，建议先在小流量做 A/B。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>微软发布 Microsoft-Decision-1：基于 Qwen3.5-9B 的决策打分模型</title>
+      <link>https://www.marktechpost.com/2026/10/09/microsoft-ai-releases-microsoft-decision-1-a-qwen3-5-9b-decision-scoring-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/microsoft-ai-releases-microsoft-decision-1-a-qwen3-5-9b-decision-scoring-model/</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 微软发布 Microsoft-Decision-1，面向路由、分类、验证与 Agent 控制。它不生成文本，而是为每个固定选项返回校准后的概率，基于阿里 Qwen3.5-9B 后训练而来，已在 Microsoft Foundry 和 OpenRouter 上线。对读者：需要确定性分支判断的 Agent 流程，可优先试这类打分模型，比让 LLM 输出文本再解析更稳。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>阿里 Qwen 发布 Qwen-Image-2.1-Turbo：8 步 7B 图像模型</title>
+      <link>https://www.marktechpost.com/2026/10/09/alibaba-qwen-releases-qwen-image-2-1-turbo-an-8-step-7b-image-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/alibaba-qwen-releases-qwen-image-2-1-turbo-an-8-step-7b-image-model/</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Qwen 团队发布 Qwen-Image-2.1-Turbo，是开源权重 Qwen-Image-2.1 的加速版本，去噪步数从默认 40 步降到 8 步，同一 7B 架构下推理步数减少 5 倍，并提供托管 API。对读者：做图像生成/编辑的产品可先测 Turbo 版本，用画质换吞吐，尤其适合交互式实时预览场景。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Nace AI 开源 Drex 1.5：9B 决策模型，打分而非生成文本</title>
+      <link>https://www.marktechpost.com/2026/10/09/nace-ai-open-sources-drex-1-5-a-9b-decision-model-that-scores-options-not-text/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/nace-ai-open-sources-drex-1-5-a-9b-decision-model-that-scores-options-not-text/</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Nace.AI 开源 Drex 1.5，一个 9B 决策模型，单次前向传播即可为每个选项返回概率，在 Decision Index 0.3.1 上得分 58.08，支持最长 128K token 上下文。定位与微软 Decision-1 类似，但完全开源。对读者：想自托管决策模型、避免 API 依赖的团队，可把 Drex 1.5 纳入候选并对比校准质量。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>JetBrains 发布 Mellum2.1：面向编码 Agent 的 12B MoE 开源模型</title>
+      <link>https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/jetbrains-releases-mellum2-1-a-12b-moe-open-model-for-coding-agents/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · JetBrains 发布 Apache 2.0 许可的 Mellum2.1，12B 混合专家模型、激活参数 2.5B，通过在真实仓库中做强化学习，SWE-bench Verified 分数从 2.0 提升到 47.0。这显示编码 Agent 的专用小模型在真实工程任务上仍有可观提升空间。对读者：自建编码助手的团队可评估该模型在私有仓库上的微调潜力，注意 47.0 的分数仍与头部闭源模型有差距。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Saluki 27B：2-bit 量化的 Qwen3.8-27B，工具调用反超原版</title>
+      <link>https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/09/meet-the-underdog-saluki-27b-a-2-bit-qwen3-8-27b-that-beats-the-original-at-tool-calling/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Saluki 27B 是 Qwen3.8-27B 的 2-bit GGUF 量化版本，体积仅 7.89 GB、Apache 2.0 许可，在工具调用上超过 54 GB 的原版，但在竞赛数学与推理上有所退步。量化在特定能力上「越压越强」的现象值得注意。对读者：若本地部署主要用于工具调用与 Agent 编排，可优先测试该量化版本；涉及复杂推理的任务仍建议保留全精度模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google Cloud 推出 Gemini Agent，一个通用企业 Agent</title>
+      <link>https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/08/google-cloud-launches-gemini-agent-one-universal-agent-for-enterprise-work/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google Cloud 发布 Gemini Agent，定位为面向企业工作的单一 Agent：通过一个提示框和一个 API，完成问答、知识工作、媒体生成以及代码编写与运行。这是云厂商把 Agent 能力收敛为统一入口的又一动作。对读者：企业选型时可对比其与 Bedrock AgentCore 等方案的集成成本，重点验证权限边界与数据驻留是否满足合规要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：1M 上下文，输入每百万 token 仅 0.10 美元</title>
+      <link>https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/anthropic-releases-claude-haiku-5-5-a-small-model-with-1m-context-priced-at-0-10-per-million-input-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Anthropic 推出小模型 Claude Haiku 5.5，保留 1M 上下文，输入价格低至每百万 token 0.10 美元，在 OSWorld 上得分 72.4%。相比 Haiku 4.5 的 1 美元输入价，降幅约九成，直接对标 OpenAI GPT-6 Luna 的定价。对读者：高频、成本敏感的批处理与子 Agent 场景可优先切换到 Haiku 5.5 做成本压测。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity 发布 pplx-embed-v2-late：0.6B 端侧与 9B 索引双版本</title>
+      <link>https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/perplexity-ai-releases-pplx-embed-v2-late-a-0-6b-edge-model-and-a-9b-model-scoring-92-4-on-madqa/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity 推出 pplx-embed-v2-late 嵌入模型，包含面向边缘设备的 0.6B 版本和用于高质量索引构建的 9B 版本，MADQA 最高得分 92.4%，ViDoRe v3 Markdown 最低 61.2%。两个版本均为 MIT 许可，可自行部署。对读者：自建 RAG 的团队可将其纳入嵌入模型候选，注意不同任务上的分数差异较大。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 开源 d1-3B 与 d1-omni-600M 多模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/07/liquid-ai-releases-open-weight-d1-3b-and-d1-omni-600m-multimodal-decision-models-with-zero-output-tokens/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 Open d1 系列两个开放权重多模态模型：d1-3B 可读文本与图像，d1-omni-600M 支持文本配图像或音频。两者均不输出文本，而是在单次前向传播中返回校准后的类型化答案，输出 token 为零，面向实时决策场景。对读者：分类、判定类任务可尝试用决策模型替代生成式模型以降低延迟与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5：最快最便宜的小模型</title>
+      <link>https://www.anthropic.com/claude-haiku-5-5</link>
+      <guid isPermaLink="true">https://www.anthropic.com/claude-haiku-5-5</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Claude Blog · Anthropic 推出 Claude Haiku 5.5，官方称其为迄今最快、最强的小模型，主打高并发场景，如摘要、子智能体（subagents）与浏览器操作。模型 ID 为 claude-haiku-5-5，定位在成本敏感、调用量大的任务上替代更大模型。对读者：如果你的 Agent 流水线里大量调用的是「廉价小模型」，值得把 Haiku 5.5 纳入成本与延迟的对比测试。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Mistral Large 4（Le Chonk）：1.05 万亿参数 MoE</title>
+      <link>https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/06/mistral-ai-releases-mistral-large-4-le-chonk-a-1-05t-parameter-open-weight-multimodal-moe/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Mistral AI 以公开预览形式发布 Mistral Large 4，代号 Le Chonk：1.05 万亿参数混合专家模型，激活参数 490 亿，原生支持图像输入，上下文窗口达 100 万 token，在 Mistral 自有的欧洲数据中心用 3800 块 NVIDIA Grace Blackwell GPU 训练。API 已上线，开放权重预计 2026 年 10 月底发布。对读者：欧洲主权算力 + 开放权重路线值得关注，若你受数据合规约束，可提前评估其 API 与后续权重。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Mistral 发布 Mistral Large 4</title>
+      <link>https://mistral.ai/news/mistral-large-4</link>
+      <guid isPermaLink="true">https://mistral.ai/news/mistral-large-4</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Mistral AI News · Mistral AI 正式发布 Mistral Large 4，官方将其定位为企业级最强 AI 平台能力的一部分，支持定制、微调与部署 AI 助手、自主智能体及多模态应用。该发布与万亿参数、开源权重等关键词共同构成 Mistral 本轮的前沿叙事。对读者：企业选型时可关注其微调与私有化部署路径，而不只看榜单分数。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Reflection AI 推出 Beam：501B 开源权重 MoE 模型</title>
+      <link>https://www.marktechpost.com/2026/10/05/reflection-ai-introduces-beam-a-501b-open-weight-moe-model-with-23b-active-parameters-for-coding-and-agentic-workloads/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/05/reflection-ai-introduces-beam-a-501b-open-weight-moe-model-with-23b-active-parameters-for-coding-and-agentic-workloads/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Reflection AI 发布首个开源权重模型 Beam，采用 501B 稀疏混合专家架构、23B 激活参数，面向编码与智能体工作负载。官方称其在推理上可对标 GLM-5.2，且推理算力消耗低 3 至 4 倍，Apache 2.0 权重将于 2026 年 10 月晚些时候放出。对读者：若关注低成本 Agent 推理，可等权重放出后实测其编码与工具调用表现。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 发布 North 2：不妥协的企业级 AI</title>
+      <link>https://cohere.com/blog/introducing-north-2</link>
+      <guid isPermaLink="true">https://cohere.com/blog/introducing-north-2</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 推出 North 2，称其为迄今最大升级，把企业级安全、智能、成本治理与全栈控制统一到一个 Agentic AI 平台，并可在数据所在之处运行。企业 AI 竞争正从模型能力转向部署与治理。对读者：评估企业 Agent 平台时，把成本治理与数据驻留能力列为硬指标，而非只看模型分数。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 与普华永道结盟，加速企业 AI 落地</title>
+      <link>https://cohere.com/blog/cohere-and-pwc-partner-to-accelerate-secure-enterprise-ai-adoption</link>
+      <guid isPermaLink="true">https://cohere.com/blog/cohere-and-pwc-partner-to-accelerate-secure-enterprise-ai-adoption</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 与 PwC 宣布全球联盟，首站落地加拿大，结合安全主权 AI 与转型咨询能力，帮企业从试点走向生产并量化 AI 投资回报。模型厂商借咨询渠道切入大客户，是当前企业 AI 商业化的典型路径。对读者：选型时可借咨询伙伴的交付经验降低集成风险，但需明确数据主权归属。</description>
+      <category>模型</category>
+    </item>
+  </channel>
+</rss>
