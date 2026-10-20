@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-19T23:02:06.928Z",
+  "at": "2026-10-20T23:01:43.163Z",
   "type": "daily",
-  "date": "2026-10-19",
-  "candidates": 104,
+  "date": "2026-10-20",
+  "candidates": 120,
   "search": {
     "ok": true,
     "queries": 16,
@@ -10,40 +10,30 @@
     "items": 24,
     "failures": []
   },
-  "editorial": 12,
+  "editorial": 13,
   "sections": {
-    "业界": 4,
-    "产品": 1,
+    "业界": 3,
+    "产品": 4,
     "模型": 3,
     "开源": 2,
-    "开发者工具": 1,
+    "开发者工具": 0,
     "前端": 1
   },
   "rss": {
-    "ok": 59,
-    "failed": 4,
+    "ok": 61,
+    "failed": 2,
     "failures": [
-      {
-        "id": "codrops",
-        "name": "Codrops",
-        "error": "Status code 403"
-      },
       {
         "id": "ruanyifeng",
         "name": "阮一峰的网络日志",
         "error": "Status code 403"
       },
       {
-        "id": "javascript-weekly",
-        "name": "JavaScript Weekly",
-        "error": "fetch failed"
-      },
-      {
-        "id": "node-weekly",
-        "name": "Node Weekly",
-        "error": "fetch failed"
+        "id": "codrops",
+        "name": "Codrops",
+        "error": "Status code 403"
       }
     ]
   },
-  "output": "news/2026-10/ai-news-2026-10-19.md"
+  "output": "news/2026-10/ai-news-2026-10-20.md"
 }
