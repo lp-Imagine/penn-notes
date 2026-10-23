@@ -1,39 +1,57 @@
 {
-  "at": "2026-10-22T23:02:00.674Z",
+  "at": "2026-10-23T23:02:12.082Z",
   "type": "daily",
-  "date": "2026-10-22",
-  "candidates": 120,
+  "date": "2026-10-23",
+  "candidates": 96,
   "search": {
-    "ok": true,
-    "queries": 16,
+    "ok": false,
+    "queries": 0,
     "totalQueries": 16,
-    "items": 24,
-    "failures": []
+    "items": 0,
+    "failures": [
+      {
+        "query": "artificial intelligence",
+        "error": "Status 503"
+      },
+      {
+        "query": "Anthropic Claude",
+        "error": "Status 503"
+      },
+      {
+        "query": "生成式AI",
+        "error": "Status 503"
+      }
+    ]
   },
   "editorial": 13,
   "sections": {
-    "业界": 4,
-    "产品": 3,
-    "模型": 1,
-    "开源": 3,
+    "业界": 3,
+    "产品": 4,
+    "模型": 3,
+    "开源": 1,
     "开发者工具": 1,
     "前端": 1
   },
   "rss": {
-    "ok": 61,
-    "failed": 2,
+    "ok": 60,
+    "failed": 3,
     "failures": [
+      {
+        "id": "ruanyifeng",
+        "name": "阮一峰的网络日志",
+        "error": "Status code 403"
+      },
       {
         "id": "codrops",
         "name": "Codrops",
         "error": "Status code 403"
       },
       {
-        "id": "ruanyifeng",
-        "name": "阮一峰的网络日志",
-        "error": "Status code 403"
+        "id": "venturebeat-ai",
+        "name": "VentureBeat AI",
+        "error": "Status code 503"
       }
     ]
   },
-  "output": "news/2026-10/ai-news-2026-10-22.md"
+  "output": "news/2026-10/ai-news-2026-10-23.md"
 }
