@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="pnBg" x1="10" y1="4" x2="54" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1c243a"/>
+      <stop offset="0.52" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0a0f1c"/>
+    </linearGradient>
+    <linearGradient id="pnRing" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c4ceff"/>
+      <stop offset="0.48" stop-color="#7c8cff"/>
+      <stop offset="1" stop-color="#5566c8"/>
+    </linearGradient>
+    <linearGradient id="pnN" x1="34" y1="17" x2="52" y2="47" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d0d7ff"/>
+      <stop offset="1" stop-color="#7384ef"/>
+    </linearGradient>
+    <linearGradient id="pnP" x1="14" y1="18" x2="36" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e4e8ff"/>
+    </linearGradient>
+    <linearGradient id="pnBar" x1="15" y1="50" x2="36" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef0ff" stop-opacity="0.25"/>
+      <stop offset="0.45" stop-color="#b4c0ff"/>
+      <stop offset="1" stop-color="#7c8cff" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="pnSheen" x1="12" y1="6" x2="38" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="pnPShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.7" flood-color="#060a14" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- 底板 -->
+  <rect width="64" height="64" rx="15" fill="url(#pnBg)"/>
+  <!-- 内高光 -->
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="url(#pnSheen)"/>
+  <!-- 描边 -->
+  <rect
+    x="3.25"
+    y="3.25"
+    width="57.5"
+    height="57.5"
+    rx="12.75"
+    stroke="url(#pnRing)"
+    stroke-width="2.5"
+  />
+  <!-- 内细环，增加层次 -->
+  <rect
+    x="6.5"
+    y="6.5"
+    width="51"
+    height="51"
+    rx="10.5"
+    stroke="#fff"
+    stroke-opacity="0.06"
+    stroke-width="1"
+  />
+
+  <!-- N（后层） -->
+  <path
+    fill="url(#pnN)"
+    fill-rule="evenodd"
+    d="M33.6 17.8h4.9L46.6 34.1V17.8h5.2V46.2h-4.9L38.4 29.9V46.2h-4.8V17.8z"
+  />
+
+  <!-- P（前层） -->
+  <path
+    fill="url(#pnP)"
+    filter="url(#pnPShadow)"
+    d="M14.6 17.8h14.4c6.95 0 11.5 3.9 11.5 10 0 6.15-4.55 10.05-11.5 10.05H20.5V46.2h-5.9V17.8zm5.9 5.15v9.65h8c3.4 0 5.45-1.8 5.45-4.85s-2.05-4.8-5.45-4.8H20.5z"
+  />
+
+  <!-- P 下强调线 -->
+  <path
+    d="M16.2 50.4h19.2"
+    stroke="url(#pnBar)"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+  <!-- 右上微星点缀 -->
+  <path
+    fill="#c5ceff"
+    fill-opacity="0.7"
+    d="M51.2 12.4c.18 1.45 1.05 2.32 2.5 2.5-1.45.18-2.32 1.05-2.5 2.5-.18-1.45-1.05-2.32-2.5-2.5 1.45-.18 2.32-1.05 2.5-2.5Z"
+  />
+</svg>

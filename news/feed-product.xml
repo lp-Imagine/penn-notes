@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 产品</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 24 Oct 2026 04:53:41 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>OpenAI 推出 Decisions API：为应用提供快速低成本决策能力</title>
+      <link>https://openai.com/index/decisions-api</link>
+      <guid isPermaLink="true">https://openai.com/index/decisions-api</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 发布 Decisions API，主打快速、聚焦、低成本的决策能力，面向任意应用场景。官方同时展示了团队的使用方式，定位介于通用对话与重型推理之间，适合需要低延迟判断的交互链路。对读者：若产品中有分类、路由、轻量判断等环节，可评估用该 API 替代自建小模型，先做成本与延迟对比。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Cowork 与聊天合并，向 Enterprise 全面开放</title>
+      <link>https://claude.com/resources/articles/unified-claude-enterprise</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/unified-claude-enterprise</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude 博客称，Chat 与 Cowork 于 9 月率先在 Pro 和 Max 套餐合并，如今同一统一体验已对 Claude Enterprise 套餐正式可用。协作与对话入口合一，意味着企业侧 Agent 工作流与日常问答共享上下文与权限体系。对读者：企业采购可重新评估席位与工作流整合收益，关注权限与审计能力是否满足合规要求。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Canva 发布首个自研图像模型 Canva Craft，先规划再生成</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1017151/canva-craft-in-house-ai-model</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1017151/canva-craft-in-house-ai-model</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道，Canva 推出首个自研图像生成模型 Canva Craft，采用两阶段架构，先生成设计方案再出图，以提升精度、一致性与可控性；支持最高 2K 分辨率与 30 多种宽高比。它直接对标 OpenAI、微软与谷歌的图像模型。对读者：设计团队可试用其版式与比例控制能力，评估是否减少外部出图工具切换成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta 因出版商反对 AI 抓取，推迟新商业条款生效</title>
+      <link>https://www.theverge.com/tech/1017450/meta-business-terms-delayed-ai-scraping</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1017450/meta-business-terms-delayed-ai-scraping</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道，Meta 将新商业条款生效日从 10 月 30 日推迟至 11 月 20 日，以争取时间向合作伙伴解释变更内容。此前出版商担忧条款可能允许 Meta 抓取新闻站点用于 AI 训练。条款措辞与执行边界仍存争议。对读者：内容方应持续跟踪条款最终文本，必要时在 robots 与授权协议上提前设防。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Uber 向三万余名员工全面部署 ChatGPT Work</title>
+      <link>https://openai.com/index/uber-chatgpt-work-rollout</link>
+      <guid isPermaLink="true">https://openai.com/index/uber-chatgpt-work-rollout</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Uber 正在把 ChatGPT Work 推广到超过 3 万名员工，用于资料研究、数据分析、制作演示文稿和完成复杂工作流。这是企业级 AI 助手少见的大规模全员落地案例，也意味着采购决策从试点转向全公司基础设施。对读者：若你正在做内部 AI 工具选型，可参考其按岗位场景而非按部门试点的推广路径。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>完整 Claude Platform 上线 Google Cloud</title>
+      <link>https://claude.com/resources/articles/claude-models-on-google-cloud-anthropic-managed</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-models-on-google-cloud-anthropic-managed</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 宣布 Claude Platform 全量登陆 Google Cloud（Anthropic 托管模式），可使用 Google Cloud 的身份认证、计费与承诺额度抵扣。多云可用性降低了对单一云厂商的绑定，也让企业能在既有云合同中消化 Claude 用量。对读者：已有 Google Cloud 承诺额度的团队，可评估把 Claude 调用并入同一账单以简化成本核算。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Duet 应用发布，Anthropic 押注主动型 Agent</title>
+      <link>https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · TechCrunch 报道，Anthropic 推出 Claude Duet，覆盖移动端与桌面端，主打主动执行动作的 Agent 能力，目前以候补名单形式向 Pro 和 Max 用户开放。这是 Anthropic 在消费级 Agent 形态上的正面下注，与同类产品争夺「代理入口」。对读者：可先申请候补做小范围试用，重点观察其在权限边界与误操作回滚上的设计。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 前沿模型与 Codex 工作流登陆 Google Cloud</title>
+      <link>https://openai.com/index/openai-models-google-cloud</link>
+      <guid isPermaLink="true">https://openai.com/index/openai-models-google-cloud</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 与 Google Cloud 达成合作，将前沿模型及 Codex 工作流接入 Gemini 的 Model Garden，并通过 Google Cloud Marketplace 提供。这意味着企业客户可在既有 GCP 采购与账单体系内直接调用 OpenAI 能力，多云部署与合规采购的门槛进一步降低。对读者：若团队已在 GCP 上，可评估用 Marketplace 统一结算以简化采购，同时留意与 Azure 通道在配额和定价上的差异。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 推出 Claude Duet：主动型 Agent 应用开启候补</title>
+      <link>https://claude.com/resources/articles/claude-duet</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-duet</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Duet 是一款让 Claude 以主动型 Agent 方式工作的新应用，研究预览今日开放候补，首批面向美国 Pro 与 Max 订阅用户。相比被动问答，主动 Agent 会自行推进任务，这代表 Anthropic 在 Agent 产品形态上的新尝试。对读者：可先加入候补观察其任务边界与权限设计，再决定是否纳入团队工作流试点。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Security 支持持续扫描与修复跟踪</title>
+      <link>https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-security-now-scans-continuously-and-tracks-fixes</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Security 现在会随代码变更持续监控仓库，跟踪发现直至修复，学习团队补充的上下文，并通过 API 与 MCP 对接现有工具，目前面向 Claude Enterprise 客户公测。安全能力从一次性扫描转向常驻流程，对 DevSecOps 链路影响直接。对读者：企业团队可评估用 MCP 把扫描结果接入工单与 CI，避免漏洞在修复前被遗忘。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 广告扩展至 26 个新国家，广告主超 10 万</title>
+      <link>https://openai.com/index/chatgpt-ads-expands-26-new-countries</link>
+      <guid isPermaLink="true">https://openai.com/index/chatgpt-ads-expands-26-new-countries</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 ChatGPT 广告业务新增 26 个国家，累计已有超过 10 万名广告主使用该平台，覆盖从本地商家到全球品牌。广告正成为 ChatGPT 商业化的重要支柱，也意味着对话式购物场景的竞争加剧。对读者：做投放的团队可关注新市场的准入与归因方式；做产品的则需留意对话内广告对用户信任与体验的影响。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 收购 Orchestra Bio，将 AI 运营带入生命科学研发</title>
+      <link>https://openai.com/index/openai-to-acquire-orchestra-bio</link>
+      <guid isPermaLink="true">https://openai.com/index/openai-to-acquire-orchestra-bio</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布收购 Orchestra Bio，把 AI 驱动的运营能力引入生物医药研发，帮助药企加速药物开发与新疗法推进。这是 OpenAI 从通用模型向垂直行业解决方案延伸的又一步，也意味着其企业业务开始深入高监管、高价值的研发流程。对读者：垂直行业 AI 采购将更多面对「模型厂商+行业资产」的组合，需评估供应商锁定与数据合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>连锁加盟商用 ChatGPT Work 把现金对账时间压缩 94%</title>
+      <link>https://openai.com/index/ted-taylor-restaurant</link>
+      <guid isPermaLink="true">https://openai.com/index/ted-taylor-restaurant</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · 一家独立经营 Schlotzsky’s 与 Cinnabon 的加盟商用 ChatGPT Work 重构财务流程，菜单调价时间减少 95%，现金对账时间下降 94%，并预计释放 10 万美元现金流。案例说明通用 AI 工作流在中小企业的财务运营中已能产生可量化收益。对读者：可从高频、规则明确的财务流程切入试点，先量化单点耗时再谈规模化。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Spotify 从推荐中移除 5000 万首 AI 灌水与垃圾曲目</title>
+      <link>https://www.theverge.com/entertainment/1014284/spotify-ai-slop-spam-songs-removed</link>
+      <guid isPermaLink="true">https://www.theverge.com/entertainment/1014284/spotify-ai-slop-spam-songs-removed</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Spotify 表示过去一年已从用户推荐中移除超过 5000 万首被判定为 AI 生成灌水或垃圾的歌曲，并调整推荐系统以突出真人艺术家作品。平台尚未强制标注所有 AI 音乐，但编辑与算法侧已设同等标准。对读者：内容平台对 AI 生成内容的治理正从标注转向分发权重，创作者应关注平台政策对曝光的影响。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Adobe Lightroom 移动版支持一键用 AI 睁开闭眼照片</title>
+      <link>https://www.theverge.com/tech/1014246/adobe-lightroom-mobile-ai-quick-action-open-eyes-closed-blink-repair</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1014246/adobe-lightroom-mobile-ai-quick-action-open-eyes-closed-blink-repair</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Adobe 宣布 iOS、iPadOS 与 Android 版 Lightroom 可用生成式 AI 一键修复照片中闭眼的人物，检测到闭眼时自动出现 Open Eyes 快捷操作。该能力此前在 Photoshop Elements 中已存在近十年，如今下放到移动端并简化为一键操作。对读者：移动端修图正快速吸收桌面级生成式能力，评估时需留意生成结果的真实性与元数据标注要求。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>黑客用 AI 智能体集群入侵 John Deere、SharkNinja 等百余家网站</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins</guid>
+      <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据 AI 安全公司 Norforge 的调查，一名黑客利用基本自主运行的 AI 智能体集群入侵了 100 多个网站，路透称受害者包括 John Deere、SharkNinja 与 Cummins。这凸显 AI 驱动的规模化攻击正成为现实威胁。对读者：应尽快排查暴露面与自动化攻击防护，别把智能体只当生产力工具。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta 删除可能允许抓取新闻网站内容的条款措辞</title>
+      <link>https://www.theverge.com/tech/1013409/meta-removes-language-that-may-have-allowed-it-to-scrape-news-sites</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1013409/meta-removes-language-that-may-have-allowed-it-to-scrape-news-sites</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 在遭到批评后，Meta 再次更新商业条款，删去暗示其可使用域名、网页或 URL 内容来开发、改进、研究并训练 AI 的表述。此前 Neiman Lab 与法学教授 James Grimmelmann 等对该措辞提出质疑。对读者：内容方应持续跟踪平台条款变化并保留授权证据；使用 Meta 模型训练数据的团队需重新核对其数据来源合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Stack Overflow for Agents 借 ChatGPT 插件注册量翻三倍</title>
+      <link>https://openai.com/index/stack-overflow-chatgpt-plugin</link>
+      <guid isPermaLink="true">https://openai.com/index/stack-overflow-chatgpt-plugin</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · 两名工程师用 Codex 数周内做出 Stack Overflow for Agents，其 ChatGPT 插件带动 agent 创建量最高增长约 10 倍，注册量翻三倍。对读者：小团队做 Agent 产品时，把分发挂在已有 AI 入口上，往往比自建流量更划算，值得纳入增长方案。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 现在能读取你的 Chrome 标签页</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1012510/openai-chatgpt-google-chrome-tabs</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · ChatGPT 的 Chrome 扩展升级，安装后可在网页版或桌面端调用你已打开的标签页内容，并支持侧边栏在当前页面直接对话，官方演示了对比多个商品标签页的用法。对读者：这类能力便利但涉及浏览数据边界，企业环境应先确认扩展权限与数据留存策略再放开。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 向学术实验室开放 GPT-Rosalind</title>
+      <link>https://openai.com/index/introducing-the-rosalind-academic-plan</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-the-rosalind-academic-plan</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 推出 Rosalind Academic Plan，符合条件的学术实验室可获赞助访问 GPT-Rosalind 及配套工具，用于推进生命科学研究。对读者：高校与科研团队可关注申请门槛，把模型能力接入既有实验流程，但需提前规划数据合规与成果归属。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Code 团队如何做代码评审</title>
+      <link>https://claude.dev/blog/solving-code-review-at-anthropic/</link>
+      <guid isPermaLink="true">https://claude.dev/blog/solving-code-review-at-anthropic/</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Code 团队分享其评审流程：先让 Claude 自查，再按风险分级决定人工审批比例，目标是在不增加回滚与事故的前提下压缩人工评审时间，并给出可照搬的清单。对读者：Agent 产出代码量激增时，按风险分层而非全量人工评审，是更可持续的工程做法。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Code Review 正式 GA，面向 Team 与 Enterprise 组织</title>
+      <link>https://claude.com/resources/articles/code-review-is-now-generally-available</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/code-review-is-now-generally-available</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 宣布 Code Review 功能正式可用，面向 Claude Team 和 Enterprise 组织，主打在代码进入生产前捕获更多缺陷。这标志着 AI 代码审查从实验功能转为可采购的企业能力。对读者：若团队已在用 Claude 生态，可把 Code Review 纳入 CI 流程试点，但要先量化误报率再决定是否设为门禁。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google Universal Cart 购物工具在美国上线，覆盖搜索与 Gemini</title>
+      <link>https://techcrunch.com/2026/10/15/googles-universal-cart-shopping-tool-launches-in-the-us/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/15/googles-universal-cart-shopping-tool-launches-in-the-us/</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · Google 的 Universal Cart 购物工具已在美国上线，可在 Google 搜索和 Gemini 应用中使用。这意味着购物入口进一步向 AI 助手迁移，搜索广告与电商链路可能被重塑。对读者：做电商或内容导购的团队应尽早测试 Gemini 内的商品曝光逻辑，避免流量结构变化后被动应对。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Figma 发布新功能，定义 Agent 在其平台上的工作方式</title>
+      <link>https://techcrunch.com/2026/10/14/figma-announces-new-features-to-define-how-agents-work-on-its-platform/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/14/figma-announces-new-features-to-define-how-agents-work-on-its-platform/</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · Figma 宣布一系列新功能，用于规范 Agent 如何在其平台上操作，同时代码层（code layers）功能进入公开测试。设计工具正在主动为 AI Agent 设定接口与权限边界。对读者：设计系统与前端团队可关注 code layers 的导出能力，评估其能否减少设计到代码的重复劳动。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 平台推出 Agent 可观测性：OpenTelemetry 链路追踪</title>
+      <link>https://claude.com/resources/articles/agent-observability-on-the-claude-platform</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/agent-observability-on-the-claude-platform</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 宣布在 Claude 平台为 Claude Managed Agents、Messages API 与 Claude SDK 提供 OpenTelemetry traces。这意味着 Agent 调用链可接入既有可观测性体系，便于定位多步推理中的失败点。对读者：已在用 Claude 构建 Agent 的团队应尽快接入 trace，把延迟与失败率纳入监控，避免上线后黑盒排障。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Amp 用 OpenAI 模型把 AI Agent 推向代码之外</title>
+      <link>https://openai.com/index/amp-beyond-coding</link>
+      <guid isPermaLink="true">https://openai.com/index/amp-beyond-coding</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 博客介绍初创公司 Amp 如何借助 GPT-6 Astra、Ultrafast、GPT-Live-1 与 Sign in with ChatGPT，把 Agent 能力扩展到编码之外的场景。这反映出 Agent 正从代码助手走向通用任务执行。对读者：若你在做 Agent 产品，可参考其能力组合方式，评估多模型分工是否比单模型更划算。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Third Moment Research 如何让 1 万个 Agent 连续运行 36 小时以上</title>
+      <link>https://openai.com/index/third-moment-research</link>
+      <guid isPermaLink="true">https://openai.com/index/third-moment-research</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · 该 AI 实验室基于 GPT-6 Astra、GPT-6.1 Sol、Codex 与面向安全的 Daybreak，构建能长时间专注并随使用持续改进的 Agent，实现上万 Agent 并行运行超 36 小时。对读者：长时任务编排的关键在状态持久化与失败恢复，可借鉴其架构思路设计自己的批处理 Agent 集群。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Higgsfield 借 GPT-6 Astra 把 AI 视频从 1 分钟拉到 10 分钟以上</title>
+      <link>https://openai.com/index/higgsfield-longer-videos-voice</link>
+      <guid isPermaLink="true">https://openai.com/index/higgsfield-longer-videos-voice</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Higgsfield 宣布用 GPT-6 Astra 将 AI 生成视频时长从 1 分钟级提升到 10 分钟以上，同时用 GPT-Image-2.5 提升画面精度，并借助 GPT-Live 探索语音驱动的影片制作路径。长视频生成一直是 AI 视频落地的核心瓶颈，时长与一致性同时改善意味着叙事类内容的生产门槛进一步下降。对读者：若在做视频类产品，可优先评估长片段生成对分镜与后期流程的替代空间。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>DistroKid 因 UMG 诉讼悄然下架歌曲</title>
+      <link>https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit</link>
+      <guid isPermaLink="true">https://www.theverge.com/entertainment/1009309/distrokid-take-down-songs-umg-lawsuit</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 音乐分发平台 DistroKid 被曝在未通知的情况下下架大量歌曲，已向 The Verge 确认此举是对 UMG 诉讼的直接回应。UMG 九月起诉称 DistroKid 构建了「AI 垃圾内容流水线」，但多位音乐人表示自己的非 AI 作品也被误伤。对读者：依赖第三方分发平台的创作者应保留本地母带与备份，并关注平台合规政策变动带来的下架风险。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 推出 OSS Scanner，为开源项目免费做 AI 安全扫描</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Anthropic 发布 OSS Scanner，开源项目可选择加入，由最强模型定期免费做安全漏洞扫描。代价是报告完全由模型生成、没有人工复核与分诊，可能带来误报，但换来更高频的扫描覆盖。对读者：维护开源项目的团队可将其作为早期预警补充，但不要把模型输出直接当作已确认漏洞，仍需人工验证后再修复。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>曾经最火的 AI Agent Instinct，能扛住 Muse 的冲击吗</title>
+      <link>https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1008254/instinct-agent-ai-hands-on-muse-dots</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Instinct 以邀请制、无营销、极简短信式界面切入 AI Agent 市场，能代订 DMV 预约、发跟进邮件，一度成为最受关注的 Agent 产品。随后 Muse 与 Dots 相继出现，功能相近但背靠更大公司，竞争格局迅速恶化。对读者：评估 Agent 产品时应关注其差异化护城河与资金续航，避免把关键流程押注在可能被巨头功能覆盖的小团队上。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Sophos 用 OpenAI Daybreak 把威胁调查时间缩短 96%</title>
+      <link>https://openai.com/index/sophos</link>
+      <guid isPermaLink="true">https://openai.com/index/sophos</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Sophos 借助 OpenAI 的 Daybreak 将网络威胁调查时间削减 96%，并自动化了 52% 的 MDR 工单，同时保留人工监督环节。这是安全运营场景中 AI 提效的量化案例，说明模型在告警分诊与调查流程中已能承担相当比例的工作量。对读者：安全团队可参考其「自动化 + 人工复核」的分工模式，先在高频低风险工单上试点，再逐步扩大自动化比例。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Asana 浏览器测试中把模型成本降低 76 倍</title>
+      <link>https://openai.com/index/asana-browser-agent</link>
+      <guid isPermaLink="true">https://openai.com/index/asana-browser-agent</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Asana 在 Codex 中使用 GPT-6 Astra 重构浏览器 Agent，测试中成本降低 76 倍、速度提升 5 倍，从而能向客户开放更强的模型能力。这说明模型选型与调用方式优化对 Agent 单位经济模型的影响，可能比单纯降价更大。对读者：构建浏览器 Agent 时应把模型路由与成本压测纳入常规流程，优先验证「更小模型 + 更好编排」能否达到同等效果。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 上线 Dashboards 与 Motion，Docs/Slides/Design 转正全量开放</title>
+      <link>https://claude.com/resources/articles/dashboards-and-motion</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/dashboards-and-motion</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 为 Claude 推出两项 beta 功能：Claude Dashboards 用于构建实时数据看板，Claude Motion 用于生成动画讲解内容。同时 Docs、Slides、Design 结束 beta，向包括免费版在内的所有 Claude 套餐开放。这意味着 Claude 正从对话助手向办公与可视化生产工具延伸。对读者：若团队已订阅 Claude，可先试用 Dashboards 替代部分轻量 BI 场景。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出跨应用“通用”Gemini Agent</title>
+      <link>https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 在 Gemini at Work 活动上发布通用 Gemini Agent，可在后台跨应用与设备执行任务，入口位于 Gemini Enterprise，支持 Gmail、Drive、Docs、Sheets、Calendar 以及 Slack、Microsoft 365 等第三方应用，并可从移动端、桌面与网页调用。云端运行意味着任务可持续执行。对读者：企业评估 Agent 平台时，可把跨应用权限与审计能力作为核心对比项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线“Intelligent UI”，回答中直接嵌入图表与按钮</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 随 GPT-6 向所有用户推送 Intelligent UI，ChatGPT 可在文本回答中生成图表、示意图、表单与可点击按钮等交互元素。官方称已训练 GPT-6 判断何时用可视化替代纯文本。聊天界面正从纯文本输出转向可交互的轻应用形态。对读者：做前端集成时需提前考虑这类富交互输出的渲染与可访问性适配。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 推出完全离线的 AI 会议记录应用 AI Edge Foresight</title>
+      <link>https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google 发布实验性笔记应用 AI Edge Foresight，可在完全离线状态下转写会议与音频文件，基于端侧 EmbeddingGemma 2 模型运行于 macOS，免费使用。用户记录要点后，应用会结合转写内容整理成“润色后的笔记”，对标 Granola、Wispr Flow。对读者：对数据敏感的场景可优先评估端侧方案，但需确认离线模型的准确率是否达标。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>GPT-6 全球上线 ChatGPT，带来 Intelligent UI</title>
+      <link>https://openai.com/index/gpt-6-for-everyone</link>
+      <guid isPermaLink="true">https://openai.com/index/gpt-6-for-everyone</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 GPT-6 在全球范围内向 ChatGPT 用户推送，并同步引入 Intelligent UI：响应更快，回答中直接嵌入可视化与可交互内容，用户可在对话里探索和使用。这标志着 ChatGPT 从纯文本问答进一步转向「可操作界面」，模型能力与前端交互形态被捆绑发布。对读者：若你在做 AI 产品，需重新评估「聊天框」是否还是唯一入口，交互层可能成为新的差异化战场。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Common Sense Media：ChatGPT for Teens 是「不可接受的风险」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 青少年安全评测机构 Common Sense Media 称 OpenAI 的 ChatGPT for Teens 是「不可接受的风险」。该功能 8 月推出，主打面向青少年的护栏与学习辅助，但评估认为其保护措施「未达到公司承诺」：该提醒家长时未提醒、危机情境下未提供正确帮助，且仍会替孩子做作业。对读者：做面向未成年人的 AI 产品，护栏不能只写在宣传里，家长通知与危机干预是必须可验证的能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 为 ChatGPT for Teens 加入 College Planner 等功能</title>
+      <link>https://openai.com/index/teens-learn-and-plan</link>
+      <guid isPermaLink="true">https://openai.com/index/teens-learn-and-plan</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布 College Planner 即将登陆 ChatGPT for Teens，帮助学生管理大学申请，同时新增闪卡、测验功能，并成立青少年 AI 委员会。这与同日 Common Sense Media 的批评形成对照：一边扩展青少年学习场景，一边面临安全性质疑。对读者：教育类 AI 功能扩张时，安全与家长可见性会成为监管和舆论的焦点，产品设计需前置考虑。</description>
+      <category>产品</category>
+    </item>
+  </channel>
+</rss>
