@@ -16,6 +16,12 @@ const groups = computed(() => {
       title: L.groupFx,
       items: [
         {
+          id: "effects",
+          title: L.effectsTitle,
+          desc: L.catalogEffectsDesc,
+          href: "/lab/effects",
+        },
+        {
           id: "field",
           title: L.fieldTitle,
           desc: L.catalogFieldDesc,
@@ -39,6 +45,12 @@ const groups = computed(() => {
       id: "feat",
       title: L.groupFeat,
       items: [
+        {
+          id: "feature",
+          title: L.featureTitle,
+          desc: L.catalogFeatureDesc,
+          href: "/lab/feature",
+        },
         {
           id: "morph",
           title: L.morphTitle,
