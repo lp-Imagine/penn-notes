@@ -174,6 +174,57 @@ export type PageMessages = {
     cmdTheme: string;
     cmdThemeHint: string;
     cmdThemeDone: string;
+    featureTitle: string;
+    featureLead: string;
+    catalogFeatureDesc: string;
+    featureStepWrite: string;
+    featureStepWho: string;
+    featureStepConfirm: string;
+    featureTitleLabel: string;
+    featureTitlePh: string;
+    featureNext: string;
+    featurePrev: string;
+    featurePublish: string;
+    featureAgain: string;
+    featureDone: string;
+    featureWhoSelf: string;
+    featureWhoFriends: string;
+    featureWhoPublic: string;
+    featureWhoSelfHint: string;
+    featureWhoFriendsHint: string;
+    featureWhoPublicHint: string;
+    featureSummaryEmpty: string;
+    featureSummary: (title: string, who: string) => string;
+    featureCmdOpen: string;
+    featureCmdTip: string;
+    featureCmdPlaceholder: string;
+    featureCmdEmpty: string;
+    featureCmdToast: string;
+    featureCmdToastHint: string;
+    featureCmdNext: string;
+    featureCmdNextHint: string;
+    featureCmdReset: string;
+    featureCmdResetHint: string;
+    featureCmdTheme: string;
+    featureCmdThemeHint: string;
+    featureToastNeedTitle: string;
+    featureToastPublished: string;
+    featureToastReset: string;
+    featureToastTheme: string;
+    featureToastStep: string;
+    featureToastCmd: string;
+    featureHint: string;
+    effectsTitle: string;
+    effectsLead: string;
+    catalogEffectsDesc: string;
+    effectsParticles: string;
+    effectsTrail: string;
+    effectsGlow: string;
+    effectsGrain: string;
+    effectsHint: string;
+    effectsGlassKicker: string;
+    effectsGlassTitle: string;
+    effectsGlassBody: string;
     heroKicker: string;
     heroDesc: string;
     fieldTitle: string;
@@ -734,6 +785,57 @@ const zhCN: PageMessages = {
     cmdTheme: "切换面板主题",
     cmdThemeHint: "给命令实验区换一套底色",
     cmdThemeDone: "面板主题已切换",
+    featureTitle: "功能实验",
+    featureLead: "像在用一个小产品：分三步记下一条，用提示条确认，也能打开命令面板改步骤。",
+    catalogFeatureDesc: "分步表单、提示条，外加一个能搜索的迷你命令面板。",
+    featureStepWrite: "写下",
+    featureStepWho: "谁可见",
+    featureStepConfirm: "确认",
+    featureTitleLabel: "这一条",
+    featureTitlePh: "例如：今晚把实验页补上",
+    featureNext: "下一步",
+    featurePrev: "上一步",
+    featurePublish: "记下",
+    featureAgain: "再记一条",
+    featureDone: "这条已经留在这里",
+    featureWhoSelf: "仅自己",
+    featureWhoFriends: "友链",
+    featureWhoPublic: "公开",
+    featureWhoSelfHint: "只留在这台浏览器里",
+    featureWhoFriendsHint: "给常来的人看",
+    featureWhoPublicHint: "谁打开都能读",
+    featureSummaryEmpty: "还没写内容。回到第一步补一句。",
+    featureSummary: (title, who) => `「${title}」会记成${who}。点记下，提示条会跳出来。`,
+    featureCmdOpen: "打开面板",
+    featureCmdTip: "或按 ⌘/Ctrl + Shift + K",
+    featureCmdPlaceholder: "输入命令…",
+    featureCmdEmpty: "没有匹配的命令",
+    featureCmdToast: "弹出提示",
+    featureCmdToastHint: "在实验区闪一条提示",
+    featureCmdNext: "跳到下一步",
+    featureCmdNextHint: "表单往前走一格",
+    featureCmdReset: "清空草稿",
+    featureCmdResetHint: "回到第一步并清掉文字",
+    featureCmdTheme: "切换底色",
+    featureCmdThemeHint: "给这块实验区换一套底",
+    featureToastNeedTitle: "先写一句，再往下走",
+    featureToastPublished: "已记下这条",
+    featureToastReset: "草稿已清空",
+    featureToastTheme: "底色已切换",
+    featureToastStep: "已切到下一步",
+    featureToastCmd: "这是一条提示",
+    featureHint: "三步走完，或用面板直接下命令。",
+    effectsTitle: "特效实验",
+    effectsLead: "指针带着光晕和粒子走。拖滑杆改数量、拖尾、光晕和噪点。",
+    catalogEffectsDesc: "光晕、粒子拖尾和玻璃上的噪点，都能当场拧。",
+    effectsParticles: "粒子",
+    effectsTrail: "拖尾",
+    effectsGlow: "光晕",
+    effectsGrain: "噪点",
+    effectsHint: "在暗区里移动指针",
+    effectsGlassKicker: "Glass",
+    effectsGlassTitle: "玻璃后面也在动",
+    effectsGlassBody: "这层是模糊玻璃。光从后面穿过来，噪点叠在最上面。",
     heroKicker: "Live shader",
     heroDesc: "指针会拧动噪声场。点进去可以改扭曲和流速。",
     fieldTitle: "域扭曲色场",
@@ -1106,7 +1208,7 @@ const zhCN: PageMessages = {
     scrapsLead: "独立于长文的碎片记录，随时记下想法",
     labKicker: "Lab",
     labTitle: "实验页",
-    labLead: "图像、声音、镜头、语言和信号，方向分开，都能动手试",
+    labLead: "功能、特效、声音、镜头、语言和信号，方向分开，都能动手试",
     newsKicker: "每日精选",
     newsTitle: "AI 动态",
     newsLead: "业界、产品、模型、开源与开发者工具 — 按日整理，点进日报可读全文",
@@ -1305,6 +1407,57 @@ const zhTW: PageMessages = {
     cmdTheme: "切換面板主題",
     cmdThemeHint: "給命令實驗區換一套底色",
     cmdThemeDone: "面板主題已切換",
+    featureTitle: "功能實驗",
+    featureLead: "像在用一個小產品：分三步記下一條，用提示條確認，也能打開命令面板改步驟。",
+    catalogFeatureDesc: "分步表單、提示條，外加一個能搜尋的迷你命令面板。",
+    featureStepWrite: "寫下",
+    featureStepWho: "誰可見",
+    featureStepConfirm: "確認",
+    featureTitleLabel: "這一條",
+    featureTitlePh: "例如：今晚把實驗頁補上",
+    featureNext: "下一步",
+    featurePrev: "上一步",
+    featurePublish: "記下",
+    featureAgain: "再記一條",
+    featureDone: "這條已經留在這裡",
+    featureWhoSelf: "僅自己",
+    featureWhoFriends: "友鏈",
+    featureWhoPublic: "公開",
+    featureWhoSelfHint: "只留在這台瀏覽器裡",
+    featureWhoFriendsHint: "給常來的人看",
+    featureWhoPublicHint: "誰打開都能讀",
+    featureSummaryEmpty: "還沒寫內容。回到第一步補一句。",
+    featureSummary: (title, who) => `「${title}」會記成${who}。點記下，提示條會跳出來。`,
+    featureCmdOpen: "打開面板",
+    featureCmdTip: "或按 ⌘/Ctrl + Shift + K",
+    featureCmdPlaceholder: "輸入命令…",
+    featureCmdEmpty: "沒有符合的命令",
+    featureCmdToast: "彈出提示",
+    featureCmdToastHint: "在實驗區閃一條提示",
+    featureCmdNext: "跳到下一步",
+    featureCmdNextHint: "表單往前走一格",
+    featureCmdReset: "清空草稿",
+    featureCmdResetHint: "回到第一步並清掉文字",
+    featureCmdTheme: "切換底色",
+    featureCmdThemeHint: "給這塊實驗區換一套底",
+    featureToastNeedTitle: "先寫一句，再往下走",
+    featureToastPublished: "已記下這條",
+    featureToastReset: "草稿已清空",
+    featureToastTheme: "底色已切換",
+    featureToastStep: "已切到下一步",
+    featureToastCmd: "這是一條提示",
+    featureHint: "三步走完，或用面板直接下命令。",
+    effectsTitle: "特效實驗",
+    effectsLead: "指標帶著光暈和粒子走。拖滑桿改數量、拖尾、光暈和噪點。",
+    catalogEffectsDesc: "光暈、粒子拖尾和玻璃上的噪點，都能當場擰。",
+    effectsParticles: "粒子",
+    effectsTrail: "拖尾",
+    effectsGlow: "光暈",
+    effectsGrain: "噪點",
+    effectsHint: "在暗區裡移動指標",
+    effectsGlassKicker: "Glass",
+    effectsGlassTitle: "玻璃後面也在動",
+    effectsGlassBody: "這層是模糊玻璃。光從後面穿過來，噪點疊在最上面。",
     heroKicker: "Live shader",
     heroDesc: "指標會擰動噪聲場。點進去可以改扭曲和流速。",
     fieldTitle: "域扭曲色場",
@@ -1677,7 +1830,7 @@ const zhTW: PageMessages = {
     scrapsLead: "獨立於長文的碎片記錄，隨時記下想法",
     labKicker: "Lab",
     labTitle: "實驗頁",
-    labLead: "圖像、聲音、鏡頭、語言和信號，方向分開，都能動手試",
+    labLead: "功能、特效、聲音、鏡頭、語言和信號，方向分開，都能動手試",
     newsKicker: "每日精選",
     newsTitle: "AI 動態",
     newsLead: "業界、產品、模型、開源與開發者工具 — 按日整理，點進日報可讀全文",
@@ -1896,6 +2049,57 @@ const en: PageMessages = {
     cmdTheme: "Toggle board theme",
     cmdThemeHint: "Swap the command experiment surface",
     cmdThemeDone: "Board theme toggled",
+    featureTitle: "Feature experiment",
+    featureLead: "A small product flow: write a note in three steps, confirm with a toast, or drive it from a command palette.",
+    catalogFeatureDesc: "A stepped form, a toast, and a mini palette you can search.",
+    featureStepWrite: "Write",
+    featureStepWho: "Who",
+    featureStepConfirm: "Confirm",
+    featureTitleLabel: "This note",
+    featureTitlePh: "e.g. Ship the lab page tonight",
+    featureNext: "Next",
+    featurePrev: "Back",
+    featurePublish: "Save",
+    featureAgain: "Write another",
+    featureDone: "This one stays here",
+    featureWhoSelf: "Only me",
+    featureWhoFriends: "Friends",
+    featureWhoPublic: "Public",
+    featureWhoSelfHint: "Stays in this browser",
+    featureWhoFriendsHint: "For people who visit often",
+    featureWhoPublicHint: "Anyone who opens it",
+    featureSummaryEmpty: "Nothing written yet. Go back and add a line.",
+    featureSummary: (title, who) => `“${title}” will be saved as ${who}. Hit save and a toast appears.`,
+    featureCmdOpen: "Open palette",
+    featureCmdTip: "Or press ⌘/Ctrl + Shift + K",
+    featureCmdPlaceholder: "Type a command…",
+    featureCmdEmpty: "No matching commands",
+    featureCmdToast: "Show toast",
+    featureCmdToastHint: "Flash a toast in this board",
+    featureCmdNext: "Next step",
+    featureCmdNextHint: "Move the form forward",
+    featureCmdReset: "Clear draft",
+    featureCmdResetHint: "Back to step one, text cleared",
+    featureCmdTheme: "Toggle surface",
+    featureCmdThemeHint: "Swap this board’s background",
+    featureToastNeedTitle: "Write a line before continuing",
+    featureToastPublished: "Note saved",
+    featureToastReset: "Draft cleared",
+    featureToastTheme: "Surface toggled",
+    featureToastStep: "Moved to the next step",
+    featureToastCmd: "This is a toast",
+    featureHint: "Finish the three steps, or run a command from the palette.",
+    effectsTitle: "Effects experiment",
+    effectsLead: "A glow and particles follow the pointer. Drag the sliders for count, trail, glow, and grain.",
+    catalogEffectsDesc: "Glow, particle trail, and grain on glass — all live.",
+    effectsParticles: "Particles",
+    effectsTrail: "Trail",
+    effectsGlow: "Glow",
+    effectsGrain: "Grain",
+    effectsHint: "Move the pointer in the dark stage",
+    effectsGlassKicker: "Glass",
+    effectsGlassTitle: "It moves behind the glass",
+    effectsGlassBody: "This layer is blurred glass. Light comes through from behind, grain sits on top.",
     heroKicker: "Live shader",
     heroDesc: "The pointer twists the noise field. Open it to change warp and speed.",
     fieldTitle: "Domain-warp field",
@@ -2289,7 +2493,7 @@ const en: PageMessages = {
     scrapsLead: "Bite-sized notes outside long-form posts",
     labKicker: "Lab",
     labTitle: "Lab",
-    labLead: "Image, sound, camera, language, and signal — separate directions you can try",
+    labLead: "Features, effects, sound, camera, language, and signal — separate directions you can try",
     newsKicker: "Daily picks",
     newsTitle: "AI news",
     newsLead:

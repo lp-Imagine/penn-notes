@@ -43,6 +43,8 @@ import LabPluck from "./LabPluck.vue";
 import LabMotion from "./LabMotion.vue";
 import LabRewrite from "./LabRewrite.vue";
 import LabFourier from "./LabFourier.vue";
+import LabFeature from "./LabFeature.vue";
+import LabEffects from "./LabEffects.vue";
 import CollectEnhance from "./CollectEnhance.vue";
 import ProjectsPage from "./ProjectsPage.vue";
 import {
@@ -1717,6 +1719,8 @@ export default {
     app.component("LabMotion", LabMotion);
     app.component("LabRewrite", LabRewrite);
     app.component("LabFourier", LabFourier);
+    app.component("LabFeature", LabFeature);
+    app.component("LabEffects", LabEffects);
     app.component("CollectEnhance", CollectEnhance);
     app.component("ProjectsPage", ProjectsPage);
   },
