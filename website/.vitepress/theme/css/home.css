@@ -1309,7 +1309,7 @@
 
 /*
  * 序号轨尺寸。圆点顶对齐，竖线从本行圆心画到下一行圆心。
- * 高亮底用混进 --bg 的不透明色，圆外光环用同一个颜色，
+ * 悬停和焦点的高亮底用混进 --bg 的不透明色，圆外光环用同一个颜色，
  * 避免连线在圆边留下一圈页面底色。
  */
 .home-discover-news {
@@ -1318,12 +1318,10 @@
   --discover-inset: 8px;
   --discover-col-gap: 12px;
   --discover-halo-size: 3px;
-  --discover-wash: color-mix(in srgb, var(--accent) 7%, var(--bg));
   --discover-wash-hot: color-mix(in srgb, var(--accent) 12%, var(--bg));
 }
 
 .dark .home-discover-news {
-  --discover-wash: color-mix(in srgb, var(--accent) 14%, var(--bg));
   --discover-wash-hot: color-mix(in srgb, var(--accent) 22%, var(--bg));
 }
 
@@ -1387,14 +1385,6 @@
   transition: background 0.18s ease;
 }
 
-.home-discover-rail > li:first-child > .home-discover-row {
-  --halo: var(--discover-wash);
-}
-
-.home-discover-rail > li:first-child > .home-discover-row::after {
-  background: var(--discover-wash);
-}
-
 .home-discover-rail > li > .home-discover-row:hover,
 .home-discover-rail > li > .home-discover-row:focus-visible,
 .home-discover-rail > li > .home-discover-row:active {
@@ -1444,11 +1434,6 @@
   letter-spacing: -0.03em;
   line-height: 1;
   transform: translateY(0.5px);
-}
-
-.home-discover-rail > li:first-child > .home-discover-row .home-discover-dot {
-  border-color: color-mix(in srgb, var(--link) 62%, var(--border));
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
 }
 
 .home-discover-rail > li > .home-discover-row:hover .home-discover-dot,
