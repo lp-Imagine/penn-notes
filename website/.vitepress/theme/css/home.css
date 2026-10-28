@@ -1307,6 +1307,26 @@
   font-variant-numeric: tabular-nums;
 }
 
+/*
+ * 序号轨尺寸。圆点顶对齐，竖线从本行圆心画到下一行圆心。
+ * 高亮底用混进 --bg 的不透明色，圆外光环用同一个颜色，
+ * 避免连线在圆边留下一圈页面底色。
+ */
+.home-discover-news {
+  --discover-dot: 28px;
+  --discover-pad-y: 8px;
+  --discover-inset: 8px;
+  --discover-col-gap: 12px;
+  --discover-halo-size: 3px;
+  --discover-wash: color-mix(in srgb, var(--accent) 7%, var(--bg));
+  --discover-wash-hot: color-mix(in srgb, var(--accent) 12%, var(--bg));
+}
+
+.dark .home-discover-news {
+  --discover-wash: color-mix(in srgb, var(--accent) 14%, var(--bg));
+  --discover-wash-hot: color-mix(in srgb, var(--accent) 22%, var(--bg));
+}
+
 .VPHome .vp-doc .home-discover-rail {
   list-style: none !important;
   margin: 0;
@@ -1315,10 +1335,12 @@
   flex-direction: column;
   gap: 0;
   position: relative;
+  z-index: 0;
 }
 
 .VPHome .vp-doc .home-discover-rail > li {
   list-style: none !important;
+  position: relative;
   margin: 0;
   padding: 0;
 }
@@ -1327,78 +1349,135 @@
   content: none;
 }
 
-.home-discover-rail::before {
+.VPHome .vp-doc .home-discover-rail > li:not(:last-child)::before {
   content: "";
   position: absolute;
-  left: 15px;
-  top: 18px;
-  bottom: 18px;
+  z-index: 0;
+  left: calc(var(--discover-inset) + var(--discover-dot) / 2);
+  top: calc(var(--discover-pad-y) + var(--discover-dot) / 2);
+  bottom: calc((var(--discover-pad-y) + var(--discover-dot) / 2) * -1);
   width: 1px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--accent) 45%, transparent),
-    color-mix(in srgb, var(--border) 70%, transparent)
-  );
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--accent) 36%, var(--border));
+  pointer-events: none;
 }
 
 .home-discover-row {
+  --halo: var(--bg);
   position: relative;
   display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  gap: 12px;
+  grid-template-columns: var(--discover-dot) minmax(0, 1fr);
+  column-gap: var(--discover-col-gap);
   align-items: start;
-  padding: 11px 8px 11px 0;
-  border-radius: 10px;
+  padding: var(--discover-pad-y) 10px var(--discover-pad-y) var(--discover-inset);
+  border-radius: 12px;
   text-decoration: none !important;
   color: inherit;
+  background: transparent;
+}
+
+.home-discover-row::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: transparent;
+  pointer-events: none;
   transition: background 0.18s ease;
 }
 
-.home-discover-row:hover {
-  background: color-mix(in srgb, var(--accent-soft) 35%, transparent);
+.home-discover-rail > li:first-child > .home-discover-row {
+  --halo: var(--discover-wash);
+}
+
+.home-discover-rail > li:first-child > .home-discover-row::after {
+  background: var(--discover-wash);
+}
+
+.home-discover-rail > li > .home-discover-row:hover,
+.home-discover-rail > li > .home-discover-row:focus-visible,
+.home-discover-rail > li > .home-discover-row:active {
+  --halo: var(--discover-wash-hot);
+}
+
+.home-discover-rail > li > .home-discover-row:hover::after,
+.home-discover-rail > li > .home-discover-row:focus-visible::after,
+.home-discover-rail > li > .home-discover-row:active::after {
+  background: var(--discover-wash-hot);
+}
+
+.home-discover-row:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 58%, transparent);
+  outline-offset: 2px;
 }
 
 .home-discover-dot {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  align-self: start;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  box-sizing: border-box;
+  width: var(--discover-dot);
+  height: var(--discover-dot);
+  min-width: var(--discover-dot);
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
-  background: var(--bg);
-  box-shadow: 0 0 0 3px var(--bg);
-  font-size: 11px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border));
+  background: var(--surface);
+  box-shadow: 0 0 0 var(--discover-halo-size) var(--halo);
   color: var(--link);
   transition:
     border-color 0.18s ease,
     background 0.18s ease,
-    color 0.18s ease;
+    color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
-.home-discover-row:hover .home-discover-dot {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
-  background: color-mix(in srgb, var(--accent-soft) 80%, var(--surface));
+.home-discover-dot > span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transform: translateY(0.5px);
+}
+
+.home-discover-rail > li:first-child > .home-discover-row .home-discover-dot {
+  border-color: color-mix(in srgb, var(--link) 62%, var(--border));
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+}
+
+.home-discover-rail > li > .home-discover-row:hover .home-discover-dot,
+.home-discover-rail > li > .home-discover-row:focus-visible .home-discover-dot,
+.home-discover-rail > li > .home-discover-row:active .home-discover-dot {
+  border-color: var(--link);
+  background: var(--link);
+  color: var(--bg);
 }
 
 .home-discover-copy {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
+  gap: 3px;
+  padding-top: 2px;
 }
 
 .home-discover-meta {
   font-size: 11px;
   font-weight: 650;
-  letter-spacing: 0.04em;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
   color: var(--text-3);
+}
+
+.home-discover-row:hover .home-discover-meta,
+.home-discover-row:focus-visible .home-discover-meta {
+  color: color-mix(in srgb, var(--link) 62%, var(--text-3));
 }
 
 .home-discover-title {
@@ -1409,15 +1488,16 @@
   color: var(--text);
 }
 
-.home-discover-row:hover .home-discover-title {
+.home-discover-row:hover .home-discover-title,
+.home-discover-row:focus-visible .home-discover-title {
   color: var(--link);
 }
 
 .home-discover-cta {
   display: inline-flex;
   align-items: center;
-  margin-top: 10px;
-  margin-left: 44px;
+  margin-top: 8px;
+  margin-left: calc(var(--discover-inset) + var(--discover-dot) + var(--discover-col-gap));
   font-size: 13px;
   font-weight: 600;
   color: var(--link) !important;
@@ -1517,9 +1597,18 @@
   color: var(--link);
 }
 
+@media (max-width: 767.98px) {
+  .home-discover-news {
+    --discover-inset: 4px;
+    --discover-pad-y: 7px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home-discover-feature,
-  .home-discover-row {
+  .home-discover-row,
+  .home-discover-row::after,
+  .home-discover-dot {
     transition: none;
   }
 
