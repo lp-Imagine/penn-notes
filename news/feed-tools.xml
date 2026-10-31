@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 开发者工具</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 31 Oct 2026 06:03:42 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>MoEngage 用 AgentCore Gateway 把 400 多个 API 变成 Agent 工具</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · MoEngage 借助 Amazon Bedrock AgentCore Gateway，将横跨 7 个区域的约 400 个私有 REST API 转为带权限边界的 Agent 工具，无需为每个服务搭 MCP server、不暴露公网端点，也避免工具过多导致的上下文膨胀。方案依赖 OpenAPI 规范、Cedar 策略与 VPC Lattice 出网。对读者：内部 API 接入 Agent 时，优先用网关做统一鉴权与工具裁剪，而非逐个手写 MCP。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub Universe 2026：把 GitHub 做成端到端软件交付系统</title>
+      <link>https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 在 Universe 大会上阐述了其愿景：成为全球最完整的端到端软件交付系统，覆盖从编码到交付的每一层。这与同期 Octoverse 数据中 Agent 驱动开发的爆发式增长相互呼应。对读者：平台正在向全链路收拢，团队应评估现有 CI/CD 与协作工具是否会被逐步替代。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Octoverse 2026：开发者用 Agent 编码，提交与推送创新高</title>
+      <link>https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 2026 年度 Octoverse 报告显示，随着开发者大量使用 Agent 编码，合并 PR 在不到一年内增至每月 2.2 亿次，提交量超三倍达到每月 73.8 亿次，新仓库创建速率翻倍至每月 3030 万。对读者：代码评审与质量门禁将成为瓶颈，建议提前加强自动化审查与测试覆盖。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI 用 Codex Ultrafast 把事故排查从数小时压到数分钟</title>
+      <link>https://openai.com/index/openai-cut-incident-investigation</link>
+      <guid isPermaLink="true">https://openai.com/index/openai-cut-incident-investigation</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Blog · OpenAI 工程师分享内部实践：借助 Codex Ultrafast 进行事故调查、安全分析与代码重构，把原本数小时的排查缩短到分钟级，并融入日常开发流程。这为 AI 编码工具在运维场景的价值提供了第一方样本。对读者：可先在告警根因分析这类高重复、强上下文的环节试点编码 Agent。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>前端开发者配置 Codex 桌面端的实操指南</title>
+      <link>https://juejin.cn/post/7700544342427992090</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7700544342427992090</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：掘金前端 · 文章从全局指令、项目规范到 MCP 视觉外挂，手把手演示如何让 Codex 理解项目的包管理器、代码规范与环境约束，避免 AI 擅自使用 npm 或破坏项目结构。核心观点是很多质量问题源于环境配置而非模型能力。对读者：给编码助手写好项目级规则文件，往往比换更强的模型更能提升产出质量。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>微软开源 Agensh：无中心调度、可扩到 1024 个 Agent 的多智能体框架</title>
+      <link>https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/</guid>
+      <pubDate>Sun, 25 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · 微软研究院开源 Agensh，一个没有中央编排器的多智能体 harness：自组织的工作单元共享 Git 仓库、聊天室与发现板，在 ProgramBench 上以 6 小时预算从 1 个扩展到 1024 个 Agent。它把协作基础设施而非调度器当作扩展关键。对读者：评估大规模 Agent 协作方案时，可重点参考其共享仓库与发现板的设计取舍。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cognition 开源 Devin 漏洞修复插件，三个 Agent 技能自动打补丁</title>
+      <link>https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/</guid>
+      <pubDate>Sun, 25 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · Cognition 发布 Devin Vulnerability Fixes 插件，包含三个 MIT 许可的 Agent 技能，可对受本周关键 RCE 漏洞影响的 PHP、Node.js 与自建 GitLab 部署做清点、修补与测试，并为每个仓库自动开一个 PR。对读者：运维与安全团队可将其纳入应急响应流程，但自动 PR 仍需人工复核后再合并。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare重构缓存架构：自动协调分段请求，R2 p99延迟减半</title>
+      <link>https://blog.cloudflare.com/origin-range-requests/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/origin-range-requests/</guid>
+      <pubDate>Sat, 24 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare称朴素的字节范围缓存会在小请求上浪费大量回源带宽，因此用Pingora重建缓存架构，自动协调部分内容抓取，使R2的p99延迟减半。对读者：自建大文件分发或对象存储网关时，应关注Range请求的缓存协调策略，避免小分片请求放大回源成本。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Google Cloud 推出 Agent Compute Engine：每个 AI Agent 一台微虚拟机</title>
+      <link>https://www.marktechpost.com/2026/10/22/google-cloud-agent-compute-engine-microvm-ai-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/22/google-cloud-agent-compute-engine-microvm-ai-agents/</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · MarkTechPost 报道，Google Cloud 发布 Agent Compute Engine，为每个 AI Agent 提供硬件隔离的 microVM，且虚拟机内不存放凭据；目前已用于运行 Gemini Agent，未来数月进入预览。这为 Agent 执行提供更强隔离与最小权限基础。对读者：多租户 Agent 平台可评估该隔离模型，重点看凭据注入方式与冷启动开销。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 把 99.99999% 仓库副本迁至 Azure，为 Agent 规模铺路</title>
+      <link>https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 披露已将 99.99999% 的仓库副本迁移到 Azure，剩余部分将通过按引用仲裁完成，并用对象存储让读取能力独立扩展。底层重构的目标是支撑 Agent 规模下的 Git 访问压力。对读者：重度依赖 GitHub API 的自动化与 Agent 工作流，可关注后续限流与延迟指标变化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Claude Mods：把 Agent 脚手架翻转向人</title>
+      <link>https://www.latent.space/p/claude-mods</link>
+      <guid isPermaLink="true">https://www.latent.space/p/claude-mods</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Latent Space · Latent Space 介绍 Claude Mods，称其为 Attention Interface 的早期形态，把 Agent 脚手架从面向机器翻转为面向人，作者用它按自己的 AI 工程工作流重塑 Claude Code。这反映编码 Agent 正从固定流程走向可定制的个人化外壳。对读者：重度使用 Claude Code 的开发者可关注这类改造思路，评估把团队约定固化进脚手架而非依赖口头规范的可行性。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>三位 Java Champion 如何用 GitHub Copilot 提效</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 博客邀请三位 Java Champion 分享使用 GitHub Copilot 解决问题的实践，强调加速开发的同时保持人对结果负责。这类一线经验对评估编码助手的真实收益比基准分数更有参考价值。对读者：引入 Copilot 时建议明确「人负责最终结果」的评审规则，并用小范围试点量化提效幅度。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 推出面向 AI 智能体的开源 CLI「cf」，逐步停用 Wrangler</title>
+      <link>https://www.infoq.cn/article/Ddda0DF68laqfoqa4Lju?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/Ddda0DF68laqfoqa4Lju?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Cloudflare 发布以智能体为中心的开源命令行工具 cf 公测版，用 TypeScript 编写，支持结构化输出与命令发现，便于 AI 智能体与开发者统一调用 Cloudflare 服务，同时 Wrangler 将逐步退出。对读者：有自动化部署流水线的团队应尽早评估 cf 的迁移路径。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Aspire 13.6 增加持久化仪表盘遥测，支持 Java 与 Rust 托管</title>
+      <link>https://www.infoq.cn/article/4BUR4DmMxSBxyzYh6Fxz?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/4BUR4DmMxSBxyzYh6Fxz?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · 微软发布 Aspire 13.6，仪表盘新增持久化遥测与运行历史，支持停靠式终端与数据库 REPL，并首次提供 Java 和 Rust 的第一方托管能力，另有两项预览版 Azure 集成。对读者：多语言微服务本地编排可评估 Aspire，重点验证遥测持久化对排查长链路问题的实际收益。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Addy Osmani 等谈 AI 代码评审：从「人有没有读代码」转向「哪种检查能兜住风险」</title>
+      <link>https://simonwillison.net/2026/Oct/16/code-review/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/16/code-review/</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Addy Osmani、Morgan Westlee Lunt 与 Qing Wang 提出，「人是否读过代码」只是风险的粗糙代理指标，更该问「这次改动可能出什么问题、该由哪种检查兜住」。评审因此从合并前的关卡变成写作过程中的持续检查，多数改动在人工查看前已被 Claude 审过至少一遍。对读者：可据此重构 Code Review 流程，把自动化检查前移，人工聚焦高风险决策。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AI 生成的代码如何进入工程体系：Kiro 的规范驱动开发实践</title>
+      <link>https://www.infoq.cn/article/8iKz8xNQvxDfeuxH1QLA?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/8iKz8xNQvxDfeuxH1QLA?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · 文章复盘亚马逊云科技 Kiro 从预览到正式可用一年多的方法论演进：以 spec-driven development 为核心，用结构化 spec 约束多轮 Agent 协作，缓解长会话上下文衰减与决策不可追溯问题，并延伸至多 Agent 工作区。对读者：准备把 AI 编码纳入正式工程流程的团队，可参考其 spec 建模与验证环节设计，而非只比较代码生成能力。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 为已验证机器人引入持续问责机制</title>
+      <link>https://blog.cloudflare.com/verified-bots-accountability/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/verified-bots-accountability/</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 推出新系统，持续评估已验证机器人是否遵守 robots.txt、HTTP 429 等站点偏好，因为身份认证本身并不保证行为负责。对读者：站点运营方可借此把「白名单」从一次性认证升级为持续合规，Agent 抓取方则需确保自身行为可被验证。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 推出 Void：面向 Vite 全栈应用的开源部署 SDK</title>
+      <link>https://blog.cloudflare.com/deploy-with-void/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/deploy-with-void/</guid>
+      <pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 发布 Void，一个开源 SDK、CLI 与自托管平台，用于构建 Vite 全栈应用并部署到 Cloudflare。它把构建、部署与运行时打包成一条命令，降低边缘部署门槛。对读者：若团队已在用 Vite，可小范围试点 Void，重点验证其自托管模式与现有 CI/CD 的兼容性。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Anthropic 重新设计源代码管理：自研 Git 替代方案</title>
+      <link>https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Anthropic 撰文解释为何以及如何自研 Git 替代方案：2026 年 5 月其日均合并约 2500 次代码变更，到 9 月已超过 3 万次，传统工具链承压。这折射出 AI 编码带来的变更速率冲击。对读者：若你的仓库合并频率也在快速上升，值得提前评估现有 CI 与评审流程的瓶颈，而非等到阻塞再改。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 密钥检测新模型：检出更多、噪声更少</title>
+      <link>https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/</guid>
+      <pubDate>Wed, 14 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 推出上下文感知的密钥分类器，加权接受率提升 11.5%，扫描执行时间中位数下降 86%。这直接改善了大仓库密钥扫描的可用性。对读者：建议开启或升级 secret scanning，并关注误报下降后是否可把告警接入阻断式流水线。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Anthropic 重新设计源码管理：五个月迁移到自研版本控制系统</title>
+      <link>https://www.anthropic.com/engineering/redesigning-source-control</link>
+      <guid isPermaLink="true">https://www.anthropic.com/engineering/redesigning-source-control</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Anthropic Engineering · Anthropic 工程团队披露，随着每日合并次数增长十倍以上，源码管理成为最大开发瓶颈，因此用五个月时间迁移到自研版本控制系统。当 AI 大幅提升代码产出速度，传统 Git 工作流与托管服务的吞吐假设开始失效。对读者：若团队合并频率快速上升，可提前评估版本控制与 CI 的吞吐瓶颈。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 教程：如何让 Copilot 真正理解你的代码库</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase/</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 发布面向初学者的指南，讲解如何为仓库添加自定义指令与技能、使用自定义 Agent，并接入 Playwright 等 MCP 服务器。让编码助手读懂项目上下文，正从零散技巧变成有标准做法的工程实践。对读者：可按该路径先补 AGENTS 类指令文件，再逐步接入 MCP 工具链。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Geoffrey Huntley：用 pre-commit 钩子把 Agent 拉回规范</title>
+      <link>https://simonwillison.net/2026/Oct/13/geoffrey-huntley/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/13/geoffrey-huntley/</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 引用 Geoffrey Huntley 的做法：与其反复更新 AGENTS.md 期待 Agent 遵守，不如写 pre-commit 钩子检查 git diff 中绕过诊断库的直接调用，一旦命中就拒绝提交并注入提示，让 Agent 改用指定库。把规范从文档约束转为可执行的强制门禁，效果立竿见影。对读者：把关键约定写成钩子或检查，比写进提示词更可靠。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>datasette-ports 0.4 发布：列出本机所有 Datasette 实例</title>
+      <link>https://simonwillison.net/2026/Oct/12/datasette-ports/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/12/datasette-ports/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 发布 datasette-ports 0.4，该插件可检测并列出当前机器上运行的所有 Datasette 实例及其端口，新版本还显示进程 PID，便于配合 Python 3.15 的性能分析器定位问题。对读者：本地同时跑多个 Datasette 时，用它替代手动翻端口，能省下不少排查时间。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare Logpush 支持 Transformers：导出前用 SQL 过滤脱敏日志</title>
+      <link>https://blog.cloudflare.com/transformers-on-logpush/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/transformers-on-logpush/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare Logpush 新增 Transformers 能力，团队可在日志导出前用 SQL 对流做过滤、脱敏与结构重塑，底层由 Apache DataFusion 与 Apache Arrow 驱动，改动直接作用于到达目标端之前的数据。对读者：日志合规与成本控制可以前移到管道层，建议先在小流量日志流上验证 SQL 规则再全量开启。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS 发布多节点 Ray LLM 容器：跨 GPU 节点跑大模型推理</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/run-multi-node-inference-workloads-using-ray-llm-deep-learning-containers/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/run-multi-node-inference-workloads-using-ray-llm-deep-learning-containers/</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 介绍如何用多节点 Ray LLM Deep Learning Containers 在 Amazon EKS 上把一个大模型部署到两个 GPU 节点，prefill 与 decode 节点分离，对外仍是一个 OpenAI 兼容端点，容器已内置完整推理栈。对读者：需要跨节点推理时，这套方案省去自组装栈的成本，但要注意节点间网络带宽会成为实际吞吐瓶颈。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Python 3.15.0 已加入 actions/python-versions</title>
+      <link>https://simonwillison.net/2026/Oct/10/python-actions/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/10/python-actions/</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · GitHub Actions 的 python-versions 仓库已加入 Python 3.15.0，意味着现在可以在 CI 测试矩阵中直接写「3.15」来对新版本跑测试。Simon Willison 称自己为此等了好几天，甚至让 ChatGPT 定时检查仓库更新。对读者：维护多版本兼容的库时，可立即把 3.15 加入 CI 矩阵，尽早暴露兼容性问题。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI 用 Codex 跑完 DevDay 2025 的构建工作</title>
+      <link>https://developers.openai.com/blog/codex-at-devday</link>
+      <guid isPermaLink="true">https://developers.openai.com/blog/codex-at-devday</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Developer · OpenAI 官方发文介绍 Codex 如何帮助团队构建 DevDay 2025 的体验、演示与产品。文中强调 Codex 在真实交付流程中的角色，并指向 API、Agents、Tools 等文档入口。对读者：可把这类官方实践当作 Agent 编码工作流的参考模板，重点看它如何划分人机分工与验证环节。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 推出 Clef-omni：原生多模态决策模型，Clef 提速、Clef-flash 降价</title>
+      <link>https://blog.cloudflare.com/clef-faster-cheaper-multimodal/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/clef-faster-cheaper-multimodal/</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 扩展 Clef 决策模型家族，新增 Clef-omni，在单一流水线中原生处理音频、视频、图像与文本；同时 Clef 推理速度最高提升 2.0 倍，Clef-flash 价格下调。对读者：若你在 Workers 生态里做多模态判定或路由，可评估 Clef-omni 是否省掉自建多模态预处理链路。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>CLAUDE.md 还是 AGENTS.md？Anthropic 说以后都不用</title>
+      <link>https://www.infoq.cn/article/MAo3KoDWm9FGIcKau9AK?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/MAo3KoDWm9FGIcKau9AK?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Anthropic 工程师在分享中表示，CLAUDE.md 该删了，harness 也迟早过时，暗示 Claude Code 的下一步会改变当前以静态指令文件驱动 Agent 的做法。此前 Claude Code 拒绝兼容 AGENTS.md 曾引发争议。对读者：别把项目上下文治理押在单一指令文件格式上，关注官方后续的上下文注入机制再决定迁移。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare Workers 与 Durable Objects 支持按需 CPU/内存火焰图分析</title>
+      <link>https://blog.cloudflare.com/workers-on-demand-profiling/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/workers-on-demand-profiling/</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 为 Workers 和 Durable Objects 推出按需 CPU 与内存性能分析，可直接在生产环境生成交互式火焰图，用于定位内存泄漏与性能瓶颈。Serverless 运行时长期缺乏生产级 profiling 手段，这一补齐对排查线上问题意义明显。对读者：建议在灰度环境先开启 profiling 采样，确认额外开销可接受后再用于生产排障。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Stack Overflow：给编码 Agent 一套“操作系统”式的纪律化构建方法</title>
+      <link>https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/</link>
+      <guid isPermaLink="true">https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/</guid>
+      <pubDate>Thu, 08 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Stack Overflow Blog · Stack Overflow 博客 Part 6 讨论编码 Agent 的长期质量问题：Agent 适合干一下午，却难以稳定支撑一个季度。文章给出少量文件与规则配置，用于在数月、上千次编辑中防止质量衰减，适用于单 Agent 或同仓库多 Agent 并行。对读者：若团队已把编码 Agent 纳入日常流程，可先落地这套配置模板再谈规模化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 重建 Git 基础设施，为 Agent 规模开发做准备</title>
+      <link>https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 正在不停机重建其 Git 基础设施，以应对写入量加速增长带来的压力，并为「Agent 规模」的软件开发打基础。官方称这一架构调整面向的是仓库所依赖系统的可扩展性，而非单点功能更新。对读者：当编码 Agent 大量并发提交时，代码托管平台的底层能力会直接影响你的 CI 与协作体验，值得关注其后续性能与限流策略变化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Together Link：在 Claude Code、Codex 中运行开源模型的免费 CLI</title>
+      <link>https://www.marktechpost.com/2026/10/05/meet-together-link-a-free-cli-that-runs-open-models-like-kimi-k3-and-glm-5-3-inside-claude-code-codex-and-opencode/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/05/meet-together-link-a-free-cli-that-runs-open-models-like-kimi-k3-and-glm-5-3-inside-claude-code-codex-and-opencode/</guid>
+      <pubDate>Tue, 06 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · Together AI 发布 MIT 许可的免费 CLI 工具 Together Link，可将 Claude Code、Codex、OpenCode、Pi 及 Claude/ChatGPT 桌面应用连接到 Kimi K3、GLM 5.3 等开源模型。一条安装命令即可完成配置，Auto 路由会为每次会话挑选模型，官方称可节省超过 50% 成本。对读者：想降低编码助手成本又不想换工作流的团队，值得先小范围试用其路由质量。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 推出 ReviewBench：面向 AI 代码评审的开放基准</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/reviewbench-an-open-benchmark-for-ai-code-review/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 发布 ReviewBench，基于代表性 PR、多来源真值、校准评估与贴近生产的指标，用于衡量代码评审 Agent 的能力。AI 代码评审从「能跑」进入「可比较」阶段。对读者：引入评审 Agent 前，可用该基准横向对比工具，避免只看演示效果。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>让 Amazon Quick 企业就绪：自动化、可审计的跨账号资源晋升</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/making-amazon-quick-enterprise-ready-automated-auditable-cross-account-resource-promotion/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/making-amazon-quick-enterprise-ready-automated-auditable-cross-account-resource-promotion/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 介绍如何把 Amazon Quick 的 Agent、连接器、知识库、流程与空间从开发账号晋升到生产账号，用基于 Bedrock AgentCore 的幂等、可审计 MCP 服务器替代手工操作。对读者：多账号交付 Agent 资源时，优先用 MCP 化流水线替代人工搬运，降低配置漂移风险。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare 生日周 2026 全部发布汇总</title>
+      <link>https://blog.cloudflare.com/birthday-week-2026-wrap-up/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/birthday-week-2026-wrap-up/</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare 以 46 项发布庆祝 16 周年，覆盖开源、后量子安全、AI Agent 与开发者平台升级，并给出逐日清单。边缘平台正把 AI Agent 与安全能力打包进基础设施。对读者：可借这份清单快速扫描与自身技术栈相关的更新，尤其是后量子与 Agent 相关能力。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Claude Code的“乐高”模式：Mods机制让程序员玩上头</title>
+      <link>http://www.geekpark.net/news/372074</link>
+      <guid isPermaLink="true">http://www.geekpark.net/news/372074</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：极客公园 · Claude Code负责人Boris Cherny放出的Mods机制已于10月1日正式写入更新日志并默认开启。开发者用它做出像素宠物、断网小恐龙、呼吸引导动画，甚至塞进26万参数小模型实时写故事。一个改代码的工具被搭成了可扩展的“我的世界”。对读者：若团队重度使用Claude Code，可评估Mods做内部工作流定制，但需管控第三方Mod的权限与代码来源。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>MIT 与 Sakana AI 提出用 LLM 评审降低自改进编码 Agent 的评估成本</title>
+      <link>https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSDVzdEplY29renRTNm9PR1Z5QjFpak9tb2RQc2FlQzV0YVlGVDdIZmEtZE9ia28wMmFpakthckd4ejlHN0FpTnBwZHY5ZUxVTW52NTg0ajR1VkpMTExGOHZKdV90VFRqV3p1UTFJSTQ2LWRxWjRScE9FUE1MVHcwcHV2TGlRdmJCR1J5VFlncXMyRVhnVGRwa3dxaDBpUkRpV3dLV3F4T19aTzVYblNNZXdlSmZzTmNTREhSem81TXNYNmNJZHdhT3JDT0pQMmxzZWd6M1NuTFVQb2lf?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSDVzdEplY29renRTNm9PR1Z5QjFpak9tb2RQc2FlQzV0YVlGVDdIZmEtZE9ia28wMmFpakthckd4ejlHN0FpTnBwZHY5ZUxVTW52NTg0ajR1VkpMTExGOHZKdV90VFRqV3p1UTFJSTQ2LWRxWjRScE9FUE1MVHcwcHV2TGlRdmJCR1J5VFlncXMyRVhnVGRwa3dxaDBpUkRpV3dLV3F4T19aTzVYblNNZXdlSmZzTmNTREhSem81TXNYNmNJZHdhT3JDT0pQMmxzZWd6M1NuTFVQb2lf?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：VentureBeat AI · MIT 与 Sakana AI 联合提出新框架，用 LLM 作为评审者来评估自我改进的编码 Agent，从而削减评估环节的开销。该思路针对的是编码 Agent 迭代中反复跑测试与人工评审成本过高的问题。对读者：自建编码 Agent 评估流水线时，可尝试用模型评审替代部分人工回归，但需保留抽样人工校验以防评审漂移。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>IBM 将 Bob 带入自托管与气隙环境：代码不出内网的 Agentic 开发</title>
+      <link>https://news.google.com/rss/articles/CBMinwFBVV95cUxPUmtDcGxhamdVbC0weWd0ZVA2SE1QX0d3OFlXUlAwdl9YbHlyY0ZPdTBzNHNZY1kyZEQyTURmMkhJN3ZJdGt2SnItZ3JMLTB6U2hwTUVXa0FlUmJWY090ZkVhMWVKa2RpTEJCeFVobzVBS2tjOUR3QjhaRmpMbEc4S1VoZXplYzJxZUhMWTY0MlgwcTVVLXRjZUJEaC1xdW8?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMinwFBVV95cUxPUmtDcGxhamdVbC0weWd0ZVA2SE1QX0d3OFlXUlAwdl9YbHlyY0ZPdTBzNHNZY1kyZEQyTURmMkhJN3ZJdGt2SnItZ3JMLTB6U2hwTUVXa0FlUmJWY090ZkVhMWVKa2RpTEJCeFVobzVBS2tjOUR3QjhaRmpMbEc4S1VoZXplYzJxZUhMWTY0MlgwcTVVLXRjZUJEaC1xdW8?oc=5</guid>
+      <pubDate>Sat, 03 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · IBM 把 Bob 推向自托管与气隙（air-gapped）环境，让企业在不移动代码的前提下使用 Agentic 软件开发能力。这切中的是金融、政企等对代码外流极度敏感的团队。对读者：受合规限制无法使用公有云编码助手的团队，可把自托管 Agent 方案列入下一轮工具评估。</description>
+      <category>开发者工具</category>
+    </item>
+  </channel>
+</rss>

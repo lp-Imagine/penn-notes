@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 前端</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 31 Oct 2026 06:03:42 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>懒加载图片新增 sizes=&amp;quot;auto&amp;quot;：不再手写媒体查询</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/10/loading-lazy-img-sizes-auto/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/10/loading-lazy-img-sizes-auto/</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · img 元素的 sizes 属性新增 auto 关键字，专为懒加载图片设计，浏览器可自动判断该用 srcset 中的哪张图，省去手写媒体查询。这能显著简化响应式图片配置并减少选图错误。对读者：新项目可直接采用 sizes=&quot;auto&quot;，老项目注意浏览器兼容与首屏非懒加载图片的行为差异。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Rspack 2.3 发布：联手 SWC 团队带来全新编译器</title>
+      <link>https://juejin.cn/post/7701932169296003082</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7701932169296003082</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Rspack 2.3 发布，集成 SWC Next 解析器，官方称可提升构建速度、降低内存占用并减小产物体积；同时推出实验性新版缓存，支持为 loader 单独缓存转换结果。对读者：构建性能敏感的团队可先在分支上升级验证缓存行为，再决定是否全量切换。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Opera 提出 WebAI 新标准：让用户在浏览器本地部署 AI</title>
+      <link>https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/</guid>
+      <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：TechCrunch AI · Opera 推出名为 WebAI 的新 Web 标准提案，目标是让用户直接在浏览器内本地运行 AI，并设计为兼容多种模型。若被浏览器厂商广泛采纳，前端将获得标准化的本地推理入口。对读者：关注该提案的标准化进展与浏览器支持节奏，本地推理可显著降低隐私敏感场景的云端依赖。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>CSS @supports 新增 named-feature() 特性检测</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/10/css-supports-named-feature/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/10/css-supports-named-feature/</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · 张鑫旭介绍 @supports 中的 named-feature() 检测函数，目前可用于判断锚点定位是否感知 transform 等显式登记的特性，并讲述了这些特性背后的规范故事。对读者：渐进增强场景可用它替代 UA 嗅探，但需为不支持该函数的浏览器保留回退写法。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>React 19.3新增browser() API，让纯客户端渲染成为一等公民</title>
+      <link>https://www.infoq.cn/article/jNX6EAzqP34xRjqUMU1N?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/jNX6EAzqP34xRjqUMU1N?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 24 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · React 19.3于9月9日发布，除稳定View Transitions与Fragment Refs外，还加入react-dom的browser() API，允许组件正式声明跳过服务端渲染。对读者：依赖浏览器API的组件可用该API显式排除SSR，减少typeof window判断，但需同步检查水合边界与首屏性能。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>TanStack Start 正式发布 1.0，结束一年 RC</title>
+      <link>https://react.statuscode.com/issues/494</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/494</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status 报道，TanStack Start 在经历一年候选版本后正式稳定。Tanner Linsley 说明其从 TanStack Router 生长而来，并坦言对 RSC 的态度；官方提供从 Next.js 迁移指南。同文还提到同一应用对比 Next.js 16.4 的基准数据。对读者：正在选型全栈 React 框架的团队可把 Start 1.0 纳入评估，先验证迁移成本与生态插件成熟度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 联合 Oxc 用 Rust 重写 TypeScript，实测约快 2 倍</title>
+      <link>https://juejin.cn/post/7699373348027564082</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7699373348027564082</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Cloudflare 与 VoidZero 合作把 TypeScript 编译器移植到 Rust，项目 tsrs 孵化于 Oxc 工具链。作者在 1 核 2G 机器上用 199 个文件对比 tsc 7.0.2，报错逐字符一致、速度约 2 倍，但退出码行为不同。对读者：尝鲜前务必核对 CI 中依赖退出码的脚本，避免流水线误判。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>8 张 eMudhra 中间证书被攻破，Cloudflare 发布缓解措施</title>
+      <link>https://blog.cloudflare.com/emudhra-certificate-compromise/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/emudhra-certificate-compromise/</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Cloudflare Blog · 在发现 8 张 eMudhra 中间证书使用弱密钥后，Cloudflare 正部署缓解措施并发布客户端更新，文章说明了影响范围、响应动作以及客户与开发者应采取的后续步骤。由于这些证书链接受主流根信任库，影响面波及大量软件与系统。对读者：立即更新 ca-certificates、certifi 及运行时依赖的证书列表，并检查自有服务是否依赖相关中间证书。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 与 VoidZero 推出 TypeScript 的 Rust 移植 tsrs，最高快 8 倍</title>
+      <link>https://blog.cloudflare.com/typescript-rust-port/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/typescript-rust-port/</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Cloudflare Blog · Cloudflare 与 VoidZero 合作推出 tsrs，将基于 Go 的 TypeScript 7 编译器移植到 Rust，基准称速度最高为 TypeScript 7.0 的 8 倍、内存占用减少约 70%，可在 WebAssembly 中运行，并将并入 Oxc。项目仍属实验性，但 npx tsrs 已可用。对读者：可在 CI 中并行试跑 tsrs 对比类型检查耗时，暂不作为唯一构建链路。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>axios 投毒半年后实测 npm 安全防线：最信任的 SHA512 只是安慰剂</title>
+      <link>https://juejin.cn/post/7698256886345105434</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7698256886345105434</guid>
+      <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 作者实测 axios 投毒事件残留：恶意版本已被 registry 抹除、无法取证；lockfile 中的 SHA512 只能保证依赖一致，防不了投毒；npm audit 在镜像源下并未实现。23 个依赖中 0 个被有效拦截。对读者：别把 lockfile 哈希当安全背书，应补充依赖来源审查与私有源策略。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用 document.currentScript 做内联渲染的小技巧</title>
+      <link>https://simonwillison.net/2026/Oct/17/document-currentscript/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/17/document-currentscript/</guid>
+      <pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Simon Willison · Simon Willison 介绍 Lean Rada 的技巧：利用 document.currentScript 让内联 script 在页面加载时替换自身，例如直接输出当前年份；封装成快捷函数后即可得到一个极简模板语言。对读者：适合静态页与文档站的轻量动态内容，但需注意 CSP 限制与可维护性，不建议在复杂应用中替代正规渲染方案。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>AI 流式传输工程指南：半截 JSON 如何边收边渲染</title>
+      <link>https://juejin.cn/post/7697622920013021219</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7697622920013021219</guid>
+      <pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章讨论模型直接返回结构化 JSON 时，前端如何在生成未完成时增量解析并渲染，覆盖商品卡片、流式表格等场景，并给出原生 JS、Vue 3 与 React 的可落地代码与性能对比。对读者：实现流式 JSON 渲染时应优先做容错解析与字段级占位，避免整段解析失败导致界面空白。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Ryan Dahl：为什么要重写 Node？它本来就能用</title>
+      <link>https://javascriptweekly.com/issues/806</link>
+      <guid isPermaLink="true">https://javascriptweekly.com/issues/806</guid>
+      <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：JavaScript Weekly · JavaScript Weekly 第 806 期报道 Deno 团队加入 Cloudflare，Deno 运行时将获得最后一年官方修复，Deno Deploy 六个月内关停，JSR 迁移到 Cloudflare 基础设施。Ryan Dahl 在 Hacker News 上表示 Deno 已被 Node 兼容性的引力捕获，并反问为何要重写 Node。对读者：依赖 Deno Deploy 或 JSR 的项目应尽快评估迁移路径与时间表。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>SvelteKit 3 进入 RC：svelte.config.js 移除，$lib 别名退休</title>
+      <link>https://www.infoq.cn/article/Hs5X7EdO6PNHk367zZv3?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/Hs5X7EdO6PNHk367zZv3?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Mon, 12 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · SvelteKit 3 进入候选发布阶段，核心是清理技术债并深度对齐 Vite 原生能力：配置迁移至 vite.config.ts，$lib 别名被 #lib 取代，并依赖 Node 子路径导入规范。对读者：升级前先盘点项目里对 $lib 与 svelte.config.js 的依赖，这类破坏性变更适合安排在独立分支上验证。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cabloy 双引擎架构：Vona 与 Zova 如何协作</title>
+      <link>https://juejin.cn/post/7694928086821519360</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7694928086821519360</guid>
+      <pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Cabloy 并非传统意义上的单一 Web 框架，而是由两个独立引擎构成：Vona 负责后端运行时，Zova 负责前端应用层。两者各有自己的 package.json、CLI 与 workspace 配置，通过生成产物、运行时集成与双向类型契约咬合。对读者：评估全栈框架时，可关注前后端是否真正解耦演进，这直接影响长期维护与团队分工的灵活性。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>structuredClone 与 lodash.cloneDeep：核心差异与选型指南</title>
+      <link>https://juejin.cn/post/7694847934228234275</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7694847934228234275</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章对比原生 structuredClone 与 lodash.cloneDeep：前者处理纯数据、支持 Date/RegExp/Map/Set 与循环引用，但无法拷贝函数与原型链；后者能兜底带行为的数据。二者是互补而非替代关系。对读者：纯数据深拷贝优先用 structuredClone 省依赖，涉及类实例或函数时再上 cloneDeep，别再用 JSON 序列化凑合。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Linear 用 1000 多次 PR 从 styled-components 迁移到 StyleX</title>
+      <link>https://www.infoq.cn/article/YLOUT8CrDm0NPWgHL8LG?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/YLOUT8CrDm0NPWgHL8LG?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 10 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · 项目管理工具 Linear 完成了 React 应用从 styled-components 到 Meta 原子化 CSS-in-JS 库 StyleX 的迁移，历时五个月、超过 1000 次 PR。这是一次大规模样式方案替换的完整工程实践，涉及组件级改造与渐进式推进。对读者：若考虑更换样式方案，可参考其小步提交、长期并行的迁移节奏，避免一次性重写带来的风险。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Next.js 16.4 发布，React 应用可视化有了新方式</title>
+      <link>https://react.statuscode.com/issues/493</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/493</guid>
+      <pubDate>Fri, 09 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status 第 493 期汇总：Next.js 16.4 发布，同时出现一种可视化 React 父子树与所有者树关系的图示记法，可标注 context、Suspense、memo、错误边界与 RSC，并提供粘贴代码生成树的演练场。此外 TanStack Charts 1.0、Redux Toolkit 2.13 等也有更新。对读者：升级 Next.js 前先核对 RSC 与缓存相关变更，新的树可视化工具可用于排查组件归属与渲染边界问题。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>JPEG XL 终于在 Chrome 中落地</title>
+      <link>https://frontendfoc.us/issues/761</link>
+      <guid isPermaLink="true">https://frontendfoc.us/issues/761</guid>
+      <pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Frontend Focus · Frontend Focus 第 761 期报道 JPEG XL 终于在 Chrome 中发布，同时收录 Cloudflare 基于 10000 个大型站点真实用户 Core Web Vitals 的 BigQuery 公开数据集（覆盖 Safari/WebKit 与 Chrome），以及 Nolan Lawson 关于「使用平台能力」的观点和着色器开源等内容。对读者：图片格式与真实性能数据的更新会直接影响前端加载优化策略，可先在小流量场景验证 JPEG XL 的收益。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>后端零改动，给若依换一套现代化前端</title>
+      <link>https://juejin.cn/post/7692369572608786467</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7692369572608786467</guid>
+      <pubDate>Mon, 05 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · ruoyi-vue-nys 用 Vue 3.5 + Vite + TypeScript 重写整套前端，并完整适配 RuoYi 后端 API，做到后端零改动。对读者：老后台系统升级可参考这种「只换前端、不动接口」的渐进路径，降低迁移风险与联调成本。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>diff算法（虚拟DOM Reconciliation）的技术难点</title>
+      <link>https://juejin.cn/post/7692296625806229544</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7692296625806229544</guid>
+      <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章从理论最优解切入，解释虚拟DOM diff为何难：给定新旧两棵节点树，要找出把旧树变成新树的最少增删移操作序列，而“最少”本身在一般树上代价极高。这解释了主流框架为何采用启发式假设（同层比较、key标识）来把复杂度降到可接受范围。对读者：排查列表渲染错位或性能问题时，先检查key是否稳定唯一，再考虑是否需要手动优化更新粒度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Nuxt 中 useSeoMeta 与 useHead 的区别</title>
+      <link>https://juejin.cn/post/7691207444283260962</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7691207444283260962</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 在 Nuxt 3 中，页面标题与 SEO 元信息可通过 useSeoMeta() 或 useHead() 设置，两者功能有重叠但定位不同：useSeoMeta() 专注 SEO 元标签，useHead() 更通用。混用容易导致重复或覆盖问题。对读者：SEO 相关字段统一走 useSeoMeta，其余 head 管理交给 useHead，可减少维护歧义。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Node.js 50 个优势场景盘点：从 API 到 AI 胶水层，何时该用、何时别用</title>
+      <link>https://juejin.cn/post/7691227873459028006</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7691227873459028006</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章按 7 大类盘点 Node.js 的 50 个优势场景，覆盖从 API 服务到 AI 胶水层，讲清哪些场景 Node 行、哪些场景应避开，并附可抄代码与选型表。对独立开发者尤其有参考价值。对读者：做 AI 应用胶水层时 Node 生态成熟度高，但计算密集型任务仍应交给其他运行时。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Flutter Riverpod 3：统一打印 Provider 错误与自动重试日志</title>
+      <link>https://juejin.cn/post/7691219611107917875</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7691219611107917875</guid>
+      <pubDate>Thu, 01 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Riverpod 3 支持自动重试，但缺少统一日志时，Provider 出错与重试过程难以追踪。文章通过 ProviderObserver 与全局 retry 配置，统一记录异常与堆栈。对读者：开启自动重试前先接好可观测性，否则线上问题会被重试掩盖，排查成本反而更高。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>GitHub 为何反而「多写 CSS」：三年去 CSS-in-JS 后 SSR 时间降 55%</title>
+      <link>https://frontendfoc.us/issues/760</link>
+      <guid isPermaLink="true">https://frontendfoc.us/issues/760</guid>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Frontend Focus · GitHub 用三年时间把 styled-components 等 CSS-in-JS 方案从 github.com 移除，改用 CSS Modules。结果是「发的 CSS 更多了」，但服务端渲染单页时间减少 55%。这是一次少见的、有量化数据支撑的样式架构回迁案例。对读者：若你的项目被运行时样式拖慢首屏，CSS Modules 这类零运行时方案值得做一次基准对比。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用纯 JavaScript 重现 A-ha 的《Take On Me》</title>
+      <link>https://javascriptweekly.com/issues/804</link>
+      <guid isPermaLink="true">https://javascriptweekly.com/issues/804</guid>
+      <pubDate>Tue, 29 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：JavaScript Weekly · JavaScript Weekly 第 804 期收录了用纯 JavaScript 重现 A-ha《Take On Me》的项目，同期刊物还提到 Vite+ 1.0、null 原型对象优化以及 Cloudflare 的新 cf CLI 工具。这类作品展示了 Web 平台在图形与动画上的表现力边界。对读者：可从中借鉴 Canvas 与动画性能技巧，用于需要高帧率渲染的前端场景。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Vinext 1.0 发布：用 Vite 运行 Next.js 应用</title>
+      <link>https://blog.cloudflare.com/vinext-nextjs-on-vite/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/vinext-nextjs-on-vite/</guid>
+      <pubDate>Mon, 28 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Cloudflare Blog · Cloudflare 宣布 Vinext 1.0 从 AI 实验毕业为生产可用框架，让开发者用 Vite 运行 Next.js 应用。该版本带来高级缓存预热、更广的兼容性以及自动化测试流水线。对读者：若你受困于 Next.js 构建速度，可评估 Vinext 作为迁移路径，但需先验证插件与中间件兼容性。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>从零实现带虚拟滚动的 Select：原理、踩坑与 el-select-v2 对比</title>
+      <link>https://juejin.cn/post/7689656350306959406</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7689656350306959406</guid>
+      <pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章从业务中下拉框需承载数千至上万条选项的场景出发，讲解虚拟滚动 Select 的实现原理、常见坑点，并与 el-select-v2 做对比。大数据量下拉的性能优化是前端高频需求。对读者：遇到长列表下拉时，先评估现成组件库方案，再决定是否自研，避免重复踩虚拟滚动的测量与滚动同步坑。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>12 个可替代 npm 包的 Node 内置能力</title>
+      <link>https://nodeweekly.com/issues/642</link>
+      <guid isPermaLink="true">https://nodeweekly.com/issues/642</guid>
+      <pubDate>Thu, 24 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Node Weekly · Node Weekly 梳理了 12 个可替代 axios、dotenv、nodemon、chalk 等常用包的内置能力，并标注其在 Node 24 LTS 中的稳定性等级与可能让你继续保留依赖的坑点。依赖精简直接关系到供应链安全与安装体积。对读者：结合近期 AI 编码工具加剧依赖膨胀的讨论，可先挑一两个低风险内置能力做替换试点。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用不到 10MB 构建 JavaScript 桌面应用</title>
+      <link>https://javascriptweekly.com/issues/803</link>
+      <guid isPermaLink="true">https://javascriptweekly.com/issues/803</guid>
+      <pubDate>Tue, 22 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：JavaScript Weekly · JavaScript Weekly 第 803 期介绍 tinyjs：以 txiki.js 为后端、原生 webview 渲染，可构建体积小于 10MB 的 macOS、Linux 与 Windows 桌面应用，并支持完整系统访问与 FFI。对 Electron 体积敏感的桌面场景是个轻量替代思路。对读者：若桌面端包体与内存是痛点，可评估 tinyjs 这类方案，但需先确认跨平台与原生能力覆盖度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>如何构建一个对 Agent 友好的网站</title>
+      <link>https://juejin.cn/post/7687816252835987506</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7687816252835987506</guid>
+      <pubDate>Mon, 21 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章以 Rspress 为例，介绍通过 llms.txt、SSG-MD、Accept: text/markdown 与 injectLlmsHint 等特性，让 Claude Code、Cursor、Codex 等 Agent 能理解、发现并读取文档。核心问题是：对人类体验良好的站点，对 Agent 可能仍是 JS 空壳加噪声 HTML。对读者：若你的文档站希望被编码 Agent 正确引用，优先补齐 Markdown 直出与 llms.txt 入口，成本低、收益直接。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>React Native 的黄金时代，在 AI 手里结束了</title>
+      <link>https://www.infoq.cn/article/wKbZ8JlwJX26gTsW8r2o?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/wKbZ8JlwJX26gTsW8r2o?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · 文章指出 React Native 刚完成历时六年的底层重写，新架构全面接管、Hermes V1 默认启用、严格 TypeScript API 成为默认接口，技术成熟度达到历史高点；但就在此时 Shopify 宣布离开，投入数年迁移的应用被 Agent 改写命运。对读者：跨端选型需重新评估 AI 生成原生代码对 RN 价值主张的冲击，关注团队维护成本而非单纯框架成熟度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>排查记：本地 devServer 是 http，浏览器却把 302 重定向升级成了 https</title>
+      <link>https://juejin.cn/post/7687331138987261961</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7687331138987261961</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 作者记录一次本地调试问题：vue-cli 的 devServer 跑在纯 http 的 8080 端口，但浏览器把服务端返回的 302 重定向自动升级成了 https，导致请求失败。文章围绕该现象展开排查思路。对读者：遇到本地重定向异常时，优先检查浏览器 HSTS 缓存与安全策略，而非只盯服务端配置。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>TypeScript 全面拥抱：Prisma 8 + Electron 升级实战</title>
+      <link>https://juejin.cn/post/7687428120388124699</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7687428120388124699</guid>
+      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章介绍 Prisma 8（RC）的变化：schema 改为用 TypeScript 定义，并内置 node:sqlite 支持，同时结合 Electron 项目给出升级实战路径。对读者：正在用 Prisma 的 Electron 或 Node 项目可提前评估 schema 迁移成本，注意 RC 阶段 API 仍可能变动。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用 Knip 清理 AI Coding 留下的冗余代码</title>
+      <link>https://juejin.cn/post/7686808742223069203</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7686808742223069203</guid>
+      <pubDate>Sat, 19 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 掘金前端文章分享用 Knip 清理两个项目的经验，并让 agent 翻查 Git 记录，发现不少冗余来自快速实现和页面重构，讨论了这些旧代码为何能躲过 lint，以及它们如何影响下一轮 AI Coding。对读者：把未使用文件与导出的检测接入 CI，能显著降低 AI 生成代码长期堆积带来的维护成本。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Shopify 弃用 React Native 后，那套给 Agent 用的无头架构被复现</title>
+      <link>https://juejin.cn/post/7686808742222954515</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7686808742222954515</guid>
+      <pubDate>Sat, 19 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 掘金前端文章指出，Shopify 撤回六年的 React Native 押注在 HN 获 1272 分，比结论更值钱的是架构：逻辑与 UI 解耦，CLI 可无头运行，让 agent 获得毫秒级迭代能力，作者用 Node 复现了最小版本。对读者：若想让 Agent 高效参与前端开发，可优先把业务逻辑从 UI 层剥离，为无头调用留出接口。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Lovable 为什么用 Rust 重写了一个兼容 Vite 的开发服务器</title>
+      <link>https://react.statuscode.com/issues/491</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/491</guid>
+      <pubDate>Fri, 18 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status 本期聚焦 Lovable 用 Rust 构建兼容 Vite 的开发服务器，并讨论「框架是否还重要」：有实验发现过度抽象的 React 应用会让 AI Agent 的改造成本高出数倍。这反映了 AI 编码时代对构建工具性能与代码结构可读性的双重诉求。对读者：若团队大量使用 AI 编码助手，适度收敛抽象层级、保持结构清晰，可能比引入更多框架更能降低维护成本。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Laurie Voss：写代码成本崩塌后，剩下的才是全部工作</title>
+      <link>https://simonwillison.net/2026/Sep/14/laurie-voss/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Sep/14/laurie-voss/</guid>
+      <pubDate>Mon, 14 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Simon Willison · Laurie Voss 提出，写代码的成本已经崩塌，而审查、修复与运维代码的成本正在跟随下降。真正剩下的软件工作，是弄清人们到底想要什么、精确定义它，并让它用起来愉快。这部分成本按软件件数计算且无法转移，因此当软件数量趋向无限时，它会变成工作的全部。这一判断对前端与产品工程岗位的定位有直接含义。对读者：把精力从「写得多」转向「定义得准、体验做得顺」，是当下更抗替代的能力投资。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Resn 的数字体验之道：让网站不那么无聊</title>
+      <link>https://tympanus.net/codrops/2026/09/14/inside-resns-digital-experiences/</link>
+      <guid isPermaLink="true">https://tympanus.net/codrops/2026/09/14/inside-resns-digital-experiences/</guid>
+      <pubDate>Mon, 14 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Codrops · Codrops 刊文介绍创意工作室 Resn 如何把品牌、内容与技术结合，并带着对无聊网站的「健康蔑视」打造人们真正愿意探索的数字体验。在模板化建站与 AI 生成页面泛滥的当下，这类强调叙事、动效与交互细节的工作室案例，提示了差异化体验仍来自设计与工程的手工打磨。对读者：当生成式工具拉平基础页面质量后，交互创意与性能细节会成为前端团队更值得投入的差异化点。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>在 Figma 里造一个 3D 渲染器：Depth 的设计与开发</title>
+      <link>https://tympanus.net/codrops/2026/09/13/building-depth-designing-and-developing-a-3d-renderer-inside-figma/</link>
+      <guid isPermaLink="true">https://tympanus.net/codrops/2026/09/13/building-depth-designing-and-developing-a-3d-renderer-inside-figma/</guid>
+      <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Codrops · Codrops 案例复盘了 Depth 项目：如何在 Figma 内部构建 3D 渲染器，并围绕它设计一个展示其能力的网站，涉及 Three.js 与 WebGL 的工程取舍。对读者：设计工具与实时 3D 的结合正在打开新的交互表达，前端可关注 WebGL 在非游戏场景的落地。</description>
+      <category>前端</category>
+    </item>
+  </channel>
+</rss>
