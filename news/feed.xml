@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 06 Nov 2026 23:04:00 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Ramp 数据显示 AI 支出停滞，Anthropic 临近 IPO 承压</title>
+      <link>https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Ramp 的支出数据显示，AI 使用量仍在攀升，但企业 AI 支出已经停滞，降价与更精细的成本控制是主因。这一信号出现在 Anthropic 临近 IPO 的节点，可能动摇投资者对 AI 超高速增长的假设。对读者：评估 AI 赛道估值时，应把「用量增长」与「付费增长」分开看，关注按 token 计价的通缩风险。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Palo Alto Networks 洽谈 5 亿美元收购 AI Agent 安全公司 Clutch</title>
+      <link>https://techcrunch.com/2026/11/05/palo-alto-networks-in-talks-to-buy-ai-agent-security-startup-clutch-for-500m/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/05/palo-alto-networks-in-talks-to-buy-ai-agent-security-startup-clutch-for-500m/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Palo Alto Networks 正与 AI Agent 安全初创公司 Clutch 洽谈收购，交易金额约 5 亿美元；Clutch 此前由 Lightspeed 与 SignalFire 投资，上一轮估值仅 8500 万美元。Agent 身份与权限安全正成为大厂并购热点。对读者：若在做 Agent 产品，应尽早梳理凭证管理与审计链路，这类能力正被安全厂商溢价收购。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 承诺数据中心项目不再对公职人员使用 NDA</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1028454/openai-data-center-nda</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1028454/openai-data-center-nda</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · 在中选选民普遍反对数据中心扩张之后，OpenAI 宣布对数据中心所在社区的新承诺，包括不再与公职人员签署保密协议，仅保留涉及安全信息、商业秘密等狭窄范围的保护条款。数据中心选址的社区与监管阻力正在上升。对读者：关注 AI 基建项目的合规与社区沟通成本，这类非技术风险会直接影响算力供给节奏。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Perplexity 推出常驻型工作 Agent「Teammates」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1028302/perplexity-teammates-ai-agents-work</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1028302/perplexity-teammates-ai-agents-work</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Perplexity 发布面向工作场景的常驻 AI Agent「Teammates」，可在同一工作区内同时承担多个角色，并复用已有的项目、技能与记忆。它构建在 Perplexity Computer 之上，支持并行分配任务，直接对标 OpenAI 与 Anthropic 的 Agent 产品。对读者：多 Agent 协作产品的差异点正从模型能力转向记忆与任务编排，选型时应重点测试上下文继承与并发稳定性。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>亚马逊允许用户发短信给 Alexa 下单购物</title>
+      <link>https://www.theverge.com/tech/1028587/amazon-alexa-shopping-ai-text-orders</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1028587/amazon-alexa-shopping-ai-text-orders</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 亚马逊为 Alexa for Shopping 增加短信购物能力：用户可描述商品或发送照片，Alexa 会在亚马逊商品中检索匹配结果、回复推荐并代为下单。该功能将在数周内推送给数百万用户，延续今年 5 月上线的购物体验。对读者：对话式商务的入口正从 App 转向短信等轻渠道，做电商集成时值得预留消息通道能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Airbnb 计划 2027 年上半年推出 AI 旅行 Agent</title>
+      <link>https://www.theverge.com/tech/1028412/airbnb-ai-travel-agent-q3-2026-earnings</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1028412/airbnb-ai-travel-agent-q3-2026-earnings</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Airbnb 在 Q3 2026 股东信中宣布，将于 2027 年上半年推出 AI 旅行 Agent，帮助用户规划行程、比较选项、管理预订并在住宿期间提供协助。公司称现有 Agent 只擅长订餐厅等简单任务，而旅行规划需要专门构建的新界面。对读者：垂直场景 Agent 的壁垒在交易闭环与供给数据，而非通用推理能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 与 Hacktron 合作排查自身系统漏洞</title>
+      <link>https://openai.com/index/partnering-with-hacktron</link>
+      <guid isPermaLink="true">https://openai.com/index/partnering-with-hacktron</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布与安全公司 Hacktron 合作，寻找其系统漏洞、测试与第三方服务的连接安全性，并借助前沿 AI 强化防御。这延续了模型厂商引入外部安全力量做红队与供应链审计的趋势。对读者：接入第三方服务的 AI 产品应把外部渗透测试纳入常规流程，尤其是 OAuth 与工具调用链路。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Gemini Omni 1.2 Flash 发布：原生 15 秒视频、降价 30%</title>
+      <link>https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google 发布 Gemini Omni 1.2 Flash，支持原生 15 秒视频生成与多轮对话式编辑，一致性与可控性提升，价格下调 30%，720p 视频约每秒 0.07 美元。视频生成的成本曲线继续下探。对读者：做视频类功能时可重新核算单位成本，短片段生成已接近可规模化商用的价位。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Thinking Machines 发布 Inkling 2 Small：594B MoE、17B 激活</title>
+      <link>https://www.marktechpost.com/2026/11/05/thinking-machines-inkling-2-small-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/05/thinking-machines-inkling-2-small-release/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Thinking Machines Lab 发布 Inkling 2 Small，总参数 594B、激活参数 17B 的 MoE 模型，在 Artificial Analysis 智能指数上得分 31，可通过 Tinker 运行，并计划以 Apache 2.0 开放权重。稀疏 MoE 继续以低激活成本冲击中端市场。对读者：评估自托管方案时，应把激活参数与显存占用而非总参数作为部署成本基准。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>百度开源 ERNIE 5.5 Flash Base：280B MoE、14B 激活</title>
+      <link>https://www.marktechpost.com/2026/11/05/baidu-ernie-5-5-flash-base-280b-moe/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/05/baidu-ernie-5-5-flash-base-280b-moe/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 百度发布 ERNIE 5.5 Flash Base，280B 稀疏 MoE 基座模型，激活参数 14B，训练语料 33.5T token，且在任何中期或后期训练之前即公开。基座权重开放有利于二次微调与评测复现。对读者：需要领域微调的团队可优先在开放基座上验证，再决定是否投入后训练算力。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 拆解 Agent 记忆的组成：用「做梦」整理与纠错</title>
+      <link>https://www.anthropic.com/research/components-of-agent-memory</link>
+      <guid isPermaLink="true">https://www.anthropic.com/research/components-of-agent-memory</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Anthropic Engineering · Anthropic 工程博客讨论为 Claude 设计记忆机制的难点：Agent 必须在不知道后续任务的情况下判断什么值得记住。文章介绍「dreaming」机制如何帮助模型组织记忆、修正错误，并给出记忆组件的拆解思路。对读者：自建 Agent 记忆时，可把「写入策略」与「离线整理」分开设计，避免上下文无限膨胀。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 新 Git 存储架构：支撑数千 Agent 同时推送</title>
+      <link>https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 详解其新的 Git 存储架构，目标是让数千个 Agent 能同时向同一个仓库推送。这反映出编码 Agent 大规模并行写入正在改变代码托管的底层假设。对读者：若在流水线中批量运行 Agent，应关注并发推送、冲突合并与仓库锁策略的变化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Dropbox 3.5 亿美元收购 Tigris Data，加码 AI 基础设施</title>
+      <link>https://techcrunch.com/2026/11/05/dropbox-acquires-tigris-data-for-350m-to-bolster-its-ai-iinfrastructure/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/05/dropbox-acquires-tigris-data-for-350m-to-bolster-its-ai-iinfrastructure/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Dropbox 以 3.5 亿美元收购 Tigris Data，交易预计支撑 DBX Agent Cloud 的开发，这是一个面向构建 AI 模型与智能体的开发者的新存储平台。存储层正成为 Agent 基础设施的争夺点。对读者：做 Agent 产品的团队可关注该平台的存储与数据接口设计，评估是否适合作为多租户数据底座。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Agility 成为首家纯人形机器人上市公司，登陆纳斯达克</title>
+      <link>https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Agility 在纳斯达克上市，成为首家公开交易的纯人形机器人公司，引发市场对人形机器人赛道估值与商业化进度的审视。对读者：关注其后续财报中的部署量与单位经济性，这比发布会演示更能检验人形机器人是否真正进入规模化交付。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT‑6 Cyber：面向授权范围的网络安全智能体</title>
+      <link>https://openai.com/index/introducing-gpt-6-cyber</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-gpt-6-cyber</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 推出 GPT‑6 Cyber，专用于发现可利用漏洞并生成修复方案，训练目标是在授权范围内行动，强调对齐与安全边界。这意味着安全智能体从演示走向可交付的攻防工作流。对读者：若团队有漏洞管理流程，可评估把该模型接入内部授权测试与修复建议环节，但务必先划清授权范围与审计链路。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 上线个人财务功能：连接账户后直接问钱的事</title>
+      <link>https://claude.com/resources/articles/introducing-personal-finance-in-claude</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/introducing-personal-finance-in-claude</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 在 Claude 中推出 Personal Finance，用户可连接自己的账户，直接向 Claude 询问收支、资产等问题并获得直白回答。这是通用助手向高敏感个人数据场景的延伸。对读者：关注其账户连接与数据留存策略，个人用户尝鲜前先确认授权范围，企业则需评估同类金融数据接入的合规边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Enterprise 增强安全管控：安全中心、推理钩子与集中管理</title>
+      <link>https://claude.com/resources/articles/claude-enterprise-security-updates</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-enterprise-security-updates</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Enterprise 新增安全与管理能力，包括安全中心、推理钩子（inference hooks）、集中化管理以及更多访问控制。面向企业安全团队提升可见性与控制力。对读者：正在做企业级 AI 采购的团队可把推理钩子与审计能力列入评估清单，用于满足内部合规与数据治理要求。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Ricursive 发布 Ripple‑65B Preview：Apache 2.0 开源权重，Terminal‑Bench 2.1 得 80.5</title>
+      <link>https://www.marktechpost.com/2026/11/04/ricursive-ripple-65b-preview-open-weight-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/04/ricursive-ripple-65b-preview-open-weight-model/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Ricursive Intelligence 发布 65B 稠密开源权重模型 Ripple‑65B Preview，采用 Apache 2.0 协议，在 Terminal‑Bench 2.1 上得分 80.5，领先美国同类开源模型（含参数量达其 15 倍的模型）。对读者：若在做编码/终端智能体，可将其纳入本地或私有化部署的候选，重点验证长任务稳定性与显存成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 推出 GPT‑Image‑2.6 Flare 与 Sunburst：支持 GIF、SVG 导出与 6 秒生成</title>
+      <link>https://www.marktechpost.com/2026/11/04/openai-gpt-image-2-6-flare-sunburst/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/04/openai-gpt-image-2-6-flare-sunburst/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 发布 Images 2.6 及 GPT‑Image‑2.6 Flare、Sunburst API 模型。Flare 最快 6 秒出图，两者新增 GIF 输出、SVG 导出、标记编辑与复杂度参数。对读者：前端与设计工具链可评估 SVG 导出与复杂度参数，用于批量生成图标/插画并控制成本与延迟。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Together AI 发布 Together Compiler：智能体驱动推理优化，最高提速 2.6 倍</title>
+      <link>https://www.marktechpost.com/2026/11/05/together-ai-together-compiler-continual-compilation-ai-inference/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/05/together-ai-together-compiler-continual-compilation-ai-inference/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Together AI 推出 Together Compiler，用智能体驱动的循环在流量变化时持续重优化推理前向过程，每个模型 24 小时内即可超过最佳 InferenceX 配置，最高达 2.6 倍 TPS。对读者：自建推理服务的团队可关注这类自动调优思路，把性能优化从人工调参转为持续运行的编译回路。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>MCP C SDK 2.0 默认启用 HTTP 无状态模式，新增多轮请求能力</title>
+      <link>https://www.infoq.cn/article/80iUxvCNB59aOgyXB7LN?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/80iUxvCNB59aOgyXB7LN?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 微软发布官方 MCP C# SDK 2.0，适配 MCP 规范 2026‑07‑28 修订版，HTTP 层重构为无状态设计，支持多轮往返请求（MRTR）与动态能力协商，移除 initialize 握手与 Mcp‑Session‑Id 头。对读者：.NET 技术栈接入 MCP 的团队应尽快评估升级，无状态模式对水平扩展与网关部署更友好。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>谷歌开源 ML Drift：跨平台 GPU 推理引擎加速端侧 AI</title>
+      <link>https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 谷歌推出开源跨平台 GPU 计算引擎 ML Drift，面向端侧 AI 与机器学习推理，统一抽象 OpenGL ES、OpenCL、Metal 与 WebGPU，支撑 LiteRT 运行时，支持五维张量与自定义算子。对读者：做端侧或 WebGPU 推理的团队可评估其算子覆盖与后端适配，作为跨平台部署的候选方案。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Node 27 首个 alpha 发布：新发布节奏下的破坏性变更</title>
+      <link>https://nodeweekly.com/issues/646</link>
+      <guid isPermaLink="true">https://nodeweekly.com/issues/646</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Node Weekly · Node.js 27 首个 alpha 按新发布模型推出，每个大版本在稳定前有六个月 alpha 期，正式版预计明年四月。V8 15.6 默认带来 Math.sumPrecise()、Iterator.zip() 等迭代器辅助方法，import defer 与不可变 ArrayBuffer 需开启标志，默认堆上限改为物理内存一半。对读者：库作者应尽早在此 alpha 上跑测试，普通项目暂勿用于生产。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Safari Technology Preview 256 发布</title>
+      <link>https://webkit.org/blog/18602/release-notes-for-safari-technology-preview-256/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18602/release-notes-for-safari-technology-preview-256/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · WebKit 发布 Safari Technology Preview 256，面向 macOS Golden Gate 与 macOS Tahoe 提供下载。该版本延续对 Web 平台新特性的预览与验证。对读者：关注跨浏览器兼容的前端团队可安装该预览版，提前验证新 API 与 CSS 特性在 Safari 下的表现，减少上线后的兼容返工。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>OpenAI 收购 Pierre Computer Company，强化 Codex 代码能力</title>
+      <link>https://openai.com/index/openai-to-acquire-pierre</link>
+      <guid isPermaLink="true">https://openai.com/index/openai-to-acquire-pierre</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：OpenAI Blog · OpenAI 宣布收购 Pierre Computer Company，将其能力并入 Codex，用于代码构建、理解与审查。这是 OpenAI 在编码助手赛道继续加码的信号，收购而非自研说明代码理解与评审环节仍有明显短板。对读者：若团队深度使用 Codex，关注后续功能合并节奏与定价变化，评估是否值得把代码评审流程迁入。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Ballistic Ventures 拟募资 4.9 亿美元，押注 AI 安全热潮</title>
+      <link>https://techcrunch.com/2026/11/03/ted-schleins-ballistic-ventures-seeks-490m-for-new-funds-amid-ai-driven-cybersecurity-boom/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/03/ted-schleins-ballistic-ventures-seeks-490m-for-new-funds-amid-ai-driven-cybersecurity-boom/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 专注网络安全的 Ballistic Ventures 计划为新旗舰基金募资 3.6 亿美元，另设 1.3 亿美元独立投资工具。AI 驱动的攻防需求正在推高安全赛道估值，资本开始向有产业背景的专项基金集中。对读者：安全类工具采购可关注这批被投企业的产品成熟度，早期项目议价空间通常更大。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Palantir 财报亮眼，但商业收入首超政府藏隐忧</title>
+      <link>https://techcrunch.com/2026/11/03/hiding-inside-palantirs-skyrocketing-quarter-is-a-foreboding-signal/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/03/hiding-inside-palantirs-skyrocketing-quarter-is-a-foreboding-signal/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Palantir 本季营收大涨，美国商业收入首次超过政府收入。表面是客户结构多元化，实则意味着其增长越来越依赖企业 AI 预算的持续性，一旦宏观收紧波动会更直接。对读者：评估数据平台供应商时，留意其收入结构变化对长期服务承诺的影响。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Claude Marketplace 上线安全、生产力与创意类新 Agent</title>
+      <link>https://claude.com/resources/articles/new-agents-and-products-claude-marketplace</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/new-agents-and-products-claude-marketplace</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Marketplace 新增一批面向安全、开发者基础设施、创意与生产力的 Agent 和产品。平台化思路明显：把第三方能力收进统一入口，降低企业选型与集成成本。对读者：若已在用 Claude 生态，可优先试用与自身工作流重叠的 Agent，注意权限与数据边界再扩大使用范围。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Uber 上季度仅由 AI Agent 完成 4 单行程</title>
+      <link>https://www.theverge.com/transportation/1026306/uber-ai-agents-q3-earnings-disintermediation</link>
+      <guid isPermaLink="true">https://www.theverge.com/transportation/1026306/uber-ai-agents-q3-earnings-disintermediation</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Uber 首次披露第三方 AI Agent 下单数据：2026 年三季度仅完成 4 单行程，万圣节当周 Uber Eats 约 500 单，对比总量 3.2 亿单几乎可忽略。Agent 代订的商业模式远未成型。对读者：别急着为「Agent 渠道」做产品改造，先观察平台开放接口与结算规则的演进。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 还没找到让 AI 像搜索一样赚钱的方法</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1024862/google-search-ai-overviews-alphabet-earnings-q3</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1024862/google-search-ai-overviews-alphabet-earnings-q3</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Alphabet 称搜索查询量增速创五年新高，但三季度搜索收入增速从约 17% 放缓至 12%，付费点击增速也从 13% 降至 8%。AI 带来更多查询，却没带来等比例的广告收入。对读者：依赖搜索流量的站点应加速多渠道布局，别把增长押在单一入口的变现效率上。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Daybreak Red 登陆 AWS GovCloud，提供 GPT-5.6 Cyber</title>
+      <link>https://openai.com/index/daybreak-red-aws-govcloud</link>
+      <guid isPermaLink="true">https://openai.com/index/daybreak-red-aws-govcloud</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · Daybreak Red 通过 Amazon Bedrock 在 AWS GovCloud（美东）向获批客户提供 GPT-5.6 Cyber，面向授权范围内的网络安全工作。前沿模型进入政府云合规环境，说明高敏感场景的 AI 落地正在破冰。对读者：涉政企项目可关注该通道的准入条件，合规资质可能比模型能力更关键。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 FlashProve：用密码学证明回复来自指定权重</title>
+      <link>https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · FlashProve 是 Apache 2.0 的 zkSNARK 原型，可在不暴露权重的前提下证明某条回复确实来自承诺的模型。实测在单张 H100 上以 110 tokens/秒验证 Llama 4 Maverick，证明体积 19MB。对读者：模型溯源与合规审计场景值得跟进，但吞吐与证明体积仍是落地门槛。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere Embed 5 与 Rerank 5 上线 OpenRouter</title>
+      <link>https://cohere.com/blog/embed-rerank-5-openrouter</link>
+      <guid isPermaLink="true">https://cohere.com/blog/embed-rerank-5-openrouter</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 的检索模型 Embed 5 和 Rerank 5 现可通过 OpenRouter 单一 API 调用，统一计费、无需额外 SDK。检索增强链路的模型接入成本进一步降低。对读者：做 RAG 时可用同一网关对比多家检索模型效果，减少供应商锁定。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>NVIDIA 三项优化让 DGX Spark 上 MoE 推理提速 42.5%</title>
+      <link>https://www.marktechpost.com/2026/11/03/nvidia-dgx-spark-moe-inference-ling-3-0-flash/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/03/nvidia-dgx-spark-moe-inference-ling-3-0-flash/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · NVIDIA 展示三层叠加优化，在单台 DGX Spark 上加速 MoE 推理。以蚂蚁 inclusionAI 的 124B 模型 Ling-3.0-flash 为例，GSM8K 解码吞吐提升 42.5%，精度无明显变化。对读者：本地或边缘部署大 MoE 模型时，这类推理栈优化比换硬件更划算，值得复现验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Datasette Agent 0.5a0 发布：Agent 聊天面板可并排页面</title>
+      <link>https://simonwillison.net/2026/Nov/3/datasette-agent/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/3/datasette-agent/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Datasette Agent 重要更新引入 panel，让 Agent 聊天窗口与数据表、查询页面并排显示。配合 datasette-apps，可用提示词生成数据库应用并在旁边持续修改。对读者：做内部数据工具时，这种「聊天+页面」的交互范式值得借鉴，可先在 agent.datasette.io 试用。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Bedrock AgentCore Gateway 支持 ServiceNow 代币交换</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/servicenow-on-behalf-of-token-exchange-with-bedrock-agentcore-gateway/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/servicenow-on-behalf-of-token-exchange-with-bedrock-agentcore-gateway/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 介绍如何为 AgentCore Gateway 配置基于 Microsoft Entra ID 的 on-behalf-of 令牌交换，让 AI Agent 在保留调用者身份的前提下访问 ServiceNow REST API，且无需拦截器 Lambda 或自定义代码。对读者：企业 Agent 接入遗留系统时，身份透传是合规刚需，这套原生方案可直接参考。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Safari 27.3 beta 推出自适应深色模式</title>
+      <link>https://webkit.org/blog/18541/introducing-adaptive-dark-mode/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18541/introducing-adaptive-dark-mode/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · WebKit 宣布 Safari 27.3 beta 新增可选的 Adaptive Dark Mode，自动把浅色站点适配为深色。背景是约 40% 的页面加载来自深色模式用户，但仅 10% 的页面直接支持深色。对读者：站点不必再为深色模式重写全部样式，但应测试自动适配后的对比度与品牌色表现。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Apple 新规：约会类与 AI 伴侣应用须 18+ 评级</title>
+      <link>https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Apple 更新 App Store 规则，对提供性内容或浪漫内容的约会应用与 AI 伴侣应用强制要求 18+ 年龄评级。这直接收紧 AI 情感陪伴类产品的上架与分发门槛。对读者：相关开发者应尽早核查内容分级与年龄验证流程，避免审核下架风险。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Apple 全面拥抱 AI：自研与他家模型并用</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1025245/apple-earnings-q4-ai</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1025245/apple-earnings-q4-ai</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · Apple 最新财报显示其创下营收与每股收益最佳财年，iPhone 与 Mac 销售强劲，财报电话会中 AI 被提及 45 次。Apple 正以较低基建投入分享 AI 红利。对读者：关注其第三方 AI 集成策略，可能影响 iOS 应用的分发与订阅分成格局。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 将数据中心悄然改称「算力园区」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1025242/openai-quietly-renames-data-centers-as-compute-campuses</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1025242/openai-quietly-renames-data-centers-as-compute-campuses</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · OpenAI 开始用「compute campus」替代「data center」的说法，被解读为试图缓解数据中心面临的跨党派政治阻力。批评者认为应正面回应能耗与噪音关切而非改名。对读者：AI 基建项目的舆情与选址风险正在上升，相关方需提前准备社区沟通方案。</description>
+      <category>业界</category>
+    </item>
+  </channel>
+</rss>
