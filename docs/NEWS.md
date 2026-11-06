@@ -88,6 +88,33 @@ NEWS_DATE=2026-08-26 FORCE=true /bin/bash /root/scripts/penn-notes-cron-daily-ne
 
 日志：`/var/log/penn-notes-daily-news-cron.log`
 
+### 4. 本机自动部署（推荐，不依赖 self-hosted 接单）
+
+Actions 的 `deploy-baota` 需要标签为 `baota` 的自建 Runner。若 Runner 显示 Idle 却一直 `Waiting for a runner`，主站不会更新。请再加一条宝塔计划任务，在生成完成后由**本机拉代码构建部署**：
+
+| 项 | 值 |
+|----|-----|
+| 任务类型 | **Shell 脚本** |
+| 任务名称 | penn-notes 本机部署 |
+| 执行周期 | 每天 **07:25**（07:00 触发日报之后） |
+| 脚本内容 | `/bin/bash /root/scripts/penn-notes-local-pull-deploy.sh` |
+
+一次性安装：
+
+```bash
+curl -fsSL -o /root/scripts/penn-notes-local-pull-deploy.sh \
+  https://raw.githubusercontent.com/lp-Imagine/penn-notes/master/scripts/baota-local-pull-deploy.sh
+chmod +x /root/scripts/penn-notes-local-pull-deploy.sh
+
+# 立刻补部署今天（网站目录默认 /www/wwwroot/penn-notes）
+/bin/bash /root/scripts/penn-notes-local-pull-deploy.sh
+tail -n 20 /var/log/penn-notes-local-deploy.log
+```
+
+可选环境变量：`DEPLOY_PATH`（默认 `/www/wwwroot/penn-notes`）、`PENN_NOTES_BUILD_DIR`（默认 `/opt/penn-notes-build`）。
+
+> `deploy-baota` job 仍保留作快速路径，但已加 `timeout-minutes: 20`，避免无限 Waiting 占住 concurrency 堵死后续日报。
+
 ### 备选：cron-job.org / 本地脚本
 
 无宝塔时可用 [cron-job.org](https://cron-job.org) 每天 07:00 POST 同一 API，或本地：
