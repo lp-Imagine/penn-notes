@@ -136,6 +136,8 @@ jobs:
     # 每日必部署：友链动态依赖构建时 sync:friends，不能仅在有新闻 commit 时才更新主站
     if: needs.generate.result == 'success'
     runs-on: [self-hosted, baota]
+    # 自建 runner 掉线时不要无限 Waiting，否则会占住 concurrency 把后续日报全堵死
+    timeout-minutes: 20
     env:
       HOME: /root
     steps:
