@@ -17,9 +17,15 @@
       "AI model release",
       "AI startup funding",
       "LLM open source",
+      "AI agent",
+      "MCP Model Context Protocol",
+      "AI coding agent",
       "人工智能",
       "大模型",
       "生成式AI",
+      "推理模型",
+      "智能体",
+      "大模型融资",
       "React Next.js frontend",
       "CSS Web Platform browser",
       "TypeScript Vite",
@@ -418,6 +424,46 @@
         "http://mainssl.geekpark.net/rss.rss"
       ],
       "section": "业界"
+    },
+    {
+      "id": "jiqizhixin",
+      "name": "机器之心",
+      "url": "https://www.jiqizhixin.com/rss",
+      "fallbackUrls": [
+        "https://news.google.com/rss/search?q=site:jiqizhixin.com+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+      ],
+      "section": "业界"
+    },
+    {
+      "id": "leiphone-ai",
+      "name": "雷锋网 AI",
+      "url": "https://www.leiphone.com/feed",
+      "fallbackUrls": [
+        "https://news.google.com/rss/search?q=site:leiphone.com+(AI+OR+%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD+OR+%E5%A4%A7%E6%A8%A1%E5%9E%8B)+when:7d&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+      ],
+      "section": "业界"
+    },
+    {
+      "id": "langchain-blog",
+      "name": "LangChain Blog",
+      "url": "https://blog.langchain.com/rss/",
+      "fallbackUrls": [
+        "https://blog.langchain.dev/rss/",
+        "https://news.google.com/rss/search?q=site:blog.langchain.com+OR+site:blog.langchain.dev+when:14d&hl=en-US&gl=US&ceid=US:en"
+      ],
+      "section": "开发者工具"
+    },
+    {
+      "id": "hn-mcp",
+      "name": "Hacker News MCP",
+      "url": "https://hnrss.org/newest?q=MCP+OR+%22Model+Context+Protocol%22",
+      "section": "开发者工具"
+    },
+    {
+      "id": "hn-ai-agent",
+      "name": "Hacker News AI Agent",
+      "url": "https://hnrss.org/newest?q=%22AI+agent%22+OR+agentic",
+      "section": "开发者工具"
     }
   ]
 }

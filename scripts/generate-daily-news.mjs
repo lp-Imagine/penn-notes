@@ -98,7 +98,7 @@ async function main() {
     );
   }
 
-  const bySection = await summarizeNews(items, reportDate, {
+  const { bySection, briefing } = await summarizeNews(items, reportDate, {
     allowHeuristic: args.allowHeuristic,
   });
   const total = Object.values(bySection).reduce((n, a) => n + a.length, 0);
@@ -109,9 +109,12 @@ async function main() {
   for (const [sec, list] of Object.entries(bySection)) {
     if (list.length) console.log(`  ${sec}: ${list.length}`);
   }
+  if (briefing?.length) {
+    console.log(`Briefing: ${briefing.length} line(s)`);
+  }
 
   fs.mkdirSync(outDir, { recursive: true });
-  const md = renderDailyMarkdown(reportDate, bySection);
+  const md = renderDailyMarkdown(reportDate, bySection, briefing);
   fs.writeFileSync(outFile, md, "utf8");
   console.log(`Wrote ${path.relative(root, outFile)}`);
 

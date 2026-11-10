@@ -10,8 +10,8 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 1. `scripts/fetch-rss.mjs` — 拉 [`scripts/news/sources.json`](../scripts/news/sources.json) 中的 RSS / GitHub Trending / Hacker News（Algolia API）/ 掘金（官方 API），按北京时间过滤目标日；排序后先做**每源配额**再全局截断，防止单源淹没
 2. `scripts/search-news.mjs` — Google News 对 AI 关键词**联网检索**，逐条回源核验（抓不到 / 非文章页丢弃），补充国外一手新闻
-3. `scripts/summarize-news.mjs` — DeepSeek（或其它 OpenAI 兼容 API）去重 / 分类 / 中文摘要
-4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`
+3. `scripts/summarize-news.mjs` — DeepSeek（或其它 OpenAI 兼容 API）去重 / 分类 / 中文摘要；产出「今日导读」3 句 + 头条加长摘要 + 普通条目
+4. 写入 `news/YYYY-MM/ai-news-YYYY-MM-DD.md`（文首导读，头条标题带「头条 ·」前缀）
 5. `scripts/resolve-news-images.mjs` — 从原文抓 `og:image`，上传腾讯云 COS，正文写 `https://img.penn-notes.draftly.cn/news/…`
 6. 提交 **`news/` 源稿**（配图在 COS，不再进 git）
 7. 同一次流水线跑 `sync:friends`，构建时再写入友链动态页（生成物不进 git）
@@ -182,9 +182,9 @@ AI 动态提供 RSS，地址：
 
 提示词要求：**有价值的业界/产品/模型新闻都要收**，不再因为「不够前端」而丢掉。
 
-每条为中文标题 + 编辑向段落，结尾「对读者：」。需配置 `LLM_API_KEY`。
+精选上限（`summarize-news.mjs`）：**每栏最多 5 条、全文最多 20 条**。文首 **今日导读** 3 句总览；全文有且仅有 1 条 **头条**（标题前缀「头条 ·」，摘要 120–220 字，融资额/参数量等数字须保留）。普通条仍为 70–160 字中文摘要，结尾「对读者：」。需配置 `LLM_API_KEY`。
 
-改源：`scripts/news/sources.json`。候选控制：`maxCandidates`（全局上限，默认 96）、`maxItemsPerSource`（每源配额，默认 6）；`search` 块配置 Google News 检索的关键词、每查询条数与总量；`"type": "hn-algolia"` 的源走 Hacker News API（hnrss.org 不稳定）；`"type": "juejin"` + `"category"`（如 `frontend` / `ai`）走掘金公开 API。另抓 GitHub Trending。
+改源：`scripts/news/sources.json`。候选控制：`maxCandidates`（全局上限，默认 96）、`maxItemsPerSource`（每源配额，默认 6）；`search` 块配置 Google News 检索的关键词、每查询条数与总量（含 Agent / MCP / 推理模型 / 大模型融资等）；`"type": "hn-algolia"` 的源走 Hacker News API（hnrss.org 不稳定）；`"type": "juejin"` + `"category"`（如 `frontend` / `ai`）走掘金公开 API。另抓 GitHub Trending。机器之心、雷锋网等中文源优先官方 RSS，失败则回落 Google News `site:` 检索；另有 HN MCP / AI Agent 与 LangChain Blog 等开发者向源。
 
 部分厂商博客无官方 RSS（如 Meta AI、Cursor、Ollama、xAI），使用 [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) 维护的镜像 feed。博客园用官方 `feed.cnblogs.com`。
 

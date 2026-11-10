@@ -65,9 +65,10 @@ export function normalizeSection(name) {
 
 /**
  * @param {string} reportDate
- * @param {Record<string, Array<{title:string, summary:string, sourceName:string, url:string, date:string, image?:string|null}>>} bySection
+ * @param {Record<string, Array<{title:string, summary:string, sourceName:string, url:string, date:string, image?:string|null, lead?:boolean}>>} bySection
+ * @param {string[]} [briefing]
  */
-export function renderDailyMarkdown(reportDate, bySection) {
+export function renderDailyMarkdown(reportDate, bySection, briefing = []) {
   const parts = [
     "---",
     `title: AI 动态 · ${reportDate}`,
@@ -80,6 +81,19 @@ export function renderDailyMarkdown(reportDate, bySection) {
     `> 截至 ${reportDate}。业界 · 产品 · 模型 · 开源 · 开发者工具 · 前端。`,
     "",
   ];
+
+  const lines = (Array.isArray(briefing) ? briefing : [])
+    .map((s) => String(s || "").trim())
+    .filter(Boolean)
+    .slice(0, 3);
+  if (lines.length) {
+    parts.push('<div class="news-briefing" data-section="今日导读">', "");
+    parts.push("## 今日导读", "");
+    lines.forEach((line, i) => {
+      parts.push(`${i + 1}. ${escapeMdHtml(line)}`);
+    });
+    parts.push("", "</div>", "");
+  }
 
   for (const name of NEWS_SECTIONS) {
     const items = bySection[name] || [];
@@ -95,7 +109,8 @@ export function renderDailyMarkdown(reportDate, bySection) {
     }
     for (const item of items) {
       const date = item.date || reportDate;
-      const title = escapeMdHtml(escapeMdHeading(item.title));
+      const rawTitle = escapeMdHtml(escapeMdHeading(item.title));
+      const title = item.lead ? `头条 · ${rawTitle}` : rawTitle;
       const source = escapeMdHtml(escapeMd(item.sourceName));
       parts.push(`### ${title}`, "");
       parts.push(

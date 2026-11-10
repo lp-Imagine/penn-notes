@@ -12,13 +12,22 @@ const LLM_BASE_URL = (process.env.LLM_BASE_URL || "https://api.deepseek.com/v1")
 const LLM_MODEL = process.env.LLM_MODEL || "deepseek-chat";
 const LLM_API_KEY = process.env.LLM_API_KEY || "";
 
+/** 每栏最多条数（与 prompt 硬性规则一致） */
+export const MAX_PER_SECTION = 5;
+/** 全文最多条数 */
+export const MAX_TOTAL = 20;
+
 /**
  * @param {Array<{title:string,url:string,sourceName:string,section:string,date:string,snippet:string,excerpt?:string}>} items
  * @param {string} reportDate
  * @param {{ allowHeuristic?: boolean }} [opts]
+ * @returns {Promise<{ bySection: Record<string, Array<object>>, briefing: string[] }>}
  */
 export async function summarizeNews(items, reportDate, opts = {}) {
-  const empty = Object.fromEntries(NEWS_SECTIONS.map((s) => [s, []]));
+  const empty = {
+    bySection: Object.fromEntries(NEWS_SECTIONS.map((s) => [s, []])),
+    briefing: [],
+  };
   if (!items.length) return empty;
 
   if (!LLM_API_KEY) {
@@ -28,7 +37,7 @@ export async function summarizeNews(items, reportDate, opts = {}) {
       );
     }
     console.warn("[summarize] LLM_API_KEY missing — heuristic fallback (low quality)");
-    return heuristicSummarize(items);
+    return heuristicSummarize(items, reportDate);
   }
 
   const capped = items.slice(0, 80);
@@ -57,11 +66,13 @@ export async function summarizeNews(items, reportDate, opts = {}) {
 硬性规则：
 1. 每条必须带正确 id；该 id 的标题/摘录是唯一事实来源，禁止张冠李戴。
 2. 中文标题可润色，须保留核心实体。
-3. summary：1 段 70–160 字；结尾「对读者：」给一句实用启示（选型/风险/可跟进动作）。
+3. 普通条 summary：1 段 70–160 字；结尾「对读者：」给一句实用启示（选型/风险/可跟进动作）。
 4. 信息面优先：有价值的业界/产品/模型新闻都要收；本站特色（开发者工具、前端）有则加分，无则不强行塞。
-5. 去重、去纯广告；每栏 0–4 条；全文最多 14 条；空栏可以。
-6. 只输出 JSON：{"items":[{"id":0,"section":"业界","title":"...","summary":"...","date":"YYYY-MM-DD"}]}
-7. 不要输出 url、source、markdown 代码块。`;
+5. 去重、去纯广告；每栏 0–${MAX_PER_SECTION} 条；全文最多 ${MAX_TOTAL} 条；空栏可以。
+6. briefing：恰好 3 句中文，概括今日格局/最大看点；只能依据候选素材，禁止编造未出现的事实。
+7. 有且仅有 1 条 lead=true（全文最重要的头条）。头条 summary：120–220 字，含背景一句 + 事实要点；原文若有融资额/参数量/涨跌等数字必须原样保留，禁止改成「大幅」「显著」等模糊词；结尾仍要「对读者：」。
+8. 只输出 JSON：{"briefing":["句1","句2","句3"],"items":[{"id":0,"section":"业界","title":"...","summary":"...","date":"YYYY-MM-DD","lead":false}]}
+9. 不要输出 url、source、markdown 代码块。`;
 
   const user = `报告日期：${reportDate}
 候选素材（按 id 绑定，勿混淆）：
@@ -92,9 +103,14 @@ ${JSON.stringify(payload, null, 2)}`;
   const content = data.choices?.[0]?.message?.content || "";
   const parsed = parseJson(content);
   const list = Array.isArray(parsed?.items) ? parsed.items : [];
+  const briefing = normalizeBriefing(parsed?.briefing);
 
   const usedIds = new Set();
   const bySection = Object.fromEntries(NEWS_SECTIONS.map((s) => [s, []]));
+  const perSection = Object.fromEntries(NEWS_SECTIONS.map((s) => [s, 0]));
+  /** @type {Array<{section:string, item:object, lead:boolean}>} */
+  const accepted = [];
+  let leadAssigned = false;
 
   for (const row of list) {
     const id = Number(row.id);
@@ -103,7 +119,7 @@ ${JSON.stringify(payload, null, 2)}`;
 
     const section = normalizeSection(row.section);
     if (!section) continue;
-    if (bySection[section].length >= 4) continue;
+    if (perSection[section] >= MAX_PER_SECTION) continue;
 
     const src = capped[id];
     const summary = String(row.summary || "").trim();
@@ -117,22 +133,80 @@ ${JSON.stringify(payload, null, 2)}`;
       continue;
     }
 
-    usedIds.add(id);
-    bySection[section].push({
+    const wantLead = Boolean(row.lead) && !leadAssigned;
+    const item = {
       title,
       summary,
       sourceName: src.sourceName,
       url: src.url,
       date: String(row.date || src.date || reportDate).slice(0, 10),
       image: null,
-    });
+      lead: wantLead,
+    };
+
+    usedIds.add(id);
+    if (wantLead) leadAssigned = true;
+    perSection[section] += 1;
+    accepted.push({ section, item, lead: wantLead });
   }
+
+  // 全局上限：优先保留头条，再按 LLM 返回顺序截断
+  const trimmed = trimToMaxTotal(accepted);
+  for (const { section, item } of trimmed) {
+    bySection[section].push(item);
+  }
+
+  // 若模型未标 lead，把全文第一条标为头条
+  ensureOneLead(bySection);
 
   const total = NEWS_SECTIONS.reduce((n, s) => n + bySection[s].length, 0);
   if (total === 0) {
     throw new Error("LLM returned no usable items — check model output / candidates");
   }
-  return bySection;
+  return { bySection, briefing };
+}
+
+/**
+ * @param {Array<{section:string, item:object, lead:boolean}>} accepted
+ */
+function trimToMaxTotal(accepted) {
+  if (accepted.length <= MAX_TOTAL) return accepted;
+  const lead = accepted.find((a) => a.lead);
+  const rest = accepted.filter((a) => !a.lead);
+  const out = [];
+  if (lead) out.push(lead);
+  for (const row of rest) {
+    if (out.length >= MAX_TOTAL) break;
+    out.push(row);
+  }
+  return out;
+}
+
+function ensureOneLead(bySection) {
+  let hasLead = false;
+  for (const s of NEWS_SECTIONS) {
+    for (const it of bySection[s] || []) {
+      if (it.lead) {
+        if (hasLead) it.lead = false;
+        else hasLead = true;
+      }
+    }
+  }
+  if (hasLead) return;
+  for (const s of NEWS_SECTIONS) {
+    if (bySection[s]?.length) {
+      bySection[s][0].lead = true;
+      return;
+    }
+  }
+}
+
+function normalizeBriefing(raw) {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((s) => String(s || "").trim())
+    .filter(Boolean)
+    .slice(0, 3);
 }
 
 function passesBindingCheck(src, title, summary) {
@@ -157,21 +231,39 @@ function passesBindingCheck(src, title, summary) {
   return tokens.filter((t) => blob.includes(t)).length >= 1;
 }
 
-function heuristicSummarize(items) {
+function heuristicSummarize(items, reportDate) {
   const bySection = Object.fromEntries(NEWS_SECTIONS.map((s) => [s, []]));
+  const perSection = Object.fromEntries(NEWS_SECTIONS.map((s) => [s, 0]));
+  const accepted = [];
   for (const it of items) {
     const section = normalizeSection(it.section) || "业界";
-    if (bySection[section].length >= 4) continue;
-    bySection[section].push({
+    if (perSection[section] >= MAX_PER_SECTION) continue;
+    const item = {
       title: it.title,
       summary: `${it.snippet || it.excerpt || "详见原文。"}\n\n对读者：待大模型补全启示。`,
       sourceName: it.sourceName,
       url: it.url,
-      date: it.date,
+      date: it.date || reportDate,
       image: null,
-    });
+      lead: false,
+    };
+    accepted.push({ section, item, lead: false });
+    perSection[section] += 1;
+    if (accepted.length >= MAX_TOTAL) break;
   }
-  return bySection;
+  const trimmed = trimToMaxTotal(accepted);
+  for (const { section, item } of trimmed) {
+    bySection[section].push(item);
+  }
+  ensureOneLead(bySection);
+  const briefing = [];
+  const first = trimmed[0]?.item;
+  if (first) {
+    briefing.push(`今日精选以「${String(first.title).slice(0, 40)}」等条目为主（启发式草稿）。`);
+    briefing.push("完整导读将在配置 LLM_API_KEY 后由模型生成。");
+    briefing.push("请以原文链接核对事实。");
+  }
+  return { bySection, briefing };
 }
 
 function parseJson(text) {
