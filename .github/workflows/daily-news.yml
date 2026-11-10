@@ -33,9 +33,6 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.commit.outputs.changed }}
-      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -99,7 +96,8 @@ jobs:
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接发 Pages；宝塔交给 self-hosted job。
+      # GITHUB_TOKEN 推送不会触发 CI，所以这里直接发 Pages。
+      # 主站由宝塔 cron（baota-cron-daily-news.sh）在 generate 成功后本机 pull-deploy，不依赖 self-hosted runner。
       # 即使日报无变更也构建部署，保证友链动态每日刷新。
       - name: Build (GitHub Pages backup)
         env:
@@ -130,83 +128,3 @@ jobs:
           git commit -m "auto deploy news/friends, $commit_info"
           git remote add origin "$repo_url"
           git push origin "HEAD:$deploy_branch" --force
-
-  deploy-baota:
-    needs: generate
-    # 每日必部署：友链动态依赖构建时 sync:friends，不能仅在有新闻 commit 时才更新主站
-    if: needs.generate.result == 'success'
-    runs-on: [self-hosted, baota]
-    # 自建 runner 掉线时不要无限 Waiting，否则会占住 concurrency 把后续日报全堵死
-    timeout-minutes: 20
-    env:
-      HOME: /root
-    steps:
-      - name: Checkout (CN mirror)
-        run: |
-          set -euo pipefail
-          MIRROR_BASE="${GIT_MIRROR_BASE:-https://ghfast.top/https://github.com}"
-          REPO_URL="${MIRROR_BASE}/${GITHUB_REPOSITORY}.git"
-          WORK="${GITHUB_WORKSPACE}"
-          SHA="${{ needs.generate.outputs.sha }}"
-          echo "ci-checkout: cloning $REPO_URL @ $SHA"
-          cd /tmp
-          rm -rf "$WORK"
-          mkdir -p "$WORK"
-          git clone --progress --depth 1 --branch master \
-            "$REPO_URL" "$WORK" \
-            || git clone --progress --depth 50 "$REPO_URL" "$WORK"
-          cd "$WORK"
-          git fetch --progress --depth 1 origin "$SHA" || true
-          git checkout --force "$SHA"
-          echo "ci-checkout: ok $(git rev-parse --short HEAD)"
-          du -sh . | awk '{print "ci-checkout: worktree "$1}'
-
-      - name: Ensure Node.js 20+
-        run: |
-          set -euo pipefail
-          if command -v node >/dev/null 2>&1; then
-            MAJOR="$(node -p "process.versions.node.split('.')[0]")"
-            if [ "$MAJOR" -ge 20 ]; then
-              echo "using existing $(node -v) / npm $(npm -v)"
-              exit 0
-            fi
-          fi
-          VER=24.19.0
-          echo "installing Node $VER from npmmirror…"
-          curl -fsSL --retry 3 \
-            "https://npmmirror.com/mirrors/node/v${VER}/node-v${VER}-linux-x64.tar.xz" \
-            -o /tmp/node-linux-x64.tar.xz
-          tar -xJf /tmp/node-linux-x64.tar.xz -C /usr/local --strip-components=1
-          hash -r || true
-          node -v
-          npm -v
-
-      - name: Install
-        run: |
-          npm config set registry https://registry.npmmirror.com
-          npm ci
-
-      - name: Build (origin)
-        env:
-          PENN_BASE: /
-          UMAMI_URL: ${{ secrets.UMAMI_URL }}
-          UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
-          COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
-          COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
-          COS_BUCKET: ${{ secrets.COS_BUCKET }}
-          COS_REGION: ${{ secrets.COS_REGION }}
-          COS_CDN_BASE: ${{ secrets.COS_CDN_BASE }}
-        run: npm run build
-
-      - name: Deploy to Baota (local)
-        env:
-          DEPLOY_MODE: local
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        run: bash scripts/ci-rsync-dist.sh
-
-      # 部署后推送给百度（需仓库 Secret: BAIDU_PUSH_TOKEN）；失败不阻断部署
-      - name: Baidu push (daily)
-        env:
-          BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
-          BAIDU_SITE: https://penn-notes.draftly.cn
-        run: npm run baidu:push -- --mode=daily --soft

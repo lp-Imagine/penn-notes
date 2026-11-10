@@ -25,18 +25,18 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 | 优先级 | 触发方式 | 时间（北京时间） | 说明 |
 |--------|----------|------------------|------|
-| **主** | **宝塔计划任务** → `workflow_dispatch` | **07:00** | 见下节（推荐，与主站同机） |
-| 备 1 | GitHub `schedule` | 07:00 | `cron: 0 23 * * *`（UTC），可能漏跑 |
-| 备 2 | GitHub `schedule` | 08:30 | `cron: 30 0 * * *`（UTC），07:00 漏跑时补救 |
+| **主** | **宝塔计划任务** → 触发 + 本机部署 | **07:00** | 见下节（推荐；主站由此更新） |
+| 备 1 | GitHub `schedule` | 07:00 | `cron: 0 23 * * *`（UTC），可能漏跑；只跑 generate/Pages，不部署主站 |
+| 备 2 | GitHub `schedule` | 08:30 | `cron: 30 0 * * *`（UTC），07:00 漏跑时补救；同上 |
 
 日报默认汇总 **昨天**（上海时区）。若 digest 已存在，`generate-daily-news.mjs` 会 skip，因此多层触发不会重复 commit。
 
-触发后 **GitHub Actions 会同时部署**：
+触发后的职责拆分：
 
-- **GitHub Pages** 备份站（`gh-pages`）
-- **宝塔主站**（`penn-notes.draftly.cn`，Self-hosted Runner）
+- **GitHub Actions `generate`**：抓取 / 摘要 / 提交 `news/`，并部署 **GitHub Pages** 备份站（`gh-pages`）
+- **宝塔同一条 07:00 cron**：等 `generate` 成功后**本机** `pull → build → rsync` 更新主站（`penn-notes.draftly.cn`）
 
-宝塔 cron **只负责叫醒 workflow**，不在本机构建站点。
+主站**不再**依赖 self-hosted `deploy-baota` 接单（Idle 却 Waiting 时仍能更新）。
 
 > GitHub 内置 `schedule` 可能漏跑；请配置宝塔计划任务作为主触发。
 
@@ -44,24 +44,33 @@ Penn Notes 的「AI 动态」栏目：每天早上自动抓取公开 RSS + 联�
 
 与 Draftly「博客同步」可共用同一个 GitHub PAT（需 **repo** + **workflow** 权限）。
 
-### 1. 在宝塔 SSH 一次性安装
+### 1. 在宝塔 SSH 一次性安装（或更新脚本）
 
 ```bash
 mkdir -p /root/.config/penn-notes /root/scripts /var/log
 
-# 写入 PAT（与 ai-article 设置里博客同步 Token 相同即可）
+# 写入 PAT（与 ai-article 设置里博客同步 Token 相同即可；需 repo + workflow）
 echo 'ghp_你的PAT' > /root/.config/penn-notes/github_token
 chmod 600 /root/.config/penn-notes/github_token
 
-# 下载触发脚本（或 git clone 仓库后复制 scripts/baota-cron-daily-news.sh）
+# 触发 + 等 generate + 本机部署（同一条脚本）
 curl -fsSL -o /root/scripts/penn-notes-cron-daily-news.sh \
   https://raw.githubusercontent.com/lp-Imagine/penn-notes/master/scripts/baota-cron-daily-news.sh
-chmod +x /root/scripts/penn-notes-cron-daily-news.sh
+curl -fsSL -o /root/scripts/penn-notes-local-pull-deploy.sh \
+  https://raw.githubusercontent.com/lp-Imagine/penn-notes/master/scripts/baota-local-pull-deploy.sh
+chmod +x /root/scripts/penn-notes-cron-daily-news.sh \
+  /root/scripts/penn-notes-local-pull-deploy.sh
 
-# 试跑一次（Actions 里应出现 workflow_dispatch）
+# 立刻补部署主站（不等明天 cron / 不依赖 runner）
+/bin/bash /root/scripts/penn-notes-local-pull-deploy.sh
+tail -n 20 /var/log/penn-notes-local-deploy.log
+
+# 试跑完整链路（会触发 Actions，并在 generate 成功后本机部署）
 /bin/bash /root/scripts/penn-notes-cron-daily-news.sh
-tail -n 3 /var/log/penn-notes-daily-news-cron.log
+tail -n 20 /var/log/penn-notes-daily-news-cron.log
 ```
+
+可选环境变量：`DEPLOY_PATH`（默认 `/www/wwwroot/penn-notes`）、`PENN_NOTES_BUILD_DIR`（默认 `/opt/penn-notes-build`）、`SKIP_LOCAL_DEPLOY=true`（只触发不部署）。
 
 ### 2. 宝塔面板添加计划任务
 
@@ -72,48 +81,23 @@ tail -n 3 /var/log/penn-notes-daily-news-cron.log
 | 执行周期 | 每天 **07:00** |
 | 脚本内容 | `/bin/bash /root/scripts/penn-notes-cron-daily-news.sh` |
 
-保存后可在计划任务里点 **执行** 测一次，再到 GitHub → Actions → **Daily AI News** 确认有 `workflow_dispatch` 运行。
+只需这一条；**不必**再加 07:25 本机部署任务。保存后可在计划任务里点 **执行** 测一次。
 
 ### 3. 补跑 / 强制覆盖
 
 SSH 到宝塔：
 
 ```bash
-# 补跑指定日期
+# 补跑指定日期（含本机部署）
 NEWS_DATE=2026-08-26 /bin/bash /root/scripts/penn-notes-cron-daily-news.sh
 
 # 覆盖已有 digest
 NEWS_DATE=2026-08-26 FORCE=true /bin/bash /root/scripts/penn-notes-cron-daily-news.sh
 ```
 
-日志：`/var/log/penn-notes-daily-news-cron.log`
+日志：`/var/log/penn-notes-daily-news-cron.log`（触发与等待）、`/var/log/penn-notes-local-deploy.log`（本机构建部署）。
 
-### 4. 本机自动部署（推荐，不依赖 self-hosted 接单）
-
-Actions 的 `deploy-baota` 需要标签为 `baota` 的自建 Runner。若 Runner 显示 Idle 却一直 `Waiting for a runner`，主站不会更新。请再加一条宝塔计划任务，在生成完成后由**本机拉代码构建部署**：
-
-| 项 | 值 |
-|----|-----|
-| 任务类型 | **Shell 脚本** |
-| 任务名称 | penn-notes 本机部署 |
-| 执行周期 | 每天 **07:25**（07:00 触发日报之后） |
-| 脚本内容 | `/bin/bash /root/scripts/penn-notes-local-pull-deploy.sh` |
-
-一次性安装：
-
-```bash
-curl -fsSL -o /root/scripts/penn-notes-local-pull-deploy.sh \
-  https://raw.githubusercontent.com/lp-Imagine/penn-notes/master/scripts/baota-local-pull-deploy.sh
-chmod +x /root/scripts/penn-notes-local-pull-deploy.sh
-
-# 立刻补部署今天（网站目录默认 /www/wwwroot/penn-notes）
-/bin/bash /root/scripts/penn-notes-local-pull-deploy.sh
-tail -n 20 /var/log/penn-notes-local-deploy.log
-```
-
-可选环境变量：`DEPLOY_PATH`（默认 `/www/wwwroot/penn-notes`）、`PENN_NOTES_BUILD_DIR`（默认 `/opt/penn-notes-build`）。
-
-> `deploy-baota` job 仍保留作快速路径，但已加 `timeout-minutes: 20`，避免无限 Waiting 占住 concurrency 堵死后续日报。
+> CI（push / blog-sync）仍保留 `deploy-baota` 作快速路径；若 runner Idle 不接单，`cancel-stale-baota` 约 20 分钟后 Cancel。日报主站以本机 cron 为准。
 
 ### 备选：cron-job.org / 本地脚本
 

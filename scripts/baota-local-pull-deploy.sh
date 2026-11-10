@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # 宝塔本机自动部署：拉取 master → 构建 → rsync 到网站目录。
 # 不依赖 GitHub Actions self-hosted runner 接单。
-#
-# 推荐计划任务（北京时间 07:25，紧接 07:00 的 daily-news 触发）：
-#   /bin/bash /root/scripts/penn-notes-local-pull-deploy.sh
+# 通常由 baota-cron-daily-news.sh 在 generate 成功后调用；也可手动执行。
 #
 # 环境变量（可选）：
 #   DEPLOY_PATH          网站根目录，默认 /www/wwwroot/penn-notes

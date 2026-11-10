@@ -16,6 +16,8 @@ concurrency:
 
 permissions:
   contents: write
+  # cancel-stale-baota 用 GITHUB_TOKEN 取消卡在 Waiting 的 run
+  actions: write
 
 env:
   TZ: Asia/Shanghai
@@ -101,10 +103,13 @@ jobs:
           echo "Deployed. CSS should be under /penn-notes/assets/"
           ls assets/style*.css | head -n 3
 
-  # 主站：在宝塔机 Self-hosted Runner 上构建并本地 rsync（避开海外 SCP）
+  # 主站快速路径：Self-hosted Runner 本机构建 + rsync。
+  # Idle 却不接单时会卡 Waiting；cancel-stale-baota 约 20 分钟后 Cancel，避免堵 concurrency。
+  # 日报主站不走这里，见 scripts/baota-cron-daily-news.sh 本机 pull-deploy。
   deploy-baota:
     needs: test
     runs-on: [self-hosted, baota]
+    timeout-minutes: 20
     # systemd 跑 runner 时往往不带 HOME，git --global 会直接失败
     env:
       HOME: /root
@@ -184,3 +189,39 @@ jobs:
           BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
           BAIDU_SITE: https://penn-notes.draftly.cn
         run: npm run baidu:push -- --mode=site --soft
+
+  # timeout-minutes 对 Waiting 无效；runner 不接单时用 GitHub-hosted job Cancel 释放 concurrency
+  cancel-stale-baota:
+    needs: test
+    if: needs.test.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Cancel run if deploy-baota still queued
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          WAIT_MINUTES: "20"
+        run: |
+          set -euo pipefail
+          wait_secs=$((WAIT_MINUTES * 60))
+          echo "Waiting ${WAIT_MINUTES}m for deploy-baota to leave the queue…"
+          sleep "$wait_secs"
+
+          status="$(gh api "repos/${REPO}/actions/runs/${RUN_ID}/jobs" --paginate \
+            --jq '.jobs[] | select(.name == "deploy-baota") | .status' | head -n1)"
+          conclusion="$(gh api "repos/${REPO}/actions/runs/${RUN_ID}/jobs" --paginate \
+            --jq '.jobs[] | select(.name == "deploy-baota") | .conclusion // empty' | head -n1)"
+          echo "deploy-baota status=${status:-missing} conclusion=${conclusion:-none}"
+
+          case "${status:-}" in
+            queued|waiting|pending)
+              echo "Still waiting for self-hosted runner — cancelling run ${RUN_ID}"
+              gh api -X POST "repos/${REPO}/actions/runs/${RUN_ID}/cancel" \
+                || gh api -X POST "repos/${REPO}/actions/runs/${RUN_ID}/force-cancel"
+              ;;
+            *)
+              echo "Job already started or finished — leave the run alone"
+              ;;
+          esac

@@ -65,9 +65,11 @@ npm run cos:health    # 抽查 CDN URL 是否可访问
 
 ## 部署
 
-Push `master` / `main`，或 `repository_dispatch`（`blog-sync`）触发 **CI**：
+**日报主站**（每天 07:00）：宝塔计划任务跑 `baota-cron-daily-news.sh` → 触发 Actions `generate`（含 gh-pages 备份）→ 本机 `baota-local-pull-deploy.sh` 构建部署。不依赖 self-hosted runner 接单。详见 [docs/NEWS.md](docs/NEWS.md)。
 
-1. `PENN_BASE=/` → 宝塔 Self-hosted Runner 本机构建 + rsync（主站）
+**CI**（Push `master` / `main`，或 `repository_dispatch` `blog-sync`）：
+
+1. `PENN_BASE=/` → 宝塔 Self-hosted Runner 本机构建 + rsync（主站快速路径；不接单时会超时 Cancel）
 2. `PENN_BASE=/penn-notes/` → 推 `gh-pages`（备份）
 
 canonical / sitemap / RSS / 百度推送始终指向主站。日报抓取与 LLM 在 GitHub-hosted runner 上跑。
@@ -85,9 +87,9 @@ canonical / sitemap / RSS / 百度推送始终指向主站。日报抓取与 LLM
 | `UMAMI_URL` / `UMAMI_WEBSITE_ID` | Umami 统计（可选） |
 | `GITHUB_OAUTH_CLIENT_ID` / `GITHUB_OAUTH_CLIENT_SECRET` | Decap `/admin` 登录（配在宝塔助手进程 env，非 Actions） |
 
-### 宝塔 Self-hosted Runner
+### 宝塔 Self-hosted Runner（CI 快速路径，可选）
 
-主站在服务器本机构建部署（避免海外 SCP 超时）。标签必须为 **`baota`**。
+Push / blog-sync 仍可通过标签 **`baota`** 的 runner 本机 rsync。日报主站以 cron 本机部署为准；runner 若 Idle 却不接单，不影响每日更新。
 
 ```bash
 # 配置 runner（目录建议 /opt/actions-runner）
