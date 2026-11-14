@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 14 Nov 2026 06:51:25 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>头条 · OpenAI推出ChatGPT Wallet，让Agent在用户授权下完成支付</title>
+      <link>https://openai.com/index/introducing-chatgpt-wallet</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-chatgpt-wallet</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI发布ChatGPT Wallet，为ChatGPT Work、Codex与dots中的Agent提供安全的支付能力：购买需经用户批准，并沿用现有银行卡保护机制。官方称这是与卡组织、银行和商户共同构建的可信Agent支付方案。对读者：若在做Agent商业化，可提前研究其授权与风控模型，把「人工确认」设计进支付链路以降低纠纷风险。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude的Duet Agent有点神经质，但意外地好用</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 实测Anthropic面向消费者的Agent产品Claude Duet，认为它比Instinct、Meta的Muse、OpenAI的Dots更偏工作场景，能帮忙补上容易遗漏的细节。评测形容它「有点神经质」但确实能兜住问题。对读者：选消费级Agent时别只看演示效果，重点测它在长任务中主动纠错与提醒的能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic发布常驻Agent构建指南：跨会话持续运行的核心原语</title>
+      <link>https://claude.com/resources/articles/building-always-on-agents</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/building-always-on-agents</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude博客发布《Building always-on agents》指南，指出常驻Agent会无限期运行，并自行决定在多个会话之间何时、以何种方式行动。文章逐一讲解其核心原语及组合方式。对读者：做长时运行Agent前先想清楚状态持久化、触发条件与失败恢复三件事，否则调试成本会指数上升。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Muse的AI现在能替用户拨打美国商家电话，但要付费</title>
+      <link>https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · TechCrunch报道，Muse的AI已可向美国企业发起外呼电话，但该能力并非免费，需要付费使用。这是消费级Agent从「屏幕内操作」走向「真实世界动作」的又一步。对读者：外呼类Agent涉及合规与品牌风险，接入前应确认通话录音、身份披露与失败转人工策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ElevenLabs推出新应用，把会议记录与听写合二为一</title>
+      <link>https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · TechCrunch报道，ElevenLabs发布名为ElevenAI的新应用，同时提供会议记录与听写功能，面向团队与企业用户。语音厂商正从API供应商向办公协作产品延伸。对读者：评估会议AI工具时重点比对转写准确率、说话人分离与数据留存策略，而非只看界面。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google发布Gemini 4 Hydrogen：比Gemini 3.8 Flash快2.5倍</title>
+      <link>https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost报道，Gemini 4 Hydrogen定位快速Agent模型，具备100万token上下文窗口、4档思考层级，定价为每百万token输入1.50美元、输出7.50美元。Google给出的数据是Artificial Analysis得分51、Terminal-Bench 4.1上57%。对读者：长上下文加低价的组合适合做Agent主循环，但需按任务实测思考层级对成本的影响。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google新Gemini模型更擅长理解复杂问题</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Verge AI · The Verge报道，Gemini 4 Hydrogen可拆解「包含多个部分、含难懂拼写错误或高度具体」的问题并逐段作答，发布当天即上线搜索、Gemini应用、Google AI Studio全部层级、Gemini API、Gemini for business，以及面向Pro与Ultra订阅者的Google Antigravity。Google搜索产品VP Robby Stein称其已成为AI Mode的默认模型。对读者：若产品依赖搜索增强，可优先在AI Mode路径上做A/B，观察复杂查询的完成率变化。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>llm-gemini 0.37发布，Gemini 4定价体系让人困惑</title>
+      <link>https://simonwillison.net/2026/Nov/12/llm-gemini/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/12/llm-gemini/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Simon Willison发布llm-gemini 0.37，并梳理Gemini 4家族定价：Carbon与Argon在2026年11月30日前均为输入2.00美元、缓存输入0.10美元、输出10.00美元，12月1日起翻倍为4.00/0.20/20.00美元；Hydrogen为1.50/0.075/7.50美元。他指出Hydrogen与更大杯的兄弟型号价差并不大。对读者：跨年项目务必把12月1日的涨价节点写进成本模型，避免预算按旧价估算。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI开源LiquidCodec：7400万参数流式音频编解码器</title>
+      <link>https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost报道，Liquid AI发布约7400万参数的流式音频编解码器LiquidCodec，为LFM3-Audio-2B与LFM3-Omni-2B提供底层支持。它以12.5Hz、12个码本运行，在单CPU线程上编码速度约为实时的361倍。对读者：做实时语音交互时，这类轻量编解码器能显著降低端侧算力门槛，值得纳入选型对比。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>llama.cpp发布v1.0.0：为本地AI生态打下更强地基</title>
+      <link>https://huggingface.co/blog/ggml-org/llama-cpp-v1</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ggml-org/llama-cpp-v1</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客刊出ggml-org的公告，llama.cpp迎来v1.0.0版本，被定位为本地AI生态「更强的基础」。这一版本号标志着这个广泛使用的本地推理项目进入新的稳定阶段。对读者：长期锁定旧版本做端侧推理的团队，可评估升级到v1.0.0以获取更稳定的接口与后续维护支持。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>CopilotKit开源OpenBot 1.0：MIT许可、可自托管、内置治理</title>
+      <link>https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · MarkTechPost报道，CopilotKit发布OpenBot 1.0，这是一个MIT许可、可自托管的AI同事工作空间。企业自带Agent、模型与基础设施，每个Bot动作都要经过策略检查并写入审计轨迹。对读者：需要合规留痕的内部Agent场景，可直接以它为底座，省去自建策略与审计层的工作量。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>GitHub：一次编写、随处运行的Agent Skills实践指南</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub博客指出，Agent Skills把可复用的工程工作沉淀为团队可评审、可复用的文件，而工具、项目上下文与权限仍由运行它的宿主决定。文章给出跨Agent复用的落地方法。对读者：把团队约定写成Skill文件比反复调提示词更可持续，建议从代码评审与发布检查这两类高频流程开始。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub公布2026年10月可用性报告：共8起事故</title>
+      <link>https://github.blog/news-insights/company-news/github-availability-report-october-2026/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/github-availability-report-october-2026/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub博客发布10月可用性报告，称当月共发生8起导致GitHub服务性能下降的事故。报告是评估平台稳定性的常规参考。对读者：关键CI/CD链路应配置镜像与本地缓存，避免单一代码托管平台的抖动直接阻断发布。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>shadcn的下一个动作：UI SDK</title>
+      <link>https://react.statuscode.com/issues/497</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/497</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status第497期聚焦shadcn的新方向UI SDK，同时收录声明式拖拽库Dragology（面向SVG界面的实验性React库，通过声明可能结果让库推导交互）、元框架基准测试，以及在DevTools控制台里运行React应用等话题。对读者：组件库正从「复制粘贴源码」走向SDK化分发，评估shadcn生态时需关注其版本升级与依赖治理策略。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>头条 · 认识英伟达新任临时CEO Colette Kress</title>
+      <link>https://www.wired.com/story/who-is-colette-kress-the-woman-who-could-succeed-jensen-huang/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/who-is-colette-kress-the-woman-who-could-succeed-jensen-huang/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · Kress长期担任英伟达CFO，是推动公司成为AI算力巨头的关键财务操盘者，如今在黄仁勋辞职后接掌帅印。她的财务与资本配置背景，意味着过渡期公司策略可能更偏向稳健运营与投资者沟通。对读者：与其追逐人事八卦，不如跟踪其上任后的资本开支与产能指引，这直接决定GPU供给节奏。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>台积电拟向Anthropic与OpenAI各投资10亿美元</title>
+      <link>https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · 报道称台积电将向Anthropic和OpenAI投资10亿美元，成为AI热潮中「循环融资」的最新案例，而此刻AI交易本身正出现波动。芯片制造龙头直接入股模型公司，强化了算力与模型的绑定关系。对读者：关注这类交叉持股对算力定价与优先供货的影响，评估自身模型供应商的供应链稳定性。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Norwest设立40亿美元新基金加码AI</title>
+      <link>https://techcrunch.com/2026/11/12/norwest-pushes-deeper-into-ai-with-new-4b-fund/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/12/norwest-pushes-deeper-into-ai-with-new-4b-fund/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 投资机构Norwest宣布成立规模40亿美元的新基金，为其史上最大一只基金，明确将更深入押注AI领域。在一级市场对AI估值分歧加大的背景下，这代表头部VC仍在加仓。对读者：创业者可关注其投资偏好与阶段，融资窗口期或许比想象中更宽。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Fireworks AI遭攻击，Notion客户聊天记录外泄</title>
+      <link>https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Fireworks AI存储系统遭网络攻击，导致Notion客户的AI聊天记录被黑客访问，且这些数据存放在零数据保留策略之外。这是Fireworks两个月内的第二起数据泄露。对读者：使用第三方推理服务时务必确认数据留存与隔离策略，零数据保留承诺需以合同与审计验证。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Google Gemini智能眼镜发布，起售价395美元</title>
+      <link>https://arstechnica.com/google/2026/11/google-pushes-privacy-angle-as-gemini-powered-smartglasses-debut-starting-at-395/</link>
+      <guid isPermaLink="true">https://arstechnica.com/google/2026/11/google-pushes-privacy-angle-as-gemini-powered-smartglasses-debut-starting-at-395/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · 首批Gemini智能眼镜由Google联合三星、Gentle Monster与Warby Parker推出，起售价395美元，Google同步强调隐私设计。这是Gemini从软件走向硬件的关键一步，也把AI眼镜价格拉到中端区间。对读者：若考虑AI眼镜产品选型，可关注其隐私处理与生态兼容性，而非仅看价格。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Claude Opus 5.5成为Pro/Max/Team默认模型</title>
+      <link>https://claude.com/resources/articles/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic宣布Opus 5.5成为Claude在Pro、Max、Ultra与Team套餐中的默认模型，并给出其与其他模型在知识工作任务上的对比与使用建议。默认模型升级意味着现有用户无需改配置即可获得更强推理能力。对读者：团队可重新评估哪些知识工作流可交给默认模型，同时留意用量与成本变化。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Managed Agents支持自托管，进入私有测试</title>
+      <link>https://claude.com/resources/articles/self-hosted-claude-managed-agents</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/self-hosted-claude-managed-agents</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic推出自托管版Claude Managed Agents私有测试，用户可在自有云或本地环境运行Agent，自行托管Agent、凭证与会话历史，并选择请求发送至Claude的位置。这直接回应企业对数据主权与合规的诉求。对读者：受监管行业团队可申请测试，重点验证凭证管理与审计链路。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Meetings发布：开会时同步产出文档与白板</title>
+      <link>https://claude.com/resources/articles/claude-meetings</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-meetings</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Meetings进入beta，可将Claude加入视频会议，实时记笔记、回答问题，并在团队讨论时同步构建文档与白板。它把AI从会后总结前移到会中协作。对读者：可先在低风险会议中试用，评估记录准确性与敏感信息处理策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude for Manufacturing发布：17项技能+4个连接器</title>
+      <link>https://claude.com/resources/articles/claude-for-manufacturing</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-for-manufacturing</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic推出制造业插件，包含17项技能与4个连接器，可基于工厂既有系统起草报价、质量报告与供应商请求，供团队审核批准。这是Claude向垂直行业深水区延伸的信号。对读者：制造企业可评估其与现有ERP/MES的对接成本，优先在文档密集型环节试点。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Holiday Extras用Codex重构应用开发</title>
+      <link>https://openai.com/business/customer-stories/holidays-extras-codex</link>
+      <guid isPermaLink="true">https://openai.com/business/customer-stories/holidays-extras-codex</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI发布案例，Holiday Extras借助Codex把客户专业知识转化为更好的应用，提升预订转化率并打开增长空间。案例显示编码助手正从个人提效走向业务指标改善。对读者：评估编码助手时，可把转化率、交付周期等业务指标纳入ROI测算。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google发布Gemini Decisions API，Gemini Decision 1定价0.10美元/百万token</title>
+      <link>https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google推出Gemini Decisions API，由Gemini Decision 1驱动，可对最多1000个是/否、选择与评分制问题返回校准概率，覆盖文本、图像、音频、视频与PDF，输入定价为每百万token 0.10美元。决策模型赛道再添一员。对读者：分类与审核类任务可对比其与Jev、OpenAI决策模型的成本与多模态覆盖。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Simon Willison评Gemini Decisions API：多模态是差异点</title>
+      <link>https://simonwillison.net/2026/Nov/11/gemini-decisions-api/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/11/gemini-decisions-api/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Willison指出Gemini Decision 1与Jev高度相似，同样支持是/否、选择与评分三类问题，定价与GPT-6 Luna决策模型一致为每百万输入token 10美分且输出免费；Jev仍最便宜为4.2美分，但Gemini覆盖文本、图像、音频等多模态。对读者：选型时按模态需求与单价权衡，纯文本场景Jev仍有成本优势。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>DeepMind发布AlphaGenome 2，预测细胞类型特异性变异效应</title>
+      <link>https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google DeepMind发布AlphaGenome 2，这是一个条件DNA序列模型，可预测每种细胞类型的调控活性与变异效应，并通过AlphaGenome API面向非商业研究开放。AI for Science再进一步。对读者：生物信息团队可申请API验证其在靶点与变异解读上的可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>IBM发布Quantum Nighthawk r3：520量子比特支持1万次量子操作</title>
+      <link>https://www.marktechpost.com/2026/11/12/ibm-quantum-nighthawk-r3-520-qubits-1040-qubit-system-2027/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/ibm-quantum-nighthawk-r3-520-qubits-1040-qubit-system-2027/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · IBM公布Quantum Nighthawk r3处理器，520个可编程量子比特，设计支持1万次量子操作；2027年将有两颗r3芯片互联成1040量子比特系统，Nighthawk r2相较Heron最高实现19倍加速。对读者：量子计算仍属长周期投入，可关注其与经典AI工作负载的结合点而非短期替代。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI详解如何保障OpenClaw等持久化Agent安全</title>
+      <link>https://developers.openai.com/blog/securing-persistent-agents-like-openclaw-at-openai</link>
+      <guid isPermaLink="true">https://developers.openai.com/blog/securing-persistent-agents-like-openclaw-at-openai</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Developer · OpenAI介绍其运行持久化Agent的安全组合：可信控制平面服务、Codex沙箱、自动审查、Agent身份与可观测性。这为自建Agent的团队提供了可参考的防护分层。对读者：设计Agent时优先补齐身份、沙箱与审计三件套，再谈能力扩展。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS用A2A协议构建可组合多Agent系统</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS发布教程，演示用Agent-to-Agent（A2A）协议跨组织边界构建多Agent系统：Amazon ECS上的LangChain编排器与Bedrock AgentCore上的Strands Agent通过双向OAuth认证调用，双方不依赖彼此框架或SDK。对读者：跨团队Agent协作可优先评估A2A这类开放协议，降低框架锁定。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS推出官方aws-emulator，本地测试无需付费API Key</title>
+      <link>https://simonwillison.net/2026/Nov/11/aws-emulator/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/11/aws-emulator/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · AWS发布官方模拟器aws-emulator，可在本地克隆多项AWS服务进行测试，无需开通付费API Key。该项目用Rust编写，由大量Agent协作完成，前三周提交达29684次；目前在macOS与Windows上仍需Docker。对读者：CI中引入本地模拟可显著降低测试成本，但需评估Docker依赖带来的环境复杂度。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Meta开源八年设计系统astryx，连坐两天GitHub总榜第一</title>
+      <link>https://juejin.cn/post/7707184266060300322</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7707184266060300322</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Meta开源其使用八年的设计系统astryx，一套React组件库，连续两天位居GitHub总榜第一。其README明确面向「人，以及和人一起干活的agent」，组件库开始为Agent编写说明书。对读者：前端团队可研究其面向Agent的文档组织方式，为自家组件库的AI可读性做改造。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>CSS Anchor Positioning已进Baseline：弹层不必再手算坐标</title>
+      <link>https://juejin.cn/post/7707147434673127439</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7707147434673127439</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · CSS Anchor Positioning已于2026年1月成为Baseline，文章从锚点、翻转、Popover到列表场景讲清原理与可上线路径。弹层定位不必再依赖getBoundingClientRect与滚动监听。对读者：新项目可直接采用，老项目可先在非关键弹层灰度替换，减少坐标计算代码。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Anthropic 七位联创 IPO 中各套现约 2.5 亿美元</title>
+      <link>https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · TechCrunch 报道，Anthropic 七位联合创始人计划在 IPO 中卖出完全相同数量的股份，按发行价区间中值计算每人约套现 2.5 亿美元，同时该创始人群体仍保持对公司的控制权。这一安排在大规模 IPO 中并不常见，等额减持通常用于对外传递团队一致性信号。对读者：关注其招股书中的控制权条款与锁定期，这决定上市后治理结构与股价波动的节奏。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic IPO 路演视频披露算力策略：四大芯片家族并用</title>
+      <link>https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Simon Willison · Simon Willison 整理了 Anthropic IPO 路演视频内容，其中联合创始人 Tom Brown 谈「算力路径」的部分包含此前未公开的信息：Anthropic 在 AWS Trainium、Google TPU、NVIDIA GPU 和 AMD GPU 四类芯片上训练并服务 Claude。作者用 MacWhisper 提取了非官方文字稿。对读者：多云多芯片已是前沿实验室的默认姿势，自建推理集群时应把「可移植性」列为架构硬约束。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>纽约 AI 安全法生效，OpenAI、Anthropic 面临新监管</title>
+      <link>https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · TechCrunch 报道，纽约州开始执行其全面的 AI 安全法，要求 OpenAI、Anthropic 等主要开发商进行登记、披露安全实践，并上报重大事故，否则面临罚款。这意味着美国州层面的 AI 合规从立法进入执法阶段，头部厂商需建立常态化的报告流程。对读者：向美国市场提供模型服务的企业应尽早梳理登记义务与事故上报链路，别等收到问询才补。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>OpenAI 收购 Sonder 创始人创办的旅游初创 Odessia</title>
+      <link>https://techcrunch.com/2026/11/10/openai-acquires-odessia-travel-startup-created-by-sonder-founder/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/10/openai-acquires-odessia-travel-startup-created-by-sonder-founder/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · TechCrunch 报道 OpenAI 已收购旅游初创公司 Odessia，其创始人是 Sonder 创始人 Francis Davidson，在旅游行业知名度较高。OpenAI 尚未说明对旅游业务的后续计划，这笔收购的动机与整合方向仍不明确。对读者：可留意 OpenAI 是否把旅游作为 Agent 落地的高频场景，这对做垂直 Agent 的团队是竞争信号。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Mercor 完成 7.5 亿美元 D 轮，估值 200 亿美元、年化 30 亿美元</title>
+      <link>https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/</link>
+      <guid isPermaLink="true">https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Latent Space · Latent Space 的 AI 日报提到 Mercor 完成 7.5 亿美元 D 轮融资，估值达 200 亿美元，年化收入 30 亿美元；同日 Google 正式开放 Gemini 4 Carbon。数据标注与专家数据赛道在模型竞赛中持续获得高估值，与模型价格战形成有趣对照。对读者：若你在做数据侧生意，可对照 Mercor 的「专家网络 + 平台化」路径检查自身定位。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线可验证的 AI「Business Agents」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · ChatGPT 将允许用户与代表品牌的、经过验证的「Business Agents」对话，首批面向美国「符合条件」的电商与在线服务企业，属于今日公布的一批面向企业的 beta 功能。当某企业创建了 Business Agent 并出现在 ChatGPT 回复中，用户即可与其对话，询问产品差异等追问。对读者：做电商或 SaaS 的品牌应尽早认领并配置 Agent，抢占 AI 搜索入口的解释权。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 允许商家在 ChatGPT 中认领企业并配置销售 Agent</title>
+      <link>https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：VentureBeat AI · VentureBeat 报道 OpenAI 开放商家在 ChatGPT 中「认领」自己的企业，并可设置一个定制的、具备代理能力的 AI 客户销售代表。这与 ChatGPT 的 Business Agents 功能相呼应，把品牌在对话式入口中的存在变成可配置资产。对读者：认领流程通常涉及资质审核，建议提前准备企业验证材料，避免上线窗口期落后于竞品。</description>
+      <category>产品</category>
+    </item>
+  </channel>
+</rss>
