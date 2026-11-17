@@ -1,39 +1,57 @@
 {
-  "at": "2026-11-17T05:00:02.002Z",
+  "at": "2026-11-17T23:02:03.372Z",
   "type": "daily",
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "candidates": 120,
   "search": {
     "ok": false,
-    "queries": 21,
+    "queries": 16,
     "totalQueries": 22,
     "items": 24,
     "failures": [
       {
-        "query": "大模型融资",
+        "query": "Meta Llama",
+        "error": "Status 429"
+      },
+      {
+        "query": "前端 框架",
+        "error": "Status 429"
+      },
+      {
+        "query": "React Next.js frontend",
         "error": "Status 429"
       }
     ]
   },
-  "editorial": 16,
+  "editorial": 14,
   "sections": {
-    "业界": 5,
-    "产品": 4,
-    "模型": 4,
-    "开源": 1,
-    "开发者工具": 2,
-    "前端": 0
+    "业界": 3,
+    "产品": 3,
+    "模型": 3,
+    "开源": 2,
+    "开发者工具": 1,
+    "前端": 2
   },
   "rss": {
-    "ok": 67,
-    "failed": 1,
+    "ok": 65,
+    "failed": 3,
     "failures": [
       {
         "id": "codrops",
         "name": "Codrops",
         "error": "Status code 403"
+      },
+      {
+        "id": "hn-mcp",
+        "name": "Hacker News MCP",
+        "error": "Status code 502"
+      },
+      {
+        "id": "hn-ai-agent",
+        "name": "Hacker News AI Agent",
+        "error": "Status code 502"
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-16.md"
+  "output": "news/2026-11/ai-news-2026-11-17.md"
 }
