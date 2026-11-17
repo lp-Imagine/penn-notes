@@ -1,44 +1,39 @@
 {
-  "at": "2026-11-15T23:02:30.952Z",
+  "at": "2026-11-17T05:00:02.002Z",
   "type": "daily",
-  "date": "2026-11-15",
-  "candidates": 88,
+  "date": "2026-11-16",
+  "candidates": 120,
   "search": {
-    "ok": true,
-    "queries": 22,
+    "ok": false,
+    "queries": 21,
     "totalQueries": 22,
     "items": 24,
-    "failures": []
+    "failures": [
+      {
+        "query": "大模型融资",
+        "error": "Status 429"
+      }
+    ]
   },
   "editorial": 16,
   "sections": {
-    "业界": 3,
-    "产品": 2,
+    "业界": 5,
+    "产品": 4,
     "模型": 4,
-    "开源": 4,
+    "开源": 1,
     "开发者工具": 2,
-    "前端": 1
+    "前端": 0
   },
   "rss": {
-    "ok": 65,
-    "failed": 3,
+    "ok": 67,
+    "failed": 1,
     "failures": [
       {
         "id": "codrops",
         "name": "Codrops",
         "error": "Status code 403"
-      },
-      {
-        "id": "hn-mcp",
-        "name": "Hacker News MCP",
-        "error": "Status code 502"
-      },
-      {
-        "id": "hn-ai-agent",
-        "name": "Hacker News AI Agent",
-        "error": "Status code 502"
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-15.md"
+  "output": "news/2026-11/ai-news-2026-11-16.md"
 }
