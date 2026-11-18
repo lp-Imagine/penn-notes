@@ -51,8 +51,16 @@
             color: #a1a1a6;
             font-size: 14px;
           }
+          .subscribe-row {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 10px;
+          }
           .url {
             display: block;
+            flex: 1 1 auto;
+            min-width: 0;
             padding: 10px 12px;
             border-radius: 8px;
             background: #000;
@@ -64,13 +72,14 @@
           }
           .actions {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            flex: 0 0 auto;
             gap: 10px;
-            margin-top: 16px;
           }
           a.btn {
             display: inline-flex;
             align-items: center;
+            white-space: nowrap;
             padding: 8px 14px;
             border-radius: 999px;
             background: rgba(168, 177, 255, 0.12);
@@ -85,6 +94,15 @@
             background: transparent;
             border-color: #424245;
             color: #f5f5f7;
+          }
+          @media (max-width: 640px) {
+            .subscribe-row {
+              flex-direction: column;
+              align-items: stretch;
+            }
+            .actions {
+              flex-wrap: wrap;
+            }
           }
           .item {
             padding: 16px 0;
@@ -120,12 +138,14 @@
           <div class="card">
             <p class="empty-title">订阅地址</p>
             <p class="empty-desc">复制下方地址到 Feedly、Follow 等 RSS 阅读器。</p>
-            <code class="url" id="feed-url">
-              <xsl:value-of select="concat(/rss/channel/link, 'feed.xml')" />
-            </code>
-            <div class="actions">
-              <a class="btn" href="{/rss/channel/link}">返回 AI 动态</a>
-              <a class="btn btn--ghost" href="https://feedly.com/i/subscription/feed/{/rss/channel/link}feed.xml">在 Feedly 订阅</a>
+            <div class="subscribe-row">
+              <code class="url" id="feed-url">
+                <xsl:value-of select="concat(/rss/channel/link, 'feed.xml')" />
+              </code>
+              <div class="actions">
+                <a class="btn" href="{/rss/channel/link}">返回 AI 动态</a>
+                <a class="btn btn--ghost" href="https://feedly.com/i/subscription/feed/{/rss/channel/link}feed.xml">在 Feedly 订阅</a>
+              </div>
             </div>
           </div>
 
