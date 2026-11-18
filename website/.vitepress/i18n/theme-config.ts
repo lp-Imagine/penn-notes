@@ -54,7 +54,10 @@ export function buildNav(locale: UiLocale): DefaultTheme.NavItem[] {
     },
     {
       text: n.sites,
+      // 勿加 link：VitePress 见 link 会整项当成 VPNavBarMenuLink，items 下拉会丢，图标也无 --penn-nav-link-icon
+      activeMatch: "/sites/",
       items: [
+        { text: n.sitesAtlas, link: "/sites/", activeMatch: "/sites/" },
         {
           text: n.writeNotes,
           link: "/admin/",

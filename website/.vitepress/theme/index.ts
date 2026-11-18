@@ -47,6 +47,7 @@ import LabFeature from "./LabFeature.vue";
 import LabEffects from "./LabEffects.vue";
 import CollectEnhance from "./CollectEnhance.vue";
 import ProjectsPage from "./ProjectsPage.vue";
+import SitesPage from "./SitesPage.vue";
 import {
   getUiText,
   stripLocalePrefix,
@@ -1723,5 +1724,6 @@ export default {
     app.component("LabEffects", LabEffects);
     app.component("CollectEnhance", CollectEnhance);
     app.component("ProjectsPage", ProjectsPage);
+    app.component("SitesPage", SitesPage);
   },
 };

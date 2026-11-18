@@ -394,6 +394,30 @@ export type PageMessages = {
     swapLead: string;
     copySite: string;
   };
+  sites: {
+    kicker: string;
+    title: string;
+    lead: string;
+    stats: (galaxies: number, entries: number) => string;
+    backHome: string;
+    toAbout: string;
+    mapAria: string;
+    jumpList: string;
+    listAria: string;
+    listTitle: string;
+    listLead: string;
+    filterAria: string;
+    showAll: string;
+    showFiltered: string;
+    graphHint: string;
+    status: {
+      live: string;
+      growing: string;
+      archive: string;
+      service: string;
+      external: string;
+    };
+  };
   recent: {
     title: string;
     lead: string;
@@ -557,6 +581,7 @@ export type PageMessages = {
     writeNotesDesc: string;
     interviewDesc: string;
     navDesc: string;
+    sitesDesc: string;
     collectDesc: string;
     booksDesc: string;
     projectsDesc: string;
@@ -1006,6 +1031,31 @@ const zhCN: PageMessages = {
     swapLead: "欢迎互换友链，复制站点信息后发我。",
     copySite: "复制站点信息",
   },
+  sites: {
+    kicker: "Atlas",
+    title: "Penn 星图",
+    lead: "散落在不同域名与栏目里的小站、产品与实验。",
+    stats: (galaxies, entries) =>
+      `${galaxies} 个星系，${entries} 个入口，从主站出发。`,
+    backHome: "回到主站",
+    toAbout: "关于",
+    mapAria: "站点星图",
+    jumpList: "查看列表",
+    listAria: "站点列表",
+    listTitle: "站点列表",
+    listLead: "点星图或下方标签切换星系；卡片可直接跳转。",
+    filterAria: "按星系筛选",
+    showAll: "展开全部",
+    showFiltered: "只看当前",
+    graphHint: "拖拽节点 · 点击星系查看详情",
+    status: {
+      live: "运行中",
+      growing: "生长中",
+      archive: "归档",
+      service: "服务",
+      external: "外部",
+    },
+  },
   recent: {
     title: "近况",
     lead: "碎碎念与站内动态摘要",
@@ -1178,6 +1228,7 @@ const zhCN: PageMessages = {
     writeNotesDesc: "Decap CMS：登录 GitHub 后在线新建 / 编辑笔记",
     interviewDesc: "AI 面试助手，按简历与 JD 练题",
     navDesc: "网址导航小站，常用站点速达",
+    sitesDesc: "站点星图：产品、栏目与实验入口",
     collectDesc: "外链精选，前端与工程化好文",
     booksDesc: "在读与计划中的技术书",
     projectsDesc: "做过的产品",
@@ -1628,6 +1679,31 @@ const zhTW: PageMessages = {
     swapLead: "歡迎互換友鏈，複製站點資訊後傳給我。",
     copySite: "複製站點資訊",
   },
+  sites: {
+    kicker: "Atlas",
+    title: "Penn 星圖",
+    lead: "散落在不同網域與欄目裡的小站、產品與實驗。",
+    stats: (galaxies, entries) =>
+      `${galaxies} 個星系，${entries} 個入口，從主站出發。`,
+    backHome: "回到主站",
+    toAbout: "關於",
+    mapAria: "站點星圖",
+    jumpList: "查看列表",
+    listAria: "站點列表",
+    listTitle: "站點列表",
+    listLead: "點星圖或下方標籤切換星系；卡片可直接跳轉。",
+    filterAria: "按星系篩選",
+    showAll: "展開全部",
+    showFiltered: "只看當前",
+    graphHint: "拖曳節點 · 點擊星系查看詳情",
+    status: {
+      live: "運行中",
+      growing: "生長中",
+      archive: "歸檔",
+      service: "服務",
+      external: "外部",
+    },
+  },
   recent: {
     title: "近況",
     lead: "碎碎念與站內動態摘要",
@@ -1800,6 +1876,7 @@ const zhTW: PageMessages = {
     writeNotesDesc: "Decap CMS：登入 GitHub 後線上新建 / 編輯筆記",
     interviewDesc: "AI 面試助手，依履歷與 JD 練題",
     navDesc: "網址導航小站，常用站點速達",
+    sitesDesc: "站點星圖：產品、欄目與實驗入口",
     collectDesc: "外鏈精選，前端與工程化好文",
     booksDesc: "在讀與計劃中的技術書",
     projectsDesc: "做過的產品",
@@ -2286,6 +2363,31 @@ const en: PageMessages = {
     swapLead: "Happy to swap — copy site info and send it over.",
     copySite: "Copy site info",
   },
+  sites: {
+    kicker: "Atlas",
+    title: "Penn Atlas",
+    lead: "Sites, products, and experiments scattered across domains and sections.",
+    stats: (galaxies, entries) =>
+      `${galaxies} galaxies, ${entries} doorways — starting from home.`,
+    backHome: "Back to home",
+    toAbout: "About",
+    mapAria: "Site atlas",
+    jumpList: "View list",
+    listAria: "Site list",
+    listTitle: "Site list",
+    listLead: "Tap the map or filters to switch galaxies; cards jump straight there.",
+    filterAria: "Filter by galaxy",
+    showAll: "Show all",
+    showFiltered: "Current only",
+    graphHint: "Drag nodes · click a galaxy for details",
+    status: {
+      live: "Live",
+      growing: "Growing",
+      archive: "Archived",
+      service: "Service",
+      external: "External",
+    },
+  },
   recent: {
     title: "Recent",
     lead: "Notes and site highlights",
@@ -2463,6 +2565,7 @@ const en: PageMessages = {
     writeNotesDesc: "Decap CMS: sign in with GitHub to write or edit notes",
     interviewDesc: "AI interview coach from resume + JD",
     navDesc: "Link portal for everyday sites",
+    sitesDesc: "Site atlas: products, sections, and lab doors",
     collectDesc: "Curated links on frontend & engineering",
     booksDesc: "Tech books reading and planned",
     projectsDesc: "Products I've shipped",

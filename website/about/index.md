@@ -71,6 +71,11 @@ next: false
         <span class="about-link-desc" data-i18n="about.interviewDesc">AI 面试助手，按简历与 JD 练题</span>
         <span class="about-link-go" aria-hidden="true">↗</span>
       </a>
+      <a class="about-link" href="/sites/">
+        <span class="about-link-title" data-i18n="nav.sitesAtlas">星图</span>
+        <span class="about-link-desc" data-i18n="about.sitesDesc">站点星图：产品、栏目与实验入口</span>
+        <span class="about-link-go" aria-hidden="true">→</span>
+      </a>
       <a class="about-link" href="https://nav.draftly.cn" target="_blank" rel="noopener noreferrer">
         <span class="about-link-title" data-i18n="nav.navSite">导航</span>
         <span class="about-link-desc" data-i18n="about.navDesc">网址导航小站，常用站点速达</span>

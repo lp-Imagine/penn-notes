@@ -103,6 +103,7 @@ export type MessageTree = PageMessages & {
     computer: string;
     misc: string;
     sites: string;
+    sitesAtlas: string;
     about: string;
     writeNotes: string;
     interview: string;

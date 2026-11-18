@@ -4,6 +4,7 @@
  * news      — AI 动态 / 归档 / 标签页
  * doc       — 文章详情、章节索引、大纲
  * about     — 关于页、友链
+ * sites     — 星图门户
  * ui        — 文章可读性提升、搜索、进度条、回到顶部等通用 UI
  */
 @import "./css/vars-nav.css";
@@ -14,6 +15,7 @@
 @import "./css/collect.css";
 @import "./css/books.css";
 @import "./css/projects.css";
+@import "./css/sites.css";
 @import "./css/topics.css";
 @import "./css/changelog.css";
 @import "./css/scraps.css";

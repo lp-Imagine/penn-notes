@@ -1,0 +1,331 @@
+{
+  "hub": {
+    "id": "hub",
+    "name": "Penn Notes",
+    "host": "penn-notes.draftly.cn",
+    "url": "/",
+    "desc": "主站首页，笔记与 AI 动态的起点。"
+  },
+  "galaxies": [
+    {
+      "id": "blog",
+      "name": "博客",
+      "desc": "文章、归档、友链与关于，承载长期内容。",
+      "accent": "#4c6ef5",
+      "sites": [
+        {
+          "id": "home",
+          "name": "Penn Notes",
+          "host": "penn-notes.draftly.cn",
+          "url": "/",
+          "desc": "主站首页，个人内容与站点导航的起点。",
+          "status": "live"
+        },
+        {
+          "id": "about",
+          "name": "关于",
+          "host": "penn-notes.draftly.cn",
+          "url": "/about/",
+          "desc": "个人介绍、技能与常去的地方。",
+          "status": "live"
+        },
+        {
+          "id": "archive",
+          "name": "归档",
+          "host": "penn-notes.draftly.cn",
+          "url": "/archive/",
+          "desc": "按时间回看所有公开笔记。",
+          "status": "live"
+        },
+        {
+          "id": "friends",
+          "name": "友链动态",
+          "host": "penn-notes.draftly.cn",
+          "url": "/friends/",
+          "desc": "订阅友链站点的最近更新。",
+          "status": "live"
+        },
+        {
+          "id": "recent",
+          "name": "近况",
+          "host": "penn-notes.draftly.cn",
+          "url": "/recent/",
+          "desc": "站点碎碎念与日报摘要。",
+          "status": "live"
+        },
+        {
+          "id": "changelog",
+          "name": "更新日志",
+          "host": "penn-notes.draftly.cn",
+          "url": "/changelog/",
+          "desc": "产品与体验改动记录。",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "name": "笔记",
+      "desc": "按主题拆开的技术笔记分区。",
+      "accent": "#12b886",
+      "sites": [
+        {
+          "id": "web",
+          "name": "JS & 框架",
+          "host": "penn-notes.draftly.cn",
+          "url": "/web/",
+          "desc": "JavaScript、Vue、React 实践。",
+          "status": "live"
+        },
+        {
+          "id": "engineering",
+          "name": "工程化",
+          "host": "penn-notes.draftly.cn",
+          "url": "/engineering/",
+          "desc": "Git、npm 与开发工具链。",
+          "status": "live"
+        },
+        {
+          "id": "ui",
+          "name": "样式",
+          "host": "penn-notes.draftly.cn",
+          "url": "/ui/",
+          "desc": "HTML、CSS、布局与动效。",
+          "status": "live"
+        },
+        {
+          "id": "backend",
+          "name": "后端",
+          "host": "penn-notes.draftly.cn",
+          "url": "/backend/",
+          "desc": "Node.js、MySQL 与服务端。",
+          "status": "live"
+        },
+        {
+          "id": "agent",
+          "name": "AI Agent",
+          "host": "penn-notes.draftly.cn",
+          "url": "/agent/",
+          "desc": "Agent 实践、工作流与提示词。",
+          "status": "growing"
+        },
+        {
+          "id": "computer",
+          "name": "浏览器",
+          "host": "penn-notes.draftly.cn",
+          "url": "/computer/",
+          "desc": "浏览器渲染与 Chrome 扩展。",
+          "status": "live"
+        },
+        {
+          "id": "tech",
+          "name": "工具备忘",
+          "host": "penn-notes.draftly.cn",
+          "url": "/tech/",
+          "desc": "文档、GitHub 技巧与资源备忘。",
+          "status": "live"
+        },
+        {
+          "id": "misc",
+          "name": "杂项",
+          "host": "penn-notes.draftly.cn",
+          "url": "/misc/",
+          "desc": "工作、生活与方法随笔。",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "name": "动态",
+      "desc": "每日 AI / 科技精选与订阅入口。",
+      "accent": "#f59f00",
+      "sites": [
+        {
+          "id": "ai-news",
+          "name": "AI 动态",
+          "host": "penn-notes.draftly.cn",
+          "url": "/news/",
+          "desc": "每天自动更新的科技 / AI 精选。",
+          "status": "live"
+        },
+        {
+          "id": "topics",
+          "name": "学习路径",
+          "host": "penn-notes.draftly.cn",
+          "url": "/topics/",
+          "desc": "按主题串起来的笔记路线。",
+          "status": "live"
+        },
+        {
+          "id": "tags",
+          "name": "标签",
+          "host": "penn-notes.draftly.cn",
+          "url": "/tags/",
+          "desc": "按标签筛选笔记。",
+          "status": "live"
+        },
+        {
+          "id": "notes-rss",
+          "name": "文章 RSS",
+          "host": "penn-notes.draftly.cn",
+          "url": "/notes/feed.xml",
+          "desc": "订阅博客更新。",
+          "status": "service"
+        },
+        {
+          "id": "news-rss",
+          "name": "AI 动态 RSS",
+          "host": "penn-notes.draftly.cn",
+          "url": "/news/feed.xml",
+          "desc": "订阅每日精选。",
+          "status": "service"
+        }
+      ]
+    },
+    {
+      "id": "products",
+      "name": "产品",
+      "desc": "散落在不同域名里的自家小站。",
+      "accent": "#15aabf",
+      "sites": [
+        {
+          "id": "draftly",
+          "name": "Draftly",
+          "host": "draftly.cn",
+          "url": "https://draftly.cn",
+          "desc": "公众号内容工作台：选题到推送草稿箱。",
+          "status": "live"
+        },
+        {
+          "id": "interview",
+          "name": "面镜",
+          "host": "interview.draftly.cn",
+          "url": "https://interview.draftly.cn",
+          "desc": "AI 面试助手，按简历与 JD 练题。",
+          "status": "live"
+        },
+        {
+          "id": "nav",
+          "name": "导航",
+          "host": "nav.draftly.cn",
+          "url": "https://nav.draftly.cn",
+          "desc": "网址导航小站，常用站点速达。",
+          "status": "live"
+        },
+        {
+          "id": "projects",
+          "name": "项目橱窗",
+          "host": "penn-notes.draftly.cn",
+          "url": "/projects/",
+          "desc": "做过的产品与项目经历。",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "id": "lists",
+      "name": "清单",
+      "desc": "收藏、书单与短记，方便以后重读。",
+      "accent": "#e8590c",
+      "sites": [
+        {
+          "id": "collect",
+          "name": "收藏",
+          "host": "penn-notes.draftly.cn",
+          "url": "/collect/",
+          "desc": "外链精选，前端与工程化好文。",
+          "status": "live"
+        },
+        {
+          "id": "books",
+          "name": "书单",
+          "host": "penn-notes.draftly.cn",
+          "url": "/books/",
+          "desc": "在读与计划中的技术书。",
+          "status": "live"
+        },
+        {
+          "id": "scraps",
+          "name": "短记",
+          "host": "penn-notes.draftly.cn",
+          "url": "/scraps/",
+          "desc": "长文之外的碎片笔记。",
+          "status": "live"
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "name": "实验",
+      "desc": "动效、场、语言与信号的轻量探索。",
+      "accent": "#37b24d",
+      "sites": [
+        {
+          "id": "lab-home",
+          "name": "实验室",
+          "host": "penn-notes.draftly.cn",
+          "url": "/lab/",
+          "desc": "可交互的实验入口总览。",
+          "status": "growing"
+        },
+        {
+          "id": "lab-field",
+          "name": "场",
+          "host": "penn-notes.draftly.cn",
+          "url": "/lab/field",
+          "desc": "粒子与力场实验。",
+          "status": "growing"
+        },
+        {
+          "id": "lab-effects",
+          "name": "特效",
+          "host": "penn-notes.draftly.cn",
+          "url": "/lab/effects",
+          "desc": "视觉效果小样。",
+          "status": "growing"
+        },
+        {
+          "id": "write-notes",
+          "name": "写笔记",
+          "host": "penn-notes.draftly.cn",
+          "url": "/admin/",
+          "desc": "Decap CMS：登录 GitHub 后在线编辑。",
+          "status": "service"
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "name": "社交",
+      "desc": "代码、订阅与可公开联系到我的地方。",
+      "accent": "#868e96",
+      "sites": [
+        {
+          "id": "github",
+          "name": "GitHub",
+          "host": "github.com",
+          "url": "https://github.com/lp-Imagine",
+          "desc": "开源与仓库主页。",
+          "status": "external"
+        },
+        {
+          "id": "notes-feed",
+          "name": "文章 RSS",
+          "host": "penn-notes.draftly.cn",
+          "url": "/notes/feed.xml",
+          "desc": "博客订阅源。",
+          "status": "service"
+        },
+        {
+          "id": "news-feed",
+          "name": "动态 RSS",
+          "host": "penn-notes.draftly.cn",
+          "url": "/news/feed.xml",
+          "desc": "AI 动态订阅源。",
+          "status": "service"
+        }
+      ]
+    }
+  ]
+}
