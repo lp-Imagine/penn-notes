@@ -1,41 +1,50 @@
 {
-  "at": "2026-11-18T23:02:30.127Z",
+  "at": "2026-11-19T23:02:27.417Z",
   "type": "daily",
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "candidates": 120,
   "search": {
     "ok": false,
-    "queries": 20,
+    "queries": 14,
     "totalQueries": 22,
     "items": 24,
     "failures": [
       {
-        "query": "TypeScript Vite",
+        "query": "Meta Llama",
         "error": "Status 429"
       },
       {
-        "query": "React Next.js frontend",
+        "query": "AI coding agent",
+        "error": "Status 429"
+      },
+      {
+        "query": "Google Gemini",
         "error": "Status 429"
       }
     ]
   },
-  "editorial": 14,
+  "editorial": 19,
   "sections": {
-    "业界": 5,
-    "产品": 2,
+    "业界": 4,
+    "产品": 5,
     "模型": 4,
-    "开源": 0,
+    "开源": 3,
     "开发者工具": 2,
     "前端": 1
   },
   "rss": {
-    "ok": 66,
-    "failed": 2,
+    "ok": 65,
+    "failed": 3,
     "failures": [
       {
         "id": "codrops",
         "name": "Codrops",
         "error": "Status code 403"
+      },
+      {
+        "id": "hn-ai-agent",
+        "name": "Hacker News AI Agent",
+        "error": "Status code 502"
       },
       {
         "id": "hn-mcp",
@@ -44,5 +53,5 @@
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-18.md"
+  "output": "news/2026-11/ai-news-2026-11-19.md"
 }
