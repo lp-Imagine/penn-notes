@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Nov 2026 07:32:39 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>头条 · Anthropic完成史上最大IPO，估值1.5万亿美元</title>
+      <link>https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/</link>
+      <guid isPermaLink="true">https://latent.space/p/ainews-anthropic-successfully-completes-largest-ipo-in-history-valued-at-1-5t/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Latent Space · Anthropic以每股83美元定价登陆纳斯达克，开盘111.50美元、收盘97.17美元，成为史上规模最大的IPO，估值达1.5万亿美元。同日公司公告确认承销商超额配售权全额行使，共发行11.27亿股A类普通股。这既是对Claude商业化的定价，也把AI公司的资本开支推向公开市场审视。对读者：关注上市后首份财报的推理成本与毛利率，这将成为AI公司估值的新锚点。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic七位创始人IPO套现近20亿美元</title>
+      <link>https://techcrunch.com/2026/11/19/anthropics-7-founders-cashed-out-nearly-2b-in-record-breaking-ipo/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/19/anthropics-7-founders-cashed-out-nearly-2b-in-record-breaking-ipo/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 按83美元发行价计算，Anthropic七位创始人每人套现2.8亿美元，合计近20亿美元，公司则募得近1050亿美元。创始人高位减持在超级IPO中并不罕见，但会放大市场对内部人信心与锁定期安排的讨论。对读者：若关注AI一级市场估值，可把创始人减持比例与锁定期条款作为判断泡沫程度的辅助指标。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Nvidia财报增长但停止在华销售H200，黄仁勋风波持续发酵</title>
+      <link>https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/</link>
+      <guid isPermaLink="true">https://techcrunch.com/podcast/the-fallout-from-nvidias-jensen-huang-scandal-continues/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Nvidia在CEO黄仁勋离任风波中发布最新财报，业绩保持健康增长并承诺好时光延续；同时公司表示将停止在中国销售H200芯片，并回应了外界多项质疑。芯片出口与人事动荡叠加，使其中国区收入前景更不确定。对读者：依赖Nvidia高端卡的团队应尽早评估供应链替代与合规风险，别把算力规划押在单一型号上。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Nvidia股价较10月高点回落近40%</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1038063/nvidia-stock-market-price-earnings</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1038063/nvidia-stock-market-price-earnings</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · 临时CEO Colette Kress在财报电话会上称「我们稳住了」，但到周四股价徘徊在约150美元，较10月6日历史高点下跌近40%，抹去了财报后的短暂上涨。同期华尔街正为Anthropic的纳斯达克首秀买单。对读者：AI算力龙头的波动会传导至云厂商定价与创业公司融资，做预算时留出算力成本上浮的缓冲。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Apple招募工程师自研AI Agent，可跨应用操作Mac</title>
+      <link>https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据Bloomberg发现的一份已撤下招聘信息，Apple正招募工程师主导开发agentic AI助手，能力包括浏览网页、跨应用操作、写代码和调用服务。这将使Apple与Meta Muse、OpenAI Dots、Anthropic Duet、Google Tasks正面竞争。对读者：若在做桌面端Agent，Apple入场意味着系统级权限与隐私模型可能被重新定义，值得跟踪其API开放节奏。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google首页上线AI会话侧边栏，全球推送</title>
+      <link>https://www.theverge.com/tech/1038059/google-search-homepage-ai-chats</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038059/google-search-homepage-ai-chats</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google更新桌面首页，加入可折叠侧边栏，用于查看和继续AI Mode会话，支持新建线程、搜索历史线程以及连接Gemini Notebook。产品副总裁Robby Stein在X上演示了该功能，目前已全球上线。对读者：搜索入口与AI会话合并会改变流量分发逻辑，做SEO与内容分发的团队应尽早测试AI Mode下的曝光表现。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Signal限制截图，阻止Gemini与Siri读取屏幕内容</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Signal在Android与iOS上限制截图能力，以阻止系统级AI Agent读取用户消息等数据。总裁Meredith Whittaker称，操作系统内置的屏幕理解能力正在「削弱Signal独立保障隐私的能力」，并呼吁OS厂商提供更明确的隔离机制。对读者：做端侧AI功能时需提前设计应用级隐私开关，否则可能被通讯类应用直接封堵。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta Muse Charm可穿戴设备或定价300美元</title>
+      <link>https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据The Information报道，Meta计划将带屏幕、可语音对话Muse AI Agent的Muse Charm定价为300美元。扎克伯格此前称该设备「赶在12月假日季」出货，配备指纹传感器，轻触即可唤醒Agent。对读者：AI硬件定价正卡在300美元心理关口，做类似产品需在BOM与订阅变现之间提前算清账。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Gemini API推出工具检索，Agent可挂数百工具且更省Token</title>
+      <link>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google在Gemini API预览版中推出Tool Retrieval，让Agent按需加载工具schema，从而接入数百个工具的同时减少输入Token消耗。这针对的是Agent工具集膨胀后上下文被schema挤占的痛点。对读者：工具数量超过几十个的Agent项目可优先试用，重点对比检索准确率与首Token延迟的权衡。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity推出Orchestrator API，统一路由与故障转移</title>
+      <link>https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity的Orchestrator API用单一端点接入OpenAI、Anthropic、Google、xAI及开源权重模型，支持同模型跨供应商故障转移、统一计费，并提供预览版perplexity/auto路由按描述分发请求。对读者：多模型架构可先用它验证路由策略，再决定是否自建网关，注意预览版路由的稳定性风险。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>NVIDIA开源Nemotron-Labs-Sigma扩散语言模型，14个检查点</title>
+      <link>https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · NVIDIA发布Nemotron-Labs-Sigma，共14个3B与8B连续扩散语言模型检查点。模型在16维嵌入空间去噪，蒸馏为少步采样器，解码速度最高达自回归的4.20倍。对读者：扩散LM在低延迟场景值得做基准测试，但需验证长文本与结构化输出的质量是否满足业务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta FAIR自改进记忆在持续学习基准达56.0</title>
+      <link>https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta FAIR的自改进记忆让Kimi-K2.6自行编写LOAD与OFFLOAD记忆提示，再蒸馏进模型权重。优化后的提示在Continual Learning Bench上得56.0，高于最佳手写框架的44.6。对读者：长期运行的Agent可借鉴「让模型自写记忆策略再固化」的思路，降低人工调提示的成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Hugging Face上架Inkling 2 Mini，面向本地部署</title>
+      <link>https://huggingface.co/blog/inkling2mini</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/inkling2mini</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客介绍Inkling 2 Mini，定位为本地环境下的高性能小模型。对读者：本地部署选型时可将其纳入对比清单，重点测显存占用与量化后的质量衰减。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face推出harness适配器，兼顾性能与成本</title>
+      <link>https://huggingface.co/blog/harness-adapters-at-scale</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/harness-adapters-at-scale</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face发布harness adapters，用于把所选模型适配到自己的harness上，以提升性能并降低成本。对读者：自建评测或Agent框架的团队可借此减少模型与脚手架之间的耦合，换模型时不必重写整套调用层。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源AutoClip切直播：1小时48分出19段，整月API仅0.08元</title>
+      <link>https://juejin.cn/post/7710134632901607460</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710134632901607460</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：掘金人工智能 · 开源AI剪辑工具AutoClip（GitHub zhouxiaoka/autoclip，MIT许可）可将长视频自动转写、挑高光并导出竖屏短片。实测1小时48分直播约5分钟切出19段，阿里云百炼整月费用0.08元，但第24至43分钟未选出片段。对读者：低成本自动化剪辑已可用，但高光召回仍需人工兜底，建议先小样本比对再全量跑。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenAI披露Performance Factory：Codex驱动的软件优化系统</title>
+      <link>https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRmktQ2JEUXFSZmVLaTl4WE9RLWJzRUtscEZXdnF1Q3B3LVFUTV9rSkFUVUppWXFIanQ3aGcxVTRBcGdJd1ZOdkgzYmVDTzJONW5PRExPeDNzWFp5T1FyUEFJQ05pZ19XQ2oyeEdMMkFoUlE1aDg1WUFTRkxyaUQ2cDV5T0dDeXBRa3ZkR0ktdDlDaVVXUlVLUEFfaWxveTJJWHdfNGVsSVdXekVSRGJmdGN1ODlEaGlULWtUOHRFODJIRVh5ckpCVEplUXFxb1FtNzE5MkNKLVN6YlhQSlNJUkN3ZzlBUQ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRmktQ2JEUXFSZmVLaTl4WE9RLWJzRUtscEZXdnF1Q3B3LVFUTV9rSkFUVUppWXFIanQ3aGcxVTRBcGdJd1ZOdkgzYmVDTzJONW5PRExPeDNzWFp5T1FyUEFJQ05pZ19XQ2oyeEdMMkFoUlE1aDg1WUFTRkxyaUQ2cDV5T0dDeXBRa3ZkR0ktdDlDaVVXUlVLUEFfaWxveTJJWHdfNGVsSVdXekVSRGJmdGN1ODlEaGlULWtUOHRFODJIRVh5ckpCVEplUXFxb1FtNzE5MkNKLVN6YlhQSlNJUkN3ZzlBUQ?oc=5</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：VentureBeat AI · 据VentureBeat独家报道，OpenAI公开Performance Factory，一套由Codex驱动的软件优化系统，用于保持ChatGPT的响应速度。对读者：这提示「用编码Agent做性能优化」已进入生产环境，团队可尝试把性能回归修复纳入Agent流水线。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Kimi Code CLI v2.7.0原生支持Amazon Bedrock</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · Kimi Code CLI v2.7.0新增原生Amazon Bedrock provider，可用标准AWS凭证链（命名profile或SSO）连接Kimi K3.1 Pro等模型，无需单独API Key。对读者：已在AWS体系内的团队可省去密钥管理环节，注意确认Bedrock区域与模型可用性。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>React Status：Next.js为何安全公告频发，React Flow 13发布</title>
+      <link>https://react.statuscode.com/issues/498</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/498</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · 本期React Status聚焦Next.js安全公告频发的原因，同时报道React Flow 13发布——这是该节点编辑器库两年来的首个大版本，新增useNode等hook以减少大型流程图重渲染，并提供迁移指南；Vue Flow已加入xyflow家族。对读者：使用Next.js的项目应建立安全公告订阅与快速升级流程，节点编辑器类产品可评估React Flow 13的渲染收益。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>头条 · Anthropic 完成史上最大 IPO，募资 813 亿美元</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037459/anthropic-ipo-safe-ai-reputation-power-structure</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037459/anthropic-ipo-safe-ai-reputation-power-structure</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：The Verge AI · Anthropic 今日完成筹备多年的 IPO，募资 813 亿美元，超越 SpaceX 成为史上规模最大的 IPO，也为后续上市的 AI 实验室立下先例。公司以「安全优先」起家，但高管强调只有跑在第一才能兑现使命，这需要大量资金与算力。对读者：关注其招股书中的算力承诺与安全投入比例，这是判断 AI 公司估值逻辑能否成立的关键样本。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic 千亿美元 IPO 背后：最大敌人是自己</title>
+      <link>https://www.wired.com/story/anthropics-record-breaking-ipo-highlights-the-ai-giants-worst-enemy-itself/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/anthropics-record-breaking-ipo-highlights-the-ai-giants-worst-enemy-itself/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · Wired 指出，押注 1070 亿美元的投资者将权衡两件事：Anthropic 的 AI 安全战略，以及公众对数据中心日益增长的不满是否会影响其增长。对读者：若持有或计划参与 AI 基础设施相关标的，需把「社会许可」纳入风险清单，而不只看模型能力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic IPO 考验 AI 循环融资模式</title>
+      <link>https://techcrunch.com/2026/11/19/anthropics-ipo-puts-ais-circular-financing-boom-to-the-test/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/19/anthropics-ipo-puts-ais-circular-financing-boom-to-the-test/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · TechCrunch 分析称，Anthropic 上市后背负巨额算力承诺，但其最大基础设施伙伴亚马逊和谷歌即便在 Anthropic 失去领先时仍可继续从 AI 获利。对读者：评估 AI 产业链时，可把「卖铲人」与「淘金者」分开定价，前者现金流确定性更高。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>黄仁勋离任后，纳德拉仍对 Nvidia 保持信心</title>
+      <link>https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-remains-confident-in-nvidia-after-huangs-exit/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 微软 CEO 纳德拉公开表达对 Nvidia 临时 CEO Colette Kress 的信心，后者在黄仁勋离任后接任。对读者：头部云厂商的公开背书是观察 Nvidia 过渡期稳定性的重要信号，可跟进其下一代产品路线是否如期。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线 Live Dictation：边说边转写</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 为 ChatGPT 推出 Live Dictation，麦克风输入在你说话时即转写为文字，无需等录音结束，并已在所有套餐的网页、桌面端、iOS 与 Android 上全球推送。使用中可点击声波查看实时文本并在提示框中编辑。对读者：语音输入延迟降低后，长提示词场景可优先改用口述，减少打字成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Canva 新增 AI「关闭」开关</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Canva 允许用户关闭生成式 AI 功能，包括 AI 扩图 Magic Expand 和聊天机器人生成图像；但背景移除、Magic Grab 等不生成新内容的工具仍保持开启。对读者：AI 功能开关正成为产品合规与用户信任的标配，设计协作类工具选型时可把「可关闭性」列为评估项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>全美最大学区考虑弃用 Google 搜索</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 纽约、洛杉矶、芝加哥学区正考虑 Google 替代方案，因 Google 表示退出 AI 功能的学校将无法使用搜索，从明年起学校无法在不关闭 Gemini 功能的情况下单独保留搜索。对读者：教育市场对强制 AI 捆绑的反弹，可能改变校园软件的采购标准，相关供应商需提前准备可分离方案。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>实测 Apple Watch 常听 AI 两周：Siri Recap 隐私优先的取舍</title>
+      <link>https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 作者在 Apple Watch Ultra 4 上测试 Siri Recap 与亚马逊 Bee Frontier 约一个月，两者都能环境收音并 AI 摘要，苹果走极简与隐私优先路线，但需明确授权。对读者：可穿戴常听 AI 的差异点在隐私设计而非功能，选型时应优先确认数据留存与授权粒度。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 如何用 Performance Factory 让 ChatGPT 保持快速</title>
+      <link>https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast</link>
+      <guid isPermaLink="true">https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 介绍 Performance Factory：一套由 Codex 驱动的工作流系统，自动发现并修复性能问题，以维持 ChatGPT 的响应速度。对读者：把编码 Agent 用于自身基础设施的性能治理，是可复用的工程范式，值得在团队内试点自动化性能巡检。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 4 Neon</title>
+      <link>https://deepmind.google/blog/introducing-gemini-4-neon/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/introducing-gemini-4-neon/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google 推出 Gemini 4 Neon，面向复杂编码与分析任务提供前沿级智能，同时成本更低。VentureBeat 称其编码性能达到 Opus 5.5 级别，API token 价格低 25%。对读者：若正在为编码 Agent 选型，Neon 值得纳入基准测试，但需先厘清 Gemini 4 系列复杂的定价结构。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Neon 细节：1M 上下文，AA 编码 Agent 指数第一</title>
+      <link>https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Gemini 4 Neon 支持 1M 上下文，定价为每百万 token 3 美元输入、15 美元输出，AA 智能指数得分 61，并在 AA 编码 Agent 指数上排名第一。对读者：长上下文加编码 Agent 双料第一，适合评估将其用于大型代码库理解与多步重构任务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Genie 4 开放使用：实时音频与可编辑交互世界</title>
+      <link>https://deepmind.google/blog/genie-4-is-now-available/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/genie-4-is-now-available/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google AI Ultra 订阅用户现可使用 Genie 4，生成带实时音频与编辑能力的交互式世界。对读者：这是世界模型产品化的早期形态，做游戏、仿真或教育内容的团队可申请体验，观察其可控性与生成成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 应用下探低内存 Android 设备</title>
+      <link>https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google Gemini 应用现支持低内存 Android 设备，可在手机上使用 Gemini Live 与自定义图像生成。对读者：端侧 AI 的覆盖面向中低端机型延伸，做移动端产品的团队应重新评估低端机上的 AI 功能可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>新 LoRA 适配器将 Qwen3.8 编码成功率从 39% 提升到 65%</title>
+      <link>https://www.marktechpost.com/2026/11/18/hugging-face-qwen3-8-27b-pi-adapted-lora/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/18/hugging-face-qwen3-8-27b-pi-adapted-lora/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Hugging Face 发布 Qwen3.8-27B-pi-adapted，这是用强化学习为 pi 编码 Agent 训练的 Apache-2.0 LoRA 适配器，SWE-bench Pro hard-51 pass@1 从 39.2% 升至 64.7%，Terminal-Bench 2.1 从 39.5% 升至 55.8%。对读者：小模型加专用适配器可逼近大模型编码表现，预算有限的团队可优先尝试此类开源方案。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Cloudflare 开放 Clairic 与 Clairic-flash 权重</title>
+      <link>https://blog.cloudflare.com/open-clairic/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/open-clairic/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Cloudflare Blog · Clairic 从预览转正，Clairic-flash 加入 Workers AI，两款抽取模型均以开放权重形式发布，来自新成立的 Workers AI Superintelligence 团队。对读者：边缘侧信息抽取有了可自托管的开源选项，可评估其在表单、文档解析场景的准确率与延迟。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>DaisyRose-27B：推进后训练效率前沿</title>
+      <link>https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 上 RadixArk 发布 DaisyRose-27B，聚焦后训练效率的提升。对读者：后训练成本正成为模型落地的关键变量，可关注其训练配方是否可迁移到自有微调流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>llm-gemini 0.38 发布，适配 Gemini 4 Neon</title>
+      <link>https://simonwillison.net/2026/Nov/18/llm-gemini/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/18/llm-gemini/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 发布 llm-gemini 0.38，接入今日推出的 Gemini 4 Neon，并吐槽 Gemini 4 系列定价愈发混乱：此前 Hydrogen、Argon、Carbon 三档中 Argon 与 Carbon 同价，Neon 发布材料则直接不提 Argon。对读者：用 LLM 命令行工具接 Gemini 时，务必先核对各档价格与折扣到期时间，避免账单意外。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Airbnb 用「每任务成本」运营 Bedrock 上的编码 Agent</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/how-airbnb-uses-cost-per-task-to-operate-coding-agents-on-amazon-bedrock/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/how-airbnb-uses-cost-per-task-to-operate-coding-agents-on-amazon-bedrock/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · Airbnb 在真实工程任务上跑评测，并借助 Amazon Bedrock 可观测性为编码 Agent 选模型、控成本；文章说明每任务成本如何指导选型、生产花费为何偏离评测结果，以及如何监控延迟、管理配额与归因开销。对读者：编码 Agent 的成本治理应以任务为单位而非 token，建议先建立每任务成本基线再扩量。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>CSS scroll-state() 查询</title>
+      <link>https://css-tricks.com/almanac/functions/s/scroll-state/</link>
+      <guid isPermaLink="true">https://css-tricks.com/almanac/functions/s/scroll-state/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：CSS-Tricks · CSS-Tricks 介绍 scroll-state() 查询：它允许根据滚动行为切换所用 CSS，与「边刷边焦虑」的状态无关。对读者：滚动驱动的 UI 效果可少写 JS 监听，建议在目标浏览器支持度确认后用于吸顶、进度提示等场景。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>GPT-6.2 Astra 与 Sol 上线遭重度用户差评：「基本不可用」</title>
+      <link>https://news.google.com/rss/articles/CBMi0AFBVV95cUxOM0p5RXctRUhTQzMxTEdQYnJxaVozUkFlQmJOSEJrQjVfeEdrdDJBcExkcmhEUGpoZTN0dXo3dVhxajVwWlpWdVAyRzNDUTBEdi1rekFrT0l3VlgxMFVic1c1ZG9fTVpaVEh0UzAtOUdGRmtVSDdHdHpHRzRiWGY3QUVndjItemljNG8wZVJrNWo3azFrWTVHQmtWczhTcDdGblJmbjhiOFEyS0pULWNQSG9MVkNLVzhJTjBFaUtGaE16UFA0d1c2YzMtX3Z4Tkdm?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi0AFBVV95cUxOM0p5RXctRUhTQzMxTEdQYnJxaVozUkFlQmJOSEJrQjVfeEdrdDJBcExkcmhEUGpoZTN0dXo3dVhxajVwWlpWdVAyRzNDUTBEdi1rekFrT0l3VlgxMFVic1c1ZG9fTVpaVEh0UzAtOUdGRmtVSDdHdHpHRzRiWGY3QUVndjItemljNG8wZVJrNWo3azFrWTVHQmtWczhTcDdGblJmbjhiOFEyS0pULWNQSG9MVkNLVzhJTjBFaUtGaE16UFA0d1c2YzMtX3Z4Tkdm?oc=5</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：VentureBeat AI · VentureBeat 报道称，OpenAI 发布 GPT-6.2 Astra 与 Sol 后，部分 AI 重度用户给出负面评价，直言「基本不可用」。这与官方宣称的专业输出和编码提升形成反差，说明新模型在真实工作流中的表现仍有争议。对读者：迁移前先用自有任务集实测，勿仅凭基准分数做切换决策。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Latent Space：Astra 是第二前沿模型且便宜 20%–600%，但评价分化</title>
+      <link>https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/</link>
+      <guid isPermaLink="true">https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Latent Space · Latent Space 总结称 GPT-6.2 Astra 是排名第二的前沿模型，成本降低 20% 至 600%，但早期测试者对其实际使用体验意见不一；GPT-6.2 Sol 更可能成为日常主力。对读者：可把 Sol 作为默认工作模型、Astra 留给高难任务，按任务分层控制成本。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>头条 · Nvidia 停止向中国销售 AI 芯片，黄仁勋离任后政策转向</title>
+      <link>https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Nvidia 临时 CEO Colette Kress 在财报电话会上表示，公司已不再向中国出货获许可的 Hopper 数据中心产品，尽管白宫去年 12 月已批准。此举标志着黄仁勋离任后公司对华策略的重大转变，但未解释具体原因。对读者：依赖 Nvidia 中国供应链的企业需尽快评估替代算力方案与合规风险。</description>
+      <category>业界</category>
+    </item>
+  </channel>
+</rss>

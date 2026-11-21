@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 产品</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Nov 2026 07:32:39 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Apple招募工程师自研AI Agent，可跨应用操作Mac</title>
+      <link>https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据Bloomberg发现的一份已撤下招聘信息，Apple正招募工程师主导开发agentic AI助手，能力包括浏览网页、跨应用操作、写代码和调用服务。这将使Apple与Meta Muse、OpenAI Dots、Anthropic Duet、Google Tasks正面竞争。对读者：若在做桌面端Agent，Apple入场意味着系统级权限与隐私模型可能被重新定义，值得跟踪其API开放节奏。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google首页上线AI会话侧边栏，全球推送</title>
+      <link>https://www.theverge.com/tech/1038059/google-search-homepage-ai-chats</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038059/google-search-homepage-ai-chats</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google更新桌面首页，加入可折叠侧边栏，用于查看和继续AI Mode会话，支持新建线程、搜索历史线程以及连接Gemini Notebook。产品副总裁Robby Stein在X上演示了该功能，目前已全球上线。对读者：搜索入口与AI会话合并会改变流量分发逻辑，做SEO与内容分发的团队应尽早测试AI Mode下的曝光表现。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Signal限制截图，阻止Gemini与Siri读取屏幕内容</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1038390/signal-blocking-ai-agent-screenshots-mobile-app</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Signal在Android与iOS上限制截图能力，以阻止系统级AI Agent读取用户消息等数据。总裁Meredith Whittaker称，操作系统内置的屏幕理解能力正在「削弱Signal独立保障隐私的能力」，并呼吁OS厂商提供更明确的隔离机制。对读者：做端侧AI功能时需提前设计应用级隐私开关，否则可能被通讯类应用直接封堵。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Meta Muse Charm可穿戴设备或定价300美元</title>
+      <link>https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据The Information报道，Meta计划将带屏幕、可语音对话Muse AI Agent的Muse Charm定价为300美元。扎克伯格此前称该设备「赶在12月假日季」出货，配备指纹传感器，轻触即可唤醒Agent。对读者：AI硬件定价正卡在300美元心理关口，做类似产品需在BOM与订阅变现之间提前算清账。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线 Live Dictation：边说边转写</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI 为 ChatGPT 推出 Live Dictation，麦克风输入在你说话时即转写为文字，无需等录音结束，并已在所有套餐的网页、桌面端、iOS 与 Android 上全球推送。使用中可点击声波查看实时文本并在提示框中编辑。对读者：语音输入延迟降低后，长提示词场景可优先改用口述，减少打字成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Canva 新增 AI「关闭」开关</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Canva 允许用户关闭生成式 AI 功能，包括 AI 扩图 Magic Expand 和聊天机器人生成图像；但背景移除、Magic Grab 等不生成新内容的工具仍保持开启。对读者：AI 功能开关正成为产品合规与用户信任的标配，设计协作类工具选型时可把「可关闭性」列为评估项。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>全美最大学区考虑弃用 Google 搜索</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1037151/school-districts-ditching-google</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 纽约、洛杉矶、芝加哥学区正考虑 Google 替代方案，因 Google 表示退出 AI 功能的学校将无法使用搜索，从明年起学校无法在不关闭 Gemini 功能的情况下单独保留搜索。对读者：教育市场对强制 AI 捆绑的反弹，可能改变校园软件的采购标准，相关供应商需提前准备可分离方案。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>实测 Apple Watch 常听 AI 两周：Siri Recap 隐私优先的取舍</title>
+      <link>https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1037100/apple-siri-recap-audio-intelligence-hands-on</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 作者在 Apple Watch Ultra 4 上测试 Siri Recap 与亚马逊 Bee Frontier 约一个月，两者都能环境收音并 AI 摘要，苹果走极简与隐私优先路线，但需明确授权。对读者：可穿戴常听 AI 的差异点在隐私设计而非功能，选型时应优先确认数据留存与授权粒度。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 如何用 Performance Factory 让 ChatGPT 保持快速</title>
+      <link>https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast</link>
+      <guid isPermaLink="true">https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 介绍 Performance Factory：一套由 Codex 驱动的工作流系统，自动发现并修复性能问题，以维持 ChatGPT 的响应速度。对读者：把编码 Agent 用于自身基础设施的性能治理，是可复用的工程范式，值得在团队内试点自动化性能巡检。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Nvidia 证实不再向中国出货任何 AI 芯片</title>
+      <link>https://www.theverge.com/tech/1036445/nvidia-h200-ai-chips-china-stop-selling</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1036445/nvidia-h200-ai-chips-china-stop-selling</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道，Nvidia 已停止向中国发送先进 AI 芯片，尽管去年 12 月获得白宫批准。临时 CEO Colette Kress 称业绩指引中不含任何获许可的 Hopper 数据中心产品，且不再向中国出货。对读者：关注后续是否波及 H200 等型号的许可安排，提前准备多源算力采购。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>微软称 Copilot 是「工作新操作系统」，Office 应用已嵌入其中</title>
+      <link>https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/</link>
+      <guid isPermaLink="true">https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Ars Technica AI · 在 Microsoft Ignite 上，微软宣布 Word、Excel、PowerPoint 现已运行在 Copilot 内部，并将推出常驻 Agent。Copilot 被定位为「工作的新操作系统」，办公套件从独立应用转为 Copilot 内的能力。对读者：企业 IT 需重新评估 Office 许可与 Copilot 的捆绑方式及数据治理边界。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 推出 ChatGPT for Sales，同步上线 30+ 合作方插件</title>
+      <link>https://openai.com/index/introducing-chatgpt-for-sales</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-chatgpt-for-sales</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 发布面向销售场景的 Sales 插件，并带来 30 多个新增与扩展的合作伙伴插件，覆盖潜客调研、方案准备、CRM 更新与推进成交等环节。这意味着 ChatGPT 正从通用助手向垂直工作流平台延伸。对读者：若团队已在用 CRM，可先小范围试点插件打通，评估数据回流与权限控制成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Astra for Law 在法律智能评测中排名第一</title>
+      <link>https://openai.com/index/astra-law-6-2</link>
+      <guid isPermaLink="true">https://openai.com/index/astra-law-6-2</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 最新的模型配置 Astra for Law 在一项覆盖 24 个法律领域的发布评测中排名第一，并在多项基准上取得领先成绩。所有 ChatGPT Enterprise 客户现可申请访问。对读者：法律等高风险场景应把评测范围与可解释性纳入试用清单，而非只看排名。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 平台上线关联计费测试版</title>
+      <link>https://claude.com/resources/articles/linked-billing-on-claude-platform</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/linked-billing-on-claude-platform</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude 平台推出关联计费（Linked billing）测试版，第三方平台可让客户直接为 Claude API 用量付费，而无需共享 API 密钥。这降低了平台方转售或集成 Claude 能力的合规与安全门槛。对读者：做 AI 中间层产品的团队可借此简化计费链路，同时减少密钥外泄风险。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT for Healthcare 升级：computer-use agents、临床回答与医疗插件</title>
+      <link>https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare</link>
+      <guid isPermaLink="true">https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 为 ChatGPT for Healthcare 引入 computer-use agents、改进的临床回答，以及可跨医疗软件工作的新插件，目标是让 AI 真正完成从患者消息到 MRI 授权请求等实际流程。医疗场景对可靠性与合规要求极高，agent 直接操作软件意味着权限边界必须前置设计。对读者：若在医疗或强合规行业做 agent，先梳理可操作系统的授权粒度与审计日志，再谈自动化收益。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 调研 1800+ 科学家如何使用 ChatGPT</title>
+      <link>https://openai.com/index/science-at-the-frontier</link>
+      <guid isPermaLink="true">https://openai.com/index/science-at-the-frontier</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 发布研究，基于 1800 多名科学家的使用情况，梳理 ChatGPT 在日常科研工作流中的角色、自报生产力变化，以及对科学发现的预期。这类一手使用数据比泛化的「AI 提效」叙事更有参考价值，尤其能看出研究场景中哪些环节已被稳定接管。对读者：做科研工具或 AI4S 产品时，可对照其工作流拆解，优先切入高频、低风险的文献与数据处理环节。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>LVMH 媒体部门与 OpenAI 达成战略合作</title>
+      <link>https://openai.com/index/lvmh-media-division-partnership</link>
+      <guid isPermaLink="true">https://openai.com/index/lvmh-media-division-partnership</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · LVMH 旗下媒体部门与 OpenAI 宣布战略合作，目标是借助 AI 支持新闻业，并让其出版物通过 ChatGPT 更易被访问。这是内容方与模型方在分发入口上的又一次绑定，也延续了媒体以内容换取 AI 渠道曝光的模式。对读者：内容型产品需评估「被 AI 入口收录」带来的流量结构与版权议价变化，提前明确授权与归因条款。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>The King’s Trust 与 OpenAI 启动 100 万英镑合作</title>
+      <link>https://openai.com/index/the-kings-trust-and-openai</link>
+      <guid isPermaLink="true">https://openai.com/index/the-kings-trust-and-openai</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · The King’s Trust 与 OpenAI 启动 100 万英镑合作，计划帮助英国多达 25,000 名年轻人建立可用于工作的实用 AI 技能。这是 AI 公司投入职业培训与公共技能体系的典型案例，也反映出监管环境下对「AI 社会影响」的主动布局。对读者：关注此类项目的课程设计与效果评估，可作为企业 AI 培训体系设计的公开样本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI推出ChatGPT Wallet，让智能体代付而不暴露卡号</title>
+      <link>https://news.google.com/rss/articles/CBMiakFVX3lxTE9aR1ZfZ2w0b0FCZk91TGZDV2JhS1hvVjBta0lzMWxLQzd0TUxrZDcwdmRVOEJ0OXByb3p0UWJKVVk1M19ReUdieXcwU3JRTWpNZm01T2ljampxcUt2cUlHVEZKd3Z2QV8yYkE?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiakFVX3lxTE9aR1ZfZ2w0b0FCZk91TGZDV2JhS1hvVjBta0lzMWxLQzd0TUxrZDcwdmRVOEJ0OXByb3p0UWJKVVk1M19ReUdieXcwU3JRTWpNZm01T2ljampxcUt2cUlHVEZKd3Z2QV8yYkE?oc=5</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI · OpenAI正式发布ChatGPT Wallet，定位为让AI替你购物的安全支付方式，智能体可在不接触用户银行卡明细的前提下完成付款。多家媒体同步报道该功能，讨论焦点集中在把支付权限交给模型的风险边界。对读者：若接入智能体代付，优先确认单笔限额、可撤销机制与商户白名单，别把主卡直接绑定。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT Wallet上线：AI智能体可代用户购物结账</title>
+      <link>https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · ChatGPT Wallet允许AI智能体代用户选购并完成结账，首批面向美国Pro订阅用户限量开放。该功能把Agent能力从信息检索推进到真实支付环节，权限与风控成为关键。对读者：若接入类似代付能力，务必设置单笔限额与二次确认，避免智能体误操作造成资金损失。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT Wallet细节：Dots智能体可用信用卡下单，每次结账需生物验证</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · OpenAI面向美国18岁以上、持美国账单地址及符合条件的Amex、Chase、Mastercard、Visa卡片的ChatGPT Pro用户推出Wallet。添加卡片后，Dots智能体可依提示购买商品，但每次结账前都会与用户确认，并需通过生物识别等安全检查。对读者：可关注其确认与验证流程设计，作为自家Agent支付环节的参考范式。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>亚马逊计划构建“World Product Graph”索引全网商品数据</title>
+      <link>https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据路透社报道，亚马逊计划建立覆盖全网在售商品（含其不自营商品）的数据库，并通过自家站点提供信息，项目名为World Product Graph。其意图是减少用户转向Reddit或Google做购前调研，并在AI智能体购物时代掌握商品索引话语权。对读者：做电商或Agent选品的团队应关注该索引的开放程度与接入方式。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>头条 · OpenAI推出ChatGPT Wallet，让Agent在用户授权下完成支付</title>
+      <link>https://openai.com/index/introducing-chatgpt-wallet</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-chatgpt-wallet</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI发布ChatGPT Wallet，为ChatGPT Work、Codex与dots中的Agent提供安全的支付能力：购买需经用户批准，并沿用现有银行卡保护机制。官方称这是与卡组织、银行和商户共同构建的可信Agent支付方案。对读者：若在做Agent商业化，可提前研究其授权与风控模型，把「人工确认」设计进支付链路以降低纠纷风险。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude的Duet Agent有点神经质，但意外地好用</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1032518/claude-duet-ai-agent-hands-on</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 实测Anthropic面向消费者的Agent产品Claude Duet，认为它比Instinct、Meta的Muse、OpenAI的Dots更偏工作场景，能帮忙补上容易遗漏的细节。评测形容它「有点神经质」但确实能兜住问题。对读者：选消费级Agent时别只看演示效果，重点测它在长任务中主动纠错与提醒的能力。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic发布常驻Agent构建指南：跨会话持续运行的核心原语</title>
+      <link>https://claude.com/resources/articles/building-always-on-agents</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/building-always-on-agents</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude博客发布《Building always-on agents》指南，指出常驻Agent会无限期运行，并自行决定在多个会话之间何时、以何种方式行动。文章逐一讲解其核心原语及组合方式。对读者：做长时运行Agent前先想清楚状态持久化、触发条件与失败恢复三件事，否则调试成本会指数上升。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Muse的AI现在能替用户拨打美国商家电话，但要付费</title>
+      <link>https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · TechCrunch报道，Muse的AI已可向美国企业发起外呼电话，但该能力并非免费，需要付费使用。这是消费级Agent从「屏幕内操作」走向「真实世界动作」的又一步。对读者：外呼类Agent涉及合规与品牌风险，接入前应确认通话录音、身份披露与失败转人工策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ElevenLabs推出新应用，把会议记录与听写合二为一</title>
+      <link>https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · TechCrunch报道，ElevenLabs发布名为ElevenAI的新应用，同时提供会议记录与听写功能，面向团队与企业用户。语音厂商正从API供应商向办公协作产品延伸。对读者：评估会议AI工具时重点比对转写准确率、说话人分离与数据留存策略，而非只看界面。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Google搜索AI Mode升级，由Gemini 4 Hydrogen驱动复杂问题回答</title>
+      <link>https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · Google为搜索AI Mode带来升级，由Gemini 4 Hydrogen驱动，在理解复杂查询、呈现相关链接与提供更丰富可视化回答方面有所改进。这是搜索侧把大模型能力直接嵌入主入口的又一步。对读者：做内容与SEO的团队需重新评估「被AI Mode引用」的链接结构，结构化数据价值上升。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Opus 5.5成为Pro/Max/Team默认模型</title>
+      <link>https://claude.com/resources/articles/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/using-claude-opus-5-5-as-your-daily-driver-for-knowledge-work</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic宣布Opus 5.5成为Claude在Pro、Max、Ultra与Team套餐中的默认模型，并给出其与其他模型在知识工作任务上的对比与使用建议。默认模型升级意味着现有用户无需改配置即可获得更强推理能力。对读者：团队可重新评估哪些知识工作流可交给默认模型，同时留意用量与成本变化。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Managed Agents支持自托管，进入私有测试</title>
+      <link>https://claude.com/resources/articles/self-hosted-claude-managed-agents</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/self-hosted-claude-managed-agents</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic推出自托管版Claude Managed Agents私有测试，用户可在自有云或本地环境运行Agent，自行托管Agent、凭证与会话历史，并选择请求发送至Claude的位置。这直接回应企业对数据主权与合规的诉求。对读者：受监管行业团队可申请测试，重点验证凭证管理与审计链路。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude Meetings发布：开会时同步产出文档与白板</title>
+      <link>https://claude.com/resources/articles/claude-meetings</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-meetings</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude Meetings进入beta，可将Claude加入视频会议，实时记笔记、回答问题，并在团队讨论时同步构建文档与白板。它把AI从会后总结前移到会中协作。对读者：可先在低风险会议中试用，评估记录准确性与敏感信息处理策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude for Manufacturing发布：17项技能+4个连接器</title>
+      <link>https://claude.com/resources/articles/claude-for-manufacturing</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/claude-for-manufacturing</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic推出制造业插件，包含17项技能与4个连接器，可基于工厂既有系统起草报价、质量报告与供应商请求，供团队审核批准。这是Claude向垂直行业深水区延伸的信号。对读者：制造企业可评估其与现有ERP/MES的对接成本，优先在文档密集型环节试点。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Holiday Extras用Codex重构应用开发</title>
+      <link>https://openai.com/business/customer-stories/holidays-extras-codex</link>
+      <guid isPermaLink="true">https://openai.com/business/customer-stories/holidays-extras-codex</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI发布案例，Holiday Extras借助Codex把客户专业知识转化为更好的应用，提升预订转化率并打开增长空间。案例显示编码助手正从个人提效走向业务指标改善。对读者：评估编码助手时，可把转化率、交付周期等业务指标纳入ROI测算。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>ChatGPT 上线可验证的 AI「Business Agents」</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · ChatGPT 将允许用户与代表品牌的、经过验证的「Business Agents」对话，首批面向美国「符合条件」的电商与在线服务企业，属于今日公布的一批面向企业的 beta 功能。当某企业创建了 Business Agent 并出现在 ChatGPT 回复中，用户即可与其对话，询问产品差异等追问。对读者：做电商或 SaaS 的品牌应尽早认领并配置 Agent，抢占 AI 搜索入口的解释权。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 允许商家在 ChatGPT 中认领企业并配置销售 Agent</title>
+      <link>https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：VentureBeat AI · VentureBeat 报道 OpenAI 开放商家在 ChatGPT 中「认领」自己的企业，并可设置一个定制的、具备代理能力的 AI 客户销售代表。这与 ChatGPT 的 Business Agents 功能相呼应，把品牌在对话式入口中的存在变成可配置资产。对读者：认领流程通常涉及资质审核，建议提前准备企业验证材料，避免上线窗口期落后于竞品。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Anthropic 推出自家 AI 办公套件，瞄准白领与 IPO 前叙事</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道 Anthropic 在旧金山活动上发布面向非技术知识工作者的 AI 办公工具套件，覆盖会议、头脑风暴与指标分析等场景。文章指出该公司长期以企业和编码工具见长，Claude Code 今年经历了一轮热度周期，如今正借 IPO 前的时间窗扩展用户面。对读者：评估办公套件时重点看它与现有文档/会议系统的集成深度，而非单点生成质量。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Adobe 展示 AI 实验：走进照片、访谈角色</title>
+      <link>https://www.theverge.com/tech/1031505/adobe-max-2026-sneaks-experiments-ai</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1031505/adobe-max-2026-sneaks-experiments-ai</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · The Verge 报道 Adobe 在年度 Max 大会上公布多项实验性功能：把图片转成可探索的 3D 场景、通过对话设计 AI 角色性格、以及把修图变成复制粘贴式操作。其中 Project Screen Test 用于让创作者与 AI 生成角色对话以塑造其人格，服务于视频内容制作。对读者：这些多为实验项目，适合做创意预研，不建议现在排进生产管线。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 向退伍军人与现役军人提供一年免费 ChatGPT Plus</title>
+      <link>https://openai.com/index/chatgpt-plus-for-veterans</link>
+      <guid isPermaLink="true">https://openai.com/index/chatgpt-plus-for-veterans</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：OpenAI Blog · OpenAI 宣布已有超过 2 万名退伍军人和转业服役人员领取了为期一年的免费 ChatGPT Plus，并展示了他们如何用其准备平民职业转型。这是 OpenAI 面向特定群体的一次公益性质投放，同时也是一次用户增长与品牌叙事动作。对读者：面向特定人群的免费额度常伴随资格审核，若你服务类似群体可参考其领取与转化路径。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Claude 推出白板、表格与数据功能，付费计划全部可用</title>
+      <link>https://claude.com/resources/articles/sheets-whiteboards-data</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/sheets-whiteboards-data</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Anthropic 在 Claude 中上线 Claude Whiteboards、Claude Sheets 与 Claude Data，用户可直接在对话里做头脑风暴、搭建表格并向团队共享数据看板。三项功能即日起对所有付费计划开放。对读者：轻量协作场景可先在这套原生工具里试跑，减少在多个 SaaS 之间来回切换的成本。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>第三方应用可直接在 Claude 内打开并协同操作</title>
+      <link>https://claude.com/resources/articles/interactive-connectors-full-tool</link>
+      <guid isPermaLink="true">https://claude.com/resources/articles/interactive-connectors-full-tool</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：Claude Blog · Claude 的交互式连接器升级：合作方应用可以嵌入 Claude，在聊天侧边或全屏打开，让用户与 Claude 在同一工具、同一屏幕上协作，无需切换标签页。这实质是把 Claude 变成应用宿主。对读者：做 SaaS 的团队可评估接入该连接器，把产品放进用户已有的 AI 工作流里获客。</description>
+      <category>产品</category>
+    </item>
+  </channel>
+</rss>

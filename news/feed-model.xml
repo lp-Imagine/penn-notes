@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 模型</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Nov 2026 07:32:39 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Gemini API推出工具检索，Agent可挂数百工具且更省Token</title>
+      <link>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google在Gemini API预览版中推出Tool Retrieval，让Agent按需加载工具schema，从而接入数百个工具的同时减少输入Token消耗。这针对的是Agent工具集膨胀后上下文被schema挤占的痛点。对读者：工具数量超过几十个的Agent项目可优先试用，重点对比检索准确率与首Token延迟的权衡。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity推出Orchestrator API，统一路由与故障转移</title>
+      <link>https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity的Orchestrator API用单一端点接入OpenAI、Anthropic、Google、xAI及开源权重模型，支持同模型跨供应商故障转移、统一计费，并提供预览版perplexity/auto路由按描述分发请求。对读者：多模型架构可先用它验证路由策略，再决定是否自建网关，注意预览版路由的稳定性风险。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>NVIDIA开源Nemotron-Labs-Sigma扩散语言模型，14个检查点</title>
+      <link>https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · NVIDIA发布Nemotron-Labs-Sigma，共14个3B与8B连续扩散语言模型检查点。模型在16维嵌入空间去噪，蒸馏为少步采样器，解码速度最高达自回归的4.20倍。对读者：扩散LM在低延迟场景值得做基准测试，但需验证长文本与结构化输出的质量是否满足业务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta FAIR自改进记忆在持续学习基准达56.0</title>
+      <link>https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta FAIR的自改进记忆让Kimi-K2.6自行编写LOAD与OFFLOAD记忆提示，再蒸馏进模型权重。优化后的提示在Continual Learning Bench上得56.0，高于最佳手写框架的44.6。对读者：长期运行的Agent可借鉴「让模型自写记忆策略再固化」的思路，降低人工调提示的成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 4 Neon</title>
+      <link>https://deepmind.google/blog/introducing-gemini-4-neon/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/introducing-gemini-4-neon/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google 推出 Gemini 4 Neon，面向复杂编码与分析任务提供前沿级智能，同时成本更低。VentureBeat 称其编码性能达到 Opus 5.5 级别，API token 价格低 25%。对读者：若正在为编码 Agent 选型，Neon 值得纳入基准测试，但需先厘清 Gemini 4 系列复杂的定价结构。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Neon 细节：1M 上下文，AA 编码 Agent 指数第一</title>
+      <link>https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Gemini 4 Neon 支持 1M 上下文，定价为每百万 token 3 美元输入、15 美元输出，AA 智能指数得分 61，并在 AA 编码 Agent 指数上排名第一。对读者：长上下文加编码 Agent 双料第一，适合评估将其用于大型代码库理解与多步重构任务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Genie 4 开放使用：实时音频与可编辑交互世界</title>
+      <link>https://deepmind.google/blog/genie-4-is-now-available/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/genie-4-is-now-available/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google AI Ultra 订阅用户现可使用 Genie 4，生成带实时音频与编辑能力的交互式世界。对读者：这是世界模型产品化的早期形态，做游戏、仿真或教育内容的团队可申请体验，观察其可控性与生成成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 应用下探低内存 Android 设备</title>
+      <link>https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google Gemini 应用现支持低内存 Android 设备，可在手机上使用 Gemini Live 与自定义图像生成。对读者：端侧 AI 的覆盖面向中低端机型延伸，做移动端产品的团队应重新评估低端机上的 AI 功能可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT-6.2 Astra 与 Sol：专业输出、编码与成本全面升级</title>
+      <link>https://openai.com/index/introducing-gpt-6-2-astra-sol</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-gpt-6-2-astra-sol</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：OpenAI Blog · OpenAI 推出 GPT-6.2 Astra 与 GPT-6.2 Sol，前者面向最难的专业项目，后者定位日常高效工作，覆盖 ChatGPT Work、Codex 与 API。官方称新模型在专业输出、编码、计算机使用和效率上均有提升，且成本更低。对读者：若在用旧版 GPT-6，可优先在 Codex 与 API 场景做 A/B 对比，评估降价后的性价比。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT-6.2 Astra API 降价 20% 至 $8/$40，智能指数排名第二</title>
+      <link>https://www.marktechpost.com/2026/11/17/openai-gpt-6-2-astra-sol-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/openai-gpt-6-2-astra-sol-release/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 于 11 月 17 日发布 GPT-6.2 Astra 与 Sol，Astra 的 API 价格下降 20% 至每百万 token 输入 $8、输出 $40，并在 Artificial Analysis 智能指数上排名第二。对读者：预算敏感团队可重新核算 Astra 与竞品的单位任务成本，缓存价格降幅更大值得关注。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Simon Willison：Astra 价格为前代 80%，缓存价低至 $0.40/百万</title>
+      <link>https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Simon Willison 指出 GPT-6.2 Astra 定价为前代 GPT-6 Astra 的 80%，即 $8/$40 每百万 token，与 Claude Fable 5.2 的降价策略一致；缓存价格从 $1/百万降至 $0.40/百万。他已发布 LLM 0.38 支持新模型。对读者：高频重复提示词场景应优先启用缓存，成本可降六成。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini Tasks 在六国免费开放，深化 Workspace 集成</title>
+      <link>https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google 宣布 Gemini 中的 Tasks 功能在六个国家免费提供，并在美国推出新功能，同时加深与 Google Workspace 的集成，让 Gemini 代用户完成任务。对读者：已用 Workspace 的团队可试点 Tasks 自动化日常待办，评估其对协作流程的实际替代率。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>阿里 Qwen4-Max 降低 AI 任务成本，但基准显示对前沿对手挑战不均</title>
+      <link>https://news.google.com/rss/articles/CBMiywFBVV95cUxNcjNiS0hzU1NCTUVCbHhxcVJBVzNmeEtId1VEUWJSbmpOeG9NWmlKSWFETExvdjB4S1hrcHUzOWFvRVZYSzluOWRqUlBtaGhQamtkVlgxdFAycGV5aGk2R1RYTTRYSkdPR1R1bUtWYV90RzR0Q0NMSGxpNmJBMkRvZ3N5cG9ZSE9lZW1sT2Nwb19TV3JmeG9qUkJIc0ZWME4wWTc0U3JiYWIwUzc3UVhFX1ZMbFNfeE9RZXBJSVhac3JPSV9TS2NkQTFDMA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiywFBVV95cUxNcjNiS0hzU1NCTUVCbHhxcVJBVzNmeEtId1VEUWJSbmpOeG9NWmlKSWFETExvdjB4S1hrcHUzOWFvRVZYSzluOWRqUlBtaGhQamtkVlgxdFAycGV5aGk2R1RYTTRYSkdPR1R1bUtWYV90RzR0Q0NMSGxpNmJBMkRvZ3N5cG9ZSE9lZW1sT2Nwb19TV3JmeG9qUkJIc0ZWME4wWTc0U3JiYWIwUzc3UVhFX1ZMbFNfeE9RZXBJSVhac3JPSV9TS2NkQTFDMA?oc=5</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · 阿里巴巴发布 Qwen4-Max，主打降低 AI 任务成本，但基准测试显示其对前沿竞品的挑战并不均衡，部分能力仍有差距。成本优势与能力短板同时存在。对读者：成本敏感型业务可优先在低复杂度任务上替换试用，高难度推理仍建议保留双模型兜底。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 d1.2 与 d1.2-ultra 全模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 d1.2 与 d1.2-ultra 决策模型，可读取文本、图像与音频并直接返回校准后的概率，输出 token 数为零。其中 d1.2-ultra 在 Artificial Analysis Decision Index v2.1 上得分 75。对读者：分类、风控等决策型任务可评估此类零输出模型，显著降低推理成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Sarvam 推出 Token Factory：在印度托管 8 个开源模型推理</title>
+      <link>https://www.marktechpost.com/2026/11/17/sarvam-token-factory-india-inference-platform/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/sarvam-token-factory-india-inference-platform/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sarvam Token Factory 全面开放，通过单一 OpenAI 兼容 API，从印度 GPU 集群提供 Sarvam 105B、GLM 5.3、DeepSeek V4.1 Flash、Kimi K3.1 Pro 与 Gemma 4 31B 等模型推理。对读者：面向印度市场或有数据本地化要求的团队，可将其纳入多区域推理备选。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>头条 · 阿里发布 Qwen4-Max：2.4T MoE、71B 激活、1M 上下文</title>
+      <link>https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 阿里巴巴发布闭源模型 Qwen4-Max，采用 2.4T 参数 MoE 架构、71B 激活参数，原生支持视觉与 1M token 上下文，定价为每百万输入 token 1.5 美元，并称将 Work360 的单任务成本降低 62%。超大 MoE 加长上下文再叠加低价，直接压缩了中高端 API 的价格空间。对读者：长文档与多模态场景可先做小流量对比测试，重点核算真实 token 消耗而非标价。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Hark 发布 Handoff²：速度翻倍的 computer-use agent</title>
+      <link>https://www.marktechpost.com/2026/11/16/hark-handoff-2-computer-use-agent-2x-faster/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/hark-handoff-2-computer-use-agent-2x-faster/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Hark 发布 Hark Pro 内置的 computer-use agent Handoff²，平均比 v1 快 2 倍，在 478 个内部网页任务中完成率 82%，并通过带延迟惩罚的强化学习学会了批量执行动作。computer-use agent 的竞争点正从「能不能做」转向「多快、多稳」。对读者：评估此类 agent 时，把任务完成率与端到端时延一起看，批量动作策略往往比单步准确率更影响体验。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 的 JiTTests：让 LLM 生成「注定失败」的测试拦截风险代码</title>
+      <link>https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta 已将 Catching JiTTests 投入生产：由 LLM 针对高风险 diff 生成预期会失败的测试，在 2026 年上半年于代码合入前捕获 74 个隐私类 SEV，工程师自报真阳性率 60%。把 LLM 用在「写会失败的测试」而非「写通过的代码」，是一个务实的工程切入点。对读者：可在高风险模块试点类似的合入前生成式测试，但需配套人工复核以控制误报成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 推出 Video Intelligence，视频库可按时间戳检索</title>
+      <link>https://cohere.com/blog/video-intelligence-preview</link>
+      <guid isPermaLink="true">https://cohere.com/blog/video-intelligence-preview</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 在 Compass 中推出 Video Intelligence，面向企业搜索与 AI agent 提供精确到时间戳的视频检索，可让录制的会议、培训视频与媒体档案变得可搜索，目前处于 Private Preview。视频正从「不可检索资产」变成企业知识库的一等公民。对读者：有大量会议录像或培训素材的团队，可提前规划转写、切片与权限体系，为接入此类检索做准备。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Bland发布Tofu-1：面向通话的全双工语音到语音模型</title>
+      <link>https://www.marktechpost.com/2026/11/15/bland-tofu-1-full-duplex-speech-to-speech-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/15/bland-tofu-1-full-duplex-speech-to-speech-model/</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Bland发布Tofu-1，一款面向嘈杂、高风险电话场景的全双工语音到语音模型，目前处于企业研究预览阶段，尚未公布基准成绩、模型规模与定价。全双工意味着模型可边听边说，更接近真实通话节奏。对读者：评估语音Agent时先要延迟与打断处理指标，缺少公开基准的阶段宜小流量试点。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cmpnd开源dspy-wsp：把权重空间编程带进DSPy</title>
+      <link>https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Cmpnd发布dspy-wsp原型，为DSPy提供权重空间优化器：由前沿LLM读取小模型权重，在沙箱中编辑并逐项测试，全程不用梯度，单次运行成本约5到10美元。这为小模型定制提供了不同于微调的路径。对读者：若已有小模型推理栈，可把权重空间编辑当作低成本实验分支，但要先建好回归测试集。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>为什么Agent的Demo很惊艳，上了生产就不靠谱</title>
+      <link>https://juejin.cn/post/7707938781526245391</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7707938781526245391</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：掘金人工智能 · 文章把两组数字摆在一起：LiveBench 2.0通用任务榜上Claude Fable 5.2完成82.9个任务，ChatGPT-6 Astra完成75.6个，而生产环境的实际表现与榜单存在明显鸿沟。作者据此讨论Agent从演示到落地的差距来源。对读者：选型时别只看榜单分数，用自己业务的任务集做验收，比通用基准更有参考价值。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Agent工具设计：接了上百个工具，为什么反而更难干活</title>
+      <link>https://juejin.cn/post/7708258923018584102</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7708258923018584102</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：掘金人工智能 · 文章指出工具多不等于更好用，决定成败的是这一轮让Agent看见多少工具；MCP只解决接入问题，应用仍须决定先给目录、用到再展开。作者提到在小样本测试中，按需查找并未提高准确率。对读者：工具编排优先做上下文裁剪与目录分层，别把工具数量当能力指标。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>斯坦福开源Memorilla：为冻结LLM提供潜在记忆模块</title>
+      <link>https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 斯坦福研究者发布开源记忆系统Memorilla，可将文档集合压缩为16个memory token供冻结的Qwen3-8B使用，在FactKG上达到84.33%，所用文档token比全上下文少108倍。该思路为低成本长文档问答提供新路径。对读者：长上下文成本敏感的场景可试验记忆压缩方案，但需先验证自身领域的召回精度。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity发布Decider v1.3：开放权重决策模型新增Locate</title>
+      <link>https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/13/perplexity-decider-v1-3-open-weight-decision-models-locate/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity的Decider v1.3与Flash v1.3为开放权重决策模型，输出概率而非文本；v1.3新增用于span抽取的Locate，在63项查询分类任务上报告平均准确率91.6%。对读者：需要路由、分类或置信度打分的系统可评估此类小模型替代通用大模型调用。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>2026年AI视频生成模型盘点：Elo、每秒价格与开放权重</title>
+      <link>https://www.marktechpost.com/2026/11/13/best-ai-video-generation-models-2026/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/13/best-ai-video-generation-models-2026/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost基于Artificial Analysis Video Arena的盲测人类偏好Elo，梳理截至2026年11月13日的视频生成模型排名，指出原生音频已成标配、片段时长15–30秒，且有一款开放权重模型进入前三。对读者：选型时除画质外应同时比较每秒价格与权重开放程度，避免被单一榜单误导。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google发布Gemini 4 Hydrogen：比Gemini 3.8 Flash快2.5倍</title>
+      <link>https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/13/google-gemini-4-hydrogen/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost报道，Gemini 4 Hydrogen定位快速Agent模型，具备100万token上下文窗口、4档思考层级，定价为每百万token输入1.50美元、输出7.50美元。Google给出的数据是Artificial Analysis得分51、Terminal-Bench 4.1上57%。对读者：长上下文加低价的组合适合做Agent主循环，但需按任务实测思考层级对成本的影响。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google新Gemini模型更擅长理解复杂问题</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Verge AI · The Verge报道，Gemini 4 Hydrogen可拆解「包含多个部分、含难懂拼写错误或高度具体」的问题并逐段作答，发布当天即上线搜索、Gemini应用、Google AI Studio全部层级、Gemini API、Gemini for business，以及面向Pro与Ultra订阅者的Google Antigravity。Google搜索产品VP Robby Stein称其已成为AI Mode的默认模型。对读者：若产品依赖搜索增强，可优先在AI Mode路径上做A/B，观察复杂查询的完成率变化。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>llm-gemini 0.37发布，Gemini 4定价体系让人困惑</title>
+      <link>https://simonwillison.net/2026/Nov/12/llm-gemini/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/12/llm-gemini/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Simon Willison发布llm-gemini 0.37，并梳理Gemini 4家族定价：Carbon与Argon在2026年11月30日前均为输入2.00美元、缓存输入0.10美元、输出10.00美元，12月1日起翻倍为4.00/0.20/20.00美元；Hydrogen为1.50/0.075/7.50美元。他指出Hydrogen与更大杯的兄弟型号价差并不大。对读者：跨年项目务必把12月1日的涨价节点写进成本模型，避免预算按旧价估算。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI开源LiquidCodec：7400万参数流式音频编解码器</title>
+      <link>https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost报道，Liquid AI发布约7400万参数的流式音频编解码器LiquidCodec，为LFM3-Audio-2B与LFM3-Omni-2B提供底层支持。它以12.5Hz、12个码本运行，在单CPU线程上编码速度约为实时的361倍。对读者：做实时语音交互时，这类轻量编解码器能显著降低端侧算力门槛，值得纳入选型对比。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google发布Gemini Decisions API，Gemini Decision 1定价0.10美元/百万token</title>
+      <link>https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google推出Gemini Decisions API，由Gemini Decision 1驱动，可对最多1000个是/否、选择与评分制问题返回校准概率，覆盖文本、图像、音频、视频与PDF，输入定价为每百万token 0.10美元。决策模型赛道再添一员。对读者：分类与审核类任务可对比其与Jev、OpenAI决策模型的成本与多模态覆盖。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Simon Willison评Gemini Decisions API：多模态是差异点</title>
+      <link>https://simonwillison.net/2026/Nov/11/gemini-decisions-api/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/11/gemini-decisions-api/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Willison指出Gemini Decision 1与Jev高度相似，同样支持是/否、选择与评分三类问题，定价与GPT-6 Luna决策模型一致为每百万输入token 10美分且输出免费；Jev仍最便宜为4.2美分，但Gemini覆盖文本、图像、音频等多模态。对读者：选型时按模态需求与单价权衡，纯文本场景Jev仍有成本优势。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>DeepMind发布AlphaGenome 2，预测细胞类型特异性变异效应</title>
+      <link>https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google DeepMind发布AlphaGenome 2，这是一个条件DNA序列模型，可预测每种细胞类型的调控活性与变异效应，并通过AlphaGenome API面向非商业研究开放。AI for Science再进一步。对读者：生物信息团队可申请API验证其在靶点与变异解读上的可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>IBM发布Quantum Nighthawk r3：520量子比特支持1万次量子操作</title>
+      <link>https://www.marktechpost.com/2026/11/12/ibm-quantum-nighthawk-r3-520-qubits-1040-qubit-system-2027/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/ibm-quantum-nighthawk-r3-520-qubits-1040-qubit-system-2027/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · IBM公布Quantum Nighthawk r3处理器，520个可编程量子比特，设计支持1万次量子操作；2027年将有两颗r3芯片互联成1040量子比特系统，Nighthawk r2相较Heron最高实现19倍加速。对读者：量子计算仍属长周期投入，可关注其与经典AI工作负载的结合点而非短期替代。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Carbon 正式向所有开发者与企业开放</title>
+      <link>https://deepmind.google/blog/gemini-4-carbon-is-now-available/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/gemini-4-carbon-is-now-available/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google DeepMind 宣布 Gemini 4 Carbon 从面向「部分网络安全防御者」的限量开放转为向开发者、企业和消费者全面可用。此前两周的预热以安全场景为主，如今普通用户也能调用这一被 Google 称为「史上最强 Gemini」的模型。对读者：若计划接入，注意价格窗口期，尽早压测真实业务负载再决定是否长期绑定。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>头条 · llm-gemini 0.36 跟进 Gemini 4 Carbon：$2/$10 起，12 月 1 日翻倍</title>
+      <link>https://simonwillison.net/2026/Nov/10/llm-gemini/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/10/llm-gemini/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Simon Willison 发布 llm-gemini 0.36，插件已支持全面开放的 Gemini 4 Carbon。文中给出关键定价：上线价每百万 token 输入 2 美元、输出 10 美元，与 GPT-6.1 Sol、Claude Sonnet 5.5 同档，但 12 月 1 日起翻倍至 4/20 美元，对齐 Opus 5.5。作者还用低、中、高三档 thinking effort 做了对比测试。对读者：成本敏感型应用应把 12 月 1 日当作预算分界线，提前评估切换或缓存策略。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Carbon 公开可用，API 价格低于 Claude Fable 5.2 与 Opus 5.5</title>
+      <link>https://news.google.com/rss/articles/CBMi2wFBVV95cUxQTjR5SzFCUEJCS0phWGJKT2FDREJBQnA3U094UHh2azF6VVYtUENId29Zb3Iya3dLT29vdVNFMkJTMTdVS1dYYWJ5VmNaMlp1TG1qbUtUYVp3cEx1TzI0NFRLS3hROE1wall1eThWMnVzZ1pnc290OUpPd1FTVHR3OTJ3UmowSnQ2NUhDS21JYV8zNkoyWmw4RDk1Ql94d3VCeFRUemZ1YUprVmNWUGVFRnhKS0RNaEFtc25zN2lqQzdwMGJ5SzdSeFNaczJZZGhxclhJanJSeWd2bTQ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi2wFBVV95cUxQTjR5SzFCUEJCS0phWGJKT2FDREJBQnA3U094UHh2azF6VVYtUENId29Zb3Iya3dLT29vdVNFMkJTMTdVS1dYYWJ5VmNaMlp1TG1qbUtUYVp3cEx1TzI0NFRLS3hROE1wall1eThWMnVzZ1pnc290OUpPd1FTVHR3OTJ3UmowSnQ2NUhDS21JYV8zNkoyWmw4RDk1Ql94d3VCeFRUemZ1YUprVmNWUGVFRnhKS0RNaEFtc25zN2lqQzdwMGJ5SzdSeFNaczJZZGhxclhJanJSeWd2bTQ?oc=5</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · VentureBeat 报道 Gemini 4 Carbon 已面向公众开放，并强调其在 API 定价上低于 Claude Fable 5.2 和 Opus 5.5。这与 Google 一贯以价格切入企业市场的策略一致，也让前沿模型之间的单位成本竞争进一步加剧。对读者：做模型选型时把「上线价 vs 后续价」两列都算进 TCO，避免被短期促销价误导。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>DeepMind 发布 AlphaGenome 2：解读细胞如何读取 DNA</title>
+      <link>https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google DeepMind 推出 AlphaGenome 2，用于预测 DNA 序列及其变异如何影响特定人类细胞类型与疾病。它是去年发布的基因组预测模型 AlphaGenome 的继任者，目标是把「同一套 DNA 在不同细胞中产生不同结果」这一难题做得更细。对读者：生物医药方向的团队可关注其论文与开放接口，评估在靶点发现与变异解读流程中的可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>AlphaGenome 2 聚焦疾病的细胞根源</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model</link>
+      <guid isPermaLink="true">https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：The Verge AI · The Verge 报道 DeepMind 新模型 AlphaGenome 2 的设计目标：揭示 DNA 变化如何影响不同细胞，从而为疾病成因与新疗法提供线索。文章指出人体几乎所有细胞携带相同 DNA，但心肌细胞等不同类型细胞的读取方式不同，这正是模型要建模的部分。对读者：这是 AI for Science 的长期赛道，短期不必追热点，但值得订阅其后续评测数据。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Fable 5.2 与 Mythos 5.2，API 成本降 20%</title>
+      <link>https://news.google.com/rss/articles/CBMi4AFBVV95cUxPN0VKa1ZLaWtOam8yMHotUVNoUE84dmVtYmJ4dW1XbFZZY1MxcmRhNU5jUHV5dkVINE5ERVdNdzE0TmlDdEJhcjhxZEw2TmtpUWRuVU1yb0M0cjhTQjBQaGRQUHplUjZyZDBrSUtQOWhWc1B4aTBqUlVUNUhsaUpfaXg1M1ptc1d6aTJxcEVPaFlMaDZBWnBLZzFCc1JNX2NlU2J2TWFiNXZ5M3lzSmVLRDJuXy0zUzAwLU1scGdjUFpjd3RqLTZPS3I1UmxpOWhmRURuYUhKN2tIR2czVWY2Zg?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi4AFBVV95cUxPN0VKa1ZLaWtOam8yMHotUVNoUE84dmVtYmJ4dW1XbFZZY1MxcmRhNU5jUHV5dkVINE5ERVdNdzE0TmlDdEJhcjhxZEw2TmtpUWRuVU1yb0M0cjhTQjBQaGRQUHplUjZyZDBrSUtQOWhWc1B4aTBqUlVUNUhsaUpfaXg1M1ptc1d6aTJxcEVPaFlMaDZBWnBLZzFCc1JNX2NlU2J2TWFiNXZ5M3lzSmVLRDJuXy0zUzAwLU1scGdjUFpjd3RqLTZPS3I1UmxpOWhmRURuYUhKN2tIR2czVWY2Zg?oc=5</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · Anthropic 推出 Claude Fable 5.2 与 Mythos 5.2，官方称两项模型在基准测试上创下新高，同时 API 价格下调 20%。新模型与 IPO 路演同日发布，被视为在资本市场面前强化技术叙事的关键动作。对读者：正在评估模型成本的项目可重新跑一遍单价与效果对比，20% 降幅足以改变部分高频调用场景的选型结论。</description>
+      <category>模型</category>
+    </item>
+  </channel>
+</rss>

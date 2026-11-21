@@ -1,0 +1,1 @@
+const o="meting",e="tencent",t="playlist",n="1567517618";const l="random",s="all",i="/api/meting",m="1618646380121";const r="l",y={enabled:!0,provider:o,server:e,type:t,id:n,volume:.7,order:l,loop:s,metingApi:i,myhkwPlayerId:m,myhkwMobile:!0,myhkwAutoplay:!1,myhkwPosition:r};export{y as m};

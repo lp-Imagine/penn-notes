@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 开发者工具</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 21 Nov 2026 07:32:39 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>OpenAI披露Performance Factory：Codex驱动的软件优化系统</title>
+      <link>https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRmktQ2JEUXFSZmVLaTl4WE9RLWJzRUtscEZXdnF1Q3B3LVFUTV9rSkFUVUppWXFIanQ3aGcxVTRBcGdJd1ZOdkgzYmVDTzJONW5PRExPeDNzWFp5T1FyUEFJQ05pZ19XQ2oyeEdMMkFoUlE1aDg1WUFTRkxyaUQ2cDV5T0dDeXBRa3ZkR0ktdDlDaVVXUlVLUEFfaWxveTJJWHdfNGVsSVdXekVSRGJmdGN1ODlEaGlULWtUOHRFODJIRVh5ckpCVEplUXFxb1FtNzE5MkNKLVN6YlhQSlNJUkN3ZzlBUQ?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMi5gFBVV95cUxPRmktQ2JEUXFSZmVLaTl4WE9RLWJzRUtscEZXdnF1Q3B3LVFUTV9rSkFUVUppWXFIanQ3aGcxVTRBcGdJd1ZOdkgzYmVDTzJONW5PRExPeDNzWFp5T1FyUEFJQ05pZ19XQ2oyeEdMMkFoUlE1aDg1WUFTRkxyaUQ2cDV5T0dDeXBRa3ZkR0ktdDlDaVVXUlVLUEFfaWxveTJJWHdfNGVsSVdXekVSRGJmdGN1ODlEaGlULWtUOHRFODJIRVh5ckpCVEplUXFxb1FtNzE5MkNKLVN6YlhQSlNJUkN3ZzlBUQ?oc=5</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：VentureBeat AI · 据VentureBeat独家报道，OpenAI公开Performance Factory，一套由Codex驱动的软件优化系统，用于保持ChatGPT的响应速度。对读者：这提示「用编码Agent做性能优化」已进入生产环境，团队可尝试把性能回归修复纳入Agent流水线。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Kimi Code CLI v2.7.0原生支持Amazon Bedrock</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · Kimi Code CLI v2.7.0新增原生Amazon Bedrock provider，可用标准AWS凭证链（命名profile或SSO）连接Kimi K3.1 Pro等模型，无需单独API Key。对读者：已在AWS体系内的团队可省去密钥管理环节，注意确认Bedrock区域与模型可用性。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>llm-gemini 0.38 发布，适配 Gemini 4 Neon</title>
+      <link>https://simonwillison.net/2026/Nov/18/llm-gemini/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/18/llm-gemini/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 发布 llm-gemini 0.38，接入今日推出的 Gemini 4 Neon，并吐槽 Gemini 4 系列定价愈发混乱：此前 Hydrogen、Argon、Carbon 三档中 Argon 与 Carbon 同价，Neon 发布材料则直接不提 Argon。对读者：用 LLM 命令行工具接 Gemini 时，务必先核对各档价格与折扣到期时间，避免账单意外。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Airbnb 用「每任务成本」运营 Bedrock 上的编码 Agent</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/how-airbnb-uses-cost-per-task-to-operate-coding-agents-on-amazon-bedrock/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/how-airbnb-uses-cost-per-task-to-operate-coding-agents-on-amazon-bedrock/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · Airbnb 在真实工程任务上跑评测，并借助 Amazon Bedrock 可观测性为编码 Agent 选模型、控成本；文章说明每任务成本如何指导选型、生产花费为何偏离评测结果，以及如何监控延迟、管理配额与归因开销。对读者：编码 Agent 的成本治理应以任务为单位而非 token，建议先建立每任务成本基线再扩量。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Anthropic 为 Claude Code 加入 Code Mode：用 JavaScript 链式调用工具</title>
+      <link>https://www.marktechpost.com/2026/11/17/anthropic-claude-code-code-mode-javascript-tool-calls/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/anthropic-claude-code-code-mode-javascript-tool-calls/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · Anthropic 在 Claude Code v2.1.323 中引入实验性 Code Mode，Claude 可编写 JavaScript 在一步内串联 Bash、Read 与 Edit 调用，并在长命令运行期间保持对话。对读者：复杂重构任务可尝试该模式减少往返轮次，但实验特性需在隔离环境验证稳定性。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 构建开放 Agent Host Protocol，让 Agent 会话跨设备延续</title>
+      <link>https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 介绍其开放 Agent Host Protocol，目标是让 Agent 会话在编辑器、应用、手机与云端之间保持可访问与延续。该协议面向多端 Agent 协作场景设计。对读者：构建跨端 Agent 产品的团队可关注该协议能否成为会话状态同步的通用层，降低自研成本。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Duco 基于 Amazon Bedrock AgentCore 重构智能体栈：部署提速 10 倍</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/how-duco-transforms-financial-data-automation-with-amazon-bedrock-agentcore/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/how-duco-transforms-financial-data-automation-with-amazon-bedrock-agentcore/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · 面向一级银行的数据自动化平台 Duco 在 Amazon Bedrock 与 AgentCore 上重建智能体 AI 栈，采用严格租户隔离、多模型策略与 MCP 技能架构，将上下文开销削减 90%，对账部署时间缩短 10 倍，入驻成本降低 70%。对读者：多租户 Agent 系统的关键在隔离与上下文治理，这套组合可作为架构参考。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>datasette-maplibre 0.1a0 发布：MapLibre + OpenFreeMap 地理可视化</title>
+      <link>https://simonwillison.net/2026/Nov/15/datasette-maplibre/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/15/datasette-maplibre/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 发布 Datasette 新地理插件 datasette-maplibre 0.1a0，结合 MapLibre GL 与 Zsolt Ero 运营的免费矢量地图服务 OpenFreeMap，融合了 cluster-map 与 leaflet-geojson 两个旧插件的功能。作者称大部分工作由单条提示完成，也侧面展示了当前编码助手在插件开发上的实际产出。对读者：需要在地图场景快速验证数据时，可用该组合替代商业地图服务做原型。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>datasette 1.0a43 发布：输出渲染器支持流式，含安全修复</title>
+      <link>https://simonwillison.net/2026/Nov/15/datasette/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/15/datasette/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · datasette 1.0a43 发布，1.0 里程碑完成度达 53%，最大变化是输出渲染器支持流式，内置 TSV 与 CSV 导出已改用该机制，插件可通过新的 Response.stream() 一次性流式输出整表数据；同时包含安全修复，其中私有存储查询可能泄露标题与 SQL 的问题已发 GitHub 公告。对读者：导出大表的服务可评估流式渲染以降低内存峰值，并尽快跟进该安全修复。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitLab 19.5发布：MCP服务端正式GA，智能体开发纳入治理</title>
+      <link>https://www.infoq.cn/article/0IpE2EOypcqMFtL7z4z1?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/0IpE2EOypcqMFtL7z4z1?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · GitLab 19.5于10月15日发布，聚焦智能体软件开发与治理，GitLab MCP服务端正式GA，通过Model Context Protocol向外部AI智能体开放平台能力，并强化治理与权限控制，支持Claude Code、Cursor等MCP兼容工具调用。对读者：把MCP接入纳入现有权限体系评估，避免智能体绕过既有代码审查流程。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>datasette-llm 0.1a11：支持OpenAI兼容端点，可接本地模型</title>
+      <link>https://simonwillison.net/2026/Nov/14/datasette-llm/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/14/datasette-llm/</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · datasette-llm发布0.1a11，这一中间插件为其他Datasette插件提供LLM配置能力，本次新增对OpenAI兼容端点的支持，可把Datasette指向任何讲OpenAI伪标准协议的模型服务，包括LM Studio、Ollama或刚发布v1.0.0的llama.cpp。对读者：本地模型接入标准趋于统一，自托管数据工具可优先选OpenAI兼容层降低迁移成本。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Vercel发布UI SDK：为AI编码智能体提供50+ UI行为</title>
+      <link>https://www.marktechpost.com/2026/11/13/vercel-ui-sdk-agent-ui-behaviors/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/13/vercel-ui-sdk-agent-ui-behaviors/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · Vercel Labs发布Apache-2.0许可的Vercel UI SDK beta，内含50余种UI行为，编码智能体可将其组合为可访问组件，覆盖React、Vue、Svelte、Solid与Web Components，并提供直接控制UI的桥接能力。对读者：若在搭建生成式前端流水线，可评估该SDK以减少智能体产出组件的可访问性缺陷。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cloudflare开源智能体浏览器引擎Kitesurf</title>
+      <link>https://blog.cloudflare.com/kitesurf-open-source/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/kitesurf-open-source/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Cloudflare Blog · Cloudflare宣布其面向AI智能体的实验性浏览器引擎Kitesurf开源，开发者可查看代码、本地运行，或在Cloudflare Workers上部署自有实例。对读者：需要让Agent执行网页任务的团队可基于该引擎自建沙箱，降低对第三方浏览器服务的依赖。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub Actions锁文件功能正式可用，保障工作流依赖安全</title>
+      <link>https://www.infoq.cn/article/XrW1cdg9NFRkemvqLiZc?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/XrW1cdg9NFRkemvqLiZc?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · GitHub于2026年10月28日正式推出Actions工作流依赖锁文件功能，通过.github/workflows/actions.lock固定直接与传递依赖的提交哈希，阻断分支或标签变更引发的供应链攻击，同时工作流仍可保留清晰的标签与分支引用。对读者：建议尽快为关键CI工作流生成锁文件，把依赖固定纳入发布流程。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Inkitt用智能体自动写PR：模型最简单，难在Webhook重复与CI失败</title>
+      <link>https://www.infoq.cn/article/YRXscVHsTh0g6CVCJJ0D?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/YRXscVHsTh0g6CVCJJ0D?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Inkitt构建事件驱动的一次性PR创建器，以状态机编排短生命周期智能体容器，支持断点恢复与安全隔离，日均投入生产使用。其经验是决策逻辑与副作用严格分离、智能体仅获短期凭证、用Git Diff检查约束变更路径。对读者：做自动化PR流水线时，应优先设计幂等与失败恢复，而非纠结模型选型。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub：一次编写、随处运行的Agent Skills实践指南</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub博客指出，Agent Skills把可复用的工程工作沉淀为团队可评审、可复用的文件，而工具、项目上下文与权限仍由运行它的宿主决定。文章给出跨Agent复用的落地方法。对读者：把团队约定写成Skill文件比反复调提示词更可持续，建议从代码评审与发布检查这两类高频流程开始。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub公布2026年10月可用性报告：共8起事故</title>
+      <link>https://github.blog/news-insights/company-news/github-availability-report-october-2026/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/github-availability-report-october-2026/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub博客发布10月可用性报告，称当月共发生8起导致GitHub服务性能下降的事故。报告是评估平台稳定性的常规参考。对读者：关键CI/CD链路应配置镜像与本地缓存，避免单一代码托管平台的抖动直接阻断发布。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI详解如何保障OpenClaw等持久化Agent安全</title>
+      <link>https://developers.openai.com/blog/securing-persistent-agents-like-openclaw-at-openai</link>
+      <guid isPermaLink="true">https://developers.openai.com/blog/securing-persistent-agents-like-openclaw-at-openai</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Developer · OpenAI介绍其运行持久化Agent的安全组合：可信控制平面服务、Codex沙箱、自动审查、Agent身份与可观测性。这为自建Agent的团队提供了可参考的防护分层。对读者：设计Agent时优先补齐身份、沙箱与审计三件套，再谈能力扩展。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS用A2A协议构建可组合多Agent系统</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS发布教程，演示用Agent-to-Agent（A2A）协议跨组织边界构建多Agent系统：Amazon ECS上的LangChain编排器与Bedrock AgentCore上的Strands Agent通过双向OAuth认证调用，双方不依赖彼此框架或SDK。对读者：跨团队Agent协作可优先评估A2A这类开放协议，降低框架锁定。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS推出官方aws-emulator，本地测试无需付费API Key</title>
+      <link>https://simonwillison.net/2026/Nov/11/aws-emulator/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/11/aws-emulator/</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · AWS发布官方模拟器aws-emulator，可在本地克隆多项AWS服务进行测试，无需开通付费API Key。该项目用Rust编写，由大量Agent协作完成，前三周提交达29684次；目前在macOS与Windows上仍需Docker。对读者：CI中引入本地模拟可显著降低测试成本，但需评估Docker依赖带来的环境复杂度。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>AWS 开源 UAEF：跨框架的 Agent 闭环评测系统</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/uaef-a-framework-agnostic-system-for-closed-loop-evaluation-of-ai-agents/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/uaef-a-framework-agnostic-system-for-closed-loop-evaluation-of-ai-agents/</guid>
+      <pubDate>Wed, 11 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 介绍 Universal Agent Evaluation Framework（UAEF），一个与框架无关的 AI Agent 评测系统。它把各框架的 trace 转成统一格式，用覆盖 7 个维度的 36 项内置指标打分并存储结果，便于团队对比 Agent 版本、捕捉回归。对读者：Agent 上线前最缺的正是可比的回归基线，可先用它统一评测口径再谈调优。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Claude Code 因「不再询问」选项在 GitHub 上大量泄露密钥</title>
+      <link>https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/</guid>
+      <pubDate>Tue, 10 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Ars Technica AI · Ars Technica 报道，Claude Code 的「Do not ask again」提示会导致密码、API 密钥等敏感信息被意外提交并公开在 GitHub 上。问题根源在于权限确认被一次性跳过，而非模型本身出错。对读者：团队应立即检查 Claude Code 的权限配置与提交前钩子，把密钥扫描加入 CI，避免同类事故。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>在 ECS Fargate 上构建无服务器 MCP 服务器，打通数据湖访问</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/</guid>
+      <pubDate>Sat, 07 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 发布教程，演示如何在 ECS Fargate 上搭建无服务器 Model Context Protocol 服务器，让 AI 智能体以元数据驱动的方式安全访问企业数据湖，新增数据集只需一个 JSON 文件，无需逐数据集写集成代码。对读者：正在做 Agent 数据接入的团队可参考该模式，重点评估元数据权限模型是否满足内控要求。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>在Amazon Bedrock AgentCore上把Claude Code扩展为远程会话并加安全管控</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/extend-claude-code-to-remote-sessions-on-amazon-bedrock-agentcore-with-security-controls/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/extend-claude-code-to-remote-sessions-on-amazon-bedrock-agentcore-with-security-controls/</guid>
+      <pubDate>Sat, 07 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS发布方案，将Claude Code作为远程Agent运行在Amazon Bedrock AgentCore上：每个编码任务在用户AWS账号内的隔离会话中执行，所有模型调用经Amazon Bedrock，结果以GitHub PR形式返回供审阅合并。对读者：想让编码Agent跑在受控环境里，可参考该“隔离会话+统一模型出口+PR交付”的落地范式。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Anthropic 拆解 Agent 记忆的组成：用「做梦」整理与纠错</title>
+      <link>https://www.anthropic.com/research/components-of-agent-memory</link>
+      <guid isPermaLink="true">https://www.anthropic.com/research/components-of-agent-memory</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Anthropic Engineering · Anthropic 工程博客讨论为 Claude 设计记忆机制的难点：Agent 必须在不知道后续任务的情况下判断什么值得记住。文章介绍「dreaming」机制如何帮助模型组织记忆、修正错误，并给出记忆组件的拆解思路。对读者：自建 Agent 记忆时，可把「写入策略」与「离线整理」分开设计，避免上下文无限膨胀。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub 新 Git 存储架构：支撑数千 Agent 同时推送</title>
+      <link>https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/</link>
+      <guid isPermaLink="true">https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/</guid>
+      <pubDate>Fri, 06 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 详解其新的 Git 存储架构，目标是让数千个 Agent 能同时向同一个仓库推送。这反映出编码 Agent 大规模并行写入正在改变代码托管的底层假设。对读者：若在流水线中批量运行 Agent，应关注并发推送、冲突合并与仓库锁策略的变化。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Datasette Agent 0.5a0 发布：Agent 聊天面板可并排页面</title>
+      <link>https://simonwillison.net/2026/Nov/3/datasette-agent/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/3/datasette-agent/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Datasette Agent 重要更新引入 panel，让 Agent 聊天窗口与数据表、查询页面并排显示。配合 datasette-apps，可用提示词生成数据库应用并在旁边持续修改。对读者：做内部数据工具时，这种「聊天+页面」的交互范式值得借鉴，可先在 agent.datasette.io 试用。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Bedrock AgentCore Gateway 支持 ServiceNow 代币交换</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/servicenow-on-behalf-of-token-exchange-with-bedrock-agentcore-gateway/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/servicenow-on-behalf-of-token-exchange-with-bedrock-agentcore-gateway/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · AWS 介绍如何为 AgentCore Gateway 配置基于 Microsoft Entra ID 的 on-behalf-of 令牌交换，让 AI Agent 在保留调用者身份的前提下访问 ServiceNow REST API，且无需拦截器 Lambda 或自定义代码。对读者：企业 Agent 接入遗留系统时，身份透传是合规刚需，这套原生方案可直接参考。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI 推出 Pando：Git 后端将推送延迟中位数降低约 80%</title>
+      <link>https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/02/openai-pando-git-backend-monorepo/</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · OpenAI 为自家 monorepo 构建了 Git 兼容后端 Pando，分支独立处理、跨 fetch 复用 packfile，推送延迟中位数下降近 80%，每日交付近 PB 级 Git 数据。对超大型仓库的工程团队具有直接参考价值。对读者：可借鉴其 packfile 复用思路评估自建 Git 托管或大仓拆分方案。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Qodo 借 Codex 把公司规范注入 AI 代码评审</title>
+      <link>https://openai.com/index/qodo-codex-plugin</link>
+      <guid isPermaLink="true">https://openai.com/index/qodo-codex-plugin</guid>
+      <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Blog · Qodo 将企业知识与编码规范接入 Codex，让开发者在提交 PR 之前就能跨仓库发现 P0 级问题。这类「上下文增强的代码评审」正在成为编码助手的下一个竞争点：不只是补全代码，而是理解团队约定。对读者：引入 AI 评审工具时，优先验证它能否读取你们的内部规范与历史缺陷库，否则误报率会很高。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>研究者披露接管 ChatGPT 账号的攻击链</title>
+      <link>https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/</guid>
+      <pubDate>Sun, 01 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · Simon Willison 转述 Parameter Labs 发现的漏洞：ChatGPT 的 artifacts/HTML 预览在沙箱 iframe 中运行自定义 HTML 应用，攻击者借 MathLive 等依赖构造出复杂攻击链，可触达 OpenAI API 与私有数据。这提醒「可交互 HTML 预览」类功能的沙箱边界极其关键。对读者：自建同类预览功能时，务必隔离网络与凭证，并审计第三方前端库。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>datasette-llm 0.1a9 发布：自动沿用 LLM 默认模型</title>
+      <link>https://simonwillison.net/2026/Oct/31/datasette-llm/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Oct/31/datasette-llm/</guid>
+      <pubDate>Sun, 01 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：Simon Willison · datasette-llm 0.1a9 带来一项小但实用的体验改进：插件会自动读取 LLM 的默认模型，因此使用 Datasette Agent 时不再需要显式配置 default_model。作者同时预告 Datasette Agent 将有较大升级。对读者：已用 Datasette 做数据探索的团队可升级简化配置，并为后续 Agent 能力升级预留接入点。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>用 Bedrock AgentCore 运行时实时预览编码 Agent 构建的 Web 应用</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/preview-web-apps-live-as-your-coding-agent-builds-them-with-amazon-bedrock-agentcore-runtime/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/preview-web-apps-live-as-your-coding-agent-builds-them-with-amazon-bedrock-agentcore-runtime/</guid>
+      <pubDate>Sat, 31 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · Amazon Bedrock AgentCore 的 Session 端点会为每个运行时会话提供带认证的 URL，转发任意 HTTP 方法、路径与 WebSocket 连接。文章演示部署一个在会话中运行 Vite 站点的编码 Agent，边改文件边在浏览器实时预览。对读者：搭建 Agent 驱动的开发环境时，可复用该会话端点模式，省去自建预览代理与鉴权层。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>MoEngage 用 AgentCore Gateway 把 400 多个 API 变成 Agent 工具</title>
+      <link>https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/</link>
+      <guid isPermaLink="true">https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway/</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：AWS Machine Learning · MoEngage 借助 Amazon Bedrock AgentCore Gateway，将横跨 7 个区域的约 400 个私有 REST API 转为带权限边界的 Agent 工具，无需为每个服务搭 MCP server、不暴露公网端点，也避免工具过多导致的上下文膨胀。方案依赖 OpenAPI 规范、Cedar 策略与 VPC Lattice 出网。对读者：内部 API 接入 Agent 时，优先用网关做统一鉴权与工具裁剪，而非逐个手写 MCP。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>GitHub Universe 2026：把 GitHub 做成端到端软件交付系统</title>
+      <link>https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 在 Universe 大会上阐述了其愿景：成为全球最完整的端到端软件交付系统，覆盖从编码到交付的每一层。这与同期 Octoverse 数据中 Agent 驱动开发的爆发式增长相互呼应。对读者：平台正在向全链路收拢，团队应评估现有 CI/CD 与协作工具是否会被逐步替代。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Octoverse 2026：开发者用 Agent 编码，提交与推送创新高</title>
+      <link>https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：GitHub Blog · GitHub 2026 年度 Octoverse 报告显示，随着开发者大量使用 Agent 编码，合并 PR 在不到一年内增至每月 2.2 亿次，提交量超三倍达到每月 73.8 亿次，新仓库创建速率翻倍至每月 3030 万。对读者：代码评审与质量门禁将成为瓶颈，建议提前加强自动化审查与测试覆盖。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>OpenAI 用 Codex Ultrafast 把事故排查从数小时压到数分钟</title>
+      <link>https://openai.com/index/openai-cut-incident-investigation</link>
+      <guid isPermaLink="true">https://openai.com/index/openai-cut-incident-investigation</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：OpenAI Blog · OpenAI 工程师分享内部实践：借助 Codex Ultrafast 进行事故调查、安全分析与代码重构，把原本数小时的排查缩短到分钟级，并融入日常开发流程。这为 AI 编码工具在运维场景的价值提供了第一方样本。对读者：可先在告警根因分析这类高重复、强上下文的环节试点编码 Agent。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>前端开发者配置 Codex 桌面端的实操指南</title>
+      <link>https://juejin.cn/post/7700544342427992090</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7700544342427992090</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：掘金前端 · 文章从全局指令、项目规范到 MCP 视觉外挂，手把手演示如何让 Codex 理解项目的包管理器、代码规范与环境约束，避免 AI 擅自使用 npm 或破坏项目结构。核心观点是很多质量问题源于环境配置而非模型能力。对读者：给编码助手写好项目级规则文件，往往比换更强的模型更能提升产出质量。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>微软开源 Agensh：无中心调度、可扩到 1024 个 Agent 的多智能体框架</title>
+      <link>https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/</guid>
+      <pubDate>Sun, 25 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · 微软研究院开源 Agensh，一个没有中央编排器的多智能体 harness：自组织的工作单元共享 Git 仓库、聊天室与发现板，在 ProgramBench 上以 6 小时预算从 1 个扩展到 1024 个 Agent。它把协作基础设施而非调度器当作扩展关键。对读者：评估大规模 Agent 协作方案时，可重点参考其共享仓库与发现板的设计取舍。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Cognition 开源 Devin 漏洞修复插件，三个 Agent 技能自动打补丁</title>
+      <link>https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/</guid>
+      <pubDate>Sun, 25 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：MarkTechPost · Cognition 发布 Devin Vulnerability Fixes 插件，包含三个 MIT 许可的 Agent 技能，可对受本周关键 RCE 漏洞影响的 PHP、Node.js 与自建 GitLab 部署做清点、修补与测试，并为每个仓库自动开一个 PR。对读者：运维与安全团队可将其纳入应急响应流程，但自动 PR 仍需人工复核后再合并。</description>
+      <category>开发者工具</category>
+    </item>
+  </channel>
+</rss>
