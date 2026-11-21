@@ -1,45 +1,42 @@
 {
-  "at": "2026-11-20T23:02:28.330Z",
+  "at": "2026-11-21T23:02:37.923Z",
   "type": "daily",
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "candidates": 120,
   "search": {
     "ok": false,
-    "queries": 15,
+    "queries": 21,
     "totalQueries": 22,
     "items": 24,
     "failures": [
       {
-        "query": "人工智能",
-        "error": "Status 429"
-      },
-      {
-        "query": "前端 框架",
-        "error": "Status 429"
-      },
-      {
-        "query": "Meta Llama",
+        "query": "CSS Web Platform browser",
         "error": "Status 429"
       }
     ]
   },
-  "editorial": 18,
+  "editorial": 17,
   "sections": {
     "业界": 4,
-    "产品": 4,
+    "产品": 3,
     "模型": 4,
-    "开源": 3,
-    "开发者工具": 2,
-    "前端": 1
+    "开源": 1,
+    "开发者工具": 3,
+    "前端": 2
   },
   "rss": {
-    "ok": 66,
-    "failed": 2,
+    "ok": 65,
+    "failed": 3,
     "failures": [
       {
         "id": "codrops",
         "name": "Codrops",
         "error": "Status code 403"
+      },
+      {
+        "id": "hn-ai-agent",
+        "name": "Hacker News AI Agent",
+        "error": "Status code 502"
       },
       {
         "id": "hn-mcp",
@@ -48,5 +45,5 @@
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-20.md"
+  "output": "news/2026-11/ai-news-2026-11-21.md"
 }
