@@ -1,32 +1,27 @@
 {
-  "at": "2026-11-21T23:02:37.923Z",
+  "at": "2026-11-22T23:02:49.813Z",
   "type": "daily",
-  "date": "2026-11-21",
-  "candidates": 120,
+  "date": "2026-11-22",
+  "candidates": 104,
   "search": {
-    "ok": false,
-    "queries": 21,
+    "ok": true,
+    "queries": 22,
     "totalQueries": 22,
     "items": 24,
-    "failures": [
-      {
-        "query": "CSS Web Platform browser",
-        "error": "Status 429"
-      }
-    ]
+    "failures": []
   },
   "editorial": 17,
   "sections": {
     "业界": 4,
-    "产品": 3,
+    "产品": 1,
     "模型": 4,
-    "开源": 1,
-    "开发者工具": 3,
-    "前端": 2
+    "开源": 3,
+    "开发者工具": 2,
+    "前端": 3
   },
   "rss": {
-    "ok": 65,
-    "failed": 3,
+    "ok": 66,
+    "failed": 2,
     "failures": [
       {
         "id": "codrops",
@@ -37,13 +32,8 @@
         "id": "hn-ai-agent",
         "name": "Hacker News AI Agent",
         "error": "Status code 502"
-      },
-      {
-        "id": "hn-mcp",
-        "name": "Hacker News MCP",
-        "error": "Status code 502"
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-21.md"
+  "output": "news/2026-11/ai-news-2026-11-22.md"
 }
