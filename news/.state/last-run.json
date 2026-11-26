@@ -1,51 +1,41 @@
 {
-  "at": "2026-11-25T23:01:58.812Z",
+  "at": "2026-11-26T23:02:45.593Z",
   "type": "daily",
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "candidates": 120,
   "search": {
     "ok": false,
-    "queries": 15,
+    "queries": 16,
     "totalQueries": 22,
     "items": 24,
     "failures": [
       {
-        "query": "CSS Web Platform browser",
+        "query": "Meta Llama",
         "error": "Status 429"
       },
       {
-        "query": "推理模型",
+        "query": "大模型",
         "error": "Status 429"
       },
       {
-        "query": "智能体",
+        "query": "AI agent",
         "error": "Status 429"
       }
     ]
   },
-  "editorial": 12,
+  "editorial": 16,
   "sections": {
-    "业界": 5,
-    "产品": 2,
-    "模型": 2,
-    "开源": 1,
+    "业界": 3,
+    "产品": 4,
+    "模型": 0,
+    "开源": 4,
     "开发者工具": 2,
-    "前端": 0
+    "前端": 3
   },
   "rss": {
-    "ok": 65,
-    "failed": 3,
+    "ok": 67,
+    "failed": 1,
     "failures": [
-      {
-        "id": "codrops",
-        "name": "Codrops",
-        "error": "Status code 403"
-      },
-      {
-        "id": "hn-mcp",
-        "name": "Hacker News MCP",
-        "error": "Status code 502"
-      },
       {
         "id": "hn-ai-agent",
         "name": "Hacker News AI Agent",
@@ -53,5 +43,5 @@
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-25.md"
+  "output": "news/2026-11/ai-news-2026-11-26.md"
 }
