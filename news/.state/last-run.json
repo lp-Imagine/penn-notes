@@ -1,36 +1,23 @@
 {
-  "at": "2026-11-26T23:02:45.593Z",
+  "at": "2026-11-28T04:38:20.569Z",
   "type": "daily",
-  "date": "2026-11-26",
-  "candidates": 120,
+  "date": "2026-11-27",
+  "candidates": 109,
   "search": {
-    "ok": false,
-    "queries": 16,
+    "ok": true,
+    "queries": 22,
     "totalQueries": 22,
     "items": 24,
-    "failures": [
-      {
-        "query": "Meta Llama",
-        "error": "Status 429"
-      },
-      {
-        "query": "大模型",
-        "error": "Status 429"
-      },
-      {
-        "query": "AI agent",
-        "error": "Status 429"
-      }
-    ]
+    "failures": []
   },
-  "editorial": 16,
+  "editorial": 15,
   "sections": {
     "业界": 3,
-    "产品": 4,
-    "模型": 0,
-    "开源": 4,
-    "开发者工具": 2,
-    "前端": 3
+    "产品": 3,
+    "模型": 4,
+    "开源": 2,
+    "开发者工具": 1,
+    "前端": 2
   },
   "rss": {
     "ok": 67,
@@ -43,5 +30,5 @@
       }
     ]
   },
-  "output": "news/2026-11/ai-news-2026-11-26.md"
+  "output": "news/2026-11/ai-news-2026-11-27.md"
 }
