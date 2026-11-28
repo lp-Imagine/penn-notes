@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 前端</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 28 Nov 2026 08:14:51 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Ricky Hanlon离开Meta，但仍留在React</title>
+      <link>https://react.statuscode.com/issues/499</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/499</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status第499期报道，Ricky Hanlon在帮助React「从每周400万次下载增长到2.5亿次」之后离开Meta，并指出React核心团队大部分人已离开Meta。他将继续参与React开发，加上React今年成立了自己的基金会，这更像一个时代的结束而非项目转向。同期还包括TanStack Query v6路线图、Expo的非React应用框架等。对读者：React的治理正从单一公司主导转向基金会模式，长期项目可关注基金会章程与发布节奏的变化。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>第一次用AI + Figma MCP开发网页的小结</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/11/ai-figma-mcp/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/11/ai-figma-mcp/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · 张鑫旭记录了第一次直接用AI读Figma设计稿生成网页的实践：紧急活动需求下午到、后天上线，需同时支持移动端与桌面端，项目里的.mcp.json已有同事配置好figma，CodeBuddy自动识别。结论是效率确实提升很多倍，但仍有不足。对读者：设计稿转代码的MCP链路已可用于赶工期场景，但要预留人工校对环节，尤其是响应式与细节还原。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Pages Data SDK 上线：前端页面不建后端也能读写云端数据</title>
+      <link>https://www.infoq.cn/article/WXXMTPHLTH0bKV3rc35g?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/WXXMTPHLTH0bKV3rc35g?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · Pages Data SDK 让 Web 页面应用可直接创建、查询、更新和删除云端数据，无需额外搭建后端服务与数据库，支持跨设备个人数据同步与多租户隔离的团队共享，数据凭证不暴露于前端。对读者：做轻量工具或 AI 原生小应用时可用它省掉后端，但需先确认权限模型与配额限制是否匹配业务增长。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Node.js 的 node:sqlite 标记为稳定</title>
+      <link>https://nodeweekly.com/issues/649</link>
+      <guid isPermaLink="true">https://nodeweekly.com/issues/649</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Node Weekly · Node Weekly 第 649 期报道 node:sqlite 已标记为稳定，同时提醒注意 vendored 依赖可能让 npm audit 失真：对全新 Next.js 应用跑 npm audit 可能显示零漏洞，但单独审计其打包依赖则是另一回事。对读者：把 SQLite 纳入 Node 内置能力后，本地与边缘场景可减少原生依赖；同时应补做依赖级审计，别把框架自带的审计结果当作安全结论。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>写了 12 个 AI Skill，三个月后 8 个在吃空饷</title>
+      <link>https://juejin.cn/post/7712307777096007720</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7712307777096007720</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 作者三个月写了 12 个 AI Skill，按最后改动时间盘点只剩 4 个存活，死因集中在没有真值、触发靠人记、维护成本高于收益，并给出盘点脚本与 5 条裁撤标准。对读者：给团队自建 Skill 建立「最后改动时间 + 使用频次」的定期盘点机制，比不断新增更能控制维护负担。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Ladybird 浏览器发布首个 alpha 版本</title>
+      <link>https://simonwillison.net/2026/Nov/23/ladybird/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/23/ladybird/</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Simon Willison · Ladybird 发布首个 alpha，可安装试用。该项目自研 HTML 解析、CSS 引擎、布局、JavaScript 乃至 WebAssembly，仅复用 HarfBuzz、Skia、ffmpeg 与 SQLite 等少数外部组件。对读者：关注独立浏览器引擎的开发者可下载体验，并留意其对 Web 标准的覆盖进度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Simon Willison整理select元素样式样本页</title>
+      <link>https://simonwillison.net/2026/Nov/22/select-styling/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/22/select-styling/</guid>
+      <pubDate>Mon, 23 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Simon Willison · Simon Willison因不满HTML select在不同浏览器默认样式差异（尤其Chrome），用Claude Fable 5.2生成了一个展示select各种可样式化方式的页面，并给出自己偏好的CSS方案：appearance:none配合自定义内边距与边框。对读者：跨浏览器表单一致性仍需手写样式兜底，可直接参考其方案减少各端截图比对成本。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>SVG 里的动画到底谁在播：三套机制、周期读取与逐帧验证</title>
+      <link>https://juejin.cn/post/7710905800151744562</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710905800151744562</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 作者导出 SVG 后以为静态文件不会动，在 Chrome 中却发现动画在播。文章讲清 SVG 动画的三套机制，从 begin/dur 读出周期，用无头浏览器逐帧合成 GIF 验证，并给出选型建议。对读者：处理设计导出的 SVG 时应先确认动画来源，避免在性能敏感页面引入不可控的 SMIL 动画。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Web 到 HarmonyOS：Vite 产物打包为 HAP / HAR / HSP</title>
+      <link>https://juejin.cn/post/7710487771852439586</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710487771852439586</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章从 Vue 工程 npm run build 产出的 dist 讲起，说明鸿蒙上架前如何把入口页、按路由拆分的 js 与公共 chunk 映射为 HAP、HAR、HSP 三类产物。内容覆盖打包结构与上架前的工程准备。对读者：已有 Web 技术栈的团队进入鸿蒙生态时，可先按此梳理产物边界，再决定模块拆分策略。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>被 pnpm 坑过后彻底搞懂硬链接与软链接</title>
+      <link>https://juejin.cn/post/7710655615206621210</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710655615206621210</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章从文件系统目录项、Inode 与数据块的分离机制切入，剖析硬链接与软链接的核心差异，解释 pnpm 如何借此实现空间共享与依赖隔离，并总结 React Native、Electron 等场景下的注意事项。对读者：遇到依赖解析异常时，先判断是符号链接指向问题还是硬链接共享问题，再动 node_modules。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 收购 Astro：前端框架之战底层逻辑变了</title>
+      <link>https://juejin.cn/post/7710412551133790246</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710412551133790246</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Cloudflare 官宣收购 Astro，文章认为这不是普通技术并购，而是用服务端优先的内容框架补齐边缘计算入口，与 Vercel+Next.js 争夺开发者生态。对读者：前端框架选型需关注托管平台与框架的绑定关系，评估迁移与锁定风险。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Vite 曝 CVSS 9.1 漏洞：npm run dev --host 有风险</title>
+      <link>https://juejin.cn/post/7710210162956238874</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710210162956238874</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Vite 新披露 CVSS 9.1 漏洞：使用 --host 暴露的 dev server 会把 URL 参数拼进生成的模块代码，导致注入执行。作者在 7.3.7 复现，7.3.8 修复后失效。对读者：尽快升级 Vite 至 7.3.8 及以上，避免在不可信网络暴露 dev server。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>React Status：Next.js为何安全公告频发，React Flow 13发布</title>
+      <link>https://react.statuscode.com/issues/498</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/498</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · 本期React Status聚焦Next.js安全公告频发的原因，同时报道React Flow 13发布——这是该节点编辑器库两年来的首个大版本，新增useNode等hook以减少大型流程图重渲染，并提供迁移指南；Vue Flow已加入xyflow家族。对读者：使用Next.js的项目应建立安全公告订阅与快速升级流程，节点编辑器类产品可评估React Flow 13的渲染收益。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>CSS scroll-state() 查询</title>
+      <link>https://css-tricks.com/almanac/functions/s/scroll-state/</link>
+      <guid isPermaLink="true">https://css-tricks.com/almanac/functions/s/scroll-state/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：CSS-Tricks · CSS-Tricks 介绍 scroll-state() 查询：它允许根据滚动行为切换所用 CSS，与「边刷边焦虑」的状态无关。对读者：滚动驱动的 UI 效果可少写 JS 监听，建议在目标浏览器支持度确认后用于吸顶、进度提示等场景。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>State of HTML 2026 结果发布：声明式特性受青睐，表单控件仍难用</title>
+      <link>https://frontendfoc.us/issues/767</link>
+      <guid isPermaLink="true">https://frontendfoc.us/issues/767</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Frontend Focus · State of HTML 2026 调查结果出炉，覆盖开发者使用、喜爱与挣扎的特性及 AI 使用情况。声明式、基于元素的特性表现突出，Popover API 使用率达 40%；表单控件与日期输入仍是最难样式化的元素，可定制 select 受浏览器支持拖累。对读者：新项目可放心采用 Popover API，表单样式仍建议预留降级方案。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>WebKit 推出 spatial CSS 开发者预览</title>
+      <link>https://webkit.org/blog/18621/introducing-spatial-css-a-developer-preview/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18621/introducing-spatial-css-a-developer-preview/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · Safari on visionOS 27.3 带来 proposed spatial CSS API 的有限功能预览，初期聚焦通过 &lt;model&gt; 元素操作 3D 对象。这是 Web 平台向空间计算延伸的重要一步。对读者：做 visionOS Web 内容的团队可提前试验该 API，但需为预览阶段的能力缺失准备降级方案。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用 animation-range-start 实现错落的滚动驱动动画</title>
+      <link>https://css-tricks.com/staggering-scroll-driven-animations-with-animation-range-start/</link>
+      <guid isPermaLink="true">https://css-tricks.com/staggering-scroll-driven-animations-with-animation-range-start/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：CSS-Tricks · CSS-Tricks 介绍如何借助 animation-range-start 把多个滚动驱动动画错开，并以「CSS 卡拉 OK」为例，让弹跳小球与文字高亮由同一个进度值统一驱动，形成可预测的整体效果。对读者：滚动动画不必依赖 JS 计时器，用 animation-range 系列属性可显著简化编排逻辑。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Yelp AI助手采用混合UI：原生控件加服务端驱动对话渲染</title>
+      <link>https://www.infoq.cn/article/1N801doFOEl2Swqey5Jy?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/1N801doFOEl2Swqey5Jy?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · Yelp为AI助手设计混合UI架构，导航与输入框用原生实现，对话区域由服务端驱动渲染，界面变更无需发版即可生效；事件驱动模型把视图配置与对话逻辑分离，并扩展支持文本输入与网络请求。对读者：移动端AI界面可把易变部分交给服务端配置，稳定交互仍留在原生层。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Safari登陆Apple HomeView新平台</title>
+      <link>https://webkit.org/blog/18608/safari-on-apple-homeview/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18608/safari-on-apple-homeview/</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · WebKit博客宣布Safari首次进入一个全新平台Apple HomeView，称“浏览器在一个全新平台上开始生活并非每天都有”。这标志着WebKit渲染与浏览器能力向新设备形态延伸。对读者：面向新平台的Web适配可能带来视口、输入与性能约束差异，建议提前做兼容性测试。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>shadcn的下一个动作：UI SDK</title>
+      <link>https://react.statuscode.com/issues/497</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/497</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status第497期聚焦shadcn的新方向UI SDK，同时收录声明式拖拽库Dragology（面向SVG界面的实验性React库，通过声明可能结果让库推导交互）、元框架基准测试，以及在DevTools控制台里运行React应用等话题。对读者：组件库正从「复制粘贴源码」走向SDK化分发，评估shadcn生态时需关注其版本升级与依赖治理策略。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Meta开源八年设计系统astryx，连坐两天GitHub总榜第一</title>
+      <link>https://juejin.cn/post/7707184266060300322</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7707184266060300322</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Meta开源其使用八年的设计系统astryx，一套React组件库，连续两天位居GitHub总榜第一。其README明确面向「人，以及和人一起干活的agent」，组件库开始为Agent编写说明书。对读者：前端团队可研究其面向Agent的文档组织方式，为自家组件库的AI可读性做改造。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>CSS Anchor Positioning已进Baseline：弹层不必再手算坐标</title>
+      <link>https://juejin.cn/post/7707147434673127439</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7707147434673127439</guid>
+      <pubDate>Thu, 12 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · CSS Anchor Positioning已于2026年1月成为Baseline，文章从锚点、翻转、Popover到列表场景讲清原理与可上线路径。弹层定位不必再依赖getBoundingClientRect与滚动监听。对读者：新项目可直接采用，老项目可先在非关键弹层灰度替换，减少坐标计算代码。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 启动 Vite 生态基金，首期发放 30.13 万美元</title>
+      <link>https://blog.cloudflare.com/launching-vite-ecosystem-fund/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/launching-vite-ecosystem-fund/</guid>
+      <pubDate>Mon, 09 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Cloudflare Blog · Cloudflare 宣布发放 Vite 生态基金首期 301,300 美元，用于支持开源项目与维护者，受资助者由 Vite 技术栈核心团队成员组成的评审小组选出，其中包括并非 Cloudflare 雇员的维护者。对读者：依赖 Vite 的团队可关注资金流向与维护者稳定性，这也是评估前端构建工具长期可持续性的一个信号。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Agent工具如何折叠海量输出：Trae、Claude Code的渐进式披露设计</title>
+      <link>https://juejin.cn/post/7705443340624085055</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7705443340624085055</guid>
+      <pubDate>Sun, 08 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章分析Agent工具把输出全平铺导致用户刷十屏看不到答案的问题，提出“结论面、证据面、原始轨迹”三层架构，配合时间、工具、思考、结果四种折叠方式，并给出可运行的HTML示例代码。对读者：做Agent类前端界面时，优先设计分层折叠与默认结论视图，能显著降低长输出的阅读成本。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 与 VoidZero 推出 tsrs：AI 生成的 TypeScript 编译器 Rust 移植版</title>
+      <link>https://www.infoq.cn/article/lGoA1ZSw6ojeh68GVlBl?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/lGoA1ZSw6ojeh68GVlBl?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 07 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · Cloudflare 联合 VoidZero 及 Owner.com 的 Max Schwenk 推出 tsrs，这是 TypeScript 编译器的 Rust 移植版，在 Oxc 工具链中孵化并与 TypeScript 团队密切合作，官方强调它不是分支、语言设计仍由 TS 团队掌控。对读者：构建链路的 Rust 化继续推进，可关注其在大型项目上的编译耗时收益，但暂不宜用于生产关键路径。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare Workers 支持生产环境按需性能剖析与火焰图</title>
+      <link>https://www.infoq.cn/article/pMNGPheLLJ8hkfikmjUU?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/pMNGPheLLJ8hkfikmjUU?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 07 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · Cloudflare 为 Workers 和 Durable Objects 引入按需 CPU 与内存性能剖析，开发者可通过 Workers Observability 控制台或 cf 工具查看交互式火焰图，直接定位线上性能瓶颈，解决「本地复现不了」的老问题。对读者：边缘函数性能调优从此有了生产侧数据支撑，建议在发布流程中加入剖析快照对比。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Node 27 首个 alpha 发布：新发布节奏下的破坏性变更</title>
+      <link>https://nodeweekly.com/issues/646</link>
+      <guid isPermaLink="true">https://nodeweekly.com/issues/646</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Node Weekly · Node.js 27 首个 alpha 按新发布模型推出，每个大版本在稳定前有六个月 alpha 期，正式版预计明年四月。V8 15.6 默认带来 Math.sumPrecise()、Iterator.zip() 等迭代器辅助方法，import defer 与不可变 ArrayBuffer 需开启标志，默认堆上限改为物理内存一半。对读者：库作者应尽早在此 alpha 上跑测试，普通项目暂勿用于生产。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Safari Technology Preview 256 发布</title>
+      <link>https://webkit.org/blog/18602/release-notes-for-safari-technology-preview-256/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18602/release-notes-for-safari-technology-preview-256/</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · WebKit 发布 Safari Technology Preview 256，面向 macOS Golden Gate 与 macOS Tahoe 提供下载。该版本延续对 Web 平台新特性的预览与验证。对读者：关注跨浏览器兼容的前端团队可安装该预览版，提前验证新 API 与 CSS 特性在 Safari 下的表现，减少上线后的兼容返工。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Safari 27.3 beta 推出自适应深色模式</title>
+      <link>https://webkit.org/blog/18541/introducing-adaptive-dark-mode/</link>
+      <guid isPermaLink="true">https://webkit.org/blog/18541/introducing-adaptive-dark-mode/</guid>
+      <pubDate>Wed, 04 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：WebKit Blog · WebKit 宣布 Safari 27.3 beta 新增可选的 Adaptive Dark Mode，自动把浅色站点适配为深色。背景是约 40% 的页面加载来自深色模式用户，但仅 10% 的页面直接支持深色。对读者：站点不必再为深色模式重写全部样式，但应测试自动适配后的对比度与品牌色表现。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Claude 在 12 个 JavaScript 技术栈上的构建成本实测</title>
+      <link>https://javascriptweekly.com/issues/809</link>
+      <guid isPermaLink="true">https://javascriptweekly.com/issues/809</guid>
+      <pubDate>Tue, 03 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：JavaScript Weekly · Nolan Lawson 让 Claude 在 12 个 JS 技术栈上各构建同一应用五次，发现成本波动明显、多数框架区间重叠；更清晰的差异在发送到浏览器的 JS 体积中位数：Astro 为 0KB、Hono+htmx 18K、SvelteKit 36K，React Router、TanStack Start 与 Next.js 达 115–142K。对读者：选型时别只看「对 Agent 友好」的说法，应把产物体积与构建成本一起纳入基准测试。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>用 Agent Skills 给团队写一个「前端 Review」Skill</title>
+      <link>https://juejin.cn/post/7702637146160201770</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7702637146160201770</guid>
+      <pubDate>Sun, 01 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 文章介绍如何借助已捐给 AAIF 的 Agent Skills，用 SKILL.md 把前端 Review 固化为改动范围、类型检查、Lint 与危险禁区四类检查，模板可直接拷进仓库复用。相比堆砌万字 Prompt，这种结构化技能更易维护与协作。对读者：可先把团队最常返工的一类 Review 规则沉淀成 Skill，再逐步扩展覆盖面。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>AWS Lambda 直接运行 Express：Lambda Web Functions 登场</title>
+      <link>https://www.infoq.cn/article/fcdAAd69U452t9b39rLU?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/fcdAAd69U452t9b39rLU?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 31 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · 亚马逊云科技推出面向 Node.js 的 Lambda Web Functions，原生支持 Express、Hono 等框架，提供并发 HTTP 请求处理与流式响应，并按活跃 CPU 时间计费，同时支持多区域路由与预热环境复用。对读者：中小型 Node 服务可评估省去 API Gateway 的简化架构，但需重新核算并发模型下的计费与冷启动表现。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>懒加载图片新增 sizes=&amp;quot;auto&amp;quot;：不再手写媒体查询</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/10/loading-lazy-img-sizes-auto/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/10/loading-lazy-img-sizes-auto/</guid>
+      <pubDate>Fri, 30 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · img 元素的 sizes 属性新增 auto 关键字，专为懒加载图片设计，浏览器可自动判断该用 srcset 中的哪张图，省去手写媒体查询。这能显著简化响应式图片配置并减少选图错误。对读者：新项目可直接采用 sizes=&quot;auto&quot;，老项目注意浏览器兼容与首屏非懒加载图片的行为差异。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Rspack 2.3 发布：联手 SWC 团队带来全新编译器</title>
+      <link>https://juejin.cn/post/7701932169296003082</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7701932169296003082</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Rspack 2.3 发布，集成 SWC Next 解析器，官方称可提升构建速度、降低内存占用并减小产物体积；同时推出实验性新版缓存，支持为 loader 单独缓存转换结果。对读者：构建性能敏感的团队可先在分支上升级验证缓存行为，再决定是否全量切换。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Opera 提出 WebAI 新标准：让用户在浏览器本地部署 AI</title>
+      <link>https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/</guid>
+      <pubDate>Tue, 27 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：TechCrunch AI · Opera 推出名为 WebAI 的新 Web 标准提案，目标是让用户直接在浏览器内本地运行 AI，并设计为兼容多种模型。若被浏览器厂商广泛采纳，前端将获得标准化的本地推理入口。对读者：关注该提案的标准化进展与浏览器支持节奏，本地推理可显著降低隐私敏感场景的云端依赖。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>CSS @supports 新增 named-feature() 特性检测</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/10/css-supports-named-feature/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/10/css-supports-named-feature/</guid>
+      <pubDate>Mon, 26 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · 张鑫旭介绍 @supports 中的 named-feature() 检测函数，目前可用于判断锚点定位是否感知 transform 等显式登记的特性，并讲述了这些特性背后的规范故事。对读者：渐进增强场景可用它替代 UA 嗅探，但需为不支持该函数的浏览器保留回退写法。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>React 19.3新增browser() API，让纯客户端渲染成为一等公民</title>
+      <link>https://www.infoq.cn/article/jNX6EAzqP34xRjqUMU1N?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/jNX6EAzqP34xRjqUMU1N?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Sat, 24 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · React 19.3于9月9日发布，除稳定View Transitions与Fragment Refs外，还加入react-dom的browser() API，允许组件正式声明跳过服务端渲染。对读者：依赖浏览器API的组件可用该API显式排除SSR，减少typeof window判断，但需同步检查水合边界与首屏性能。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>TanStack Start 正式发布 1.0，结束一年 RC</title>
+      <link>https://react.statuscode.com/issues/494</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/494</guid>
+      <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status 报道，TanStack Start 在经历一年候选版本后正式稳定。Tanner Linsley 说明其从 TanStack Router 生长而来，并坦言对 RSC 的态度；官方提供从 Next.js 迁移指南。同文还提到同一应用对比 Next.js 16.4 的基准数据。对读者：正在选型全栈 React 框架的团队可把 Start 1.0 纳入评估，先验证迁移成本与生态插件成熟度。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Cloudflare 联合 Oxc 用 Rust 重写 TypeScript，实测约快 2 倍</title>
+      <link>https://juejin.cn/post/7699373348027564082</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7699373348027564082</guid>
+      <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · Cloudflare 与 VoidZero 合作把 TypeScript 编译器移植到 Rust，项目 tsrs 孵化于 Oxc 工具链。作者在 1 核 2G 机器上用 199 个文件对比 tsc 7.0.2，报错逐字符一致、速度约 2 倍，但退出码行为不同。对读者：尝鲜前务必核对 CI 中依赖退出码的脚本，避免流水线误判。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>8 张 eMudhra 中间证书被攻破，Cloudflare 发布缓解措施</title>
+      <link>https://blog.cloudflare.com/emudhra-certificate-compromise/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/emudhra-certificate-compromise/</guid>
+      <pubDate>Wed, 21 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Cloudflare Blog · 在发现 8 张 eMudhra 中间证书使用弱密钥后，Cloudflare 正部署缓解措施并发布客户端更新，文章说明了影响范围、响应动作以及客户与开发者应采取的后续步骤。由于这些证书链接受主流根信任库，影响面波及大量软件与系统。对读者：立即更新 ca-certificates、certifi 及运行时依赖的证书列表，并检查自有服务是否依赖相关中间证书。</description>
+      <category>前端</category>
+    </item>
+  </channel>
+</rss>

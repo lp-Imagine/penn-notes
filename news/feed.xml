@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 28 Nov 2026 08:14:51 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>头条 · Anthropic发布Claude Ship：PR合并量3个月翻倍，回滚比例降超40%</title>
+      <link>https://www.leiphone.com/category/ai/iWUKWuRp4AmJ6dZE.html</link>
+      <guid isPermaLink="true">https://www.leiphone.com/category/ai/iWUKWuRp4AmJ6dZE.html</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：雷锋网 AI · Anthropic推出Claude Ship，把AI Agent的工作范围从写代码延伸到GitHub PR的完整交付流程：代码审查、自动修复CI失败、处理合并冲突与审批。架构上拆成Code Review、PR Steward、Claude Approvals三个独立组件，并用YAML策略定义代码路径、变更范围与审批要求的对应关系，避免执行、审查、审批集中在同一个Agent手里。官方数据称Claude已写下约90%代码，单日代码变更从2500增至3万，审查覆盖率升至54%，内部PR合并量3个月翻倍，回滚比例下降超40%。对读者：值得借鉴的不是让Agent多</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>1Password确认内部系统遭入侵，密码库未受影响</title>
+      <link>https://sspai.com/post/119632</link>
+      <guid isPermaLink="true">https://sspai.com/post/119632</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：少数派 · 1Password发布安全公告，确认攻击者通过一名员工的企业GitHub账号入侵内部系统，导致部分用户账户信息及内部源代码泄露；公司称用户的密码保险库及其中内容均未受影响。事件自11月19日开始调查，攻击者利用被入侵账号向后端服务植入恶意代码。对读者：密码管理器本身仍是可信存储，但企业侧应把GitHub账号权限、CI密钥与后端部署链路当作同一攻击面来收紧。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>美团三季报：营收1156亿元，AI工作台「妙手」服务200万商家</title>
+      <link>https://www.leiphone.com/category/industrynews/iJ0tw7k1kHDs5zjT.html</link>
+      <guid isPermaLink="true">https://www.leiphone.com/category/industrynews/iJ0tw7k1kHDs5zjT.html</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：雷锋网 AI · 美团发布2026年第三季度业绩，实现收入1156亿元，同比增长21.6%，净利润同比由负转正；核心本地商业营收783亿元，同比增长16.8%，经营利润同比由负转正、同比减亏近200亿元。季度研发投入77亿元，同比增长11.3%，AI经营工作台「妙手」（CatPaw）已服务超过200万商家。对读者：本地生活赛道的AI落地更偏经营工具而非聊天入口，做B端产品的团队可关注这类「嵌入既有工作流」的路径。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Android「Create My Widget」上手：DIY小组件的vibe-coding乐趣</title>
+      <link>https://www.theverge.com/tech/1041801/android-intelligence-create-my-widget-gemini</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1041801/android-intelligence-create-my-widget-gemini</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Google推出Create My Widget工具，让用户用自然语言把Android主屏变成高度可定制的小组件面板。The Verge实测后认为它确实好玩，但能力有限——作者想要的实时公交到站小组件并未实现。这代表一类新交互：把生成式能力塞进系统级小组件，而不是另开一个聊天App。对读者：若在做移动端产品，可评估把AI生成结果直接落到小组件/卡片这类「一眼可见」的界面，而非要求用户主动打开应用。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>DeepSeek网页与App上线聊天账单，显示Token用量与金额</title>
+      <link>https://www.qbitai.com/2026/11/513305.html</link>
+      <guid isPermaLink="true">https://www.qbitai.com/2026/11/513305.html</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：量子位 · DeepSeek在网页端和App端的回复下方新增硬币图标，点开可看到本轮消耗额度、输入（缓存命中/未命中）与输出Token单价、用量、金额，以及上下文占用进度圈。目前聊天仍然免费，但结合此前免费用户限额的讨论，外界普遍猜测这是为后续收费做铺垫。对读者：Token级成本可视化会逐渐成为AI产品标配，做应用时提前把用量与计费埋点设计进去，比事后补账更省事。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>支付宝车载助手3.0发布：从「对话智能」走向「行动智能」</title>
+      <link>https://www.leiphone.com/category/industrynews/szJUnXEhChJQgJHZ.html</link>
+      <guid isPermaLink="true">https://www.leiphone.com/category/industrynews/szJUnXEhChJQgJHZ.html</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：雷锋网 AI · 广州车展期间，支付宝发布AI原生车载智能体「支付宝车载助手3.0」，具备车主意图体系、智能服务互联、APASS可信授权、声纹支付、Agentic端云一体五大能力，并与车企座舱主智能体协同。产品把停车缴费、加油充电、高速通行、智能外卖点单等高频服务接入座舱，主打「车内发起、车外交付」。对读者：Agent商业化的关键卡点正在从模型能力转向授权与支付闭环，值得关注可信授权这类基础设施的演进。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Sakana AI发布Namazu Small：30B-A3B模型基于Nemotron 3 Nano</title>
+      <link>https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sakana AI发布Sakana Namazu Small，这是一个基于NVIDIA Nemotron 3 Nano构建的30B-A3B推理模型。官方称其在25项基准上平均得分60.1，超过120B的Nemotron 3 Super的56.2。小参数、稀疏激活在评测上反超大模型，说明后训练与数据配比仍有可观空间。对读者：选型时不要只看参数量，同尺寸下的训练配方差异可能比规模差异更决定实际表现。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>腾讯开源DFly2：复用目标模型稀疏KV Cache的投机解码</title>
+      <link>https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 腾讯开源DFly2，面向稀疏注意力LLM的投机解码drafter。其每个草稿层复用目标模型的KV Cache与top-k indexer选择，不额外占用草稿KV显存，官方称可将64K上下文的服务吞吐提升最多81%。对读者：长上下文推理的成本瓶颈常在KV Cache，这类「不新增显存」的加速方案值得在自建推理服务里做小流量验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>nexos.ai推出AI Gateway：200+模型统一接入，内置预算与治理</title>
+      <link>https://www.marktechpost.com/2026/11/26/nexos-ai-ai-gateway-200-models-governance/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/nexos-ai-ai-gateway-200-models-governance/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · nexos.ai发布AI Adoption Platform，把200多个模型放在同一个AI Gateway之后，并内置预算限制与治理能力。多模型接入的统一网关正在成为企业采用AI的中间层，解决的不只是调用便利，还有成本可控与合规审计。对读者：若团队已在多个模型供应商之间切换，可对比自建网关与这类托管方案的运维成本，重点看预算熔断与日志留存是否满足审计要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>智谱辟谣GLM-5.5延期：性能Fable级，万卡昇腾进展顺利</title>
+      <link>http://www.geekpark.net/news/374546</link>
+      <guid isPermaLink="true">http://www.geekpark.net/news/374546</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：极客公园 · 智谱高管杨昊翊公开辟谣，称此前流传的GLM-5.5跳票爆料均为假消息。此前有外媒称原计划12月发布的GLM-5.5将延期至2027年一季度，并称原因是海外厂商对蒸馏技术设限。国联民生研究报告称其参数量在2-3万亿之间、性能达Fable级别；用于前期训练的万卡昇腾950DT进展顺利，预计明年跑通。对读者：国产大模型的发布节奏信息噪音较大，评估时应以官方口径与实际可用API为准。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>datasette-mcp 0.4发布：为任意Datasette实例加上MCP服务</title>
+      <link>https://simonwillison.net/2026/Nov/27/datasette-mcp/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/27/datasette-mcp/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Simon Willison · Simon Willison发布datasette-mcp 0.4，该插件可为任意Datasette实例添加 /-/mcp 的MCP服务器，本次更新主要修复与Datasette 1.0a44的兼容性。它让数据探索工具直接成为Agent可调用的工具端点，是MCP生态里典型的「小插件、大杠杆」案例。对读者：若手上已有内部数据服务，加一层MCP封装比重新做Agent集成成本低得多，可优先试点。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>在Trainium3上用LTX-2.5生成视频</title>
+      <link>https://huggingface.co/blog/video-trainium3</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/video-trainium3</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客记录了在AWS Trainium3上运行LTX-2.5视频生成模型的实践。视频生成正从GPU单一路径扩展到自研加速器，成本结构随之变化。对读者：关注非NVIDIA算力在生成式负载上的实际可用性，尤其是编译适配与吞吐数据，可作为降低推理成本的备选路线。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>JioHotstar实测六种方案：给编码Agent加知识库反而更费Token</title>
+      <link>https://www.infoq.cn/article/Ql4GGMIEqA3bI2W2lh7h?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/Ql4GGMIEqA3bI2W2lh7h?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · JioHotstar对AI编码智能体的六种代码库理解方案做了基准测试，结论是结构化搜索在目标明确的任务中表现稳健，语义检索更适合需求模糊的场景；增加检索层并不必然提升准确率或降低Token消耗，Sourcebot在高难度任务中优于基线且成本更低，文件系统工具依然能打。对读者：别默认「上RAG就更好」，先用自己仓库的真实任务做A/B，再决定是否引入检索层。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Ricky Hanlon离开Meta，但仍留在React</title>
+      <link>https://react.statuscode.com/issues/499</link>
+      <guid isPermaLink="true">https://react.statuscode.com/issues/499</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：React Status · React Status第499期报道，Ricky Hanlon在帮助React「从每周400万次下载增长到2.5亿次」之后离开Meta，并指出React核心团队大部分人已离开Meta。他将继续参与React开发，加上React今年成立了自己的基金会，这更像一个时代的结束而非项目转向。同期还包括TanStack Query v6路线图、Expo的非React应用框架等。对读者：React的治理正从单一公司主导转向基金会模式，长期项目可关注基金会章程与发布节奏的变化。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>第一次用AI + Figma MCP开发网页的小结</title>
+      <link>https://www.zhangxinxu.com/wordpress/2026/11/ai-figma-mcp/</link>
+      <guid isPermaLink="true">https://www.zhangxinxu.com/wordpress/2026/11/ai-figma-mcp/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：张鑫旭 · 张鑫旭记录了第一次直接用AI读Figma设计稿生成网页的实践：紧急活动需求下午到、后天上线，需同时支持移动端与桌面端，项目里的.mcp.json已有同事配置好figma，CodeBuddy自动识别。结论是效率确实提升很多倍，但仍有不足。对读者：设计稿转代码的MCP链路已可用于赶工期场景，但要预留人工校对环节，尤其是响应式与细节还原。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>头条 · Anthropic 上市即破发，Claude Code 核心班底被 OpenAI 收割</title>
+      <link>https://www.infoq.cn/article/z9IwzAY8hP15oDa2VKi6?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/z9IwzAY8hP15oDa2VKi6?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：InfoQ 中文 · Anthropic 上市后股价数日内暴跌 31%，跌破发行价；更棘手的是多名 Claude Code 核心开发者相继离职并加入 OpenAI，Cat Wu、Thariq Shihipar、Anthony Morris 三人构成关键人才迁移链。对读者：评估编码 Agent 供应商时，除模型能力外应把团队稳定性与路线连续性纳入风险清单，避免把关键工作流押在动荡期产品上。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic CEO Dario Amodei 称「向 AI 交出人类控制权」的指控荒谬</title>
+      <link>https://techcrunch.com/2026/11/25/anthropics-dario-amodei-calls-accusations-of-surrendering-human-control-to-ai-absurd/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/25/anthropics-dario-amodei-calls-accusations-of-surrendering-human-control-to-ai-absurd/</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · Anthropic CEO Dario Amodei 回击竞争对手的指控，否认自己主张把人类能动性交给 AI，尽管领先 AI 公司正越来越多地自动化自身研究与模型开发。对读者：安全叙事正成为模型厂商的竞争话术，选型时可要求供应商给出可验证的人工介入与审计机制，而非只听立场表态。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>英国 FCA 抱怨 Meta 拒绝共享 Muse 供测试</title>
+      <link>https://www.wired.com/story/meta-refused-to-share-muse-for-testing-uk-financial-watchdog-complains/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/meta-refused-to-share-muse-for-testing-uk-financial-watchdog-complains/</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · 英国金融行为监管局（FCA）警告 AI 智能体可能带来「另一股攻击力量」，此前 Meta 拒绝在周二于英国推出个人智能体前进行联合测试的请求。对读者：面向金融场景的 Agent 上线前，主动与监管沟通测试安排比事后解释更省成本，尤其是涉及账户与支付动作的产品。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>42 州总检察长联手阻止 Character.AI 出售用户聊天记录</title>
+      <link>https://www.theverge.com/policy/1042620/character-ai-sale-state-ags-block-selling-users-chats</link>
+      <guid isPermaLink="true">https://www.theverge.com/policy/1042620/character-ai-sale-state-ags-block-selling-users-chats</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 42 位州总检察长组成联盟，试图阻止 Character.AI 在破产程序中出售用户数据，称其计划拍卖超过 2100 万个美国账户的私密聊天历史，其中逾 210 万个注册为未成年人，且缺乏保障措施。对读者：涉及用户对话数据的产品应尽早明确数据资产边界与破产场景下的处置条款，隐私政策里写不清的部分，监管会替你写。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>OpenAI 合并 Chat 与 Work，重度用户可能更早触达用量上限</title>
+      <link>https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：TechCrunch AI · OpenAI 将把 ChatGPT 的 Chat 与 Work 体验合并，并引入统一的用量计量表，这意味着重度用户可能比过去更早触及限额。对读者：把 ChatGPT 深度嵌入日常流程的团队应重新核算额度消耗，提前准备降级模型或备用通道，避免统一计量后成本与中断风险同时上升。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>FCC 批准 SpaceX 最多部署 100 万颗数据中心卫星</title>
+      <link>https://www.theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers</link>
+      <guid isPermaLink="true">https://www.theverge.com/science/1042278/spacex-fcc-starmind-ai-space-data-centers</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · FCC 批准 SpaceX 的「Starmind」计划，允许其部署最多 100 万颗搭载 AI 芯片的卫星，这是该机构首次批准完整的 AI 卫星星座；要求 2033 年前至少部署一颗，2040 年达到 100 万颗里程碑。对读者：太空算力从概念进入许可阶段，长期看将改变推理基础设施的地理分布，值得关注其对延迟敏感型应用与能源约束的潜在影响。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Nothing 公布 AI 耳机 Ear Note 与可录音充电盒</title>
+      <link>https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal</link>
+      <guid isPermaLink="true">https://www.theverge.com/gadgets/1042162/nothing-ear-note-ai-earbuds-reveal</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Nothing 在 12 月 8 日发布前展示 Ear Note 耳机细节：耳机可录制通话，充电盒可录制、转写并总结对话，盒上新增「Record」按钮，另有「Talk」按钮录制本人语音。对读者：会议记录类硬件正把转写与摘要下沉到配件层，评估此类产品时应重点确认录音合规提示与数据存储位置。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>MCP 服务器现在可下发 Agent 技能，企业审批范围随之改变</title>
+      <link>https://news.google.com/rss/articles/CBMizAFBVV95cUxNS0VjTnRXOWNYWjBfbXlPSnZfV1pBX1RIZnRxcU9la0I2NU1QVzdhZ0lMRExmQUlpNUgwQktub0ZYSG15czE5bzBTaVNBXy1sRGVyQnRHcVdnTXl3aW96S0NScEczQ3pFODZiV1czdm5HdExPbDhTLTlNYVpScFRyMzgzTkNhbE84blNkZTZ1Q3F6dUtMZjVnbGRGZnI5Z2ZWTHh6RWdGRy1NNG43UXN1ZlY0OEVNLTh1NTEzZUhBMXEzZnZOeUpsY2FzTkY?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMizAFBVV95cUxNS0VjTnRXOWNYWjBfbXlPSnZfV1pBX1RIZnRxcU9la0I2NU1QVzdhZ0lMRExmQUlpNUgwQktub0ZYSG15czE5bzBTaVNBXy1sRGVyQnRHcVdnTXl3aW96S0NScEczQ3pFODZiV1czdm5HdExPbDhTLTlNYVpScFRyMzgzTkNhbE84blNkZTZ1Q3F6dUtMZjVnbGRGZnI5Z2ZWTHh6RWdGRy1NNG43UXN1ZlY0OEVNLTh1NTEzZUhBMXEzZnZOeUpsY2FzTkY?oc=5</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VentureBeat AI · MCP 服务器如今能够直接交付 AI Agent 技能，这改变了企业在连接一个 MCP 服务器时实际批准的内容边界——不再只是数据访问，还包括可执行能力。对读者：接入第三方 MCP 服务器前应把「技能清单」纳入安全评审，明确可调用工具与权限范围，避免一次连接引入未审计的自动化能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>llama.cpp 推出 AMD Ryzen 与 Radeon 基准测试面板</title>
+      <link>https://huggingface.co/blog/ggml-org/llamacpp-amd-bench</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ggml-org/llamacpp-amd-bench</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · ggml-org 在 Hugging Face 发布 llama.cpp 面向 AMD Ryzen 与 Radeon 的基准测试面板，为本地推理在 AMD 平台上的性能对比提供统一参考。对读者：计划用 AMD 硬件跑本地模型的团队可先用该面板核对吞吐与延迟数据，再决定采购与量化配置，减少试错成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA 发布 Nemotron 3.5 Parse 的开放数据、微调与加速推理实践</title>
+      <link>https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · NVIDIA 在 Hugging Face 撰文介绍如何基于 Nemotron 3.5 Parse 使用开放数据进行微调并实现更快推理，覆盖数据、训练与部署链路。对读者：需要文档解析类能力的团队可据此评估自托管方案，重点比对微调后的领域精度与推理成本是否优于直接调用闭源 API。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>多智能体系统如何构建、训练与评估</title>
+      <link>https://huggingface.co/blog/training-swarms</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/training-swarms</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 博客以「Swarms、Flocks、Gangs」为题，系统梳理多智能体系统的构建、训练与评估方法，覆盖协作拓扑与评测口径。对读者：正在把单 Agent 拆成多 Agent 的团队可借此建立评估基线，避免只凭演示效果判断系统可靠性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Uber 开源思路：对 AI 智能体做全生命周期行为治理</title>
+      <link>https://www.infoq.cn/article/xA3g2i0VtTZIOVePMedY?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/xA3g2i0VtTZIOVePMedY?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Uber 工程团队指出传统身份与 API 管控难以防护会动态解析外部内容、执行真实操作的 AI 智能体，为此自研框架，结合用户请求、智能体目标、权限与交互上下文校验行为合规，覆盖注册准入、运行时评估与持续保障。对读者：构建可执行操作的 Agent 平台时，可参考其分层鉴权思路，把提示注入与目标劫持纳入运行时防护而非仅靠提示词约束。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Snowflake CoCo 进化：数据开发进入 Agent 自主执行</title>
+      <link>https://www.infoq.cn/article/vfmBDlfQRRfHq4Jyi5b6?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/vfmBDlfQRRfHq4Jyi5b6?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开发者工具] · 来源：InfoQ 中文 · Snowflake CoCo 最新更新允许团队把复杂任务交给自主运行的云端智能体，即使用户离开，智能体也能在安全沙箱与企业治理框架下持续工作，并集成子智能体、实时预览与原生 Git 操作。对读者：数据平台选型时可把「无人值守任务」的治理与审计能力作为硬指标，而非只看 Agent 能否跑通演示。</description>
+      <category>开发者工具</category>
+    </item>
+    <item>
+      <title>Pages Data SDK 上线：前端页面不建后端也能读写云端数据</title>
+      <link>https://www.infoq.cn/article/WXXMTPHLTH0bKV3rc35g?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/WXXMTPHLTH0bKV3rc35g?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：InfoQ 中文 · Pages Data SDK 让 Web 页面应用可直接创建、查询、更新和删除云端数据，无需额外搭建后端服务与数据库，支持跨设备个人数据同步与多租户隔离的团队共享，数据凭证不暴露于前端。对读者：做轻量工具或 AI 原生小应用时可用它省掉后端，但需先确认权限模型与配额限制是否匹配业务增长。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>Node.js 的 node:sqlite 标记为稳定</title>
+      <link>https://nodeweekly.com/issues/649</link>
+      <guid isPermaLink="true">https://nodeweekly.com/issues/649</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：Node Weekly · Node Weekly 第 649 期报道 node:sqlite 已标记为稳定，同时提醒注意 vendored 依赖可能让 npm audit 失真：对全新 Next.js 应用跑 npm audit 可能显示零漏洞，但单独审计其打包依赖则是另一回事。对读者：把 SQLite 纳入 Node 内置能力后，本地与边缘场景可减少原生依赖；同时应补做依赖级审计，别把框架自带的审计结果当作安全结论。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>写了 12 个 AI Skill，三个月后 8 个在吃空饷</title>
+      <link>https://juejin.cn/post/7712307777096007720</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7712307777096007720</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[前端] · 来源：掘金前端 · 作者三个月写了 12 个 AI Skill，按最后改动时间盘点只剩 4 个存活，死因集中在没有真值、触发靠人记、维护成本高于收益，并给出盘点脚本与 5 条裁撤标准。对读者：给团队自建 Skill 建立「最后改动时间 + 使用频次」的定期盘点机制，比不断新增更能控制维护负担。</description>
+      <category>前端</category>
+    </item>
+    <item>
+      <title>耶鲁 Sonnenfeld：英伟达是美国工业实力的「损害」而非捍卫者</title>
+      <link>https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/24/yales-sonnenfeld-nvidia-is-a-detriment-to-u-s-industrial-might-not-a-champion/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · 耶鲁管理学者 Jeffrey Sonnenfeld 警告，市场对黄仁勋在白宫支持下回归的欢呼可能是个巨大错误：董事们正因不断累积的诉讼面临「历史性」个人责任，而公司被指帮助先进芯片流入对手之手。这番表态把企业治理与国家安全两条线并到一起。对读者：董事会层面的治理争议会放大股价波动，长期持有者需跟踪诉讼与政策表态。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>亚马逊与 Meta 据报谈判解除对 AI Agent Muse 的封锁</title>
+      <link>https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/</link>
+      <guid isPermaLink="true">https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：TechCrunch AI · TechCrunch 报道，亚马逊与 Meta 正在讨论一项潜在协议，以结束对 AI Agent Muse 长达两个月的封锁。此事被视为 Agent 与平台生态关系的风向标：当 AI 代替人浏览与下单，平台既有的广告与流量分配机制会被直接挑战。对读者：关注谈判结果，它可能决定第三方 Agent 能否合法接入主流电商渠道。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Tidal 宣布封禁 AI 音乐：2700 万首曲目将被删除</title>
+      <link>https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/</link>
+      <guid isPermaLink="true">https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Ars Technica AI · Ars Technica 报道，AI 歌曲目前占 Tidal 曲库的 6.3%，封禁后将归零。不同报道对删除数量给出 2700 万与 2900 万两种口径，但方向一致：平台从标注、取消分成升级为直接清退。这为流媒体行业如何处理生成式内容立下了一个强硬先例。对读者：内容平台与版权方应关注该政策的执行细则，它可能成为其他平台的参照模板。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>CrowdStrike 与 Zscaler 的交易意在给失控 AI Agent 一个统一「急停开关」</title>
+      <link>https://news.google.com/rss/articles/CBMixgFBVV95cUxNLVV1M3pEZnZPOUxyVkxvbXFVMGdPOVBncjVsMEM0UWdiS3U1NmZOdm5pdXgwQmNHNDMzQjg0SlNBQXlsOFFoX3U0bk5aTkdGVnZuaUZaM29sblhzS1ViSzJpUklMZ2NORHR5bTF4Z3NhZWRNcDFsSjR1X2ZWaW0xRnhqczVWNTBORnZrNzNlUmJ0SzRsVHRhTHQxQ1E0NjJzUGg5cWVUQTRhTmFadG4zNzRKYzZlbVBIak9PeVhiRS1rRjVyMnc?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMixgFBVV95cUxNLVV1M3pEZnZPOUxyVkxvbXFVMGdPOVBncjVsMEM0UWdiS3U1NmZOdm5pdXgwQmNHNDMzQjg0SlNBQXlsOFFoX3U0bk5aTkdGVnZuaUZaM29sblhzS1ViSzJpUklMZ2NORHR5bTF4Z3NhZWRNcDFsSjR1X2ZWaW0xRnhqczVWNTBORnZrNzNlUmJ0SzRsVHRhTHQxQ1E0NjJzUGg5cWVUQTRhTmFadG4zNzRKYzZlbVBIak9PeVhiRS1rRjVyMnc?oc=5</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：VentureBeat AI · VentureBeat 报道，CrowdStrike 与 Zscaler 的合作目标是让安全团队获得针对失控 AI Agent 的单一 kill switch。随着 Agent 获得更多系统权限，如何一键阻断其行为成为企业安全的新需求。对读者：部署高权限 Agent 前，应确认是否具备集中式熔断与审计能力。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>Anthropic 造了个蜜罐，诱使 AI Agent 越界</title>
+      <link>https://www.wired.com/story/ai-agents-can-get-honeypotted-too-aw/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/ai-agents-can-get-honeypotted-too-aw/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[业界] · 来源：Wired AI · Wired 报道，Anthropic 设计了一项新测试，前提是假设 AI Agent 可能失控，然后考察它们能否抵御诱惑、不去做不该做的事。这属于 Agent 安全评测从「能力」转向「克制」的一步。对读者：Agent 上线前的红队测试应包含诱惑与越权场景，而不只是任务完成率。</description>
+      <category>业界</category>
+    </item>
+    <item>
+      <title>亚马逊据报正谈判解除对 Meta AI 购物 Agent Muse 的封锁</title>
+      <link>https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions</link>
+      <guid isPermaLink="true">https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · 据 Fortune 报道，亚马逊已就允许 Meta 的 AI 购物 Agent Muse 在其电商平台上购物展开谈判，可能结束持续两个月的封锁。分歧集中在 Muse 推荐哪些商品，以及 AI 代购对亚马逊广告收入的潜在冲击——平台广告依赖真人浏览。亚马逊还担心 Muse 的商品搜索结果质量。对读者：Agent 代购正在重写电商流量与广告逻辑，商家应提前评估被 Agent 筛选时的曝光策略。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>Tidal 将于下月起封禁 AI 生成音乐，删除约 2900 万首</title>
+      <link>https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban</link>
+      <guid isPermaLink="true">https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[产品] · 来源：The Verge AI · Tidal 宣布自 12 月 9 日起正式封禁 AI 生成音乐，将删除约 2900 万首 AI 曲目，并预计每天拒收 8 万至 8.5 万首。音乐负责人 Robert Andersen 称，过去 90 天分发到平台的曲目中 AI 音乐占比达 43%，因此需要采取更「激烈」的措施。此前 Tidal 已开始标注并对 100% AI 生成曲目取消分成。对读者：AI 内容平台的政策正从标注走向清退，做生成式音频产品的团队需提前设计溯源与合规路径。</description>
+      <category>产品</category>
+    </item>
+    <item>
+      <title>头条 · Gemini 4 Neon 发布，标志 Google DeepMind 全面回归前沿实验室</title>
+      <link>https://latent.space/p/ainews-gemini-4-neon-marks-gdm-s-full-return-as-a-frontier-lab/</link>
+      <guid isPermaLink="true">https://latent.space/p/ainews-gemini-4-neon-marks-gdm-s-full-return-as-a-frontier-lab/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Latent Space · Latent Space 的 AI 日报称，11 月 24 日发布的 Gemini 4 Neon 在 LiveBench 上击败 Astra 与 Fable，并把 Theo 的 TS Rust 基准运行时间缩短 48.6%。这一成绩被解读为 Google DeepMind 重新回到前沿模型第一梯队。对读者：若在做模型选型，可把 Neon 纳入编码与推理任务的对比评测，尤其关注 Rust/TS 工具链场景。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT 6.2 Astra 用 22 分钟破解一桩历史悬案</title>
+      <link>https://simonwillison.net/2026/Nov/24/astra-historical-mystery/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/24/astra-historical-mystery/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · 历史学教授 Mark Humphries 记录了一个案例：仅用极少提示，GPT-6.2 Astra 就自主确认了耶鲁 Beinecke 图书馆所藏一本 1808 年匿名速写本的作者，全程仅 22 分钟，且只依赖公开的一手与二手资料。它还发现了一篇冷门档案文献，并预测查阅后可验证其假设，最终得到证实。对读者：这展示了长链条自主检索与假设验证的能力，可借鉴到尽调、档案整理等研究型工作流。</description>
+      <category>模型</category>
+    </item>
+  </channel>
+</rss>

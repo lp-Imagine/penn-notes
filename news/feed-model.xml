@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 模型</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 28 Nov 2026 08:14:51 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>Sakana AI发布Namazu Small：30B-A3B模型基于Nemotron 3 Nano</title>
+      <link>https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/sakana-ai-namazu-small-30b-nemotron-3-nano/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sakana AI发布Sakana Namazu Small，这是一个基于NVIDIA Nemotron 3 Nano构建的30B-A3B推理模型。官方称其在25项基准上平均得分60.1，超过120B的Nemotron 3 Super的56.2。小参数、稀疏激活在评测上反超大模型，说明后训练与数据配比仍有可观空间。对读者：选型时不要只看参数量，同尺寸下的训练配方差异可能比规模差异更决定实际表现。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>腾讯开源DFly2：复用目标模型稀疏KV Cache的投机解码</title>
+      <link>https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/tencent-dfly2-speculative-decoding-sparse-models/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 腾讯开源DFly2，面向稀疏注意力LLM的投机解码drafter。其每个草稿层复用目标模型的KV Cache与top-k indexer选择，不额外占用草稿KV显存，官方称可将64K上下文的服务吞吐提升最多81%。对读者：长上下文推理的成本瓶颈常在KV Cache，这类「不新增显存」的加速方案值得在自建推理服务里做小流量验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>nexos.ai推出AI Gateway：200+模型统一接入，内置预算与治理</title>
+      <link>https://www.marktechpost.com/2026/11/26/nexos-ai-ai-gateway-200-models-governance/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/26/nexos-ai-ai-gateway-200-models-governance/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · nexos.ai发布AI Adoption Platform，把200多个模型放在同一个AI Gateway之后，并内置预算限制与治理能力。多模型接入的统一网关正在成为企业采用AI的中间层，解决的不只是调用便利，还有成本可控与合规审计。对读者：若团队已在多个模型供应商之间切换，可对比自建网关与这类托管方案的运维成本，重点看预算熔断与日志留存是否满足审计要求。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>智谱辟谣GLM-5.5延期：性能Fable级，万卡昇腾进展顺利</title>
+      <link>http://www.geekpark.net/news/374546</link>
+      <guid isPermaLink="true">http://www.geekpark.net/news/374546</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：极客公园 · 智谱高管杨昊翊公开辟谣，称此前流传的GLM-5.5跳票爆料均为假消息。此前有外媒称原计划12月发布的GLM-5.5将延期至2027年一季度，并称原因是海外厂商对蒸馏技术设限。国联民生研究报告称其参数量在2-3万亿之间、性能达Fable级别；用于前期训练的万卡昇腾950DT进展顺利，预计明年跑通。对读者：国产大模型的发布节奏信息噪音较大，评估时应以官方口径与实际可用API为准。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>头条 · Gemini 4 Neon 发布，标志 Google DeepMind 全面回归前沿实验室</title>
+      <link>https://latent.space/p/ainews-gemini-4-neon-marks-gdm-s-full-return-as-a-frontier-lab/</link>
+      <guid isPermaLink="true">https://latent.space/p/ainews-gemini-4-neon-marks-gdm-s-full-return-as-a-frontier-lab/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Latent Space · Latent Space 的 AI 日报称，11 月 24 日发布的 Gemini 4 Neon 在 LiveBench 上击败 Astra 与 Fable，并把 Theo 的 TS Rust 基准运行时间缩短 48.6%。这一成绩被解读为 Google DeepMind 重新回到前沿模型第一梯队。对读者：若在做模型选型，可把 Neon 纳入编码与推理任务的对比评测，尤其关注 Rust/TS 工具链场景。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT 6.2 Astra 用 22 分钟破解一桩历史悬案</title>
+      <link>https://simonwillison.net/2026/Nov/24/astra-historical-mystery/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/24/astra-historical-mystery/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · 历史学教授 Mark Humphries 记录了一个案例：仅用极少提示，GPT-6.2 Astra 就自主确认了耶鲁 Beinecke 图书馆所藏一本 1808 年匿名速写本的作者，全程仅 22 分钟，且只依赖公开的一手与二手资料。它还发现了一篇冷门档案文献，并预测查阅后可验证其假设，最终得到证实。对读者：这展示了长链条自主检索与假设验证的能力，可借鉴到尽调、档案整理等研究型工作流。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 搜索接入 Personal Intelligence，结果更个性化</title>
+      <link>https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/</link>
+      <guid isPermaLink="true">https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google 允许用户主动选择将 Wallet、Drive 与 Gemini 应用连接到 AI Mode 的 Personal Intelligence，从而获得更贴合个人情境的搜索回答。个性化与隐私的取舍被摆上台面。对读者：企业若依赖 Google 生态做客户触达，需关注用户授权范围变化对数据可见性的影响。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Z.ai 发布 GLM-5.4：750B 循环 Transformer，28 层跑两遍</title>
+      <link>https://www.marktechpost.com/2026/11/23/zai-glm-5-4-loop-transformer/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/23/zai-glm-5-4-loop-transformer/</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Z.ai 推出首个循环 Transformer 旗舰 GLM-5.4，750B 规模下将 28 个 GLM-5 层运行两次以加深推理，已开放 API，开源权重待安全评估后发布。循环结构在不增加参数量的前提下提升深度。对读者：做编码类应用的团队可将其纳入评测，重点比较长任务下的稳定性与成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GLM-5.4正式发布：补上视觉能力，主推泛Coding</title>
+      <link>https://juejin.cn/post/7711193473663991818</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7711193473663991818</guid>
+      <pubDate>Mon, 23 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：掘金人工智能 · 距GLM-5.3（8月19日）三个多月后，智谱发布GLM-5.4，新增视觉能力并主打「泛Coding」。实测覆盖看图在Blender中搭建凉亭、制作技术视频、绘制可传动的自行车等跨模态任务。对读者：国产模型正从榜单竞争转向实际干活能力，建议用自己的真实任务集复测，而非只看基准分。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>英伟达发布Alpamayo 2 Edge：面向DRIVE Thor的2B推理VLA</title>
+      <link>https://www.marktechpost.com/2026/11/22/nvidia-alpamayo-2-edge-2b-reasoning-vla-drive-thor/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/22/nvidia-alpamayo-2-edge-2b-reasoning-vla-drive-thor/</guid>
+      <pubDate>Mon, 23 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 英伟达推出Alpamayo 2 Edge，这是一个2B级别的推理型视觉-语言-动作模型，可在DRIVE AGX Thor上规划驾驶轨迹并给出解释，像素到轨迹延迟为160至190毫秒。小参数加低延迟是车端部署的关键约束。对读者：端侧VLA的竞争点已转向延迟与可解释性，评估自动驾驶方案时可要求给出实车时延数据。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta TLX为Triton带来warp-group级GPU控制，覆盖Hopper/Blackwell/AMD</title>
+      <link>https://www.marktechpost.com/2026/11/23/meta-tlx-triton-low-level-extensions/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/23/meta-tlx-triton-low-level-extensions/</guid>
+      <pubDate>Mon, 23 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta公布TLX（Triton Low-Level Extensions），在Python Triton内核中加入warp-group、barrier、TMA与cluster控制，已用于其广告与LLM负载，覆盖Hopper、Blackwell及AMD MI350 GPU。这缩小了Triton与手写CUDA的性能差距。对读者：若在用Triton做推理优化，可评估TLX能否减少下沉到CUDA的成本，同时注意跨厂商兼容性验证。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Claude Opus 4.5 的四个非基准洞察：2 小时工程测试超人类候选人</title>
+      <link>https://juejin.cn/post/7710657436017442826</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710657436017442826</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：掘金人工智能 · 文章称 Claude Opus 4.5 不只刷新分数：在 2 小时专业工程测试中超过所有人类候选人，能走创造性路径解题，对提示注入更抗攻击，并用更少 Token 取得更好结果。这些观察指向模型在长任务、安全性与推理效率上的同步提升。对读者：评估新模型时除榜单外，应补测长时任务稳定性与注入攻击下的行为一致性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini API 预览 Tool Retrieval：大工具库按需加载参数 schema</title>
+      <link>https://www.marktechpost.com/2026/11/22/google-gemini-api-tool-retrieval/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/22/google-gemini-api-tool-retrieval/</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Google 在 Gemini API 中预览 Tool Retrieval 能力：Agent 可将大型工具库常驻待命，仅在需要时加载对应工具的参数量 schema，并在单次 Interactions API 请求内完成。这针对的是工具数量膨胀后上下文成本与选择准确率的双重压力。对读者：工具数超过数十个的 Agent 应优先验证按需检索方案，可显著降低每次调用的上下文开销。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>2026 个人 AI Agent 横评：OpenClaw、Hermes、Gemini Spark 比记忆、安全与成本</title>
+      <link>https://www.marktechpost.com/2026/11/22/best-personal-ai-agents-2026/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/22/best-personal-ai-agents-2026/</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · MarkTechPost 对 Hermes Agent、OpenClaw、Gemini Spark、OpenAI dots、Meta Muse 与 Perplexity Personal Computer 等个人 Agent 进行对比，维度包括记忆能力、安全默认值与真实使用成本。评测强调「记得住」与「用得对」之间的差距。对读者：个人 Agent 选型应把安全默认值和长期记忆的可控性放在功能列表之前。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>哥伦比亚大学与 CertiK 推出 TensorLean，PTX 层形式化验证 GPU 内核</title>
+      <link>https://www.marktechpost.com/2026/11/21/columbia-certik-tensorlean-formal-verification-gpu-kernels/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/21/columbia-certik-tensorlean-formal-verification-gpu-kernels/</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · TensorLean 使用 Lean 在 PTX 层面对生产级 GPU 内核做形式化验证，共检查 149 个内核实例，证明 83 个正确，并在 FlashAttention、DeepGEMM 等项目中找到 38 个 bug。这为高性能算子正确性提供了可复现的数学证据链。对读者：自研或魔改 CUDA 内核的团队可关注该工具链，把形式化验证纳入算子发布前的检查项。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT-Live-1.1 语音智能体模型，闲置成本降至 0.02 美元/分钟</title>
+      <link>https://www.marktechpost.com/2026/11/21/openai-gpt-live-1-1-api-standby-mode/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/21/openai-gpt-live-1-1-api-standby-mode/</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 在 API 中发布全双工语音模型 GPT-Live-1.1，改进多语言口音与转写能力，并新增待机模式：闲置 WebRTC 时间按每分钟 0.02 美元计费，此前为 0.05 美元。对读者：语音 Agent 的常驻成本明显下降，适合重新评估长连接语音产品的单位经济模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Thinking Machines 发布 Inkling 2 Mini：26B 循环 MoE 可在 32GB Mac 运行</title>
+      <link>https://www.marktechpost.com/2026/11/21/thinking-machines-inkling-2-mini-looped-transformer/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/21/thinking-machines-inkling-2-mini-looped-transformer/</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Thinking Machines 发布 Inkling 2 Mini，26.4B 参数循环 MoE Transformer，激活参数 3.4B，可在 32GB Mac 或单台 DGX Spark 上运行，SWE-bench Verified 得分 79.2%。对读者：端侧编码模型能力提升，本地开发与隐私敏感场景可优先评估该模型。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>RadixArk 发布 DaisyRose-27B：纯强化学习训练的 Agent 编码模型</title>
+      <link>https://www.marktechpost.com/2026/11/20/radixark-daisyrose-27b-agentic-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/20/radixark-daisyrose-27b-agentic-model/</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · RadixArk 发布 DaisyRose-27B，基于 Qwen3.8-27B 仅用强化学习后训练，采用 Apache 2.0 协议，Terminal Bench 4.1 pass@1 从基线提升一倍多至 12.0，可在单 GPU 运行。对读者：开源 Agent 编码模型选择增多，可对比其与闭源模型在终端任务上的性价比。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Baseten 发布 Bison-1 与 Groundhog-1，登顶决策模型指数</title>
+      <link>https://www.marktechpost.com/2026/11/20/baseten-bison-1-groundhog-1-gemma-4-decision-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/20/baseten-bison-1-groundhog-1-gemma-4-decision-models/</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Baseten 发布基于 Gemma 4 的开源权重决策模型 bison-1 与 groundhog-1，bison-1 在 AA Decision Index v2.1 上得分 76，两者均支持 128k 上下文和图像输入。对读者：决策类任务可关注开源权重模型的评测表现，评估替代闭源方案的可能。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini API推出工具检索，Agent可挂数百工具且更省Token</title>
+      <link>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google在Gemini API预览版中推出Tool Retrieval，让Agent按需加载工具schema，从而接入数百个工具的同时减少输入Token消耗。这针对的是Agent工具集膨胀后上下文被schema挤占的痛点。对读者：工具数量超过几十个的Agent项目可优先试用，重点对比检索准确率与首Token延迟的权衡。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Perplexity推出Orchestrator API，统一路由与故障转移</title>
+      <link>https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/perplexity-orchestrator-api-failover-model-routing/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Perplexity的Orchestrator API用单一端点接入OpenAI、Anthropic、Google、xAI及开源权重模型，支持同模型跨供应商故障转移、统一计费，并提供预览版perplexity/auto路由按描述分发请求。对读者：多模型架构可先用它验证路由策略，再决定是否自建网关，注意预览版路由的稳定性风险。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>NVIDIA开源Nemotron-Labs-Sigma扩散语言模型，14个检查点</title>
+      <link>https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · NVIDIA发布Nemotron-Labs-Sigma，共14个3B与8B连续扩散语言模型检查点。模型在16维嵌入空间去噪，蒸馏为少步采样器，解码速度最高达自回归的4.20倍。对读者：扩散LM在低延迟场景值得做基准测试，但需验证长文本与结构化输出的质量是否满足业务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta FAIR自改进记忆在持续学习基准达56.0</title>
+      <link>https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/19/meta-fair-self-improving-memory-harness-distillation/</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta FAIR的自改进记忆让Kimi-K2.6自行编写LOAD与OFFLOAD记忆提示，再蒸馏进模型权重。优化后的提示在Continual Learning Bench上得56.0，高于最佳手写框架的44.6。对读者：长期运行的Agent可借鉴「让模型自写记忆策略再固化」的思路，降低人工调提示的成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Google 发布 Gemini 4 Neon</title>
+      <link>https://deepmind.google/blog/introducing-gemini-4-neon/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/introducing-gemini-4-neon/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google 推出 Gemini 4 Neon，面向复杂编码与分析任务提供前沿级智能，同时成本更低。VentureBeat 称其编码性能达到 Opus 5.5 级别，API token 价格低 25%。对读者：若正在为编码 Agent 选型，Neon 值得纳入基准测试，但需先厘清 Gemini 4 系列复杂的定价结构。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 4 Neon 细节：1M 上下文，AA 编码 Agent 指数第一</title>
+      <link>https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/18/google-gemini-4-neon-release/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Gemini 4 Neon 支持 1M 上下文，定价为每百万 token 3 美元输入、15 美元输出，AA 智能指数得分 61，并在 AA 编码 Agent 指数上排名第一。对读者：长上下文加编码 Agent 双料第一，适合评估将其用于大型代码库理解与多步重构任务。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Genie 4 开放使用：实时音频与可编辑交互世界</title>
+      <link>https://deepmind.google/blog/genie-4-is-now-available/</link>
+      <guid isPermaLink="true">https://deepmind.google/blog/genie-4-is-now-available/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google DeepMind · Google AI Ultra 订阅用户现可使用 Genie 4，生成带实时音频与编辑能力的交互式世界。对读者：这是世界模型产品化的早期形态，做游戏、仿真或教育内容的团队可申请体验，观察其可控性与生成成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini 应用下探低内存 Android 设备</title>
+      <link>https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google Gemini 应用现支持低内存 Android 设备，可在手机上使用 Gemini Live 与自定义图像生成。对读者：端侧 AI 的覆盖面向中低端机型延伸，做移动端产品的团队应重新评估低端机上的 AI 功能可用性。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>OpenAI 发布 GPT-6.2 Astra 与 Sol：专业输出、编码与成本全面升级</title>
+      <link>https://openai.com/index/introducing-gpt-6-2-astra-sol</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-gpt-6-2-astra-sol</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：OpenAI Blog · OpenAI 推出 GPT-6.2 Astra 与 GPT-6.2 Sol，前者面向最难的专业项目，后者定位日常高效工作，覆盖 ChatGPT Work、Codex 与 API。官方称新模型在专业输出、编码、计算机使用和效率上均有提升，且成本更低。对读者：若在用旧版 GPT-6，可优先在 Codex 与 API 场景做 A/B 对比，评估降价后的性价比。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>GPT-6.2 Astra API 降价 20% 至 $8/$40，智能指数排名第二</title>
+      <link>https://www.marktechpost.com/2026/11/17/openai-gpt-6-2-astra-sol-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/openai-gpt-6-2-astra-sol-release/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · OpenAI 于 11 月 17 日发布 GPT-6.2 Astra 与 Sol，Astra 的 API 价格下降 20% 至每百万 token 输入 $8、输出 $40，并在 Artificial Analysis 智能指数上排名第二。对读者：预算敏感团队可重新核算 Astra 与竞品的单位任务成本，缓存价格降幅更大值得关注。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Simon Willison：Astra 价格为前代 80%，缓存价低至 $0.40/百万</title>
+      <link>https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Simon Willison · Simon Willison 指出 GPT-6.2 Astra 定价为前代 GPT-6 Astra 的 80%，即 $8/$40 每百万 token，与 Claude Fable 5.2 的降价策略一致；缓存价格从 $1/百万降至 $0.40/百万。他已发布 LLM 0.38 支持新模型。对读者：高频重复提示词场景应优先启用缓存，成本可降六成。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Gemini Tasks 在六国免费开放，深化 Workspace 集成</title>
+      <link>https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/</link>
+      <guid isPermaLink="true">https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/</guid>
+      <pubDate>Wed, 18 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Google AI Blog · Google 宣布 Gemini 中的 Tasks 功能在六个国家免费提供，并在美国推出新功能，同时加深与 Google Workspace 的集成，让 Gemini 代用户完成任务。对读者：已用 Workspace 的团队可试点 Tasks 自动化日常待办，评估其对协作流程的实际替代率。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>阿里 Qwen4-Max 降低 AI 任务成本，但基准显示对前沿对手挑战不均</title>
+      <link>https://news.google.com/rss/articles/CBMiywFBVV95cUxNcjNiS0hzU1NCTUVCbHhxcVJBVzNmeEtId1VEUWJSbmpOeG9NWmlKSWFETExvdjB4S1hrcHUzOWFvRVZYSzluOWRqUlBtaGhQamtkVlgxdFAycGV5aGk2R1RYTTRYSkdPR1R1bUtWYV90RzR0Q0NMSGxpNmJBMkRvZ3N5cG9ZSE9lZW1sT2Nwb19TV3JmeG9qUkJIc0ZWME4wWTc0U3JiYWIwUzc3UVhFX1ZMbFNfeE9RZXBJSVhac3JPSV9TS2NkQTFDMA?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMiywFBVV95cUxNcjNiS0hzU1NCTUVCbHhxcVJBVzNmeEtId1VEUWJSbmpOeG9NWmlKSWFETExvdjB4S1hrcHUzOWFvRVZYSzluOWRqUlBtaGhQamtkVlgxdFAycGV5aGk2R1RYTTRYSkdPR1R1bUtWYV90RzR0Q0NMSGxpNmJBMkRvZ3N5cG9ZSE9lZW1sT2Nwb19TV3JmeG9qUkJIc0ZWME4wWTc0U3JiYWIwUzc3UVhFX1ZMbFNfeE9RZXBJSVhac3JPSV9TS2NkQTFDMA?oc=5</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：VentureBeat AI · 阿里巴巴发布 Qwen4-Max，主打降低 AI 任务成本，但基准测试显示其对前沿竞品的挑战并不均衡，部分能力仍有差距。成本优势与能力短板同时存在。对读者：成本敏感型业务可优先在低复杂度任务上替换试用，高难度推理仍建议保留双模型兜底。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Liquid AI 发布 d1.2 与 d1.2-ultra 全模态决策模型</title>
+      <link>https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/liquid-ai-d1-2-omnimodal-decision-models/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Liquid AI 发布 d1.2 与 d1.2-ultra 决策模型，可读取文本、图像与音频并直接返回校准后的概率，输出 token 数为零。其中 d1.2-ultra 在 Artificial Analysis Decision Index v2.1 上得分 75。对读者：分类、风控等决策型任务可评估此类零输出模型，显著降低推理成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Sarvam 推出 Token Factory：在印度托管 8 个开源模型推理</title>
+      <link>https://www.marktechpost.com/2026/11/17/sarvam-token-factory-india-inference-platform/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/sarvam-token-factory-india-inference-platform/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Sarvam Token Factory 全面开放，通过单一 OpenAI 兼容 API，从印度 GPU 集群提供 Sarvam 105B、GLM 5.3、DeepSeek V4.1 Flash、Kimi K3.1 Pro 与 Gemma 4 31B 等模型推理。对读者：面向印度市场或有数据本地化要求的团队，可将其纳入多区域推理备选。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>头条 · 阿里发布 Qwen4-Max：2.4T MoE、71B 激活、1M 上下文</title>
+      <link>https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/alibaba-qwen4-max-release/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · 阿里巴巴发布闭源模型 Qwen4-Max，采用 2.4T 参数 MoE 架构、71B 激活参数，原生支持视觉与 1M token 上下文，定价为每百万输入 token 1.5 美元，并称将 Work360 的单任务成本降低 62%。超大 MoE 加长上下文再叠加低价，直接压缩了中高端 API 的价格空间。对读者：长文档与多模态场景可先做小流量对比测试，重点核算真实 token 消耗而非标价。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Hark 发布 Handoff²：速度翻倍的 computer-use agent</title>
+      <link>https://www.marktechpost.com/2026/11/16/hark-handoff-2-computer-use-agent-2x-faster/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/hark-handoff-2-computer-use-agent-2x-faster/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Hark 发布 Hark Pro 内置的 computer-use agent Handoff²，平均比 v1 快 2 倍，在 478 个内部网页任务中完成率 82%，并通过带延迟惩罚的强化学习学会了批量执行动作。computer-use agent 的竞争点正从「能不能做」转向「多快、多稳」。对读者：评估此类 agent 时，把任务完成率与端到端时延一起看，批量动作策略往往比单步准确率更影响体验。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Meta 的 JiTTests：让 LLM 生成「注定失败」的测试拦截风险代码</title>
+      <link>https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/16/meta-jittests-llm-catching-tests-privacy-bugs/</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Meta 已将 Catching JiTTests 投入生产：由 LLM 针对高风险 diff 生成预期会失败的测试，在 2026 年上半年于代码合入前捕获 74 个隐私类 SEV，工程师自报真阳性率 60%。把 LLM 用在「写会失败的测试」而非「写通过的代码」，是一个务实的工程切入点。对读者：可在高风险模块试点类似的合入前生成式测试，但需配套人工复核以控制误报成本。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cohere 推出 Video Intelligence，视频库可按时间戳检索</title>
+      <link>https://cohere.com/blog/video-intelligence-preview</link>
+      <guid isPermaLink="true">https://cohere.com/blog/video-intelligence-preview</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：Cohere Blog · Cohere 在 Compass 中推出 Video Intelligence，面向企业搜索与 AI agent 提供精确到时间戳的视频检索，可让录制的会议、培训视频与媒体档案变得可搜索，目前处于 Private Preview。视频正从「不可检索资产」变成企业知识库的一等公民。对读者：有大量会议录像或培训素材的团队，可提前规划转写、切片与权限体系，为接入此类检索做准备。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Bland发布Tofu-1：面向通话的全双工语音到语音模型</title>
+      <link>https://www.marktechpost.com/2026/11/15/bland-tofu-1-full-duplex-speech-to-speech-model/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/15/bland-tofu-1-full-duplex-speech-to-speech-model/</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Bland发布Tofu-1，一款面向嘈杂、高风险电话场景的全双工语音到语音模型，目前处于企业研究预览阶段，尚未公布基准成绩、模型规模与定价。全双工意味着模型可边听边说，更接近真实通话节奏。对读者：评估语音Agent时先要延迟与打断处理指标，缺少公开基准的阶段宜小流量试点。</description>
+      <category>模型</category>
+    </item>
+    <item>
+      <title>Cmpnd开源dspy-wsp：把权重空间编程带进DSPy</title>
+      <link>https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/14/cmpnd-dspy-wsp-weight-space-programming/</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[模型] · 来源：MarkTechPost · Cmpnd发布dspy-wsp原型，为DSPy提供权重空间优化器：由前沿LLM读取小模型权重，在沙箱中编辑并逐项测试，全程不用梯度，单次运行成本约5到10美元。这为小模型定制提供了不同于微调的路径。对读者：若已有小模型推理栈，可把权重空间编辑当作低成本实验分支，但要先建好回归测试集。</description>
+      <category>模型</category>
+    </item>
+  </channel>
+</rss>

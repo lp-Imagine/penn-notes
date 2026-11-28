@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<rss version="2.0">
+  <channel>
+    <title>Penn Notes · AI 动态 · 开源</title>
+    <link>https://penn-notes.draftly.cn/news/</link>
+    <description>每日 AI 与前端精选动态 —— Penn Notes</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 28 Nov 2026 08:14:51 GMT</lastBuildDate>
+    <generator>Penn Notes news feed</generator>
+    <item>
+      <title>datasette-mcp 0.4发布：为任意Datasette实例加上MCP服务</title>
+      <link>https://simonwillison.net/2026/Nov/27/datasette-mcp/</link>
+      <guid isPermaLink="true">https://simonwillison.net/2026/Nov/27/datasette-mcp/</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Simon Willison · Simon Willison发布datasette-mcp 0.4，该插件可为任意Datasette实例添加 /-/mcp 的MCP服务器，本次更新主要修复与Datasette 1.0a44的兼容性。它让数据探索工具直接成为Agent可调用的工具端点，是MCP生态里典型的「小插件、大杠杆」案例。对读者：若手上已有内部数据服务，加一层MCP封装比重新做Agent集成成本低得多，可优先试点。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>在Trainium3上用LTX-2.5生成视频</title>
+      <link>https://huggingface.co/blog/video-trainium3</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/video-trainium3</guid>
+      <pubDate>Fri, 27 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客记录了在AWS Trainium3上运行LTX-2.5视频生成模型的实践。视频生成正从GPU单一路径扩展到自研加速器，成本结构随之变化。对读者：关注非NVIDIA算力在生成式负载上的实际可用性，尤其是编译适配与吞吐数据，可作为降低推理成本的备选路线。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>MCP 服务器现在可下发 Agent 技能，企业审批范围随之改变</title>
+      <link>https://news.google.com/rss/articles/CBMizAFBVV95cUxNS0VjTnRXOWNYWjBfbXlPSnZfV1pBX1RIZnRxcU9la0I2NU1QVzdhZ0lMRExmQUlpNUgwQktub0ZYSG15czE5bzBTaVNBXy1sRGVyQnRHcVdnTXl3aW96S0NScEczQ3pFODZiV1czdm5HdExPbDhTLTlNYVpScFRyMzgzTkNhbE84blNkZTZ1Q3F6dUtMZjVnbGRGZnI5Z2ZWTHh6RWdGRy1NNG43UXN1ZlY0OEVNLTh1NTEzZUhBMXEzZnZOeUpsY2FzTkY?oc=5</link>
+      <guid isPermaLink="true">https://news.google.com/rss/articles/CBMizAFBVV95cUxNS0VjTnRXOWNYWjBfbXlPSnZfV1pBX1RIZnRxcU9la0I2NU1QVzdhZ0lMRExmQUlpNUgwQktub0ZYSG15czE5bzBTaVNBXy1sRGVyQnRHcVdnTXl3aW96S0NScEczQ3pFODZiV1czdm5HdExPbDhTLTlNYVpScFRyMzgzTkNhbE84blNkZTZ1Q3F6dUtMZjVnbGRGZnI5Z2ZWTHh6RWdGRy1NNG43UXN1ZlY0OEVNLTh1NTEzZUhBMXEzZnZOeUpsY2FzTkY?oc=5</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：VentureBeat AI · MCP 服务器如今能够直接交付 AI Agent 技能，这改变了企业在连接一个 MCP 服务器时实际批准的内容边界——不再只是数据访问，还包括可执行能力。对读者：接入第三方 MCP 服务器前应把「技能清单」纳入安全评审，明确可调用工具与权限范围，避免一次连接引入未审计的自动化能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>llama.cpp 推出 AMD Ryzen 与 Radeon 基准测试面板</title>
+      <link>https://huggingface.co/blog/ggml-org/llamacpp-amd-bench</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ggml-org/llamacpp-amd-bench</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · ggml-org 在 Hugging Face 发布 llama.cpp 面向 AMD Ryzen 与 Radeon 的基准测试面板，为本地推理在 AMD 平台上的性能对比提供统一参考。对读者：计划用 AMD 硬件跑本地模型的团队可先用该面板核对吞吐与延迟数据，再决定采购与量化配置，减少试错成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA 发布 Nemotron 3.5 Parse 的开放数据、微调与加速推理实践</title>
+      <link>https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · NVIDIA 在 Hugging Face 撰文介绍如何基于 Nemotron 3.5 Parse 使用开放数据进行微调并实现更快推理，覆盖数据、训练与部署链路。对读者：需要文档解析类能力的团队可据此评估自托管方案，重点比对微调后的领域精度与推理成本是否优于直接调用闭源 API。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>多智能体系统如何构建、训练与评估</title>
+      <link>https://huggingface.co/blog/training-swarms</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/training-swarms</guid>
+      <pubDate>Thu, 26 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 博客以「Swarms、Flocks、Gangs」为题，系统梳理多智能体系统的构建、训练与评估方法，覆盖协作拓扑与评测口径。对读者：正在把单 Agent 拆成多 Agent 的团队可借此建立评估基线，避免只凭演示效果判断系统可靠性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>字节跳动开源异步强化学习后训练框架 Laminar</title>
+      <link>https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · 来自港大与字节 Seed 的研究者开源了 Laminar，一个异步 RL 后训练框架，将 rollout、训练与权重同步解耦，并把 Qwen3-Coder-30B-A3B 在 SWE-bench Verified 上提升到 52.2%。对读者：做代码模型后训练的团队可评估该框架的解耦设计，降低训练与推理互相等待的开销。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>OpenAI 与 Cisco 推出开源 Linux 运行时 Shirudo</title>
+      <link>https://openai.com/index/introducing-shirudo</link>
+      <guid isPermaLink="true">https://openai.com/index/introducing-shirudo</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：OpenAI Blog · OpenAI 与 Cisco 发布 Shirudo，一个面向 Linux 的开源运行时，帮助运维在滚动补丁期间保护运行中的系统。据 MarkTechPost 报道，它是 BSD 许可的 eBPF 运行时，AI Agent 编写签名的「护盾」来阻断漏洞利用路径。对读者：安全与平台团队可评估用其缩短高危漏洞的暴露窗口。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>RoboTrack：面向真实机器人操作的点跟踪</title>
+      <link>https://huggingface.co/blog/allenai/robotrack</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/allenai/robotrack</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Ai2 在 Hugging Face 发布 RoboTrack，用点跟踪支持真实世界中的机器人操作任务。该工作聚焦于从视觉观测中稳定追踪关键点，以提升操作精度。对读者：做具身智能与机器人视觉的团队可关注其数据与模型开放情况。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>last30days-skill：跨 Reddit、X、YouTube、HN 调研并合成摘要的 Agent 技能</title>
+      <link>https://github.com/mvanhorn/last30days-skill</link>
+      <guid isPermaLink="true">https://github.com/mvanhorn/last30days-skill</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：mvanhorn/last30days-skill · 开源项目 last30days-skill 提供一个 AI Agent 技能，可跨 Reddit、X、YouTube、Hacker News、Polymarket 与网页检索任意话题，再合成有出处的摘要。它把多源信息采集与事实归因封装为可复用技能，适合做选题调研与舆情跟踪。对读者：可直接接入现有 Agent 框架，但需自行校验来源可信度与引用完整性。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>opensre：面向 CI/CD 可靠性的开源 Agent</title>
+      <link>https://github.com/Tracer-Cloud/opensre</link>
+      <guid isPermaLink="true">https://github.com/Tracer-Cloud/opensre</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Tracer-Cloud/opensre · Tracer-Cloud 开源 opensre，定位为 CI/CD 可靠性 Agent，用于在持续集成与交付链路中自动排查失败与不稳定因素。项目把 Agent 能力嵌入工程流水线，而非停留在对话界面。对读者：流水线频繁 flaky 的团队可试用其诊断能力，但需评估其对构建日志的访问权限边界。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>app-store-compliance：124 条应用商店拒审模式与合规截止日追踪</title>
+      <link>https://github.com/mjmirza/app-store-compliance</link>
+      <guid isPermaLink="true">https://github.com/mjmirza/app-store-compliance</guid>
+      <pubDate>Sun, 22 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：mjmirza/app-store-compliance · 开源项目 app-store-compliance 提供 App Store 与 Google Play 上架合规手册，收录 124 条已记录的拒审模式及修复方式，覆盖隐私清单与 Data safety 检查，并追踪 112 个合规截止日期（含 EU AI Act、DSA、COPPA、年龄相关法律），同时提供面向 AI 编码 Agent 的技能。对读者：上架前可将其作为检查清单，尤其适合同时面向多地区发布的团队。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>DeepSeek V1 作者创业项目曝光：开源本地 Agent「Linger」</title>
+      <link>https://www.qbitai.com/2026/11/511570.html</link>
+      <guid isPermaLink="true">https://www.qbitai.com/2026/11/511570.html</guid>
+      <pubDate>Sat, 21 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：量子位 · 前 DeepSeek V1 作者、DeepSeek-VL 项目负责人 Tony Zhang 公布创业项目 Linger，定位个人 Personal Agent，优先做电脑端，可操作用户已有网页、邮件和日历，支持人工接管与接入第三方模型，并专为本地 LLM 优化：12GB 显存 RTX 3060 可跑 125B 参数 Qwen3.8-Flash-Next，生成速度 45.5 tokens/秒。系统开源。对读者：本地优先的开源 Agent 值得跟进，关注其模型兼容性与权限设计。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face上架Inkling 2 Mini，面向本地部署</title>
+      <link>https://huggingface.co/blog/inkling2mini</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/inkling2mini</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客介绍Inkling 2 Mini，定位为本地环境下的高性能小模型。对读者：本地部署选型时可将其纳入对比清单，重点测显存占用与量化后的质量衰减。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face推出harness适配器，兼顾性能与成本</title>
+      <link>https://huggingface.co/blog/harness-adapters-at-scale</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/harness-adapters-at-scale</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face发布harness adapters，用于把所选模型适配到自己的harness上，以提升性能并降低成本。对读者：自建评测或Agent框架的团队可借此减少模型与脚手架之间的耦合，换模型时不必重写整套调用层。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>开源AutoClip切直播：1小时48分出19段，整月API仅0.08元</title>
+      <link>https://juejin.cn/post/7710134632901607460</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7710134632901607460</guid>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：掘金人工智能 · 开源AI剪辑工具AutoClip（GitHub zhouxiaoka/autoclip，MIT许可）可将长视频自动转写、挑高光并导出竖屏短片。实测1小时48分直播约5分钟切出19段，阿里云百炼整月费用0.08元，但第24至43分钟未选出片段。对读者：低成本自动化剪辑已可用，但高光召回仍需人工兜底，建议先小样本比对再全量跑。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>新 LoRA 适配器将 Qwen3.8 编码成功率从 39% 提升到 65%</title>
+      <link>https://www.marktechpost.com/2026/11/18/hugging-face-qwen3-8-27b-pi-adapted-lora/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/18/hugging-face-qwen3-8-27b-pi-adapted-lora/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Hugging Face 发布 Qwen3.8-27B-pi-adapted，这是用强化学习为 pi 编码 Agent 训练的 Apache-2.0 LoRA 适配器，SWE-bench Pro hard-51 pass@1 从 39.2% 升至 64.7%，Terminal-Bench 2.1 从 39.5% 升至 55.8%。对读者：小模型加专用适配器可逼近大模型编码表现，预算有限的团队可优先尝试此类开源方案。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Cloudflare 开放 Clairic 与 Clairic-flash 权重</title>
+      <link>https://blog.cloudflare.com/open-clairic/</link>
+      <guid isPermaLink="true">https://blog.cloudflare.com/open-clairic/</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Cloudflare Blog · Clairic 从预览转正，Clairic-flash 加入 Workers AI，两款抽取模型均以开放权重形式发布，来自新成立的 Workers AI Superintelligence 团队。对读者：边缘侧信息抽取有了可自托管的开源选项，可评估其在表单、文档解析场景的准确率与延迟。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>DaisyRose-27B：推进后训练效率前沿</title>
+      <link>https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin</guid>
+      <pubDate>Thu, 19 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 上 RadixArk 发布 DaisyRose-27B，聚焦后训练效率的提升。对读者：后训练成本正成为模型落地的关键变量，可关注其训练配方是否可迁移到自有微调流程。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>英伟达开源 NVKE 与 NVKR，在 GPU 基础设施上跑托管 Kubernetes</title>
+      <link>https://www.marktechpost.com/2026/11/17/nvidia-nvke-nvkr-managed-kubernetes-gpu/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/17/nvidia-nvke-nvkr-managed-kubernetes-gpu/</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · 英伟达以 Apache 2.0 协议开源 NVIDIA Kubernetes Engine（NVKE）与 NVIDIA Kubernetes Recipes（NVKR），让 AI 工厂可在自有裸金属 GPU 服务器上运行托管 Kubernetes 服务，目前均为公开预览。对读者：自建 GPU 集群的团队可评估其替代部分托管方案的可行性，注意预览版稳定性风险。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>AG-UI：把 AI Agent 接进前端的开放协议</title>
+      <link>https://juejin.cn/post/7709049532554870793</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7709049532554870793</guid>
+      <pubDate>Tue, 17 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：掘金人工智能 · AG-UI（Agent-User Interaction Protocol）由 CopilotKit 发起，是开放、轻量、基于事件的协议，规定 AI Agent 如何与面向用户的应用对接，被视为与 MCP、A2A 并列的第三块拼图。它试图标准化流式输出、工具调用、状态更新与用户确认等交互。对读者：正在为多套 Agent 框架重复写前端适配层的团队，值得评估以此统一交互协议。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Hugging Face 与 OpenRouter 联手，简化开放权重模型运行</title>
+      <link>https://huggingface.co/blog/openrouter</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/openrouter</guid>
+      <pubDate>Mon, 16 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face 与 OpenRouter 宣布合作，目标是让开放权重模型更容易被直接运行，降低从模型仓库到实际推理的摩擦。这补上了开源模型「找得到但跑不起来」的常见断点，也让托管推理与模型分发的边界更模糊。对读者：若在评估开放权重模型，可先用该通道做快速对比，再决定是否自建推理。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>google-labs-code开源stitch-skills：面向Stitch MCP服务器的Agent技能库</title>
+      <link>https://github.com/google-labs-code/stitch-skills</link>
+      <guid isPermaLink="true">https://github.com/google-labs-code/stitch-skills</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：google-labs-code/stitch-skills · Google Labs代码团队开源stitch-skills，这是一组配合Stitch MCP服务器使用的Agent技能库，每个技能遵循Agent Skills开放标准，可兼容Antigravity、Gemini CLI、Claude Code、Cursor等编码智能体。对读者：若已在多款编码助手中切换，采用开放技能标准可减少重复适配成本。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>腾讯开源LoopForge：自托管编码智能体交付工作流</title>
+      <link>https://github.com/Tencent/LoopForge</link>
+      <guid isPermaLink="true">https://github.com/Tencent/LoopForge</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Tencent/LoopForge · 腾讯开源LoopForge，面向编码智能体的交付流程编排，可调度CodeBuddy、Codex与Claude Code，并用脚本与人工审批关卡控制节奏，同时提供面向编码助手的本地工作流。对读者：把人工审批节点设计进Agent流水线，是目前平衡自动化与可控性的务实做法。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA开源SkillEvaluator：给Agent技能打分与查重</title>
+      <link>https://github.com/NVIDIA/SkillEvaluator</link>
+      <guid isPermaLink="true">https://github.com/NVIDIA/SkillEvaluator</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：NVIDIA/SkillEvaluator · NVIDIA发布SkillEvaluator，一个多层级框架，用于评估AI Agent技能，包含质量门禁、语义重叠检测、合成评测数据集生成，以及衡量技能如何影响Agent行为的在线评测。对读者：技能库规模上来后，查重与效果回归比新增技能更值得投入。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>BaseWard开源：MCP原生的数据库网关，连接串不下发给Agent</title>
+      <link>https://www.cnblogs.com/zskbll/p/23673467</link>
+      <guid isPermaLink="true">https://www.cnblogs.com/zskbll/p/23673467</guid>
+      <pubDate>Sun, 15 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：博客园首页 · BaseWard（库卫）发布首个开源版本v0.0.1，采用Apache-2.0协议，定位为MCP原生的数据库网关：数据库连接串留在服务端，Agent拿到的是可吊销、权限收敛到列的Token。项目要求Python 3.12+或Docker。对读者：让Agent连库前先把凭证代理层搭好，比事后审计更省事。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Chrome DevTools MCP：让编码智能体接入浏览器调试能力</title>
+      <link>https://github.com/ChromeDevTools/chrome-devtools-mcp</link>
+      <guid isPermaLink="true">https://github.com/ChromeDevTools/chrome-devtools-mcp</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：ChromeDevTools/chrome-devtools-mcp · ChromeDevTools/chrome-devtools-mcp项目将Chrome DevTools能力提供给编码智能体，使其可在浏览器环境中检查与调试页面。该仓库属于MCP生态中面向前端调试的实用工具。对读者：若智能体需要复现前端问题，可接入该MCP服务补齐运行时观测能力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>阿里开源open-code-review：确定性流水线加LLM Agent的代码评审工具</title>
+      <link>https://github.com/alibaba/open-code-review</link>
+      <guid isPermaLink="true">https://github.com/alibaba/open-code-review</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：alibaba/open-code-review · alibaba/open-code-review采用混合架构，将确定性流水线与LLM Agent结合，提供精确到行级的评论，内置多语言规则集覆盖NPE、线程安全、XSS、SQL注入等问题，并兼容OpenAI与Anthropic接口。对读者：可在现有CI中试点该工具，用规则集兜底、LLM补充语义审查。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>GoogleChrome开源modern-web-guidance-src：让编码智能体跟上Web最佳实践</title>
+      <link>https://github.com/GoogleChrome/modern-web-guidance-src</link>
+      <guid isPermaLink="true">https://github.com/GoogleChrome/modern-web-guidance-src</guid>
+      <pubDate>Sat, 14 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：GoogleChrome/modern-web-guidance-src · GoogleChrome发布modern-web-guidance-src仓库，目标是让编码智能体持续获取最新的Web最佳实践。该项目把现代Web平台建议整理为可供智能体消费的内容源。对读者：可将其作为前端智能体的知识来源，减少生成过时API用法的概率。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>llama.cpp发布v1.0.0：为本地AI生态打下更强地基</title>
+      <link>https://huggingface.co/blog/ggml-org/llama-cpp-v1</link>
+      <guid isPermaLink="true">https://huggingface.co/blog/ggml-org/llama-cpp-v1</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：Hugging Face Blog · Hugging Face博客刊出ggml-org的公告，llama.cpp迎来v1.0.0版本，被定位为本地AI生态「更强的基础」。这一版本号标志着这个广泛使用的本地推理项目进入新的稳定阶段。对读者：长期锁定旧版本做端侧推理的团队，可评估升级到v1.0.0以获取更稳定的接口与后续维护支持。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>CopilotKit开源OpenBot 1.0：MIT许可、可自托管、内置治理</title>
+      <link>https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/12/copilotkit-openbot-1-0-open-source-ai-coworker/</guid>
+      <pubDate>Fri, 13 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · MarkTechPost报道，CopilotKit发布OpenBot 1.0，这是一个MIT许可、可自托管的AI同事工作空间。企业自带Agent、模型与基础设施，每个Bot动作都要经过策略检查并写入审计轨迹。对读者：需要合规留痕的内部Agent场景，可直接以它为底座，省去自建策略与审计层的工作量。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Reason Machines 开源面向 AI Agent 的 Git 服务器 Aspen</title>
+      <link>https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/</guid>
+      <pubDate>Mon, 09 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Reason Machines 开源 Aspen，一款面向 AI Agent 的自托管 Git 服务器，设计参考 OpenAI 的 Pando，官方测试中单台 8 核服务器持续承受每秒 567 次推送。它瞄准的是 Agent 高频提交代码的场景。对读者：若在搭建多 Agent 协作编码流水线，可评估 Aspen 作为高并发代码托管底座，并先做压力与权限模型验证。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>0sec Labs 开源 AI 安全工具 0，支持 Web UI、CLI 与 MCP</title>
+      <link>https://www.marktechpost.com/2026/11/08/0sec-labs-open-sources-0-ai-security-harness/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/08/0sec-labs-open-sources-0-ai-security-harness/</guid>
+      <pubDate>Mon, 09 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · 0sec Labs 开源 AI 安全工具 0，覆盖代码审查、渗透测试、逆向工程与修复，可通过浏览器控制台、无头 CLI 和 MCP 服务器本地运行，并允许接入自有模型供应商。对读者：安全团队可把它作为本地化 AI 安全助手试点，重点验证 MCP 接入下的权限隔离与敏感代码外泄风险。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>vercel-labs开源agent-browser：面向AI智能体的浏览器自动化CLI</title>
+      <link>https://github.com/vercel-labs/agent-browser</link>
+      <guid isPermaLink="true">https://github.com/vercel-labs/agent-browser</guid>
+      <pubDate>Sun, 08 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：vercel-labs/agent-browser · Vercel Labs发布agent-browser，一个供AI智能体调用的浏览器自动化命令行工具，用于让Agent执行网页操作类任务。项目延续Vercel在Agent工具链上的布局，可与前端部署与调试流程结合。对读者：需要给Agent加网页操作能力时，可先评估该CLI的稳定性与权限边界，再决定自研还是接入。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>MCP C SDK 2.0 默认启用 HTTP 无状态模式，新增多轮请求能力</title>
+      <link>https://www.infoq.cn/article/80iUxvCNB59aOgyXB7LN?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/80iUxvCNB59aOgyXB7LN?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 微软发布官方 MCP C# SDK 2.0，适配 MCP 规范 2026‑07‑28 修订版，HTTP 层重构为无状态设计，支持多轮往返请求（MRTR）与动态能力协商，移除 initialize 握手与 Mcp‑Session‑Id 头。对读者：.NET 技术栈接入 MCP 的团队应尽快评估升级，无状态模式对水平扩展与网关部署更友好。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>谷歌开源 ML Drift：跨平台 GPU 推理引擎加速端侧 AI</title>
+      <link>https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq?utm_source=rss&amp;utm_medium=article</link>
+      <guid isPermaLink="true">https://www.infoq.cn/article/hHzARIJTeqoqYpjNKEuq?utm_source=rss&amp;utm_medium=article</guid>
+      <pubDate>Thu, 05 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：InfoQ 中文 · 谷歌推出开源跨平台 GPU 计算引擎 ML Drift，面向端侧 AI 与机器学习推理，统一抽象 OpenGL ES、OpenCL、Metal 与 WebGPU，支撑 LiteRT 运行时，支持五维张量与自定义算子。对读者：做端侧或 WebGPU 推理的团队可评估其算子覆盖与后端适配，作为跨平台部署的候选方案。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>NVIDIA 开源 Auto Ontology：为 Agent 写 SQL 提供语义层</title>
+      <link>https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/</guid>
+      <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · NVIDIA 发布 Apache 2.0 许可的 Auto Ontology，可从企业元数据自动生成语义层，让 Agent 生成的 SQL 锚定在已认证的定义上，并通过 MCP、CLI 与 API 提供上下文。这直接针对「Agent 写 SQL 看似合理却口径错误」的痛点。对读者：若在做数据 Agent，可先用它统一指标定义，再放开自然语言查询权限。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>juejin-skills：把「自动发文章到掘金」封装成 Agent 技能</title>
+      <link>https://juejin.cn/post/7703084122659504128</link>
+      <guid isPermaLink="true">https://juejin.cn/post/7703084122659504128</guid>
+      <pubDate>Mon, 02 Nov 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：掘金前端 · 掘金没有官方开放 API，作者用 Node.js 零依赖实现文章发布、图片上传与草稿优先防误发，并封装为可在 Claude Code、Cursor 等 Agent 中调用的通用技能开源（MIT）。文中复盘了接口抓包适配与字节 ImageX 三段式上传细节。对读者：给 Agent 接无官方 API 的平台时，草稿优先 + 幂等校验是避免误发布的必要设计。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Vercel Labs 开源 agent-desktop，让 Agent 获得跨平台电脑操作能力</title>
+      <link>https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/31/vercel-labs-agent-desktop-computer-use/</guid>
+      <pubDate>Sat, 31 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Vercel Labs 发布 Apache-2.0 许可的 Rust CLI 工具 agent-desktop，通过读取操作系统无障碍树并基于稳定引用执行操作，让任意 AI Agent 在 macOS、Windows、Linux 上实现电脑使用，而非依赖像素识别。对读者：需要 Agent 操作桌面应用的团队可评估该方案，基于无障碍树的做法通常比视觉方案更稳定、更省算力。</description>
+      <category>开源</category>
+    </item>
+    <item>
+      <title>Infini-AI-Lab 开源 Hermit：Agent 的 Harness 适配框架</title>
+      <link>https://www.marktechpost.com/2026/10/29/infini-ai-lab-hermit-harness-adapter-framework/</link>
+      <guid isPermaLink="true">https://www.marktechpost.com/2026/10/29/infini-ai-lab-hermit-harness-adapter-framework/</guid>
+      <pubDate>Thu, 29 Oct 2026 16:00:00 GMT</pubDate>
+      <description>[开源] · 来源：MarkTechPost · Infini-AI-Lab 发布 Apache-2.0 许可的 Hermit，这是一个 harness 适配框架，可从任务反馈中训练外部的指令、技能、记忆与工具层，而无需改动 Agent 的模型与 harness 本身。对读者：想在不动基座模型的前提下提升 Agent 表现，可把它列入实验清单并验证迁移成本。</description>
+      <category>开源</category>
+    </item>
+  </channel>
+</rss>
